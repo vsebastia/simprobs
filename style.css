@@ -78,3 +78,8 @@ footer {
     color: #94a3b8;
     font-size: 14px;
 }
+
+canvas {
+    width: 100% !important;
+    height: 400px !important;
+}
