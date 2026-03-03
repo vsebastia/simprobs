@@ -1,5 +1,16 @@
 let chart;
 
+function formatAxisValue(value) {
+    const numericValue = Number(value);
+    const nearestInteger = Math.round(numericValue);
+
+    if (Math.abs(numericValue - nearestInteger) < 1e-9) {
+        return nearestInteger.toString();
+    }
+
+    return Number(numericValue.toFixed(2)).toString();
+}
+
 document.getElementById("distribution").addEventListener("change", loadParameters);
 loadParameters();
 
@@ -124,15 +135,20 @@ function drawChart(dist, p1, p2, calc, xValue) {
     let labels = [];
     let data = [];
     let backgroundColors = [];
+    const isContinuousDistribution = dist === "normal";
 
     if (dist === "normal") {
+        const step = p2 / 20;
+        const start = p1 - 4 * p2;
+        const end = p1 + 4 * p2;
 
-        for (let i = p1 - 4*p2; i <= p1 + 4*p2; i += p2/20) {
-            labels.push(i);
-            let y = jStat.normal.pdf(i, p1, p2);
-            data.push(y);
+        for (let i = start; i <= end + step / 2; i += step) {
+            const xPoint = Number(i.toFixed(6));
+            const yPoint = jStat.normal.pdf(xPoint, p1, p2);
 
-            if (calc === "cdf" && i <= xValue)
+            data.push({ x: xPoint, y: yPoint });
+
+            if (calc === "cdf" && xPoint <= xValue)
                 backgroundColors.push("rgba(37, 99, 235, 0.3)");
             else
                 backgroundColors.push("rgba(37, 99, 235, 0.05)");
@@ -179,7 +195,24 @@ function drawChart(dist, p1, p2, calc, xValue) {
         },
         options: {
             responsive: true,
-            plugins: { legend: { display: false } }
+            parsing: isContinuousDistribution ? false : true,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: isContinuousDistribution ? {
+                    type: "linear",
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        callback: (value) => formatAxisValue(value)
+                    }
+                } : {
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                        callback: (_, index) => formatAxisValue(labels[index])
+                    }
+                }
+            }
         }
     });
 }
