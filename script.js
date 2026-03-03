@@ -1,7 +1,14 @@
 let chart;
 
 function formatAxisValue(value) {
-    return Number(value.toFixed(2)).toString();
+    const numericValue = Number(value);
+
+    if (!Number.isFinite(numericValue)) {
+        return "";
+    }
+
+    const normalizedValue = Math.abs(numericValue) < 1e-10 ? 0 : numericValue;
+    return Number(normalizedValue.toFixed(4)).toString();
 }
 
 document.getElementById("distribution").addEventListener("change", loadParameters);
@@ -130,12 +137,13 @@ function drawChart(dist, p1, p2, calc, xValue) {
     let backgroundColors = [];
 
     if (dist === "normal") {
-        const step = p2 / 20;
+        const points = 160;
         const start = p1 - 4 * p2;
         const end = p1 + 4 * p2;
+        const range = end - start;
 
-        for (let i = start; i <= end + step / 2; i += step) {
-            const xPoint = Number(i.toFixed(4));
+        for (let i = 0; i <= points; i++) {
+            const xPoint = Number((start + (i * range) / points).toFixed(4));
 
             labels.push(xPoint);
             let y = jStat.normal.pdf(xPoint, p1, p2);
