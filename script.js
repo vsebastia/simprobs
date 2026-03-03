@@ -3,13 +3,25 @@ let chart;
 document.getElementById("distribution").addEventListener("change", loadParameters);
 loadParameters();
 
-document.addEventListener("DOMContentLoaded", function() {
-    alert("JS cargado correctamente");
-});
+function poissonQuantile(probability, lambda) {
+    if (probability < 0 || probability > 1) {
+        throw "El cuantil requiere x entre 0 y 1";
+    }
 
-document.addEventListener("DOMContentLoaded", function() {
-    alert("JS cargado correctamente");
-});
+    if (probability === 1) {
+        return Infinity;
+    }
+
+    let k = 0;
+    let cumulative = jStat.poisson.pdf(k, lambda);
+
+    while (cumulative < probability && k < 10000) {
+        k += 1;
+        cumulative += jStat.poisson.pdf(k, lambda);
+    }
+
+    return k;
+}
 
 function loadParameters() {
     const dist = document.getElementById("distribution").value;
@@ -87,7 +99,7 @@ function calculate() {
             if (calc === "cdf") result = jStat.poisson.cdf(x, p1);
             if (calc === "quantile") {
                 if (x < 0 || x > 1) throw "El cuantil requiere x entre 0 y 1";
-                result = jStat.poisson.inv(x, p1);
+                result = poissonQuantile(x, p1);
             }
         }
 
