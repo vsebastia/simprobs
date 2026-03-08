@@ -217,6 +217,30 @@ function poissonQuantile(probability, lambda) {
     return k;
 }
 
+function binomialQuantile(probability, n, p) {
+    if (probability < 0 || probability > 1) {
+        throw "El cuantil requiere x entre 0 y 1";
+    }
+
+    if (!Number.isInteger(n) || n < 0) {
+        throw "n debe ser un entero no negativo";
+    }
+
+    if (probability === 1) {
+        return n;
+    }
+
+    let k = 0;
+    let cumulative = jStat.binomial.pdf(k, n, p);
+
+    while (cumulative < probability && k < n) {
+        k += 1;
+        cumulative += jStat.binomial.pdf(k, n, p);
+    }
+
+    return k;
+}
+
 function continuousQuantile(probability, cdfFn, lower, upper) {
     if (probability < 0 || probability > 1) {
         throw "El cuantil requiere x entre 0 y 1";
@@ -428,7 +452,7 @@ function calculate() {
             if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
             if (calc === "quantile") {
                 if (x < 0 || x > 1) throw "El cuantil requiere x entre 0 y 1";
-                result = jStat.binomial.inv(x, p1, p2);
+                result = binomialQuantile(x, p1, p2);
             }
         }
 
