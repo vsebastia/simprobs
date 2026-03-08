@@ -221,3 +221,31 @@ footer {
         height: 350px !important;
     }
 }
+
+.sample-size-panel {
+    margin-top: 20px;
+}
+
+.sample-grid {
+    margin-top: 16px;
+}
+
+#sampleSizeResult {
+    margin-top: 14px;
+}
+
+.formula-box {
+    margin-top: 10px;
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: #1e293b;
+    background: rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    font-size: 0.93rem;
+    line-height: 1.5;
+}
+
+.formula-box code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.9rem;
+}
