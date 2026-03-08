@@ -47,9 +47,23 @@
         </select>
     </div>
 
+    <div class="form-group" id="cdfModeGroup" hidden>
+        <label>Tipo de probabilidad acumulada</label>
+        <select id="cdfMode">
+            <option value="left">P(X ≤ x)</option>
+            <option value="right">P(X ≥ x)</option>
+            <option value="interval">P(a ≤ X ≤ b)</option>
+        </select>
+    </div>
+
     <div class="form-group">
-        <label>Valor x</label>
+        <label id="xValueLabel">Valor x</label>
         <input type="number" id="xValue" value="0">
+    </div>
+
+    <div class="form-group" id="bValueGroup" hidden>
+        <label>Valor b</label>
+        <input type="number" id="bValue" value="1">
     </div>
 
     <button onclick="calculate()">Calcular</button>
