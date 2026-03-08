@@ -524,7 +524,7 @@ function calculate() {
         document.getElementById("result").innerText =
             `${resultLabel}: ${result.toFixed(6)}`;
 
-        drawChart(dist, p1, p2, calc, x, cdfMode, b);
+        drawChart(dist, p1, p2, calc, x, cdfMode, b, calc === "quantile" ? result : null);
 
     } catch (error) {
         document.getElementById("result").innerText = "Error: " + error;
@@ -548,7 +548,11 @@ function shouldShadePoint(dist, point, cdfMode, xValue, bValue) {
     return false;
 }
 
-function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) {
+function shouldShadeQuantilePoint(point, quantileValue) {
+    return Number.isFinite(quantileValue) && point <= quantileValue;
+}
+
+function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null, quantileValue = null) {
 
     const ctx = document.getElementById("chart").getContext("2d");
 
@@ -571,7 +575,8 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             let y = jStat.normal.pdf(xPoint, p1, p2);
             data.push(y);
 
-            if (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue))
+            if ((calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)))
                 backgroundColors.push("rgba(37, 99, 235, 0.3)");
             else
                 backgroundColors.push("rgba(37, 99, 235, 0.05)");
@@ -584,7 +589,8 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             let y = jStat.binomial.pdf(i, p1, p2);
             data.push(y);
 
-            if (calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue))
+            if ((calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(i, quantileValue)))
                 backgroundColors.push("rgba(37, 99, 235, 0.5)");
             else
                 backgroundColors.push("rgba(37, 99, 235, 0.2)");
@@ -597,7 +603,8 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             let y = jStat.poisson.pdf(i, p1);
             data.push(y);
 
-            if (calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue))
+            if ((calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(i, quantileValue)))
                 backgroundColors.push("rgba(37, 99, 235, 0.5)");
             else
                 backgroundColors.push("rgba(37, 99, 235, 0.2)");
@@ -615,7 +622,8 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             labels.push(xPoint);
             data.push(jStat.studentt.pdf(xPoint, p1));
             backgroundColors.push(
-                calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
             );
         }
     }
@@ -631,7 +639,8 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             labels.push(xPoint);
             data.push(jStat.chisquare.pdf(xPoint, p1));
             backgroundColors.push(
-                calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
             );
         }
     }
@@ -647,7 +656,8 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             labels.push(xPoint);
             data.push(jStat.centralF.pdf(xPoint, p1, p2));
             backgroundColors.push(
-                calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
             );
         }
     }
@@ -663,7 +673,8 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             labels.push(xPoint);
             data.push(jStat.exponential.pdf(xPoint, p1));
             backgroundColors.push(
-                calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
             );
         }
     }
@@ -675,7 +686,8 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             labels.push(i);
             data.push(jStat.negbin.pdf(i, p1, p2));
             backgroundColors.push(
-                calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue) ? "rgba(37, 99, 235, 0.5)" : "rgba(37, 99, 235, 0.2)"
+                (calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(i, quantileValue)) ? "rgba(37, 99, 235, 0.5)" : "rgba(37, 99, 235, 0.2)"
             );
         }
     }
@@ -687,18 +699,21 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
             labels.push(i);
             data.push(geometricPmf(i, p1));
             backgroundColors.push(
-                calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue) ? "rgba(37, 99, 235, 0.5)" : "rgba(37, 99, 235, 0.2)"
+                (calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(i, quantileValue)) ? "rgba(37, 99, 235, 0.5)" : "rgba(37, 99, 235, 0.2)"
             );
         }
     }
 
     const discreteDistributions = ["binomial", "poisson", "negbin", "geometric"];
     const isDiscrete = discreteDistributions.includes(dist);
-    const shouldShowReferenceLine = calc === "pdf";
+    const referenceXValue = calc === "quantile" ? quantileValue : xValue;
+    const shouldShowReferenceLine = (calc === "pdf" || calc === "quantile") && Number.isFinite(referenceXValue);
 
     const shadedData = data.map((y, index) => {
         const point = labels[index];
-        return calc === "cdf" && shouldShadePoint(dist, point, cdfMode, xValue, bValue) ? y : null;
+        return (calc === "cdf" && shouldShadePoint(dist, point, cdfMode, xValue, bValue)) ||
+            (calc === "quantile" && shouldShadeQuantilePoint(point, quantileValue)) ? y : null;
     });
 
     const datasets = isDiscrete
@@ -726,19 +741,19 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
         }];
 
     const densityAtX = (() => {
-        if (!Number.isFinite(xValue)) {
+        if (!Number.isFinite(referenceXValue)) {
             return null;
         }
 
-        if (dist === "normal") return jStat.normal.pdf(xValue, p1, p2);
-        if (dist === "binomial") return jStat.binomial.pdf(xValue, p1, p2);
-        if (dist === "poisson") return jStat.poisson.pdf(xValue, p1);
-        if (dist === "studentt") return jStat.studentt.pdf(xValue, p1);
-        if (dist === "chisquare") return jStat.chisquare.pdf(xValue, p1);
-        if (dist === "centralf") return jStat.centralF.pdf(xValue, p1, p2);
-        if (dist === "exponential") return jStat.exponential.pdf(xValue, p1);
-        if (dist === "negbin") return jStat.negbin.pdf(xValue, p1, p2);
-        if (dist === "geometric") return geometricPmf(xValue, p1);
+        if (dist === "normal") return jStat.normal.pdf(referenceXValue, p1, p2);
+        if (dist === "binomial") return jStat.binomial.pdf(referenceXValue, p1, p2);
+        if (dist === "poisson") return jStat.poisson.pdf(referenceXValue, p1);
+        if (dist === "studentt") return jStat.studentt.pdf(referenceXValue, p1);
+        if (dist === "chisquare") return jStat.chisquare.pdf(referenceXValue, p1);
+        if (dist === "centralf") return jStat.centralF.pdf(referenceXValue, p1, p2);
+        if (dist === "exponential") return jStat.exponential.pdf(referenceXValue, p1);
+        if (dist === "negbin") return jStat.negbin.pdf(referenceXValue, p1, p2);
+        if (dist === "geometric") return geometricPmf(referenceXValue, p1);
         return null;
     })();
 
@@ -755,7 +770,7 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
                 legend: { display: false },
                 referenceLinePlugin: {
                     enabled: shouldShowReferenceLine,
-                    xValue: xValue,
+                    xValue: referenceXValue,
                     yValue: densityAtX,
                     labels: labels
                 }
