@@ -1,5 +1,81 @@
 let chart;
 
+const referenceLinePlugin = {
+    id: "referenceLinePlugin",
+    afterDatasetsDraw(chartInstance, _, pluginOptions) {
+        if (!pluginOptions || !pluginOptions.enabled) {
+            return;
+        }
+
+        const { xValue, yValue, labels } = pluginOptions;
+
+        if (!Array.isArray(labels) || labels.length === 0 || !Number.isFinite(xValue) || !Number.isFinite(yValue) || yValue < 0) {
+            return;
+        }
+
+        const xScale = chartInstance.scales.x;
+        const yScale = chartInstance.scales.y;
+
+        if (!xScale || !yScale) {
+            return;
+        }
+
+        const toXPixel = () => {
+            if (labels.length === 1) {
+                return xScale.getPixelForValue(0);
+            }
+
+            const first = labels[0];
+            const last = labels[labels.length - 1];
+
+            if (xValue < first || xValue > last) {
+                return null;
+            }
+
+            for (let i = 0; i < labels.length - 1; i++) {
+                const left = labels[i];
+                const right = labels[i + 1];
+
+                if (xValue < left || xValue > right) {
+                    continue;
+                }
+
+                const leftPixel = xScale.getPixelForValue(i);
+                const rightPixel = xScale.getPixelForValue(i + 1);
+
+                if (Math.abs(right - left) < 1e-12) {
+                    return leftPixel;
+                }
+
+                const t = (xValue - left) / (right - left);
+                return leftPixel + t * (rightPixel - leftPixel);
+            }
+
+            return xScale.getPixelForValue(labels.length - 1);
+        };
+
+        const xPixel = toXPixel();
+
+        if (!Number.isFinite(xPixel)) {
+            return;
+        }
+
+        const yBase = yScale.getPixelForValue(0);
+        const yPixel = yScale.getPixelForValue(yValue);
+
+        const { ctx } = chartInstance;
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(xPixel, yBase);
+        ctx.lineTo(xPixel, yPixel);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#dc2626";
+        ctx.setLineDash([6, 4]);
+        ctx.stroke();
+        ctx.restore();
+    }
+};
+
 function formatAxisValue(value) {
     const numericValue = Number(value);
 
@@ -568,22 +644,73 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null) 
     }
 
     const discreteDistributions = ["binomial", "poisson", "negbin", "geometric"];
+    const isDiscrete = discreteDistributions.includes(dist);
+    const shouldShowReferenceLine = calc === "pdf";
+
+    const shadedData = data.map((y, index) => {
+        const point = labels[index];
+        return calc === "cdf" && shouldShadePoint(dist, point, cdfMode, xValue, bValue) ? y : null;
+    });
+
+    const datasets = isDiscrete
+        ? [{
+            data: data,
+            borderColor: "#2563eb",
+            backgroundColor: backgroundColors,
+            fill: false,
+            tension: 0.3
+        }]
+        : [{
+            data: shadedData,
+            borderColor: "rgba(37, 99, 235, 0)",
+            backgroundColor: "rgba(37, 99, 235, 0.3)",
+            fill: "origin",
+            pointRadius: 0,
+            tension: 0.3
+        }, {
+            data: data,
+            borderColor: "#2563eb",
+            backgroundColor: "rgba(37, 99, 235, 0.05)",
+            fill: false,
+            pointRadius: 0,
+            tension: 0.3
+        }];
+
+    const densityAtX = (() => {
+        if (!Number.isFinite(xValue)) {
+            return null;
+        }
+
+        if (dist === "normal") return jStat.normal.pdf(xValue, p1, p2);
+        if (dist === "binomial") return jStat.binomial.pdf(xValue, p1, p2);
+        if (dist === "poisson") return jStat.poisson.pdf(xValue, p1);
+        if (dist === "studentt") return jStat.studentt.pdf(xValue, p1);
+        if (dist === "chisquare") return jStat.chisquare.pdf(xValue, p1);
+        if (dist === "centralf") return jStat.centralF.pdf(xValue, p1, p2);
+        if (dist === "exponential") return jStat.exponential.pdf(xValue, p1);
+        if (dist === "negbin") return jStat.negbin.pdf(xValue, p1, p2);
+        if (dist === "geometric") return geometricPmf(xValue, p1);
+        return null;
+    })();
 
     chart = new Chart(ctx, {
-        type: discreteDistributions.includes(dist) ? "bar" : "line",
+        type: isDiscrete ? "bar" : "line",
+        plugins: [referenceLinePlugin],
         data: {
             labels: labels,
-            datasets: [{
-                data: data,
-                borderColor: "#2563eb",
-                backgroundColor: backgroundColors,
-                fill: !discreteDistributions.includes(dist),
-                tension: 0.3
-            }]
+            datasets: datasets
         },
         options: {
             responsive: true,
-            plugins: { legend: { display: false } },
+            plugins: {
+                legend: { display: false },
+                referenceLinePlugin: {
+                    enabled: shouldShowReferenceLine,
+                    xValue: xValue,
+                    yValue: densityAtX,
+                    labels: labels
+                }
+            },
             scales: {
                 x: {
                     ticks: {
