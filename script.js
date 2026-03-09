@@ -2,15 +2,15 @@ let chart;
 
 
 const distributionDescriptions = {
-    normal: "Distribución continua y simétrica en forma de campana, definida por su media (μ) y desviación típica (σ).",
-    binomial: "Distribución discreta que modela el número de éxitos en n ensayos independientes con probabilidad p.",
-    poisson: "Distribución discreta para contar eventos en un intervalo cuando ocurren con tasa media λ.",
-    studentt: "Distribución continua similar a la normal, con colas más pesadas, usada con muestras pequeñas.",
-    chisquare: "Distribución continua de valores no negativos, común en pruebas de ajuste y análisis de varianza.",
-    centralf: "Distribución continua que compara dos varianzas y se utiliza en contrastes F (por ejemplo, ANOVA).",
-    exponential: "Distribución continua para tiempos de espera entre eventos de un proceso de Poisson, con tasa λ.",
-    negbin: "Distribución discreta que modela el número de fracasos antes de alcanzar r éxitos con probabilidad p.",
-    geometric: "Distribución discreta que da el número de ensayos hasta el primer éxito con probabilidad p constante."
+    normal: "Continuous bell-shaped symmetric distribution, defined by its mean (μ) and standard deviation (σ).",
+    binomial: "Discrete distribution that models the number of successes in n independent trials with probability p.",
+    poisson: "Discrete distribution used to count events in an interval when they occur at average rate λ.",
+    studentt: "Continuous distribution similar to the normal, with heavier tails, used for small samples.",
+    chisquare: "Continuous distribution of nonnegative values, common in goodness-of-fit tests and analysis of variance.",
+    centralf: "Continuous distribution that compares two variances and is used in F-tests (for example, ANOVA).",
+    exponential: "Continuous distribution for waiting times between events in a Poisson process, with rate λ.",
+    negbin: "Discrete distribution that models the number of failures before reaching r successes with probability p.",
+    geometric: "Discrete distribution that gives the number of trials until the first success with constant probability p."
 };
 
 function updateDistributionDescription(dist) {
@@ -130,17 +130,17 @@ function updateCdfControls() {
 
     if (!isCdf) {
         bValueGroup.hidden = true;
-        xValueLabel.innerText = calc === "quantile" ? "Probabilidad (entre 0 y 1)" : "Valor x";
+        xValueLabel.innerText = calc === "quantile" ? "Probability (between 0 and 1)" : "x value";
         return;
     }
 
     if (cdfMode.value === "interval") {
-        xValueLabel.innerText = "Valor a";
+        xValueLabel.innerText = "a value";
         bValueGroup.hidden = false;
         return;
     }
 
-    xValueLabel.innerText = "Valor x";
+    xValueLabel.innerText = "x value";
     bValueGroup.hidden = true;
 }
 
@@ -154,7 +154,7 @@ function getCdfValue(dist, value, p1, p2) {
     if (dist === "exponential") return jStat.exponential.cdf(value, p1);
     if (dist === "negbin") return jStat.negbin.cdf(value, p1, p2);
     if (dist === "geometric") return geometricCdf(value, p1);
-    throw "Distribución no soportada";
+    throw "Unsupported distribution";
 }
 
 function resolveCdfResult(dist, cdfMode, x, b, p1, p2) {
@@ -173,11 +173,11 @@ function resolveCdfResult(dist, cdfMode, x, b, p1, p2) {
 
     if (cdfMode === "interval") {
         if (!Number.isFinite(b)) {
-            throw "Debes indicar un valor válido para b";
+            throw "You must provide a valid value for b";
         }
 
         if (b < x) {
-            throw "El intervalo debe cumplir a ≤ b";
+            throw "The interval must satisfy a ≤ b";
         }
 
         if (["binomial", "poisson", "negbin", "geometric"].includes(dist)) {
@@ -194,12 +194,12 @@ function resolveCdfResult(dist, cdfMode, x, b, p1, p2) {
         };
     }
 
-    throw "Tipo de probabilidad acumulada no válido";
+    throw "Invalid cumulative probability type";
 }
 
 function poissonQuantile(probability, lambda) {
     if (probability < 0 || probability > 1) {
-        throw "El cuantil requiere x entre 0 y 1";
+        throw "Quantile requires x between 0 and 1";
     }
 
     if (probability === 1) {
@@ -219,11 +219,11 @@ function poissonQuantile(probability, lambda) {
 
 function binomialQuantile(probability, n, p) {
     if (probability < 0 || probability > 1) {
-        throw "El cuantil requiere x entre 0 y 1";
+        throw "Quantile requires x between 0 and 1";
     }
 
     if (!Number.isInteger(n) || n < 0) {
-        throw "n debe ser un entero no negativo";
+        throw "n must be a nonnegative integer";
     }
 
     if (probability === 1) {
@@ -243,7 +243,7 @@ function binomialQuantile(probability, n, p) {
 
 function continuousQuantile(probability, cdfFn, lower, upper) {
     if (probability < 0 || probability > 1) {
-        throw "El cuantil requiere x entre 0 y 1";
+        throw "Quantile requires x between 0 and 1";
     }
 
     if (probability === 0) {
@@ -289,7 +289,7 @@ function geometricCdf(k, p) {
 
 function geometricQuantile(probability, p) {
     if (probability < 0 || probability > 1) {
-        throw "El cuantil requiere x entre 0 y 1";
+        throw "Quantile requires x between 0 and 1";
     }
 
     if (probability === 1) {
@@ -301,7 +301,7 @@ function geometricQuantile(probability, p) {
 
 function negativeBinomialQuantile(probability, r, p) {
     if (probability < 0 || probability > 1) {
-        throw "El cuantil requiere x entre 0 y 1";
+        throw "Quantile requires x between 0 and 1";
     }
 
     if (probability === 1) {
@@ -328,11 +328,11 @@ function loadParameters() {
     if (dist === "normal") {
         container.innerHTML = `
             <div class="form-group">
-                <label>Media (μ)</label>
+                <label>Mean (μ)</label>
                 <input type="number" id="param1" value="0">
             </div>
             <div class="form-group">
-                <label>Desviación típica (σ)</label>
+                <label>Standard deviation (σ)</label>
                 <input type="number" id="param2" value="1" min="0.0001">
             </div>
         `;
@@ -345,7 +345,7 @@ function loadParameters() {
                 <input type="number" id="param1" value="10" min="1">
             </div>
             <div class="form-group">
-                <label>p (entre 0 y 1)</label>
+                <label>p (between 0 and 1)</label>
                 <input type="number" id="param2" value="0.5" step="0.01" min="0" max="1">
             </div>
         `;
@@ -363,7 +363,7 @@ function loadParameters() {
     if (dist === "studentt") {
         container.innerHTML = `
             <div class="form-group">
-                <label>Grados de libertad (ν)</label>
+                <label>Degrees of freedom (ν)</label>
                 <input type="number" id="param1" value="10" min="1" step="1">
             </div>
         `;
@@ -372,7 +372,7 @@ function loadParameters() {
     if (dist === "chisquare") {
         container.innerHTML = `
             <div class="form-group">
-                <label>Grados de libertad (k)</label>
+                <label>Degrees of freedom (k)</label>
                 <input type="number" id="param1" value="8" min="1" step="1">
             </div>
         `;
@@ -381,11 +381,11 @@ function loadParameters() {
     if (dist === "centralf") {
         container.innerHTML = `
             <div class="form-group">
-                <label>Grados de libertad (d1)</label>
+                <label>Degrees of freedom (d1)</label>
                 <input type="number" id="param1" value="5" min="1" step="1">
             </div>
             <div class="form-group">
-                <label>Grados de libertad (d2)</label>
+                <label>Degrees of freedom (d2)</label>
                 <input type="number" id="param2" value="10" min="1" step="1">
             </div>
         `;
@@ -394,7 +394,7 @@ function loadParameters() {
     if (dist === "exponential") {
         container.innerHTML = `
             <div class="form-group">
-                <label>Tasa (λ)</label>
+                <label>Rate (λ)</label>
                 <input type="number" id="param1" value="1" min="0.0001" step="0.1">
             </div>
         `;
@@ -403,11 +403,11 @@ function loadParameters() {
     if (dist === "negbin") {
         container.innerHTML = `
             <div class="form-group">
-                <label>r (éxitos objetivo)</label>
+                <label>r (target successes)</label>
                 <input type="number" id="param1" value="5" min="1" step="1">
             </div>
             <div class="form-group">
-                <label>p (entre 0 y 1)</label>
+                <label>p (between 0 and 1)</label>
                 <input type="number" id="param2" value="0.4" step="0.01" min="0.0001" max="0.9999">
             </div>
         `;
@@ -416,7 +416,7 @@ function loadParameters() {
     if (dist === "geometric") {
         container.innerHTML = `
             <div class="form-group">
-                <label>p (entre 0 y 1)</label>
+                <label>p (between 0 and 1)</label>
                 <input type="number" id="param1" value="0.3" step="0.01" min="0.0001" max="0.9999">
             </div>
         `;
@@ -442,7 +442,7 @@ function calculate() {
             if (calc === "pdf") result = jStat.normal.pdf(x, p1, p2);
             if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
             if (calc === "quantile") {
-                if (x < 0 || x > 1) throw "El cuantil requiere x entre 0 y 1";
+                if (x < 0 || x > 1) throw "Quantile requires x between 0 and 1";
                 result = jStat.normal.inv(x, p1, p2);
             }
         }
@@ -451,7 +451,7 @@ function calculate() {
             if (calc === "pdf") result = jStat.binomial.pdf(x, p1, p2);
             if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
             if (calc === "quantile") {
-                if (x < 0 || x > 1) throw "El cuantil requiere x entre 0 y 1";
+                if (x < 0 || x > 1) throw "Quantile requires x between 0 and 1";
                 result = binomialQuantile(x, p1, p2);
             }
         }
@@ -460,7 +460,7 @@ function calculate() {
             if (calc === "pdf") result = jStat.poisson.pdf(x, p1);
             if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
             if (calc === "quantile") {
-                if (x < 0 || x > 1) throw "El cuantil requiere x entre 0 y 1";
+                if (x < 0 || x > 1) throw "Quantile requires x between 0 and 1";
                 result = poissonQuantile(x, p1);
             }
         }
@@ -513,9 +513,9 @@ function calculate() {
             }
         }
 
-        if (result === null || isNaN(result)) throw "Valores inválidos";
+        if (result === null || isNaN(result)) throw "Invalid values";
 
-        let resultLabel = "Resultado";
+        let resultLabel = "Result";
 
         if (calc === "cdf") {
             resultLabel = resolveCdfResult(dist, cdfMode, x, b, p1, p2).label;
@@ -822,13 +822,13 @@ function updateSampleSizeControls() {
 
 function validateProbability(value, name) {
     if (!Number.isFinite(value) || value <= 0 || value >= 1) {
-        throw `${name} debe estar entre 0 y 1 (sin incluir extremos)`;
+        throw `${name} must be between 0 and 1 (excluding endpoints)`;
     }
 }
 
 function validatePositive(value, name) {
     if (!Number.isFinite(value) || value <= 0) {
-        throw `${name} debe ser mayor que 0`;
+        throw `${name} must be greater than 0`;
     }
 }
 
@@ -847,7 +847,7 @@ function getAllocationRatio(allocationId, ratioId) {
     const k = ratioEl ? parseFloat(ratioEl.value) : NaN;
 
     if (!Number.isFinite(k) || k <= 0) {
-        throw "La razón n2/n1 (k) debe ser mayor que 0";
+        throw "The n2/n1 ratio (k) must be greater than 0";
     }
 
     return k;
@@ -869,14 +869,14 @@ function calculateSampleSize() {
 
             validateProbability(p, "p");
             validateProbability(e, "E");
-            validateProbability(confidence, "El nivel de confianza");
+            validateProbability(confidence, "El nivel confidence");
 
             const alpha = 1 - confidence;
             const z = getStandardNormalQuantile(1 - (alpha / 2));
             const n = Math.ceil((Math.pow(z, 2) * p * (1 - p)) / Math.pow(e, 2));
             renderSampleSizeFormula("oneprop", { z, p, e });
 
-            resultEl.innerText = `n mínimo recomendado: ${n} observaciones (una proporción, ${Math.round(confidence * 100)}% de confianza).`;
+            resultEl.innerText = `Minimum recommended n: ${n} observations (one proportion, ${Math.round(confidence * 100)}% confidence).`;
             return;
         }
 
@@ -909,9 +909,9 @@ function calculateSampleSize() {
             renderSampleSizeFormula("twoprop", { zAlpha, zBeta, pBar, p1, p2, diff, k });
 
             if (Math.abs(k - 1) < 1e-10) {
-                resultEl.innerText = `n mínimo por grupo: ${n1} (total: ${nTotal}) para detectar |p1 - p2| = ${diff.toFixed(3)}.`;
+                resultEl.innerText = `Minimum n per group: ${n1} (total: ${nTotal}) to detect |p1 - p2| = ${diff.toFixed(3)}.`;
             } else {
-                resultEl.innerText = `n mínimo grupo 1: ${n1}; grupo 2: ${n2} (k = ${k.toFixed(2)}, total: ${nTotal}) para detectar |p1 - p2| = ${diff.toFixed(3)}.`;
+                resultEl.innerText = `Minimum n group 1: ${n1}; group 2: ${n2} (k = ${k.toFixed(2)}, total: ${nTotal}) to detect |p1 - p2| = ${diff.toFixed(3)}.`;
             }
             return;
         }
@@ -923,14 +923,14 @@ function calculateSampleSize() {
 
             validatePositive(sigma, "σ");
             validatePositive(e, "E");
-            validateProbability(confidence, "El nivel de confianza");
+            validateProbability(confidence, "El nivel confidence");
 
             const alpha = 1 - confidence;
             const z = getStandardNormalQuantile(1 - (alpha / 2));
             const n = Math.ceil(Math.pow((z * sigma) / e, 2));
 
             renderSampleSizeFormula("onemean", { z, sigma, e });
-            resultEl.innerText = `n mínimo recomendado: ${n} observaciones (una media, ${Math.round(confidence * 100)}% de confianza).`;
+            resultEl.innerText = `Minimum recommended n: ${n} observations (one mean, ${Math.round(confidence * 100)}% confidence).`;
             return;
         }
 
@@ -958,14 +958,14 @@ function calculateSampleSize() {
             renderSampleSizeFormula("twomean", { zAlpha, zBeta, sigma1, sigma2, delta, k });
 
             if (Math.abs(k - 1) < 1e-10) {
-                resultEl.innerText = `n mínimo por grupo: ${n1} (total: ${nTotal}) para detectar Δ = ${delta.toFixed(3)}.`;
+                resultEl.innerText = `Minimum n per group: ${n1} (total: ${nTotal}) to detect Δ = ${delta.toFixed(3)}.`;
             } else {
-                resultEl.innerText = `n mínimo grupo 1: ${n1}; grupo 2: ${n2} (k = ${k.toFixed(2)}, total: ${nTotal}) para detectar Δ = ${delta.toFixed(3)}.`;
+                resultEl.innerText = `Minimum n group 1: ${n1}; group 2: ${n2} (k = ${k.toFixed(2)}, total: ${nTotal}) to detect Δ = ${delta.toFixed(3)}.`;
             }
             return;
         }
 
-        throw "Tipo de cálculo no soportado";
+        throw "Unsupported calculation type";
     } catch (error) {
         resultEl.innerText = `Error: ${error}`;
     }
@@ -1004,11 +1004,11 @@ function renderSampleSizeFormula(type, values = null) {
 
     if (type === "oneprop") {
         if (!values) {
-            formulaEl.innerHTML = "<strong>Fórmula usada (una proporción):</strong><br><code>n = (Z² · p · (1 - p)) / E²</code>";
+            formulaEl.innerHTML = "<strong>Formula used (one proportion):</strong><br><code>n = (Z² · p · (1 - p)) / E²</code>";
             return;
         }
 
-        formulaEl.innerHTML = `<strong>Fórmula usada (una proporción):</strong><br><code>n = (Z² · p · (1 - p)) / E²</code><br><code>n = (${values.z.toFixed(4)}² · ${values.p.toFixed(4)} · (1 - ${values.p.toFixed(4)})) / ${values.e.toFixed(4)}²</code>`;
+        formulaEl.innerHTML = `<strong>Formula used (one proportion):</strong><br><code>n = (Z² · p · (1 - p)) / E²</code><br><code>n = (${values.z.toFixed(4)}² · ${values.p.toFixed(4)} · (1 - ${values.p.toFixed(4)})) / ${values.e.toFixed(4)}²</code>`;
         return;
     }
 
@@ -1019,28 +1019,28 @@ function renderSampleSizeFormula(type, values = null) {
 
         if (!values) {
             if (Math.abs(kPreview - 1) < 1e-10) {
-                formulaEl.innerHTML = "<strong>Fórmula usada (dos proporciones, n por grupo):</strong><br><code>n = ((Zα/2·√(2·p̄·(1-p̄)) + Zβ·√(p1·(1-p1)+p2·(1-p2)))²) / (p1-p2)²</code>";
+                formulaEl.innerHTML = "<strong>Formula used (two proportions, n per group):</strong><br><code>n = ((Zα/2·√(2·p̄·(1-p̄)) + Zβ·√(p1·(1-p1)+p2·(1-p2)))²) / (p1-p2)²</code>";
             } else {
-                formulaEl.innerHTML = `<strong>Fórmula usada (dos proporciones, grupos distintos):</strong><br><code>n1 = ((Zα/2·√((1+1/k)·p̄·(1-p̄)) + Zβ·√(p1·(1-p1) + (p2·(1-p2))/k))²) / (p1-p2)²</code><br><code>n2 = k·n1, con p̄ = (p1 + k·p2)/(1 + k), k = ${kPreview.toFixed(3)}</code>`;
+                formulaEl.innerHTML = `<strong>Formula used (two proportions, unequal groups):</strong><br><code>n1 = ((Zα/2·√((1+1/k)·p̄·(1-p̄)) + Zβ·√(p1·(1-p1) + (p2·(1-p2))/k))²) / (p1-p2)²</code><br><code>n2 = k·n1, with p̄ = (p1 + k·p2)/(1 + k), k = ${kPreview.toFixed(3)}</code>`;
             }
             return;
         }
 
         if (Math.abs(values.k - 1) < 1e-10) {
-            formulaEl.innerHTML = `<strong>Fórmula usada (dos proporciones, n por grupo):</strong><br><code>n = ((Zα/2·√(2·p̄·(1-p̄)) + Zβ·√(p1·(1-p1)+p2·(1-p2)))²) / (p1-p2)²</code><br><code>n = ((${values.zAlpha.toFixed(4)}·√(2·${values.pBar.toFixed(4)}·(1-${values.pBar.toFixed(4)})) + ${values.zBeta.toFixed(4)}·√(${values.p1.toFixed(4)}·(1-${values.p1.toFixed(4)})+${values.p2.toFixed(4)}·(1-${values.p2.toFixed(4)})))²) / (${values.diff.toFixed(4)})²</code>`;
+            formulaEl.innerHTML = `<strong>Formula used (two proportions, n per group):</strong><br><code>n = ((Zα/2·√(2·p̄·(1-p̄)) + Zβ·√(p1·(1-p1)+p2·(1-p2)))²) / (p1-p2)²</code><br><code>n = ((${values.zAlpha.toFixed(4)}·√(2·${values.pBar.toFixed(4)}·(1-${values.pBar.toFixed(4)})) + ${values.zBeta.toFixed(4)}·√(${values.p1.toFixed(4)}·(1-${values.p1.toFixed(4)})+${values.p2.toFixed(4)}·(1-${values.p2.toFixed(4)})))²) / (${values.diff.toFixed(4)})²</code>`;
         } else {
-            formulaEl.innerHTML = `<strong>Fórmula usada (dos proporciones, grupos distintos):</strong><br><code>n1 = ((Zα/2·√((1+1/k)·p̄·(1-p̄)) + Zβ·√(p1·(1-p1) + (p2·(1-p2))/k))²) / (p1-p2)²</code><br><code>n2 = k·n1, p̄ = (p1 + k·p2)/(1 + k)</code><br><code>n1 = ((${values.zAlpha.toFixed(4)}·√((1+1/${values.k.toFixed(4)})·${values.pBar.toFixed(4)}·(1-${values.pBar.toFixed(4)})) + ${values.zBeta.toFixed(4)}·√(${values.p1.toFixed(4)}·(1-${values.p1.toFixed(4)}) + (${values.p2.toFixed(4)}·(1-${values.p2.toFixed(4)}))/${values.k.toFixed(4)}))²) / (${values.diff.toFixed(4)})²</code>`;
+            formulaEl.innerHTML = `<strong>Formula used (two proportions, unequal groups):</strong><br><code>n1 = ((Zα/2·√((1+1/k)·p̄·(1-p̄)) + Zβ·√(p1·(1-p1) + (p2·(1-p2))/k))²) / (p1-p2)²</code><br><code>n2 = k·n1, p̄ = (p1 + k·p2)/(1 + k)</code><br><code>n1 = ((${values.zAlpha.toFixed(4)}·√((1+1/${values.k.toFixed(4)})·${values.pBar.toFixed(4)}·(1-${values.pBar.toFixed(4)})) + ${values.zBeta.toFixed(4)}·√(${values.p1.toFixed(4)}·(1-${values.p1.toFixed(4)}) + (${values.p2.toFixed(4)}·(1-${values.p2.toFixed(4)}))/${values.k.toFixed(4)}))²) / (${values.diff.toFixed(4)})²</code>`;
         }
         return;
     }
 
     if (type === "onemean") {
         if (!values) {
-            formulaEl.innerHTML = "<strong>Fórmula usada (una media):</strong><br><code>n = (Z · σ / E)²</code>";
+            formulaEl.innerHTML = "<strong>Formula used (one mean):</strong><br><code>n = (Z · σ / E)²</code>";
             return;
         }
 
-        formulaEl.innerHTML = `<strong>Fórmula usada (una media):</strong><br><code>n = (Z · σ / E)²</code><br><code>n = (${values.z.toFixed(4)} · ${values.sigma.toFixed(4)} / ${values.e.toFixed(4)})²</code>`;
+        formulaEl.innerHTML = `<strong>Formula used (one mean):</strong><br><code>n = (Z · σ / E)²</code><br><code>n = (${values.z.toFixed(4)} · ${values.sigma.toFixed(4)} / ${values.e.toFixed(4)})²</code>`;
         return;
     }
 
@@ -1051,20 +1051,20 @@ function renderSampleSizeFormula(type, values = null) {
 
         if (!values) {
             if (Math.abs(kPreview - 1) < 1e-10) {
-                formulaEl.innerHTML = "<strong>Fórmula usada (diferencia de medias, n por grupo):</strong><br><code>n = ((Zα/2 + Zβ)² · (σ1² + σ2²)) / Δ²</code>";
+                formulaEl.innerHTML = "<strong>Formula used (difference in means, n per group):</strong><br><code>n = ((Zα/2 + Zβ)² · (σ1² + σ2²)) / Δ²</code>";
             } else {
-                formulaEl.innerHTML = `<strong>Fórmula usada (diferencia de medias, grupos distintos):</strong><br><code>n1 = ((Zα/2 + Zβ)² · (σ1² + σ2²/k)) / Δ²</code><br><code>n2 = k·n1, con k = ${kPreview.toFixed(3)}</code>`;
+                formulaEl.innerHTML = `<strong>Formula used (difference in means, unequal groups):</strong><br><code>n1 = ((Zα/2 + Zβ)² · (σ1² + σ2²/k)) / Δ²</code><br><code>n2 = k·n1, with k = ${kPreview.toFixed(3)}</code>`;
             }
             return;
         }
 
         if (Math.abs(values.k - 1) < 1e-10) {
-            formulaEl.innerHTML = `<strong>Fórmula usada (diferencia de medias, n por grupo):</strong><br><code>n = ((Zα/2 + Zβ)² · (σ1² + σ2²)) / Δ²</code><br><code>n = ((${values.zAlpha.toFixed(4)} + ${values.zBeta.toFixed(4)})² · (${values.sigma1.toFixed(4)}² + ${values.sigma2.toFixed(4)}²)) / ${values.delta.toFixed(4)}²</code>`;
+            formulaEl.innerHTML = `<strong>Formula used (difference in means, n per group):</strong><br><code>n = ((Zα/2 + Zβ)² · (σ1² + σ2²)) / Δ²</code><br><code>n = ((${values.zAlpha.toFixed(4)} + ${values.zBeta.toFixed(4)})² · (${values.sigma1.toFixed(4)}² + ${values.sigma2.toFixed(4)}²)) / ${values.delta.toFixed(4)}²</code>`;
         } else {
-            formulaEl.innerHTML = `<strong>Fórmula usada (diferencia de medias, grupos distintos):</strong><br><code>n1 = ((Zα/2 + Zβ)² · (σ1² + σ2²/k)) / Δ²</code><br><code>n2 = k·n1</code><br><code>n1 = ((${values.zAlpha.toFixed(4)} + ${values.zBeta.toFixed(4)})² · (${values.sigma1.toFixed(4)}² + ${values.sigma2.toFixed(4)}²/${values.k.toFixed(4)})) / ${values.delta.toFixed(4)}²</code>`;
+            formulaEl.innerHTML = `<strong>Formula used (difference in means, unequal groups):</strong><br><code>n1 = ((Zα/2 + Zβ)² · (σ1² + σ2²/k)) / Δ²</code><br><code>n2 = k·n1</code><br><code>n1 = ((${values.zAlpha.toFixed(4)} + ${values.zBeta.toFixed(4)})² · (${values.sigma1.toFixed(4)}² + ${values.sigma2.toFixed(4)}²/${values.k.toFixed(4)})) / ${values.delta.toFixed(4)}²</code>`;
         }
         return;
     }
 
-    formulaEl.innerHTML = "Fórmula pendiente…";
+    formulaEl.innerHTML = "Pending formula…";
 }

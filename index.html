@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de Distribuciones de Probabilidad Online | ProbLab Interactivo</title>
+    <title>Online Probability Distribution Calculator | Interactive ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ProbLab es una calculadora online de distribuciones de probabilidad con gráficos dinámicos: Normal, Binomial, Poisson, t de Student, Chi-cuadrada y más, con resultados inmediatos.">
+    <meta name="description" content="ProbLab is an online probability distribution calculator with dynamic charts: Normal, Binomial, Poisson, Student's t, Chi-square, and more, with immediate results.">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -14,35 +14,35 @@
 <div class="page-wrap">
     <header class="hero">
         <div>
-            <p class="eyebrow">Laboratorio estadístico</p>
+            <p class="eyebrow">Statistical lab</p>
             <h1>ProbLab</h1>
-            <p class="hero-subtitle">Domina estadística aplicada con una calculadora de distribuciones de probabilidad online, precisa y fácil de usar para estudiantes, docentes y profesionales.</p>
-            <p class="hero-intro">En ProbLab puedes calcular probabilidades, densidades, cuantiles y áreas acumuladas en distribuciones como Normal, Binomial, Poisson, t de Student y Chi-cuadrada, con visualizaciones claras para entender cada resultado en segundos.</p>
-            <p class="hero-links"><a href="#calculator">Ir a la calculadora</a> · <a href="#how-to-use">Cómo interpretar PDF, CDF y cuantiles</a> · <a href="#distribution-guides">Guías de distribuciones</a></p>
+            <p class="hero-subtitle">Master applied statistics with an online probability distribution calculator that is accurate and easy to use for students, teachers, and professionals.</p>
+            <p class="hero-intro">In ProbLab you can calculate probabilities, densities, quantiles, and cumulative areas for distributions such as Normal, Binomial, Poisson, Student's t, and Chi-square, with clear visualizations to understand each result in seconds.</p>
+            <p class="hero-links"><a href="#calculator">Go to calculator</a> · <a href="#how-to-use">How to interpret PDF, CDF, and quantiles</a> · <a href="#distribution-guides">Distribution guides</a></p>
         </div>
     </header>
 
     <main>
-        <section id="calculator" class="app-shell" aria-label="Calculadora de distribuciones">
+        <section id="calculator" class="app-shell" aria-label="Distribution calculator">
             <section class="card control-panel">
                 <div class="panel-heading">
-                    <h2>Configuración</h2>
-                    <p>Elige una distribución, ajusta parámetros y selecciona el tipo de cálculo.</p>
+                    <h2>Configuration</h2>
+                    <p>Choose a distribution, adjust parameters, and select the calculation type.</p>
                 </div>
 
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Distribución</label>
+                        <label>Distribution</label>
                         <select id="distribution">
                             <option value="normal">Normal</option>
                             <option value="binomial">Binomial</option>
                             <option value="poisson">Poisson</option>
-                            <option value="studentt">t de Student</option>
-                            <option value="chisquare">Chi-cuadrada</option>
-                            <option value="centralf">F de Snedecor</option>
-                            <option value="exponential">Exponencial</option>
-                            <option value="negbin">Binomial negativa</option>
-                            <option value="geometric">Geométrica</option>
+                            <option value="studentt">Student's t</option>
+                            <option value="chisquare">Chi-square</option>
+                            <option value="centralf">Snedecor's F</option>
+                            <option value="exponential">Exponential</option>
+                            <option value="negbin">Negative binomial</option>
+                            <option value="geometric">Geometric</option>
                         </select>
                         <p id="distributionDescription" class="distribution-description"></p>
                     </div>
@@ -50,16 +50,16 @@
                     <div id="parameters" class="dynamic-parameters"></div>
 
                     <div class="form-group">
-                        <label>Tipo de cálculo</label>
+                        <label>Calculation type</label>
                         <select id="calculation">
-                            <option value="pdf">Función de densidad / probabilidad</option>
-                            <option value="cdf">Probabilidad acumulada</option>
-                            <option value="quantile">Cuantil</option>
+                            <option value="pdf">Density / probability function</option>
+                            <option value="cdf">Cumulative probability</option>
+                            <option value="quantile">Quantile</option>
                         </select>
                     </div>
 
                     <div class="form-group" id="cdfModeGroup" hidden>
-                        <label>Tipo de probabilidad acumulada</label>
+                        <label>Cumulative probability type</label>
                         <select id="cdfMode">
                             <option value="left">P(X ≤ x)</option>
                             <option value="right">P(X ≥ x)</option>
@@ -69,27 +69,27 @@
 
                     <div class="inline-inputs">
                         <div class="form-group">
-                            <label id="xValueLabel">Valor x</label>
+                            <label id="xValueLabel">x value</label>
                             <input type="number" id="xValue" value="0">
                         </div>
 
                         <div class="form-group" id="bValueGroup" hidden>
-                            <label>Valor b</label>
+                            <label>b value</label>
                             <input type="number" id="bValue" value="1">
                         </div>
                     </div>
                 </div>
 
-                <button class="calculate-btn" onclick="calculate()">Calcular</button>
+                <button class="calculate-btn" onclick="calculate()">Calculate</button>
             </section>
 
             <section class="card results-panel" id="graph-visualization">
                 <div class="panel-heading">
-                    <h2>Resultado y visualización</h2>
-                    <p>Interpreta el valor obtenido junto con la curva de la distribución seleccionada.</p>
+                    <h2>Result and visualization</h2>
+                    <p>Interpret the value obtained together with the selected distribution curve.</p>
                 </div>
 
-                <div id="result" class="result-box">Resultado pendiente…</div>
+                <div id="result" class="result-box">Pending result…</div>
 
                 <div class="chart-wrap">
                     <canvas id="chart"></canvas>
@@ -99,35 +99,35 @@
 
         <section class="card sample-size-panel">
             <div class="panel-heading">
-                <h2>Tamaño muestral</h2>
-                <p>Calcula el tamaño de muestra para una proporción o para comparar dos proporciones.</p>
+                <h2>Sample size</h2>
+                <p>Calculate sample size for one proportion or to compare two proportions.</p>
             </div>
 
             <div class="form-grid sample-grid">
                 <div class="form-group">
-                    <label>Tipo de cálculo</label>
+                    <label>Calculation type</label>
                     <select id="sampleSizeType">
-                        <option value="oneprop">Una proporción</option>
-                        <option value="twoprop">Dos proporciones</option>
-                        <option value="onemean">Una media</option>
-                        <option value="twomean">Diferencia de medias</option>
+                        <option value="oneprop">One proportion</option>
+                        <option value="twoprop">Two proportions</option>
+                        <option value="onemean">One mean</option>
+                        <option value="twomean">Difference in means</option>
                     </select>
                 </div>
 
                 <div id="onePropInputs">
                     <div class="inline-inputs">
                         <div class="form-group">
-                            <label>Proporción esperada (p)</label>
+                            <label>Expected proportion (p)</label>
                             <input type="number" id="onePropP" value="0.5" step="0.01" min="0.0001" max="0.9999">
                         </div>
                         <div class="form-group">
-                            <label>Margen de error (E)</label>
+                            <label>Margin of error (E)</label>
                             <input type="number" id="onePropE" value="0.05" step="0.001" min="0.0001" max="0.9999">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Nivel de confianza</label>
+                        <label>Confidence level</label>
                         <select id="onePropConfidence">
                             <option value="0.90">90%</option>
                             <option value="0.95" selected>95%</option>
@@ -139,11 +139,11 @@
                 <div id="twoPropInputs" hidden>
                     <div class="inline-inputs">
                         <div class="form-group">
-                            <label>Proporción esperada grupo 1 (p1)</label>
+                            <label>Expected proportion group 1 (p1)</label>
                             <input type="number" id="twoPropP1" value="0.5" step="0.01" min="0.0001" max="0.9999">
                         </div>
                         <div class="form-group">
-                            <label>Proporción esperada grupo 2 (p2)</label>
+                            <label>Expected proportion group 2 (p2)</label>
                             <input type="number" id="twoPropP2" value="0.4" step="0.01" min="0.0001" max="0.9999">
                         </div>
                     </div>
@@ -154,21 +154,21 @@
                             <input type="number" id="twoPropAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
                         </div>
                         <div class="form-group">
-                            <label>Potencia (1-β)</label>
+                            <label>Power (1-β)</label>
                             <input type="number" id="twoPropPower" value="0.8" step="0.01" min="0.5" max="0.999">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Asignación entre grupos</label>
+                        <label>Allocation between groups</label>
                         <select id="twoPropAllocation">
-                            <option value="equal" selected>Igual (1:1)</option>
-                            <option value="custom">Distinta (n2/n1 personalizado)</option>
+                            <option value="equal" selected>Equal (1:1)</option>
+                            <option value="custom">Unequal (custom n2/n1)</option>
                         </select>
                     </div>
 
                     <div class="form-group" id="twoPropRatioGroup" hidden>
-                        <label>Razón n2/n1 (k)</label>
+                        <label>n2/n1 ratio (k)</label>
                         <input type="number" id="twoPropRatio" value="1.5" step="0.1" min="0.1">
                     </div>
                 </div>
@@ -176,17 +176,17 @@
                 <div id="oneMeanInputs" hidden>
                     <div class="inline-inputs">
                         <div class="form-group">
-                            <label>Desviación estándar (σ)</label>
+                            <label>Standard deviation (σ)</label>
                             <input type="number" id="oneMeanSigma" value="10" step="0.1" min="0.0001">
                         </div>
                         <div class="form-group">
-                            <label>Margen de error (E)</label>
+                            <label>Margin of error (E)</label>
                             <input type="number" id="oneMeanE" value="2" step="0.1" min="0.0001">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Nivel de confianza</label>
+                        <label>Confidence level</label>
                         <select id="oneMeanConfidence">
                             <option value="0.90">90%</option>
                             <option value="0.95" selected>95%</option>
@@ -198,18 +198,18 @@
                 <div id="twoMeanInputs" hidden>
                     <div class="inline-inputs">
                         <div class="form-group">
-                            <label>Desviación estándar grupo 1 (σ1)</label>
+                            <label>Standard deviation group 1 (σ1)</label>
                             <input type="number" id="twoMeanSigma1" value="10" step="0.1" min="0.0001">
                         </div>
                         <div class="form-group">
-                            <label>Desviación estándar grupo 2 (σ2)</label>
+                            <label>Standard deviation group 2 (σ2)</label>
                             <input type="number" id="twoMeanSigma2" value="10" step="0.1" min="0.0001">
                         </div>
                     </div>
 
                     <div class="inline-inputs">
                         <div class="form-group">
-                            <label>Diferencia mínima a detectar (Δ)</label>
+                            <label>Minimum detectable difference (Δ)</label>
                             <input type="number" id="twoMeanDelta" value="5" step="0.1" min="0.0001">
                         </div>
                         <div class="form-group">
@@ -220,34 +220,34 @@
 
                     <div class="inline-inputs">
                         <div class="form-group">
-                            <label>Potencia (1-β)</label>
+                            <label>Power (1-β)</label>
                             <input type="number" id="twoMeanPower" value="0.8" step="0.01" min="0.5" max="0.999">
                         </div>
                         <div class="form-group">
-                            <label>Asignación entre grupos</label>
+                            <label>Allocation between groups</label>
                             <select id="twoMeanAllocation">
-                                <option value="equal" selected>Igual (1:1)</option>
-                                <option value="custom">Distinta (n2/n1 personalizado)</option>
+                                <option value="equal" selected>Equal (1:1)</option>
+                                <option value="custom">Unequal (custom n2/n1)</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group" id="twoMeanRatioGroup" hidden>
-                        <label>Razón n2/n1 (k)</label>
+                        <label>n2/n1 ratio (k)</label>
                         <input type="number" id="twoMeanRatio" value="1.5" step="0.1" min="0.1">
                     </div>
                 </div>
             </div>
-            <button class="calculate-btn" onclick="calculateSampleSize()">Calcular tamaño muestral</button>
-            <div id="sampleSizeResult" class="result-box">Resultado pendiente…</div>
-            <div id="sampleSizeFormula" class="formula-box">Fórmula pendiente…</div>
+            <button class="calculate-btn" onclick="calculateSampleSize()">Calculate sample size</button>
+            <div id="sampleSizeResult" class="result-box">Pending result…</div>
+            <div id="sampleSizeFormula" class="formula-box">Pending formula…</div>
         </section>
 
         <section id="how-to-use" class="card content-card">
-            <h2>Cómo usar esta calculadora de distribuciones</h2>
-            <p>Esta herramienta está diseñada para ayudarte a traducir conceptos estadísticos en decisiones concretas. Cuando eliges un tipo de cálculo como <strong>PDF/PMF</strong>, la calculadora devuelve la altura de la curva en un punto (distribuciones continuas) o la probabilidad exacta de un valor entero (distribuciones discretas). Para la Normal, la salida PDF indica densidad, no probabilidad puntual; para Binomial y Poisson, el resultado PMF sí representa una probabilidad puntual. Si cambias a <strong>CDF</strong>, obtienes probabilidad acumulada: por ejemplo, qué tan probable es observar un valor menor o igual que <em>x</em>, mayor o igual que <em>x</em>, o dentro de un intervalo.</p>
-            <p>El modo <strong>cuantil</strong> invierte la lógica. En lugar de introducir un valor de la variable aleatoria, introduces una probabilidad entre 0 y 1 y la herramienta devuelve el punto de corte correspondiente. Este enfoque es útil para percentiles, umbrales de decisión y límites de control. Por ejemplo, si necesitas el valor que deja al 95% de las observaciones por debajo, seleccionas cuantiles e ingresas 0.95.</p>
-            <p>En la gráfica, la línea o marcador rojo señala el valor usado en el cálculo. El área sombreada representa la probabilidad acumulada solicitada cuando usas CDF: área a la izquierda, área a la derecha o área entre dos puntos. Cuanto mayor es el área sombreada, mayor es la probabilidad del evento definido. Si quieres conectar teoría y práctica, consulta las secciones de Normal, Binomial y Poisson debajo: allí encontrarás cuándo usar cada distribución y cómo mapear sus parámetros con los campos del formulario.</p>
+            <h2>How to use this distribution calculator</h2>
+            <p>This tool is designed to help you translate statistical concepts into concrete decisions. When you choose a calculation type like <strong>PDF/PMF</strong>, the calculator returns the curve height at a point (continuous distributions) or the exact probability of an integer value (discrete distributions). For the Normal distribution, the PDF output indicates density, not point probability; for Binomial and Poisson, the PMF result does represent point probability. If you switch to <strong>CDF</strong>, you get cumulative probability: for example, how likely it is to observe a value less than or equal to <em>x</em>, greater than or equal to <em>x</em>, or within an interval.</p>
+            <p><strong>Quantile</strong> mode reverses the logic. Instead of entering a random variable value, you enter a probability between 0 and 1 and the tool returns the corresponding cutoff point. This approach is useful for percentiles, decision thresholds, and control limits. For example, if you need the value that leaves 95% of observations below it, select quantiles and enter 0.95.</p>
+            <p>In the chart, the red line or marker indicates the value used in the calculation. The shaded area represents the requested cumulative probability when using CDF: area to the left, area to the right, or area between two points. The larger the shaded area, the greater the probability of the defined event. If you want to connect theory and practice, check the Normal, Binomial, and Poisson sections below: there you will find when to use each distribution and how to map their parameters to the form fields.</p>
         </section>
 
         <section class="card content-card" aria-labelledby="seo-title">
@@ -256,7 +256,7 @@
             <p>Unlike a bare-bones form, this page combines the interactive tool with editorial guidance so users understand what each output means. The plotted curve and highlighted region help visualize <strong>cumulative probability</strong>, tail probability, and interval probability directly from input values. By pairing formulas, parameter descriptions, and practical examples with the calculator, ProbLab supports both quick computation and conceptual understanding, making it useful for homework, data science workflows, A/B testing, quality control, and introductory statistical inference.</p>
         </section>
 
-        <section id="distribution-guides" class="learning-grid" aria-label="Explicaciones educativas de distribuciones">
+        <section id="distribution-guides" class="learning-grid" aria-label="Educational distribution explanations">
             <article class="card content-card">
                 <h2>Normal distribution</h2>
                 <h3>Plain-language explanation</h3>
@@ -316,7 +316,7 @@
             </article>
             <article>
                 <h3>How do I compute a quantile?</h3>
-                <p>Select “Cuantil” in the calculator and input a probability between 0 and 1. The returned value is the cutoff where the chosen proportion of outcomes lies below it.</p>
+                <p>Select “Quantile” in the calculator and input a probability between 0 and 1. The returned value is the cutoff where the chosen proportion of outcomes lies below it.</p>
             </article>
             <article>
                 <h3>When should I use a binomial distribution?</h3>
@@ -330,7 +330,7 @@
     </main>
 
     <footer>
-        © 2026 ProbLab · Creado por Vicente Castellar
+        © 2026 ProbLab · Created by Vicente Castellar
     </footer>
 </div>
 
