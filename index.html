@@ -377,6 +377,51 @@
                 <h3>Ejemplos reales y uso</h3>
                 <p>Un centro de soporte puede recibir en promedio 6 tickets por hora. Poisson permite estimar probabilidades de recibir exactamente 10 tickets, como máximo 4 o al menos 8 en la próxima hora. En la calculadora, selecciona <em>Poisson</em>, introduce λ y evalúa PMF para conteos exactos o CDF para límites acumulados.</p>
             </article>
+
+            <article class="card content-card">
+                <h2>Distribución chi-cuadrado</h2>
+                <h3>Explicación sencilla</h3>
+                <p>La distribución chi-cuadrado aparece al sumar cuadrados de variables normales estandarizadas y solo toma valores positivos. Es asimétrica (especialmente con pocos grados de libertad) y se vuelve más parecida a una campana a medida que aumentan los grados de libertad. Se utiliza con frecuencia en inferencia estadística para contrastes de bondad de ajuste, independencia en tablas de contingencia y estimación de varianzas.</p>
+                <h3>Fórmula</h3>
+                <p class="formula-line">\( f(x;k)=\frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2-1}e^{-x/2},\quad x&gt;0 \)</p>
+                <h3>Parámetros</h3>
+                <ul>
+                    <li><strong>k (grados de libertad):</strong> determina la forma y dispersión de la distribución.</li>
+                    <li><strong>x:</strong> valor del estadístico chi-cuadrado observado.</li>
+                </ul>
+                <h3>Ejemplos reales y uso</h3>
+                <p>Si quieres comprobar si la distribución observada de respuestas en una encuesta coincide con una distribución teórica, puedes calcular un estadístico chi-cuadrado y evaluar su probabilidad en cola derecha. En la calculadora, usa <em>Chi-cuadrado</em> con los grados de libertad apropiados para obtener probabilidades acumuladas o cuantiles críticos (por ejemplo, el punto de corte del 95%).</p>
+            </article>
+
+            <article class="card content-card">
+                <h2>Distribución exponencial</h2>
+                <h3>Explicación sencilla</h3>
+                <p>La distribución exponencial modela tiempos de espera entre eventos cuando estos ocurren a tasa constante e independiente (un escenario típico de procesos de Poisson). Es una distribución continua definida para valores no negativos y tiene la propiedad de “falta de memoria”: la probabilidad de esperar un tiempo adicional no depende de cuánto ya se haya esperado.</p>
+                <h3>Fórmula</h3>
+                <p class="formula-line">\( f(x;\lambda)=\lambda e^{-\lambda x},\quad x\geq 0 \)</p>
+                <h3>Parámetros</h3>
+                <ul>
+                    <li><strong>λ (lambda):</strong> tasa media de ocurrencia por unidad de tiempo (o espacio).</li>
+                    <li><strong>x:</strong> tiempo de espera hasta que ocurre el evento.</li>
+                </ul>
+                <h3>Ejemplos reales y uso</h3>
+                <p>En un sistema donde llegan llamadas con una tasa media de 12 por hora, el tiempo entre llamadas puede modelarse con una exponencial. Con la calculadora puedes estimar la probabilidad de que el tiempo de espera sea menor que 3 minutos, mayor que 10 minutos o encontrar el cuantil correspondiente a un nivel de servicio concreto.</p>
+            </article>
+
+            <article class="card content-card">
+                <h2>Distribución geométrica</h2>
+                <h3>Explicación sencilla</h3>
+                <p>La distribución geométrica describe cuántos intentos independientes se necesitan hasta obtener el primer éxito, cuando cada intento tiene la misma probabilidad de éxito. Es una distribución discreta, apropiada para procesos de repetición tipo “probar hasta lograr”. Al igual que la exponencial, también presenta una versión discreta de la propiedad de falta de memoria.</p>
+                <h3>Fórmula</h3>
+                <p class="formula-line">\( P(X=k)=(1-p)^{k-1}p,\quad k=1,2,3,\dots \)</p>
+                <h3>Parámetros</h3>
+                <ul>
+                    <li><strong>p:</strong> probabilidad de éxito en cada intento.</li>
+                    <li><strong>k:</strong> número de intento en el que ocurre el primer éxito.</li>
+                </ul>
+                <h3>Ejemplos reales y uso</h3>
+                <p>Si un comercial tiene una probabilidad del 20% de cerrar una venta en cada llamada, la geométrica permite calcular la probabilidad de cerrar en la primera, tercera o décima llamada, así como la probabilidad acumulada de cerrar antes de cierto número de contactos. En la calculadora, selecciona <em>Geométrica</em> para trabajar con estos escenarios de “primer éxito”.</p>
+            </article>
         </section>
 
         <section class="card content-card faq-section" aria-labelledby="faq-title">
