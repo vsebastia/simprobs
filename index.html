@@ -1,13 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Online Probability Distribution Calculator | Interactive ProbLab</title>
+    <title>Calculadora de distribuciones de probabilidad | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ProbLab is an online probability distribution calculator with dynamic charts: Normal, Binomial, Poisson, Student's t, Chi-square, and more, with immediate results.">
+    <meta name="description" content="ProbLab es una calculadora online de distribuciones de probabilidad con gráficos dinámicos para Normal, Binomial, Poisson, t de Student y Chi-cuadrado. Calcula PDF, CDF y cuantiles al instante.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="canonical" href="https://problabtools.es/">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/">
 
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:title" content="Calculadora de distribuciones de probabilidad | ProbLab">
+    <meta property="og:description" content="Calcula probabilidades, densidades, áreas acumuladas y cuantiles para múltiples distribuciones con visualización interactiva.">
+    <meta property="og:url" content="https://problabtools.es/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de distribuciones de probabilidad | ProbLab">
+    <meta name="twitter:description" content="Herramienta interactiva para Normal, Binomial, Poisson y más. Incluye PDF/PMF, CDF y cuantiles.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "ProbLab",
+          "url": "https://problabtools.es/",
+          "inLanguage": "es"
+        },
+        {
+          "@type": "WebApplication",
+          "name": "ProbLab",
+          "url": "https://problabtools.es/",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "description": "Calculadora online de distribuciones de probabilidad con resultados inmediatos y gráficos dinámicos.",
+          "inLanguage": "es",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is a probability distribution?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A probability distribution is a mathematical description of how likely each possible outcome is for a random variable."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the difference between PDF and CDF?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "PDF (or PMF in discrete cases) describes local probability behavior at a value, while CDF gives cumulative probability up to that value."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I compute a quantile?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Select quantile mode in the calculator and input a probability between 0 and 1 to obtain the cutoff value."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 
