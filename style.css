@@ -333,3 +333,7 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+section {
+    margin: 40px 0; /* espacio arriba y abajo */
+}
