@@ -98,6 +98,20 @@
     </header>
 
     <main>
+
+        <section id="how-to-use" class="card content-card">
+            <h2>Cómo usar esta calculadora de distribuciones</h2>
+            <p>Esta herramienta está diseñada para ayudarte a convertir conceptos estadísticos en decisiones concretas. Cuando eliges un tipo de cálculo como <strong>PDF/PMF</strong>, la calculadora devuelve la altura de la curva en un punto (distribuciones continuas) o la probabilidad exacta de un valor entero (distribuciones discretas). En la distribución normal, la PDF representa densidad, no probabilidad puntual; en Binomial y Poisson, la PMF sí representa probabilidad puntual. Si cambias a <strong>CDF</strong>, obtienes probabilidad acumulada: por ejemplo, la probabilidad de observar un valor menor o igual que <em>x</em>, mayor o igual que <em>x</em>, o dentro de un intervalo.</p>
+            <p>El modo <strong>Cuantil</strong> invierte la lógica. En lugar de introducir un valor de la variable aleatoria, introduces una probabilidad entre 0 y 1 y la herramienta devuelve el punto de corte correspondiente. Este enfoque es útil para percentiles, umbrales de decisión y límites de control. Por ejemplo, si necesitas el valor que deja al 95% de las observaciones por debajo, selecciona cuantiles e introduce 0.95.</p>
+            <p>En la gráfica, la línea o marcador rojo indica el valor usado en el cálculo. El área sombreada representa la probabilidad acumulada solicitada cuando usas CDF: área a la izquierda, a la derecha o entre dos puntos. Cuanto mayor sea el área sombreada, mayor será la probabilidad del evento definido. Si quieres conectar teoría y práctica, revisa las secciones de Normal, Binomial y Poisson más abajo: encontrarás cuándo usar cada distribución y cómo mapear sus parámetros a los campos del formulario.</p>
+        </section>
+
+        <section class="card content-card" aria-labelledby="seo-title">
+            <h2 id="seo-title">Calculadora de distribuciones de probabilidad</h2>
+            <p>ProbLab funciona como una <strong>calculadora de distribuciones de probabilidad</strong> completa para estudiantes, analistas y profesionales que necesitan resultados rápidos e interpretables. Puedes usarla como <strong>calculadora de distribución normal</strong> para estimar densidades, probabilidades acumuladas y cuantiles en datos con forma de campana. También funciona como <strong>calculadora de distribución binomial</strong> cuando los resultados son discretos y se basan en un número fijo de ensayos con probabilidad de éxito constante. Para modelar conteos de eventos, actúa como <strong>calculadora de distribución de Poisson</strong>, ideal para tasas en el tiempo o el espacio.</p>
+            <p>A diferencia de un formulario básico, esta página combina la herramienta interactiva con guía explicativa para que los usuarios entiendan qué significa cada salida. La curva dibujada y la región resaltada ayudan a visualizar la <strong>probabilidad acumulada</strong>, la probabilidad en cola y la probabilidad por intervalos directamente a partir de los valores de entrada. Al unir fórmulas, descripciones de parámetros y ejemplos prácticos con la calculadora, ProbLab facilita tanto el cálculo rápido como la comprensión conceptual.</p>
+        </section>
+        
         <section id="calculator" class="app-shell" aria-label="Calculadora de distribuciones">
             <section class="card control-panel">
                 <div class="panel-heading">
@@ -318,18 +332,7 @@
             <div id="sampleSizeFormula" class="formula-box">Fórmula pendiente…</div>
         </section>
 
-        <section id="how-to-use" class="card content-card">
-            <h2>Cómo usar esta calculadora de distribuciones</h2>
-            <p>Esta herramienta está diseñada para ayudarte a convertir conceptos estadísticos en decisiones concretas. Cuando eliges un tipo de cálculo como <strong>PDF/PMF</strong>, la calculadora devuelve la altura de la curva en un punto (distribuciones continuas) o la probabilidad exacta de un valor entero (distribuciones discretas). En la distribución normal, la PDF representa densidad, no probabilidad puntual; en Binomial y Poisson, la PMF sí representa probabilidad puntual. Si cambias a <strong>CDF</strong>, obtienes probabilidad acumulada: por ejemplo, la probabilidad de observar un valor menor o igual que <em>x</em>, mayor o igual que <em>x</em>, o dentro de un intervalo.</p>
-            <p>El modo <strong>Cuantil</strong> invierte la lógica. En lugar de introducir un valor de la variable aleatoria, introduces una probabilidad entre 0 y 1 y la herramienta devuelve el punto de corte correspondiente. Este enfoque es útil para percentiles, umbrales de decisión y límites de control. Por ejemplo, si necesitas el valor que deja al 95% de las observaciones por debajo, selecciona cuantiles e introduce 0.95.</p>
-            <p>En la gráfica, la línea o marcador rojo indica el valor usado en el cálculo. El área sombreada representa la probabilidad acumulada solicitada cuando usas CDF: área a la izquierda, a la derecha o entre dos puntos. Cuanto mayor sea el área sombreada, mayor será la probabilidad del evento definido. Si quieres conectar teoría y práctica, revisa las secciones de Normal, Binomial y Poisson más abajo: encontrarás cuándo usar cada distribución y cómo mapear sus parámetros a los campos del formulario.</p>
-        </section>
 
-        <section class="card content-card" aria-labelledby="seo-title">
-            <h2 id="seo-title">Calculadora de distribuciones de probabilidad</h2>
-            <p>ProbLab funciona como una <strong>calculadora de distribuciones de probabilidad</strong> completa para estudiantes, analistas y profesionales que necesitan resultados rápidos e interpretables. Puedes usarla como <strong>calculadora de distribución normal</strong> para estimar densidades, probabilidades acumuladas y cuantiles en datos con forma de campana. También funciona como <strong>calculadora de distribución binomial</strong> cuando los resultados son discretos y se basan en un número fijo de ensayos con probabilidad de éxito constante. Para modelar conteos de eventos, actúa como <strong>calculadora de distribución de Poisson</strong>, ideal para tasas en el tiempo o el espacio.</p>
-            <p>A diferencia de un formulario básico, esta página combina la herramienta interactiva con guía explicativa para que los usuarios entiendan qué significa cada salida. La curva dibujada y la región resaltada ayudan a visualizar la <strong>probabilidad acumulada</strong>, la probabilidad en cola y la probabilidad por intervalos directamente a partir de los valores de entrada. Al unir fórmulas, descripciones de parámetros y ejemplos prácticos con la calculadora, ProbLab facilita tanto el cálculo rápido como la comprensión conceptual.</p>
-        </section>
 
         <section id="distribution-guides" class="learning-grid" aria-label="Explicaciones educativas de distribuciones">
             <article class="card content-card">
