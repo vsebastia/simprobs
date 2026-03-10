@@ -1,472 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Calculadora de distribuciones de probabilidad | ProbLab</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ProbLab es una calculadora online de distribuciones de probabilidad con gráficos dinámicos para Normal, Binomial, Poisson, t de Student y Chi-cuadrado. Calcula PDF, CDF y cuantiles al instante.">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="author" content="Vicente Castellar">
-    <meta name="theme-color" content="#4f46e5">
-    <link rel="canonical" href="https://problabtools.es/">
-    <link rel="alternate" hreflang="es" href="https://problabtools.es/">
-
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_ES">
-    <meta property="og:site_name" content="ProbLab">
-    <meta property="og:title" content="Calculadora de distribuciones de probabilidad | ProbLab">
-    <meta property="og:description" content="Calcula probabilidades, densidades, áreas acumuladas y cuantiles para múltiples distribuciones con visualización interactiva.">
-    <meta property="og:url" content="https://problabtools.es/">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Calculadora de distribuciones de probabilidad | ProbLab">
-    <meta name="twitter:description" content="Herramienta interactiva para Normal, Binomial, Poisson y más. Incluye PDF/PMF, CDF y cuantiles.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Cache-busting token para forzar recarga tras despliegues -->
-    <link rel="stylesheet" href="style_new.css?v=1">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "name": "ProbLab",
-          "url": "https://problabtools.es/",
-          "inLanguage": "es"
-        },
-        {
-          "@type": "WebApplication",
-          "name": "ProbLab",
-          "url": "https://problabtools.es/",
-          "applicationCategory": "EducationalApplication",
-          "operatingSystem": "Web",
-          "description": "Calculadora online de distribuciones de probabilidad con resultados inmediatos y gráficos dinámicos.",
-          "inLanguage": "es",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "EUR"
-          }
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "¿Qué es una distribución de probabilidad?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Una distribución de probabilidad es una descripción matemática de la probabilidad de cada resultado posible de una variable aleatoria."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿Cuál es la diferencia entre PDF y CDF?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "La PDF (o PMF en casos discretos) describe el comportamiento local de la probabilidad en un valor, mientras que la CDF ofrece la probabilidad acumulada hasta ese valor."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "¿Cómo calculo un cuantil?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Selecciona el modo cuantil en la calculadora e introduce una probabilidad entre 0 y 1 para obtener el valor de corte."
-              }
-            }
-          ]
-        }
-      ]
-    }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProbLab | Hub de calculadoras de distribuciones de probabilidad</title>
+  <meta name="description" content="ProbLab es un hub para explorar y calcular distribuciones Normal, Binomial, Poisson, t-Student, Chi-cuadrada y Exponencial en páginas especializadas.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
 <body>
+  <header id="inicio">
+    <nav aria-label="Menú principal">
+      <a href="/">Inicio</a>
+      <a href="/normal">Normal</a>
+      <a href="/binomial">Binomial</a>
+      <a href="/poisson">Poisson</a>
+      <a href="/t-student">t-Student</a>
+      <a href="/chi-cuadrada">Chi-cuadrada</a>
+      <a href="/exponencial">Exponencial</a>
+    </nav>
+    <h1>ProbLab: laboratorio de distribuciones de probabilidad</h1>
+    <p>ProbLab es una plataforma educativa para estudiar y aplicar distribuciones de probabilidad en estadística, ciencia de datos e ingeniería. Desde esta página puedes acceder a calculadoras dedicadas para cada distribución y resolver casos reales con una interfaz clara.</p>
+    <p><a href="#distribuciones">Ver distribuciones</a> · <a href="#sobre-problab">Qué es ProbLab</a></p>
+  </header>
 
-<div class="page-wrap">
-    <header class="hero">
-        <div>
-            <p class="eyebrow">Laboratorio estadístico</p>
-            <h1>ProbLab</h1>
-            <p class="hero-subtitle">Domina la estadística aplicada con una calculadora online de distribuciones de probabilidad precisa y fácil de usar para estudiantes, docentes y profesionales.</p>
-            <p class="hero-intro">En ProbLab puedes calcular probabilidades, densidades, cuantiles y áreas acumuladas para distribuciones como Normal, Binomial, Poisson, t de Student y Chi-cuadrado, con visualizaciones claras para entender cada resultado en segundos.</p>
-            <p class="hero-links"><a href="#calculator">Ir a la calculadora</a> · <a href="#how-to-use">Cómo interpretar PDF, CDF y cuantiles</a> · <a href="#distribution-guides">Guías de distribuciones</a></p>
-        </div>
-    </header>
+  <main>
+    <section id="sobre-problab">
+      <h2>¿Qué es ProbLab?</h2>
+      <p>ProbLab centraliza recursos de cálculo y explicación para las distribuciones más utilizadas. Cada herramienta contiene contexto teórico, ejemplos y una calculadora específica para que puedas pasar de la fórmula a la interpretación práctica.</p>
+      <p>El objetivo es ayudarte a aprender de forma progresiva: primero comprender la distribución y después calcular probabilidades, cuantiles y escenarios típicos.</p>
+      <p><a href="#inicio">Volver arriba</a> · <a href="#distribuciones">Ir al listado de calculadoras</a></p>
+    </section>
 
-    <main>
+    <section id="distribuciones">
+      <h2>Calculadoras disponibles</h2>
+      <ul>
+        <li><a href="/normal">Distribución normal</a></li>
+        <li><a href="/binomial">Distribución binomial</a></li>
+        <li><a href="/poisson">Distribución de Poisson</a></li>
+        <li><a href="/t-student">Distribución t de Student</a></li>
+        <li><a href="/chi-cuadrada">Distribución chi-cuadrada</a></li>
+        <li><a href="/exponencial">Distribución exponencial</a></li>
+      </ul>
+      <p><a href="#inicio">Volver arriba</a></p>
+    </section>
+  </main>
 
-        <section id="how-to-use" class="card content-card">
-            <h2>Cómo usar esta calculadora de distribuciones</h2>
-            <p>Esta herramienta está diseñada para ayudarte a convertir conceptos estadísticos en decisiones concretas. Cuando eliges un tipo de cálculo como <strong>PDF/PMF</strong>, la calculadora devuelve la altura de la curva en un punto (distribuciones continuas) o la probabilidad exacta de un valor entero (distribuciones discretas). En la distribución normal, la PDF representa densidad, no probabilidad puntual; en Binomial y Poisson, la PMF sí representa probabilidad puntual. Si cambias a <strong>CDF</strong>, obtienes probabilidad acumulada: por ejemplo, la probabilidad de observar un valor menor o igual que <em>x</em>, mayor o igual que <em>x</em>, o dentro de un intervalo.</p>
-            <p>El modo <strong>Cuantil</strong> invierte la lógica. En lugar de introducir un valor de la variable aleatoria, introduces una probabilidad entre 0 y 1 y la herramienta devuelve el punto de corte correspondiente. Este enfoque es útil para percentiles, umbrales de decisión y límites de control. Por ejemplo, si necesitas el valor que deja al 95% de las observaciones por debajo, selecciona cuantiles e introduce 0.95.</p>
-            <p>En la gráfica, la línea o marcador rojo indica el valor usado en el cálculo. El área sombreada representa la probabilidad acumulada solicitada cuando usas CDF: área a la izquierda, a la derecha o entre dos puntos. Cuanto mayor sea el área sombreada, mayor será la probabilidad del evento definido. Si quieres conectar teoría y práctica, revisa las secciones de Normal, Binomial y Poisson más abajo: encontrarás cuándo usar cada distribución y cómo mapear sus parámetros a los campos del formulario.</p>
-        </section>
-
-        <section class="card content-card" aria-labelledby="seo-title">
-            <h2 id="seo-title">Calculadora de distribuciones de probabilidad</h2>
-            <p>ProbLab funciona como una <strong>calculadora de distribuciones de probabilidad</strong> completa para estudiantes, analistas y profesionales que necesitan resultados rápidos e interpretables. Puedes usarla como <strong>calculadora de distribución normal</strong> para estimar densidades, probabilidades acumuladas y cuantiles en datos con forma de campana. También funciona como <strong>calculadora de distribución binomial</strong> cuando los resultados son discretos y se basan en un número fijo de ensayos con probabilidad de éxito constante. Para modelar conteos de eventos, actúa como <strong>calculadora de distribución de Poisson</strong>, ideal para tasas en el tiempo o el espacio.</p>
-            <p>A diferencia de un formulario básico, esta página combina la herramienta interactiva con guía explicativa para que los usuarios entiendan qué significa cada salida. La curva dibujada y la región resaltada ayudan a visualizar la <strong>probabilidad acumulada</strong>, la probabilidad en cola y la probabilidad por intervalos directamente a partir de los valores de entrada. Al unir fórmulas, descripciones de parámetros y ejemplos prácticos con la calculadora, ProbLab facilita tanto el cálculo rápido como la comprensión conceptual.</p>
-        </section>
-        
-        <section id="calculator" class="app-shell" aria-label="Calculadora de distribuciones">
-            <section class="card control-panel">
-                <div class="panel-heading">
-                    <h2>Configuración</h2>
-                    <p>Elige una distribución, ajusta parámetros y selecciona el tipo de cálculo.</p>
-                </div>
-
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Distribución</label>
-                        <select id="distribution">
-                            <option value="normal">Normal</option>
-                            <option value="binomial">Binomial</option>
-                            <option value="poisson">Poisson</option>
-                            <option value="studentt">t de Student</option>
-                            <option value="chisquare">Chi-cuadrado</option>
-                            <option value="centralf">Snedecor's F</option>
-                            <option value="exponential">Exponencial</option>
-                            <option value="negbin">Binomial negativa</option>
-                            <option value="geometric">Geométrica</option>
-                        </select>
-                        <p id="distributionDescription" class="distribution-description"></p>
-                    </div>
-
-                    <div id="parameters" class="dynamic-parameters"></div>
-
-                    <div class="form-group">
-                        <label>Tipo de cálculo</label>
-                        <select id="calculation">
-                            <option value="pdf">Función de densidad / probabilidad</option>
-                            <option value="cdf">Probabilidad acumulada</option>
-                            <option value="quantile">Cuantil</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="cdfModeGroup" hidden>
-                        <label>Tipo de probabilidad acumulada</label>
-                        <select id="cdfMode">
-                            <option value="left">P(X ≤ x)</option>
-                            <option value="right">P(X ≥ x)</option>
-                            <option value="interval">P(a ≤ X ≤ b)</option>
-                        </select>
-                    </div>
-
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label id="xValueLabel">valor de x</label>
-                            <input type="number" id="xValue" value="0">
-                        </div>
-
-                        <div class="form-group" id="bValueGroup" hidden>
-                            <label>valor de b</label>
-                            <input type="number" id="bValue" value="1">
-                        </div>
-                    </div>
-                </div>
-
-                <button class="calculate-btn" onclick="calculate()">Calcular</button>
-            </section>
-
-            <section class="card results-panel" id="graph-visualization">
-                <div class="panel-heading">
-                    <h2>Resultado y visualización</h2>
-                    <p>Interpreta el valor obtenido junto con la curva de distribución seleccionada.</p>
-                </div>
-
-                <div id="result" class="result-box">Resultado pendiente…</div>
-
-                <div class="chart-wrap">
-                    <canvas id="chart"></canvas>
-                </div>
-            </section>
-        </section>
-
-        <section class="card sample-size-panel">
-            <div class="panel-heading">
-                <h2>Tamaño muestral</h2>
-                <p>Calcula el tamaño muestral para una proporción o para comparar dos proporciones.</p>
-            </div>
-
-            <div class="form-grid sample-grid">
-                <div class="form-group">
-                    <label>Tipo de cálculo</label>
-                    <select id="sampleSizeType">
-                        <option value="oneprop">Una proporción</option>
-                        <option value="twoprop">Dos proporciones</option>
-                        <option value="onemean">Una media</option>
-                        <option value="twomean">Diferencia de medias</option>
-                    </select>
-                </div>
-
-                <div id="onePropInputs">
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label>Proporción esperada (p)</label>
-                            <input type="number" id="onePropP" value="0.5" step="0.01" min="0.0001" max="0.9999">
-                        </div>
-                        <div class="form-group">
-                            <label>Margen de error (E)</label>
-                            <input type="number" id="onePropE" value="0.05" step="0.001" min="0.0001" max="0.9999">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nivel de confianza</label>
-                        <select id="onePropConfidence">
-                            <option value="0.90">90%</option>
-                            <option value="0.95" selected>95%</option>
-                            <option value="0.99">99%</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="twoPropInputs" hidden>
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label>Proporción esperada del grupo 1 (p1)</label>
-                            <input type="number" id="twoPropP1" value="0.5" step="0.01" min="0.0001" max="0.9999">
-                        </div>
-                        <div class="form-group">
-                            <label>Proporción esperada del grupo 2 (p2)</label>
-                            <input type="number" id="twoPropP2" value="0.4" step="0.01" min="0.0001" max="0.9999">
-                        </div>
-                    </div>
-
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label>Alfa (α)</label>
-                            <input type="number" id="twoPropAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
-                        </div>
-                        <div class="form-group">
-                            <label>Potencia (1-β)</label>
-                            <input type="number" id="twoPropPower" value="0.8" step="0.01" min="0.5" max="0.999">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Asignación entre grupos</label>
-                        <select id="twoPropAllocation">
-                            <option value="equal" selected>Igual (1:1)</option>
-                            <option value="custom">Desigual (n2/n1 personalizado)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="twoPropRatioGroup" hidden>
-                        <label>Razón n2/n1 (k)</label>
-                        <input type="number" id="twoPropRatio" value="1.5" step="0.1" min="0.1">
-                    </div>
-                </div>
-
-                <div id="oneMeanInputs" hidden>
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label>Desviación estándar (σ)</label>
-                            <input type="number" id="oneMeanSigma" value="10" step="0.1" min="0.0001">
-                        </div>
-                        <div class="form-group">
-                            <label>Margen de error (E)</label>
-                            <input type="number" id="oneMeanE" value="2" step="0.1" min="0.0001">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nivel de confianza</label>
-                        <select id="oneMeanConfidence">
-                            <option value="0.90">90%</option>
-                            <option value="0.95" selected>95%</option>
-                            <option value="0.99">99%</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="twoMeanInputs" hidden>
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label>Desviación estándar del grupo 1 (σ1)</label>
-                            <input type="number" id="twoMeanSigma1" value="10" step="0.1" min="0.0001">
-                        </div>
-                        <div class="form-group">
-                            <label>Desviación estándar del grupo 2 (σ2)</label>
-                            <input type="number" id="twoMeanSigma2" value="10" step="0.1" min="0.0001">
-                        </div>
-                    </div>
-
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label>Diferencia mínima detectable (Δ)</label>
-                            <input type="number" id="twoMeanDelta" value="5" step="0.1" min="0.0001">
-                        </div>
-                        <div class="form-group">
-                            <label>Alfa (α)</label>
-                            <input type="number" id="twoMeanAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
-                        </div>
-                    </div>
-
-                    <div class="inline-inputs">
-                        <div class="form-group">
-                            <label>Potencia (1-β)</label>
-                            <input type="number" id="twoMeanPower" value="0.8" step="0.01" min="0.5" max="0.999">
-                        </div>
-                        <div class="form-group">
-                            <label>Asignación entre grupos</label>
-                            <select id="twoMeanAllocation">
-                                <option value="equal" selected>Igual (1:1)</option>
-                                <option value="custom">Desigual (n2/n1 personalizado)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="twoMeanRatioGroup" hidden>
-                        <label>Razón n2/n1 (k)</label>
-                        <input type="number" id="twoMeanRatio" value="1.5" step="0.1" min="0.1">
-                    </div>
-                </div>
-            </div>
-            <button class="calculate-btn" onclick="calculateSampleSize()">Calcular tamaño muestral</button>
-            <div id="sampleSizeResult" class="result-box">Resultado pendiente…</div>
-            <div id="sampleSizeFormula" class="formula-box">Fórmula pendiente…</div>
-        </section>
-
-
-
-        <section id="distribution-guides" class="learning-grid" aria-label="Explicaciones educativas de distribuciones">
-            <article class="card content-card">
-                <h2>Distribución normal</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución normal modela mediciones que se concentran alrededor de un valor medio y se vuelven menos frecuentes al alejarse del centro. Alturas, notas de exámenes y muchas variables de fabricación suelen seguir esta forma cuando intervienen muchos factores pequeños. Su curva de campana es simétrica: valores igual de alejados por encima y por debajo de la media son igual de probables. En esta calculadora, elige <em>Normal</em> cuando tu variable sea continua y tome muchos valores alrededor de una tendencia central.</p>
-                <h3>Fórmula</h3>
-                <p class="formula-line">\( f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \)</p>
-                <h3>Parámetros</h3>
-                <ul>
-                    <li><strong>μ (mu):</strong> media o centro de la distribución.</li>
-                    <li><strong>σ (sigma):</strong> desviación estándar, que controla la dispersión.</li>
-                </ul>
-                <h3>Ejemplos reales y uso</h3>
-                <p>Supón que una fábrica llena botellas con objetivo de 500 ml. Si la variación del proceso es mayoritariamente aleatoria, los volúmenes suelen aproximarse a una normal. Puedes usar PDF para inspeccionar la densidad cerca de un objetivo, CDF para calcular la probabilidad de quedar por debajo de un umbral y cuantiles para fijar puntos de corte.</p>
-            </article>
-
-            <article class="card content-card">
-                <h2>Distribución binomial</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución binomial describe cuántos éxitos ocurren en un número fijo de ensayos independientes de tipo sí/no. Cada ensayo tiene la misma probabilidad de éxito y el conteo solo puede ser un entero entre 0 y <em>n</em>. Es ideal cuando conoces el número de intentos de antemano y quieres probabilidades de conteos, como “exactamente 7 éxitos” o “a lo sumo 3 fallos”.</p>
-                <h3>Fórmula</h3>
-                <p class="formula-line">\( P(X=k)=\binom{n}{k}p^k(1-p)^{n-k} \)</p>
-                <h3>Parámetros</h3>
-                <ul>
-                    <li><strong>n:</strong> número total de ensayos.</li>
-                    <li><strong>p:</strong> probabilidad de éxito en cada ensayo.</li>
-                    <li><strong>k:</strong> número de éxitos observados.</li>
-                </ul>
-                <h3>Ejemplos reales y uso</h3>
-                <p>Imagina una campaña de correo enviada a 20 contactos, donde cada contacto tiene una probabilidad 0.15 de convertir. El modelo binomial permite estimar la probabilidad de obtener exactamente 4 conversiones, al menos 5 o un rango de conversiones. En control de calidad también sirve para estimar unidades defectuosas en una muestra.</p>
-            </article>
-
-            <article class="card content-card">
-                <h2>Distribución de Poisson</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución de Poisson modela el número de eventos en un intervalo fijo de tiempo, área o volumen cuando los eventos ocurren de forma independiente y a una tasa media aproximadamente constante. Se usa a menudo para conteos de eventos poco frecuentes: llamadas por minuto, defectos por metro de material o llegadas de clientes por hora. A diferencia del modelo binomial, Poisson no requiere un número fijo de ensayos; se basa en una tasa media.</p>
-                <h3>Fórmula</h3>
-                <p class="formula-line">\( P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!} \)</p>
-                <h3>Parámetros</h3>
-                <ul>
-                    <li><strong>λ (lambda):</strong> número esperado de eventos en el intervalo.</li>
-                    <li><strong>k:</strong> conteo de eventos observado.</li>
-                </ul>
-                <h3>Ejemplos reales y uso</h3>
-                <p>Un centro de soporte puede recibir en promedio 6 tickets por hora. Poisson permite estimar probabilidades de recibir exactamente 10 tickets, como máximo 4 o al menos 8 en la próxima hora. En la calculadora, selecciona <em>Poisson</em>, introduce λ y evalúa PMF para conteos exactos o CDF para límites acumulados.</p>
-            </article>
-
-            <article class="card content-card">
-                <h2>Distribución chi-cuadrado</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución chi-cuadrado aparece al sumar cuadrados de variables normales estandarizadas y solo toma valores positivos. Es asimétrica (especialmente con pocos grados de libertad) y se vuelve más parecida a una campana a medida que aumentan los grados de libertad. Se utiliza con frecuencia en inferencia estadística para contrastes de bondad de ajuste, independencia en tablas de contingencia y estimación de varianzas.</p>
-                <h3>Fórmula</h3>
-                <p class="formula-line">\( f(x;k)=\frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2-1}e^{-x/2},\quad x&gt;0 \)</p>
-                <h3>Parámetros</h3>
-                <ul>
-                    <li><strong>k (grados de libertad):</strong> determina la forma y dispersión de la distribución.</li>
-                    <li><strong>x:</strong> valor del estadístico chi-cuadrado observado.</li>
-                </ul>
-                <h3>Ejemplos reales y uso</h3>
-                <p>Si quieres comprobar si la distribución observada de respuestas en una encuesta coincide con una distribución teórica, puedes calcular un estadístico chi-cuadrado y evaluar su probabilidad en cola derecha. En la calculadora, usa <em>Chi-cuadrado</em> con los grados de libertad apropiados para obtener probabilidades acumuladas o cuantiles críticos (por ejemplo, el punto de corte del 95%).</p>
-            </article>
-
-            <article class="card content-card">
-                <h2>Distribución exponencial</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución exponencial modela tiempos de espera entre eventos cuando estos ocurren a tasa constante e independiente (un escenario típico de procesos de Poisson). Es una distribución continua definida para valores no negativos y tiene la propiedad de “falta de memoria”: la probabilidad de esperar un tiempo adicional no depende de cuánto ya se haya esperado.</p>
-                <h3>Fórmula</h3>
-                <p class="formula-line">\( f(x;\lambda)=\lambda e^{-\lambda x},\quad x\geq 0 \)</p>
-                <h3>Parámetros</h3>
-                <ul>
-                    <li><strong>λ (lambda):</strong> tasa media de ocurrencia por unidad de tiempo (o espacio).</li>
-                    <li><strong>x:</strong> tiempo de espera hasta que ocurre el evento.</li>
-                </ul>
-                <h3>Ejemplos reales y uso</h3>
-                <p>En un sistema donde llegan llamadas con una tasa media de 12 por hora, el tiempo entre llamadas puede modelarse con una exponencial. Con la calculadora puedes estimar la probabilidad de que el tiempo de espera sea menor que 3 minutos, mayor que 10 minutos o encontrar el cuantil correspondiente a un nivel de servicio concreto.</p>
-            </article>
-
-            <article class="card content-card">
-                <h2>Distribución geométrica</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución geométrica describe cuántos intentos independientes se necesitan hasta obtener el primer éxito, cuando cada intento tiene la misma probabilidad de éxito. Es una distribución discreta, apropiada para procesos de repetición tipo “probar hasta lograr”. Al igual que la exponencial, también presenta una versión discreta de la propiedad de falta de memoria.</p>
-                <h3>Fórmula</h3>
-                <p class="formula-line">\( P(X=k)=(1-p)^{k-1}p,\quad k=1,2,3,\dots \)</p>
-                <h3>Parámetros</h3>
-                <ul>
-                    <li><strong>p:</strong> probabilidad de éxito en cada intento.</li>
-                    <li><strong>k:</strong> número de intento en el que ocurre el primer éxito.</li>
-                </ul>
-                <h3>Ejemplos reales y uso</h3>
-                <p>Si un comercial tiene una probabilidad del 20% de cerrar una venta en cada llamada, la geométrica permite calcular la probabilidad de cerrar en la primera, tercera o décima llamada, así como la probabilidad acumulada de cerrar antes de cierto número de contactos. En la calculadora, selecciona <em>Geométrica</em> para trabajar con estos escenarios de “primer éxito”.</p>
-            </article>
-        </section>
-
-        <section class="card content-card faq-section" aria-labelledby="faq-title">
-            <h2 id="faq-title">Preguntas frecuentes</h2>
-            <article>
-                <h3>¿Qué es una distribución de probabilidad?</h3>
-                <p>Una distribución de probabilidad es una descripción matemática de qué tan probable es cada resultado posible de una variable aleatoria. Las distribuciones continuas asignan densidad sobre intervalos, mientras que las discretas asignan masa de probabilidad a resultados enteros.</p>
-            </article>
-            <article>
-                <h3>¿Cuál es la diferencia entre PDF y CDF?</h3>
-                <p>La PDF (o PMF en casos discretos) describe el comportamiento local de la probabilidad en un valor, mientras que la CDF da la probabilidad acumulada hasta ese valor. La CDF responde “¿qué tan probable es que X sea menor o igual que x?” y suele ser más útil para umbrales de decisión.</p>
-            </article>
-            <article>
-                <h3>¿Cómo calculo un cuantil?</h3>
-                <p>Selecciona “Cuantil” en la calculadora e introduce una probabilidad entre 0 y 1. El valor devuelto es el punto de corte por debajo del cual queda la proporción elegida de resultados.</p>
-            </article>
-            <article>
-                <h3>¿Cuándo debo usar una distribución binomial?</h3>
-                <p>Usa la binomial cuando tengas un número fijo de ensayos independientes, cada uno con resultado éxito/fracaso y probabilidad de éxito constante.</p>
-            </article>
-            <article>
-                <h3>¿Para qué se usa la distribución de Poisson?</h3>
-                <p>Poisson se usa para contar eventos en intervalos cuando los eventos ocurren de forma independiente a una tasa media estable, como llegadas, defectos o incidentes a lo largo del tiempo.</p>
-            </article>
-        </section>
-    </main>
-
-    <footer>
-        © 2026 ProbLab · Creado por Vicente Castellar
-    </footer>
-</div>
-
-<script>
-window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] }
-};
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
-<!-- Cache-busting token para evitar JS antiguo en caché -->
-<script src="script.js?v=20260310" defer></script>
+  <footer>
+    <p>ProbLab · Hub de calculadoras estadísticas.</p>
+  </footer>
 </body>
 </html>

@@ -1,79 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Distribución de Poisson: parámetro lambda, fórmula y ejemplos</title>
-  <meta name="description" content="Descubre la distribución de Poisson, el significado de lambda, la fórmula y ejemplos de eventos raros por unidad de tiempo o espacio.">
-  <link rel="stylesheet" href="../style.css">
-  <script src="../script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de distribución de Poisson | ProbLab</title>
+  <meta name="description" content="Calcula eventos por intervalo con la distribución de Poisson y ejemplos aplicados en ProbLab.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
-<body>
+<body data-distribution="poisson">
   <header>
-    <nav aria-label="Distribuciones de probabilidad">
-      <ul>
-        <li><a href="../normal/">Normal</a></li>
-        <li><a href="../binomial/">Binomial</a></li>
-        <li><a href="../poisson/">Poisson</a></li>
-        <li><a href="../t-student/">t de Student</a></li>
-        <li><a href="../chi-cuadrada/">Chi-cuadrada</a></li>
-        <li><a href="../exponencial/">Exponencial</a></li>
-      </ul>
+    <nav aria-label="Menú principal">
+      <a href="/">Inicio</a><a href="/normal">Normal</a><a href="/binomial">Binomial</a><a href="/poisson">Poisson</a><a href="/t-student">t-Student</a><a href="/chi-cuadrada">Chi-cuadrada</a><a href="/exponencial">Exponencial</a>
     </nav>
   </header>
 
   <main>
-    <article>
-      <h1>Distribución de Poisson: fórmula con lambda y calculadora online</h1>
-      <p>
-        La distribución de Poisson se usa para contar cuántas veces ocurre un evento en un intervalo fijo,
-        especialmente cuando se trata de eventos raros e independientes.
-      </p>
+    <h1>Calculadora de distribución de Poisson para conteo de eventos</h1>
+    <p>La distribución de Poisson modela el número de eventos raros que ocurren en un intervalo fijo cuando la tasa media es λ.</p>
+    <pre><code>P(X = k) = (e^-λ · λ^k) / k!</code></pre>
+    <h2>Ejemplos prácticos</h2>
+    <ul>
+      <li>Número de llamadas recibidas por minuto en un centro de soporte.</li>
+      <li>Errores de impresión por página en un proceso industrial.</li>
+    </ul>
 
-      <section>
-        <h2>Parámetro λ (lambda)</h2>
-        <p>
-          <strong>λ</strong> representa el número promedio de eventos por intervalo (tiempo, área o volumen).
-          Si λ = 3 llamadas por minuto, ese valor resume la tasa esperada.
-        </p>
-      </section>
+    <section id="calculator"></section>
 
-      <section>
-        <h2>Fórmula de Poisson</h2>
-        <pre><code>P(X = k) = (e^{-λ} · λ^k) / k!</code></pre>
-      </section>
-
-      <section>
-        <h2>Ejemplos de eventos raros</h2>
-        <ul>
-          <li>Número de errores tipográficos por página.</li>
-          <li>Llamadas entrantes por minuto en una central.</li>
-          <li>Accidentes en un cruce por mes.</li>
-        </ul>
-        <p>
-          Si te interesa el tiempo entre eventos de Poisson, visita la <a href="../exponencial/">distribución exponencial</a>.
-          También puedes comparar con la <a href="../binomial/">binomial</a> cuando tienes un número fijo de ensayos.
-        </p>
-      </section>
-
-      <section id="calculator">
-        <h2>Calculadora de distribución de Poisson</h2>
-        <p>Aquí podrás insertar tu calculadora JavaScript para probabilidades puntuales y acumuladas.</p>
-      </section>
-
-      <section>
-        <h2>Otras distribuciones</h2>
-        <ul>
-          <li><a href="../normal/">Distribución normal</a></li>
-          <li><a href="../t-student/">Distribución t de Student</a></li>
-          <li><a href="../chi-cuadrada/">Distribución chi-cuadrada</a></li>
-        </ul>
-      </section>
-    </article>
+    <p>Explora también: <a href="/binomial">Binomial</a>, <a href="/chi-cuadrada">Chi-cuadrada</a> y <a href="/normal">Normal</a>.</p>
   </main>
 
   <footer>
-    <p><a href="../index.html">Volver a la página principal</a></p>
+    <a href="/">Volver a la home de ProbLab</a>
   </footer>
 </body>
 </html>

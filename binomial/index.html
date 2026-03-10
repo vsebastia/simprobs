@@ -1,80 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Distribución Binomial: fórmula, parámetros n p k y calculadora</title>
-  <meta name="description" content="Guía de la distribución binomial con explicación de n, p y k, fórmula de probabilidad y ejemplos prácticos para variables discretas.">
-  <link rel="stylesheet" href="../style.css">
-  <script src="../script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de distribución binomial | ProbLab</title>
+  <meta name="description" content="Resuelve problemas de éxitos y fracasos con la calculadora de distribución binomial de ProbLab.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
-<body>
+<body data-distribution="binomial">
   <header>
-    <nav aria-label="Distribuciones de probabilidad">
-      <ul>
-        <li><a href="../normal/">Normal</a></li>
-        <li><a href="../binomial/">Binomial</a></li>
-        <li><a href="../poisson/">Poisson</a></li>
-        <li><a href="../t-student/">t de Student</a></li>
-        <li><a href="../chi-cuadrada/">Chi-cuadrada</a></li>
-        <li><a href="../exponencial/">Exponencial</a></li>
-      </ul>
+    <nav aria-label="Menú principal">
+      <a href="/">Inicio</a><a href="/normal">Normal</a><a href="/binomial">Binomial</a><a href="/poisson">Poisson</a><a href="/t-student">t-Student</a><a href="/chi-cuadrada">Chi-cuadrada</a><a href="/exponencial">Exponencial</a>
     </nav>
   </header>
 
   <main>
-    <article>
-      <h1>Distribución Binomial: cómo usar n, p y k en una calculadora</h1>
-      <p>
-        La distribución binomial modela el número de éxitos en un conjunto fijo de ensayos independientes,
-        cuando cada ensayo tiene solo dos resultados posibles: éxito o fracaso.
-      </p>
+    <h1>Calculadora de distribución binomial para ensayos de Bernoulli</h1>
+    <p>La distribución binomial describe el número de éxitos en n ensayos independientes con probabilidad constante p.</p>
+    <pre><code>P(X = k) = C(n,k) · p^k · (1-p)^(n-k)</code></pre>
+    <h2>Ejemplos prácticos</h2>
+    <ul>
+      <li>Probabilidad de obtener exactamente 7 aciertos en 10 preguntas tipo test.</li>
+      <li>Estimación de conversiones en una campaña con tasa de éxito conocida.</li>
+    </ul>
 
-      <section>
-        <h2>Parámetros n, p y k</h2>
-        <ul>
-          <li><strong>n</strong>: número total de ensayos.</li>
-          <li><strong>p</strong>: probabilidad de éxito en cada ensayo.</li>
-          <li><strong>k</strong>: número de éxitos observados.</li>
-        </ul>
-      </section>
+    <section id="calculator"></section>
 
-      <section>
-        <h2>Fórmula binomial</h2>
-        <pre><code>P(X = k) = C(n,k) · p^k · (1-p)^{n-k}</code></pre>
-        <pre><code>C(n,k) = n! / (k!(n-k)!)</code></pre>
-      </section>
-
-      <section>
-        <h2>Ejemplo práctico</h2>
-        <p>
-          Si lanzas una moneda equilibrada 10 veces, ¿cuál es la probabilidad de obtener exactamente 6 caras?
-          Aquí: n = 10, p = 0.5, k = 6.
-        </p>
-        <p>
-          Para eventos poco frecuentes en intervalos de tiempo, revisa la <a href="../poisson/">distribución de Poisson</a>.
-          Para variables continuas, consulta la <a href="../normal/">distribución normal</a>.
-        </p>
-      </section>
-
-      <section id="calculator">
-        <h2>Calculadora de distribución binomial</h2>
-        <p>Aquí podrás insertar tu calculadora JavaScript para P(X=k), P(X≤k) y P(X≥k).</p>
-      </section>
-
-      <section>
-        <h2>Enlaces internos útiles</h2>
-        <ul>
-          <li><a href="../t-student/">Distribución t de Student</a></li>
-          <li><a href="../chi-cuadrada/">Distribución chi-cuadrada</a></li>
-          <li><a href="../exponencial/">Distribución exponencial</a></li>
-        </ul>
-      </section>
-    </article>
+    <p>Explora también: <a href="/normal">Normal</a>, <a href="/poisson">Poisson</a> y <a href="/exponencial">Exponencial</a>.</p>
   </main>
 
   <footer>
-    <p><a href="../index.html">Volver a la página principal</a></p>
+    <a href="/">Volver a la home de ProbLab</a>
   </footer>
 </body>
 </html>

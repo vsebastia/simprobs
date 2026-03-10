@@ -1,80 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Distribución Chi-cuadrada: contraste de hipótesis y calculadora</title>
-  <meta name="description" content="Aprende la distribución chi-cuadrada, su papel en contraste de hipótesis, pruebas de independencia y bondad de ajuste, con ejemplos.">
-  <link rel="stylesheet" href="../style.css">
-  <script src="../script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de distribución chi-cuadrada | ProbLab</title>
+  <meta name="description" content="Evalúa bondad de ajuste y varianzas con la calculadora de distribución chi-cuadrada de ProbLab.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
-<body>
+<body data-distribution="chi-cuadrada">
   <header>
-    <nav aria-label="Distribuciones de probabilidad">
-      <ul>
-        <li><a href="../normal/">Normal</a></li>
-        <li><a href="../binomial/">Binomial</a></li>
-        <li><a href="../poisson/">Poisson</a></li>
-        <li><a href="../t-student/">t de Student</a></li>
-        <li><a href="../chi-cuadrada/">Chi-cuadrada</a></li>
-        <li><a href="../exponencial/">Exponencial</a></li>
-      </ul>
+    <nav aria-label="Menú principal">
+      <a href="/">Inicio</a><a href="/normal">Normal</a><a href="/binomial">Binomial</a><a href="/poisson">Poisson</a><a href="/t-student">t-Student</a><a href="/chi-cuadrada">Chi-cuadrada</a><a href="/exponencial">Exponencial</a>
     </nav>
   </header>
 
   <main>
-    <article>
-      <h1>Distribución Chi-cuadrada: uso en contraste de hipótesis</h1>
-      <p>
-        La distribución chi-cuadrada es fundamental en inferencia estadística, especialmente en pruebas de
-        independencia, homogeneidad y bondad de ajuste.
-      </p>
+    <h1>Calculadora de distribución chi-cuadrada para pruebas estadísticas</h1>
+    <p>La distribución chi-cuadrada aparece en contrastes de independencia, bondad de ajuste y análisis de varianza de poblaciones normales.</p>
+    <pre><code>χ² = Σ ((Oᵢ - Eᵢ)² / Eᵢ)</code></pre>
+    <h2>Ejemplos prácticos</h2>
+    <ul>
+      <li>Comprobar si una muestra sigue una distribución esperada.</li>
+      <li>Evaluar independencia entre dos variables categóricas.</li>
+    </ul>
 
-      <section>
-        <h2>Uso en contraste de hipótesis</h2>
-        <p>
-          En tablas de contingencia, el estadístico chi-cuadrada permite evaluar si dos variables categóricas
-          son independientes. También se usa para contrastar si una muestra sigue una distribución teórica.
-        </p>
-      </section>
+    <section id="calculator"></section>
 
-      <section>
-        <h2>Fórmulas frecuentes</h2>
-        <pre><code>χ^2 = Σ ((O_i - E_i)^2 / E_i)</code></pre>
-        <pre><code>f(x; k) = 1 / (2^{k/2} Γ(k/2)) · x^{k/2 - 1} · e^{-x/2}</code></pre>
-        <p>Donde <code>k</code> son los grados de libertad.</p>
-      </section>
-
-      <section>
-        <h2>Ejemplo práctico</h2>
-        <p>
-          En una prueba de independencia entre género y preferencia de producto, puedes calcular χ² con valores
-          observados y esperados para decidir si existe asociación estadística.
-        </p>
-        <p>
-          Si trabajas con medias, revisa la <a href="../t-student/">t de Student</a>. Para variables continuas simétricas,
-          consulta la <a href="../normal/">distribución normal</a>.
-        </p>
-      </section>
-
-      <section id="calculator">
-        <h2>Calculadora de distribución chi-cuadrada</h2>
-        <p>Aquí podrás insertar tu calculadora JavaScript para valores críticos, p-valores y áreas acumuladas.</p>
-      </section>
-
-      <section>
-        <h2>Enlaces internos recomendados</h2>
-        <ul>
-          <li><a href="../binomial/">Distribución binomial</a></li>
-          <li><a href="../poisson/">Distribución de Poisson</a></li>
-          <li><a href="../exponencial/">Distribución exponencial</a></li>
-        </ul>
-      </section>
-    </article>
+    <p>Explora también: <a href="/poisson">Poisson</a>, <a href="/t-student">t-Student</a> y <a href="/binomial">Binomial</a>.</p>
   </main>
 
   <footer>
-    <p><a href="../index.html">Volver a la página principal</a></p>
+    <a href="/">Volver a la home de ProbLab</a>
   </footer>
 </body>
 </html>

@@ -1,76 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Distribución t de Student: grados de libertad, fórmula y calculadora</title>
-  <meta name="description" content="Guía de la distribución t de Student con explicación de grados de libertad, fórmula y ejemplos en inferencia estadística con muestras pequeñas.">
-  <link rel="stylesheet" href="../style.css">
-  <script src="../script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de distribución t de Student | ProbLab</title>
+  <meta name="description" content="Analiza muestras pequeñas con la distribución t de Student en la calculadora especializada de ProbLab.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
 </head>
-<body>
+<body data-distribution="t-student">
   <header>
-    <nav aria-label="Distribuciones de probabilidad">
-      <ul>
-        <li><a href="../normal/">Normal</a></li>
-        <li><a href="../binomial/">Binomial</a></li>
-        <li><a href="../poisson/">Poisson</a></li>
-        <li><a href="../t-student/">t de Student</a></li>
-        <li><a href="../chi-cuadrada/">Chi-cuadrada</a></li>
-        <li><a href="../exponencial/">Exponencial</a></li>
-      </ul>
+    <nav aria-label="Menú principal">
+      <a href="/">Inicio</a><a href="/normal">Normal</a><a href="/binomial">Binomial</a><a href="/poisson">Poisson</a><a href="/t-student">t-Student</a><a href="/chi-cuadrada">Chi-cuadrada</a><a href="/exponencial">Exponencial</a>
     </nav>
   </header>
 
   <main>
-    <article>
-      <h1>Distribución t de Student: grados de libertad y calculadora</h1>
-      <p>
-        La distribución t de Student se utiliza para estimar medias y realizar pruebas de hipótesis cuando
-        el tamaño de muestra es pequeño y la desviación estándar poblacional es desconocida.
-      </p>
+    <h1>Calculadora de distribución t de Student para inferencia estadística</h1>
+    <p>La t de Student se usa al estimar medias cuando el tamaño muestral es pequeño y la varianza poblacional es desconocida.</p>
+    <pre><code>t = (x̄ - μ) / (s / √n)</code></pre>
+    <h2>Ejemplos prácticos</h2>
+    <ul>
+      <li>Construcción de intervalos de confianza con n reducido.</li>
+      <li>Pruebas de hipótesis sobre la media en estudios piloto.</li>
+    </ul>
 
-      <section>
-        <h2>Grados de libertad (gl)</h2>
-        <p>
-          Los grados de libertad determinan la forma de la distribución t. En pruebas sobre una media,
-          normalmente se usa <code>gl = n - 1</code>. A medida que aumentan los gl, la t se aproxima a la
-          <a href="../normal/">distribución normal</a>.
-        </p>
-      </section>
+    <section id="calculator"></section>
 
-      <section>
-        <h2>Fórmula de la densidad t</h2>
-        <pre><code>f(t) = Γ((ν+1)/2) / (√(νπ) · Γ(ν/2)) · (1 + t^2/ν)^{-((ν+1)/2)}</code></pre>
-        <p>Donde <code>ν</code> representa los grados de libertad.</p>
-      </section>
-
-      <section>
-        <h2>Ejemplo práctico</h2>
-        <p>
-          En una muestra de 12 observaciones (n = 12), los grados de libertad son gl = 11.
-          Puedes usar la t de Student para construir intervalos de confianza de la media.
-        </p>
-      </section>
-
-      <section id="calculator">
-        <h2>Calculadora de distribución t de Student</h2>
-        <p>Aquí podrás insertar tu calculadora JavaScript para valores críticos y probabilidades acumuladas.</p>
-      </section>
-
-      <section>
-        <h2>Distribuciones relacionadas</h2>
-        <ul>
-          <li><a href="../chi-cuadrada/">Distribución chi-cuadrada</a></li>
-          <li><a href="../binomial/">Distribución binomial</a></li>
-          <li><a href="../poisson/">Distribución de Poisson</a></li>
-        </ul>
-      </section>
-    </article>
+    <p>Explora también: <a href="/normal">Normal</a>, <a href="/chi-cuadrada">Chi-cuadrada</a> y <a href="/exponencial">Exponencial</a>.</p>
   </main>
 
   <footer>
-    <p><a href="../index.html">Volver a la página principal</a></p>
+    <a href="/">Volver a la home de ProbLab</a>
   </footer>
 </body>
 </html>
