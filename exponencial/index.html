@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distribución Exponencial: parámetro lambda y tiempos de espera</title>
+  <meta name="description" content="Conoce la distribución exponencial, el papel de lambda y cómo modelar tiempos de espera entre eventos en procesos de Poisson.">
+  <link rel="stylesheet" href="../style.css">
+  <script src="../script.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav aria-label="Distribuciones de probabilidad">
+      <ul>
+        <li><a href="../normal/">Normal</a></li>
+        <li><a href="../binomial/">Binomial</a></li>
+        <li><a href="../poisson/">Poisson</a></li>
+        <li><a href="../t-student/">t de Student</a></li>
+        <li><a href="../chi-cuadrada/">Chi-cuadrada</a></li>
+        <li><a href="../exponencial/">Exponencial</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h1>Distribución Exponencial: lambda y cálculo de tiempos de espera</h1>
+      <p>
+        La distribución exponencial modela el tiempo de espera hasta que ocurre el próximo evento
+        en un proceso con tasa constante.
+      </p>
+
+      <section>
+        <h2>Parámetro λ (lambda)</h2>
+        <p>
+          El parámetro <strong>λ</strong> representa la tasa de ocurrencia por unidad de tiempo.
+          Un valor alto de λ implica esperas promedio más cortas.
+        </p>
+      </section>
+
+      <section>
+        <h2>Fórmulas de la distribución exponencial</h2>
+        <pre><code>f(x) = λe^{-λx},   x ≥ 0</code></pre>
+        <pre><code>P(X &gt; t) = e^{-λt}</code></pre>
+        <pre><code>E[X] = 1/λ</code></pre>
+      </section>
+
+      <section>
+        <h2>Ejemplo de tiempos de espera</h2>
+        <p>
+          Si llegan en promedio 4 clientes por hora (λ = 4), el tiempo hasta la próxima llegada puede modelarse
+          con una exponencial. Este enfoque se relaciona directamente con la <a href="../poisson/">distribución de Poisson</a>.
+        </p>
+        <p>
+          Para comparar con distribuciones de conteo, revisa también la <a href="../binomial/">binomial</a>.
+        </p>
+      </section>
+
+      <section id="calculator">
+        <h2>Calculadora de distribución exponencial</h2>
+        <p>Aquí podrás insertar tu calculadora JavaScript para densidad, acumulada y función de supervivencia.</p>
+      </section>
+
+      <section>
+        <h2>Más contenido relacionado</h2>
+        <ul>
+          <li><a href="../normal/">Distribución normal</a></li>
+          <li><a href="../t-student/">Distribución t de Student</a></li>
+          <li><a href="../chi-cuadrada/">Distribución chi-cuadrada</a></li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p><a href="../index.html">Volver a la página principal</a></p>
+  </footer>
+</body>
+</html>

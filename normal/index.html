@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Distribución Normal: Calculadora, Fórmula y Ejemplos de Z-score</title>
+  <meta name="description" content="Aprende qué es la distribución normal, su fórmula, cómo calcular probabilidades y cómo interpretar Z-scores con ejemplos prácticos.">
+  <link rel="stylesheet" href="../style.css">
+  <script src="../script.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav aria-label="Distribuciones de probabilidad">
+      <ul>
+        <li><a href="../normal/">Normal</a></li>
+        <li><a href="../binomial/">Binomial</a></li>
+        <li><a href="../poisson/">Poisson</a></li>
+        <li><a href="../t-student/">t de Student</a></li>
+        <li><a href="../chi-cuadrada/">Chi-cuadrada</a></li>
+        <li><a href="../exponencial/">Exponencial</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h1>Distribución Normal: fórmula, tabla Z y calculadora online</h1>
+      <p>
+        La distribución normal (o gaussiana) es una de las más usadas en estadística para modelar variables continuas
+        como alturas, errores de medición o puntajes estandarizados. Su forma de campana permite estimar probabilidades
+        alrededor de una media y una desviación estándar.
+      </p>
+
+      <section>
+        <h2>Fórmula de la distribución normal</h2>
+        <pre><code>f(x) = (1 / (σ√(2π))) · e^{-((x-μ)^2 / (2σ^2))}</code></pre>
+        <p>
+          Donde <strong>μ</strong> es la media y <strong>σ</strong> la desviación estándar. Si quieres comparar valores en una misma escala,
+          usa el puntaje Z:
+        </p>
+        <pre><code>Z = (X - μ) / σ</code></pre>
+      </section>
+
+      <section>
+        <h2>Ejemplos de Z-scores</h2>
+        <p>
+          Si en un examen la media es 70 y la desviación estándar es 10:
+        </p>
+        <ul>
+          <li>Para <strong>X = 85</strong>, el Z-score es <strong>Z = 1.5</strong> (muy por encima de la media).</li>
+          <li>Para <strong>X = 60</strong>, el Z-score es <strong>Z = -1</strong> (por debajo de la media).</li>
+          <li>Para <strong>X = 70</strong>, el Z-score es <strong>Z = 0</strong> (exactamente en la media).</li>
+        </ul>
+        <p>
+          También te puede interesar comparar con la <a href="../t-student/">distribución t de Student</a> cuando la muestra es pequeña
+          o con la <a href="../chi-cuadrada/">chi-cuadrada</a> en pruebas de hipótesis.
+        </p>
+      </section>
+
+      <section id="calculator">
+        <h2>Calculadora de distribución normal</h2>
+        <p>Aquí podrás insertar tu calculadora JavaScript para probabilidades, percentiles y Z-scores.</p>
+      </section>
+
+      <section>
+        <h2>Más distribuciones relacionadas</h2>
+        <ul>
+          <li><a href="../binomial/">Distribución binomial</a></li>
+          <li><a href="../poisson/">Distribución de Poisson</a></li>
+          <li><a href="../exponencial/">Distribución exponencial</a></li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p><a href="../index.html">Volver a la página principal</a></p>
+  </footer>
+</body>
+</html>
