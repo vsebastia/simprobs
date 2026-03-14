@@ -1,5 +1,17 @@
 let chart;
 
+const distributionLabels = {
+    normal: "Normal",
+    binomial: "Binomial",
+    poisson: "Poisson",
+    studentt: "t de Student",
+    chisquare: "Chi-cuadrado",
+    centralf: "Snedecor's F",
+    exponential: "Exponencial",
+    negbin: "Binomial negativa",
+    geometric: "Geométrica"
+};
+
 function refreshMathJax() {
     if (window.MathJax && typeof window.MathJax.typesetPromise === "function") {
         window.MathJax.typesetPromise();
@@ -116,11 +128,51 @@ function formatAxisValue(value) {
     return Number(normalizedValue.toFixed(4)).toString();
 }
 
-document.getElementById("distribution").addEventListener("change", loadParameters);
-loadParameters();
-document.getElementById("calculation").addEventListener("change", updateCdfControls);
-document.getElementById("cdfMode").addEventListener("change", updateCdfControls);
-updateCdfControls();
+const distributionSelect = document.getElementById("distribution");
+const calculationSelect = document.getElementById("calculation");
+const cdfModeSelect = document.getElementById("cdfMode");
+
+if (distributionSelect) {
+    distributionSelect.addEventListener("change", loadParameters);
+}
+
+if (calculationSelect) {
+    calculationSelect.addEventListener("change", updateCdfControls);
+}
+
+if (cdfModeSelect) {
+    cdfModeSelect.addEventListener("change", updateCdfControls);
+}
+
+function initializeDistributionPage() {
+    if (!distributionSelect) {
+        return;
+    }
+
+    const bodyDataset = document.body ? document.body.dataset : {};
+    const params = new URLSearchParams(window.location.search);
+    const preferredDistribution = (bodyDataset.defaultDistribution || params.get("dist") || "").toLowerCase();
+    const shouldLockDistribution = bodyDataset.lockDistribution === "true";
+
+    if (preferredDistribution && Object.hasOwn(distributionLabels, preferredDistribution)) {
+        distributionSelect.value = preferredDistribution;
+    }
+
+    if (shouldLockDistribution) {
+        distributionSelect.disabled = true;
+
+        const distInfoEl = document.getElementById("distributionPageInfo");
+
+        if (distInfoEl && Object.hasOwn(distributionLabels, distributionSelect.value)) {
+            distInfoEl.innerText = `Calculadora específica para ${distributionLabels[distributionSelect.value]}.`;
+        }
+    }
+
+    loadParameters();
+    updateCdfControls();
+}
+
+initializeDistributionPage();
 
 
 function updateCdfControls() {

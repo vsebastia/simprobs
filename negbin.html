@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Binomial negativa | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de distribución Binomial negativa: densidad/probabilidad, acumulada y percentiles en ProbLab.">
+    <link rel="canonical" href="https://problabtools.es/negbin.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_new.css">
+</head>
+<body data-default-distribution="negbin" data-lock-distribution="true">
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Calculadora específica</p>
+        <h1>Distribución Binomial negativa</h1>
+        <p class="hero-subtitle">Calcula probabilidades y acumulados de fallos antes de alcanzar un número objetivo de éxitos.</p>
+        <p class="hero-links"><a href="index.html#calculator">Ver calculadora general</a></p>
+    </header>
+
+    <main>
+        <section class="app-shell" aria-label="Calculadora Binomial negativa">
+            <section class="card control-panel">
+                <div class="panel-heading">
+                    <h2>Configuración</h2>
+                    <p id="distributionPageInfo">Calculadora específica por distribución.</p>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Distribución</label>
+                        <select id="distribution">
+                            <option value="normal">Normal</option>
+                            <option value="binomial">Binomial</option>
+                            <option value="poisson">Poisson</option>
+                            <option value="studentt">t de Student</option>
+                            <option value="chisquare">Chi-cuadrado</option>
+                            <option value="centralf">Snedecor's F</option>
+                            <option value="exponential">Exponencial</option>
+                            <option value="negbin">Binomial negativa</option>
+                            <option value="geometric">Geométrica</option>
+                        </select>
+                        <p id="distributionDescription" class="distribution-description"></p>
+                    </div>
+
+                    <div id="parameters" class="dynamic-parameters"></div>
+
+                    <div class="form-group">
+                        <label>Tipo de cálculo</label>
+                        <select id="calculation">
+                            <option value="pdf">Función de densidad / probabilidad</option>
+                            <option value="cdf">Probabilidad acumulada</option>
+                            <option value="quantile">Percentil / cuantil</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="cdfModeGroup" hidden>
+                        <label>Tipo de probabilidad acumulada</label>
+                        <select id="cdfMode">
+                            <option value="left">P(X ≤ x)</option>
+                            <option value="right">P(X ≥ x)</option>
+                            <option value="interval">P(a ≤ X ≤ b)</option>
+                        </select>
+                    </div>
+
+                    <div class="inline-inputs">
+                        <div class="form-group">
+                            <label id="xValueLabel">valor de x</label>
+                            <input type="number" id="xValue" value="0">
+                        </div>
+
+                        <div class="form-group" id="bValueGroup" hidden>
+                            <label>valor de b</label>
+                            <input type="number" id="bValue" value="1">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculate()">Calcular</button>
+            </section>
+
+            <section class="card results-panel">
+                <div class="panel-heading">
+                    <h2>Resultado y visualización</h2>
+                    <p>Calcula PDF/PMF, CDF y percentiles al instante.</p>
+                </div>
+                <div id="result" class="result-box">Resultado pendiente…</div>
+                <div class="chart-wrap">
+                    <canvas id="chart"></canvas>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 ProbLab · Creado por Vicente Castellar
+    </footer>
+</div>
+
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\(', '\)'], ['$', '$']] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="script.js" defer></script>
+</body>
+</html>
