@@ -366,8 +366,6 @@
         <section id="distribution-guides" class="learning-grid" aria-label="Explicaciones educativas de distribuciones">
             <article class="card content-card">
                 <h2>Distribución normal</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución normal modela mediciones que se concentran alrededor de un valor medio y se vuelven menos frecuentes al alejarse del centro. Alturas, notas de exámenes y muchas variables de fabricación suelen seguir esta forma cuando intervienen muchos factores pequeños. Su curva de campana es simétrica: valores igual de alejados por encima y por debajo de la media son igual de probables. En esta calculadora, elige <em>Normal</em> cuando tu variable sea continua y tome muchos valores alrededor de una tendencia central.</p>
                 <h3>Fórmula</h3>
                 <p class="formula-line">\( f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \)</p>
                 <h3>Parámetros</h3>
@@ -381,8 +379,6 @@
 
             <article class="card content-card">
                 <h2>Distribución binomial</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución binomial describe cuántos éxitos ocurren en un número fijo de ensayos independientes de tipo sí/no. Cada ensayo tiene la misma probabilidad de éxito y el conteo solo puede ser un entero entre 0 y <em>n</em>. Es ideal cuando conoces el número de intentos de antemano y quieres probabilidades de conteos, como “exactamente 7 éxitos” o “a lo sumo 3 fallos”.</p>
                 <h3>Fórmula</h3>
                 <p class="formula-line">\( P(X=k)=\binom{n}{k}p^k(1-p)^{n-k} \)</p>
                 <h3>Parámetros</h3>
@@ -397,8 +393,6 @@
 
             <article class="card content-card">
                 <h2>Distribución de Poisson</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución de Poisson modela el número de eventos en un intervalo fijo de tiempo, área o volumen cuando los eventos ocurren de forma independiente y a una tasa media aproximadamente constante. Se usa a menudo para conteos de eventos poco frecuentes: llamadas por minuto, defectos por metro de material o llegadas de clientes por hora. A diferencia del modelo binomial, Poisson no requiere un número fijo de ensayos; se basa en una tasa media.</p>
                 <h3>Fórmula</h3>
                 <p class="formula-line">\( P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!} \)</p>
                 <h3>Parámetros</h3>
@@ -412,8 +406,6 @@
 
             <article class="card content-card">
                 <h2>Distribución chi-cuadrado</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución chi-cuadrado aparece al sumar cuadrados de variables normales estandarizadas y solo toma valores positivos. Es asimétrica (especialmente con pocos grados de libertad) y se vuelve más parecida a una campana a medida que aumentan los grados de libertad. Se utiliza con frecuencia en inferencia estadística para contrastes de bondad de ajuste, independencia en tablas de contingencia y estimación de varianzas.</p>
                 <h3>Fórmula</h3>
                 <p class="formula-line">\( f(x;k)=\frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2-1}e^{-x/2},\quad x&gt;0 \)</p>
                 <h3>Parámetros</h3>
@@ -427,8 +419,6 @@
 
             <article class="card content-card">
                 <h2>Distribución exponencial</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución exponencial modela tiempos de espera entre eventos cuando estos ocurren a tasa constante e independiente (un escenario típico de procesos de Poisson). Es una distribución continua definida para valores no negativos y tiene la propiedad de “falta de memoria”: la probabilidad de esperar un tiempo adicional no depende de cuánto ya se haya esperado.</p>
                 <h3>Fórmula</h3>
                 <p class="formula-line">\( f(x;\lambda)=\lambda e^{-\lambda x},\quad x\geq 0 \)</p>
                 <h3>Parámetros</h3>
@@ -442,8 +432,6 @@
 
             <article class="card content-card">
                 <h2>Distribución geométrica</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución geométrica describe cuántos intentos independientes se necesitan hasta obtener el primer éxito, cuando cada intento tiene la misma probabilidad de éxito. Es una distribución discreta, apropiada para procesos de repetición tipo “probar hasta lograr”. Al igual que la exponencial, también presenta una versión discreta de la propiedad de falta de memoria.</p>
                 <h3>Fórmula</h3>
                 <p class="formula-line">\( P(X=k)=(1-p)^{k-1}p,\quad k=1,2,3,\dots \)</p>
                 <h3>Parámetros</h3>
