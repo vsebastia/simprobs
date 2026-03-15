@@ -20,6 +20,23 @@
         <p class="hero-links"><a href="index.html#calculator">Ver calculadora general</a></p>
     </header>
 
+    <section>
+    <article class="card content-card">
+    <h2>Distribución geométrica</h2>
+    <h3>Explicación sencilla</h3>
+    <p>La distribución geométrica describe cuántos intentos independientes se necesitan hasta obtener el primer éxito, cuando cada intento tiene la misma probabilidad de éxito. Es una distribución discreta, apropiada para procesos de repetición tipo “probar hasta lograr”. Al igual que la exponencial, también presenta una versión discreta de la propiedad de falta de memoria.</p>
+    <h3>Fórmula</h3>
+    <p class="formula-line">\( P(X=k)=(1-p)^{k-1}p,\quad k=1,2,3,\dots \)</p>
+    <h3>Parámetros</h3>
+    <ul>
+        <li><strong>p:</strong> probabilidad de éxito en cada intento.</li>
+        <li><strong>k:</strong> número de intento en el que ocurre el primer éxito.</li>
+    </ul>
+    <h3>Ejemplos reales y uso</h3>
+    <p>Si un comercial tiene una probabilidad del 20% de cerrar una venta en cada llamada, la geométrica permite calcular la probabilidad de cerrar en la primera, tercera o décima llamada, así como la probabilidad acumulada de cerrar antes de cierto número de contactos. En la calculadora, selecciona <em>Geométrica</em> para trabajar con estos escenarios de “primer éxito”.</p>
+    </article>
+    </section>
+
     <main>
         <section class="app-shell" aria-label="Calculadora Geométrica">
             <section class="card control-panel">
@@ -107,7 +124,7 @@
 
 <script>
 window.MathJax = {
-  tex: { inlineMath: [['\(', '\)'], ['$', '$']] }
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] }
 };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
