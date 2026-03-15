@@ -159,7 +159,20 @@ function initializeDistributionPage() {
     }
 
     if (shouldLockDistribution) {
+        const lockedDistribution = distributionSelect.value;
+
+        if (Object.hasOwn(distributionLabels, lockedDistribution)) {
+            distributionSelect.innerHTML = "";
+
+            const fixedOption = document.createElement("option");
+            fixedOption.value = lockedDistribution;
+            fixedOption.textContent = distributionLabels[lockedDistribution];
+            distributionSelect.appendChild(fixedOption);
+            distributionSelect.value = lockedDistribution;
+        }
+
         distributionSelect.disabled = true;
+        distributionSelect.setAttribute("aria-disabled", "true");
 
         const distInfoEl = document.getElementById("distributionPageInfo");
 
