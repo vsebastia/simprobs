@@ -19,7 +19,23 @@
         <p class="hero-subtitle">Calcula densidad, acumuladas y cuantiles de la distribución chi-cuadrado para pruebas estadísticas.</p>
         <p class="hero-links"><a href="index.html#calculator">Ver calculadora general</a></p>
     </header>
-
+        <article class="card content-card">
+    <h2>Distribución de Poisson</h2>
+    <h2>Explicación sencilla</h2>
+    <p>La distribución chi-cuadrado aparece al sumar cuadrados de variables normales estandarizadas y solo toma valores positivos. 
+        Es asimétrica (especialmente con pocos grados de libertad) y se vuelve más parecida a una campana a medida que aumentan 
+        los grados de libertad. Se utiliza con frecuencia en inferencia estadística para contrastes de bondad de ajuste, 
+        independencia en tablas de contingencia y estimación de varianzas.</p>
+    <h3>Fórmula</h3>
+    <p class="formula-line">\( P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!} \)</p>
+    <h3>Parámetros</h3>
+        <ul>
+            <li><strong>λ (lambda):</strong> número esperado de eventos en el intervalo.</li>
+            <li><strong>k:</strong> conteo de eventos observado.</li>
+        </ul>
+    <h3>Ejemplos reales y uso</h3>
+    <p>Un centro de soporte puede recibir en promedio 6 tickets por hora. Poisson permite estimar probabilidades de recibir exactamente 10 tickets, como máximo 4 o al menos 8 en la próxima hora. En la calculadora, selecciona <em>Poisson</em>, introduce λ y evalúa PMF para conteos exactos o CDF para límites acumulados.</p>
+    </article>
 
 
     <main>
