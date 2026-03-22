@@ -237,43 +237,43 @@ canvas {
 .affiliate-spotlight {
     position: relative;
     margin-bottom: 28px;
-    padding: 30px;
+    padding: 32px;
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.85fr);
     gap: 24px;
-    align-items: center;
-    overflow: visible;
-    border: 2px solid rgba(15, 23, 42, 0.12);
+    align-items: stretch;
+    overflow: hidden;
+    border: 1px solid rgba(99, 102, 241, 0.18);
     border-radius: 28px;
     background:
-        radial-gradient(circle at top left, rgba(250, 204, 21, 0.45), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.36), transparent 30%),
-        linear-gradient(135deg, #0f172a 0%, #312e81 50%, #7c3aed 100%);
-    box-shadow: 0 26px 60px rgba(49, 46, 129, 0.32);
+        radial-gradient(circle at top left, rgba(191, 219, 254, 0.95), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(224, 231, 255, 0.92), transparent 30%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(238, 242, 255, 0.98) 48%, rgba(249, 250, 251, 0.99) 100%);
+    box-shadow: 0 24px 55px rgba(15, 23, 42, 0.10);
 }
 
 .affiliate-spotlight::before,
 .affiliate-spotlight::after {
     content: "";
     position: absolute;
-    width: 110px;
-    height: 110px;
-    border-radius: 28px;
-    background: rgba(255, 255, 255, 0.11);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
     z-index: 0;
 }
 
 .affiliate-spotlight::before {
-    top: -20px;
-    right: 18%;
-    transform: rotate(14deg);
+    top: -72px;
+    right: -28px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(129, 140, 248, 0.22) 0%, rgba(129, 140, 248, 0) 70%);
 }
 
 .affiliate-spotlight::after {
-    bottom: -26px;
-    left: 10%;
-    transform: rotate(-12deg);
+    bottom: -94px;
+    left: -34px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.14) 0%, rgba(249, 115, 22, 0) 72%);
 }
 
 .affiliate-spotlight-copy,
@@ -282,59 +282,101 @@ canvas {
     z-index: 1;
 }
 
+.affiliate-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.affiliate-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(79, 70, 229, 0.10);
+    border: 1px solid rgba(79, 70, 229, 0.12);
+    color: #3730a3;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.affiliate-badge-soft {
+    background: rgba(249, 115, 22, 0.10);
+    border-color: rgba(249, 115, 22, 0.18);
+    color: #c2410c;
+}
+
 .affiliate-spotlight-copy h2 {
-    margin: 6px 0 12px;
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
-    line-height: 1.1;
+    margin: 8px 0 14px;
+    font-size: clamp(1.55rem, 3vw, 2.3rem);
+    line-height: 1.08;
     letter-spacing: -0.03em;
-    color: #fff;
+    color: #0f172a;
 }
 
 .affiliate-spotlight-copy p {
     margin: 0;
-    color: rgba(255, 255, 255, 0.84);
-    line-height: 1.7;
+    color: #475569;
+    line-height: 1.75;
     font-size: 1rem;
+    max-width: 62ch;
 }
 
 .affiliate-eyebrow {
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--accent);
+    font-weight: 800;
+    color: #7c3aed;
 }
 
 .affiliate-spotlight-panel {
-    padding: 22px;
+    align-self: center;
+    padding: 24px;
     border-radius: 24px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.96));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 22px 36px rgba(15, 23, 42, 0.24);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    transform: rotate(-2deg);
 }
 
 .affiliate-kicker {
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.74rem;
     font-weight: 800;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #fef08a;
+    color: #fcd34d;
+}
+
+.affiliate-panel-title {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.35;
+    font-weight: 800;
+    color: #fff;
+}
+
+.affiliate-panel-copy {
+    margin: 0;
+    color: rgba(226, 232, 240, 0.84);
+    line-height: 1.65;
+    font-size: 0.95rem;
 }
 
 .affiliate-spotlight .affiliate-eyebrow {
-    color: #f9a8d4;
+    color: #6d28d9;
 }
 
 .affiliate-spotlight-panel .affiliate-note {
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(226, 232, 240, 0.74);
 }
 
 .affiliate-button {
@@ -373,43 +415,6 @@ canvas {
     color: var(--text-muted);
 }
 
-.affiliate-margin {
-    position: fixed;
-    top: 50%;
-    z-index: 6;
-    display: none;
-    padding: 12px 10px;
-    border-radius: 18px 18px 0 0;
-    background: linear-gradient(180deg, #f97316, #ec4899);
-    color: #fff;
-    box-shadow: 0 16px 28px rgba(236, 72, 153, 0.24);
-    transform-origin: center;
-}
-
-.affiliate-margin span {
-    display: block;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-.affiliate-margin-left {
-    left: max(10px, calc((100vw - min(1200px, 94vw)) / 2 - 48px));
-    transform: translateY(-50%) rotate(-90deg);
-}
-
-.affiliate-margin-right {
-    right: max(10px, calc((100vw - min(1200px, 94vw)) / 2 - 48px));
-    transform: translateY(-50%) rotate(90deg);
-}
-
-@media (min-width: 1280px) {
-    .affiliate-margin {
-        display: block;
-    }
-}
 
 .content-card h2 {
     margin: 0 0 12px;
@@ -489,7 +494,8 @@ footer {
     }
 
     .affiliate-spotlight-panel {
-        transform: none;
+        width: min(100%, 520px);
+        align-self: start;
     }
 }
 
@@ -520,13 +526,19 @@ footer {
         padding: 22px 18px;
     }
 
+    .affiliate-badges {
+        gap: 8px;
+    }
+
     .affiliate-spotlight::before,
     .affiliate-spotlight::after {
         display: none;
     }
 
     .affiliate-spotlight-panel {
+        width: 100%;
         align-items: stretch;
+        padding: 20px;
     }
 
     canvas {
