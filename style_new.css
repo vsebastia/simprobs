@@ -234,25 +234,67 @@ canvas {
     max-width: 100%;
 }
 
-.affiliate-card {
-    margin-bottom: 22px;
+.affiliate-spotlight {
+    position: relative;
+    margin-bottom: 28px;
+    padding: 30px;
     display: grid;
-    grid-template-columns: minmax(0, 1.8fr) auto;
-    gap: 18px;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+    gap: 24px;
     align-items: center;
-    border-color: rgba(79, 70, 229, 0.18);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(238, 242, 255, 0.92));
+    overflow: visible;
+    border: 2px solid rgba(15, 23, 42, 0.12);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at top left, rgba(250, 204, 21, 0.45), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.36), transparent 30%),
+        linear-gradient(135deg, #0f172a 0%, #312e81 50%, #7c3aed 100%);
+    box-shadow: 0 26px 60px rgba(49, 46, 129, 0.32);
 }
 
-.affiliate-copy h2 {
-    margin: 6px 0 10px;
-    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+.affiliate-spotlight::before,
+.affiliate-spotlight::after {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.11);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 0;
 }
 
-.affiliate-copy p {
+.affiliate-spotlight::before {
+    top: -20px;
+    right: 18%;
+    transform: rotate(14deg);
+}
+
+.affiliate-spotlight::after {
+    bottom: -26px;
+    left: 10%;
+    transform: rotate(-12deg);
+}
+
+.affiliate-spotlight-copy,
+.affiliate-spotlight-panel {
+    position: relative;
+    z-index: 1;
+}
+
+.affiliate-spotlight-copy h2 {
+    margin: 6px 0 12px;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #fff;
+}
+
+.affiliate-spotlight-copy p {
     margin: 0;
-    color: #475569;
-    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.84);
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
 .affiliate-eyebrow {
@@ -264,11 +306,35 @@ canvas {
     color: var(--accent);
 }
 
-.affiliate-actions {
+.affiliate-spotlight-panel {
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
+    transform: rotate(-2deg);
+}
+
+.affiliate-kicker {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fef08a;
+}
+
+.affiliate-spotlight .affiliate-eyebrow {
+    color: #f9a8d4;
+}
+
+.affiliate-spotlight-panel .affiliate-note {
+    color: rgba(255, 255, 255, 0.78);
 }
 
 .affiliate-button {
@@ -286,6 +352,16 @@ canvas {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.affiliate-button-spotlight {
+    width: 100%;
+    min-width: 0;
+    padding: 15px 20px;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #f97316, #facc15);
+    color: #111827;
+    box-shadow: 0 16px 30px rgba(249, 115, 22, 0.35);
+}
+
 .affiliate-button:hover {
     transform: translateY(-1px);
     box-shadow: 0 14px 28px rgba(79, 70, 229, 0.28);
@@ -295,6 +371,44 @@ canvas {
     margin: 0;
     font-size: 0.82rem;
     color: var(--text-muted);
+}
+
+.affiliate-margin {
+    position: fixed;
+    top: 50%;
+    z-index: 6;
+    display: none;
+    padding: 12px 10px;
+    border-radius: 18px 18px 0 0;
+    background: linear-gradient(180deg, #f97316, #ec4899);
+    color: #fff;
+    box-shadow: 0 16px 28px rgba(236, 72, 153, 0.24);
+    transform-origin: center;
+}
+
+.affiliate-margin span {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.affiliate-margin-left {
+    left: max(10px, calc((100vw - min(1200px, 94vw)) / 2 - 48px));
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+.affiliate-margin-right {
+    right: max(10px, calc((100vw - min(1200px, 94vw)) / 2 - 48px));
+    transform: translateY(-50%) rotate(90deg);
+}
+
+@media (min-width: 1280px) {
+    .affiliate-margin {
+        display: block;
+    }
 }
 
 .content-card h2 {
@@ -370,8 +484,12 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .affiliate-card {
+    .affiliate-spotlight {
         grid-template-columns: 1fr;
+    }
+
+    .affiliate-spotlight-panel {
+        transform: none;
     }
 }
 
@@ -398,7 +516,16 @@ footer {
         width: 100%;
     }
 
-    .affiliate-actions {
+    .affiliate-spotlight {
+        padding: 22px 18px;
+    }
+
+    .affiliate-spotlight::before,
+    .affiliate-spotlight::after {
+        display: none;
+    }
+
+    .affiliate-spotlight-panel {
         align-items: stretch;
     }
 
