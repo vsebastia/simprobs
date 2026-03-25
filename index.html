@@ -34,7 +34,12 @@
           "@type": "WebSite",
           "name": "ProbLab",
           "url": "https://problabtools.es/",
-          "inLanguage": "es"
+          "inLanguage": "es",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://problabtools.es/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
         },
         {
           "@type": "Organization",
@@ -59,6 +64,54 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es una distribución de probabilidad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una distribución de probabilidad describe matemáticamente la probabilidad de los posibles resultados de una variable aleatoria, ya sea en forma discreta o continua."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la diferencia entre PDF y CDF?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La PDF o PMF describe el comportamiento local de la probabilidad en un punto, mientras que la CDF acumula la probabilidad desde menos infinito hasta un valor x."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo calculo un cuantil?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Selecciona el modo cuantil e introduce una probabilidad entre 0 y 1; la calculadora devuelve el valor de corte asociado a ese porcentaje acumulado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo debo usar una distribución binomial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se usa cuando hay un número fijo de ensayos independientes, cada ensayo tiene dos resultados posibles y la probabilidad de éxito se mantiene constante."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Para qué se usa la distribución de Poisson?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Poisson modela conteos de eventos en intervalos cuando ocurren de manera independiente y con una tasa media estable."
+          }
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,7 +127,7 @@
             <h1>ProbLab</h1>
             <p class="hero-subtitle">Domina la estadística aplicada con una calculadora online de distribuciones de probabilidad precisa y fácil de usar para estudiantes, docentes y profesionales.</p>
             <p class="hero-intro">En ProbLab puedes calcular probabilidades, densidades, cuantiles y áreas acumuladas para distribuciones como Normal, Binomial, Poisson, t de Student y Chi-cuadrado, con visualizaciones claras para entender cada resultado en segundos.</p>
-            <p class="hero-links"><a href="#calculator">Ir a la calculadora</a> · <a href="#how-to-use">Cómo interpretar PDF, CDF y cuantiles</a> · <a href="#distribution-guides">Guías de distribuciones</a> · <a href="#distribution-pages">Calculadoras por distribución</a></p>
+            <p class="hero-links"><a href="#calculator">Ir a la calculadora</a> · <a href="#how-to-use">Cómo interpretar PDF, CDF y cuantiles</a> · <a href="#distribution-guides">Guías de distribuciones</a> · <a href="#distribution-pages">Calculadoras por distribución</a> · <a href="#faq-title">FAQ</a></p>
         </div>
     </header>
 
@@ -339,7 +392,7 @@
             <p>En la gráfica, la línea o marcador rojo indica el valor usado en el cálculo. El área sombreada representa la probabilidad acumulada solicitada cuando usas CDF: área a la izquierda, a la derecha o entre dos puntos. Cuanto mayor sea el área sombreada, mayor será la probabilidad del evento definido. Si quieres conectar teoría y práctica, revisa las secciones de Normal, Binomial y Poisson más abajo: encontrarás cuándo usar cada distribución y cómo mapear sus parámetros a los campos del formulario.</p>
         </section>
 
-        <section class="card content-card" aria-labelledby="seo-title">
+        <section id="distribution-guides" class="card content-card" aria-labelledby="seo-title">
             <h2 id="seo-title">Calculadora de distribuciones de probabilidad</h2>
             <p>ProbLab funciona como una <strong>calculadora de distribuciones de probabilidad</strong> completa para estudiantes, analistas y profesionales que necesitan resultados rápidos e interpretables. Puedes usarla como <strong>calculadora de distribución normal</strong> para estimar densidades, probabilidades acumuladas y cuantiles en datos con forma de campana. También funciona como <strong>calculadora de distribución binomial</strong> cuando los resultados son discretos y se basan en un número fijo de ensayos con probabilidad de éxito constante. Para modelar conteos de eventos, actúa como <strong>calculadora de distribución de Poisson</strong>, ideal para tasas en el tiempo o el espacio.</p>
             <p>A diferencia de un formulario básico, esta página combina la herramienta interactiva con guía explicativa para que los usuarios entiendan qué significa cada salida. La curva dibujada y la región resaltada ayudan a visualizar la <strong>probabilidad acumulada</strong>, la probabilidad en cola y la probabilidad por intervalos directamente a partir de los valores de entrada. Al unir fórmulas, descripciones de parámetros y ejemplos prácticos con la calculadora, ProbLab facilita tanto el cálculo rápido como la comprensión conceptual.</p>
