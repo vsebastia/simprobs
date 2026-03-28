@@ -31,6 +31,60 @@
                 <li><strong>k</strong>: razón de asignación entre grupos.</li>
             </ul>
         </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Calcula el tamaño muestral por grupo para detectar una diferencia mínima entre dos medias.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="twoMeanSigma1">Desviación estándar del grupo 1 (σ1)</label>
+                        <input type="number" id="twoMeanSigma1" value="10" step="0.1" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="twoMeanSigma2">Desviación estándar del grupo 2 (σ2)</label>
+                        <input type="number" id="twoMeanSigma2" value="10" step="0.1" min="0.0001">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="twoMeanDelta">Diferencia mínima detectable (Δ)</label>
+                        <input type="number" id="twoMeanDelta" value="5" step="0.1" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="twoMeanAlpha">Alfa (α)</label>
+                        <input type="number" id="twoMeanAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="twoMeanPower">Potencia (1-β)</label>
+                        <input type="number" id="twoMeanPower" value="0.8" step="0.01" min="0.5" max="0.999">
+                    </div>
+                    <div class="form-group">
+                        <label for="twoMeanAllocation">Asignación entre grupos</label>
+                        <select id="twoMeanAllocation">
+                            <option value="equal" selected>Igual (1:1)</option>
+                            <option value="custom">Desigual (n2/n1 personalizado)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" id="twoMeanRatioGroup" hidden>
+                    <label for="twoMeanRatio">Razón n2/n1 (k)</label>
+                    <input type="number" id="twoMeanRatio" value="1.5" step="0.1" min="0.1">
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="twoMeanCalculateBtn">Calcular tamaño muestral</button>
+            <div id="twoMeanResult" class="result-box">Resultado pendiente…</div>
+            <div id="twoMeanFormula" class="formula-box">Fórmula pendiente…</div>
+        </section>
     </main>
 
     <footer>
@@ -42,5 +96,74 @@
 window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function refreshMathJaxTwoMean() {
+    if (window.MathJax?.typesetPromise) {
+        MathJax.typesetPromise();
+    }
+}
+
+function getTwoMeanRatio() {
+    const allocation = document.getElementById("twoMeanAllocation").value;
+    if (allocation === "equal") return 1;
+    const k = parseFloat(document.getElementById("twoMeanRatio").value);
+    if (!Number.isFinite(k) || k <= 0) {
+        throw new Error("La razón n2/n1 (k) debe ser mayor que 0.");
+    }
+    return k;
+}
+
+function calculateTwoMeanSampleSize() {
+    const resultEl = document.getElementById("twoMeanResult");
+    const formulaEl = document.getElementById("twoMeanFormula");
+
+    try {
+        const sigma1 = parseFloat(document.getElementById("twoMeanSigma1").value);
+        const sigma2 = parseFloat(document.getElementById("twoMeanSigma2").value);
+        const delta = parseFloat(document.getElementById("twoMeanDelta").value);
+        const alpha = parseFloat(document.getElementById("twoMeanAlpha").value);
+        const power = parseFloat(document.getElementById("twoMeanPower").value);
+        const k = getTwoMeanRatio();
+
+        if (!Number.isFinite(sigma1) || sigma1 <= 0 || !Number.isFinite(sigma2) || sigma2 <= 0) {
+            throw new Error("σ1 y σ2 deben ser mayores que 0.");
+        }
+        if (!Number.isFinite(delta) || delta <= 0) {
+            throw new Error("Δ debe ser mayor que 0.");
+        }
+        if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+            throw new Error("α debe estar entre 0 y 1.");
+        }
+        if (!Number.isFinite(power) || power <= 0 || power >= 1) {
+            throw new Error("La potencia debe estar entre 0 y 1.");
+        }
+
+        const zAlpha = jStat.normal.inv(1 - (alpha / 2), 0, 1);
+        const zBeta = jStat.normal.inv(power, 0, 1);
+        const n1 = Math.ceil((Math.pow(zAlpha + zBeta, 2) * (Math.pow(sigma1, 2) + (Math.pow(sigma2, 2) / k))) / Math.pow(delta, 2));
+        const n2 = Math.ceil(k * n1);
+
+        resultEl.innerText = Math.abs(k - 1) < 1e-10
+            ? `n mínimo por grupo: ${n1} (total: ${n1 + n2}).`
+            : `n mínimo grupo 1: ${n1}; grupo 2: ${n2} (k=${k.toFixed(2)}, total: ${n1 + n2}).`;
+
+        formulaEl.innerHTML = `<strong>Fórmula usada:</strong><p class="formula-line">\\( n_1 = \\frac{(Z_{\\alpha/2}+Z_\\beta)^2(\\sigma_1^2+\\sigma_2^2/k)}{\\Delta^2} \\)</p><p class="formula-line">\\( n_2 = k\\,n_1 \\)</p>`;
+        refreshMathJaxTwoMean();
+    } catch (error) {
+        resultEl.innerText = `Error: ${error.message}`;
+    }
+}
+
+function updateTwoMeanControls() {
+    const showRatio = document.getElementById("twoMeanAllocation").value === "custom";
+    document.getElementById("twoMeanRatioGroup").hidden = !showRatio;
+}
+
+document.getElementById("twoMeanAllocation").addEventListener("change", updateTwoMeanControls);
+document.getElementById("twoMeanCalculateBtn").addEventListener("click", calculateTwoMeanSampleSize);
+updateTwoMeanControls();
+calculateTwoMeanSampleSize();
+</script>
 </body>
 </html>
