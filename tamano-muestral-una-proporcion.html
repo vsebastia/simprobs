@@ -110,7 +110,6 @@ function calculateOnePropSampleSize() {
     const n = Math.ceil((Math.pow(z, 2) * p * (1 - p)) / Math.pow(e, 2));
 
     resultEl.innerText = `n mínimo recomendado: ${n} observaciones (${Math.round(confidence * 100)}% de confianza).`;
-    formulaEl.innerHTML = `<strong>Fórmula usada:</strong><p class="formula-line">\\( n = \\frac{Z^2 \\cdot p \\cdot (1-p)}{E^2} \\)</p><p class="formula-line"></p>`;
     refreshMathJaxOneProp();
 }
 
