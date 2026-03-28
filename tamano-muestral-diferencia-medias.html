@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tamaño muestral para diferencia de medias | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía del cálculo de tamaño muestral para comparar dos medias independientes.">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-diferencia-medias.html">
+    <link rel="stylesheet" href="style_new.css">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Diferencia de medias</h1>
+        <p class="hero-subtitle">Calcula el tamaño por grupo para detectar una diferencia mínima entre dos medias.</p>
+        <p class="hero-links"><a href="index.html#sample-size-index">Volver al índice de tamaños muestrales</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>Este cálculo se usa para comparar dos medias de grupos independientes (por ejemplo, tiempo promedio de dos procesos). Debes definir desviaciones estándar esperadas <strong>\(\sigma_1\)</strong> y <strong>\(\sigma_2\)</strong>, diferencia mínima detectable <strong>\(\Delta\)</strong>, alfa, potencia y la razón de asignación <strong>k</strong>.</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n_1 = \frac{(Z_{\alpha/2}+Z_\beta)^2(\sigma_1^2+\sigma_2^2/k)}{\Delta^2} \)</p>
+            <p class="formula-line">\( n_2 = k\,n_1 \)</p>
+            <ul>
+                <li><strong>n1, n2</strong>: tamaños por grupo.</li>
+                <li><strong>\(\Delta\)</strong>: diferencia mínima de medias que quieres detectar.</li>
+                <li><strong>k</strong>: razón de asignación entre grupos.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 ProbLab · Creado por Vicente Castellar
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body>
+</html>

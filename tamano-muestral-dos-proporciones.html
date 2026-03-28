@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tamaño muestral para dos proporciones | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía del cálculo de tamaño muestral para comparar dos proporciones independientes.">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-dos-proporciones.html">
+    <link rel="stylesheet" href="style_new.css">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Dos proporciones</h1>
+        <p class="hero-subtitle">Determina cuántas observaciones necesitas por grupo para detectar diferencias entre proporciones.</p>
+        <p class="hero-links"><a href="index.html#sample-size-index">Volver al índice de tamaños muestrales</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>Este cálculo se aplica cuando comparas dos grupos independientes (por ejemplo, conversión de control vs. tratamiento). Requiere <strong>p1</strong>, <strong>p2</strong>, nivel de significación <strong>\(\alpha\)</strong>, potencia <strong>\(1-\beta\)</strong> y la razón de asignación <strong>k = n_2 / n_1</strong>.</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n_1 = \frac{\left(Z_{\alpha/2}\sqrt{(1+1/k)\bar{p}(1-\bar{p})} + Z_\beta\sqrt{p_1(1-p_1)+\frac{p_2(1-p_2)}{k}}\right)^2}{(p_1-p_2)^2} \)</p>
+            <p class="formula-line">\( n_2 = k\,n_1,\quad \bar{p}=\frac{p_1 + kp_2}{1+k} \)</p>
+            <ul>
+                <li><strong>n1, n2</strong>: tamaños muestrales por grupo.</li>
+                <li><strong>k</strong>: razón entre tamaños de grupo.</li>
+                <li><strong>\(Z_{\alpha/2}\)</strong> y <strong>\(Z_\beta\)</strong>: cuantiles normales para alfa y potencia.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 ProbLab · Creado por Vicente Castellar
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body>
+</html>
