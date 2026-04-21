@@ -65,19 +65,43 @@ body {
 }
 
 .hero-links {
-    margin-top: 12px;
-    color: #475569;
+    margin-top: 16px;
     font-size: 0.94rem;
 }
 
-.hero-links a {
+.hero-link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(79, 70, 229, 0.25);
+    background: rgba(79, 70, 229, 0.08);
     color: var(--accent-dark);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-.hero-links a:hover {
-    text-decoration: underline;
+.hero-link-button::after {
+    content: "→";
+    font-size: 0.95rem;
+}
+
+.hero-link-button:hover {
+    transform: translateY(-1px);
+    background: rgba(79, 70, 229, 0.14);
+    box-shadow: 0 8px 18px rgba(79, 70, 229, 0.2);
+}
+
+.hero-link-button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--ring);
+}
+
+.app-shell-link {
+    margin-top: 14px;
+    margin-bottom: 0;
 }
 
 .app-shell {
