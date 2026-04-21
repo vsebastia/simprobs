@@ -73,30 +73,37 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 16px;
+    padding: 11px 18px;
     border-radius: 999px;
-    border: 1px solid rgba(79, 70, 229, 0.25);
-    background: rgba(79, 70, 229, 0.08);
-    color: var(--accent-dark);
+    border: 1px solid rgba(79, 70, 229, 0.35);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #2563eb 100%);
+    color: #ffffff;
     text-decoration: none;
     font-weight: 700;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.24), inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .hero-link-button::after {
-    content: "→";
+    content: "↗";
     font-size: 0.95rem;
+    opacity: 0.95;
 }
 
 .hero-link-button:hover {
-    transform: translateY(-1px);
-    background: rgba(79, 70, 229, 0.14);
-    box-shadow: 0 8px 18px rgba(79, 70, 229, 0.2);
+    transform: translateY(-2px);
+    filter: saturate(1.12);
+    box-shadow: 0 14px 28px rgba(79, 70, 229, 0.32), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.hero-link-button:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 16px rgba(79, 70, 229, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
 .hero-link-button:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 4px var(--ring);
+    box-shadow: 0 0 0 4px var(--ring), 0 12px 22px rgba(79, 70, 229, 0.32);
 }
 
 .app-shell-link {
