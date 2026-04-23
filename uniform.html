@@ -2,30 +2,30 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de distribución F de Snedecor online | ProbLab</title>
+    <title>Calculadora de distribución Uniforme online | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Herramienta para calcular distribución F de Snedecor: densidad, probabilidad acumulada y cuantiles con dos grados de libertad.">
+    <meta name="description" content="Calcula densidad, acumuladas y cuantiles para una distribución uniforme en [a,b].">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Vicente Castellar">
     <meta name="theme-color" content="#4f46e5">
-    <link rel="canonical" href="https://problabtools.es/centralf.html">
-    <link rel="alternate" hreflang="es" href="https://problabtools.es/centralf.html">
+    <link rel="canonical" href="https://problabtools.es/uniform.html">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/uniform.html">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
 
     <meta property="og:type" content="article">
     <meta property="og:locale" content="es_ES">
     <meta property="og:site_name" content="ProbLab">
-    <meta property="og:title" content="Calculadora de distribución F de Snedecor online | ProbLab">
-    <meta property="og:description" content="Herramienta para calcular distribución F de Snedecor: densidad, probabilidad acumulada y cuantiles con dos grados de libertad.">
-    <meta property="og:url" content="https://problabtools.es/centralf.html">
+    <meta property="og:title" content="Calculadora de distribución Uniforme online | ProbLab">
+    <meta property="og:description" content="Calcula densidad, acumuladas y cuantiles para una distribución uniforme en [a,b].">
+    <meta property="og:url" content="https://problabtools.es/uniform.html">
     <meta property="og:image" content="https://problabtools.es/og-image.png">
-    <meta property="og:image:alt" content="Distribución F de Snedecor en ProbLab">
+    <meta property="og:image:alt" content="Distribución Uniforme en ProbLab">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Calculadora de distribución F de Snedecor online | ProbLab">
-    <meta name="twitter:description" content="Herramienta para calcular distribución F de Snedecor: densidad, probabilidad acumulada y cuantiles con dos grados de libertad.">
+    <meta name="twitter:title" content="Calculadora de distribución Uniforme online | ProbLab">
+    <meta name="twitter:description" content="Calcula densidad, acumuladas y cuantiles para una distribución uniforme en [a,b].">
     <meta name="twitter:image" content="https://problabtools.es/og-image.png">
-    <meta name="twitter:image:alt" content="Distribución F de Snedecor en ProbLab">
+    <meta name="twitter:image:alt" content="Distribución Uniforme en ProbLab">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -34,14 +34,14 @@
           "@type": "BreadcrumbList",
           "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
-            {"@type": "ListItem", "position": 2, "name": "Distribución F de Snedecor", "item": "https://problabtools.es/centralf.html"}
+            {"@type": "ListItem", "position": 2, "name": "Distribución Uniforme", "item": "https://problabtools.es/uniform.html"}
           ]
         },
         {
           "@type": "WebPage",
-          "name": "Calculadora de distribución F de Snedecor online | ProbLab",
-          "url": "https://problabtools.es/centralf.html",
-          "description": "Herramienta para calcular distribución F de Snedecor: densidad, probabilidad acumulada y cuantiles con dos grados de libertad.",
+          "name": "Calculadora de distribución Uniforme online | ProbLab",
+          "url": "https://problabtools.es/uniform.html",
+          "description": "Calcula densidad, acumuladas y cuantiles para una distribución uniforme en [a,b].",
           "inLanguage": "es",
           "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
         }
@@ -54,53 +54,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style_new.css">
 </head>
-<body data-default-distribution="centralf" data-lock-distribution="true">
+<body data-default-distribution="uniform" data-lock-distribution="true">
 <div class="page-wrap">
     <header class="hero">
         <p class="eyebrow">Calculadora específica</p>
-        <h1>Distribución F de Snedecor</h1>
-        <p class="hero-subtitle">Calcula PDF, CDF y percentiles de la distribución F para comparar varianzas con dos grados de libertad.</p>
+        <h1>Distribución Uniforme</h1>
+        <p class="hero-subtitle">Calcula densidad, acumuladas y cuantiles en una distribución uniforme con límites a y b.</p>
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
     <article class="card content-card">
-<h2>Distribución F de Snedecor</h2>
-
-<h3>Explicación sencilla</h3>
-<p>La distribución F de Snedecor surge como el cociente entre dos variables chi-cuadrado independientes 
-normalizadas por sus grados de libertad. Solo toma valores positivos y es asimétrica hacia la derecha. 
-Se utiliza principalmente en estadística inferencial para comparar varianzas y en el análisis de varianza 
-(ANOVA), donde permite evaluar si varios grupos tienen medias significativamente diferentes.</p>
-
-<h3>Fórmula</h3>
-<p class="formula-line">
-$$
-f(x)=
-\frac{1}{B\left(\frac{d_1}{2},\frac{d_2}{2}\right)}
-\left(\frac{d_1}{d_2}\right)^{d_1/2}
-x^{d_1/2-1}
-\left(1+\frac{d_1}{d_2}x\right)^{-(d_1+d_2)/2}
-$$
-</p>
-
-
-<h3>Parámetros</h3>
-<ul>
-<li><strong>d₁:</strong> grados de libertad del numerador.</li>
-<li><strong>d₂:</strong> grados de libertad del denominador.</li>
-</ul>
-
-<h3>Ejemplos reales y uso</h3>
-<p>Supón que quieres comparar la variabilidad de dos procesos de fabricación o evaluar si varios 
-tratamientos producen diferencias significativas en un experimento. En análisis de varianza (ANOVA), 
-la estadística F compara la variación entre grupos con la variación dentro de los grupos. 
-En la calculadora, selecciona <em>F de Snedecor</em>, introduce los grados de libertad 
-\(d_1\) y \(d_2\), y usa la CDF para obtener probabilidades acumuladas o los cuantiles para 
-calcular valores críticos en contrastes estadísticos.</p>
-</article>
+        <h2>Distribución uniforme</h2>
+        <h3>Explicación sencilla</h3>
+        <p>La distribución uniforme continua asigna la misma densidad a cualquier valor dentro del intervalo [a,b]. Es un modelo base cuando solo conoces límites mínimo y máximo sin preferencia por valores intermedios.</p>
+        <h3>Fórmula</h3>
+        <p class="formula-line">\( f(x)=\frac{1}{b-a},\quad a\le x\le b \)</p>
+        <h3>Parámetros</h3>
+        <ul>
+            <li><strong>a:</strong> límite inferior del intervalo.</li>
+            <li><strong>b:</strong> límite superior del intervalo (debe cumplir b &gt; a).</li>
+            <li><strong>x:</strong> valor dentro del eje donde evalúas PDF/CDF.</li>
+        </ul>
+        <h3>Ejemplos reales y uso</h3>
+        <p>Útil en simulaciones y escenarios donde cualquier valor dentro de un rango es igual de probable, por ejemplo tiempos entre 5 y 10 minutos sin sesgo.</p>
+    </article>
 
     <main>
-        <section class="app-shell" aria-label="Calculadora F de Snedecor">
+        <section class="app-shell" aria-label="Calculadora Distribución Uniforme">
             <section class="card control-panel">
                 <div class="panel-heading">
                     <h2>Configuración</h2>
@@ -178,6 +158,7 @@ calcular valores críticos en contrastes estadísticos.</p>
                 </div>
             </section>
         </section>
+
     <p class="hero-links app-shell-link"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </main>
 
@@ -191,10 +172,7 @@ calcular valores críticos en contrastes estadísticos.</p>
 
 <script>
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)'], ['$','$']],
-    displayMath: [['$$','$$']]
-  }
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] }
 };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>

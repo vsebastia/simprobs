@@ -9,8 +9,19 @@ const distributionLabels = {
     centralf: "Snedecor's F",
     exponential: "Exponencial",
     negbin: "Binomial negativa",
-    geometric: "Geométrica"
+    geometric: "Geométrica",
+    uniform: "Uniforme",
+    gamma: "Gamma",
+    beta: "Beta",
+    lognormal: "Log-normal",
+    weibull: "Weibull",
+    hypergeometric: "Hipergeométrica",
+    bernoulli: "Bernoulli"
 };
+
+function hasOwn(obj, key) {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+}
 
 function refreshMathJax() {
     if (window.MathJax && typeof window.MathJax.typesetPromise === "function") {
@@ -28,7 +39,14 @@ const distributionDescriptions = {
     centralf: "Distribución continua que compara dos varianzas y se usa en pruebas F (por ejemplo, ANOVA).",
     exponential: "Distribución continua para tiempos de espera entre eventos de un proceso de Poisson, con tasa λ.",
     negbin: "Distribución discreta que modela el número de fallos antes de alcanzar r éxitos con probabilidad p.",
-    geometric: "Distribución discreta que da el número de ensayos hasta el primer éxito con probabilidad constante p."
+    geometric: "Distribución discreta que da el número de ensayos hasta el primer éxito con probabilidad constante p.",
+    uniform: "Distribución continua con densidad constante en el intervalo [a, b].",
+    gamma: "Distribución continua positiva para tiempos de espera agregados, parametrizada por forma y escala.",
+    beta: "Distribución continua en [0,1], útil para modelar proporciones y probabilidades.",
+    lognormal: "Distribución continua positiva cuya variable logarítmica sigue una normal.",
+    weibull: "Distribución continua positiva usada en fiabilidad y análisis de vida útil.",
+    hypergeometric: "Distribución discreta sin reemplazo para éxitos en una muestra extraída de una población finita.",
+    bernoulli: "Distribución discreta binaria (0/1) con probabilidad de éxito p."
 };
 
 function updateDistributionDescription(dist) {
@@ -154,14 +172,14 @@ function initializeDistributionPage() {
     const preferredDistribution = (bodyDataset.defaultDistribution || params.get("dist") || "").toLowerCase();
     const shouldLockDistribution = bodyDataset.lockDistribution === "true";
 
-    if (preferredDistribution && Object.hasOwn(distributionLabels, preferredDistribution)) {
+    if (preferredDistribution && hasOwn(distributionLabels, preferredDistribution)) {
         distributionSelect.value = preferredDistribution;
     }
 
     if (shouldLockDistribution) {
         const lockedDistribution = distributionSelect.value;
 
-        if (Object.hasOwn(distributionLabels, lockedDistribution)) {
+        if (hasOwn(distributionLabels, lockedDistribution)) {
             distributionSelect.innerHTML = "";
 
             const fixedOption = document.createElement("option");
@@ -176,7 +194,7 @@ function initializeDistributionPage() {
 
         const distInfoEl = document.getElementById("distributionPageInfo");
 
-        if (distInfoEl && Object.hasOwn(distributionLabels, distributionSelect.value)) {
+        if (distInfoEl && hasOwn(distributionLabels, distributionSelect.value)) {
             distInfoEl.innerText = `Calculadora específica para ${distributionLabels[distributionSelect.value]}.`;
         }
     }
@@ -225,6 +243,13 @@ function getCdfValue(dist, value, p1, p2) {
     if (dist === "exponential") return jStat.exponential.cdf(value, p1);
     if (dist === "negbin") return jStat.negbin.cdf(value, p1, p2);
     if (dist === "geometric") return geometricCdf(value, p1);
+    if (dist === "uniform") return uniformCdf(value, p1, p2);
+    if (dist === "gamma") return jStat.gamma.cdf(value, p1, p2);
+    if (dist === "beta") return jStat.beta.cdf(value, p1, p2);
+    if (dist === "lognormal") return lognormalCdf(value, p1, p2);
+    if (dist === "weibull") return weibullCdf(value, p1, p2);
+    if (dist === "hypergeometric") return hypergeometricCdf(value, p1, p2, getHypergeometricKValue());
+    if (dist === "bernoulli") return bernoulliCdf(value, p1);
     throw "Distribución no soportada";
 }
 
@@ -234,7 +259,7 @@ function resolveCdfResult(dist, cdfMode, x, b, p1, p2) {
     }
 
     if (cdfMode === "right") {
-        if (["binomial", "poisson", "negbin", "geometric"].includes(dist)) {
+        if (["binomial", "poisson", "negbin", "geometric", "hypergeometric", "bernoulli"].includes(dist)) {
             const adjusted = x - 1;
             return { value: 1 - getCdfValue(dist, adjusted, p1, p2), label: `P(X ≥ ${x})` };
         }
@@ -251,7 +276,7 @@ function resolveCdfResult(dist, cdfMode, x, b, p1, p2) {
             throw "El intervalo debe cumplir a ≤ b";
         }
 
-        if (["binomial", "poisson", "negbin", "geometric"].includes(dist)) {
+        if (["binomial", "poisson", "negbin", "geometric", "hypergeometric", "bernoulli"].includes(dist)) {
             const lower = x - 1;
             return {
                 value: getCdfValue(dist, b, p1, p2) - getCdfValue(dist, lower, p1, p2),
@@ -348,6 +373,107 @@ function geometricPmf(k, p) {
     }
 
     return Math.pow(1 - p, k - 1) * p;
+}
+
+function uniformPdf(x, a, b) {
+    if (b <= a) throw "El intervalo uniforme requiere b > a";
+    if (x < a || x > b) return 0;
+    return 1 / (b - a);
+}
+
+function uniformCdf(x, a, b) {
+    if (b <= a) throw "El intervalo uniforme requiere b > a";
+    if (x <= a) return 0;
+    if (x >= b) return 1;
+    return (x - a) / (b - a);
+}
+
+function lognormalPdf(x, mu, sigma) {
+    if (sigma <= 0) throw "σ debe ser mayor que 0";
+    if (x <= 0) return 0;
+    const factor = 1 / (x * sigma * Math.sqrt(2 * Math.PI));
+    const exponent = -((Math.log(x) - mu) ** 2) / (2 * sigma * sigma);
+    return factor * Math.exp(exponent);
+}
+
+function lognormalCdf(x, mu, sigma) {
+    if (sigma <= 0) throw "σ debe ser mayor que 0";
+    if (x <= 0) return 0;
+    return jStat.normal.cdf((Math.log(x) - mu) / sigma, 0, 1);
+}
+
+function weibullPdf(x, shape, scale) {
+    if (shape <= 0 || scale <= 0) throw "Forma y escala deben ser mayores que 0";
+    if (x < 0) return 0;
+    const xs = x / scale;
+    return (shape / scale) * (xs ** (shape - 1)) * Math.exp(-(xs ** shape));
+}
+
+function weibullCdf(x, shape, scale) {
+    if (shape <= 0 || scale <= 0) throw "Forma y escala deben ser mayores que 0";
+    if (x <= 0) return 0;
+    return 1 - Math.exp(-((x / scale) ** shape));
+}
+
+function bernoulliPmf(x, p) {
+    if (x === 1) return p;
+    if (x === 0) return 1 - p;
+    return 0;
+}
+
+function bernoulliCdf(x, p) {
+    if (x < 0) return 0;
+    if (x < 1) return 1 - p;
+    return 1;
+}
+
+function combination(n, k) {
+    if (!Number.isInteger(n) || !Number.isInteger(k) || k < 0 || n < 0 || k > n) {
+        return 0;
+    }
+    return jStat.combination(n, k);
+}
+
+function hypergeometricPmf(x, N, K, n) {
+    if (![N, K, n].every(Number.isInteger)) throw "N, K y n deben ser enteros";
+    if (!(N > 0 && K >= 0 && n >= 0 && K <= N && n <= N)) throw "Parámetros hipergeométricos inválidos";
+    if (!Number.isInteger(x)) return 0;
+    const minX = Math.max(0, n - (N - K));
+    const maxX = Math.min(n, K);
+    if (x < minX || x > maxX) return 0;
+    const numerator = combination(K, x) * combination(N - K, n - x);
+    const denominator = combination(N, n);
+    return denominator === 0 ? 0 : numerator / denominator;
+}
+
+function hypergeometricCdf(x, N, K, n) {
+    const floorX = Math.floor(x);
+    const minX = Math.max(0, n - (N - K));
+    const maxX = Math.min(n, K);
+    if (floorX < minX) return 0;
+    if (floorX >= maxX) return 1;
+    let cumulative = 0;
+    for (let i = minX; i <= floorX; i++) {
+        cumulative += hypergeometricPmf(i, N, K, n);
+    }
+    return cumulative;
+}
+
+function hypergeometricQuantile(probability, N, K, n) {
+    if (probability < 0 || probability > 1) throw "El cuantil requiere un valor entre 0 y 1";
+    const minX = Math.max(0, n - (N - K));
+    const maxX = Math.min(n, K);
+    let cumulative = 0;
+    for (let i = minX; i <= maxX; i++) {
+        cumulative += hypergeometricPmf(i, N, K, n);
+        if (cumulative >= probability) return i;
+    }
+    return maxX;
+}
+
+function getHypergeometricKValue() {
+    const kEl = document.getElementById("param3");
+    return kEl ? parseFloat(kEl.value) : NaN;
 }
 
 function geometricCdf(k, p) {
@@ -492,6 +618,97 @@ function loadParameters() {
             </div>
         `;
     }
+
+    if (dist === "uniform") {
+        container.innerHTML = `
+            <div class="form-group">
+                <label>a (mínimo)</label>
+                <input type="number" id="param1" value="0">
+            </div>
+            <div class="form-group">
+                <label>b (máximo)</label>
+                <input type="number" id="param2" value="1">
+            </div>
+        `;
+    }
+
+    if (dist === "gamma") {
+        container.innerHTML = `
+            <div class="form-group">
+                <label>Forma (k)</label>
+                <input type="number" id="param1" value="2" min="0.0001" step="0.1">
+            </div>
+            <div class="form-group">
+                <label>Escala (θ)</label>
+                <input type="number" id="param2" value="2" min="0.0001" step="0.1">
+            </div>
+        `;
+    }
+
+    if (dist === "beta") {
+        container.innerHTML = `
+            <div class="form-group">
+                <label>α (alfa)</label>
+                <input type="number" id="param1" value="2" min="0.0001" step="0.1">
+            </div>
+            <div class="form-group">
+                <label>β (beta)</label>
+                <input type="number" id="param2" value="5" min="0.0001" step="0.1">
+            </div>
+        `;
+    }
+
+    if (dist === "lognormal") {
+        container.innerHTML = `
+            <div class="form-group">
+                <label>μ (media log)</label>
+                <input type="number" id="param1" value="0" step="0.1">
+            </div>
+            <div class="form-group">
+                <label>σ (desv. log)</label>
+                <input type="number" id="param2" value="0.5" min="0.0001" step="0.1">
+            </div>
+        `;
+    }
+
+    if (dist === "weibull") {
+        container.innerHTML = `
+            <div class="form-group">
+                <label>Forma (k)</label>
+                <input type="number" id="param1" value="1.5" min="0.0001" step="0.1">
+            </div>
+            <div class="form-group">
+                <label>Escala (λ)</label>
+                <input type="number" id="param2" value="1" min="0.0001" step="0.1">
+            </div>
+        `;
+    }
+
+    if (dist === "hypergeometric") {
+        container.innerHTML = `
+            <div class="form-group">
+                <label>N (población)</label>
+                <input type="number" id="param1" value="50" min="1" step="1">
+            </div>
+            <div class="form-group">
+                <label>K (éxitos en población)</label>
+                <input type="number" id="param2" value="15" min="0" step="1">
+            </div>
+            <div class="form-group">
+                <label>n (tamaño de muestra)</label>
+                <input type="number" id="param3" value="10" min="0" step="1">
+            </div>
+        `;
+    }
+
+    if (dist === "bernoulli") {
+        container.innerHTML = `
+            <div class="form-group">
+                <label>p (éxito = 1)</label>
+                <input type="number" id="param1" value="0.5" step="0.01" min="0.0001" max="0.9999">
+            </div>
+        `;
+    }
 }
 
 function calculate() {
@@ -504,6 +721,8 @@ function calculate() {
     const p1 = parseFloat(document.getElementById("param1").value);
     const p2 = document.getElementById("param2") ?
                parseFloat(document.getElementById("param2").value) : null;
+    const p3 = document.getElementById("param3") ?
+               parseFloat(document.getElementById("param3").value) : null;
 
     let result = null;
 
@@ -584,6 +803,48 @@ function calculate() {
             }
         }
 
+        if (dist === "uniform") {
+            if (calc === "pdf") result = uniformPdf(x, p1, p2);
+            if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
+            if (calc === "quantile") result = p1 + x * (p2 - p1);
+        }
+
+        if (dist === "gamma") {
+            if (calc === "pdf") result = jStat.gamma.pdf(x, p1, p2);
+            if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
+            if (calc === "quantile") result = continuousQuantile(x, (v) => jStat.gamma.cdf(v, p1, p2), 0, Math.max(200, p1 * p2 * 12));
+        }
+
+        if (dist === "beta") {
+            if (calc === "pdf") result = jStat.beta.pdf(x, p1, p2);
+            if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
+            if (calc === "quantile") result = continuousQuantile(x, (v) => jStat.beta.cdf(v, p1, p2), 0, 1);
+        }
+
+        if (dist === "lognormal") {
+            if (calc === "pdf") result = lognormalPdf(x, p1, p2);
+            if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
+            if (calc === "quantile") result = Math.exp(jStat.normal.inv(x, p1, p2));
+        }
+
+        if (dist === "weibull") {
+            if (calc === "pdf") result = weibullPdf(x, p1, p2);
+            if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
+            if (calc === "quantile") result = p2 * ((-Math.log(1 - x)) ** (1 / p1));
+        }
+
+        if (dist === "hypergeometric") {
+            if (calc === "pdf") result = hypergeometricPmf(x, p1, p2, p3);
+            if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
+            if (calc === "quantile") result = hypergeometricQuantile(x, p1, p2, p3);
+        }
+
+        if (dist === "bernoulli") {
+            if (calc === "pdf") result = bernoulliPmf(x, p1);
+            if (calc === "cdf") result = resolveCdfResult(dist, cdfMode, x, b, p1, p2).value;
+            if (calc === "quantile") result = x <= 1 - p1 ? 0 : 1;
+        }
+
         if (result === null || isNaN(result)) throw "Valores inválidos";
 
         let resultLabel = "Resultado";
@@ -651,6 +912,119 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null, 
                 backgroundColors.push("rgba(37, 99, 235, 0.3)");
             else
                 backgroundColors.push("rgba(37, 99, 235, 0.05)");
+        }
+    }
+
+    if (dist === "uniform") {
+        const points = 120;
+        const start = p1 - (p2 - p1) * 0.2;
+        const end = p2 + (p2 - p1) * 0.2;
+        const range = end - start;
+
+        for (let i = 0; i <= points; i++) {
+            const xPoint = Number((start + (i * range) / points).toFixed(4));
+            labels.push(xPoint);
+            data.push(uniformPdf(xPoint, p1, p2));
+            backgroundColors.push(
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+            );
+        }
+    }
+
+    if (dist === "gamma") {
+        const points = 220;
+        const start = 0;
+        const end = Math.max(20, p1 * p2 * 4);
+        const range = end - start;
+
+        for (let i = 0; i <= points; i++) {
+            const xPoint = Number((start + (i * range) / points).toFixed(4));
+            labels.push(xPoint);
+            data.push(jStat.gamma.pdf(xPoint, p1, p2));
+            backgroundColors.push(
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+            );
+        }
+    }
+
+    if (dist === "beta") {
+        const points = 200;
+        const start = 0;
+        const end = 1;
+        const range = end - start;
+
+        for (let i = 0; i <= points; i++) {
+            const xPoint = Number((start + (i * range) / points).toFixed(4));
+            labels.push(xPoint);
+            data.push(jStat.beta.pdf(xPoint, p1, p2));
+            backgroundColors.push(
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+            );
+        }
+    }
+
+    if (dist === "lognormal") {
+        const points = 220;
+        const start = 0.0001;
+        const end = Math.max(20, Math.exp(p1 + 4 * p2));
+        const range = end - start;
+
+        for (let i = 0; i <= points; i++) {
+            const xPoint = Number((start + (i * range) / points).toFixed(4));
+            labels.push(xPoint);
+            data.push(lognormalPdf(xPoint, p1, p2));
+            backgroundColors.push(
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+            );
+        }
+    }
+
+    if (dist === "weibull") {
+        const points = 220;
+        const start = 0;
+        const end = Math.max(15, p2 * 5);
+        const range = end - start;
+
+        for (let i = 0; i <= points; i++) {
+            const xPoint = Number((start + (i * range) / points).toFixed(4));
+            labels.push(xPoint);
+            data.push(weibullPdf(xPoint, p1, p2));
+            backgroundColors.push(
+                (calc === "cdf" && shouldShadePoint(dist, xPoint, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(xPoint, quantileValue)) ? "rgba(37, 99, 235, 0.3)" : "rgba(37, 99, 235, 0.05)"
+            );
+        }
+    }
+
+    if (dist === "hypergeometric") {
+        const N = p1;
+        const K = p2;
+        const n = getHypergeometricKValue();
+        const minX = Math.max(0, n - (N - K));
+        const maxX = Math.min(n, K);
+
+        for (let i = minX; i <= maxX; i++) {
+            labels.push(i);
+            data.push(hypergeometricPmf(i, N, K, n));
+            backgroundColors.push(
+                (calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(i, quantileValue)) ? "rgba(37, 99, 235, 0.5)" : "rgba(37, 99, 235, 0.2)"
+            );
+        }
+    }
+
+    if (dist === "bernoulli") {
+        for (let i = 0; i <= 1; i++) {
+            labels.push(i);
+            data.push(bernoulliPmf(i, p1));
+            backgroundColors.push(
+                (calc === "cdf" && shouldShadePoint(dist, i, cdfMode, xValue, bValue)) ||
+                (calc === "quantile" && shouldShadeQuantilePoint(i, quantileValue)) ? "rgba(37, 99, 235, 0.5)" : "rgba(37, 99, 235, 0.2)"
+            );
         }
     }
 
@@ -776,7 +1150,7 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null, 
         }
     }
 
-    const discreteDistributions = ["binomial", "poisson", "negbin", "geometric"];
+    const discreteDistributions = ["binomial", "poisson", "negbin", "geometric", "hypergeometric", "bernoulli"];
     const isDiscrete = discreteDistributions.includes(dist);
     const referenceXValue = calc === "quantile" ? quantileValue : xValue;
     const shouldShowReferenceLine = (calc === "pdf" || calc === "quantile") && Number.isFinite(referenceXValue);
@@ -825,6 +1199,13 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null, 
         if (dist === "exponential") return jStat.exponential.pdf(referenceXValue, p1);
         if (dist === "negbin") return jStat.negbin.pdf(referenceXValue, p1, p2);
         if (dist === "geometric") return geometricPmf(referenceXValue, p1);
+        if (dist === "uniform") return uniformPdf(referenceXValue, p1, p2);
+        if (dist === "gamma") return jStat.gamma.pdf(referenceXValue, p1, p2);
+        if (dist === "beta") return jStat.beta.pdf(referenceXValue, p1, p2);
+        if (dist === "lognormal") return lognormalPdf(referenceXValue, p1, p2);
+        if (dist === "weibull") return weibullPdf(referenceXValue, p1, p2);
+        if (dist === "hypergeometric") return hypergeometricPmf(referenceXValue, p1, p2, getHypergeometricKValue());
+        if (dist === "bernoulli") return bernoulliPmf(referenceXValue, p1);
         return null;
     })();
 
