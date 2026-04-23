@@ -66,9 +66,9 @@ const referenceLinePlugin = {
             return;
         }
 
-        const { xValue, yValue, labels } = pluginOptions;
+        const { xValue, yValue } = pluginOptions;
 
-        if (!Array.isArray(labels) || labels.length === 0 || !Number.isFinite(xValue) || !Number.isFinite(yValue) || yValue < 0) {
+        if (!Number.isFinite(xValue) || !Number.isFinite(yValue) || yValue < 0) {
             return;
         }
 
@@ -79,41 +79,7 @@ const referenceLinePlugin = {
             return;
         }
 
-        const toXPixel = () => {
-            if (labels.length === 1) {
-                return xScale.getPixelForValue(0);
-            }
-
-            const first = labels[0];
-            const last = labels[labels.length - 1];
-
-            if (xValue < first || xValue > last) {
-                return null;
-            }
-
-            for (let i = 0; i < labels.length - 1; i++) {
-                const left = labels[i];
-                const right = labels[i + 1];
-
-                if (xValue < left || xValue > right) {
-                    continue;
-                }
-
-                const leftPixel = xScale.getPixelForValue(i);
-                const rightPixel = xScale.getPixelForValue(i + 1);
-
-                if (Math.abs(right - left) < 1e-12) {
-                    return leftPixel;
-                }
-
-                const t = (xValue - left) / (right - left);
-                return leftPixel + t * (rightPixel - leftPixel);
-            }
-
-            return xScale.getPixelForValue(labels.length - 1);
-        };
-
-        const xPixel = toXPixel();
+        const xPixel = xScale.getPixelForValue(xValue);
 
         if (!Number.isFinite(xPixel)) {
             return;
@@ -1160,24 +1126,26 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null, 
         return (calc === "cdf" && shouldShadePoint(dist, point, cdfMode, xValue, bValue)) ||
             (calc === "quantile" && shouldShadeQuantilePoint(point, quantileValue)) ? y : null;
     });
+    const plotData = labels.map((xPoint, index) => ({ x: xPoint, y: data[index] }));
+    const shadedPlotData = labels.map((xPoint, index) => ({ x: xPoint, y: shadedData[index] }));
 
     const datasets = isDiscrete
         ? [{
-            data: data,
+            data: plotData,
             borderColor: "#2563eb",
             backgroundColor: backgroundColors,
             fill: false,
             tension: 0.3
         }]
         : [{
-            data: shadedData,
+            data: shadedPlotData,
             borderColor: "rgba(37, 99, 235, 0)",
             backgroundColor: "rgba(37, 99, 235, 0.3)",
             fill: "origin",
             pointRadius: 0,
             tension: 0.3
         }, {
-            data: data,
+            data: plotData,
             borderColor: "#2563eb",
             backgroundColor: "rgba(37, 99, 235, 0.05)",
             fill: false,
@@ -1213,7 +1181,6 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null, 
         type: isDiscrete ? "bar" : "line",
         plugins: [referenceLinePlugin],
         data: {
-            labels: labels,
             datasets: datasets
         },
         options: {
@@ -1223,16 +1190,21 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null, 
                 referenceLinePlugin: {
                     enabled: shouldShowReferenceLine,
                     xValue: referenceXValue,
-                    yValue: densityAtX,
-                    labels: labels
+                    yValue: densityAtX
                 }
             },
             scales: {
                 x: {
+                    type: "linear",
+                    offset: false,
+                    grid: {
+                        offset: false
+                    },
                     ticks: {
+                        stepSize: 1,
                         autoSkip: true,
-                        maxTicksLimit: 10,
-                        callback: (_, index) => formatAxisValue(labels[index])
+                        maxTicksLimit: 14,
+                        callback: (value) => formatAxisValue(value)
                     }
                 }
             }
