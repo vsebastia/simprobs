@@ -19,6 +19,10 @@ const distributionLabels = {
     bernoulli: "Bernoulli"
 };
 
+function hasOwn(obj, key) {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
 function refreshMathJax() {
     if (window.MathJax && typeof window.MathJax.typesetPromise === "function") {
         window.MathJax.typesetPromise();
@@ -168,14 +172,14 @@ function initializeDistributionPage() {
     const preferredDistribution = (bodyDataset.defaultDistribution || params.get("dist") || "").toLowerCase();
     const shouldLockDistribution = bodyDataset.lockDistribution === "true";
 
-    if (preferredDistribution && Object.hasOwn(distributionLabels, preferredDistribution)) {
+    if (preferredDistribution && hasOwn(distributionLabels, preferredDistribution)) {
         distributionSelect.value = preferredDistribution;
     }
 
     if (shouldLockDistribution) {
         const lockedDistribution = distributionSelect.value;
 
-        if (Object.hasOwn(distributionLabels, lockedDistribution)) {
+        if (hasOwn(distributionLabels, lockedDistribution)) {
             distributionSelect.innerHTML = "";
 
             const fixedOption = document.createElement("option");
@@ -190,7 +194,7 @@ function initializeDistributionPage() {
 
         const distInfoEl = document.getElementById("distributionPageInfo");
 
-        if (distInfoEl && Object.hasOwn(distributionLabels, distributionSelect.value)) {
+        if (distInfoEl && hasOwn(distributionLabels, distributionSelect.value)) {
             distInfoEl.innerText = `Calculadora específica para ${distributionLabels[distributionSelect.value]}.`;
         }
     }
