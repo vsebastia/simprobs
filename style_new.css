@@ -295,6 +295,40 @@ canvas {
     padding-left: 18px;
 }
 
+.distribution-links {
+    list-style: none;
+    padding-left: 0 !important;
+    margin-top: 14px !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.distribution-links li {
+    margin: 0;
+}
+
+.distribution-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #312e81;
+    background: rgba(79, 70, 229, 0.12);
+    border: 1px solid rgba(79, 70, 229, 0.26);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.distribution-links a:hover {
+    background: rgba(79, 70, 229, 0.2);
+    box-shadow: 0 10px 18px rgba(79, 70, 229, 0.16);
+    transform: translateY(-1px);
+}
+
 .formula-line {
     padding: 10px 12px;
     border-radius: 10px;
