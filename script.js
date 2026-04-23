@@ -135,15 +135,15 @@ const referenceLinePlugin = {
     }
 };
 
-function formatAxisValue(value) {
+function formatIntegerAxisValue(value) {
     const numericValue = Number(value);
 
     if (!Number.isFinite(numericValue)) {
         return "";
     }
 
-    const normalizedValue = Math.abs(numericValue) < 1e-10 ? 0 : numericValue;
-    return Number(normalizedValue.toFixed(4)).toString();
+    const nearestInteger = Math.round(numericValue);
+    return Math.abs(numericValue - nearestInteger) < 1e-6 ? nearestInteger.toString() : "";
 }
 
 const distributionSelect = document.getElementById("distribution");
@@ -1232,7 +1232,7 @@ function drawChart(dist, p1, p2, calc, xValue, cdfMode = "left", bValue = null, 
                     ticks: {
                         autoSkip: true,
                         maxTicksLimit: 10,
-                        callback: (_, index) => formatAxisValue(labels[index])
+                        callback: (_, index) => formatIntegerAxisValue(labels[index])
                     }
                 }
             }
