@@ -111,6 +111,33 @@ body {
     margin-bottom: 0;
 }
 
+.affiliate-book {
+    margin-top: 20px;
+    max-width: 260px;
+}
+
+.affiliate-book-image {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.affiliate-cta {
+    text-transform: lowercase;
+}
+
+.affiliate-note {
+    margin: 12px 0 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #475569;
+}
+
 .app-shell {
     display: grid;
     grid-template-columns: 380px minmax(0, 1fr);
