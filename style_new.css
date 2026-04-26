@@ -112,10 +112,7 @@ body {
 }
 
 .affiliate-books-banner {
-    position: sticky;
-    top: 18px;
-    z-index: 5;
-    margin-top: 0;
+    margin-top: 20px;
     background: linear-gradient(120deg, rgba(79, 70, 229, 0.1), rgba(37, 99, 235, 0.08)), var(--surface);
 }
 
@@ -135,7 +132,7 @@ body {
 
 .affiliate-books-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
 }
 
@@ -179,22 +176,6 @@ main > .app-shell {
     border-top: 1px solid rgba(148, 163, 184, 0.26);
 }
 
-
-main {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(250px, 290px);
-    gap: 20px;
-    align-items: start;
-}
-
-main > :not(.affiliate-books-banner) {
-    grid-column: 1;
-}
-
-main > .affiliate-books-banner {
-    grid-column: 2;
-    grid-row: 1 / span 30;
-}
 
 .card {
     border-radius: 22px;
@@ -436,10 +417,6 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    main {
-        display: block;
-    }
-
     .app-shell {
         grid-template-columns: 1fr;
     }
@@ -449,8 +426,7 @@ footer {
     }
 
     .affiliate-books-banner {
-        position: static;
-        margin-bottom: 18px;
+        margin-top: 18px;
     }
 
     .affiliate-books-grid {
