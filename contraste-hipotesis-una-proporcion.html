@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraste de hipótesis para una proporción | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía y calculadora básica del contraste de hipótesis para una proporción poblacional.">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-una-proporcion.html">
+    <link rel="stylesheet" href="style_new.css?v=20260426">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Una proporción poblacional</h1>
+        <p class="hero-subtitle">Comprueba si una proporción observada es compatible con un valor de referencia.</p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\).</p>
+            <p class="formula-line">\(H_0: p = p_0\)</p>
+            <p class="formula-line">\( z = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \)</p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Calcula z, p-valor y la decisión del contraste para una proporción.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="p0">Proporción hipotética (p₀)</label>
+                        <input type="number" id="p0" value="0.5" step="0.01" min="0.0001" max="0.9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="phat">Proporción observada (p̂)</label>
+                        <input type="number" id="phat" value="0.58" step="0.01" min="0" max="1">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="n">Tamaño muestral (n)</label>
+                        <input type="number" id="n" value="120" step="1" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tail">Tipo de contraste</label>
+                    <select id="tail">
+                        <option value="two">Bilateral (≠)</option>
+                        <option value="right">Cola derecha (>)</option>
+                        <option value="left">Cola izquierda (&lt;)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcPropBtn">Calcular contraste</button>
+            <div id="propResult" class="result-box">Resultado pendiente…</div>
+        </section>
+    </main>
+
+    <footer>
+        <p><a href="/legal.html">Aviso legal y política de privacidad</a> | <a href="mailto:vic.sebastia@outlook.es">Contacto</a></p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculatePropTest() {
+    const p0 = parseFloat(document.getElementById('p0').value);
+    const phat = parseFloat(document.getElementById('phat').value);
+    const n = parseFloat(document.getElementById('n').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const tail = document.getElementById('tail').value;
+    const resultEl = document.getElementById('propResult');
+
+    if (![p0, phat, n, alpha].every(Number.isFinite) || p0 <= 0 || p0 >= 1 || phat < 0 || phat > 1 || n < 2 || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: revisa que 0<p₀<1, 0≤p̂≤1, n≥2 y 0<α<1.';
+        return;
+    }
+
+    const se = Math.sqrt((p0 * (1 - p0)) / n);
+    const z = (phat - p0) / se;
+    let p;
+    if (tail === 'two') p = 2 * (1 - jStat.normal.cdf(Math.abs(z), 0, 1));
+    else if (tail === 'right') p = 1 - jStat.normal.cdf(z, 0, 1);
+    else p = jStat.normal.cdf(z, 0, 1);
+
+    const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
+    resultEl.innerText = `z = ${z.toFixed(4)} | p-valor = ${p.toFixed(6)} | ${decision}`;
+}
+
+document.getElementById('calcPropBtn').addEventListener('click', calculatePropTest);
+calculatePropTest();
+</script>
+</body>
+</html>

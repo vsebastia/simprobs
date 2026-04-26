@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraste de hipótesis para dos medias | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía y calculadora básica del contraste de hipótesis para diferencia de medias en dos grupos.">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-dos-medias.html">
+    <link rel="stylesheet" href="style_new.css?v=20260426">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Diferencia de dos medias</h1>
+        <p class="hero-subtitle">Compara dos grupos independientes mediante un contraste t de Welch.</p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>Este contraste se utiliza para evaluar si dos medias poblacionales son iguales cuando se comparan dos grupos independientes y no se asume varianza común.</p>
+            <p class="formula-line">\(H_0: \mu_1 - \mu_2 = 0\)</p>
+            <p class="formula-line">\( t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} \)</p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce medias, desviaciones y tamaños muestrales de ambos grupos.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group"><label for="mean1">Media grupo 1 (x̄₁)</label><input type="number" id="mean1" value="80" step="0.01"></div>
+                    <div class="form-group"><label for="mean2">Media grupo 2 (x̄₂)</label><input type="number" id="mean2" value="75" step="0.01"></div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group"><label for="sd1">Desv. estándar grupo 1 (s₁)</label><input type="number" id="sd1" value="12" step="0.01" min="0.0001"></div>
+                    <div class="form-group"><label for="sd2">Desv. estándar grupo 2 (s₂)</label><input type="number" id="sd2" value="11" step="0.01" min="0.0001"></div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group"><label for="n1">Tamaño grupo 1 (n₁)</label><input type="number" id="n1" value="35" step="1" min="2"></div>
+                    <div class="form-group"><label for="n2">Tamaño grupo 2 (n₂)</label><input type="number" id="n2" value="32" step="1" min="2"></div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="tail">Tipo de contraste</label>
+                        <select id="tail">
+                            <option value="two">Bilateral (≠)</option>
+                            <option value="right">Cola derecha (>)</option>
+                            <option value="left">Cola izquierda (&lt;)</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="alpha">Nivel de significación (α)</label><input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2"></div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcTwoMeansBtn">Calcular contraste</button>
+            <div id="twoMeansResult" class="result-box">Resultado pendiente…</div>
+        </section>
+    </main>
+
+    <footer>
+        <p><a href="/legal.html">Aviso legal y política de privacidad</a> | <a href="mailto:vic.sebastia@outlook.es">Contacto</a></p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function welchDof(s1, n1, s2, n2) {
+    const v1 = (s1 * s1) / n1;
+    const v2 = (s2 * s2) / n2;
+    const num = (v1 + v2) ** 2;
+    const den = (v1 ** 2) / (n1 - 1) + (v2 ** 2) / (n2 - 1);
+    return num / den;
+}
+
+function calculateTwoMeansTest() {
+    const mean1 = parseFloat(document.getElementById('mean1').value);
+    const mean2 = parseFloat(document.getElementById('mean2').value);
+    const sd1 = parseFloat(document.getElementById('sd1').value);
+    const sd2 = parseFloat(document.getElementById('sd2').value);
+    const n1 = parseFloat(document.getElementById('n1').value);
+    const n2 = parseFloat(document.getElementById('n2').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const tail = document.getElementById('tail').value;
+    const resultEl = document.getElementById('twoMeansResult');
+
+    if (![mean1, mean2, sd1, sd2, n1, n2, alpha].every(Number.isFinite) || sd1 <= 0 || sd2 <= 0 || n1 < 2 || n2 < 2 || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: revisa que s1,s2>0; n1,n2≥2; y 0<α<1.';
+        return;
+    }
+
+    const se = Math.sqrt((sd1 ** 2) / n1 + (sd2 ** 2) / n2);
+    const t = (mean1 - mean2) / se;
+    const df = welchDof(sd1, n1, sd2, n2);
+
+    let p;
+    if (tail === 'two') p = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+    else if (tail === 'right') p = 1 - jStat.studentt.cdf(t, df);
+    else p = jStat.studentt.cdf(t, df);
+
+    const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
+    resultEl.innerText = `t = ${t.toFixed(4)} | gl ≈ ${df.toFixed(2)} | p-valor = ${p.toFixed(6)} | ${decision}`;
+}
+
+document.getElementById('calcTwoMeansBtn').addEventListener('click', calculateTwoMeansTest);
+calculateTwoMeansTest();
+</script>
+</body>
+</html>
