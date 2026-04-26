@@ -14,7 +14,7 @@
         <p class="eyebrow">Tamaño muestral</p>
         <h1>Una proporción</h1>
         <p class="hero-subtitle">Calcula el tamaño mínimo de muestra para estimar una proporción con un margen de error deseado.</p>
-        <p class="hero-links"><a href="index.html#sample-size-index">Volver al índice de tamaños muestrales</a></p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
     <main>
@@ -29,6 +29,25 @@
                 <li><strong>Z</strong>: cuantil normal para el nivel de confianza (ej. 1.96 para 95%).</li>
                 <li><strong>p</strong>: proporción esperada.</li>
                 <li><strong>E</strong>: margen de error máximo permitido.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li><strong>Si no conoces p:</strong> usa <strong>0.5</strong> para un escenario conservador (da el mayor tamaño muestral).</li>
+                <li><strong>Nivel de confianza:</strong> 95% es el estándar en la mayoría de estudios.</li>
+                <li><strong>Margen de error (E):</strong> 0.03 a 0.05 suele ser útil en encuestas.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Quieres estimar el porcentaje de clientes satisfechos. Supones <strong>p = 0.5</strong>, buscas <strong>95%</strong> de confianza y un error máximo de <strong>±5%</strong> (<strong>E = 0.05</strong>). El cálculo da <strong>n ≈ 385</strong>, por lo que se recomienda encuestar al menos 385 personas.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Encuestas de satisfacción y opinión.</li>
+                <li>Estimación de tasas de incidencia o prevalencia.</li>
+                <li>Control de calidad (porcentaje de defectos).</li>
             </ul>
         </section>
 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tamaño muestral para proporciones apareadas (McNemar) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula tamaño muestral para comparar proporciones apareadas con enfoque McNemar.">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-proporciones-apareadas.html">
+    <link rel="stylesheet" href="style_new.css">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Dos proporciones apareadas (McNemar)</h1>
+        <p class="hero-subtitle">Calcula cuántos pares necesitas para detectar cambio en respuesta binaria before/after.</p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Explicación sencilla</h2>
+            <p>Para datos binarios apareados (sí/no antes y después), el contraste se basa en pares discordantes: p01 (pasa de 0 a 1) y p10 (pasa de 1 a 0).</p>
+
+            <h2>Fórmula aproximada</h2>
+            <p class="formula-line">\( n = \frac{(Z_{\alpha/2}+Z_\beta)^2\,(p_{01}+p_{10})}{(p_{10}-p_{01})^2} \)</p>
+            <ul>
+                <li><strong>p01</strong>: proporción de pares 0→1.</li>
+                <li><strong>p10</strong>: proporción de pares 1→0.</li>
+                <li><strong>n</strong>: número de pares.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li>p01 y p10 deben salir de un piloto o hipótesis realista.</li>
+                <li>Si p01≈p10, necesitarás muestras grandes.</li>
+                <li>Usa α=0.05 y potencia 0.8 como base.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Con p01=0.18 y p10=0.08, α=0.05 y potencia=0.8, el tamaño requerido es ~205 pares.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Cambio de adherencia antes/después de una intervención.</li>
+                <li>Comparación de diagnóstico binario en dos momentos.</li>
+                <li>Evaluación de cumplimiento pre y post política.</li>
+            </ul>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora específica</h2>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="pairedPropP01">Proporción discordante p01 (0→1)</label>
+                        <input type="number" id="pairedPropP01" value="0.18" step="0.01" min="0.0001" max="0.9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="pairedPropP10">Proporción discordante p10 (1→0)</label>
+                        <input type="number" id="pairedPropP10" value="0.08" step="0.01" min="0.0001" max="0.9999">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="pairedPropAlpha">Alfa (α)</label>
+                        <input type="number" id="pairedPropAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="pairedPropPower">Potencia (1-β)</label>
+                        <input type="number" id="pairedPropPower" value="0.8" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="pairedPropCalculateBtn">Calcular tamaño muestral</button>
+            <div id="pairedPropResult" class="result-box">Resultado pendiente…</div>
+        </section>
+    </main>
+
+    <footer><p><a href="/legal.html">Aviso legal y política de privacidad</a> | <a href="mailto:vic.sebastia@outlook.es">Contacto</a></p></footer>
+</div>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculatePairedPropSampleSize(){
+ const p01=parseFloat(document.getElementById('pairedPropP01').value);
+ const p10=parseFloat(document.getElementById('pairedPropP10').value);
+ const alpha=parseFloat(document.getElementById('pairedPropAlpha').value);
+ const power=parseFloat(document.getElementById('pairedPropPower').value);
+ const resultEl=document.getElementById('pairedPropResult');
+
+ if(!Number.isFinite(p01)||p01<=0||p01>=1||!Number.isFinite(p10)||p10<=0||p10>=1) return resultEl.innerText='Error: p01 y p10 deben estar entre 0 y 1.';
+ if((p01+p10)>=1) return resultEl.innerText='Error: p01 + p10 debe ser menor que 1.';
+ if(Math.abs(p10-p01)<=0) return resultEl.innerText='Error: p10 y p01 no pueden ser iguales.';
+ if(!Number.isFinite(alpha)||alpha<=0||alpha>=1) return resultEl.innerText='Error: α inválida.';
+ if(!Number.isFinite(power)||power<=0||power>=1) return resultEl.innerText='Error: potencia inválida.';
+
+ const zAlpha=jStat.normal.inv(1-(alpha/2),0,1);
+ const zBeta=jStat.normal.inv(power,0,1);
+ const n=Math.ceil((Math.pow(zAlpha+zBeta,2)*(p01+p10))/Math.pow(p10-p01,2));
+
+ resultEl.innerText=`n mínimo recomendado: ${n} pares.`;
+}
+
+document.getElementById('pairedPropCalculateBtn').addEventListener('click', calculatePairedPropSampleSize);
+calculatePairedPropSampleSize();
+</script>
+</body>
+</html>

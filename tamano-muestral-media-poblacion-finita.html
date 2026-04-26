@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tamaño muestral para una media (población finita) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula tamaño muestral para estimar una media con corrección por población finita.">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-media-poblacion-finita.html">
+    <link rel="stylesheet" href="style_new.css">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Una media con población finita</h1>
+        <p class="hero-subtitle">Estimación de una media cuando el universo total es conocido y limitado.</p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Explicación sencilla</h2>
+            <p>Cuando estimas una media y conoces el tamaño total de población <strong>N</strong>, la corrección por población finita reduce la muestra necesaria respecto al caso infinito.</p>
+
+            <h2>Fórmula</h2>
+            <p class="formula-line">\( n_0 = \left(\frac{Z\sigma}{E}\right)^2 \)</p>
+            <p class="formula-line">\( n = \frac{n_0}{1 + \frac{n_0-1}{N}} \)</p>
+            <ul>
+                <li><strong>σ</strong>: desviación estándar esperada.</li>
+                <li><strong>E</strong>: margen de error tolerado.</li>
+                <li><strong>N</strong>: tamaño poblacional total.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li>Obtén σ de un piloto o histórico.</li>
+                <li>95% de confianza es punto de partida estándar.</li>
+                <li>Si N es grande, la corrección casi no cambia n.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Con N=1200, σ=12, E=2 y 95% de confianza: n infinito≈139 y n corregido≈127.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Tiempo medio en una planta concreta.</li>
+                <li>Gasto medio de clientes activos de un club.</li>
+                <li>Consumo medio en una comunidad cerrada.</li>
+            </ul>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora específica</h2>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="finiteMeanSigma">Desviación estándar (σ)</label>
+                        <input type="number" id="finiteMeanSigma" value="12" step="0.1" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="finiteMeanE">Margen de error (E)</label>
+                        <input type="number" id="finiteMeanE" value="2" step="0.1" min="0.0001">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="finiteMeanN">Tamaño poblacional (N)</label>
+                        <input type="number" id="finiteMeanN" value="1200" step="1" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="finiteMeanConfidence">Nivel de confianza</label>
+                        <select id="finiteMeanConfidence">
+                            <option value="0.90">90%</option>
+                            <option value="0.95" selected>95%</option>
+                            <option value="0.99">99%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="finiteMeanCalculateBtn">Calcular tamaño muestral</button>
+            <div id="finiteMeanResult" class="result-box">Resultado pendiente…</div>
+        </section>
+    </main>
+
+    <footer><p><a href="/legal.html">Aviso legal y política de privacidad</a> | <a href="mailto:vic.sebastia@outlook.es">Contacto</a></p></footer>
+</div>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculateFiniteMeanSampleSize() {
+ const sigma=parseFloat(document.getElementById('finiteMeanSigma').value);
+ const e=parseFloat(document.getElementById('finiteMeanE').value);
+ const nPop=parseFloat(document.getElementById('finiteMeanN').value);
+ const conf=parseFloat(document.getElementById('finiteMeanConfidence').value);
+ const resultEl=document.getElementById('finiteMeanResult');
+
+ if(!Number.isFinite(sigma)||sigma<=0) return resultEl.innerText='Error: σ debe ser mayor que 0.';
+ if(!Number.isFinite(e)||e<=0) return resultEl.innerText='Error: E debe ser mayor que 0.';
+ if(!Number.isFinite(nPop)||nPop<2) return resultEl.innerText='Error: N debe ser mayor o igual que 2.';
+ if(!Number.isFinite(conf)||conf<=0||conf>=1) return resultEl.innerText='Error: confianza inválida.';
+
+ const z=jStat.normal.inv(1-((1-conf)/2),0,1);
+ const n0=Math.pow((z*sigma)/e,2);
+ const n=Math.ceil(n0/(1+((n0-1)/nPop)));
+ resultEl.innerText=`n corregido recomendado: ${n} (n infinito≈${Math.ceil(n0)}).`;
+}
+
+document.getElementById('finiteMeanCalculateBtn').addEventListener('click', calculateFiniteMeanSampleSize);
+calculateFiniteMeanSampleSize();
+</script>
+</body>
+</html>

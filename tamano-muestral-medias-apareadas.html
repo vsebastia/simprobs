@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tamaño muestral para medias apareadas | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula tamaño muestral para detectar diferencias en medias apareadas (before/after).">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-medias-apareadas.html">
+    <link rel="stylesheet" href="style_new.css">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Dos medias apareadas (before/after)</h1>
+        <p class="hero-subtitle">Calcula cuántos pares necesitas para detectar un cambio medio mínimo.</p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Explicación sencilla</h2>
+            <p>En diseños apareados se mide dos veces a la misma unidad (antes y después). El análisis se hace sobre la diferencia por pareja, por eso se usa la desviación estándar de diferencias.</p>
+
+            <h2>Fórmula</h2>
+            <p class="formula-line">\( n = \left(\frac{(Z_{\alpha/2}+Z_\beta)\sigma_d}{\Delta}\right)^2 \)</p>
+            <ul>
+                <li><strong>σd</strong>: desviación estándar de las diferencias.</li>
+                <li><strong>Δ</strong>: cambio medio mínimo a detectar.</li>
+                <li><strong>n</strong>: número de pares.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li>Estima σd con piloto, no σ de cada medición por separado.</li>
+                <li>Usa α=0.05 y potencia 0.8 como base.</li>
+                <li>Define Δ como cambio clínico/operativo relevante.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Si σd=8, Δ=3, α=0.05 y potencia=0.8, necesitas ~56 pares.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Programas de mejora pre y post intervención.</li>
+                <li>Estudios de entrenamiento.</li>
+                <li>Evaluaciones de cambio en pacientes.</li>
+            </ul>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora específica</h2>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="pairedMeanSigmaD">Desv. estándar de diferencias (σd)</label>
+                        <input type="number" id="pairedMeanSigmaD" value="8" step="0.1" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="pairedMeanDelta">Cambio mínimo detectable (Δ)</label>
+                        <input type="number" id="pairedMeanDelta" value="3" step="0.1" min="0.0001">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="pairedMeanAlpha">Alfa (α)</label>
+                        <input type="number" id="pairedMeanAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="pairedMeanPower">Potencia (1-β)</label>
+                        <input type="number" id="pairedMeanPower" value="0.8" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="pairedMeanCalculateBtn">Calcular tamaño muestral</button>
+            <div id="pairedMeanResult" class="result-box">Resultado pendiente…</div>
+        </section>
+    </main>
+
+    <footer><p><a href="/legal.html">Aviso legal y política de privacidad</a> | <a href="mailto:vic.sebastia@outlook.es">Contacto</a></p></footer>
+</div>
+<script>window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculatePairedMeanSampleSize(){
+ const sigmaD=parseFloat(document.getElementById('pairedMeanSigmaD').value);
+ const delta=parseFloat(document.getElementById('pairedMeanDelta').value);
+ const alpha=parseFloat(document.getElementById('pairedMeanAlpha').value);
+ const power=parseFloat(document.getElementById('pairedMeanPower').value);
+ const resultEl=document.getElementById('pairedMeanResult');
+
+ if(!Number.isFinite(sigmaD)||sigmaD<=0) return resultEl.innerText='Error: σd debe ser mayor que 0.';
+ if(!Number.isFinite(delta)||delta<=0) return resultEl.innerText='Error: Δ debe ser mayor que 0.';
+ if(!Number.isFinite(alpha)||alpha<=0||alpha>=1) return resultEl.innerText='Error: α debe estar entre 0 y 1.';
+ if(!Number.isFinite(power)||power<=0||power>=1) return resultEl.innerText='Error: potencia inválida.';
+
+ const zAlpha=jStat.normal.inv(1-(alpha/2),0,1);
+ const zBeta=jStat.normal.inv(power,0,1);
+ const n=Math.ceil(Math.pow(((zAlpha+zBeta)*sigmaD)/delta,2));
+
+ resultEl.innerText=`n mínimo recomendado: ${n} pares.`;
+}
+
+document.getElementById('pairedMeanCalculateBtn').addEventListener('click', calculatePairedMeanSampleSize);
+calculatePairedMeanSampleSize();
+</script>
+</body>
+</html>
