@@ -113,10 +113,9 @@ body {
 
 .affiliate-books-banner {
     position: sticky;
-    top: 12px;
+    top: 18px;
     z-index: 5;
-    margin-top: 8px;
-    margin-bottom: 22px;
+    margin-top: 0;
     background: linear-gradient(120deg, rgba(79, 70, 229, 0.1), rgba(37, 99, 235, 0.08)), var(--surface);
 }
 
@@ -178,6 +177,23 @@ main > .app-shell {
     margin-top: 22px;
     padding-top: 22px;
     border-top: 1px solid rgba(148, 163, 184, 0.26);
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 290px);
+    gap: 20px;
+    align-items: start;
+}
+
+main > :not(.affiliate-books-banner) {
+    grid-column: 1;
+}
+
+main > .affiliate-books-banner {
+    grid-column: 2;
+    grid-row: 1 / span 30;
 }
 
 .card {
@@ -420,6 +436,10 @@ footer {
 }
 
 @media (max-width: 1024px) {
+    main {
+        display: block;
+    }
+
     .app-shell {
         grid-template-columns: 1fr;
     }
@@ -430,6 +450,7 @@ footer {
 
     .affiliate-books-banner {
         position: static;
+        margin-bottom: 18px;
     }
 
     .affiliate-books-grid {
@@ -458,10 +479,6 @@ footer {
 
     .hero-links {
         line-height: 1.6;
-    }
-
-    .affiliate-books-banner {
-        margin-bottom: 18px;
     }
 
     .affiliate-books-grid {
