@@ -59,6 +59,9 @@
 
             <button class="calculate-btn" id="calcTwoMeansBtn">Calcular contraste</button>
             <div id="twoMeansResult" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="twoMeansTestChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste de dos medias" role="img"></canvas>
+            </div>
         </section>
     </main>
 
@@ -72,7 +75,78 @@ window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+let twoMeansTestChart;
+
+function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+
+    for (let x = min; x <= max; x += step) {
+        const y = pdfFn(x);
+        curve.push({ x, y });
+        if (isAcceptanceFn(x)) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+
+    return { curve, acceptance, rejection };
+}
+
+function getTCriticalValues(alpha, tail, df) {
+    if (tail === 'two') {
+        const c = jStat.studentt.inv(1 - (alpha / 2), df);
+        return { left: -c, right: c };
+    }
+    if (tail === 'left') {
+        return { left: jStat.studentt.inv(alpha, df), right: Infinity };
+    }
+    return { left: -Infinity, right: jStat.studentt.inv(1 - alpha, df) };
+}
+
+function renderTwoMeansTestChart(alpha, tail, df) {
+    const ctx = document.getElementById('twoMeansTestChart');
+    if (!ctx || !Number.isFinite(df) || df <= 0) return;
+
+    const critical = getTCriticalValues(alpha, tail, df);
+    const bound = Math.max(4, Math.abs(critical.left), Math.abs(critical.right));
+    const minX = -Math.min(bound + 0.8, 8);
+    const maxX = Math.min(bound + 0.8, 8);
+    const { curve, acceptance, rejection } = buildCurvePoints(
+        minX,
+        maxX,
+        0.02,
+        (x) => jStat.studentt.pdf(x, df),
+        (x) => x > critical.left && x < critical.right
+    );
+
+    if (twoMeansTestChart) twoMeansTestChart.destroy();
+    twoMeansTestChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Función de probabilidad (t de Student)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'Estadístico t' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
 function welchDof(s1, n1, s2, n2) {
     const v1 = (s1 * s1) / n1;
     const v2 = (s2 * s2) / n2;
@@ -94,6 +168,10 @@ function calculateTwoMeansTest() {
 
     if (![mean1, mean2, sd1, sd2, n1, n2, alpha].every(Number.isFinite) || sd1 <= 0 || sd2 <= 0 || n1 < 2 || n2 < 2 || alpha <= 0 || alpha >= 1) {
         resultEl.innerText = 'Error: revisa que s1,s2>0; n1,n2≥2; y 0<α<1.';
+        if (twoMeansTestChart) {
+            twoMeansTestChart.destroy();
+            twoMeansTestChart = null;
+        }
         return;
     }
 
@@ -108,6 +186,7 @@ function calculateTwoMeansTest() {
 
     const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
     resultEl.innerText = `t = ${t.toFixed(4)} | gl ≈ ${df.toFixed(2)} | p-valor = ${p.toFixed(6)} | ${decision}`;
+    renderTwoMeansTestChart(alpha, tail, df);
 }
 
 document.getElementById('calcTwoMeansBtn').addEventListener('click', calculateTwoMeansTest);
