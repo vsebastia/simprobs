@@ -25,6 +25,22 @@
             <p class="formula-line">\( z = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \)</p>
         </section>
 
+        <section class="card content-card">
+            <h2>Conceptos clave del contraste</h2>
+            <p>Un contraste de hipótesis compara lo observado con lo que esperaríamos si \(H_0\) fuera cierta. Si la diferencia observada es extrema, rechazamos \(H_0\).</p>
+            <ul>
+                <li><strong>Error tipo I (\(\alpha\)):</strong> concluir que la proporción difiere de \(p_0\) cuando en realidad no difiere.</li>
+                <li><strong>Error tipo II (\(\beta\)):</strong> no detectar una diferencia real respecto a \(p_0\).</li>
+                <li><strong>Potencia (\(1-\beta\)):</strong> capacidad del contraste para detectar una diferencia real. Mejora con muestras mayores y efectos reales más grandes.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>¿Por qué aquí se usa esta fórmula?</h2>
+            <p>Bajo \(H_0\), la variabilidad de \(\hat{p}\) viene dada por \(p_0(1-p_0)/n\). Por eso el denominador usa \(p_0\): estamos evaluando compatibilidad con la hipótesis nula concreta.</p>
+            <p>La aproximación normal es razonable cuando \(n p_0\) y \(n(1-p_0)\) son suficientemente grandes (regla práctica: al menos 5 o 10).</p>
+        </section>
+
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -115,13 +131,14 @@ function getZCriticalValues(alpha, tail) {
     return { left: -Infinity, right: jStat.normal.inv(1 - alpha, 0, 1) };
 }
 
-function renderPropTestChart(alpha, tail) {
+function renderPropTestChart(alpha, tail, zValue) {
     const ctx = document.getElementById('propTestChart');
     if (!ctx) return;
 
     const critical = getZCriticalValues(alpha, tail);
-    const minX = -4;
-    const maxX = 4;
+    const bound = Math.max(4, Math.abs(zValue || 0));
+    const minX = -Math.min(bound + 0.8, 8);
+    const maxX = Math.min(bound + 0.8, 8);
     const { curve, acceptance, rejection } = buildCurvePoints(
         minX,
         maxX,
@@ -129,6 +146,10 @@ function renderPropTestChart(alpha, tail) {
         (x) => jStat.normal.pdf(x, 0, 1),
         (x) => x > critical.left && x < critical.right
     );
+    const maxY = Math.max(...curve.map((point) => point.y));
+    const statLine = Number.isFinite(zValue)
+        ? [{ x: zValue, y: 0 }, { x: zValue, y: maxY }]
+        : [];
 
     if (propTestChart) propTestChart.destroy();
     propTestChart = new Chart(ctx, {
@@ -137,7 +158,8 @@ function renderPropTestChart(alpha, tail) {
             datasets: [
                 { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
                 { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
-                { label: 'Función de probabilidad (Normal estándar)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+                { label: 'Función de probabilidad (Normal estándar)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'Estadístico observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
             ]
         },
         options: {
@@ -177,7 +199,7 @@ function calculatePropTest() {
 
     const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
     resultEl.innerText = `z = ${z.toFixed(4)} | p-valor = ${p.toFixed(6)} | ${decision}`;
-    renderPropTestChart(alpha, tail);
+    renderPropTestChart(alpha, tail, z);
 }
 
 document.getElementById('calcPropBtn').addEventListener('click', calculatePropTest);

@@ -26,6 +26,22 @@
             <p class="formula-line">\(\hat{p}=\frac{x_1+x_2}{n_1+n_2}\)</p>
         </section>
 
+        <section class="card content-card">
+            <h2>Conceptos clave del contraste</h2>
+            <p>El contraste evalúa si la diferencia observada \(\hat{p}_1-\hat{p}_2\) es demasiado grande para atribuirla al azar bajo la hipótesis de igualdad.</p>
+            <ul>
+                <li><strong>Error tipo I (\(\alpha\)):</strong> afirmar diferencia entre proporciones cuando realmente no la hay.</li>
+                <li><strong>Error tipo II (\(\beta\)):</strong> no detectar una diferencia real entre proporciones.</li>
+                <li><strong>Potencia (\(1-\beta\)):</strong> probabilidad de detectar esa diferencia real. Aumenta con muestras mayores y diferencias reales más marcadas.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>¿Por qué se usa la proporción combinada \(\hat{p}\)?</h2>
+            <p>Bajo \(H_0\), ambas muestras comparten la misma proporción poblacional desconocida. La estimación conjunta natural de esa proporción común es \(\hat{p}=(x_1+x_2)/(n_1+n_2)\).</p>
+            <p>Por eso el error estándar del contraste se construye con \(\hat{p}\), coherente con la hipótesis nula de igualdad \(p_1=p_2\).</p>
+        </section>
+
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -107,13 +123,14 @@ function getZCriticalValues(alpha, tail) {
     return { left: -Infinity, right: jStat.normal.inv(1 - alpha, 0, 1) };
 }
 
-function renderTwoPropTestChart(alpha, tail) {
+function renderTwoPropTestChart(alpha, tail, zValue) {
     const ctx = document.getElementById('twoPropTestChart');
     if (!ctx) return;
 
     const critical = getZCriticalValues(alpha, tail);
-    const minX = -4;
-    const maxX = 4;
+    const bound = Math.max(4, Math.abs(zValue || 0));
+    const minX = -Math.min(bound + 0.8, 8);
+    const maxX = Math.min(bound + 0.8, 8);
     const { curve, acceptance, rejection } = buildCurvePoints(
         minX,
         maxX,
@@ -121,6 +138,10 @@ function renderTwoPropTestChart(alpha, tail) {
         (x) => jStat.normal.pdf(x, 0, 1),
         (x) => x > critical.left && x < critical.right
     );
+    const maxY = Math.max(...curve.map((point) => point.y));
+    const statLine = Number.isFinite(zValue)
+        ? [{ x: zValue, y: 0 }, { x: zValue, y: maxY }]
+        : [];
 
     if (twoPropTestChart) twoPropTestChart.destroy();
     twoPropTestChart = new Chart(ctx, {
@@ -129,7 +150,8 @@ function renderTwoPropTestChart(alpha, tail) {
             datasets: [
                 { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
                 { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
-                { label: 'Función de probabilidad (Normal estándar)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+                { label: 'Función de probabilidad (Normal estándar)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'Estadístico observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
             ]
         },
         options: {
@@ -183,7 +205,7 @@ function calculateTwoPropTest() {
 
     const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
     resultEl.innerText = `p̂1=${p1.toFixed(4)} | p̂2=${p2.toFixed(4)} | z=${z.toFixed(4)} | p-valor=${p.toFixed(6)} | ${decision}`;
-    renderTwoPropTestChart(alpha, tail);
+    renderTwoPropTestChart(alpha, tail, z);
 }
 
 document.getElementById('calcTwoPropBtn').addEventListener('click', calculateTwoPropTest);
