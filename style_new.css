@@ -373,6 +373,55 @@ canvas {
     transform: translateY(-1px);
 }
 
+
+.distribution-tools-grid a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.distribution-tools-grid a::before {
+    content: "";
+    width: 28px;
+    height: 18px;
+    flex: 0 0 28px;
+    border-radius: 5px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Cpath d='M2 36 H62' stroke='%23cbd5e1' stroke-width='2'/%3E%3Cpath d='M4 35 C14 35 18 11 32 11 C46 11 50 35 60 35' fill='none' stroke='%232563eb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.95;
+}
+
+
+.sample-size-tools-grid a,
+.hypothesis-tools-grid a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sample-size-tools-grid a::before,
+.hypothesis-tools-grid a::before {
+    content: "";
+    width: 28px;
+    height: 18px;
+    flex: 0 0 28px;
+    border-radius: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.95;
+}
+
+.sample-size-tools-grid a::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Crect x='3' y='3' width='58' height='34' rx='6' fill='%23f8fafc' stroke='%23cbd5e1' stroke-width='2'/%3E%3Cline x1='16' y1='9' x2='16' y2='31' stroke='%232563eb' stroke-width='2'/%3E%3Cline x1='28' y1='9' x2='28' y2='31' stroke='%232563eb' stroke-width='2'/%3E%3Cline x1='40' y1='9' x2='40' y2='31' stroke='%232563eb' stroke-width='2'/%3E%3Cline x1='52' y1='9' x2='52' y2='31' stroke='%232563eb' stroke-width='2'/%3E%3C/svg%3E");
+}
+
+.hypothesis-tools-grid a::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Cpath d='M2 36 H62' stroke='%23cbd5e1' stroke-width='2'/%3E%3Cpath d='M4 35 C14 35 18 11 32 11 C46 11 50 35 60 35' fill='none' stroke='%232563eb' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M46 35 C49 28 51 21 52 16 C54 22 56 29 60 35 Z' fill='%23ef4444' fill-opacity='0.75'/%3E%3C/svg%3E");
+}
+
 .formula-line {
     padding: 10px 12px;
     border-radius: 10px;

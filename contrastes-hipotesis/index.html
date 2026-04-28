@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Calculadoras de contrastes de hipótesis | ProbLab</title>
   <meta name="description" content="Calculadoras online para contrastes de hipótesis, p-valores, estadísticos de contraste, pruebas para medias y proporciones.">
   <link rel="canonical" href="https://problabtools.es/contrastes-hipotesis/">
@@ -12,7 +15,7 @@
   <meta property="og:url" content="https://problabtools.es/contrastes-hipotesis/">
   <meta property="og:site_name" content="ProbLab">
   <meta property="og:image" content="https://problabtools.es/og-image.png">
-  <link rel="stylesheet" href="../style_new.css?v=20260428">
+  <link rel="stylesheet" href="../style_new.css?v=20260428-2">
 </head>
 <body>
 <div class="page-wrap">
@@ -24,8 +27,27 @@
 
   <main>
     <section class="card content-card">
+      <h2>¿Qué es un contraste de hipótesis?</h2>
+      <p>Un contraste de hipótesis es un procedimiento estadístico para decidir, a partir de datos muestrales, si la evidencia es suficiente para rechazar una afirmación inicial sobre una población.</p>
+      <h3>Hipótesis nula y alternativa</h3>
+      <ul>
+        <li><strong>Hipótesis nula (H₀):</strong> representa el escenario de referencia (por ejemplo, “no hay diferencia” o “el parámetro vale un valor concreto”).</li>
+        <li><strong>Hipótesis alternativa (H₁):</strong> plantea el efecto o diferencia que se quiere detectar.</li>
+      </ul>
+      <h3>Errores tipo I y tipo II</h3>
+      <ul>
+        <li><strong>Error tipo I (α):</strong> rechazar H₀ siendo verdadera (falso positivo).</li>
+        <li><strong>Error tipo II (β):</strong> no rechazar H₀ siendo falsa (falso negativo).</li>
+        <li><strong>Potencia (1-β):</strong> probabilidad de detectar un efecto real.</li>
+      </ul>
+      <h3>Estadístico de contraste y regiones de decisión</h3>
+      <p>El <strong>estadístico de contraste</strong> resume la evidencia de la muestra (por ejemplo, un estadístico z o t). A partir de su distribución bajo H₀ se define una <strong>región de rechazo</strong> y una <strong>región de no rechazo</strong> (a veces llamada de aceptación en un sentido operativo). Si el estadístico cae en la región de rechazo, se rechaza H₀; si no, no se rechaza.</p>
+      <p>El <strong>p-valor</strong> cuantifica cuán extremos son los datos observados bajo H₀: cuanto menor es, mayor evidencia contra H₀.</p>
+    </section>
+
+    <section class="card content-card">
       <h2>Todos los contrastes disponibles</h2>
-      <ul class="tools-grid" aria-label="Grid de calculadoras de contrastes">
+      <ul class="tools-grid hypothesis-tools-grid" aria-label="Grid de calculadoras de contrastes">
         <li><a href="../contraste-hipotesis-una-media.html">Una media</a></li>
         <li><a href="../contraste-hipotesis-dos-medias.html">Dos medias</a></li>
         <li><a href="../contraste-hipotesis-una-proporcion.html">Una proporción</a></li>

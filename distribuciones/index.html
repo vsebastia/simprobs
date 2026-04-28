@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Calculadoras de distribuciones de probabilidad | ProbLab</title>
   <meta name="description" content="Calculadoras online para distribuciones de probabilidad: normal, binomial, Poisson, t de Student, chi-cuadrado, F, exponencial y más.">
   <link rel="canonical" href="https://problabtools.es/distribuciones/">
@@ -12,7 +15,7 @@
   <meta property="og:url" content="https://problabtools.es/distribuciones/">
   <meta property="og:site_name" content="ProbLab">
   <meta property="og:image" content="https://problabtools.es/og-image.png">
-  <link rel="stylesheet" href="../style_new.css?v=20260428">
+  <link rel="stylesheet" href="../style_new.css?v=20260428-2">
 </head>
 <body>
 <div class="page-wrap">
@@ -24,8 +27,18 @@
 
   <main>
     <section class="card content-card">
+      <h2>¿Qué es una distribución de probabilidad?</h2>
+      <p>Una distribución de probabilidad describe cómo se reparte la probabilidad entre los posibles valores de una variable aleatoria. Gracias a una distribución podemos cuantificar qué resultados son más probables, cuáles son raros y cómo se comporta un fenómeno en promedio y en su variabilidad.</p>
+      <h3>Función de densidad (PDF), función de masa (PMF) y función de distribución acumulada (CDF)</h3>
+      <p>En variables continuas se usa la <strong>función de densidad</strong> (PDF), que no da probabilidad puntual directa, sino densidad de probabilidad en torno a un intervalo. En variables discretas se usa la <strong>función de masa</strong> (PMF), que sí asigna probabilidad a cada valor concreto.</p>
+      <p>La <strong>función de distribución acumulada</strong> (CDF) se aplica a ambos casos y representa la probabilidad acumulada hasta un valor <em>x</em>: \(P(X \le x)\). Es clave para calcular colas, intervalos y percentiles.</p>
+      <h3>Diferencia entre distribuciones continuas y discretas</h3>
+      <p><strong>Distribuciones discretas</strong>: modelan conteos enteros (por ejemplo, número de éxitos o de eventos).<br><strong>Distribuciones continuas</strong>: modelan magnitudes medibles en una escala real (por ejemplo, tiempos, longitudes o errores de medida).</p>
+    </section>
+
+    <section class="card content-card">
       <h2>Todas las distribuciones disponibles</h2>
-      <ul class="tools-grid" aria-label="Grid de calculadoras de distribuciones">
+      <ul class="tools-grid distribution-tools-grid" aria-label="Grid de calculadoras de distribuciones">
         <li><a href="../normal.html">Normal</a></li>
         <li><a href="../binomial.html">Binomial</a></li>
         <li><a href="../poisson.html">Poisson</a></li>
@@ -42,6 +55,28 @@
         <li><a href="../geometric.html">Geométrica</a></li>
         <li><a href="../hypergeometric.html">Hipergeométrica</a></li>
         <li><a href="../bernoulli.html">Bernoulli</a></li>
+      </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>Breve explicación de cada distribución</h2>
+      <ul>
+        <li><strong>Normal:</strong> continua, simétrica y en forma de campana; base de muchos modelos por el teorema central del límite.</li>
+        <li><strong>Binomial:</strong> discreta; número de éxitos en <em>n</em> ensayos independientes con probabilidad <em>p</em> constante.</li>
+        <li><strong>Poisson:</strong> discreta; conteo de eventos en intervalos cuando ocurren con tasa media constante.</li>
+        <li><strong>t de Student:</strong> continua; similar a la normal pero con colas más pesadas, útil con muestras pequeñas y varianza desconocida.</li>
+        <li><strong>Chi-cuadrado:</strong> continua y no negativa; muy usada en inferencia sobre varianzas y pruebas de ajuste/independencia.</li>
+        <li><strong>F de Fisher:</strong> continua y no negativa; cociente de varianzas, central en ANOVA y comparación de modelos.</li>
+        <li><strong>Exponencial:</strong> continua; modela tiempos de espera entre eventos de un proceso de Poisson.</li>
+        <li><strong>Uniforme:</strong> continua; todos los valores dentro de un intervalo tienen la misma densidad.</li>
+        <li><strong>Gamma:</strong> continua y positiva; generaliza a la exponencial y modela tiempos de espera acumulados.</li>
+        <li><strong>Beta:</strong> continua en [0,1]; muy útil para proporciones y probabilidades.</li>
+        <li><strong>Lognormal:</strong> continua y positiva; aparece cuando el logaritmo de la variable sigue una normal.</li>
+        <li><strong>Weibull:</strong> continua y positiva; frecuente en fiabilidad y análisis de supervivencia/vida útil.</li>
+        <li><strong>Binomial negativa:</strong> discreta; número de fallos hasta observar cierto número de éxitos.</li>
+        <li><strong>Geométrica:</strong> discreta; número de ensayos hasta el primer éxito.</li>
+        <li><strong>Hipergeométrica:</strong> discreta; muestreo sin reemplazo desde población finita.</li>
+        <li><strong>Bernoulli:</strong> discreta binaria; un solo ensayo con éxito (1) o fracaso (0).</li>
       </ul>
     </section>
   </main>
