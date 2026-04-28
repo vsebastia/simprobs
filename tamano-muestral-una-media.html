@@ -2,17 +2,39 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Tamaño muestral para una media | ProbLab</title>
+    <title>Calculadora de tamaño muestral para una media | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guía del cálculo de tamaño muestral para estimar una media con precisión predefinida.">
+    <meta name="description" content="Calcula la muestra mínima para estimar una media con margen de error, desviación típica y nivel de confianza.">
     <link rel="canonical" href="https://problabtools.es/tamano-muestral-una-media.html">
-    <link rel="stylesheet" href="style_new.css?v=20260426">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para una media | ProbLab">
+    <meta property="og:description" content="Calcula la muestra mínima para estimar una media con margen de error, desviación típica y nivel de confianza.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-una-media.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+        <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para una media",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-una-media.html",
+      "description": "Calcula la muestra mínima para estimar una media con margen de error, desviación típica y nivel de confianza.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260428">
 </head>
 <body>
 <div class="page-wrap">
     <header class="hero">
         <p class="eyebrow">Tamaño muestral</p>
-        <h1>Una media</h1>
+        <h1>Calculadora de tamaño muestral para una media</h1>
         <p class="hero-subtitle">Estima el tamaño de muestra necesario para medir una media con una precisión objetivo.</p>
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
@@ -81,14 +103,41 @@
             <button class="calculate-btn" id="oneMeanCalculateBtn">Calcular tamaño muestral</button>
             <div id="oneMeanResult" class="result-box">Resultado pendiente…</div>
         </section>
+    
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+            <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>
+            <h2>Fórmula utilizada</h2>
+            <p>El cálculo combina valores críticos, variabilidad esperada y diferencia mínima detectable para obtener el número de observaciones necesario en el escenario planteado.</p>
+            <h2>Ejemplo de uso</h2>
+            <p>Introduce tus supuestos iniciales, pulsa en calcular y revisa el tamaño recomendado. Si aumentas precisión o potencia, el tamaño muestral requerido también aumentará.</p>
+            <h2>Cómo interpretar el resultado</h2>
+            <p>El tamaño calculado es orientativo y depende de los supuestos introducidos; conviene revisar sensibilidad con distintos márgenes de error o niveles de potencia.</p>
+            <section class="related-tools">
+              <h2>Calculadoras relacionadas</h2>
+              <ul>
+                <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
+                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
+                <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
+              </ul>
+            </section>
+            <h2>Preguntas frecuentes</h2>
+            <ul>
+                <li><strong>¿Qué es el margen de error?</strong> Es la precisión máxima tolerada respecto al valor real.</li>
+                <li><strong>¿Qué significa nivel de confianza?</strong> El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero.</li>
+                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar un efecto real cuando existe.</li>
+                <li><strong>¿El tamaño muestral es exacto?</strong> No, depende de supuestos y redondeos prácticos de diseño.</li>
+            </ul>
+        </section>
+
     </main>
 
     <footer class="legal-footer">
   <p>
     © 2026 problabtools.
-    <a href="/aviso-legal.html">Aviso legal</a> ·
-    <a href="/privacidad.html">Privacidad</a> ·
-    <a href="/cookies.html">Cookies</a> ·
+    <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="privacidad.html">Privacidad</a> ·
+    <a href="cookies.html">Cookies</a> ·
     <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
   </p>
 </footer>

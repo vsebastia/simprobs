@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de distribución Log-normal online | ProbLab</title>
+    <title>Calculadora de distribución lognormal online | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calcula densidad, acumuladas y cuantiles de la distribución log-normal para variables positivas.">
+    <meta name="description" content="Calcula probabilidades, colas y percentiles de la distribución lognormal para variables positivas con asimetría.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Vicente Castellar">
     <meta name="theme-color" content="#4f46e5">
@@ -12,12 +12,11 @@
     <link rel="alternate" hreflang="es" href="https://problabtools.es/lognormal.html">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
 
-    <meta property="og:type" content="article">
-    <meta property="og:locale" content="es_ES">
-    <meta property="og:site_name" content="ProbLab">
-    <meta property="og:title" content="Calculadora de distribución Log-normal online | ProbLab">
-    <meta property="og:description" content="Calcula densidad, acumuladas y cuantiles de la distribución log-normal para variables positivas.">
+        <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de distribución lognormal online | ProbLab">
+    <meta property="og:description" content="Calcula probabilidades, colas y percentiles de la distribución lognormal para variables positivas con asimetría.">
     <meta property="og:url" content="https://problabtools.es/lognormal.html">
+    <meta property="og:site_name" content="ProbLab">
     <meta property="og:image" content="https://problabtools.es/og-image.png">
     <meta property="og:image:alt" content="Distribución Log-normal en ProbLab">
 
@@ -52,12 +51,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style_new.css?v=20260426">
+        <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de distribución lognormal online",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/lognormal.html",
+      "description": "Calcula probabilidades, colas y percentiles de la distribución lognormal para variables positivas con asimetría.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260428">
 </head>
 <body data-default-distribution="lognormal" data-lock-distribution="true">
 <div class="page-wrap">
     <header class="hero">
-        <p class="eyebrow">Calculadora específica</p>
+        <p class="eyebrow">Calculadora</p>
         <h1>Distribución Log-normal</h1>
         <p class="hero-subtitle">Calcula densidad, acumuladas y cuantiles para la distribución log-normal de variables positivas.</p>
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
@@ -84,7 +99,7 @@
             <section class="card control-panel">
                 <div class="panel-heading">
                     <h2>Configuración</h2>
-                    <p id="distributionPageInfo">Calculadora específica por distribución.</p>
+                    <p id="distributionPageInfo">Calculadora enfocada en esta distribución.</p>
                 </div>
 
                 <div class="form-grid">
@@ -160,14 +175,40 @@
         </section>
 
     <p class="hero-links app-shell-link"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
+            <h2>Fórmula utilizada</h2>
+            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
+            <h2>Ejemplo de uso</h2>
+            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+            <h2>Cómo interpretar el resultado</h2>
+            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+            <section class="related-tools">
+              <h2>Calculadoras relacionadas</h2>
+              <ul>
+                <li><a href="studentt.html">Calculadora de distribución t de Student</a></li>
+                <li><a href="binomial.html">Calculadora de distribución binomial</a></li>
+                <li><a href="poisson.html">Calculadora de distribución de Poisson</a></li>
+              </ul>
+            </section>
+            <h2>Preguntas frecuentes</h2>
+            <ul>
+                <li><strong>¿Qué significa P(X ≤ x)?</strong> Es la probabilidad acumulada hasta el valor x.</li>
+                <li><strong>¿Qué diferencia hay entre cola izquierda y derecha?</strong> La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores.</li>
+                <li><strong>¿Qué es un percentil?</strong> Es el valor de la variable que deja por debajo una probabilidad acumulada concreta.</li>
+            </ul>
+        </section>
+
     </main>
 
     <footer class="legal-footer">
   <p>
     © 2026 problabtools.
-    <a href="/aviso-legal.html">Aviso legal</a> ·
-    <a href="/privacidad.html">Privacidad</a> ·
-    <a href="/cookies.html">Cookies</a> ·
+    <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="privacidad.html">Privacidad</a> ·
+    <a href="cookies.html">Cookies</a> ·
     <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
   </p>
 </footer>
@@ -181,6 +222,6 @@ window.MathJax = {
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
-<script src="script.js?v=20260426" defer></script>
+<script src="script.js?v=20260428" defer></script>
 </body>
 </html>
