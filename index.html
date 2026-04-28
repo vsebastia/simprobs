@@ -126,9 +126,9 @@
         <div>
             <p class="eyebrow">Laboratorio estadístico</p>
             <h1>Calculadoras estadísticas online</h1>
-            <p class="hero-subtitle">Domina la estadística aplicada con una calculadora online de distribuciones de probabilidad precisa y fácil de usar para estudiantes, docentes y profesionales.</p>
-            <p class="hero-intro">En ProbLab puedes calcular probabilidades, densidades, cuantiles y áreas acumuladas para distribuciones como Normal, Binomial, Poisson, t de Student y Chi-cuadrado, con visualizaciones claras para entender cada resultado en segundos.</p>
-            <p class="hero-links"><a href="#calculator">Ir a la calculadora</a> · <a href="#how-to-use">Cómo interpretar PDF, CDF y cuantiles</a> · <a href="#distribution-guides">Guías de distribuciones</a> · <a href="#distribution-pages">Calculadoras por distribución</a> · <a href="#sample-size-index">Índice de tamaños muestrales</a> · <a href="#hypothesis-tests-index">Índice de contrastes de hipótesis</a> · <a href="#faq-title">FAQ</a></p>
+            <p class="hero-subtitle">Accede de forma directa a calculadoras de distribuciones, tamaño muestral y contrastes de hipótesis con una navegación clara y orientada a resolver dudas estadísticas reales.</p>
+            <p class="hero-intro">En ProbLab tienes tres bloques principales: calculadora general de distribuciones, calculadora general de tamaño muestral y páginas específicas para contrastes de hipótesis. Todo desde una estructura simple y sin pasos redundantes.</p>
+            <p class="hero-links"><a href="#familias">Ver familias</a> · <a href="#calculator">Calculadora general de distribuciones</a> · <a href="#sample-size-calculator">Calculadora general de tamaño muestral</a> · <a href="#hypothesis-hub">Contrastes de hipótesis</a></p>
         </div>
     </header>
 
@@ -138,7 +138,7 @@
               de probabilidad, tamaños muestrales, intervalos, p-valores y contrastes de hipótesis.
               Cada calculadora incluye explicación, fórmula utilizada e interpretación del resultado.
             </p>
-            <section class="card content-card">
+            <section id="familias" class="card content-card">
               <h2>Distribuciones de probabilidad</h2>
               <p>Calcula probabilidades, probabilidades acumuladas, colas, percentiles y valores críticos para las principales distribuciones estadísticas.</p>
               <a href="distribuciones/">Ver calculadoras de distribuciones</a>
@@ -162,33 +162,6 @@
                 <li>Resultados interpretables con fórmulas y ejemplos.</li>
               </ul>
             </section>
-
-        <section id="distribution-pages" class="card content-card" aria-labelledby="distribution-pages-title">
-            <h2 id="distribution-pages-title">Calculadoras por distribución</h2>
-            <p>También tienes una página independiente para cada distribución con su calculadora de densidad/probabilidad, acumulada y percentiles.</p>
-            <h3>Distribuciones continuas</h3>
-            <ul class="distribution-links">
-                <li><a href="normal.html">Normal</a></li>
-                <li><a href="studentt.html">t de Student</a></li>
-                <li><a href="chisquare.html">Chi-cuadrado</a></li>
-                <li><a href="centralf.html">F de Snedecor</a></li>
-                <li><a href="exponential.html">Exponencial</a></li>
-                <li><a href="uniform.html">Uniforme</a></li>
-                <li><a href="gamma.html">Gamma</a></li>
-                <li><a href="beta.html">Beta</a></li>
-                <li><a href="lognormal.html">Log-normal</a></li>
-                <li><a href="weibull.html">Weibull</a></li>
-            </ul>
-            <h3>Distribuciones discretas</h3>
-            <ul class="distribution-links">
-                <li><a href="binomial.html">Binomial</a></li>
-                <li><a href="poisson.html">Poisson</a></li>
-                <li><a href="negbin.html">Binomial negativa</a></li>
-                <li><a href="geometric.html">Geométrica</a></li>
-                <li><a href="hypergeometric.html">Hipergeométrica</a></li>
-                <li><a href="bernoulli.html">Bernoulli</a></li>
-            </ul>
-        </section>
 
         <section id="calculator" class="app-shell" aria-label="Calculadora de distribuciones">
             <section class="card control-panel">
@@ -271,37 +244,7 @@
             </section>
         </section>
 
-
-
-        <section id="sample-size-index" class="card content-card" aria-labelledby="sample-size-index-title">
-            <h2 id="sample-size-index-title">Índice de cálculos de tamaño muestral</h2>
-            <p>Consulta la explicación de cada cálculo de tamaño muestral que ofrece esta calculadora, con su fórmula y recomendaciones de uso.</p>
-            <ul>
-                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
-                <li><a href="tamano-muestral-dos-proporciones.html">Tamaño muestral para dos proporciones</a></li>
-                <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
-                <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para diferencia de medias</a></li>
-                <li><a href="tamano-muestral-proporcion-poblacion-finita.html">Tamaño muestral para una proporción (población finita)</a></li>
-                <li><a href="tamano-muestral-media-poblacion-finita.html">Tamaño muestral para una media (población finita)</a></li>
-                <li><a href="tamano-muestral-medias-apareadas.html">Tamaño muestral para dos medias apareadas</a></li>
-                <li><a href="tamano-muestral-proporciones-apareadas.html">Tamaño muestral para dos proporciones apareadas (McNemar)</a></li>
-            </ul>
-        </section>
-
-
-
-        <section id="hypothesis-tests-index" class="card content-card" aria-labelledby="hypothesis-tests-index-title">
-            <h2 id="hypothesis-tests-index-title">Índice de contrastes de hipótesis básicos</h2>
-            <p>Accede a una guía práctica y calculadora para los contrastes más utilizados en cursos introductorios de inferencia estadística.</p>
-            <ul>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste para una media</a></li>
-                <li><a href="contraste-hipotesis-una-proporcion.html">Contraste para una proporción</a></li>
-                <li><a href="contraste-hipotesis-dos-medias.html">Contraste para diferencia de dos medias</a></li>
-                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste para diferencia de dos proporciones</a></li>
-            </ul>
-        </section>
-
-        <section class="card sample-size-panel">
+        <section id="sample-size-calculator" class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Tamaño muestral</h2>
                 <p>Calcula el tamaño muestral para una proporción o para comparar dos proporciones.</p>
@@ -445,6 +388,19 @@
             <button class="calculate-btn" onclick="calculateSampleSize()">Calcular tamaño muestral</button>
             <div id="sampleSizeResult" class="result-box">Resultado pendiente…</div>
             <div id="sampleSizeFormula" class="formula-box">Fórmula pendiente…</div>
+        </section>
+
+
+        <section id="hypothesis-hub" class="card content-card" aria-labelledby="hypothesis-hub-title">
+            <h2 id="hypothesis-hub-title">Contrastes de hipótesis: acceso directo</h2>
+            <p>Actualmente el sitio ofrece calculadoras específicas por tipo de contraste. Elige la prueba que necesitas y accede directamente:</p>
+            <ul>
+                <li><a href="contraste-hipotesis-una-media.html">Contraste para una media</a></li>
+                <li><a href="contraste-hipotesis-una-proporcion.html">Contraste para una proporción</a></li>
+                <li><a href="contraste-hipotesis-dos-medias.html">Contraste para dos medias</a></li>
+                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste para dos proporciones</a></li>
+                <li><a href="contrastes-hipotesis/">Ver índice completo de contrastes</a></li>
+            </ul>
         </section>
 
         <section id="how-to-use" class="card content-card">
