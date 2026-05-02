@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de chi-cuadrado de bondad de ajuste | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contraste chi-cuadrado de bondad de ajuste para evaluar si las frecuencias observadas siguen una distribución teórica especificada.">
+    <link rel="canonical" href="https://problabtools.es/chi-cuadrado-bondad-ajuste.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de chi-cuadrado de bondad de ajuste | ProbLab">
+    <meta property="og:description" content="Contraste chi-cuadrado de bondad de ajuste para verificar si datos categóricos siguen una distribución teórica.">
+    <meta property="og:url" content="https://problabtools.es/chi-cuadrado-bondad-ajuste.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de chi-cuadrado de bondad de ajuste",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/chi-cuadrado-bondad-ajuste.html",
+      "description": "Herramienta para contrastar si las frecuencias observadas en categorías mutuamente excluyentes siguen una distribución teórica especificada.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+
+    <link rel="stylesheet" href="style_new.css?v=20260428-2">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora de chi-cuadrado de bondad de ajuste</h1>
+        <p class="hero-subtitle">Evalúa si las frecuencias observadas siguen una distribución teórica especificada.</p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    </header>
+
+    <main>
+
+        <section class="card content-card">
+            <h2>Descripción</h2>
+
+            <p>
+                El contraste chi-cuadrado de bondad de ajuste permite evaluar si la distribución
+                empírica de una variable categórica es compatible con una distribución teórica
+                previamente especificada. La pregunta que responde es: ¿los recuentos observados
+                en cada categoría son compatibles con las probabilidades que postula el modelo, o
+                hay evidencia de que la distribución real difiere?
+            </p>
+
+            <p>
+                La idea central es comparar las frecuencias observadas con las frecuencias esperadas
+                que se obtendrían si la hipótesis nula fuera cierta. Si las discrepancias son
+                demasiado grandes para atribuirlas al azar de muestreo, se rechaza el modelo
+                teórico propuesto.
+            </p>
+
+            <p>
+                Por ejemplo, un dado equilibrado debería producir cada cara con probabilidad 1/6.
+                Tras 120 lanzamientos, se compara si los recuentos observados son compatibles con
+                esas probabilidades. Otro uso habitual es verificar si la proporción de defectos
+                por tipo en una línea de producción coincide con el patrón histórico esperado.
+            </p>
+
+            <p>
+                El estadístico de contraste agrega las discrepancias ponderadas de todas las
+                categorías y sigue una distribución chi-cuadrado bajo la hipótesis nula. Los
+                grados de libertad son \(k - 1\), donde \(k\) es el número de categorías, menos
+                el número de parámetros adicionales estimados con la muestra.
+            </p>
+
+            <p class="formula-line">\(H_0\): la distribución observada coincide con la teórica</p>
+            <p class="formula-line">\(H_1\): la distribución observada no coincide con la teórica</p>
+            <p class="formula-line">
+                \(\chi^2 = \sum_{i=1}^{k}\frac{(O_i - E_i)^2}{E_i}\), &nbsp;
+                con \(E_i = n \cdot p_i\)
+            </p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce las frecuencias observadas y las probabilidades teóricas separadas por comas. Si no indicas probabilidades, se asume distribución uniforme.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="form-group">
+                    <label for="observed">Frecuencias observadas</label>
+                    <input type="text" id="observed" value="25, 30, 20, 15, 10">
+                </div>
+
+                <div class="form-group">
+                    <label for="probabilities">Probabilidades teóricas (opcional)</label>
+                    <input type="text" id="probabilities" placeholder="Ej: 0.2, 0.2, 0.2, 0.2, 0.2 (o vacío para uniforme)">
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcChiBtn">Calcular contraste</button>
+            <div id="chiResult" class="result-box">Resultado pendiente…</div>
+            <div id="expectedTable" class="result-box" style="margin-top:12px;">Frecuencias esperadas pendientes…</div>
+            <div class="chart-wrap">
+                <canvas id="chiGoodnessChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste chi-cuadrado de bondad de ajuste" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Contraste rápido</h2>
+
+            <p>
+                El estadístico chi-cuadrado suma, para cada categoría, el cuadrado de la diferencia
+                entre frecuencia observada y esperada, dividido entre la frecuencia esperada. Bajo
+                la hipótesis nula de que los datos siguen la distribución teórica, este estadístico
+                sigue aproximadamente una distribución \(\chi^2\) con \(k - 1\) grados de libertad:
+            </p>
+
+            <p class="formula-line">
+                \(\chi^2 = \sum_{i=1}^{k} \frac{(O_i - E_i)^2}{E_i} \sim \chi^2_{k-1}\)
+            </p>
+
+            <p>
+                Las frecuencias esperadas se calculan a partir del tamaño muestral \(n\) y las
+                probabilidades teóricas \(p_i\):
+            </p>
+
+            <p class="formula-line">
+                \(E_i = n \cdot p_i\)
+            </p>
+
+            <p>
+                donde \(n = \sum_{i=1}^{k} O_i\) es el total de observaciones. Si las probabilidades
+                teóricas son iguales para todas las categorías (distribución uniforme),
+                \(E_i = n / k\) para todo \(i\).
+            </p>
+
+            <p>
+                Para que la aproximación chi-cuadrado sea fiable, conviene que todas las frecuencias
+                esperadas sean mayores o iguales que 5. Si alguna categoría tiene frecuencias
+                esperadas muy bajas, considera agrupar categorías antes de aplicar el contraste.
+            </p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+
+            <p>
+                Esta calculadora de chi-cuadrado de bondad de ajuste toma las frecuencias observadas
+                en cada categoría y las probabilidades teóricas del modelo a contrastar, calcula las
+                frecuencias esperadas, obtiene el estadístico \(\chi^2\), los grados de libertad y
+                el p-valor, y emite una decisión automática al nivel de significación indicado.
+            </p>
+
+            <p>
+                La herramienta también muestra la tabla de frecuencias esperadas y un gráfico con
+                la distribución de referencia, la zona de rechazo y la posición del estadístico
+                observado, lo que facilita la interpretación visual del resultado.
+            </p>
+
+            <h2>Fórmulas utilizadas</h2>
+
+            <p>
+                Las frecuencias esperadas bajo la hipótesis nula se calculan para cada categoría
+                \(i\) como:
+            </p>
+
+            <p class="formula-line">
+                \(E_i = n \cdot p_i\)
+            </p>
+
+            <p>
+                El estadístico de contraste es:
+            </p>
+
+            <p class="formula-line">
+                \(\chi^2 = \sum_{i=1}^{k} \frac{(O_i - E_i)^2}{E_i}\)
+            </p>
+
+            <p>
+                Bajo \(H_0\), este estadístico sigue una distribución \(\chi^2\) con \(k - 1\)
+                grados de libertad (menos el número de parámetros estimados con la muestra, si los
+                hay). El p-valor es la probabilidad de obtener un estadístico tan grande o mayor
+                si la hipótesis nula fuera cierta:
+            </p>
+
+            <p class="formula-line">
+                \(p = P\!\left(\chi^2_{k-1} \geq \chi^2_{\text{obs}}\right)\)
+            </p>
+
+            <h2>Ejemplo de uso</h2>
+
+            <p>
+                Supón que lanzas un dado 120 veces y obtienes los siguientes recuentos por cara:
+                25, 18, 22, 20, 17 y 18. Quieres saber si el dado es equilibrado. Las probabilidades
+                teóricas son 1/6 para cada cara, lo que implica una frecuencia esperada de 20 para
+                cada una. Introduces los recuentos, dejas las probabilidades en blanco (distribución
+                uniforme), fijas α = 0,05 y pulsas calcular. Si el p-valor supera 0,05, los datos
+                son compatibles con un dado equilibrado.
+            </p>
+
+            <p>
+                En genética mendeliana, epidemiología y control de calidad es habitual contrastar si
+                la proporción observada de cada categoría se ajusta a un patrón teórico: ratios de
+                segregación genética, distribución esperada de grupos sanguíneos o proporción de
+                defectos por tipo según histórico de producción.
+            </p>
+
+            <h2>Cómo interpretar el resultado</h2>
+
+            <p>
+                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay
+                evidencia estadística de que la distribución real difiere de la teórica especificada.
+                Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para
+                rechazar el modelo con ese nivel de significación.
+            </p>
+
+            <p>
+                Un resultado significativo indica que el modelo no ajusta bien globalmente, pero no
+                identifica directamente cuáles categorías son responsables. Para localizarlo,
+                revisa los residuos estandarizados \((O_i - E_i)/\sqrt{E_i}\): valores por encima
+                de 2 en valor absoluto señalan las categorías que más contribuyen a la discrepancia.
+            </p>
+
+            <p>
+                También es importante verificar que todas las frecuencias esperadas sean ≥ 5 antes
+                de interpretar el p-valor. La tabla de frecuencias esperadas que muestra la
+                herramienta facilita esta comprobación.
+            </p>
+
+            <section class="related-tools">
+                <h2>Calculadoras relacionadas</h2>
+                <ul>
+                    <li><a href="chisquare.html">Distribución chi-cuadrado</a></li>
+                    <li><a href="contraste-independencia-chi-cuadrado.html">Chi-cuadrado de independencia</a></li>
+                    <li><a href="test-exacto-fisher.html">Test exacto de Fisher</a></li>
+                    <li><a href="contrastes-hipotesis/">Contrastes de hipótesis</a></li>
+                </ul>
+            </section>
+
+            <h2>Preguntas frecuentes</h2>
+
+            <ul>
+                <li>
+                    <strong>¿Cuándo se usa el contraste chi-cuadrado de bondad de ajuste?</strong>
+                    Cuando se quiere saber si los recuentos observados en categorías mutuamente
+                    excluyentes son compatibles con una distribución teórica previamente especificada.
+                </li>
+                <li>
+                    <strong>¿Cuántos grados de libertad tiene el estadístico?</strong>
+                    Los grados de libertad son \(k - 1\), donde \(k\) es el número de categorías.
+                    Si se han estimado parámetros adicionales del modelo con la propia muestra,
+                    se resta uno por cada parámetro estimado.
+                </li>
+                <li>
+                    <strong>¿Qué condición deben cumplir las frecuencias esperadas?</strong>
+                    La aproximación es adecuada cuando todas las frecuencias esperadas son ≥ 5.
+                    Si alguna es inferior, considera agrupar categorías poco frecuentes.
+                </li>
+                <li>
+                    <strong>¿Qué diferencia hay con el chi-cuadrado de independencia?</strong>
+                    El de bondad de ajuste contrasta si una variable sigue una distribución
+                    teórica concreta. El de independencia contrasta si dos variables están
+                    asociadas entre sí, a partir de una tabla de contingencia.
+                </li>
+                <li>
+                    <strong>¿Las probabilidades teóricas deben sumar exactamente 1?</strong>
+                    Sí. La herramienta verifica que las probabilidades introducidas sumen 1
+                    (con tolerancia numérica) y avisa si no se cumple esa condición.
+                </li>
+                <li>
+                    <strong>¿Cómo afecta el tamaño muestral al resultado?</strong>
+                    Con muestras muy grandes, el contraste puede detectar desviaciones muy
+                    pequeñas respecto al modelo teórico que no son relevantes en la práctica.
+                    En esos casos conviene complementar el p-valor con una medida de tamaño
+                    del efecto.
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = {
+    tex: { inlineMath: [['\\(','\\)'], ['$', '$']] },
+    startup: {
+        ready: () => {
+            MathJax.startup.defaultReady();
+            MathJax.typesetPromise();
+        }
+    }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let chiGoodnessChart;
+
+function gammaLn(z){
+  const cof=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.001208650973866179,-0.000005395239384953];
+  let x=z, y=z, tmp=x+5.5;
+  tmp-=(x+0.5)*Math.log(tmp);
+  let ser=1.000000000190015;
+  for(let j=0;j<cof.length;j++){ y+=1; ser+=cof[j]/y; }
+  return -tmp+Math.log(2.5066282746310005*ser/x);
+}
+function gammaP(a,x){
+  if(x<=0) return 0;
+  if(x<a+1){
+    let ap=a, sum=1/a, del=sum;
+    for(let n=1;n<=200;n++){ ap++; del*=x/ap; sum+=del; if(Math.abs(del)<Math.abs(sum)*1e-12) break; }
+    return sum*Math.exp(-x+a*Math.log(x)-gammaLn(a));
+  }
+  let b=x+1-a, c=1/1e-30, d=1/b, h=d;
+  for(let i=1;i<=200;i++){
+    const an=-i*(i-a); b+=2; d=an*d+b; if(Math.abs(d)<1e-30) d=1e-30;
+    c=b+an/c; if(Math.abs(c)<1e-30) c=1e-30; d=1/d;
+    const del=d*c; h*=del; if(Math.abs(del-1)<1e-12) break;
+  }
+  return 1-Math.exp(-x+a*Math.log(x)-gammaLn(a))*h;
+}
+function chiSquareSurvival(x,df){ return 1-gammaP(df/2,x/2); }
+
+function parseValues(raw){
+  return raw.trim().split(/[\s,;]+/).map(Number).filter(v => raw.trim() !== '' && !isNaN(v));
+}
+
+function chiSquarePdf(x, df){
+  if(x<=0) return 0;
+  const k=df/2;
+  return Math.exp((k-1)*Math.log(x)-x/2-k*Math.log(2)-gammaLn(k));
+}
+
+function chiSquareQuantile(p, df){
+  if(p<=0) return 0;
+  if(p>=1) return Infinity;
+  let lo=0, hi=Math.max(1, df);
+  while(gammaP(df/2, hi/2) < p) hi *= 2;
+  for(let i=0;i<80;i++){
+    const mid=(lo+hi)/2;
+    if(gammaP(df/2, mid/2) < p) lo=mid; else hi=mid;
+  }
+  return (lo+hi)/2;
+}
+
+function renderChiGoodnessChart(df, alpha, statValue){
+  const ctx=document.getElementById('chiGoodnessChart');
+  if(!ctx) return;
+  const critical=chiSquareQuantile(1-alpha, df);
+  const maxX=Math.max(critical*1.4, statValue*1.4, df+10, 10);
+  const step=maxX/350;
+  const curve=[];
+  const acceptance=[];
+  const rejection=[];
+  for(let x=0;x<=maxX;x+=step){
+    const y=chiSquarePdf(x, df);
+    curve.push({x,y});
+    if(x<=critical){ acceptance.push({x,y}); rejection.push({x,y:null}); }
+    else { acceptance.push({x,y:null}); rejection.push({x,y}); }
+  }
+  const maxY=Math.max(...curve.map(p=>p.y));
+  const statLine=Number.isFinite(statValue)?[{x:statValue,y:0},{x:statValue,y:maxY}]:[];
+
+  if(chiGoodnessChart) chiGoodnessChart.destroy();
+  chiGoodnessChart=new Chart(ctx,{
+    type:'line',
+    data:{datasets:[
+      {label:'Zona de aceptación',data:acceptance,borderColor:'rgba(34,197,94,0)',backgroundColor:'rgba(34,197,94,0.35)',fill:'origin',pointRadius:0,parsing:false},
+      {label:'Zona de rechazo',data:rejection,borderColor:'rgba(239,68,68,0)',backgroundColor:'rgba(239,68,68,0.35)',fill:'origin',pointRadius:0,parsing:false},
+      {label:`Distribución χ² (gl=${df})`,data:curve,borderColor:'#1d4ed8',borderWidth:2,pointRadius:0,fill:false,parsing:false},
+      {label:'χ² observado',data:statLine,borderColor:'#f59e0b',borderWidth:2,pointRadius:0,fill:false,parsing:false}
+    ]},
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      scales:{
+        x:{type:'linear',min:0,max:maxX,title:{display:true,text:'Estadístico χ²'}},
+        y:{beginAtZero:true,title:{display:true,text:'Densidad'}}
+      }
+    }
+  });
+}
+
+function formatExpectedGoodness(observed, expected){
+  const header='<tr><th>Categoría</th><th>Observada (O)</th><th>Esperada (E)</th><th>Residuo estándar</th></tr>';
+  const rows=observed.map((o,i)=>{
+    const e=expected[i];
+    const res=((o-e)/Math.sqrt(e)).toFixed(3);
+    return `<tr><td>${i+1}</td><td>${o}</td><td>${e.toFixed(2)}</td><td>${res}</td></tr>`;
+  }).join('');
+  return `<strong>Tabla de frecuencias</strong><br><table><thead>${header}</thead><tbody>${rows}</tbody></table>`;
+}
+
+document.getElementById('calcChiBtn').addEventListener('click',()=>{
+  try{
+    const obsRaw=document.getElementById('observed').value;
+    const probRaw=document.getElementById('probabilities').value.trim();
+    const alpha=parseFloat(document.getElementById('alpha').value);
+
+    const observed=parseValues(obsRaw);
+    if(observed.length<2) throw new Error('Introduce al menos 2 categorías.');
+    if(observed.some(v=>!Number.isFinite(v)||v<0)) throw new Error('Usa solo frecuencias no negativas.');
+
+    const k=observed.length;
+    const n=observed.reduce((a,b)=>a+b,0);
+    if(n<=0) throw new Error('El total muestral debe ser mayor que 0.');
+
+    let probs;
+    if(probRaw===''){
+      probs=Array(k).fill(1/k);
+    } else {
+      probs=parseValues(probRaw);
+      if(probs.length!==k) throw new Error(`Indica ${k} probabilidades (una por categoría) o deja el campo vacío para distribución uniforme.`);
+      if(probs.some(p=>!Number.isFinite(p)||p<0)) throw new Error('Las probabilidades deben ser valores no negativos.');
+      const sum=probs.reduce((a,b)=>a+b,0);
+      if(Math.abs(sum-1)>0.001) throw new Error(`Las probabilidades deben sumar 1 (suman ${sum.toFixed(4)}).`);
+      probs=probs.map(p=>p/sum);
+    }
+
+    const expected=probs.map(p=>n*p);
+    const lowExpected=expected.filter(e=>e<5).length;
+
+    let chi2=0;
+    for(let i=0;i<k;i++) chi2 += Math.pow(observed[i]-expected[i],2)/expected[i];
+
+    const df=k-1;
+    const p=Math.max(0,Math.min(1,chiSquareSurvival(chi2,df)));
+    const decision=p<alpha?'Se rechaza H₀ (la distribución observada difiere de la teórica).':'No se rechaza H₀ (los datos son compatibles con la distribución teórica).';
+
+    let warning='';
+    if(lowExpected>0) warning=`<br><em>Atención: ${lowExpected} categoría(s) con frecuencia esperada menor que 5. Considera agrupar categorías.</em>`;
+
+    document.getElementById('chiResult').innerHTML =
+      `χ² observado: <strong>${chi2.toFixed(4)}</strong><br>`+
+      `Grados de libertad: <strong>${df}</strong><br>`+
+      `p-valor: <strong>${p.toFixed(6)}</strong><br>`+
+      `Decisión (α=${alpha}): <strong>${decision}</strong>`+
+      warning;
+
+    document.getElementById('expectedTable').innerHTML = formatExpectedGoodness(observed, expected);
+    renderChiGoodnessChart(df, alpha, chi2);
+  }catch(err){
+    document.getElementById('chiResult').textContent = `Error: ${err.message}`;
+    if(chiGoodnessChart){ chiGoodnessChart.destroy(); chiGoodnessChart = null; }
+  }
+});
+document.getElementById('calcChiBtn').click();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body>
+</html>

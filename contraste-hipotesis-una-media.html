@@ -2,13 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de contraste de hipótesis para una media | ProbLab</title>
+    <title>Calculadora online de contraste de hipótesis para una media | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calcula estadístico de contraste, p-valor y decisión para contrastar una media poblacional frente a un valor hipotético.">
+    <meta name="description" content="Calculadora online: calcula estadístico de contraste, p-valor y decisión para contrastar una media poblacional frente a un valor hipotético.">
     <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-una-media.html">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Calculadora de contraste de hipótesis para una media | ProbLab">
-    <meta property="og:description" content="Calcula estadístico de contraste, p-valor y decisión para contrastar una media poblacional frente a un valor hipotético.">
+    <meta property="og:title" content="Calculadora online de contraste de hipótesis para una media | ProbLab">
+    <meta property="og:description" content="Calculadora online: calcula estadístico de contraste, p-valor y decisión para contrastar una media poblacional frente a un valor hipotético.">
     <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-una-media.html">
     <meta property="og:site_name" content="ProbLab">
     <meta property="og:image" content="https://problabtools.es/og-image.png">
@@ -16,11 +16,11 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Calculadora de contraste de hipótesis para una media",
+      "name": "Calculadora online de contraste de hipótesis para una media",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "url": "https://problabtools.es/contraste-hipotesis-una-media.html",
-      "description": "Calcula estadístico de contraste, p-valor y decisión para contrastar una media poblacional frente a un valor hipotético.",
+      "description": "Calculadora online: calcula estadístico de contraste, p-valor y decisión para contrastar una media poblacional frente a un valor hipotético.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -34,57 +34,40 @@
 <div class="page-wrap">
     <header class="hero">
         <p class="eyebrow">Contrastes de hipótesis</p>
-        <h1>Calculadora de contraste de hipótesis para una media</h1>
+        <h1>Calculadora online de contraste de hipótesis para una media</h1>
         <p class="hero-subtitle">Evalúa si la media observada de una muestra es compatible con un valor hipotético.</p>
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
     <main>
+        <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
+        
+
+        
+
         <section class="card content-card">
             <h2>Descripción</h2>
-            <p>Este contraste se usa cuando quieres comprobar si la media poblacional es igual a un valor de referencia \(\mu_0\). Con muestras moderadas o grandes, una aproximación práctica es usar el estadístico z con la desviación estándar muestral.</p>
+            <p>Este contraste se usa cuando quieres comprobar si la media poblacional es igual a un valor de referencia \(\mu_0\). Es uno de los procedimientos más utilizados en control de procesos, investigación biomédica, educación y analítica de negocio, porque permite contrastar una afirmación concreta con evidencia cuantitativa.</p>
+            <p>En la práctica hay dos escenarios: si conoces la desviación típica poblacional \(\sigma\), empleas un contraste z; si \(\sigma\) es desconocida y se estima con la desviación muestral \(s\), empleas un contraste t de Student. Esta distinción es importante porque refleja la incertidumbre adicional al estimar la variabilidad con la propia muestra.</p>
 
             <h2>Hipótesis y estadístico</h2>
             <p class="formula-line">\(H_0: \mu = \mu_0\)</p>
             <p class="formula-line">\(H_1: \mu \neq \mu_0\), \(\mu > \mu_0\) o \(\mu < \mu_0\)</p>
-            <p class="formula-line">\( z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \)</p>
+            <p class="formula-line">Si \(\sigma\) es conocida: \( z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \)</p>
+            <p class="formula-line">Si \(\sigma\) es desconocida: \( t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \), con \(gl=n-1\)</p>
             <ul>
                 <li><strong>\(\bar{x}\)</strong>: media muestral.</li>
                 <li><strong>\(\mu_0\)</strong>: media planteada en la hipótesis nula.</li>
-                <li><strong>\(s\)</strong>: desviación estándar muestral.</li>
+                <li><strong>\(\sigma\)</strong>: desviación típica poblacional (si es conocida).</li>
+                <li><strong>\(s\)</strong>: desviación estándar muestral (si \(\sigma\) es desconocida).</li>
                 <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
             </ul>
         </section>
 
-        <section class="card content-card">
-            <h2>Conceptos clave del contraste</h2>
-            <p><strong>¿Qué es un contraste de hipótesis?</strong> Es un procedimiento para decidir si los datos observados son compatibles con una afirmación inicial \(H_0\). Si los datos son muy improbables bajo \(H_0\), se rechaza \(H_0\).</p>
-            <ul>
-                <li><strong>Error tipo I (\(\alpha\)):</strong> probabilidad de rechazar \(H_0\) cuando en realidad era cierta (falso positivo).</li>
-                <li><strong>Error tipo II (\(\beta\)):</strong> probabilidad de no rechazar \(H_0\) cuando en realidad era falsa (falso negativo).</li>
-                <li><strong>Potencia (\(1-\beta\)):</strong> probabilidad de detectar una diferencia real cuando existe. Sube con mayor tamaño muestral, mayor efecto real o un \(\alpha\) más grande.</li>
-            </ul>
-        </section>
-
-        <section class="card content-card">
-            <h2>¿Por qué en este caso se usa esta fórmula?</h2>
-            <p>Se utiliza \( z = (\bar{x} - \mu_0)/(s/\sqrt{n}) \) porque estamos comparando una sola media muestral frente a un valor hipotético \(\mu_0\), y el denominador representa el error estándar de \(\bar{x}\).</p>
-            <p>Con muestras moderadas o grandes, esta estadística suele aproximarse bien a una normal estándar. Para muestras pequeñas y población normal, es habitual usar la t de Student con \(n-1\) grados de libertad.</p>
-        </section>
-
-        <section class="card content-card">
-            <h2>Interpretación rápida</h2>
-            <ul>
-                <li>Si el <strong>p-valor</strong> es menor que \(\alpha\), se rechaza \(H_0\).</li>
-                <li>Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar \(H_0\).</li>
-                <li>Un resultado no significativo no demuestra que \(H_0\) sea verdadera.</li>
-            </ul>
-        </section>
-
-        <section class="card sample-size-panel">
+<section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
-                <p>Introduce tus datos para obtener estadístico z, p-valor y decisión del contraste.</p>
+                <p>Introduce tus datos para obtener estadístico (z o t), p-valor y decisión del contraste.</p>
             </div>
 
             <div class="form-grid sample-grid">
@@ -101,7 +84,7 @@
 
                 <div class="inline-inputs">
                     <div class="form-group">
-                        <label for="s">Desviación estándar (s)</label>
+                        <label for="s" id="dispersionLabel">Desviación típica poblacional (σ)</label>
                         <input type="number" id="s" value="10" step="0.01" min="0.0001">
                     </div>
                     <div class="form-group">
@@ -111,6 +94,13 @@
                 </div>
 
                 <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="dispersionType">Tipo de desviación</label>
+                        <select id="dispersionType">
+                            <option value="population">Conozco σ poblacional (test z)</option>
+                            <option value="sample">Solo conozco s muestral (test t)</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="tail">Tipo de contraste</label>
                         <select id="tail">
@@ -132,16 +122,36 @@
                 <canvas id="meanTestChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste de una media" role="img"></canvas>
             </div>
         </section>
+
+        
+
+        <section class="card content-card">
+            <h2>Contraste rápido</h2>
+            <ul>
+                <li>Si el <strong>p-valor</strong> es menor que \(\alpha\), se rechaza \(H_0\).</li>
+                <li>Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar \(H_0\).</li>
+                <li>Un resultado no significativo no demuestra que \(H_0\) sea verdadera.</li>
+            </ul>
+        </section>
+
+        
+
+        <section class="card content-card">
+            <h2>¿Por qué hay dos fórmulas en este contraste?</h2>
+            <p><strong>Contraste z</strong>: se usa cuando \(\sigma\) poblacional es conocida. El estadístico sigue una normal estándar bajo \(H_0\).</p>
+            <p><strong>Contraste t</strong>: se usa cuando \(\sigma\) es desconocida y se sustituye por \(s\). Esa incertidumbre extra se modela con la t de Student con \(n-1\) grados de libertad.</p>
+            <p>Cuando \(n\) crece, la t se parece mucho a la normal, por eso ambos métodos convergen con muestras grandes.</p>
+        </section>
     
-        <section id="seo-support-content" class="card content-card">
+                <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
-            <p>Esta calculadora devuelve el estadístico de contraste, p-valor y una conclusión básica para decidir si los datos son compatibles con la hipótesis nula.</p>
+            <p>Esta calculadora de contraste de hipótesis para una media estima automáticamente el estadístico de prueba (z o t), el p-valor exacto y la decisión estadística final según el nivel de significación elegido. Es útil para control de calidad, investigación, docencia y validación de cambios en procesos.</p>
             <h2>Fórmula utilizada</h2>
-            <p>Se aplica el estadístico de prueba específico del contraste y se transforma en un p-valor según cola bilateral o unilateral y nivel de significación.</p>
+            <p>Se emplea un contraste paramétrico para <strong>una media poblacional</strong>: test z cuando conoces la desviación poblacional \(\sigma\), y test t de Student cuando solo dispones de la desviación muestral \(s\). El cálculo del p-valor cambia según si el contraste es bilateral, de cola izquierda o de cola derecha.</p>
             <h2>Ejemplo de uso</h2>
-            <p>Define hipótesis nula y alternativa, introduce los datos muestrales y selecciona α. Al calcular, obtendrás p-valor y regla de decisión para el contraste.</p>
+            <p>Si una empresa afirma que su tiempo medio de entrega es \(\mu_0=48\) horas, puedes introducir tu media observada, la dispersión y el tamaño muestral para comprobar si los datos respaldan esa afirmación o muestran desviaciones relevantes.</p>
             <h2>Cómo interpretar el resultado</h2>
-            <p>Si p-valor &lt; α, se rechaza H0. Si p-valor ≥ α, no hay evidencia suficiente para rechazar H0. La significación estadística no implica relevancia práctica.</p>
+            <p>Si p-valor &lt; α, rechazas \(H_0\) y concluyes que hay evidencia estadística de diferencia respecto a \(\mu_0\). Si p-valor ≥ α, no rechazas \(H_0\): esto no prueba igualdad, solo indica que con esa muestra la evidencia es insuficiente.</p>
             <section class="related-tools">
               <h2>Calculadoras relacionadas</h2>
               <ul>
@@ -152,10 +162,10 @@
             </section>
             <h2>Preguntas frecuentes</h2>
             <ul>
-                <li><strong>¿Qué es la hipótesis nula?</strong> Es la afirmación de referencia que se intenta poner a prueba.</li>
-                <li><strong>¿Qué representa el p-valor?</strong> La compatibilidad de los datos observados con H0 bajo el modelo del contraste.</li>
-                <li><strong>¿Qué diferencia hay entre bilateral y unilateral?</strong> El bilateral evalúa diferencias en ambos sentidos y el unilateral en una sola dirección.</li>
-                <li><strong>¿Rechazar H0 implica efecto importante?</strong> No necesariamente; también debes valorar tamaño de efecto y contexto aplicado.</li>
+                <li><strong>¿Cuándo usar z y cuándo t?</strong> Usa z si conoces \(\sigma\) poblacional; usa t si \(\sigma\) es desconocida y la estimas con la muestra.</li>
+                <li><strong>¿Qué representa el p-valor en este test de media?</strong> La probabilidad, bajo \(H_0\), de observar un resultado tan extremo como el obtenido.</li>
+                <li><strong>¿Cuál es un α habitual?</strong> En muchos análisis se usa 0,05, aunque en contextos críticos puede preferirse 0,01.</li>
+                <li><strong>¿Conviene reportar algo más?</strong> Sí: añade intervalo de confianza y tamaño de efecto para interpretar la relevancia práctica.</li>
             </ul>
         </section>
 
@@ -201,35 +211,35 @@ function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
     return { curve, acceptance, rejection };
 }
 
-function getZCriticalValues(alpha, tail) {
+function getCriticalValues(alpha, tail, testType, df) {
     if (tail === 'two') {
-        const c = jStat.normal.inv(1 - (alpha / 2), 0, 1);
+        const c = testType === "t" ? jStat.studentt.inv(1 - (alpha / 2), df) : jStat.normal.inv(1 - (alpha / 2), 0, 1);
         return { left: -c, right: c };
     }
     if (tail === 'left') {
-        return { left: jStat.normal.inv(alpha, 0, 1), right: Infinity };
+        return { left: testType === "t" ? jStat.studentt.inv(alpha, df) : jStat.normal.inv(alpha, 0, 1), right: Infinity };
     }
-    return { left: -Infinity, right: jStat.normal.inv(1 - alpha, 0, 1) };
+    return { left: -Infinity, right: testType === "t" ? jStat.studentt.inv(1 - alpha, df) : jStat.normal.inv(1 - alpha, 0, 1) };
 }
 
-function renderMeanTestChart(alpha, tail, zValue) {
+function renderMeanTestChart(alpha, tail, statValue, testType, df) {
     const ctx = document.getElementById('meanTestChart');
     if (!ctx) return;
 
-    const critical = getZCriticalValues(alpha, tail);
-    const bound = Math.max(4, Math.abs(zValue || 0));
+    const critical = getCriticalValues(alpha, tail, testType, df);
+    const bound = Math.max(4, Math.abs(statValue || 0), Math.abs(Number.isFinite(critical.left)?critical.left:0), Math.abs(Number.isFinite(critical.right)?critical.right:0));
     const minX = -Math.min(bound + 0.8, 8);
     const maxX = Math.min(bound + 0.8, 8);
     const { curve, acceptance, rejection } = buildCurvePoints(
         minX,
         maxX,
         0.02,
-        (x) => jStat.normal.pdf(x, 0, 1),
+        (x) => testType === "t" ? jStat.studentt.pdf(x, df) : jStat.normal.pdf(x, 0, 1),
         (x) => x > critical.left && x < critical.right
     );
     const maxY = Math.max(...curve.map((point) => point.y));
-    const statLine = Number.isFinite(zValue)
-        ? [{ x: zValue, y: 0 }, { x: zValue, y: maxY }]
+    const statLine = Number.isFinite(statValue)
+        ? [{ x: statValue, y: 0 }, { x: statValue, y: maxY }]
         : [];
 
     if (meanTestChart) meanTestChart.destroy();
@@ -239,7 +249,7 @@ function renderMeanTestChart(alpha, tail, zValue) {
             datasets: [
                 { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
                 { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
-                { label: 'Función de probabilidad (Normal estándar)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: testType === 't' ? `Función de probabilidad (t de Student, gl=${df})` : 'Función de probabilidad (Normal estándar)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
                 { label: 'Estadístico observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
             ]
         },
@@ -247,7 +257,7 @@ function renderMeanTestChart(alpha, tail, zValue) {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'Estadístico z' } },
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: testType === 't' ? 'Estadístico t' : 'Estadístico z' } },
                 y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
             }
         }
@@ -261,6 +271,7 @@ function calculateMeanTest() {
     const n = parseFloat(document.getElementById('n').value);
     const alpha = parseFloat(document.getElementById('alpha').value);
     const tail = document.getElementById('tail').value;
+    const dispersionType = document.getElementById('dispersionType').value;
     const resultEl = document.getElementById('meanResult');
 
     if (![mu0, xbar, s, n, alpha].every(Number.isFinite) || s <= 0 || n < 2 || alpha <= 0 || alpha >= 1) {
@@ -272,18 +283,32 @@ function calculateMeanTest() {
         return;
     }
 
-    const z = (xbar - mu0) / (s / Math.sqrt(n));
-    let p;
-    if (tail === 'two') p = 2 * (1 - jStat.normal.cdf(Math.abs(z), 0, 1));
-    else if (tail === 'right') p = 1 - jStat.normal.cdf(z, 0, 1);
-    else p = jStat.normal.cdf(z, 0, 1);
+    const stat = (xbar - mu0) / (s / Math.sqrt(n));
+    const isT = dispersionType === "sample";
+    const testType = isT ? "t" : "z";
+    const df = n - 1;
 
-    const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
-    resultEl.innerText = `z = ${z.toFixed(4)} | p-valor = ${p.toFixed(6)} | ${decision}`;
-    renderMeanTestChart(alpha, tail, z);
+    let p;
+    if (tail === "two") p = 2 * (1 - (isT ? jStat.studentt.cdf(Math.abs(stat), df) : jStat.normal.cdf(Math.abs(stat), 0, 1)));
+    else if (tail === "right") p = 1 - (isT ? jStat.studentt.cdf(stat, df) : jStat.normal.cdf(stat, 0, 1));
+    else p = isT ? jStat.studentt.cdf(stat, df) : jStat.normal.cdf(stat, 0, 1);
+
+    const decision = p < alpha ? "Se rechaza H₀." : "No se rechaza H₀.";
+    const statName = isT ? "t" : "z";
+    const extra = isT ? ` | gl = ${df}` : "";
+    resultEl.innerText = `${statName} = ${stat.toFixed(4)}${extra} | p-valor = ${p.toFixed(6)} | ${decision}`;
+    renderMeanTestChart(alpha, tail, stat, testType, df);
 }
 
+function updateDispersionLabel() {
+    const dispersionType = document.getElementById('dispersionType').value;
+    const label = document.getElementById('dispersionLabel');
+    label.textContent = dispersionType === 'sample' ? 'Desviación estándar muestral (s)' : 'Desviación típica poblacional (σ)';
+}
+
+document.getElementById('dispersionType').addEventListener('change', () => { updateDispersionLabel(); calculateMeanTest(); });
 document.getElementById('calcMeanBtn').addEventListener('click', calculateMeanTest);
+updateDispersionLabel();
 calculateMeanTest();
 </script>
 </body>

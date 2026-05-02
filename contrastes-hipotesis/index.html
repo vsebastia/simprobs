@@ -7,11 +7,11 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Calculadoras de contrastes de hipótesis | ProbLab</title>
-  <meta name="description" content="Calculadoras online para contrastes de hipótesis, p-valores, estadísticos de contraste, pruebas para medias y proporciones.">
+  <meta name="description" content="Calculadoras online para contrastes de hipótesis: medias, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.">
   <link rel="canonical" href="https://problabtools.es/contrastes-hipotesis/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Calculadoras de contrastes de hipótesis | ProbLab">
-  <meta property="og:description" content="Calculadoras online para contrastes de hipótesis, p-valores, estadísticos de contraste, pruebas para medias y proporciones.">
+  <meta property="og:description" content="Calculadoras online para contrastes de hipótesis: medias, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.">
   <meta property="og:url" content="https://problabtools.es/contrastes-hipotesis/">
   <meta property="og:site_name" content="ProbLab">
   <meta property="og:image" content="https://problabtools.es/og-image.png">
@@ -38,7 +38,26 @@
       <ul>
         <li><strong>Error tipo I (α):</strong> rechazar H₀ siendo verdadera (falso positivo).</li>
         <li><strong>Error tipo II (β):</strong> no rechazar H₀ siendo falsa (falso negativo).</li>
-        <li><strong>Potencia (1-β):</strong> probabilidad de detectar un efecto real.</li>
+        <li><strong>Potencia (1-β):</strong> probabilidad de detectar un efecto real cuando realmente existe.</li>
+      </ul>
+      <p>Una confusión habitual es pensar que un resultado “no significativo” demuestra que no hay efecto. En realidad, muchas veces solo indica que la muestra no tiene suficiente potencia para detectarlo con el nivel de ruido disponible.</p>
+
+      <h3>Potencia estadística: qué es y de qué depende</h3>
+      <p>La <strong>potencia</strong> responde a esta pregunta: “si de verdad existe una diferencia relevante, ¿qué probabilidad tiene mi estudio de detectarla?”. No depende de un único factor; está determinada por varios elementos que actúan conjuntamente.</p>
+      <ul>
+        <li><strong>Tamaño muestral:</strong> a mayor n, más fácil detectar diferencias reales pequeñas o moderadas.</li>
+        <li><strong>Tamaño del efecto:</strong> cuanto mayor es la diferencia real entre hipótesis nula y realidad, más fácil detectarla.</li>
+        <li><strong>Variabilidad de los datos:</strong> más ruido implica menos potencia, porque la señal queda más “tapada”.</li>
+        <li><strong>Nivel α:</strong> un α muy exigente (por ejemplo 0,01) reduce falsos positivos, pero también puede reducir potencia.</li>
+      </ul>
+
+      <h3>Tamaño del efecto vs significación estadística</h3>
+      <p>Otro punto que suele generar dudas: <strong>significativo</strong> no es sinónimo de <strong>importante</strong>. Con muestras muy grandes, diferencias minúsculas pueden dar p-valores muy bajos; con muestras pequeñas, diferencias relevantes pueden no llegar a significativas.</p>
+      <p>Por eso, además del p-valor, conviene reportar siempre:</p>
+      <ul>
+        <li>la <strong>estimación del efecto</strong> (diferencia de medias, diferencia de proporciones, etc.),</li>
+        <li>su <strong>intervalo de confianza</strong>,</li>
+        <li>y una interpretación en contexto (impacto clínico, económico o operativo).</li>
       </ul>
       <h3>Estadístico de contraste y regiones de decisión</h3>
       <p>El <strong>estadístico de contraste</strong> resume la evidencia de la muestra (por ejemplo, un estadístico z o t). A partir de su distribución bajo H₀ se define una <strong>región de rechazo</strong> y una <strong>región de no rechazo</strong> (a veces llamada de aceptación en un sentido operativo). Si el estadístico cae en la región de rechazo, se rechaza H₀; si no, no se rechaza.</p>
@@ -52,6 +71,12 @@
         <li><a href="../contraste-hipotesis-dos-medias.html">Dos medias</a></li>
         <li><a href="../contraste-hipotesis-una-proporcion.html">Una proporción</a></li>
         <li><a href="../contraste-hipotesis-dos-proporciones.html">Dos proporciones</a></li>
+        <li><a href="../contraste-hipotesis-varianzas.html">Contrastes sobre varianzas</a></li>
+        <li><a href="../contraste-independencia-chi-cuadrado.html">Chi-cuadrado de independencia</a></li>
+        <li><a href="../test-exacto-fisher.html">Test exacto de Fisher (2×2)</a></li>
+        <li><a href="../chi-cuadrado-bondad-ajuste.html">Chi-cuadrado de bondad de ajuste</a></li>
+        <li><a href="../kolmogorov-smirnov-bondad-ajuste.html">Kolmogorov–Smirnov (no paramétrico)</a></li>
+        <li><a href="../shapiro-wilk-normalidad.html">Shapiro–Wilk (normalidad)</a></li>
       </ul>
     </section>
   </main>

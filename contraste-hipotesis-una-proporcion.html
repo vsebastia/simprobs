@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de contraste de hipótesis para una proporción | ProbLab</title>
+    <title>Calculadora de contrastes sobre varianzas | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Obtén estadístico z y p-valor para contrastar una proporción observada frente a una proporción teórica.">
-    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-una-proporcion.html">
+    <meta name="description" content="Contraste para evaluar si la dispersión de un proceso se mantiene estable frente a un valor de referencia o entre dos condiciones.">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-varianzas.html">
+
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Calculadora de contraste de hipótesis para una proporción | ProbLab">
-    <meta property="og:description" content="Obtén estadístico z y p-valor para contrastar una proporción observada frente a una proporción teórica.">
-    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-una-proporcion.html">
+    <meta property="og:title" content="Calculadora de contrastes sobre varianzas | ProbLab">
+    <meta property="og:description" content="Contraste para evaluar si la dispersión de un proceso se mantiene estable frente a un valor de referencia o entre dos condiciones.">
+    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-varianzas.html">
     <meta property="og:site_name" content="ProbLab">
     <meta property="og:image" content="https://problabtools.es/og-image.png">
-        <script type="application/ld+json">
+
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Calculadora de contraste de hipótesis para una proporción",
+      "name": "Calculadora de contrastes sobre varianzas",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
-      "url": "https://problabtools.es/contraste-hipotesis-una-proporcion.html",
-      "description": "Obtén estadístico z y p-valor para contrastar una proporción observada frente a una proporción teórica.",
+      "url": "https://problabtools.es/contraste-hipotesis-varianzas.html",
+      "description": "Contraste para evaluar si la dispersión de un proceso se mantiene estable frente a un valor de referencia o entre dos condiciones.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -28,45 +28,50 @@
       }
     }
     </script>
+
     <link rel="stylesheet" href="style_new.css?v=20260428-2">
+
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      startup: {
+        typeset: true
+      }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 <body>
 <div class="page-wrap">
     <header class="hero">
         <p class="eyebrow">Contrastes de hipótesis</p>
-        <h1>Calculadora de contraste de hipótesis para una proporción</h1>
+        <h1>Calculadora online de contraste de hipótesis para una proporción</h1>
         <p class="hero-subtitle">Comprueba si una proporción observada es compatible con un valor de referencia.</p>
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
     <main>
+        <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
+        
+
+        
+
         <section class="card content-card">
             <h2>Descripción</h2>
-            <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\).</p>
+            <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\). Es una prueba habitual en validación de campañas, calidad de producción, ensayos clínicos y estudios de opinión.</p>
+            <p>El método se apoya en la aproximación normal de la proporción muestral bajo \(H_0\), por lo que la calidad de la aproximación mejora con tamaños muestrales adecuados.</p>
             <p class="formula-line">\(H_0: p = p_0\)</p>
             <p class="formula-line">\( z = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \)</p>
         </section>
 
-        <section class="card content-card">
-            <h2>Conceptos clave del contraste</h2>
-            <p>Un contraste de hipótesis compara lo observado con lo que esperaríamos si \(H_0\) fuera cierta. Si la diferencia observada es extrema, rechazamos \(H_0\).</p>
-            <ul>
-                <li><strong>Error tipo I (\(\alpha\)):</strong> probabilidad de concluir que la proporción difiere de \(p_0\) cuando en realidad no difiere.</li>
-                <li><strong>Error tipo II (\(\beta\)):</strong>probabilidad de no detectar una diferencia real respecto a \(p_0\).</li>
-                <li><strong>Potencia (\(1-\beta\)):</strong> probabilidad del contraste para detectar una diferencia real. Mejora con muestras mayores y efectos reales más grandes.</li>
-            </ul>
-        </section>
-
-        <section class="card content-card">
-            <h2>¿Por qué aquí se usa esta fórmula?</h2>
-            <p>Bajo \(H_0\), la variabilidad de \(\hat{p}\) viene dada por \(p_0(1-p_0)/n\). Por eso el denominador usa \(p_0\): estamos evaluando compatibilidad con la hipótesis nula concreta.</p>
-            <p>La aproximación normal es razonable cuando \(n p_0\) y \(n(1-p_0)\) son suficientemente grandes (regla práctica: al menos 5 o 10).</p>
-        </section>
-
-        <section class="card sample-size-panel">
+<section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
-                <p>Calcula z, p-valor y la decisión del contraste para una proporción.</p>
+                <p>Calculadora online que calcula z, p-valor y la decisión del contraste para una proporción.</p>
             </div>
 
             <div class="form-grid sample-grid">
@@ -106,30 +111,39 @@
                 <canvas id="propTestChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste de una proporción" role="img"></canvas>
             </div>
         </section>
+
+        
+
+        <section class="card content-card">
+            <h2>Contraste rápido</h2>
+            <p>Bajo \(H_0\), la variabilidad de \(\hat{p}\) viene dada por \(p_0(1-p_0)/n\). Por eso el denominador usa \(p_0\): estamos evaluando compatibilidad con la hipótesis nula concreta.</p>
+            <p>La aproximación normal es razonable cuando \(n p_0\) y \(n(1-p_0)\) son suficientemente grandes (regla práctica: al menos 5 o 10).</p>
+        </section>
     
-        <section id="seo-support-content" class="card content-card">
+                <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
-            <p>Esta calculadora devuelve el estadístico de contraste, p-valor y una conclusión básica para decidir si los datos son compatibles con la hipótesis nula.</p>
+            <p>Esta calculadora de contraste de hipótesis para una proporción estima el estadístico z, el p-valor y la decisión estadística al comparar una proporción observada con una proporción teórica \(p_0\). Es frecuente en encuestas, tasas de conversión y control de defectos.</p>
             <h2>Fórmula utilizada</h2>
-            <p>Se aplica el estadístico de prueba específico del contraste y se transforma en un p-valor según cola bilateral o unilateral y nivel de significación.</p>
+            <p>Se contrasta \(H_0: p=p_0\) usando aproximación normal para proporciones, con error estándar calculado bajo la hipótesis nula. El p-valor se obtiene según el tipo de cola seleccionado: bilateral, izquierda o derecha.</p>
             <h2>Ejemplo de uso</h2>
-            <p>Define hipótesis nula y alternativa, introduce los datos muestrales y selecciona α. Al calcular, obtendrás p-valor y regla de decisión para el contraste.</p>
+            <p>Si una web espera una conversión del 12%, puedes introducir éxitos y tamaño muestral para evaluar si el porcentaje real observado difiere significativamente de ese objetivo.</p>
             <h2>Cómo interpretar el resultado</h2>
-            <p>Si p-valor &lt; α, se rechaza H0. Si p-valor ≥ α, no hay evidencia suficiente para rechazar H0. La significación estadística no implica relevancia práctica.</p>
+            <p>Si p-valor &lt; α, hay evidencia de que la proporción poblacional no coincide con \(p_0\) (o es mayor/menor, según el contraste). Si p-valor ≥ α, no hay evidencia suficiente con la muestra analizada.</p>
             <section class="related-tools">
               <h2>Calculadoras relacionadas</h2>
               <ul>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste para una media</a></li>
-                <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para dos medias</a></li>
-                <li><a href="studentt.html">Distribución t de Student</a></li>
+                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste para dos proporciones</a></li>
+                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
+                <li><a href="binomial.html">Distribución binomial</a></li>
               </ul>
             </section>
             <h2>Preguntas frecuentes</h2>
             <ul>
-                <li><strong>¿Qué es la hipótesis nula?</strong> Es la afirmación de referencia que se intenta poner a prueba.</li>
-                <li><strong>¿Qué representa el p-valor?</strong> La compatibilidad de los datos observados con H0 bajo el modelo del contraste.</li>
-                <li><strong>¿Qué diferencia hay entre bilateral y unilateral?</strong> El bilateral evalúa diferencias en ambos sentidos y el unilateral en una sola dirección.</li>
-                <li><strong>¿Rechazar H0 implica efecto importante?</strong> No necesariamente; también debes valorar tamaño de efecto y contexto aplicado.</li>
+                <li><strong>¿Cuándo es válida la aproximación normal?</strong> Cuando el tamaño muestral permite esperar suficientes éxitos y fracasos bajo \(H_0\).</li>
+                <li><strong>¿Puedo usar porcentaje en lugar de proporción?</strong> Sí, pero conviértelo a escala 0–1 para el cálculo.</li>
+                <li><strong>¿Qué cola debo elegir?</strong> Bilateral si buscas cualquier diferencia; unilateral si solo te interesa aumento o disminución.</li>
+                <li><strong>¿Significativo equivale a importante?</strong> No siempre; valora también el tamaño del cambio en términos de negocio o impacto real.</li>
+                <li><strong>¿Aquí se distingue entre desviación muestral y poblacional?</strong> No de la misma forma que en medias. En proporciones el error estándar se construye con \(p_0\) (o con proporción combinada en dos proporciones), no con una \(\sigma\) introducida por el usuario.</li>
             </ul>
         </section>
 
