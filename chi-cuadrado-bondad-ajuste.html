@@ -7,6 +7,14 @@
     <meta name="description" content="Contraste para evaluar ajuste entre frecuencias empíricas y probabilidades teóricas en categorías mutuamente excluyentes.">
     <link rel="canonical" href="https://problabtools.es/chi-cuadrado-bondad-ajuste.html">
     <link rel="stylesheet" href="style_new.css?v=20260428-2">
+    <style>
+        .chart-caption {
+            margin-top: 0.75rem;
+            font-size: 0.88rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
 <div class="page-wrap">
@@ -84,6 +92,14 @@ window.MathJax = { tex: { inlineMath: [['\\(','\\)'], ['$', '$']] } };
 <button class="calculate-btn" id="calcBtn">Calcular contraste</button>
 <div id="result" class="result-box">Resultado pendiente…</div>
 <div class="chart-wrap"><canvas id="testChart" role="img" aria-label="Gráfico comparativo de p-valor y alpha"></canvas></div>
+            <p class="chart-caption">
+                El gráfico muestra dos barras comparativas: la barra en
+                <span style="color:#6366f1;font-weight:600">morado</span> representa el p-valor
+                obtenido del contraste y la barra en
+                <span style="color:#ef4444;font-weight:600">rojo</span> representa el nivel de
+                significación α. Si la barra del p-valor es más baja que la barra de α, el
+                estadístico cae en la zona de rechazo y se rechaza H₀.
+            </p>
 </section>
 <section class="card content-card"><h2>Contraste rápido</h2><p>Si el contraste es significativo, revisa qué categorías explican la discrepancia mediante residuos estandarizados.</p><p>Ajusta grados de libertad cuando parámetros del modelo se estiman con la muestra.</p></section>
 <section id="seo-support-content" class="card content-card"><h2>¿Qué calcula esta herramienta?</h2><p>La herramienta estructura el análisis del contraste: toma un estadístico observado, compara el p-valor frente a α y devuelve una conclusión operativa reproducible para informes técnicos, TFG/TFM o análisis aplicados en negocio y salud.</p><h2>Cómo interpretar el resultado</h2><p>Si p-valor &lt; α, se rechaza \(H_0\). Si p-valor ≥ α, no hay evidencia suficiente para rechazar \(H_0\). Además de la significación, reporta tamaño del efecto e intervalo de confianza cuando sea posible.</p><section class="related-tools"><h2>Calculadoras relacionadas</h2><ul><li><a href="chisquare.html">Distribución chi-cuadrado</a></li><li><a href="binomial.html">Distribución binomial</a></li></ul></section><h2>Preguntas frecuentes</h2><ul><li><strong>¿Hace falta tamaño mínimo por celda?</strong> Sí, evitar esperadas muy bajas mejora validez.</li><li><strong>¿Se puede usar con categorías ordenadas?</strong> Sí, aunque puede interesar contraste de tendencia.</li></ul></section>
