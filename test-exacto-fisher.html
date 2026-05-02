@@ -56,6 +56,12 @@
             border-radius: 4px;
             font-size: 0.95rem;
         }
+        .chart-caption {
+            margin-top: 0.75rem;
+            font-size: 0.88rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
     </style>
 </head>
 
@@ -162,6 +168,15 @@
             <div class="chart-wrap">
                 <canvas id="fisherChart" aria-label="Distribución hipergeométrica del test exacto de Fisher" role="img"></canvas>
             </div>
+            <p class="chart-caption">
+                El gráfico muestra la función de probabilidad de la distribución hipergeométrica:
+                cada barra representa la probabilidad exacta de que la celda <em>a</em> tome el
+                valor <em>k</em>, dados los márgenes fijos de la tabla. Las barras en
+                <span style="color:#dc2626;font-weight:600">rojo</span> son las que contribuyen al
+                p-valor (las más extremas según el tipo de contraste); la barra en
+                <span style="color:#d97706;font-weight:600">naranja</span> marca el valor observado.
+                El p-valor es la suma de las probabilidades rojas.
+            </p>
         </section>
 
         <section class="card content-card">
