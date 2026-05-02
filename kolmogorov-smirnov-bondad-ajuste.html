@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Calculadora de Kolmogorov–Smirnov (bondad de ajuste) | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Test no paramétrico basado en la distancia máxima entre CDF empírica y teórica.">
+    <meta name="description" content="Prueba no paramétrica para evaluar si una muestra continua sigue una distribución especificada.">
     <link rel="canonical" href="https://problabtools.es/kolmogorov-smirnov-bondad-ajuste.html">
     <link rel="stylesheet" href="style_new.css?v=20260428-2">
 </head>
@@ -13,57 +13,37 @@
 <header class="hero">
     <p class="eyebrow">Contrastes de hipótesis</p>
     <h1>Calculadora de Kolmogorov–Smirnov (bondad de ajuste)</h1>
-    <p class="hero-subtitle">Contrasta si una muestra continua sigue una distribución teórica.</p>
+    <p class="hero-subtitle">Mide distancia máxima entre CDF empírica y teórica.</p>
     <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Volver a contrastes</a></p>
 </header>
 <main>
-    <section class="card content-card">
-        <h2>Descripción</h2>
-        <p>Test no paramétrico basado en la distancia máxima entre CDF empírica y teórica.</p>
-        <h2>Hipótesis y estadístico</h2>
-        <p>\(H_0\): la muestra sigue la distribución teórica; \(H_1\): no la sigue.</p>
-        <p class="formula-line">\(D=\sup_x |F_n(x)-F_0(x)|\).</p>
-    </section>
-
-    <section class="card sample-size-panel">
-        <div class="panel-heading">
-            <h2>Calculadora</h2>
-            <p>Introduce tus datos para obtener estadístico, p-valor y decisión del contraste.</p>
-        </div>
-        <div class="form-grid sample-grid">
-                    <div class="form-group"><label for="n">Tamaño muestral (n)</label><input type="number" id="n" value="50" step="1"></div>
-                    <div class="form-group"><label for="d">Estadístico D observado</label><input type="number" id="d" value="0.12" step="0.001"></div>
-                    <div class="form-group"><label for="dcrit">Valor crítico Dα</label><input type="number" id="dcrit" value="0.19" step="0.001"></div>
-            <div class="form-group"><label for="alpha">Nivel de significación (α)</label><input type="number" id="alpha" value="0.05" step="0.001"></div>
-        </div>
-        <button class="calculate-btn">Calcular contraste</button>
-        <div class="result-box">Resultado pendiente…</div>
-    </section>
-
-    <section class="card content-card">
-        <h2>Contraste rápido</h2>
-        <p>No depende de clases, pero si parámetros se estiman con la muestra hay que usar ajustes (Lilliefors).</p>
-    </section>
-
-    <section id="seo-support-content" class="card content-card">
-        <h2>¿Qué calcula esta herramienta?</h2>
-        <p>Esta página está preparada con el mismo esquema que el resto de contrastes de ProbLab e incluye una sección de calculadora para introducir datos y estructurar el análisis.</p>
-        <h2>Cómo interpretar el resultado</h2>
-        <p>Si p-valor &lt; α, se rechaza \(H_0\). Si p-valor ≥ α, no hay evidencia suficiente para rechazar \(H_0\).</p>
-        <section class="related-tools">
-            <h2>Calculadoras relacionadas</h2>
-            <ul>
-                <li><a href="normal.html">Distribución normal</a></li>
-                <li><a href="shapiro-wilk-normalidad.html">Shapiro–Wilk</a></li>
-            </ul>
-        </section>
-        <h2>Preguntas frecuentes</h2>
-        <ul>
-                <li><strong>¿Es paramétrico?</strong> No, es no paramétrico.</li>
-                <li><strong>¿Se puede usar para normalidad?</strong> Sí, aunque con ajuste de Lilliefors si parámetros se estiman.</li>
-        </ul>
-    </section>
-</main>
+<section class="card content-card">
+<h2>Descripción</h2>
+<p>Se basa en la distancia máxima \(D\), sin necesidad de agrupar en clases.</p>
+<p>Es útil para detectar desviaciones globales de forma intuitiva y visualizable con CDF empírica.</p>
+<h2>Hipótesis y estadístico</h2>
+<p class="formula-line">\(H_0\): la muestra sigue la distribución teórica</p>
+<p class="formula-line">\(H_1\): no la sigue</p>
+<p class="formula-line">\(D=\sup_x |F_n(x)-F_0(x)|\)</p>
+</section>
+<section class="card sample-size-panel">
+<div class="panel-heading"><h2>Calculadora</h2><p>Introduce un estadístico observado y, si ya lo tienes, un p-valor para obtener decisión y gráfico de contraste.</p></div>
+<div class="form-grid sample-grid">
+<div class="inline-inputs"><div class="form-group"><label for="stat">Estadístico observado</label><input type="number" id="stat" value="0.18" step="0.001"></div><div class="form-group"><label for="pval">p-valor (opcional)</label><input type="number" id="pval" value="0.072" step="0.0001" min="0" max="1"></div></div>
+<div class="inline-inputs"><div class="form-group"><label for="alpha">Nivel de significación (α)</label><input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2"></div><div class="form-group"><label for="tail">Tipo de contraste</label><select id="tail"><option value="two">Bilateral</option><option value="right">Cola derecha</option><option value="left">Cola izquierda</option></select></div></div>
 </div>
-</body>
-</html>
+<button class="calculate-btn" id="calcBtn">Calcular contraste</button>
+<div id="result" class="result-box">Resultado pendiente…</div>
+<div class="chart-wrap"><canvas id="testChart" role="img" aria-label="Gráfico comparativo de p-valor y alpha"></canvas></div>
+</section>
+<section class="card content-card"><h2>Contraste rápido</h2><p>Si no es significativo, el ajuste puede considerarse razonable para ese tamaño muestral.</p><p>Si parámetros se estiman con la muestra, aplica correcciones tipo Lilliefors.</p></section>
+<section id="seo-support-content" class="card content-card"><h2>¿Qué calcula esta herramienta?</h2><p>La herramienta estructura el análisis del contraste: toma un estadístico observado, compara el p-valor frente a α y devuelve una conclusión operativa reproducible para informes técnicos, TFG/TFM o análisis aplicados en negocio y salud.</p><h2>Cómo interpretar el resultado</h2><p>Si p-valor &lt; α, se rechaza \(H_0\). Si p-valor ≥ α, no hay evidencia suficiente para rechazar \(H_0\). Además de la significación, reporta tamaño del efecto e intervalo de confianza cuando sea posible.</p><section class="related-tools"><h2>Calculadoras relacionadas</h2><ul><li><a href="normal.html">Distribución normal</a></li><li><a href="shapiro-wilk-normalidad.html">Shapiro–Wilk</a></li></ul></section><h2>Preguntas frecuentes</h2><ul><li><strong>¿Es sensible en colas?</strong> Menos que otros tests específicos de colas.</li><li><strong>¿Sirve para datos discretos?</strong> Está pensado para variables continuas.</li></ul></section>
+</main></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>let c;function draw(alpha,pv){const ctx=document.getElementById('testChart');if(c)c.destroy();c=new Chart(ctx,{type:'bar',data:{labels:['p-valor','α'],datasets:[{data:[pv,alpha],backgroundColor:['#6366f1','#ef4444']}]},options:{plugins:{legend:{display:false}},scales:{y:{min:0,max:1}}}});}
+document.getElementById('calcBtn').addEventListener('click',()=>{const a=parseFloat(document.getElementById('alpha').value);let p=parseFloat(document.getElementById('pval').value);const stat=Math.abs(parseFloat(document.getElementById('stat').value)||0);const tail=document.getElementById('tail').value;if(Number.isNaN(p)){let z=stat;if(tail==='two')p=2*(1-0.5*(1+erf(z/Math.sqrt(2))));else p=1-0.5*(1+erf(z/Math.sqrt(2)));}p=Math.max(0,Math.min(1,p));const dec=p<a?'Se rechaza H₀':'No se rechaza H₀';document.getElementById('result').innerHTML=`Estadístico: <strong>${stat.toFixed(4)}</strong><br>p-valor: <strong>${p.toFixed(4)}</strong><br>Decisión (α=${a}): <strong>${dec}</strong>`;draw(a,p);});
+function erf(x){const sign=x>=0?1:-1;x=Math.abs(x);const a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911;const t=1/(1+p*x);const y=1-(((((a5*t+a4)*t)+a3)*t+a2)*t+a1)*t*Math.exp(-x*x);return sign*y;}
+</script>
+<script>window.MathJax={tex:{inlineMath:[['\(','\)'],['$','$']]}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body></html>

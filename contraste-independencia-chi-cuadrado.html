@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Calculadora de chi-cuadrado de independencia | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contraste para verificar si dos variables categóricas son independientes o muestran asociación estadística.">
+    <meta name="description" content="Contraste para determinar si dos variables cualitativas son independientes en población.">
     <link rel="canonical" href="https://problabtools.es/contraste-independencia-chi-cuadrado.html">
     <link rel="stylesheet" href="style_new.css?v=20260428-2">
 </head>
@@ -13,57 +13,38 @@
 <header class="hero">
     <p class="eyebrow">Contrastes de hipótesis</p>
     <h1>Calculadora de chi-cuadrado de independencia</h1>
-    <p class="hero-subtitle">Evalúa asociación entre dos variables categóricas en tablas de contingencia.</p>
+    <p class="hero-subtitle">Evalúa asociación entre dos variables categóricas.</p>
     <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Volver a contrastes</a></p>
 </header>
 <main>
-    <section class="card content-card">
-        <h2>Descripción</h2>
-        <p>Contraste para verificar si dos variables categóricas son independientes o muestran asociación estadística.</p>
-        <h2>Hipótesis y estadístico</h2>
-        <p>\(H_0\): independencia entre variables; \(H_1\): asociación.</p>
-        <p class="formula-line">\(\chi^2=\sumrac{(O-E)^2}{E}\).</p>
-    </section>
-
-    <section class="card sample-size-panel">
-        <div class="panel-heading">
-            <h2>Calculadora</h2>
-            <p>Introduce tus datos para obtener estadístico, p-valor y decisión del contraste.</p>
-        </div>
-        <div class="form-grid sample-grid">
-                    <div class="form-group"><label for="o11">Frecuencia O11</label><input type="number" id="o11" value="30" step="1"></div>
-                    <div class="form-group"><label for="e11">Frecuencia esperada E11</label><input type="number" id="e11" value="22" step="0.01"></div>
-                    <div class="form-group"><label for="gl">Grados de libertad</label><input type="number" id="gl" value="4" step="1"></div>
-            <div class="form-group"><label for="alpha">Nivel de significación (α)</label><input type="number" id="alpha" value="0.05" step="0.001"></div>
-        </div>
-        <button class="calculate-btn">Calcular contraste</button>
-        <div class="result-box">Resultado pendiente…</div>
-    </section>
-
-    <section class="card content-card">
-        <h2>Contraste rápido</h2>
-        <p>Si hay muchas celdas con frecuencias esperadas bajas, conviene usar alternativas exactas o reagrupar categorías.</p>
-    </section>
-
-    <section id="seo-support-content" class="card content-card">
-        <h2>¿Qué calcula esta herramienta?</h2>
-        <p>Esta página está preparada con el mismo esquema que el resto de contrastes de ProbLab e incluye una sección de calculadora para introducir datos y estructurar el análisis.</p>
-        <h2>Cómo interpretar el resultado</h2>
-        <p>Si p-valor &lt; α, se rechaza \(H_0\). Si p-valor ≥ α, no hay evidencia suficiente para rechazar \(H_0\).</p>
-        <section class="related-tools">
-            <h2>Calculadoras relacionadas</h2>
-            <ul>
-                <li><a href="test-exacto-fisher.html">Test exacto de Fisher</a></li>
-                <li><a href="chisquare.html">Distribución chi-cuadrado</a></li>
-            </ul>
-        </section>
-        <h2>Preguntas frecuentes</h2>
-        <ul>
-                <li><strong>¿Para qué tablas sirve?</strong> Para tablas RxC con frecuencias esperadas razonables.</li>
-                <li><strong>¿Cuándo usar Fisher?</strong> En tablas 2x2 con tamaño pequeño o esperadas bajas.</li>
-        </ul>
-    </section>
-</main>
-</div>
+<section class="card content-card">
+<h2>Descripción</h2>
+<p>Se compara lo observado en la tabla de contingencia con lo esperado bajo independencia.</p>
+<p>Es un test central en epidemiología, marketing y ciencias sociales para estudiar asociación categórica.</p>
+<h2>Hipótesis y estadístico</h2>
+<p class="formula-line">\(H_0\): independencia entre variables</p>
+<p class="formula-line">\(H_1\): asociación</p>
+<p class="formula-line">\(\chi^2=\sum rac{(O-E)^2}{E}\)</p>
+</section>
+<section class="card sample-size-panel">
+<div class="panel-heading"><h2>Calculadora</h2><p>Introduce un estadístico observado y, si ya lo tienes, un p-valor para obtener decisión y gráfico de contraste.</p></div>
+<div class="form-grid sample-grid">
+<div class="inline-inputs"><div class="form-group"><label for="stat">Estadístico observado</label><input type="number" id="stat" value="5.40" step="0.001"></div><div class="form-group"><label for="pval">p-valor (opcional)</label><input type="number" id="pval" value="0.020" step="0.0001" min="0" max="1"></div></div>
+<div class="inline-inputs"><div class="form-group"><label for="alpha">Nivel de significación (α)</label><input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2"></div><div class="form-group"><label for="tail">Tipo de contraste</label><select id="tail"><option value="two">Bilateral</option><option value="right">Cola derecha</option><option value="left">Cola izquierda</option></select></div></div>
+<button class="calculate-btn" id="calcBtn">Calcular contraste</button>
+<div id="result" class="result-box">Resultado pendiente…</div>
+<div class="chart-wrap"><canvas id="testChart" role="img" aria-label="Gráfico comparativo de p-valor y alpha"></canvas></div>
+</section>
+<section class="card content-card"><h2>Contraste rápido</h2><p>Si p es pequeño, hay evidencia de asociación; después conviene mirar residuos y tamaño del efecto (V de Cramér).</p><p>En 2×2 con esperadas bajas, Fisher exacto suele ser mejor opción.</p></section>
+<section id="seo-support-content" class="card content-card"><h2>¿Qué calcula esta herramienta?</h2><p>La herramienta estructura el análisis del contraste: toma un estadístico observado, compara el p-valor frente a α y devuelve una conclusión operativa reproducible para informes técnicos, TFG/TFM o análisis aplicados en negocio y salud.</p><h2>Cómo interpretar el resultado</h2><p>Si p-valor &lt; α, se rechaza \(H_0\). Si p-valor ≥ α, no hay evidencia suficiente para rechazar \(H_0\). Además de la significación, reporta tamaño del efecto e intervalo de confianza cuando sea posible.</p><section class="related-tools"><h2>Calculadoras relacionadas</h2><ul><li><a href="test-exacto-fisher.html">Test exacto de Fisher</a></li><li><a href="chisquare.html">Distribución chi-cuadrado</a></li></ul></section><h2>Preguntas frecuentes</h2><ul><li><strong>¿Sirve para causalidad?</strong> No, detecta asociación, no causa.</li><li><strong>¿Qué tamaño de efecto usar?</strong> V de Cramér o Phi en 2×2.</li></ul></section>
+</main></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>let c;function draw(alpha,pv){const ctx=document.getElementById('testChart');if(c)c.destroy();c=new Chart(ctx,{type:'bar',data:{labels:['p-valor','α'],datasets:[{data:[pv,alpha],backgroundColor:['#6366f1','#ef4444']}]},options:{plugins:{legend:{display:false}},scales:{y:{min:0,max:1}}}});}
+document.getElementById('calcBtn').addEventListener('click',()=>{const a=parseFloat(document.getElementById('alpha').value);let p=parseFloat(document.getElementById('pval').value);const stat=Math.abs(parseFloat(document.getElementById('stat').value)||0);const tail=document.getElementById('tail').value;if(Number.isNaN(p)){let z=stat;if(tail==='two')p=2*(1-0.5*(1+erf(z/Math.sqrt(2))));else p=1-0.5*(1+erf(z/Math.sqrt(2)));}p=Math.max(0,Math.min(1,p));const dec=p<a?'Se rechaza H₀':'No se rechaza H₀';document.getElementById('result').innerHTML=`Estadístico: <strong>${stat.toFixed(4)}</strong><br>p-valor: <strong>${p.toFixed(4)}</strong><br>Decisión (α=${a}): <strong>${dec}</strong>`;draw(a,p);});
+function erf(x){const sign=x>=0?1:-1;x=Math.abs(x);const a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911;const t=1/(1+p*x);const y=1-(((((a5*t+a4)*t)+a3)*t+a2)*t+a1)*t*Math.exp(-x*x);return sign*y;}
+</script>
+<script>window.MathJax={tex:{inlineMath:[['\(','\)'],['$','$']]}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body></html>
 </body>
 </html>
