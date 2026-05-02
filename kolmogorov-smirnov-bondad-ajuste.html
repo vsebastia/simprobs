@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Kolmogorov-Smirnov de bondad de ajuste | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Test de Kolmogorov-Smirnov de bondad de ajuste para evaluar si una muestra sigue una distribución teórica continua especificada.">
+    <link rel="canonical" href="https://problabtools.es/kolmogorov-smirnov-bondad-ajuste.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de Kolmogorov-Smirnov de bondad de ajuste | ProbLab">
+    <meta property="og:description" content="Test de Kolmogorov-Smirnov de bondad de ajuste para verificar si datos continuos siguen una distribución teórica.">
+    <meta property="og:url" content="https://problabtools.es/kolmogorov-smirnov-bondad-ajuste.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de Kolmogorov-Smirnov de bondad de ajuste",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/kolmogorov-smirnov-bondad-ajuste.html",
+      "description": "Herramienta para contrastar si una muestra de datos continuos sigue una distribución teórica especificada mediante el test de Kolmogorov-Smirnov.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+
+    <link rel="stylesheet" href="style_new.css?v=20260428-2">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora de Kolmogorov-Smirnov de bondad de ajuste</h1>
+        <p class="hero-subtitle">Evalúa si una muestra de datos sigue una distribución teórica continua especificada.</p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    </header>
+
+    <main>
+
+        <section class="card content-card">
+            <h2>Descripción</h2>
+
+            <p>
+                El test de Kolmogorov-Smirnov de bondad de ajuste (test KS) permite evaluar si una
+                muestra de datos proviene de una distribución de probabilidad continua previamente
+                especificada. A diferencia del chi-cuadrado de bondad de ajuste, no requiere agrupar
+                los datos en intervalos y trabaja directamente con los valores individuales de la
+                muestra, lo que lo hace especialmente adecuado para distribuciones continuas.
+            </p>
+
+            <p>
+                La idea central es comparar la función de distribución empírica \(F_n(x)\) —la
+                proporción de observaciones menores o iguales que \(x\)— con la función de
+                distribución teórica \(F_0(x)\) bajo la hipótesis nula. El estadístico de contraste
+                es la máxima discrepancia en valor absoluto entre ambas funciones.
+            </p>
+
+            <p>
+                Por ejemplo, si se registran los tiempos de respuesta de 25 servidores y se quiere
+                saber si siguen una distribución Exponencial con tasa λ = 0,5, el test KS cuantifica
+                cuánto se aleja la distribución empírica de esa Exponencial y calcula la probabilidad
+                de que esa diferencia sea atribuible al azar de muestreo.
+            </p>
+
+            <p>
+                El estadístico \(D_n\) sigue la distribución de Kolmogorov bajo la hipótesis nula
+                cuando los parámetros de la distribución son conocidos y no se estiman con los propios
+                datos. El test es siempre bilateral: detecta cualquier tipo de desviación respecto al
+                modelo teórico, en cualquier región de la distribución.
+            </p>
+
+            <p class="formula-line">\(H_0\): la muestra proviene de la distribución teórica \(F_0\)</p>
+            <p class="formula-line">\(H_1\): la muestra no proviene de \(F_0\)</p>
+            <p class="formula-line">
+                \(D_n = \sup_x \left| F_n(x) - F_0(x) \right|\)
+            </p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los datos de la muestra separados por comas, selecciona la distribución teórica e introduce sus parámetros conocidos.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="form-group">
+                    <label for="sampleData">Datos de la muestra</label>
+                    <input type="text" id="sampleData" value="165, 170, 172, 168, 175, 160, 180, 163, 171, 169">
+                </div>
+
+                <div class="form-group">
+                    <label for="distType">Distribución teórica</label>
+                    <select id="distType">
+                        <option value="normal">Normal</option>
+                        <option value="uniform">Uniforme</option>
+                        <option value="exponential">Exponencial</option>
+                    </select>
+                </div>
+
+                <div id="paramsNormal" class="inline-inputs">
+                    <div class="form-group">
+                        <label for="paramMu">Media (μ)</label>
+                        <input type="number" id="paramMu" value="170" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label for="paramSigma">Desviación típica (σ)</label>
+                        <input type="number" id="paramSigma" value="7" min="0.001" step="any">
+                    </div>
+                </div>
+
+                <div id="paramsUniform" class="inline-inputs" style="display:none">
+                    <div class="form-group">
+                        <label for="paramA">Mínimo (a)</label>
+                        <input type="number" id="paramA" value="0" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label for="paramB">Máximo (b)</label>
+                        <input type="number" id="paramB" value="1" step="any">
+                    </div>
+                </div>
+
+                <div id="paramsExp" class="inline-inputs" style="display:none">
+                    <div class="form-group">
+                        <label for="paramLambda">Tasa (λ)</label>
+                        <input type="number" id="paramLambda" value="1" min="0.001" step="any">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcKsBtn">Calcular contraste</button>
+            <div id="ksResult" class="result-box">Resultado pendiente…</div>
+            <div id="ksTable" class="result-box" style="margin-top:12px;"></div>
+            <div class="chart-wrap">
+                <canvas id="ksChart" aria-label="Gráfico de funciones de distribución empírica y teórica para el test de Kolmogorov-Smirnov" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Contraste rápido</h2>
+
+            <p>
+                Se ordenan los datos de menor a mayor: \(x_{(1)} \leq x_{(2)} \leq \cdots \leq x_{(n)}\).
+                La función de distribución empírica \(F_n\) es la función escalonada que salta en
+                \(1/n\) en cada observación. El estadístico \(D_n\) mide la máxima distancia entre
+                \(F_n\) y la distribución teórica \(F_0\), considerando tanto el valor justo antes
+                como justo después de cada salto:
+            </p>
+
+            <p class="formula-line">
+                \(D_n = \max_{1 \leq i \leq n}\left\{ \left|\frac{i}{n} - F_0(x_{(i)})\right|,\, \left|\frac{i-1}{n} - F_0(x_{(i)})\right| \right\}\)
+            </p>
+
+            <p>
+                Bajo \(H_0\), la distribución de \(\sqrt{n}\,D_n\) converge a la distribución de
+                Kolmogorov. El p-valor se obtiene mediante la fórmula asintótica:
+            </p>
+
+            <p class="formula-line">
+                \(p \approx 2\sum_{k=1}^{\infty}(-1)^{k-1}\exp\!\left(-2k^2 n D_n^2\right)\)
+            </p>
+
+            <p>
+                Esta aproximación es fiable para \(n \geq 20\). Con muestras más pequeñas, el
+                p-valor es aproximado y conviene interpretar los resultados con cautela. Si los
+                parámetros de la distribución se han estimado con los propios datos (en lugar de
+                ser conocidos de antemano), los p-valores calculados con esta fórmula son
+                demasiado grandes: el test resulta conservador. En ese caso, para normalidad
+                se recomienda el test de Lilliefors; para otras distribuciones, existen
+                variantes análogas con correcciones específicas.
+            </p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+
+            <p>
+                Esta calculadora recibe los valores individuales de la muestra, la distribución
+                teórica elegida (Normal, Uniforme o Exponencial) con sus parámetros conocidos, y
+                el nivel de significación. Ordena los datos, calcula la función de distribución
+                empírica y la teórica en cada punto muestral, obtiene el estadístico \(D_n\) y el
+                p-valor aproximado mediante la distribución de Kolmogorov, y emite una decisión
+                de contraste automática.
+            </p>
+
+            <p>
+                También muestra una tabla con los valores ordenados, las probabilidades acumuladas
+                empíricas y teóricas en cada punto, y la discrepancia \(|F_n - F_0|\). El gráfico
+                superpone la función escalonada empírica y la curva teórica, con una línea roja que
+                marca la máxima separación \(D_n\).
+            </p>
+
+            <h2>Fórmulas utilizadas</h2>
+
+            <p>
+                Para la distribución <strong>Normal(\(\mu, \sigma\))</strong>:
+            </p>
+            <p class="formula-line">
+                \(F_0(x) = \Phi\!\left(\frac{x-\mu}{\sigma}\right) = \frac{1}{2}\!\left[1 + \mathrm{erf}\!\left(\frac{x-\mu}{\sigma\sqrt{2}}\right)\right]\)
+            </p>
+
+            <p>
+                Para la distribución <strong>Uniforme(\(a, b\))</strong>:
+            </p>
+            <p class="formula-line">
+                \(F_0(x) = \frac{x - a}{b - a}, \quad a \leq x \leq b\)
+            </p>
+
+            <p>
+                Para la distribución <strong>Exponencial(\(\lambda\))</strong>:
+            </p>
+            <p class="formula-line">
+                \(F_0(x) = 1 - e^{-\lambda x}, \quad x \geq 0\)
+            </p>
+
+            <h2>Ejemplo de uso</h2>
+
+            <p>
+                Un investigador mide la presión arterial sistólica (en mmHg) de 12 pacientes:
+                118, 122, 130, 115, 128, 125, 119, 135, 121, 127, 124, 131. Quiere contrastar
+                si estos valores son compatibles con una distribución Normal con media 125 y
+                desviación típica 6 (parámetros de referencia conocidos de estudios previos).
+                Introduce los datos, selecciona «Normal», indica μ = 125 y σ = 6, fija α = 0,05
+                y pulsa calcular. El test indicará si hay evidencia para rechazar el modelo
+                Normal propuesto.
+            </p>
+
+            <p>
+                En ingeniería de fiabilidad, el test KS se usa frecuentemente para contrastar si
+                los tiempos de fallo siguen una distribución Exponencial o Weibull con parámetros
+                de diseño. En ciencias naturales y sociales se emplea para verificar el supuesto
+                de normalidad cuando los parámetros son conocidos de antemano, o para comparar
+                distribuciones de tiempos de espera con un modelo Exponencial teórico.
+            </p>
+
+            <h2>Cómo interpretar el resultado</h2>
+
+            <p>
+                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay
+                evidencia estadística de que los datos no provienen de la distribución teórica
+                especificada. Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia
+                suficiente para rechazar el modelo con ese nivel de significación.
+            </p>
+
+            <p>
+                El gráfico de las funciones de distribución permite identificar en qué zona de
+                valores se produce la mayor discrepancia. La línea roja vertical marca el punto de
+                máxima separación \(D_n\): si se sitúa en la cola izquierda, los datos tienen menos
+                masa de la esperada en valores bajos; si aparece en la cola derecha, lo contrario.
+            </p>
+
+            <p>
+                Un no rechazo de \(H_0\) no significa que los datos «sean» de la distribución
+                elegida: solo indica que son compatibles con ese modelo al nivel de significación
+                elegido. Con muestras pequeñas, el test tiene poca potencia para detectar
+                desviaciones moderadas.
+            </p>
+
+            <section class="related-tools">
+                <h2>Calculadoras relacionadas</h2>
+                <ul>
+                    <li><a href="chi-cuadrado-bondad-ajuste.html">Chi-cuadrado de bondad de ajuste</a></li>
+                    <li><a href="normal.html">Distribución normal</a></li>
+                    <li><a href="exponential.html">Distribución exponencial</a></li>
+                    <li><a href="uniform.html">Distribución uniforme</a></li>
+                    <li><a href="contrastes-hipotesis/">Contrastes de hipótesis</a></li>
+                </ul>
+            </section>
+
+            <h2>Preguntas frecuentes</h2>
+
+            <ul>
+                <li>
+                    <strong>¿Cuándo usar el test KS en lugar del chi-cuadrado de bondad de ajuste?</strong>
+                    El test KS es preferible para distribuciones continuas y muestras no muy grandes,
+                    porque no requiere agrupar datos en intervalos y es más potente en ese contexto.
+                    El chi-cuadrado es más adecuado para datos categóricos o cuando se trabaja con
+                    grandes muestras de datos continuos previamente agrupados.
+                </li>
+                <li>
+                    <strong>¿Qué ocurre si estimo los parámetros con los propios datos?</strong>
+                    Si los parámetros de la distribución teórica se estiman con la misma muestra,
+                    el test KS estándar es conservador: los p-valores son mayores de lo que deberían,
+                    lo que reduce la potencia. Para normalidad con parámetros estimados usa el test
+                    de Lilliefors; para otras distribuciones existen variantes análogas.
+                </li>
+                <li>
+                    <strong>¿El test KS funciona para distribuciones discretas?</strong>
+                    No está diseñado para distribuciones discretas. Con ellas, la distribución del
+                    estadístico \(D_n\) bajo \(H_0\) cambia y la aproximación de Kolmogorov es
+                    inexacta. Para datos discretos (recuentos por categoría), usa el
+                    chi-cuadrado de bondad de ajuste.
+                </li>
+                <li>
+                    <strong>¿Cuántas observaciones se necesitan?</strong>
+                    Para que la aproximación asintótica del p-valor sea fiable se recomienda
+                    \(n \geq 20\). Con muestras más pequeñas el p-valor es aproximado y la
+                    potencia para detectar desviaciones moderadas es baja.
+                </li>
+                <li>
+                    <strong>¿El test es siempre bilateral?</strong>
+                    Sí. El estadístico \(D_n = \sup|F_n - F_0|\) mide la máxima discrepancia en
+                    cualquier dirección, de modo que el test detecta tanto exceso como defecto de
+                    masa respecto al modelo teórico en cualquier región. No existe una versión
+                    estándar unilateral del test KS de una muestra.
+                </li>
+                <li>
+                    <strong>¿Qué diferencia hay con el test KS de dos muestras?</strong>
+                    El test de una muestra (bondad de ajuste) compara los datos con una distribución
+                    teórica completamente especificada. El test de dos muestras contrasta si dos
+                    muestras independientes provienen de la misma distribución, sin necesidad de
+                    especificar cuál es esa distribución.
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = {
+    tex: { inlineMath: [['\\(','\\)'], ['$', '$']] },
+    startup: {
+        ready: () => {
+            MathJax.startup.defaultReady();
+            MathJax.typesetPromise();
+        }
+    }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let ksChart;
+
+document.getElementById('distType').addEventListener('change', function(){
+    const v = this.value;
+    document.getElementById('paramsNormal').style.display = v === 'normal' ? '' : 'none';
+    document.getElementById('paramsUniform').style.display = v === 'uniform' ? '' : 'none';
+    document.getElementById('paramsExp').style.display = v === 'exponential' ? '' : 'none';
+});
+
+function erf(x){
+    const sign = x >= 0 ? 1 : -1;
+    x = Math.abs(x);
+    const a1=0.254829592, a2=-0.284496736, a3=1.421413741, a4=-1.453152027, a5=1.061405429, p=0.3275911;
+    const t = 1 / (1 + p * x);
+    const y = 1 - (((((a5*t+a4)*t)+a3)*t+a2)*t+a1)*t*Math.exp(-x*x);
+    return sign * y;
+}
+
+function getCDFFunction(distType){
+    if(distType === 'normal'){
+        const mu = parseFloat(document.getElementById('paramMu').value);
+        const sigma = parseFloat(document.getElementById('paramSigma').value);
+        if(!Number.isFinite(mu)) throw new Error('Introduce un valor válido para μ.');
+        if(!Number.isFinite(sigma) || sigma <= 0) throw new Error('La desviación típica (σ) debe ser un número positivo.');
+        return x => 0.5 * (1 + erf((x - mu) / (sigma * Math.SQRT2)));
+    }
+    if(distType === 'uniform'){
+        const a = parseFloat(document.getElementById('paramA').value);
+        const b = parseFloat(document.getElementById('paramB').value);
+        if(!Number.isFinite(a) || !Number.isFinite(b)) throw new Error('Introduce valores válidos para a y b.');
+        if(b <= a) throw new Error('El máximo (b) debe ser mayor que el mínimo (a).');
+        return x => {
+            if(x <= a) return 0;
+            if(x >= b) return 1;
+            return (x - a) / (b - a);
+        };
+    }
+    if(distType === 'exponential'){
+        const lambda = parseFloat(document.getElementById('paramLambda').value);
+        if(!Number.isFinite(lambda) || lambda <= 0) throw new Error('La tasa (λ) debe ser un número positivo.');
+        return x => x <= 0 ? 0 : 1 - Math.exp(-lambda * x);
+    }
+    throw new Error('Distribución no soportada.');
+}
+
+function kolmogorovPValue(n, d){
+    if(d <= 0) return 1;
+    if(d >= 1) return 0;
+    const nd2 = n * d * d;
+    let sum = 0;
+    for(let k = 1; k <= 150; k++){
+        const term = Math.pow(-1, k - 1) * Math.exp(-2 * k * k * nd2);
+        sum += term;
+        if(Math.abs(term) < 1e-13) break;
+    }
+    return Math.min(1, Math.max(0, 2 * sum));
+}
+
+function parseValues(raw){
+    return raw.trim().split(/[\s,;]+/).map(Number).filter(v => raw.trim() !== '' && !isNaN(v));
+}
+
+function renderKSChart(sortedData, getCDF, maxDiffX, fnAtMax, f0AtMax, Dn){
+    const ctx = document.getElementById('ksChart');
+    if(!ctx) return;
+
+    const n = sortedData.length;
+    const xMin = sortedData[0];
+    const xMax = sortedData[n - 1];
+    const range = Math.max(xMax - xMin, 1e-6);
+    const padL = range * 0.12;
+    const padR = range * 0.12;
+    const xL = xMin - padL;
+    const xR = xMax + padR;
+
+    // Empirical CDF: step function with stepped:'after'
+    // Points at (xL,0) then (x_i, i/n) for each observation
+    const empiricalData = [{x: xL, y: 0}];
+    for(let i = 0; i < n; i++) empiricalData.push({x: sortedData[i], y: (i + 1) / n});
+    empiricalData.push({x: xR, y: 1});
+
+    // Theoretical CDF: smooth curve
+    const steps = 300;
+    const theoreticalData = [];
+    for(let i = 0; i <= steps; i++){
+        const x = xL + i * (xR - xL) / steps;
+        theoreticalData.push({x, y: getCDF(x)});
+    }
+
+    // Dn segment: vertical line at the point of maximum discrepancy
+    const dnLine = [
+        {x: maxDiffX, y: Math.min(fnAtMax, f0AtMax)},
+        {x: maxDiffX, y: Math.max(fnAtMax, f0AtMax)}
+    ];
+
+    if(ksChart) ksChart.destroy();
+    ksChart = new Chart(ctx, {
+        type: 'line',
+        data: {datasets: [
+            {
+                label: 'CDF empírica Fₙ(x)',
+                data: empiricalData,
+                borderColor: '#1d4ed8',
+                borderWidth: 2,
+                pointRadius: 2,
+                pointBackgroundColor: '#1d4ed8',
+                fill: false,
+                parsing: false,
+                stepped: 'after'
+            },
+            {
+                label: 'CDF teórica F₀(x)',
+                data: theoreticalData,
+                borderColor: '#16a34a',
+                borderWidth: 2,
+                pointRadius: 0,
+                fill: false,
+                parsing: false
+            },
+            {
+                label: `Dₙ = ${Dn.toFixed(4)}`,
+                data: dnLine,
+                borderColor: '#dc2626',
+                borderWidth: 3,
+                pointRadius: 5,
+                pointBackgroundColor: '#dc2626',
+                fill: false,
+                parsing: false
+            }
+        ]},
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {type: 'linear', min: xL, max: xR, title: {display: true, text: 'x'}},
+                y: {min: 0, max: 1, title: {display: true, text: 'Probabilidad acumulada'}}
+            },
+            plugins: {legend: {display: true}}
+        }
+    });
+}
+
+function buildKSTable(sortedData, getCDF){
+    const n = sortedData.length;
+    if(n > 30){
+        return '<em>La tabla detallada se muestra solo para muestras de hasta 30 observaciones.</em>';
+    }
+    const header = '<tr><th>i</th><th>x(i)</th><th>Fₙ(x) = i/n</th><th>F₀(x)</th><th>|Fₙ − F₀|</th></tr>';
+    const rows = sortedData.map((x, i) => {
+        const fn = (i + 1) / n;
+        const f0 = getCDF(x);
+        const diff = Math.abs(fn - f0).toFixed(4);
+        return `<tr><td>${i + 1}</td><td>${x}</td><td>${fn.toFixed(4)}</td><td>${f0.toFixed(4)}</td><td>${diff}</td></tr>`;
+    }).join('');
+    return `<strong>Tabla de distribuciones acumuladas</strong><br><table><thead>${header}</thead><tbody>${rows}</tbody></table>`;
+}
+
+document.getElementById('calcKsBtn').addEventListener('click', () => {
+    try{
+        const rawData = document.getElementById('sampleData').value;
+        const distType = document.getElementById('distType').value;
+        const alpha = parseFloat(document.getElementById('alpha').value);
+
+        if(!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) throw new Error('El nivel de significación α debe estar entre 0 y 1.');
+
+        const data = parseValues(rawData);
+        if(data.length < 2) throw new Error('Introduce al menos 2 observaciones.');
+        if(data.some(v => !Number.isFinite(v))) throw new Error('Los datos deben ser números finitos.');
+
+        const getCDF = getCDFFunction(distType);
+
+        const n = data.length;
+        const sorted = [...data].sort((a, b) => a - b);
+
+        let Dn = 0;
+        let maxDiffX = sorted[0];
+        let fnAtMax = 0;
+        let f0AtMax = 0;
+
+        for(let i = 0; i < n; i++){
+            const x = sorted[i];
+            const fnHi = (i + 1) / n;
+            const fnLo = i / n;
+            const f0 = getCDF(x);
+            const d1 = Math.abs(fnHi - f0);
+            const d2 = Math.abs(fnLo - f0);
+            if(Math.max(d1, d2) > Dn){
+                Dn = Math.max(d1, d2);
+                maxDiffX = x;
+                f0AtMax = f0;
+                fnAtMax = d1 >= d2 ? fnHi : fnLo;
+            }
+        }
+
+        const pValue = kolmogorovPValue(n, Dn);
+        const decision = pValue < alpha
+            ? 'Se rechaza H₀ (los datos no siguen la distribución teórica especificada).'
+            : 'No se rechaza H₀ (los datos son compatibles con la distribución teórica).';
+
+        let warning = '';
+        if(n < 20) warning = '<br><em>Atención: con n &lt; 20 el p-valor es una aproximación asintótica. Interpreta el resultado con cautela.</em>';
+
+        document.getElementById('ksResult').innerHTML =
+            `Estadístico Dₙ: <strong>${Dn.toFixed(6)}</strong><br>` +
+            `Tamaño muestral (n): <strong>${n}</strong><br>` +
+            `p-valor (aprox.): <strong>${pValue.toFixed(6)}</strong><br>` +
+            `Decisión (α=${alpha}): <strong>${decision}</strong>` +
+            warning;
+
+        document.getElementById('ksTable').innerHTML = buildKSTable(sorted, getCDF);
+        renderKSChart(sorted, getCDF, maxDiffX, fnAtMax, f0AtMax, Dn);
+
+    }catch(err){
+        document.getElementById('ksResult').textContent = `Error: ${err.message}`;
+        document.getElementById('ksTable').innerHTML = '';
+        if(ksChart){ ksChart.destroy(); ksChart = null; }
+    }
+});
+document.getElementById('calcKsBtn').click();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body>
+</html>
