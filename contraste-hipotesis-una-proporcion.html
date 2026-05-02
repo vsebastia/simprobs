@@ -45,17 +45,19 @@
 
         <section class="card content-card">
             <h2>Conceptos clave del contraste</h2>
-            <p>Un contraste de hipótesis compara lo observado con lo que esperaríamos si \(H_0\) fuera cierta. Si la diferencia observada es extrema, rechazamos \(H_0\).</p>
+            <p>Un contraste de hipótesis para una proporción compara lo observado con lo que esperaríamos si \(H_0\) fuera cierta. Si la diferencia observada es suficientemente extrema, rechazamos \(H_0\); en caso contrario, no disponemos de evidencia estadística suficiente para rechazarla.</p>
+            <p>Es especialmente útil en contextos binarios (sí/no, compra/no compra, aprobado/suspenso, defecto/no defecto), donde la métrica principal es un porcentaje o tasa.</p>
             <ul>
                 <li><strong>Error tipo I (\(\alpha\)):</strong> probabilidad de concluir que la proporción difiere de \(p_0\) cuando en realidad no difiere.</li>
                 <li><strong>Error tipo II (\(\beta\)):</strong>probabilidad de no detectar una diferencia real respecto a \(p_0\).</li>
                 <li><strong>Potencia (\(1-\beta\)):</strong> probabilidad del contraste para detectar una diferencia real. Mejora con muestras mayores y efectos reales más grandes.</li>
-            </ul>
+                        </ul>
         </section>
 
         <section class="card content-card">
             <h2>Descripción</h2>
-            <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\).</p>
+            <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\). Es una prueba habitual en validación de campañas, calidad de producción, ensayos clínicos y estudios de opinión.</p>
+            <p>El método se apoya en la aproximación normal de la proporción muestral bajo \(H_0\), por lo que la calidad de la aproximación mejora con tamaños muestrales adecuados.</p>
             <p class="formula-line">\(H_0: p = p_0\)</p>
             <p class="formula-line">\( z = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \)</p>
         </section>
@@ -112,29 +114,30 @@
             <p>La aproximación normal es razonable cuando \(n p_0\) y \(n(1-p_0)\) son suficientemente grandes (regla práctica: al menos 5 o 10).</p>
         </section>
     
-        <section id="seo-support-content" class="card content-card">
+                <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
-            <p>Esta calculadora devuelve el estadístico de contraste, p-valor y una conclusión básica para decidir si los datos son compatibles con la hipótesis nula.</p>
+            <p>Esta calculadora de contraste de hipótesis para una proporción estima el estadístico z, el p-valor y la decisión estadística al comparar una proporción observada con una proporción teórica \(p_0\). Es frecuente en encuestas, tasas de conversión y control de defectos.</p>
             <h2>Fórmula utilizada</h2>
-            <p>Se aplica el estadístico de prueba específico del contraste y se transforma en un p-valor según cola bilateral o unilateral y nivel de significación.</p>
+            <p>Se contrasta \(H_0: p=p_0\) usando aproximación normal para proporciones, con error estándar calculado bajo la hipótesis nula. El p-valor se obtiene según el tipo de cola seleccionado: bilateral, izquierda o derecha.</p>
             <h2>Ejemplo de uso</h2>
-            <p>Define hipótesis nula y alternativa, introduce los datos muestrales y selecciona α. Al calcular, obtendrás p-valor y regla de decisión para el contraste.</p>
+            <p>Si una web espera una conversión del 12%, puedes introducir éxitos y tamaño muestral para evaluar si el porcentaje real observado difiere significativamente de ese objetivo.</p>
             <h2>Cómo interpretar el resultado</h2>
-            <p>Si p-valor &lt; α, se rechaza H0. Si p-valor ≥ α, no hay evidencia suficiente para rechazar H0. La significación estadística no implica relevancia práctica.</p>
+            <p>Si p-valor &lt; α, hay evidencia de que la proporción poblacional no coincide con \(p_0\) (o es mayor/menor, según el contraste). Si p-valor ≥ α, no hay evidencia suficiente con la muestra analizada.</p>
             <section class="related-tools">
               <h2>Calculadoras relacionadas</h2>
               <ul>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste para una media</a></li>
-                <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para dos medias</a></li>
-                <li><a href="studentt.html">Distribución t de Student</a></li>
+                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste para dos proporciones</a></li>
+                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
+                <li><a href="binomial.html">Distribución binomial</a></li>
               </ul>
             </section>
             <h2>Preguntas frecuentes</h2>
             <ul>
-                <li><strong>¿Qué es la hipótesis nula?</strong> Es la afirmación de referencia que se intenta poner a prueba.</li>
-                <li><strong>¿Qué representa el p-valor?</strong> La compatibilidad de los datos observados con H0 bajo el modelo del contraste.</li>
-                <li><strong>¿Qué diferencia hay entre bilateral y unilateral?</strong> El bilateral evalúa diferencias en ambos sentidos y el unilateral en una sola dirección.</li>
-                <li><strong>¿Rechazar H0 implica efecto importante?</strong> No necesariamente; también debes valorar tamaño de efecto y contexto aplicado.</li>
+                <li><strong>¿Cuándo es válida la aproximación normal?</strong> Cuando el tamaño muestral permite esperar suficientes éxitos y fracasos bajo \(H_0\).</li>
+                <li><strong>¿Puedo usar porcentaje en lugar de proporción?</strong> Sí, pero conviértelo a escala 0–1 para el cálculo.</li>
+                <li><strong>¿Qué cola debo elegir?</strong> Bilateral si buscas cualquier diferencia; unilateral si solo te interesa aumento o disminución.</li>
+                <li><strong>¿Significativo equivale a importante?</strong> No siempre; valora también el tamaño del cambio en términos de negocio o impacto real.</li>
+                <li><strong>¿Aquí se distingue entre desviación muestral y poblacional?</strong> No de la misma forma que en medias. En proporciones el error estándar se construye con \(p_0\) (o con proporción combinada en dos proporciones), no con una \(\sigma\) introducida por el usuario.</li>
             </ul>
         </section>
 
