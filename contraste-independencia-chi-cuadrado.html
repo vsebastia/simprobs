@@ -28,6 +28,18 @@
     </script>
 
     <link rel="stylesheet" href="style_new.css?v=20260428-2">
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['\\(','\\)'], ['$', '$']] },
+        startup: {
+          ready: () => {
+            MathJax.startup.defaultReady();
+            MathJax.typesetPromise();
+          }
+        }
+      };
+    </script>
+
 </head>
 <body>
 <div class="page-wrap">
@@ -155,9 +167,6 @@ document.getElementById('calcChiBtn').addEventListener('click',()=>{
     document.getElementById('chiResult').textContent = `Error: ${err.message}`;
   }
 });
-</script>
-<script>
-window.MathJax = { tex: { inlineMath: [['\\(','\\)'], ['$', '$']] } };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 </body>
