@@ -43,19 +43,12 @@
         <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
         
 
-        <section class="card content-card">
-            <h2>Conceptos clave del contraste</h2>
-            <p><strong>¿Qué es un contraste de hipótesis?</strong> Es un procedimiento para decidir si los datos observados son compatibles con una afirmación inicial \(H_0\). Si los datos son muy improbables bajo \(H_0\), se rechaza \(H_0\).</p>
-            <ul>
-                <li><strong>Error tipo I (\(\alpha\)):</strong> probabilidad de rechazar \(H_0\) cuando en realidad era cierta (falso positivo).</li>
-                <li><strong>Error tipo II (\(\beta\)):</strong> probabilidad de no rechazar \(H_0\) cuando en realidad era falsa (falso negativo).</li>
-                <li><strong>Potencia (\(1-\beta\)):</strong> probabilidad de detectar una diferencia real cuando existe. Sube con mayor tamaño muestral, mayor efecto real o un \(\alpha\) más grande.</li>
-            </ul>
-        </section>
+        
 
         <section class="card content-card">
             <h2>Descripción</h2>
-            <p>Este contraste se usa cuando quieres comprobar si la media poblacional es igual a un valor de referencia \(\mu_0\). En la práctica hay dos casos: si conoces la desviación típica poblacional \(\sigma\), se usa un contraste z; si no la conoces y la estimas con la desviación muestral \(s\), se usa el contraste t de Student.</p>
+            <p>Este contraste se usa cuando quieres comprobar si la media poblacional es igual a un valor de referencia \(\mu_0\). Es uno de los procedimientos más utilizados en control de procesos, investigación biomédica, educación y analítica de negocio, porque permite contrastar una afirmación concreta con evidencia cuantitativa.</p>
+            <p>En la práctica hay dos escenarios: si conoces la desviación típica poblacional \(\sigma\), empleas un contraste z; si \(\sigma\) es desconocida y se estima con la desviación muestral \(s\), empleas un contraste t de Student. Esta distinción es importante porque refleja la incertidumbre adicional al estimar la variabilidad con la propia muestra.</p>
 
             <h2>Hipótesis y estadístico</h2>
             <p class="formula-line">\(H_0: \mu = \mu_0\)</p>
@@ -150,15 +143,15 @@
             <p>Cuando \(n\) crece, la t se parece mucho a la normal, por eso ambos métodos convergen con muestras grandes.</p>
         </section>
     
-        <section id="seo-support-content" class="card content-card">
+                <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
-            <p>Esta calculadora devuelve el estadístico de contraste, p-valor y una conclusión básica para decidir si los datos son compatibles con la hipótesis nula.</p>
+            <p>Esta calculadora de contraste de hipótesis para una media estima automáticamente el estadístico de prueba (z o t), el p-valor exacto y la decisión estadística final según el nivel de significación elegido. Es útil para control de calidad, investigación, docencia y validación de cambios en procesos.</p>
             <h2>Fórmula utilizada</h2>
-            <p>Se aplica el estadístico de prueba específico del contraste y se transforma en un p-valor según cola bilateral o unilateral y nivel de significación.</p>
+            <p>Se emplea un contraste paramétrico para <strong>una media poblacional</strong>: test z cuando conoces la desviación poblacional \(\sigma\), y test t de Student cuando solo dispones de la desviación muestral \(s\). El cálculo del p-valor cambia según si el contraste es bilateral, de cola izquierda o de cola derecha.</p>
             <h2>Ejemplo de uso</h2>
-            <p>Define hipótesis nula y alternativa, introduce los datos muestrales y selecciona α. Al calcular, obtendrás p-valor y regla de decisión para el contraste.</p>
+            <p>Si una empresa afirma que su tiempo medio de entrega es \(\mu_0=48\) horas, puedes introducir tu media observada, la dispersión y el tamaño muestral para comprobar si los datos respaldan esa afirmación o muestran desviaciones relevantes.</p>
             <h2>Cómo interpretar el resultado</h2>
-            <p>Si p-valor &lt; α, se rechaza H0. Si p-valor ≥ α, no hay evidencia suficiente para rechazar H0. La significación estadística no implica relevancia práctica.</p>
+            <p>Si p-valor &lt; α, rechazas \(H_0\) y concluyes que hay evidencia estadística de diferencia respecto a \(\mu_0\). Si p-valor ≥ α, no rechazas \(H_0\): esto no prueba igualdad, solo indica que con esa muestra la evidencia es insuficiente.</p>
             <section class="related-tools">
               <h2>Calculadoras relacionadas</h2>
               <ul>
@@ -169,10 +162,10 @@
             </section>
             <h2>Preguntas frecuentes</h2>
             <ul>
-                <li><strong>¿Qué es la hipótesis nula?</strong> Es la afirmación de referencia que se intenta poner a prueba.</li>
-                <li><strong>¿Qué representa el p-valor?</strong> La compatibilidad de los datos observados con H0 bajo el modelo del contraste.</li>
-                <li><strong>¿Qué diferencia hay entre bilateral y unilateral?</strong> El bilateral evalúa diferencias en ambos sentidos y el unilateral en una sola dirección.</li>
-                <li><strong>¿Rechazar H0 implica efecto importante?</strong> No necesariamente; también debes valorar tamaño de efecto y contexto aplicado.</li>
+                <li><strong>¿Cuándo usar z y cuándo t?</strong> Usa z si conoces \(\sigma\) poblacional; usa t si \(\sigma\) es desconocida y la estimas con la muestra.</li>
+                <li><strong>¿Qué representa el p-valor en este test de media?</strong> La probabilidad, bajo \(H_0\), de observar un resultado tan extremo como el obtenido.</li>
+                <li><strong>¿Cuál es un α habitual?</strong> En muchos análisis se usa 0,05, aunque en contextos críticos puede preferirse 0,01.</li>
+                <li><strong>¿Conviene reportar algo más?</strong> Sí: añade intervalo de confianza y tamaño de efecto para interpretar la relevancia práctica.</li>
             </ul>
         </section>
 

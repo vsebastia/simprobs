@@ -43,19 +43,12 @@
         <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
         
 
-        <section class="card content-card">
-            <h2>Conceptos clave del contraste</h2>
-            <p>El contraste evalúa si la diferencia observada \(\hat{p}_1-\hat{p}_2\) es demasiado grande para atribuirla al azar bajo la hipótesis de igualdad.</p>
-            <ul>
-                <li><strong>Error tipo I (\(\alpha\)):</strong> probabilidad de afirmar diferencia entre proporciones cuando realmente no la hay.</li>
-                <li><strong>Error tipo II (\(\beta\)):</strong> probabilidad de no detectar una diferencia real entre proporciones.</li>
-                <li><strong>Potencia (\(1-\beta\)):</strong> probabilidad de detectar esa diferencia real. Aumenta con muestras mayores y diferencias reales más marcadas.</li>
-            </ul>
-        </section>
+        
 
         <section class="card content-card">
             <h2>Descripción</h2>
-            <p>Se usa cuando comparas dos grupos independientes con resultados binarios. En \(H_0\), se asume \(p_1 = p_2\) y se utiliza una proporción combinada para el error estándar.</p>
+            <p>Se usa cuando comparas dos grupos independientes con resultados binarios. En \(H_0\), se asume \(p_1 = p_2\) y se utiliza una proporción combinada para el error estándar, porque bajo la hipótesis nula ambos grupos comparten la misma probabilidad de éxito.</p>
+            <p>Este planteamiento permite evaluar de forma coherente si la diferencia observada responde a una fluctuación muestral o a un cambio estructural entre condiciones.</p>
             <p class="formula-line">\(H_0: p_1 - p_2 = 0\)</p>
             <p class="formula-line">\( z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})(1/n_1 + 1/n_2)}} \)</p>
             <p class="formula-line">\(\hat{p}=\frac{x_1+x_2}{n_1+n_2}\)</p>
@@ -104,29 +97,30 @@
             <p>Por eso el error estándar del contraste se construye con \(\hat{p}\), coherente con la hipótesis nula de igualdad \(p_1=p_2\).</p>
         </section>
     
-        <section id="seo-support-content" class="card content-card">
+                <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
-            <p>Esta calculadora devuelve el estadístico de contraste, p-valor y una conclusión básica para decidir si los datos son compatibles con la hipótesis nula.</p>
+            <p>Esta calculadora de contraste de hipótesis para dos proporciones compara la tasa de éxito de dos grupos y devuelve estadístico z, p-valor y decisión sobre si existe diferencia estadísticamente significativa entre ambas proporciones.</p>
             <h2>Fórmula utilizada</h2>
-            <p>Se aplica el estadístico de prueba específico del contraste y se transforma en un p-valor según cola bilateral o unilateral y nivel de significación.</p>
+            <p>El contraste parte de \(H_0: p_1=p_2\) y utiliza proporción combinada para el error estándar bajo la hipótesis nula. A partir del estadístico z se calcula el p-valor en contraste bilateral o unilateral.</p>
             <h2>Ejemplo de uso</h2>
-            <p>Define hipótesis nula y alternativa, introduce los datos muestrales y selecciona α. Al calcular, obtendrás p-valor y regla de decisión para el contraste.</p>
+            <p>En un experimento A/B, puedes comparar la conversión de dos versiones de una página introduciendo éxitos y tamaños muestrales de cada variante para comprobar si una supera a la otra.</p>
             <h2>Cómo interpretar el resultado</h2>
-            <p>Si p-valor &lt; α, se rechaza H0. Si p-valor ≥ α, no hay evidencia suficiente para rechazar H0. La significación estadística no implica relevancia práctica.</p>
+            <p>Si p-valor &lt; α, rechazas igualdad de proporciones y concluyes que hay evidencia de diferencia. Si p-valor ≥ α, la evidencia no es suficiente; puede ser necesario ampliar muestra para ganar potencia.</p>
             <section class="related-tools">
               <h2>Calculadoras relacionadas</h2>
               <ul>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste para una media</a></li>
-                <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para dos medias</a></li>
-                <li><a href="studentt.html">Distribución t de Student</a></li>
+                <li><a href="contraste-hipotesis-una-proporcion.html">Contraste para una proporción</a></li>
+                <li><a href="tamano-muestral-dos-proporciones.html">Tamaño muestral para dos proporciones</a></li>
+                <li><a href="binomial.html">Distribución binomial</a></li>
               </ul>
             </section>
             <h2>Preguntas frecuentes</h2>
             <ul>
-                <li><strong>¿Qué es la hipótesis nula?</strong> Es la afirmación de referencia que se intenta poner a prueba.</li>
-                <li><strong>¿Qué representa el p-valor?</strong> La compatibilidad de los datos observados con H0 bajo el modelo del contraste.</li>
-                <li><strong>¿Qué diferencia hay entre bilateral y unilateral?</strong> El bilateral evalúa diferencias en ambos sentidos y el unilateral en una sola dirección.</li>
-                <li><strong>¿Rechazar H0 implica efecto importante?</strong> No necesariamente; también debes valorar tamaño de efecto y contexto aplicado.</li>
+                <li><strong>¿Es válido para grupos dependientes?</strong> No; para datos emparejados se necesita un método específico para proporciones apareadas.</li>
+                <li><strong>¿Qué mide exactamente?</strong> Si la diferencia observada entre \(p_1\) y \(p_2\) puede explicarse por azar bajo \(H_0\).</li>
+                <li><strong>¿Qué tamaño de muestra se recomienda?</strong> Cuanto mayor, mejor precisión; con muestras pequeñas la potencia puede ser limitada.</li>
+                <li><strong>¿Qué debo reportar además del p-valor?</strong> Diferencia de proporciones, intervalo de confianza y contexto práctico de la decisión.</li>
+                <li><strong>¿Aquí también hay caso de desviación típica poblacional conocida?</strong> No como en contrastes de medias. En dos proporciones la variabilidad bajo \(H_0\) se estima con la proporción combinada \(\hat{p}\), por eso no se elige entre test z o t según \(\sigma\).</li>
             </ul>
         </section>
 

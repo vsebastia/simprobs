@@ -43,19 +43,12 @@
         <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
         
 
-        <section class="card content-card">
-            <h2>Conceptos clave del contraste</h2>
-            <p>Un contraste de hipótesis ayuda a decidir si la diferencia observada entre grupos puede explicarse por azar muestral o si apunta a una diferencia real en la población.</p>
-            <ul>
-                <li><strong>Error tipo I (\(\alpha\)):</strong> probabilidad de concluir que las medias difieren cuando en realidad no difieren.</li>
-                <li><strong>Error tipo II (\(\beta\)):</strong> probabilidad de no detectar una diferencia real entre medias.</li>
-                <li><strong>Potencia (\(1-\beta\)):</strong> probabilidad de detectar una diferencia real de interés. Aumenta con más tamaño muestral, menor variabilidad o mayor efecto esperado.</li>
-            </ul>
-        </section>
+        
 
         <section class="card content-card">
             <h2>Descripción</h2>
-            <p>Este contraste se utiliza para evaluar si dos medias poblacionales son iguales cuando se comparan dos grupos independientes y no se asume varianza común.</p>
+            <p>Este contraste se utiliza para evaluar si dos medias poblacionales son iguales cuando se comparan dos grupos independientes y no se asume varianza común. Por eso se usa habitualmente la versión de Welch, que es más robusta cuando la dispersión de ambos grupos no coincide.</p>
+            <p>Además de la decisión estadística, conviene interpretar la magnitud de la diferencia \(\bar{x}_1-\bar{x}_2\), su intervalo de confianza y su relevancia en el contexto aplicado.</p>
             <p class="formula-line">\(H_0: \mu_1 - \mu_2 = 0\)</p>
             <p class="formula-line">\( t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} \)</p>
         </section>
@@ -107,15 +100,21 @@
             <p>Por eso también se usan grados de libertad aproximados (Welch-Satterthwaite), que pueden no ser enteros.</p>
         </section>
     
-        <section id="seo-support-content" class="card content-card">
+        <section class="card content-card">
+            <h2>¿También hay versión con desviación poblacional conocida?</h2>
+            <p>Sí. Igual que en el contraste de una media, en dos medias existen dos enfoques: <strong>z de dos muestras</strong> cuando se conocen las desviaciones poblacionales \(\sigma_1\) y \(\sigma_2\), y <strong>t</strong> cuando solo se conocen las desviaciones muestrales \(s_1\) y \(s_2\).</p>
+            <p>En la práctica real casi nunca se conocen \(\sigma_1\) y \(\sigma_2\), por eso esta calculadora aplica la opción más habitual y robusta: <strong>t de Welch</strong>. Si en tu caso sí conoces desviaciones poblacionales reales, el planteamiento correcto sería un contraste z de dos medias.</p>
+        </section>
+
+                <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
-            <p>Esta calculadora devuelve el estadístico de contraste, p-valor y una conclusión básica para decidir si los datos son compatibles con la hipótesis nula.</p>
+            <p>Esta calculadora de contraste de hipótesis para dos medias compara dos grupos independientes y devuelve estadístico de prueba, p-valor y decisión final. Resulta útil para A/B testing, comparación de tratamientos y estudios de rendimiento entre poblaciones.</p>
             <h2>Fórmula utilizada</h2>
-            <p>Se aplica el estadístico de prueba específico del contraste y se transforma en un p-valor según cola bilateral o unilateral y nivel de significación.</p>
+            <p>El estadístico se basa en la diferencia \(\bar{x}_1-\bar{x}_2\) y su error estándar. Según la información disponible, puede utilizarse versión z (desviaciones poblacionales conocidas) o t (desviaciones desconocidas), ajustando la distribución de referencia para obtener el p-valor.</p>
             <h2>Ejemplo de uso</h2>
-            <p>Define hipótesis nula y alternativa, introduce los datos muestrales y selecciona α. Al calcular, obtendrás p-valor y regla de decisión para el contraste.</p>
+            <p>Puedes contrastar si el salario medio de dos departamentos es distinto, o si una nueva metodología reduce el tiempo promedio frente a la metodología anterior, introduciendo medias, desviaciones y tamaños muestrales de ambos grupos.</p>
             <h2>Cómo interpretar el resultado</h2>
-            <p>Si p-valor &lt; α, se rechaza H0. Si p-valor ≥ α, no hay evidencia suficiente para rechazar H0. La significación estadística no implica relevancia práctica.</p>
+            <p>Un p-valor pequeño indica evidencia contra la hipótesis de igualdad de medias. Si el resultado no es significativo, conviene revisar potencia estadística y tamaño muestral antes de concluir que no existen diferencias reales.</p>
             <section class="related-tools">
               <h2>Calculadoras relacionadas</h2>
               <ul>
@@ -126,10 +125,10 @@
             </section>
             <h2>Preguntas frecuentes</h2>
             <ul>
-                <li><strong>¿Qué es la hipótesis nula?</strong> Es la afirmación de referencia que se intenta poner a prueba.</li>
-                <li><strong>¿Qué representa el p-valor?</strong> La compatibilidad de los datos observados con H0 bajo el modelo del contraste.</li>
-                <li><strong>¿Qué diferencia hay entre bilateral y unilateral?</strong> El bilateral evalúa diferencias en ambos sentidos y el unilateral en una sola dirección.</li>
-                <li><strong>¿Rechazar H0 implica efecto importante?</strong> No necesariamente; también debes valorar tamaño de efecto y contexto aplicado.</li>
+                <li><strong>¿Sirve para muestras apareadas?</strong> No; para datos apareados debe usarse el contraste de medias apareadas.</li>
+                <li><strong>¿Qué hipótesis contrasta?</strong> Normalmente \(H_0: \mu_1=\mu_2\), frente a alternativa bilateral o unilateral.</li>
+                <li><strong>¿Qué pasa si hay tamaños muestrales muy distintos?</strong> Se puede calcular igualmente, pero es importante revisar supuestos y varianzas.</li>
+                <li><strong>¿Cómo mejorar la interpretación?</strong> Reporta también diferencia estimada, intervalo de confianza y contexto del problema.</li>
             </ul>
         </section>
 
