@@ -68,31 +68,29 @@
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
-                <p>Introduce el estadístico \(W\), el tamaño muestral y el p-valor del test para obtener una decisión automática.</p>
+                <p>Introduce los datos muestrales y simula la distribución nula de \(W\) por Monte Carlo para obtener un p-valor empírico.</p>
             </div>
 
             <div class="form-grid sample-grid">
-                <div class="inline-inputs">
-                    <div class="form-group">
-                        <label for="wStat">Estadístico Shapiro–Wilk (W)</label>
-                        <input type="number" id="wStat" value="0.94" step="0.0001" min="0" max="1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nSample">Tamaño muestral (n)</label>
-                        <input type="number" id="nSample" value="30" step="1" min="3" max="5000">
-                    </div>
+                <div class="form-group">
+                    <label for="sampleData">Datos de la muestra (separados por comas o espacios)</label>
+                    <textarea id="sampleData" rows="4" placeholder="Ejemplo: 12.1, 11.8, 12.5, 13.0, 12.4, 11.9, 12.2"></textarea>
                 </div>
 
                 <div class="inline-inputs">
                     <div class="form-group">
-                        <label for="pval">p-valor</label>
-                        <input type="number" id="pval" value="0.028" step="0.0001" min="0" max="1">
+                        <label for="mcIter">Iteraciones Monte Carlo (B)</label>
+                        <input type="number" id="mcIter" value="5000" step="500" min="1000" max="100000">
                     </div>
 
                     <div class="form-group">
                         <label for="alpha">Nivel de significación (α)</label>
                         <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mcSeed">Semilla aleatoria (opcional)</label>
+                        <input type="number" id="mcSeed" value="12345" step="1" min="0">
                     </div>
                 </div>
             </div>
@@ -103,6 +101,7 @@
             <div class="chart-wrap">
                 <canvas id="shapiroChart" aria-label="Gráfico comparativo entre p-valor y nivel de significación" role="img"></canvas>
             </div>
+            <p class="chart-note"><strong>Cómo leer el gráfico (paso a paso):</strong> 1) La simulación Monte Carlo genera muchas muestras normales bajo \(H_0\) del mismo tamaño que tu muestra y calcula un \(W\) en cada una. 2) Las <strong>barras azules</strong> cuentan cuántas simulaciones cayeron en cada rango de \(W\): por eso su eje Y es frecuencia y su eje X es valor de \(W\). 3) El marcador <strong>rojo</strong> señala tu \(W\) observado y el <strong>verde</strong> el \(W\) crítico para \(\alpha\). <strong>Solo importa su posición horizontal (X)</strong>; su altura vertical se fija artificialmente para que se vean sobre las barras.</p>
         </section>
 
         <section class="card content-card">
@@ -220,71 +219,125 @@
 <script>
 let shapiroChart;
 
-function drawShapiroChart(alpha, pValue) {
+let rngState = 12345;
+
+function setSeed(seed) {
+  rngState = (seed >>> 0) || 12345;
+}
+
+function randomUniform() {
+  rngState = (1664525 * rngState + 1013904223) >>> 0;
+  return rngState / 4294967296;
+}
+
+function randomNormal() {
+  let u = 0;
+  let v = 0;
+  while (u === 0) u = randomUniform();
+  while (v === 0) v = randomUniform();
+  return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+
+function approxNormalQuantile(p) {
+  const a=[-39.6968302866538,220.946098424521,-275.928510446969,138.357751867269,-30.6647980661472,2.50662827745924];
+  const b=[-54.4760987982241,161.585836858041,-155.698979859887,66.8013118877197,-13.2806815528857];
+  const c=[-0.00778489400243029,-0.322396458041136,-2.40075827716184,-2.54973253934373,4.37466414146497,2.93816398269878];
+  const d=[0.00778469570904146,0.32246712907004,2.445134137143,3.75440866190742];
+  const plow=0.02425, phigh=1-plow;
+  if (p < plow) { const q=Math.sqrt(-2*Math.log(p)); return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+  if (p > phigh) { const q=Math.sqrt(-2*Math.log(1-p)); return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+  const q=p-0.5, r=q*q;
+  return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+}
+
+function computeShapiroW(sample) {
+  const n = sample.length;
+  const sorted = [...sample].sort((x, y) => x - y);
+  const m = [];
+  for (let i = 1; i <= n; i += 1) m.push(approxNormalQuantile((i - 0.375) / (n + 0.25)));
+  const norm = Math.sqrt(m.reduce((acc, v) => acc + v * v, 0));
+  const a = m.map(v => v / norm);
+  const mean = sample.reduce((acc, v) => acc + v, 0) / n;
+  const den = sample.reduce((acc, v) => acc + (v - mean) ** 2, 0);
+  const numRaw = sorted.reduce((acc, v, i) => acc + a[i] * v, 0);
+  return (numRaw ** 2) / den;
+}
+
+function simulateShapiroDistribution(n, B) {
+  const out = [];
+  for (let b = 0; b < B; b += 1) {
+    const x = Array.from({ length: n }, () => randomNormal());
+    out.push(computeShapiroW(x));
+  }
+  return out;
+}
+
+function drawShapiroChart(wSim, wObs, wCrit) {
   const ctx = document.getElementById('shapiroChart');
   if (!ctx) return;
-
   if (shapiroChart) shapiroChart.destroy();
 
+  const bins = 24;
+  const minW = Math.max(0, Math.min(...wSim));
+  const maxW = 1;
+  const bw = (maxW - minW) / bins;
+  const counts = Array(bins).fill(0);
+  wSim.forEach(w => {
+    const idx = Math.min(bins - 1, Math.floor((w - minW) / bw));
+    if (idx >= 0) counts[idx] += 1;
+  });
+  const labels = counts.map((_, i) => (minW + bw * (i + 0.5)).toFixed(3));
+  const markerObs = labels.map(x => Math.abs(parseFloat(x) - wObs) < bw / 2 ? Math.max(...counts) * 0.95 : null);
+  const markerCrit = labels.map(x => Math.abs(parseFloat(x) - wCrit) < bw / 2 ? Math.max(...counts) * 0.8 : null);
+
   shapiroChart = new Chart(ctx, {
-    type: 'bar',
     data: {
-      labels: ['p-valor', 'α'],
-      datasets: [{
-        data: [pValue, alpha],
-        backgroundColor: ['#2563eb', '#dc2626']
-      }]
+      labels,
+      datasets: [
+        { type: 'bar', label: 'Distribución MC de W', data: counts, backgroundColor: '#93c5fd' },
+        { type: 'line', label: 'W observado', data: markerObs, borderColor: '#dc2626', pointBackgroundColor: '#dc2626', showLine: false, pointRadius: 6 },
+        { type: 'line', label: 'W crítico (cola izq.)', data: markerCrit, borderColor: '#16a34a', pointBackgroundColor: '#16a34a', showLine: false, pointRadius: 6 }
+      ]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        y: { min: 0, max: 1, title: { display: true, text: 'Valor' } }
-      }
-    }
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: { display: true, text: 'W' } }, y: { title: { display: true, text: 'Frecuencia' } } } }
   });
 }
 
 document.getElementById('calcShapiroBtn').addEventListener('click', () => {
-  const w = parseFloat(document.getElementById('wStat').value);
-  const n = parseInt(document.getElementById('nSample').value, 10);
+  const sampleText = document.getElementById('sampleData').value;
+  const sample = sampleText.split(/[\s,;]+/).map(v => parseFloat(v)).filter(v => !Number.isNaN(v));
+  const B = parseInt(document.getElementById('mcIter').value, 10);
   const alpha = parseFloat(document.getElementById('alpha').value);
-  const p = parseFloat(document.getElementById('pval').value);
+  const n = sample.length;
+  const seedRaw = document.getElementById('mcSeed').value;
+  const seed = seedRaw === '' ? 12345 : parseInt(seedRaw, 10);
 
-  if (Number.isNaN(w) || w <= 0 || w > 1) {
-    document.getElementById('shapiroResult').textContent = 'El estadístico W debe estar entre 0 y 1.';
-    return;
-  }
-  if (Number.isNaN(n) || n < 3) {
-    document.getElementById('shapiroResult').textContent = 'El tamaño muestral n debe ser al menos 3.';
-    return;
-  }
-  if (Number.isNaN(alpha) || alpha <= 0 || alpha >= 1) {
-    document.getElementById('shapiroResult').textContent = 'El nivel α debe estar entre 0 y 1.';
-    return;
-  }
-  if (Number.isNaN(p) || p < 0 || p > 1) {
-    document.getElementById('shapiroResult').textContent = 'El p-valor debe estar entre 0 y 1.';
-    return;
-  }
+  if (n < 3) { document.getElementById('shapiroResult').textContent = 'Introduce al menos 3 observaciones válidas.'; return; }
+  if (Number.isNaN(B) || B < 1000 || B > 100000) { document.getElementById('shapiroResult').textContent = 'B debe estar entre 1000 y 100000.'; return; }
+  if (Number.isNaN(alpha) || alpha <= 0 || alpha >= 1) { document.getElementById('shapiroResult').textContent = 'El nivel α debe estar entre 0 y 1.'; return; }
+  if (Number.isNaN(seed) || seed < 0) { document.getElementById('shapiroResult').textContent = 'La semilla debe ser un entero ≥ 0.'; return; }
 
-  const decision = p < alpha ? 'Se rechaza H₀ (evidencia contra normalidad).' : 'No se rechaza H₀ (sin evidencia suficiente contra normalidad).';
+  setSeed(seed);
+  const wObs = computeShapiroW(sample);
+  const wSim = simulateShapiroDistribution(n, B);
+  const pValue = wSim.filter(w => w <= wObs).length / B;
+  const wCrit = [...wSim].sort((a, b) => a - b)[Math.floor(alpha * B)];
+  const decision = pValue < alpha ? 'Se rechaza H₀ (no normalidad).' : 'No se rechaza H₀ (compatible con normalidad).';
 
   document.getElementById('shapiroResult').innerHTML =
-    `W: <strong>${w.toFixed(4)}</strong><br>` +
     `n: <strong>${n}</strong><br>` +
-    `p-valor: <strong>${p.toFixed(4)}</strong><br>` +
-    `Decisión (α=${alpha}): <strong>${decision}</strong>`;
+    `W observado: <strong>${wObs.toFixed(4)}</strong><br>` +
+    `p-valor Monte Carlo: <strong>${pValue.toFixed(4)}</strong><br>` +
+    `W crítico (cola izq., α=${alpha}): <strong>${wCrit.toFixed(4)}</strong><br>` +
+    `Decisión: <strong>${decision}</strong>`;
 
   document.getElementById('shapiroNotes').innerHTML =
-    `Interpretación rápida: con W cercano a 1 hay mayor ajuste a normalidad, pero la decisión formal depende del p-valor.<br>` +
-    `Criterio aplicado: ${p.toFixed(4)} ${p < alpha ? '&lt;' : '≥'} ${alpha}.`;
+    `Región de rechazo: W ≤ ${wCrit.toFixed(4)} (cola izquierda).<br>` +
+    `En la simulación se usaron ${B.toLocaleString('es-ES')} muestras normales bajo H₀ con semilla ${seed}.`;
 
-  drawShapiroChart(alpha, p);
+  drawShapiroChart(wSim, wObs, wCrit);
 });
 
-drawShapiroChart(0.05, 0.028);
 </script>
 <script>
 window.MathJax = { tex: { inlineMath: [['\\(','\\)'], ['$', '$']] } };
