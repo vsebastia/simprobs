@@ -44,16 +44,52 @@
             <h2>Descripción</h2>
 
             <p>
-                El test de Shapiro–Wilk evalúa si una muestra puede considerarse procedente de una
-                distribución normal. Es una de las pruebas de normalidad más usadas por su buena
-                potencia en tamaños muestrales pequeños y medianos.
+                El test de Shapiro–Wilk es una prueba estadística diseñada para evaluar
+                si una muestra de datos puede considerarse proveniente de una distribución normal. 
+                Es uno de los tests de normalidad más potentes y recomendados para tamaños muestrales pequeños y moderados.
             </p>
+
+            <p>
+               El test compara: 
+               <ul>
+                   <li> Los datos ordenados de tu muestra</li>
+                   <li>l os valores esperados de una muestra normal ordenada</li>                   
+               </ul>
+               Si tus datos “se alinean” bien con lo que se esperaría de una muestra normal, el estadístico será grande (cercano a 1).
+               Si se desvían de esa alineación, el estadístico será pequeño.
+            <\p>
 
             <p>
                 La hipótesis nula plantea que los datos siguen una normal; la alternativa plantea
                 que no siguen una normal. El estadístico del test se denota por \(W\), y toma
                 valores entre 0 y 1: cuanto más cerca de 1, mayor compatibilidad con normalidad.
             </p>
+
+            <p>
+                El estadístico de Shapiro–Wilk se construye combinando los datos ordenados
+                \(x_{(i)}\) con coeficientes \(a_i\) que dependen de \(n\):
+            </p>
+
+            <p>
+                \(W = \dfrac{\left(\sum_{i=1}^{m} a_i(x_{(n+1-i)}-x_{(i)})\right)^2}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\)
+                donde:
+                <ul>
+                    <li>\(x_{(i)}\) son los datos ordenados,</li>
+                    <li>\(a_i\) son coeficientes calculados a partir de los cuantiles normales teóricos,</li>
+                   <li>el denominador es la variabilidad total de la muestra.</li>
+                </ul>
+            </p>
+
+            <p>
+                Dado que el estadístico \(W\) no posee una distribución de probabilidad cerrada bajo la hipótesis de normalidad, 
+                su distribución se aproxima mediante simulación de Monte Carlo. Para ello se generan muchas muestras normales 
+                \(N(0,1)\), ya que el valor de \(W\) es invariante a cambios de escala y traslación: solo importa el orden de los datos, 
+                la forma de la distribución y la relación lineal entre los cuantiles normales teóricos y los datos observados. 
+                En cada muestra simulada de tamaño \(n\) se calcula el estadístico \(W\), y con todos esos valores se construye una 
+                distribución empírica. El valor observado \(W_{\text{obs}}\) se compara con esta distribución simulada para obtener 
+                el p‑valor del test.
+            </p>
+                
 
             <p>
                 La decisión formal se realiza con el p-valor: si es menor que el nivel de
