@@ -314,7 +314,7 @@ function drawShapiroChart(wSim, wObs, wCrit) {
   if (shapiroChart) shapiroChart.destroy();
 
   const bins = 24;
-  const minW = Math.max(0, Math.min(...wSim));
+  const minW = 0;
   const maxW = 1;
   const bw = (maxW - minW) / bins;
   const counts = Array(bins).fill(0);
