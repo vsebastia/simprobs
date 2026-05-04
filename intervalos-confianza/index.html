@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Calculadoras de intervalos de confianza | ProbLab</title>
+  <meta name="description" content="Calculadoras online de intervalos de confianza para medias, proporciones, diferencia de medias y varianzas. Con fórmulas, ejemplos y gráficos interactivos.">
+  <link rel="canonical" href="https://problabtools.es/intervalos-confianza/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Calculadoras de intervalos de confianza | ProbLab">
+  <meta property="og:description" content="Calculadoras online de intervalos de confianza para medias, proporciones, diferencia de medias y varianzas. Con fórmulas, ejemplos y gráficos interactivos.">
+  <meta property="og:url" content="https://problabtools.es/intervalos-confianza/">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:image:alt" content="Calculadoras de intervalos de confianza">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalos-confianza/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculadoras de intervalos de confianza | ProbLab">
+  <meta name="twitter:description" content="Calculadoras online de intervalos de confianza para medias, proporciones, diferencia de medias y varianzas. Con fórmulas, ejemplos y gráficos interactivos.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <meta name="twitter:image:alt" content="Calculadoras de intervalos de confianza">
+  <link rel="stylesheet" href="../style_new.css?v=20260503-1">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"}
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "Calculadoras de intervalos de confianza | ProbLab",
+        "url": "https://problabtools.es/intervalos-confianza/",
+        "description": "Calculadoras online de intervalos de confianza para medias, proporciones, diferencia de medias y varianzas.",
+        "inLanguage": "es",
+        "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<div class="page-wrap">
+  <header class="hero">
+    <p class="eyebrow">Herramientas estadísticas</p>
+    <h1>Calculadoras de intervalos de confianza</h1>
+    <p class="hero-subtitle">Obtén el rango plausible de un parámetro a partir de datos muestrales. Con fórmulas, ejemplos y representación gráfica.</p>
+    <p class="hero-links"><a class="hero-link-button" href="../index.html">Volver al inicio</a></p>
+  </header>
+
+  <main>
+    <section class="card content-card">
+      <h2>¿Qué es un intervalo de confianza?</h2>
+      <p>Un intervalo de confianza (IC) es un rango de valores calculado a partir de los datos de una muestra que, con un nivel de confianza dado (por ejemplo 95 %), contiene el verdadero valor del parámetro poblacional.</p>
+      <p>La interpretación correcta es frecuentista: si repitiéramos el muestreo muchas veces y calculáramos el IC cada vez, aproximadamente el 95 % de esos intervalos contendrían el verdadero parámetro. No significa que el parámetro esté "dentro del intervalo con probabilidad 95 %".</p>
+
+      <h3>Estructura general de un IC</h3>
+      <p>La mayoría de los intervalos clásicos siguen la forma:</p>
+      <p class="formula-line">\( \text{IC} = \hat{\theta} \pm \text{valor crítico} \times \text{error estándar} \)</p>
+      <p>donde \(\hat{\theta}\) es el estimador del parámetro, el valor crítico depende del nivel de confianza y la distribución usada, y el error estándar mide la variabilidad del estimador.</p>
+
+      <h3>Nivel de confianza y amplitud</h3>
+      <ul>
+        <li>A mayor nivel de confianza (más cerca de 1), el intervalo es más amplio.</li>
+        <li>A mayor tamaño muestral, el intervalo es más estrecho (más preciso).</li>
+        <li>A mayor variabilidad en los datos, el intervalo es más amplio.</li>
+      </ul>
+
+      <h3>Relación con los contrastes de hipótesis</h3>
+      <p>Un IC al 95 % y un contraste bilateral con α = 0,05 son complementarios: si el valor hipotético \(\mu_0\) queda fuera del IC, el contraste rechazaría H₀. Ambos enfoques proporcionan información compatible pero desde ángulos distintos.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Calculadoras disponibles</h2>
+      <ul class="tools-grid">
+        <li><a href="../intervalo-confianza-media-sigma-conocida.html">IC para una media (σ conocida)</a></li>
+        <li><a href="../intervalo-confianza-media.html">IC para una media (σ desconocida)</a></li>
+        <li><a href="../intervalo-confianza-proporcion.html">IC para una proporción</a></li>
+        <li><a href="../intervalo-confianza-diferencia-medias.html">IC para diferencia de medias</a></li>
+        <li><a href="../intervalo-confianza-varianza.html">IC para una varianza</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="../aviso-legal.html">Aviso legal</a> ·
+      <a href="../privacidad.html">Privacidad</a> ·
+      <a href="../cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body>
+</html>

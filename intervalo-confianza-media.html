@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalo de confianza para una media con σ desconocida (t de Student) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online del intervalo de confianza para una media poblacional con desviación típica desconocida. Usa la distribución t de Student. Fórmula, gráfico y ejemplos.">
+    <link rel="canonical" href="https://problabtools.es/intervalo-confianza-media.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intervalo de confianza para una media con σ desconocida | ProbLab">
+    <meta property="og:description" content="Calculadora online del intervalo de confianza para una media poblacional con desviación típica desconocida. Usa la distribución t de Student.">
+    <meta property="og:url" content="https://problabtools.es/intervalo-confianza-media.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalo-confianza-media.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intervalo de confianza para una media con σ desconocida | ProbLab">
+    <meta name="twitter:description" content="Calculadora online del intervalo de confianza para una media poblacional con σ desconocida. Distribución t de Student.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"},
+            {"@type": "ListItem", "position": 3, "name": "IC media σ desconocida", "item": "https://problabtools.es/intervalo-confianza-media.html"}
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Intervalo de confianza para una media con σ desconocida",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://problabtools.es/intervalo-confianza-media.html",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260503-1">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Intervalos de confianza</p>
+        <h1>Intervalo de confianza para una media (σ desconocida)</h1>
+        <p class="hero-subtitle">Estima la media poblacional cuando la desviación típica es desconocida usando la distribución t de Student.</p>
+        <p class="hero-links"><a class="hero-link-button" href="intervalos-confianza/">Ver todos los intervalos</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>En la práctica, la desviación típica poblacional \(\sigma\) raramente se conoce con exactitud. Cuando se estima a partir de los propios datos muestrales usando \(s\), aparece una incertidumbre adicional que modela la distribución t de Student con \(n-1\) grados de libertad.</p>
+            <p>Con muestras grandes (n ≥ 30), la t de Student converge a la normal estándar y ambos intervalos dan resultados muy similares. Para muestras pequeñas, la t produce intervalos más anchos, reflejando correctamente la mayor incertidumbre.</p>
+
+            <h2>Fórmula</h2>
+            <p class="formula-line">\( \bar{x} \pm t_{\alpha/2,\, n-1} \cdot \dfrac{s}{\sqrt{n}} \)</p>
+            <ul>
+                <li><strong>\(\bar{x}\)</strong>: media muestral observada.</li>
+                <li><strong>\(t_{\alpha/2,\, n-1}\)</strong>: valor crítico de la t de Student con \(n-1\) grados de libertad.</li>
+                <li><strong>\(s\)</strong>: desviación estándar muestral (con divisor \(n-1\)).</li>
+                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
+            </ul>
+            <p>El margen de error es \(E = t_{\alpha/2,\, n-1} \cdot s/\sqrt{n}\) y el intervalo es \([\bar{x} - E,\; \bar{x} + E]\).</p>
+
+            <h2>Ejemplo real</h2>
+            <p>Se mide el tiempo de respuesta (en ms) de un servicio web en 15 peticiones: \(\bar{x} = 245{,}3\) ms, \(s = 38{,}7\) ms. Con 95 % de confianza y \(gl = 14\):</p>
+            <p class="formula-line">\( 245{,}3 \pm 2{,}145 \cdot \frac{38{,}7}{\sqrt{15}} \approx [224{,}0,\; 266{,}7] \text{ ms} \)</p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los datos para obtener el intervalo de confianza usando la distribución t de Student.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="xbar">Media muestral (x̄)</label>
+                        <input type="number" id="xbar" value="245.3" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="s">Desviación estándar muestral (s)</label>
+                        <input type="number" id="s" value="38.7" step="0.001" min="0.0001">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="n">Tamaño muestral (n)</label>
+                        <input type="number" id="n" value="15" step="1" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="conf">Nivel de confianza</label>
+                        <select id="conf">
+                            <option value="0.90">90 %</option>
+                            <option value="0.95" selected>95 %</option>
+                            <option value="0.99">99 %</option>
+                            <option value="custom">Personalizado…</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs" id="customConfRow" style="display:none">
+                    <div class="form-group">
+                        <label for="customConf">Nivel de confianza personalizado (0–1)</label>
+                        <input type="number" id="customConf" value="0.95" step="0.01" min="0.01" max="0.9999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular intervalo</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza sobre la distribución t de Student" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Supuestos del intervalo t</h2>
+            <ul>
+                <li>La muestra es aleatoria e independiente.</li>
+                <li>La variable se distribuye normalmente en la población (especialmente importante para muestras pequeñas). Para n grande, el teorema central del límite lo justifica aunque la distribución no sea exactamente normal.</li>
+                <li>\(\sigma\) es desconocida y se estima con \(s\).</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+            <p>Esta calculadora construye el intervalo de confianza bilateral para la media poblacional \(\mu\) usando la distribución t de Student cuando \(\sigma\) es desconocida. Calcula automáticamente los grados de libertad, el valor crítico t, el error estándar y los límites del intervalo.</p>
+            <section class="related-tools">
+                <h2>Calculadoras relacionadas</h2>
+                <ul>
+                    <li><a href="intervalo-confianza-media-sigma-conocida.html">IC para una media (σ conocida)</a></li>
+                    <li><a href="intervalo-confianza-diferencia-medias.html">IC para diferencia de medias</a></li>
+                    <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
+                    <li><a href="studentt.html">Distribución t de Student</a></li>
+                </ul>
+            </section>
+            <h2>Preguntas frecuentes</h2>
+            <ul>
+                <li><strong>¿Por qué se usa t en lugar de z?</strong> Porque al estimar \(\sigma\) con \(s\) se introduce incertidumbre adicional; la distribución t tiene colas más pesadas para captarla.</li>
+                <li><strong>¿Cuándo convergen t y z?</strong> Para n ≥ 30 la diferencia es prácticamente despreciable en la mayoría de aplicaciones.</li>
+                <li><strong>¿Necesito que los datos sean normales?</strong> Para n pequeño sí importa. Para n grande, el TCL garantiza que \(\bar{x}\) se distribuye aproximadamente normal.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let ciChart;
+
+document.getElementById('conf').addEventListener('change', function () {
+    document.getElementById('customConfRow').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function getConfLevel() {
+    const sel = document.getElementById('conf').value;
+    if (sel === 'custom') return parseFloat(document.getElementById('customConf').value);
+    return parseFloat(sel);
+}
+
+function renderChart(tCrit, df) {
+    const ctx = document.getElementById('ciChart');
+    if (!ctx) return;
+
+    const bound = Math.max(4, Math.abs(tCrit) + 0.8);
+    const minX = -bound, maxX = bound;
+    const step = 0.02;
+
+    const curve = [], inside = [], outside = [];
+    for (let x = minX; x <= maxX; x += step) {
+        const y = jStat.studentt.pdf(x, df);
+        curve.push({ x, y });
+        if (x >= -tCrit && x <= tCrit) {
+            inside.push({ x, y });
+            outside.push({ x, y: null });
+        } else {
+            inside.push({ x, y: null });
+            outside.push({ x, y });
+        }
+    }
+
+    if (ciChart) ciChart.destroy();
+    ciChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Región de confianza', data: inside, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Colas (α/2 cada una)', data: outside, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: `t de Student (gl = ${df})`, data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: `t (gl = ${df})` } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const xbar = parseFloat(document.getElementById('xbar').value);
+    const s = parseFloat(document.getElementById('s').value);
+    const n = parseFloat(document.getElementById('n').value);
+    const conf = getConfLevel();
+    const resultEl = document.getElementById('result');
+
+    if (![xbar, s, n, conf].every(Number.isFinite) || s <= 0 || n < 2 || conf <= 0 || conf >= 1) {
+        resultEl.innerText = 'Error: revisa que s > 0, n ≥ 2 y 0 < confianza < 1.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const alpha = 1 - conf;
+    const df = n - 1;
+    const tCrit = jStat.studentt.inv(1 - alpha / 2, df);
+    const se = s / Math.sqrt(n);
+    const margin = tCrit * se;
+    const lower = xbar - margin;
+    const upper = xbar + margin;
+
+    resultEl.innerText =
+        `Nivel de confianza: ${(conf * 100).toFixed(1)} %  |  gl = ${df}  |  t crítico: ±${tCrit.toFixed(4)}\n` +
+        `Error estándar: ${se.toFixed(6)}  |  Margen de error: ±${margin.toFixed(6)}\n` +
+        `Intervalo de confianza: [${lower.toFixed(6)}, ${upper.toFixed(6)}]`;
+
+    renderChart(tCrit, df);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('conf').addEventListener('change', calculate);
+document.getElementById('customConf').addEventListener('input', calculate);
+calculate();
+</script>
+</body>
+</html>

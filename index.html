@@ -277,6 +277,15 @@
             border-top: 3px solid #7c3aed;
         }
 
+        .section-ci {
+            border-top: 3px solid #0891b2;
+        }
+
+        .section-icon-ci {
+            background: rgba(8, 145, 178, 0.1);
+            color: #0891b2;
+        }
+
         .section-heading {
             display: flex;
             align-items: center;
@@ -347,6 +356,7 @@
         <a class="site-brand" href="/">ProbLab</a>
         <ul class="site-nav-links">
             <li><a href="#distribuciones">Distribuciones</a></li>
+            <li><a href="#intervalos">Intervalos de confianza</a></li>
             <li><a href="#tamano-muestral">Tamaño muestral</a></li>
             <li><a href="#contrastes">Contrastes</a></li>
         </ul>
@@ -363,6 +373,7 @@
                 <a class="hero-link-button" href="distribuciones/">Distribuciones</a>
                 <a class="hero-link-button hero-link-secondary" href="tamano-muestral/">Tamaño muestral</a>
                 <a class="hero-link-button hero-link-secondary" href="contrastes-hipotesis/">Contrastes</a>
+                <a class="hero-link-button hero-link-secondary" href="intervalos-confianza/">Intervalos de confianza</a>
             </div>
         </div>
     </header>
@@ -382,6 +393,11 @@
             <div class="stat-item">
                 <span class="stat-number">10</span>
                 <span class="stat-label">Contrastes</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Intervalos IC</span>
             </div>
         </div>
 
@@ -440,6 +456,29 @@
                 <li><a href="tamano-muestral-media-poblacion-finita.html">Media (población finita)</a></li>
                 <li><a href="tamano-muestral-medias-apareadas.html">Medias apareadas</a></li>
                 <li><a href="tamano-muestral-proporciones-apareadas.html">Proporciones apareadas</a></li>
+            </ul>
+        </section>
+
+        <section id="intervalos" class="card content-card section-ci" aria-labelledby="ci-title">
+            <div class="section-heading">
+                <span class="section-icon section-icon-ci" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="8" y1="8" x2="8" y2="16"/>
+                        <line x1="16" y1="8" x2="16" y2="16"/>
+                        <circle cx="12" cy="12" r="2" fill="currentColor" fill-opacity="0.5" stroke="none"/>
+                    </svg>
+                </span>
+                <h2 id="ci-title">Intervalos de confianza</h2>
+            </div>
+            <p>Calcula el rango plausible de parámetros poblacionales a partir de datos muestrales, con representación gráfica de la distribución y la región de confianza.</p>
+            <p><a class="hero-link-button" href="intervalos-confianza/">Explorar intervalos de confianza</a></p>
+            <ul class="tools-grid ci-tools-grid" aria-label="Listado de calculadoras de intervalos de confianza">
+                <li><a href="intervalo-confianza-media-sigma-conocida.html">IC media (σ conocida)</a></li>
+                <li><a href="intervalo-confianza-media.html">IC media (σ desconocida)</a></li>
+                <li><a href="intervalo-confianza-proporcion.html">IC proporción</a></li>
+                <li><a href="intervalo-confianza-diferencia-medias.html">IC diferencia de medias</a></li>
+                <li><a href="intervalo-confianza-varianza.html">IC varianza</a></li>
             </ul>
         </section>
 

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalo de confianza para la diferencia de medias | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online del intervalo de confianza para la diferencia de dos medias poblacionales independientes. Varianzas iguales o distintas. Fórmula, gráfico y ejemplos.">
+    <link rel="canonical" href="https://problabtools.es/intervalo-confianza-diferencia-medias.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intervalo de confianza para la diferencia de medias | ProbLab">
+    <meta property="og:description" content="Calculadora online del intervalo de confianza para la diferencia de dos medias independientes. Varianzas iguales o distintas.">
+    <meta property="og:url" content="https://problabtools.es/intervalo-confianza-diferencia-medias.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalo-confianza-diferencia-medias.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intervalo de confianza para la diferencia de medias | ProbLab">
+    <meta name="twitter:description" content="Calculadora online del intervalo de confianza para la diferencia de dos medias independientes.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"},
+            {"@type": "ListItem", "position": 3, "name": "IC diferencia de medias", "item": "https://problabtools.es/intervalo-confianza-diferencia-medias.html"}
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Intervalo de confianza para la diferencia de medias",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://problabtools.es/intervalo-confianza-diferencia-medias.html",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260503-1">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Intervalos de confianza</p>
+        <h1>Intervalo de confianza para la diferencia de medias</h1>
+        <p class="hero-subtitle">Estima la diferencia entre dos medias poblacionales independientes, con varianzas iguales o distintas.</p>
+        <p class="hero-links"><a class="hero-link-button" href="intervalos-confianza/">Ver todos los intervalos</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>Cuando se comparan dos grupos independientes (tratamiento A vs. B, planta 1 vs. planta 2, antes vs. después con muestras diferentes), el intervalo de confianza para la diferencia de medias \(\mu_1 - \mu_2\) permite cuantificar la magnitud de la diferencia y su incertidumbre.</p>
+            <p>Existen dos variantes según si las varianzas poblacionales son iguales o distintas. Si 0 queda fuera del intervalo, hay evidencia de que las medias difieren.</p>
+
+            <h2>Varianzas iguales (pooled)</h2>
+            <p class="formula-line">\( (\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\, n_1+n_2-2} \cdot s_p\sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}} \)</p>
+            <p>con varianza agrupada:</p>
+            <p class="formula-line">\( s_p^2 = \dfrac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2} \)</p>
+
+            <h2>Varianzas distintas (Welch)</h2>
+            <p class="formula-line">\( (\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\, \nu} \cdot \sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}} \)</p>
+            <p>con grados de libertad de Welch–Satterthwaite:</p>
+            <p class="formula-line">\( \nu = \dfrac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1-1} + \dfrac{(s_2^2/n_2)^2}{n_2-1}} \)</p>
+
+            <h2>Ejemplo real</h2>
+            <p>Grupo A (nuevo fármaco): \(\bar{x}_1 = 5{,}2\), \(s_1 = 1{,}4\), \(n_1 = 20\). Grupo B (placebo): \(\bar{x}_2 = 4{,}7\), \(s_2 = 1{,}6\), \(n_2 = 22\). Con 95 % de confianza (Welch), el IC de la diferencia incluiría el 0, por lo que no habría evidencia significativa de diferencia.</p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los estadísticos de cada grupo para obtener el intervalo de confianza para μ₁ − μ₂.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="xbar1">Media muestral grupo 1 (x̄₁)</label>
+                        <input type="number" id="xbar1" value="5.2" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="xbar2">Media muestral grupo 2 (x̄₂)</label>
+                        <input type="number" id="xbar2" value="4.7" step="0.01">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="s1">Desviación estándar grupo 1 (s₁)</label>
+                        <input type="number" id="s1" value="1.4" step="0.001" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="s2">Desviación estándar grupo 2 (s₂)</label>
+                        <input type="number" id="s2" value="1.6" step="0.001" min="0.0001">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="n1">Tamaño muestral grupo 1 (n₁)</label>
+                        <input type="number" id="n1" value="20" step="1" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="n2">Tamaño muestral grupo 2 (n₂)</label>
+                        <input type="number" id="n2" value="22" step="1" min="2">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="conf">Nivel de confianza</label>
+                        <select id="conf">
+                            <option value="0.90">90 %</option>
+                            <option value="0.95" selected>95 %</option>
+                            <option value="0.99">99 %</option>
+                            <option value="custom">Personalizado…</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="varType">Supuesto de varianzas</label>
+                        <select id="varType">
+                            <option value="welch" selected>Varianzas distintas (Welch)</option>
+                            <option value="pooled">Varianzas iguales (pooled)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs" id="customConfRow" style="display:none">
+                    <div class="form-group">
+                        <label for="customConf">Nivel de confianza personalizado (0–1)</label>
+                        <input type="number" id="customConf" value="0.95" step="0.01" min="0.01" max="0.9999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular intervalo</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza para la diferencia de medias" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>¿Varianzas iguales o distintas?</h2>
+            <p>En la práctica se recomienda usar Welch por defecto: es robusto tanto si las varianzas son iguales como si no, y su pérdida de potencia con varianzas iguales es mínima. El supuesto de varianzas iguales solo debería adoptarse si hay fuerte evidencia previa de que \(\sigma_1 = \sigma_2\).</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+            <p>Esta calculadora obtiene el intervalo de confianza para \(\mu_1 - \mu_2\) con dos muestras independientes. Ofrece el método de Welch (varianzas desiguales) y el método pooled (varianzas iguales), calculando automáticamente los grados de libertad y el valor crítico t.</p>
+            <section class="related-tools">
+                <h2>Calculadoras relacionadas</h2>
+                <ul>
+                    <li><a href="intervalo-confianza-media.html">IC para una media (σ desconocida)</a></li>
+                    <li><a href="contraste-hipotesis-dos-medias.html">Contraste de hipótesis para dos medias</a></li>
+                    <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para diferencia de medias</a></li>
+                    <li><a href="studentt.html">Distribución t de Student</a></li>
+                </ul>
+            </section>
+            <h2>Preguntas frecuentes</h2>
+            <ul>
+                <li><strong>¿Cuándo el IC indica diferencia significativa?</strong> Cuando el valor 0 queda fuera del intervalo [L, U].</li>
+                <li><strong>¿Welch es siempre válido?</strong> Para muestras independientes con distribución aproximadamente normal sí. Para muestras muy pequeñas y distribuciones muy asimétricas considera tests no paramétricos.</li>
+                <li><strong>¿Qué significa que el IC incluya el 0?</strong> Que con el nivel de confianza elegido no puedes descartar que ambas medias sean iguales.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let ciChart;
+
+document.getElementById('conf').addEventListener('change', function () {
+    document.getElementById('customConfRow').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function getConfLevel() {
+    const sel = document.getElementById('conf').value;
+    if (sel === 'custom') return parseFloat(document.getElementById('customConf').value);
+    return parseFloat(sel);
+}
+
+function renderChart(tCrit, df) {
+    const ctx = document.getElementById('ciChart');
+    if (!ctx) return;
+
+    const bound = Math.max(4, Math.abs(tCrit) + 0.8);
+    const minX = -bound, maxX = bound;
+    const step = 0.02;
+
+    const curve = [], inside = [], outside = [];
+    for (let x = minX; x <= maxX; x += step) {
+        const y = jStat.studentt.pdf(x, df);
+        curve.push({ x, y });
+        if (x >= -tCrit && x <= tCrit) {
+            inside.push({ x, y });
+            outside.push({ x, y: null });
+        } else {
+            inside.push({ x, y: null });
+            outside.push({ x, y });
+        }
+    }
+
+    if (ciChart) ciChart.destroy();
+    ciChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Región de confianza', data: inside, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Colas (α/2 cada una)', data: outside, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: `t de Student (gl = ${Math.round(df * 100) / 100})`, data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: `t (gl ≈ ${Math.round(df * 10) / 10})` } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const xbar1 = parseFloat(document.getElementById('xbar1').value);
+    const xbar2 = parseFloat(document.getElementById('xbar2').value);
+    const s1 = parseFloat(document.getElementById('s1').value);
+    const s2 = parseFloat(document.getElementById('s2').value);
+    const n1 = parseFloat(document.getElementById('n1').value);
+    const n2 = parseFloat(document.getElementById('n2').value);
+    const conf = getConfLevel();
+    const varType = document.getElementById('varType').value;
+    const resultEl = document.getElementById('result');
+
+    if (![xbar1, xbar2, s1, s2, n1, n2, conf].every(Number.isFinite) ||
+        s1 <= 0 || s2 <= 0 || n1 < 2 || n2 < 2 || conf <= 0 || conf >= 1) {
+        resultEl.innerText = 'Error: revisa que s₁,s₂ > 0, n₁,n₂ ≥ 2 y 0 < confianza < 1.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const alpha = 1 - conf;
+    const diff = xbar1 - xbar2;
+
+    let se, df, tCrit, label;
+
+    if (varType === 'welch') {
+        const v1 = s1 * s1 / n1;
+        const v2 = s2 * s2 / n2;
+        se = Math.sqrt(v1 + v2);
+        df = (v1 + v2) * (v1 + v2) / ((v1 * v1) / (n1 - 1) + (v2 * v2) / (n2 - 1));
+        label = `Welch (gl ≈ ${df.toFixed(2)})`;
+    } else {
+        const sp2 = ((n1 - 1) * s1 * s1 + (n2 - 1) * s2 * s2) / (n1 + n2 - 2);
+        se = Math.sqrt(sp2 * (1 / n1 + 1 / n2));
+        df = n1 + n2 - 2;
+        label = `Pooled (gl = ${df})`;
+    }
+
+    tCrit = jStat.studentt.inv(1 - alpha / 2, df);
+    const margin = tCrit * se;
+    const lower = diff - margin;
+    const upper = diff + margin;
+    const zeroIncluded = lower <= 0 && upper >= 0;
+
+    resultEl.innerText =
+        `Diferencia x̄₁ − x̄₂: ${diff.toFixed(6)}  |  Método: ${label}\n` +
+        `t crítico: ±${tCrit.toFixed(4)}  |  Error estándar: ${se.toFixed(6)}  |  Margen: ±${margin.toFixed(6)}\n` +
+        `Intervalo de confianza: [${lower.toFixed(6)}, ${upper.toFixed(6)}]\n` +
+        (zeroIncluded ? 'ℹ El intervalo incluye el 0: no hay evidencia de diferencia significativa.' : '✓ El intervalo no incluye el 0: hay evidencia de diferencia significativa.');
+
+    renderChart(tCrit, df);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('conf').addEventListener('change', calculate);
+document.getElementById('varType').addEventListener('change', calculate);
+document.getElementById('customConf').addEventListener('input', calculate);
+calculate();
+</script>
+</body>
+</html>
