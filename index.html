@@ -121,25 +121,216 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style_new.css?v=20260503-1">
+    <style>
+    /* ── Homepage-specific styles ───────────────────────── */
+
+    /* Top navigation */
+    .site-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 4px 22px;
+    }
+    .nav-brand {
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: var(--text-main);
+        text-decoration: none;
+        letter-spacing: -0.03em;
+    }
+    .nav-brand em {
+        color: var(--accent);
+        font-style: normal;
+    }
+    .nav-pill-list {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .nav-pill-list a {
+        display: block;
+        padding: 7px 15px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.87rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        border: 1px solid transparent;
+        transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .nav-pill-list a:hover {
+        background: rgba(37, 99, 235, 0.07);
+        color: var(--accent);
+        border-color: rgba(37, 99, 235, 0.2);
+    }
+
+    /* Hero */
+    .home-hero {
+        padding: 8px 4px 40px;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+        margin-bottom: 4px;
+    }
+    .home-hero h1 {
+        margin: 12px 0 14px;
+        font-size: clamp(2rem, 4.5vw, 3.2rem);
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+    }
+    .home-hero .hero-subtitle {
+        margin-bottom: 28px;
+        font-size: 1.05rem;
+    }
+
+    /* Hero CTA pills */
+    .home-cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .cta-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        font-size: 0.91rem;
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid transparent;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cta-pill-primary {
+        background: var(--accent);
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    }
+    .cta-pill-ghost {
+        color: var(--accent-dark);
+        background: rgba(37, 99, 235, 0.07);
+        border-color: rgba(37, 99, 235, 0.22);
+    }
+    .cta-pill:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+    }
+    .cta-pill svg {
+        flex-shrink: 0;
+    }
+
+    /* Section cards */
+    .section-block {
+        border-top: 3px solid transparent;
+        margin-top: 22px;
+    }
+    .section-dist  { border-top-color: #2563eb; }
+    .section-sample { border-top-color: #4f46e5; }
+    .section-hyp   { border-top-color: #7c3aed; }
+
+    .section-header-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 4px;
+    }
+    .section-title-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .section-title-group h2 {
+        margin: 0;
+    }
+    .section-badge {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        padding: 3px 10px;
+        border-radius: 999px;
+    }
+    .section-dist  .section-badge { background: rgba(37, 99, 235, 0.1);  color: #1d4ed8; }
+    .section-sample .section-badge { background: rgba(79, 70, 229, 0.1);  color: #4338ca; }
+    .section-hyp   .section-badge { background: rgba(124, 58, 237, 0.1); color: #6d28d9; }
+
+    .section-explore-link {
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 0.86rem;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 6px 0;
+        transition: opacity 0.15s;
+    }
+    .section-explore-link:hover { opacity: 0.75; text-decoration: underline; }
+    .section-dist  .section-explore-link { color: #2563eb; }
+    .section-sample .section-explore-link { color: #4f46e5; }
+    .section-hyp   .section-explore-link { color: #7c3aed; }
+
+    /* Hover tint per section */
+    .section-sample .tools-grid a:hover {
+        background: rgba(79, 70, 229, 0.06);
+        border-color: rgba(79, 70, 229, 0.3);
+    }
+    .section-hyp .tools-grid a:hover {
+        background: rgba(124, 58, 237, 0.06);
+        border-color: rgba(124, 58, 237, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+        .nav-pill-list { display: none; }
+        .home-cta-row { flex-direction: column; align-items: flex-start; }
+        .section-header-row { flex-direction: column; gap: 4px; }
+    }
+    </style>
 </head>
 <body>
 
 <div class="page-wrap">
-    <header class="hero">
-        <div>
-            
-            <h1>Calculadoras estadísticas online</h1>
-            <p class="hero-subtitle">Accede de forma directa a calculadoras de distribuciones, tamaño muestral y contrastes de hipótesis con una navegación clara y orientada a resolver dudas estadísticas reales.</p>
-            <p class="hero-intro">En ProbLab tienes tres bloques principales: calculadora general de distribuciones, calculadora general de tamaño muestral y páginas específicas para contrastes de hipótesis. Todo desde una estructura simple y sin pasos redundantes.</p>
-            <p class="hero-links"><a href="distribuciones/">Distribuciones</a> · <a href="tamano-muestral/">Tamaño muestral</a> · <a href="contrastes-hipotesis/">Contrastes</a></p>
+
+    <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-brand" href="/"><em>Prob</em>Lab</a>
+        <ul class="nav-pill-list">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero home-hero">
+        <p class="eyebrow">Herramientas estadísticas gratuitas</p>
+        <h1>Calculadoras estadísticas online</h1>
+        <p class="hero-subtitle">Distribuciones de probabilidad, tamaño muestral y contrastes de hipótesis. Sin registro, resultados inmediatos.</p>
+        <div class="home-cta-row">
+            <a href="distribuciones/" class="cta-pill cta-pill-primary">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 16 C5 16 6 4 10 4 C14 4 15 16 18 16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="2" y1="16" x2="18" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Distribuciones
+            </a>
+            <a href="tamano-muestral/" class="cta-pill cta-pill-ghost">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="10" width="4" height="8" rx="1" fill="currentColor" opacity="0.65"/><rect x="8" y="5" width="4" height="13" rx="1" fill="currentColor"/><rect x="14" y="13" width="4" height="5" rx="1" fill="currentColor" opacity="0.65"/></svg>
+                Tamaño muestral
+            </a>
+            <a href="contrastes-hipotesis/" class="cta-pill cta-pill-ghost">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M1 15 C3 15 4 5 7.5 5 C11 5 12 15 14 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M13 15 C14 11 15 7 17 7 C18.5 7 19 12 19.5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/><line x1="11" y1="2" x2="11" y2="17" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2" stroke-linecap="round"/></svg>
+                Contrastes
+            </a>
         </div>
     </header>
 
     <main>
-        <section id="familias" class="card content-card">
-            <h2>Distribuciones de probabilidad</h2>
+        <section id="familias" class="card content-card section-block section-dist">
+            <div class="section-header-row">
+                <div class="section-title-group">
+                    <h2>Distribuciones de probabilidad</h2>
+                    <span class="section-badge">16 calculadoras</span>
+                </div>
+                <a class="section-explore-link" href="distribuciones/">Ver todas →</a>
+            </div>
             <p>Calculadoras para probabilidades puntuales, acumuladas, colas y percentiles en distribuciones continuas y discretas.</p>
-            <p><a class="hero-link-button" href="distribuciones/">Explorar distribuciones</a></p>
             <ul class="tools-grid distribution-tools-grid" aria-label="Listado de calculadoras de distribuciones">
                 <li><a href="normal.html">Normal</a></li>
                 <li><a href="binomial.html">Binomial</a></li>
@@ -160,10 +351,15 @@
             </ul>
         </section>
 
-        <section class="card content-card">
-            <h2>Tamaños muestrales</h2>
+        <section class="card content-card section-block section-sample">
+            <div class="section-header-row">
+                <div class="section-title-group">
+                    <h2>Tamaños muestrales</h2>
+                    <span class="section-badge">8 calculadoras</span>
+                </div>
+                <a class="section-explore-link" href="tamano-muestral/">Ver todas →</a>
+            </div>
             <p>Herramientas para estimar el número de observaciones necesarias según confianza, error, potencia y diseño del estudio.</p>
-            <p><a class="hero-link-button" href="tamano-muestral/">Explorar tamaño muestral</a></p>
             <ul class="tools-grid sample-size-tools-grid" aria-label="Listado de calculadoras de tamaño muestral">
                 <li><a href="tamano-muestral-una-proporcion.html">Una proporción</a></li>
                 <li><a href="tamano-muestral-dos-proporciones.html">Dos proporciones</a></li>
@@ -176,10 +372,15 @@
             </ul>
         </section>
 
-        <section id="hypothesis-hub" class="card content-card" aria-labelledby="hypothesis-hub-title">
-            <h2 id="hypothesis-hub-title">Contrastes de hipótesis</h2>
+        <section id="hypothesis-hub" class="card content-card section-block section-hyp" aria-labelledby="hypothesis-hub-title">
+            <div class="section-header-row">
+                <div class="section-title-group">
+                    <h2 id="hypothesis-hub-title">Contrastes de hipótesis</h2>
+                    <span class="section-badge">10 calculadoras</span>
+                </div>
+                <a class="section-explore-link" href="contrastes-hipotesis/">Ver todas →</a>
+            </div>
             <p>Acceso directo a pruebas para una media, dos medias, una proporción y dos proporciones con interpretación del p-valor.</p>
-            <p><a class="hero-link-button" href="contrastes-hipotesis/">Explorar contrastes</a></p>
             <ul class="tools-grid hypothesis-tools-grid" aria-label="Listado de calculadoras de contrastes de hipótesis">
                 <li><a href="contraste-hipotesis-una-media.html">Una media</a></li>
                 <li><a href="contraste-hipotesis-dos-medias.html">Dos medias</a></li>
