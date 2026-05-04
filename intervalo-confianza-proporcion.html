@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalo de confianza para una proporción | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online del intervalo de confianza para una proporción poblacional. Método de Wald y Wilson. Fórmula, gráfico y ejemplos prácticos.">
+    <link rel="canonical" href="https://problabtools.es/intervalo-confianza-proporcion.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intervalo de confianza para una proporción | ProbLab">
+    <meta property="og:description" content="Calculadora online del intervalo de confianza para una proporción poblacional. Método de Wald y Wilson.">
+    <meta property="og:url" content="https://problabtools.es/intervalo-confianza-proporcion.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalo-confianza-proporcion.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intervalo de confianza para una proporción | ProbLab">
+    <meta name="twitter:description" content="Calculadora online del intervalo de confianza para una proporción poblacional. Método de Wald y Wilson.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"},
+            {"@type": "ListItem", "position": 3, "name": "IC proporción", "item": "https://problabtools.es/intervalo-confianza-proporcion.html"}
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Intervalo de confianza para una proporción",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://problabtools.es/intervalo-confianza-proporcion.html",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260503-1">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Intervalos de confianza</p>
+        <h1>Intervalo de confianza para una proporción</h1>
+        <p class="hero-subtitle">Estima la proporción poblacional a partir de los éxitos observados en una muestra. Incluye los métodos de Wald y Wilson.</p>
+        <p class="hero-links"><a class="hero-link-button" href="intervalos-confianza/">Ver todos los intervalos</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>Cuando queremos estimar la proporción real de una característica en una población (tasa de defectos, porcentaje de usuarios satisfechos, prevalencia de una enfermedad…), el intervalo de confianza para una proporción nos da el rango plausible para ese valor.</p>
+            <p>La proporción muestral \(\hat{p} = x/n\) (éxitos entre observaciones) es el estimador. Existen varios métodos para construir el intervalo; los más habituales son Wald (aproximación normal) y Wilson (más preciso para proporciones extremas o muestras pequeñas).</p>
+
+            <h2>Método de Wald (aproximación normal)</h2>
+            <p class="formula-line">\( \hat{p} \pm z_{\alpha/2} \cdot \sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}} \)</p>
+            <p>Válido cuando se cumple la regla práctica: \(n\hat{p} \geq 5\) y \(n(1-\hat{p}) \geq 5\).</p>
+
+            <h2>Método de Wilson (recomendado)</h2>
+            <p class="formula-line">\( \dfrac{\hat{p} + \dfrac{z^2}{2n} \pm z\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n} + \dfrac{z^2}{4n^2}}}{1 + \dfrac{z^2}{n}} \)</p>
+            <p>Más preciso especialmente cuando \(\hat{p}\) está cerca de 0 o 1, o la muestra es pequeña.</p>
+
+            <h2>Ejemplo real</h2>
+            <p>En una encuesta a 200 clientes, 134 declaran estar satisfechos. \(\hat{p} = 134/200 = 0{,}67\). Con 95 % de confianza (Wald):</p>
+            <p class="formula-line">\( 0{,}67 \pm 1{,}960 \cdot \sqrt{\frac{0{,}67 \cdot 0{,}33}{200}} \approx [0{,}605,\; 0{,}735] \)</p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce el número de éxitos y el tamaño muestral para obtener ambos intervalos.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="x">Número de éxitos (x)</label>
+                        <input type="number" id="x" value="134" step="1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="n">Tamaño muestral (n)</label>
+                        <input type="number" id="n" value="200" step="1" min="1">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="conf">Nivel de confianza</label>
+                        <select id="conf">
+                            <option value="0.90">90 %</option>
+                            <option value="0.95" selected>95 %</option>
+                            <option value="0.99">99 %</option>
+                            <option value="custom">Personalizado…</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="method">Método</label>
+                        <select id="method">
+                            <option value="both" selected>Ambos (Wald + Wilson)</option>
+                            <option value="wald">Solo Wald</option>
+                            <option value="wilson">Solo Wilson</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs" id="customConfRow" style="display:none">
+                    <div class="form-group">
+                        <label for="customConf">Nivel de confianza personalizado (0–1)</label>
+                        <input type="number" id="customConf" value="0.95" step="0.01" min="0.01" max="0.9999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular intervalo</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza para la proporción" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>¿Cuándo usar Wilson en lugar de Wald?</h2>
+            <p>Wilson es preferible cuando \(\hat{p}\) está cerca de 0 o 1 (por debajo de 0,1 o por encima de 0,9) o cuando n es pequeño. Wald puede dar límites fuera de [0,1] en esos casos, lo que no tiene sentido para una proporción.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+            <p>Esta calculadora obtiene el intervalo de confianza para la proporción poblacional p usando los métodos de Wald (aproximación normal clásica) y Wilson (score interval), mostrando ambos para comparación y una representación gráfica de la distribución normal estándar con la región de confianza.</p>
+            <section class="related-tools">
+                <h2>Calculadoras relacionadas</h2>
+                <ul>
+                    <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
+                    <li><a href="contraste-hipotesis-una-proporcion.html">Contraste de hipótesis para una proporción</a></li>
+                    <li><a href="intervalo-confianza-media.html">IC para una media (σ desconocida)</a></li>
+                    <li><a href="binomial.html">Distribución Binomial</a></li>
+                </ul>
+            </section>
+            <h2>Preguntas frecuentes</h2>
+            <ul>
+                <li><strong>¿Puedo introducir p̂ directamente en lugar de x?</strong> Introduce x = p̂ × n redondeado al entero más cercano; el resultado será equivalente.</li>
+                <li><strong>¿Qué pasa si x = 0 o x = n?</strong> Wald da un intervalo de anchura cero, lo cual no es útil. Wilson maneja estos casos correctamente.</li>
+                <li><strong>¿Cuándo se cumple la condición de normalidad?</strong> Cuando n·p̂ ≥ 5 y n·(1−p̂) ≥ 5. La calculadora te avisa si no se cumple.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let ciChart;
+
+document.getElementById('conf').addEventListener('change', function () {
+    document.getElementById('customConfRow').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function getConfLevel() {
+    const sel = document.getElementById('conf').value;
+    if (sel === 'custom') return parseFloat(document.getElementById('customConf').value);
+    return parseFloat(sel);
+}
+
+function renderChart(zCrit, pHat, waldL, waldU, wilsonL, wilsonU, method) {
+    const ctx = document.getElementById('ciChart');
+    if (!ctx) return;
+
+    const bound = Math.max(4, zCrit + 0.8);
+    const minX = -bound, maxX = bound;
+    const step = 0.02;
+
+    const curve = [], inside = [], outside = [];
+    for (let x = minX; x <= maxX; x += step) {
+        const y = jStat.normal.pdf(x, 0, 1);
+        curve.push({ x, y });
+        if (x >= -zCrit && x <= zCrit) {
+            inside.push({ x, y });
+            outside.push({ x, y: null });
+        } else {
+            inside.push({ x, y: null });
+            outside.push({ x, y });
+        }
+    }
+
+    const datasets = [
+        { label: 'Región de confianza', data: inside, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+        { label: 'Colas (α/2 cada una)', data: outside, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+        { label: 'Distribución Normal estándar', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+    ];
+
+    if (ciChart) ciChart.destroy();
+    ciChart = new Chart(ctx, {
+        type: 'line',
+        data: { datasets },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'z' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const x = parseFloat(document.getElementById('x').value);
+    const n = parseFloat(document.getElementById('n').value);
+    const conf = getConfLevel();
+    const method = document.getElementById('method').value;
+    const resultEl = document.getElementById('result');
+
+    if (![x, n, conf].every(Number.isFinite) || x < 0 || n < 1 || x > n || conf <= 0 || conf >= 1) {
+        resultEl.innerText = 'Error: revisa que 0 ≤ x ≤ n, n ≥ 1 y 0 < confianza < 1.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const alpha = 1 - conf;
+    const zCrit = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const pHat = x / n;
+
+    // Wald
+    const seWald = Math.sqrt(pHat * (1 - pHat) / n);
+    const waldL = Math.max(0, pHat - zCrit * seWald);
+    const waldU = Math.min(1, pHat + zCrit * seWald);
+
+    // Wilson
+    const z2 = zCrit * zCrit;
+    const center = (pHat + z2 / (2 * n)) / (1 + z2 / n);
+    const halfWidth = (zCrit / (1 + z2 / n)) * Math.sqrt(pHat * (1 - pHat) / n + z2 / (4 * n * n));
+    const wilsonL = Math.max(0, center - halfWidth);
+    const wilsonU = Math.min(1, center + halfWidth);
+
+    const waldOk = n * pHat >= 5 && n * (1 - pHat) >= 5;
+    const warning = waldOk ? '' : '\n⚠ Condición de normalidad no cumplida (n·p̂ < 5 o n·(1−p̂) < 5). Se recomienda usar Wilson.';
+
+    let lines = [
+        `p̂ = ${pHat.toFixed(6)}  |  Nivel de confianza: ${(conf * 100).toFixed(1)} %  |  z crítico: ±${zCrit.toFixed(4)}`
+    ];
+    if (method === 'both' || method === 'wald') {
+        lines.push(`Wald:   [${waldL.toFixed(6)}, ${waldU.toFixed(6)}]  (amplitud: ${(waldU - waldL).toFixed(6)})`);
+    }
+    if (method === 'both' || method === 'wilson') {
+        lines.push(`Wilson: [${wilsonL.toFixed(6)}, ${wilsonU.toFixed(6)}]  (amplitud: ${(wilsonU - wilsonL).toFixed(6)})`);
+    }
+    if (warning) lines.push(warning);
+
+    resultEl.innerText = lines.join('\n');
+    renderChart(zCrit, pHat, waldL, waldU, wilsonL, wilsonU, method);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('conf').addEventListener('change', calculate);
+document.getElementById('method').addEventListener('change', calculate);
+document.getElementById('customConf').addEventListener('input', calculate);
+calculate();
+</script>
+</body>
+</html>

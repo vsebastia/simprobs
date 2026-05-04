@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalo de confianza para una media con σ conocida | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online del intervalo de confianza para una media poblacional cuando la desviación típica poblacional σ es conocida. Fórmula z, gráfico y ejemplos.">
+    <link rel="canonical" href="https://problabtools.es/intervalo-confianza-media-sigma-conocida.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intervalo de confianza para una media con σ conocida | ProbLab">
+    <meta property="og:description" content="Calculadora online del intervalo de confianza para una media poblacional cuando σ es conocida. Fórmula z, gráfico y ejemplos.">
+    <meta property="og:url" content="https://problabtools.es/intervalo-confianza-media-sigma-conocida.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalo-confianza-media-sigma-conocida.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intervalo de confianza para una media con σ conocida | ProbLab">
+    <meta name="twitter:description" content="Calculadora online del intervalo de confianza para una media poblacional cuando σ es conocida. Fórmula z, gráfico y ejemplos.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"},
+            {"@type": "ListItem", "position": 3, "name": "IC media σ conocida", "item": "https://problabtools.es/intervalo-confianza-media-sigma-conocida.html"}
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Intervalo de confianza para una media con σ conocida",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://problabtools.es/intervalo-confianza-media-sigma-conocida.html",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260503-1">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Intervalos de confianza</p>
+        <h1>Intervalo de confianza para una media (σ conocida)</h1>
+        <p class="hero-subtitle">Calcula el rango plausible para la media poblacional cuando conoces la desviación típica poblacional.</p>
+        <p class="hero-links"><a class="hero-link-button" href="intervalos-confianza/">Ver todos los intervalos</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>Cuando conoces la desviación típica poblacional \(\sigma\) (o puedes suponerla conocida con certeza), el intervalo de confianza para la media se construye usando la distribución normal estándar. Es el caso más sencillo y sirve como punto de partida para entender la lógica de los intervalos de confianza.</p>
+            <p>En la práctica, \(\sigma\) raramente se conoce con exactitud. Sin embargo, este intervalo es una buena aproximación cuando el tamaño muestral es grande (n ≥ 30) y la varianza poblacional es estable y conocida de estudios anteriores.</p>
+
+            <h2>Fórmula</h2>
+            <p class="formula-line">\( \bar{x} \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \)</p>
+            <ul>
+                <li><strong>\(\bar{x}\)</strong>: media muestral observada.</li>
+                <li><strong>\(z_{\alpha/2}\)</strong>: valor crítico de la normal estándar para el nivel de confianza elegido.</li>
+                <li><strong>\(\sigma\)</strong>: desviación típica poblacional (conocida).</li>
+                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
+            </ul>
+            <p>El margen de error es \(E = z_{\alpha/2} \cdot \sigma/\sqrt{n}\), y el intervalo queda \([\bar{x} - E,\; \bar{x} + E]\).</p>
+
+            <h2>Valores críticos z habituales</h2>
+            <ul>
+                <li>Confianza 90 %: \(z_{0,05} = 1{,}645\)</li>
+                <li>Confianza 95 %: \(z_{0,025} = 1{,}960\)</li>
+                <li>Confianza 99 %: \(z_{0,005} = 2{,}576\)</li>
+            </ul>
+
+            <h2>Ejemplo real</h2>
+            <p>Una fábrica de tornillos conoce por especificaciones técnicas que \(\sigma = 0{,}08\) mm. Se mide una muestra de 50 tornillos y se obtiene \(\bar{x} = 10{,}02\) mm. Con un 95 % de confianza, el intervalo es:</p>
+            <p class="formula-line">\( 10{,}02 \pm 1{,}960 \cdot \frac{0{,}08}{\sqrt{50}} \approx [9{,}998,\; 10{,}042] \text{ mm} \)</p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los datos para obtener el intervalo de confianza y su representación gráfica.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="xbar">Media muestral (x̄)</label>
+                        <input type="number" id="xbar" value="10.02" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="sigma">Desviación típica poblacional (σ)</label>
+                        <input type="number" id="sigma" value="0.08" step="0.001" min="0.0001">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="n">Tamaño muestral (n)</label>
+                        <input type="number" id="n" value="50" step="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="conf">Nivel de confianza</label>
+                        <select id="conf">
+                            <option value="0.90">90 %</option>
+                            <option value="0.95" selected>95 %</option>
+                            <option value="0.99">99 %</option>
+                            <option value="custom">Personalizado…</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs" id="customConfRow" style="display:none">
+                    <div class="form-group">
+                        <label for="customConf">Nivel de confianza personalizado (0–1)</label>
+                        <input type="number" id="customConf" value="0.95" step="0.01" min="0.01" max="0.9999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular intervalo</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza sobre la distribución normal estándar" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Cómo interpretar el resultado</h2>
+            <p>El intervalo \([L, U]\) indica que, con el nivel de confianza elegido, el procedimiento de estimación cubre el verdadero valor de \(\mu\) en esa proporción de muestras repetidas. No es una afirmación probabilística sobre el parámetro concreto, sino sobre el método.</p>
+            <ul>
+                <li>Si necesitas mayor precisión (intervalo más estrecho), aumenta \(n\) o acepta un nivel de confianza menor.</li>
+                <li>Un IC más amplio no es "peor" por sí solo: refleja más honestamente la incertidumbre cuando la muestra es pequeña.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+            <p>Esta calculadora obtiene el intervalo de confianza bilateral para la media poblacional \(\mu\) usando el estadístico z cuando \(\sigma\) es conocida. Calcula automáticamente el valor crítico, el margen de error y los límites inferior y superior del intervalo.</p>
+            <h2>Cuándo usar este intervalo</h2>
+            <p>Usa el IC z cuando el tamaño muestral es grande (n ≥ 30) o cuando \(\sigma\) está determinada con certeza por el proceso (por ejemplo, equipos de medición calibrados). Para muestras pequeñas con \(\sigma\) desconocida, usa el <a href="intervalo-confianza-media.html">IC con t de Student</a>.</p>
+            <section class="related-tools">
+                <h2>Calculadoras relacionadas</h2>
+                <ul>
+                    <li><a href="intervalo-confianza-media.html">IC para una media (σ desconocida)</a></li>
+                    <li><a href="intervalo-confianza-proporcion.html">IC para una proporción</a></li>
+                    <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
+                    <li><a href="normal.html">Distribución Normal</a></li>
+                </ul>
+            </section>
+            <h2>Preguntas frecuentes</h2>
+            <ul>
+                <li><strong>¿Por qué se usa z y no t?</strong> Porque \(\sigma\) es conocida; la distribución del estadístico \((\bar{x}-\mu)/(\sigma/\sqrt{n})\) es exactamente normal estándar.</li>
+                <li><strong>¿Qué pasa si el IC no contiene el valor de referencia?</strong> Que con ese nivel de confianza rechazarías la hipótesis de que \(\mu\) es ese valor.</li>
+                <li><strong>¿Cómo reduzco la amplitud a la mitad?</strong> Cuadruplica el tamaño muestral (el margen de error varía con \(1/\sqrt{n}\)).</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let ciChart;
+
+document.getElementById('conf').addEventListener('change', function () {
+    document.getElementById('customConfRow').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function getConfLevel() {
+    const sel = document.getElementById('conf').value;
+    if (sel === 'custom') return parseFloat(document.getElementById('customConf').value);
+    return parseFloat(sel);
+}
+
+function renderChart(zCrit, statValue) {
+    const ctx = document.getElementById('ciChart');
+    if (!ctx) return;
+
+    const bound = Math.max(4, Math.abs(zCrit) + 0.8);
+    const minX = -bound, maxX = bound;
+    const step = 0.02;
+
+    const curve = [], inside = [], outside = [];
+    for (let x = minX; x <= maxX; x += step) {
+        const y = jStat.normal.pdf(x, 0, 1);
+        curve.push({ x, y });
+        if (x >= -zCrit && x <= zCrit) {
+            inside.push({ x, y });
+            outside.push({ x, y: null });
+        } else {
+            inside.push({ x, y: null });
+            outside.push({ x, y });
+        }
+    }
+
+    const maxY = Math.max(...curve.map(p => p.y));
+    const statLine = Number.isFinite(statValue)
+        ? [{ x: statValue, y: 0 }, { x: statValue, y: maxY * 1.05 }]
+        : [];
+
+    if (ciChart) ciChart.destroy();
+    ciChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Región de confianza', data: inside, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Colas (α/2 cada una)', data: outside, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Distribución Normal estándar', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'Estadístico z observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'z' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            },
+            plugins: {
+                annotation: {
+                    annotations: {
+                        leftCrit: { type: 'line', xMin: -zCrit, xMax: -zCrit, borderColor: '#6366f1', borderWidth: 2, borderDash: [6, 3], label: { content: `-z${String.fromCharCode(0x03B1)}/2`, display: true, position: 'end' } },
+                        rightCrit: { type: 'line', xMin: zCrit, xMax: zCrit, borderColor: '#6366f1', borderWidth: 2, borderDash: [6, 3], label: { content: `+z${String.fromCharCode(0x03B1)}/2`, display: true, position: 'end' } }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const xbar = parseFloat(document.getElementById('xbar').value);
+    const sigma = parseFloat(document.getElementById('sigma').value);
+    const n = parseFloat(document.getElementById('n').value);
+    const conf = getConfLevel();
+    const resultEl = document.getElementById('result');
+
+    if (![xbar, sigma, n, conf].every(Number.isFinite) || sigma <= 0 || n < 1 || conf <= 0 || conf >= 1) {
+        resultEl.innerText = 'Error: revisa que σ > 0, n ≥ 1 y 0 < confianza < 1.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const alpha = 1 - conf;
+    const zCrit = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const se = sigma / Math.sqrt(n);
+    const margin = zCrit * se;
+    const lower = xbar - margin;
+    const upper = xbar + margin;
+
+    resultEl.innerText =
+        `Nivel de confianza: ${(conf * 100).toFixed(1)} %  |  z crítico: ±${zCrit.toFixed(4)}\n` +
+        `Error estándar: ${se.toFixed(6)}  |  Margen de error: ±${margin.toFixed(6)}\n` +
+        `Intervalo de confianza: [${lower.toFixed(6)}, ${upper.toFixed(6)}]`;
+
+    renderChart(zCrit, 0);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('conf').addEventListener('change', calculate);
+document.getElementById('customConf').addEventListener('input', calculate);
+calculate();
+</script>
+</body>
+</html>

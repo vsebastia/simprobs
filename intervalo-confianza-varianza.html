@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalo de confianza para una varianza (chi-cuadrado) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online del intervalo de confianza para la varianza y desviación típica poblacional usando la distribución chi-cuadrado. Fórmula, gráfico y ejemplos.">
+    <link rel="canonical" href="https://problabtools.es/intervalo-confianza-varianza.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intervalo de confianza para una varianza (chi-cuadrado) | ProbLab">
+    <meta property="og:description" content="Calculadora online del intervalo de confianza para varianza y desviación típica poblacional usando chi-cuadrado.">
+    <meta property="og:url" content="https://problabtools.es/intervalo-confianza-varianza.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalo-confianza-varianza.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intervalo de confianza para una varianza (chi-cuadrado) | ProbLab">
+    <meta name="twitter:description" content="Calculadora online del intervalo de confianza para varianza y desviación típica poblacional usando chi-cuadrado.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"},
+            {"@type": "ListItem", "position": 3, "name": "IC varianza", "item": "https://problabtools.es/intervalo-confianza-varianza.html"}
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Intervalo de confianza para una varianza",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://problabtools.es/intervalo-confianza-varianza.html",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260503-1">
+</head>
+<body>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Intervalos de confianza</p>
+        <h1>Intervalo de confianza para una varianza</h1>
+        <p class="hero-subtitle">Estima la varianza y desviación típica poblacional usando la distribución chi-cuadrado. Clave en control de calidad y análisis de procesos.</p>
+        <p class="hero-links"><a class="hero-link-button" href="intervalos-confianza/">Ver todos los intervalos</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>Descripción</h2>
+            <p>Mientras los intervalos para la media usan la distribución normal o t (que son simétricas), el intervalo para la varianza usa la distribución chi-cuadrado, que es asimétrica y positiva. Por eso los límites del intervalo no están equidistantes del estimador puntual \(s^2\).</p>
+            <p>Este intervalo es fundamental en control de procesos (SPC), donde importa no solo la media de un proceso sino también su variabilidad. También aparece en metaanálisis, diseño de experimentos y auditoría de procesos de medición.</p>
+
+            <h2>Fórmula para la varianza</h2>
+            <p class="formula-line">\( \left[\dfrac{(n-1)s^2}{\chi^2_{\alpha/2,\, n-1}},\;\; \dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2,\, n-1}}\right] \)</p>
+            <ul>
+                <li><strong>\(s^2\)</strong>: varianza muestral (con divisor \(n-1\)).</li>
+                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
+                <li><strong>\(\chi^2_{\alpha/2,\, n-1}\)</strong>: percentil superior de la chi-cuadrado (cola derecha).</li>
+                <li><strong>\(\chi^2_{1-\alpha/2,\, n-1}\)</strong>: percentil inferior de la chi-cuadrado (cola izquierda).</li>
+            </ul>
+
+            <h2>Fórmula para la desviación típica</h2>
+            <p class="formula-line">\( \left[\sqrt{\dfrac{(n-1)s^2}{\chi^2_{\alpha/2,\, n-1}}},\;\; \sqrt{\dfrac{(n-1)s^2}{\chi^2_{1-\alpha/2,\, n-1}}}\right] \)</p>
+            <p>Se obtiene aplicando raíz cuadrada a cada extremo del IC de la varianza.</p>
+
+            <h2>Ejemplo real</h2>
+            <p>Una línea de envasado llena botellas con \(s = 2{,}3\) ml a partir de \(n = 25\) mediciones. Con 95 % de confianza (\(gl = 24\), \(\chi^2_{0,025} \approx 39{,}36\), \(\chi^2_{0,975} \approx 12{,}40\)):</p>
+            <p class="formula-line">\( \sigma^2 \in \left[\frac{24 \cdot 5{,}29}{39{,}36},\;\frac{24 \cdot 5{,}29}{12{,}40}\right] \approx [3{,}23,\; 10{,}24] \text{ ml}^2 \)</p>
+            <p class="formula-line">\( \sigma \in [1{,}80,\; 3{,}20] \text{ ml} \)</p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la desviación estándar muestral y el tamaño de muestra para obtener los intervalos de varianza y desviación típica.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="s">Desviación estándar muestral (s)</label>
+                        <input type="number" id="s" value="2.3" step="0.001" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="n">Tamaño muestral (n)</label>
+                        <input type="number" id="n" value="25" step="1" min="2">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="conf">Nivel de confianza</label>
+                        <select id="conf">
+                            <option value="0.90">90 %</option>
+                            <option value="0.95" selected>95 %</option>
+                            <option value="0.99">99 %</option>
+                            <option value="custom">Personalizado…</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs" id="customConfRow" style="display:none">
+                    <div class="form-group">
+                        <label for="customConf">Nivel de confianza personalizado (0–1)</label>
+                        <input type="number" id="customConf" value="0.95" step="0.01" min="0.01" max="0.9999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular intervalo</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza para la varianza sobre la distribución chi-cuadrado" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Supuesto de normalidad</h2>
+            <p>Este intervalo asume que la variable subyacente sigue una distribución normal. A diferencia del IC para la media, el IC para la varianza no está protegido por el teorema central del límite: es muy sensible a desviaciones de la normalidad. Si los datos no son normales, considera transformaciones o métodos robustos.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h2>¿Qué calcula esta herramienta?</h2>
+            <p>Esta calculadora construye el intervalo de confianza para la varianza \(\sigma^2\) y la desviación típica \(\sigma\) poblacional usando la distribución chi-cuadrado con \(n-1\) grados de libertad. Calcula automáticamente los percentiles chi-cuadrado necesarios y muestra la región de confianza sobre la distribución.</p>
+            <section class="related-tools">
+                <h2>Calculadoras relacionadas</h2>
+                <ul>
+                    <li><a href="intervalo-confianza-media.html">IC para una media (σ desconocida)</a></li>
+                    <li><a href="contraste-hipotesis-varianzas.html">Contraste de hipótesis sobre varianzas</a></li>
+                    <li><a href="chisquare.html">Distribución Chi-cuadrado</a></li>
+                    <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
+                </ul>
+            </section>
+            <h2>Preguntas frecuentes</h2>
+            <ul>
+                <li><strong>¿Por qué el intervalo no es simétrico respecto a s²?</strong> Porque la distribución chi-cuadrado es asimétrica; los percentiles superior e inferior no están equidistantes del centro.</li>
+                <li><strong>¿Puedo usar este IC si los datos no son normales?</strong> No es recomendable; el intervalo chi-cuadrado es muy sensible a la no normalidad. Usa tests de normalidad primero.</li>
+                <li><strong>¿Qué pasa si n es muy pequeño?</strong> El intervalo será muy amplio, reflejando la alta incertidumbre con pocas observaciones.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let ciChart;
+
+document.getElementById('conf').addEventListener('change', function () {
+    document.getElementById('customConfRow').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function getConfLevel() {
+    const sel = document.getElementById('conf').value;
+    if (sel === 'custom') return parseFloat(document.getElementById('customConf').value);
+    return parseFloat(sel);
+}
+
+function renderChart(df, chiLow, chiHigh) {
+    const ctx = document.getElementById('ciChart');
+    if (!ctx) return;
+
+    const maxX = Math.min(chiHigh * 1.6, df + 5 * Math.sqrt(2 * df));
+    const minX = 0;
+    const step = maxX / 300;
+
+    const curve = [], inside = [], outsideLeft = [], outsideRight = [];
+    for (let x = minX + step; x <= maxX; x += step) {
+        const y = jStat.chisquare.pdf(x, df);
+        curve.push({ x, y });
+        if (x >= chiLow && x <= chiHigh) {
+            inside.push({ x, y });
+            outsideLeft.push({ x, y: null });
+            outsideRight.push({ x, y: null });
+        } else if (x < chiLow) {
+            inside.push({ x, y: null });
+            outsideLeft.push({ x, y });
+            outsideRight.push({ x, y: null });
+        } else {
+            inside.push({ x, y: null });
+            outsideLeft.push({ x, y: null });
+            outsideRight.push({ x, y });
+        }
+    }
+
+    if (ciChart) ciChart.destroy();
+    ciChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Región de confianza', data: inside, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Cola izquierda (α/2)', data: outsideLeft, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Cola derecha (α/2)', data: outsideRight, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: `Chi-cuadrado (gl = ${df})`, data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: `χ² (gl = ${df})` } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const s = parseFloat(document.getElementById('s').value);
+    const n = parseFloat(document.getElementById('n').value);
+    const conf = getConfLevel();
+    const resultEl = document.getElementById('result');
+
+    if (![s, n, conf].every(Number.isFinite) || s <= 0 || n < 2 || conf <= 0 || conf >= 1) {
+        resultEl.innerText = 'Error: revisa que s > 0, n ≥ 2 y 0 < confianza < 1.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const alpha = 1 - conf;
+    const df = n - 1;
+    const s2 = s * s;
+
+    // chi2 high = upper percentile for lower bound; chi2 low = lower percentile for upper bound
+    const chiHigh = jStat.chisquare.inv(1 - alpha / 2, df);
+    const chiLow  = jStat.chisquare.inv(alpha / 2, df);
+
+    const varLow  = (df * s2) / chiHigh;
+    const varHigh = (df * s2) / chiLow;
+    const sdLow   = Math.sqrt(varLow);
+    const sdHigh  = Math.sqrt(varHigh);
+
+    resultEl.innerText =
+        `Nivel de confianza: ${(conf * 100).toFixed(1)} %  |  gl = ${df}\n` +
+        `χ² inferior (α/2): ${chiLow.toFixed(4)}  |  χ² superior (1−α/2): ${chiHigh.toFixed(4)}\n` +
+        `IC para σ²: [${varLow.toFixed(6)}, ${varHigh.toFixed(6)}]\n` +
+        `IC para σ:  [${sdLow.toFixed(6)}, ${sdHigh.toFixed(6)}]`;
+
+    renderChart(df, chiLow, chiHigh);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('conf').addEventListener('change', calculate);
+document.getElementById('customConf').addEventListener('input', calculate);
+calculate();
+</script>
+</body>
+</html>
