@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla distribución Normal estándar — f(z) y Φ(z) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tabla completa de la distribución Normal estándar (μ=0, σ=1): función de densidad f(z) y función de distribución acumulada Φ(z) = P(Z≤z), para z de −3.49 a 3.49.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="canonical" href="https://problabtools.es/tabla-normal.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tabla distribución Normal estándar — f(z) y Φ(z) | ProbLab">
+    <meta property="og:description" content="Tabla completa de la distribución Normal estándar: densidad f(z) y acumulada Φ(z) = P(Z≤z).">
+    <meta property="og:url" content="https://problabtools.es/tabla-normal.html">
+    <meta property="og:site_name" content="ProbLab">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_new.css?v=20260503-1">
+    <style>
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        }
+        .site-nav-inner {
+            width: min(1200px, 94vw);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+        .site-brand {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+        .site-brand:hover { color: #1d4ed8; }
+        .site-nav-links {
+            list-style: none;
+            margin: 0; padding: 0;
+            display: flex;
+            gap: 4px;
+        }
+        .site-nav-links a {
+            display: block;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #334155;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+        }
+        .site-nav-links a:hover {
+            background: rgba(37, 99, 235, 0.08);
+            color: #2563eb;
+        }
+
+        /* Tab system */
+        .tab-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            background: #f8fafc;
+            color: #334155;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+        }
+        .tab-btn.active {
+            background: #2563eb;
+            color: #fff;
+            border-color: #2563eb;
+        }
+        .tab-btn:hover:not(.active) {
+            background: rgba(37, 99, 235, 0.08);
+            color: #2563eb;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Sign toggle */
+        .sign-toggle {
+            display: inline-flex;
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+        .sign-btn {
+            padding: 6px 16px;
+            border: none;
+            background: #f8fafc;
+            color: #334155;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+        .sign-btn.active {
+            background: #2563eb;
+            color: #fff;
+        }
+        .sign-btn:hover:not(.active) {
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        /* Table */
+        .dist-table-wrap {
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+        }
+        .dist-table {
+            border-collapse: collapse;
+            font-size: 0.78rem;
+            white-space: nowrap;
+            width: 100%;
+            font-variant-numeric: tabular-nums;
+        }
+        .dist-table thead th {
+            background: #2563eb;
+            color: #fff;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.76rem;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .dist-table thead th:first-child {
+            background: #1d4ed8;
+            position: sticky;
+            left: 0;
+            z-index: 3;
+        }
+        .dist-table tbody td {
+            padding: 5px 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+            border-right: 1px solid rgba(15, 23, 42, 0.04);
+            color: #1e293b;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+        .dist-table tbody tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+        .dist-table tbody tr:nth-child(even) td:first-child {
+            background: rgba(37, 99, 235, 0.1);
+        }
+        .dist-table tbody td:first-child {
+            font-weight: 700;
+            background: rgba(37, 99, 235, 0.07);
+            color: #1e40af;
+            position: sticky;
+            left: 0;
+            z-index: 1;
+            border-right: 2px solid rgba(37, 99, 235, 0.2);
+        }
+        .dist-table tbody tr:hover td {
+            background: rgba(37, 99, 235, 0.08);
+        }
+        .dist-table tbody tr:hover td:first-child {
+            background: rgba(37, 99, 235, 0.15);
+        }
+        .dist-table td.cell-highlight {
+            background: rgba(37, 99, 235, 0.25) !important;
+            font-weight: 700;
+            color: #1d4ed8;
+        }
+
+        /* Result display */
+        .lookup-result {
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(79, 70, 229, 0.08);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            color: #312e81;
+            font-size: 0.95rem;
+            font-weight: 600;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+        .lookup-result span {
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        /* Info box */
+        .info-box {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: rgba(8, 145, 178, 0.07);
+            border: 1px solid rgba(8, 145, 178, 0.2);
+            font-size: 0.87rem;
+            color: #0e7490;
+            line-height: 1.55;
+        }
+        .info-box strong { color: #0c4a6e; }
+
+        .table-section-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 16px 0 8px;
+        }
+
+        @media (max-width: 640px) {
+            .site-nav-links a { padding: 6px 10px; font-size: 0.82rem; }
+            .dist-table { font-size: 0.72rem; }
+            .dist-table thead th, .dist-table tbody td { padding: 4px 7px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="/">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="normal.html">Calculadora Normal</a></li>
+            <li><a href="tabla-t-student.html">Tabla t de Student</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tablas estadísticas</p>
+        <h1>Distribución Normal Estándar</h1>
+        <p class="hero-subtitle">Tabla de la normal estándar (μ = 0, σ = 1). Haz clic en cualquier celda para leer el valor exacto de f(z) o Φ(z) = P(Z ≤ z).</p>
+    </header>
+
+    <main>
+        <section class="card" style="margin-top:4px;">
+            <div class="tab-bar" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true"  onclick="switchTab('cdf',this)">Φ(z) = P(Z ≤ z) &mdash; Distribución acumulada</button>
+                <button class="tab-btn"         role="tab" aria-selected="false" onclick="switchTab('pdf',this)">f(z) &mdash; Función de densidad</button>
+            </div>
+
+            <!-- CDF TAB -->
+            <div id="tab-cdf" class="tab-content active">
+                <div class="info-box">
+                    <strong>Cómo leer la tabla:</strong> cada celda muestra Φ(z) = P(Z ≤ z). Por ejemplo, para z = 1.96 busca la fila <em>1.9</em> y la columna <em>.06</em> → Φ(1.96) = 0.9750. Para z negativo: Φ(−z) = 1 − Φ(z).
+                </div>
+                <div class="sign-toggle">
+                    <button class="sign-btn active" onclick="switchSign('cdf','pos',this)">z ≥ 0</button>
+                    <button class="sign-btn"        onclick="switchSign('cdf','neg',this)">z &lt; 0</button>
+                </div>
+                <div id="lookup-cdf" class="lookup-result"><span>Haz clic en una celda para leer el valor.</span></div>
+                <div id="cdf-pos-wrap">
+                    <p class="table-section-title">Φ(z) para z de 0.00 a 3.49</p>
+                    <div class="dist-table-wrap"><table id="tbl-cdf-pos" class="dist-table"></table></div>
+                </div>
+                <div id="cdf-neg-wrap" style="display:none;">
+                    <p class="table-section-title">Φ(z) para z de −3.49 a −0.00</p>
+                    <div class="dist-table-wrap"><table id="tbl-cdf-neg" class="dist-table"></table></div>
+                </div>
+            </div>
+
+            <!-- PDF TAB -->
+            <div id="tab-pdf" class="tab-content">
+                <div class="info-box">
+                    <strong>Cómo leer la tabla:</strong> cada celda muestra f(z) = φ(z) = (1/√(2π)) · e<sup>−z²/2</sup>. La función de densidad es simétrica: f(−z) = f(z). El máximo es f(0) = 0.3989.
+                </div>
+                <div id="lookup-pdf" class="lookup-result"><span>Haz clic en una celda para leer el valor.</span></div>
+                <p class="table-section-title">f(z) para z de 0.00 a 3.49 (simétrico: f(−z) = f(z))</p>
+                <div class="dist-table-wrap"><table id="tbl-pdf-pos" class="dist-table"></table></div>
+            </div>
+        </section>
+
+        <section class="card content-card" style="border-top:3px solid #2563eb;">
+            <h2>Cómo usar estas tablas</h2>
+            <h3>Distribución Normal Estándar</h3>
+            <p>La distribución Normal estándar tiene media μ = 0 y varianza σ² = 1. Su función de densidad es:</p>
+            <p class="formula-line">\( f(z) = \dfrac{1}{\sqrt{2\pi}}\,e^{-z^2/2} \)</p>
+            <p>Y su función de distribución acumulada Φ(z) = P(Z ≤ z) no tiene expresión cerrada, por lo que se consulta en tablas.</p>
+
+            <h3>Tabla Φ(z) — Distribución acumulada</h3>
+            <p>Cada celda muestra la probabilidad de que una variable Normal estándar sea <strong>menor o igual</strong> que z. Para z negativo, recuerda que Φ(−z) = 1 − Φ(z), o consulta directamente la pestaña z &lt; 0.</p>
+            <ul>
+                <li><strong>Φ(0) = 0.5000</strong> (la media divide la distribución en dos mitades iguales).</li>
+                <li><strong>Φ(1.96) ≈ 0.9750</strong> → el 95 % de los valores caen entre −1.96 y 1.96.</li>
+                <li><strong>Φ(2.576) ≈ 0.9950</strong> → el 99 % caen entre −2.576 y 2.576.</li>
+            </ul>
+
+            <h3>Tabla f(z) — Función de densidad</h3>
+            <p>Cada celda muestra el valor de la densidad en el punto z. Recuerda que la densidad <em>no es</em> una probabilidad puntual; se integra para obtener probabilidades. Es simétrica: f(−z) = f(z).</p>
+
+            <h3>Percentiles clave de la Normal estándar</h3>
+            <ul>
+                <li>z₀.₉₀ = 1.282 &nbsp;→&nbsp; P(Z ≤ 1.282) = 0.90</li>
+                <li>z₀.₉₅ = 1.645 &nbsp;→&nbsp; P(Z ≤ 1.645) = 0.95</li>
+                <li>z₀.₉₇₅ = 1.960 &nbsp;→&nbsp; P(Z ≤ 1.960) = 0.975 &nbsp;(bilateral 95 %)</li>
+                <li>z₀.₉₉ = 2.326 &nbsp;→&nbsp; P(Z ≤ 2.326) = 0.99</li>
+                <li>z₀.₉₉₅ = 2.576 &nbsp;→&nbsp; P(Z ≤ 2.576) = 0.995 &nbsp;(bilateral 99 %)</li>
+            </ul>
+
+            <h3>Calculadoras relacionadas</h3>
+            <ul class="distribution-links">
+                <li><a href="normal.html">Calculadora Normal</a></li>
+                <li><a href="tabla-t-student.html">Tabla t de Student</a></li>
+                <li><a href="studentt.html">Calculadora t de Student</a></li>
+                <li><a href="intervalo-confianza-media-sigma-conocida.html">IC media (σ conocida)</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script>
+    // ── Table generation ──────────────────────────────────────────────────────
+
+    const COL_DECS = [0,1,2,3,4,5,6,7,8,9]; // .00 to .09
+
+    function buildNormalTable(tableId, type, sign) {
+        // sign: +1 positive z, -1 negative z
+        const el = document.getElementById(tableId);
+
+        // Header
+        let html = '<thead><tr><th>z</th>';
+        COL_DECS.forEach(c => { html += `<th>.0${c}</th>`; });
+        html += '</tr></thead><tbody>';
+
+        // Rows: 0.0 … 3.4 (35 rows)
+        for (let r = 0; r <= 34; r++) {
+            const rowBase = r * 0.1;
+            const rowLabel = sign === 1
+                ? rowBase.toFixed(1)
+                : (rowBase === 0 ? '−0.0' : '−' + rowBase.toFixed(1));
+            html += `<tr><td>${rowLabel}</td>`;
+            COL_DECS.forEach(c => {
+                const z = sign * (rowBase + c * 0.01);
+                let val;
+                if (type === 'cdf') {
+                    val = jStat.normal.cdf(z, 0, 1).toFixed(4);
+                } else {
+                    val = jStat.normal.pdf(Math.abs(z), 0, 1).toFixed(4);
+                }
+                html += `<td data-z="${z.toFixed(2)}" data-val="${val}" data-type="${type}" onclick="cellClick(this)">${val}</td>`;
+            });
+            html += '</tr>';
+        }
+
+        html += '</tbody>';
+        el.innerHTML = html;
+    }
+
+    // ── Tab & toggle logic ────────────────────────────────────────────────────
+
+    let currentTab = 'cdf';
+
+    function switchTab(tab, btn) {
+        document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected','true');
+        document.getElementById('tab-' + tab).classList.add('active');
+        currentTab = tab;
+    }
+
+    function switchSign(type, sign, btn) {
+        btn.parentElement.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const isPos = sign === 'pos';
+        document.getElementById(type + '-pos-wrap').style.display = isPos ? '' : 'none';
+        document.getElementById(type + '-neg-wrap').style.display = isPos ? 'none' : '';
+        document.getElementById('lookup-' + type).innerHTML = '<span>Haz clic en una celda para leer el valor.</span>';
+    }
+
+    // ── Cell click ────────────────────────────────────────────────────────────
+
+    let lastHighlight = null;
+
+    function cellClick(td) {
+        const z    = parseFloat(td.dataset.z);
+        const val  = td.dataset.val;
+        const type = td.dataset.type;
+
+        // Remove previous highlight
+        if (lastHighlight) lastHighlight.classList.remove('cell-highlight');
+        td.classList.add('cell-highlight');
+        lastHighlight = td;
+
+        const resultEl = document.getElementById('lookup-' + type);
+        if (type === 'cdf') {
+            resultEl.innerHTML = `Para <strong>z = ${z.toFixed(2)}</strong>: <strong>Φ(z) = P(Z ≤ ${z.toFixed(2)}) = ${val}</strong>`;
+        } else {
+            resultEl.innerHTML = `Para <strong>z = ${z >= 0 ? '+' : ''}${z.toFixed(2)}</strong>: <strong>f(z) = ${val}</strong>`;
+        }
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+
+    buildNormalTable('tbl-cdf-pos', 'cdf',  1);
+    buildNormalTable('tbl-cdf-neg', 'cdf', -1);
+    buildNormalTable('tbl-pdf-pos', 'pdf',  1);
+</script>
+</body>
+</html>
