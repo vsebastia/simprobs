@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla distribución Binomial — P(X=k) y P(X≤k) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tabla completa de la distribución Binomial: función de masa P(X=k) y distribución acumulada P(X≤k) para distintos valores de n y p.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="canonical" href="https://problabtools.es/tabla-binomial.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tabla distribución Binomial | ProbLab">
+    <meta property="og:description" content="Tabla de la distribución binomial: PMF P(X=k) y CDF P(X≤k) para n y p seleccionables.">
+    <meta property="og:url" content="https://problabtools.es/tabla-binomial.html">
+    <meta property="og:site_name" content="ProbLab">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_new.css?v=20260503-1">
+    <style>
+        .site-nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(15,23,42,0.08); }
+        .site-nav-inner { width:min(1200px,94vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
+        .site-brand { font-size:1.15rem; font-weight:700; color:#2563eb; text-decoration:none; letter-spacing:-0.03em; }
+        .site-brand:hover { color:#1d4ed8; }
+        .site-nav-links { list-style:none; margin:0; padding:0; display:flex; gap:4px; }
+        .site-nav-links a { display:block; padding:6px 14px; border-radius:999px; font-size:0.875rem; font-weight:600; color:#334155; text-decoration:none; transition:background 0.15s,color 0.15s; }
+        .site-nav-links a:hover { background:rgba(37,99,235,0.08); color:#2563eb; }
+
+        .tab-bar { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+        .tab-btn { padding:8px 18px; border-radius:999px; border:1px solid rgba(37,99,235,0.25); background:#f8fafc; color:#334155; font-size:0.875rem; font-weight:600; cursor:pointer; transition:background 0.15s,color 0.15s,border-color 0.15s; }
+        .tab-btn.active { background:#2563eb; color:#fff; border-color:#2563eb; }
+        .tab-btn:hover:not(.active) { background:rgba(37,99,235,0.08); color:#2563eb; }
+        .tab-content { display:none; }
+        .tab-content.active { display:block; }
+
+        .sign-toggle { display:inline-flex; border:1px solid rgba(37,99,235,0.25); border-radius:10px; overflow:hidden; margin-bottom:14px; }
+        .sign-btn { padding:6px 16px; border:none; background:#f8fafc; color:#334155; font-size:0.82rem; font-weight:600; cursor:pointer; transition:background 0.15s,color 0.15s; }
+        .sign-btn.active { background:#2563eb; color:#fff; }
+        .sign-btn:hover:not(.active) { background:rgba(37,99,235,0.08); }
+
+        .df-control { display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
+        .df-control label { font-size:0.85rem; font-weight:600; color:#334155; margin:0; }
+        .df-select { padding:7px 12px; border-radius:10px; border:1px solid #dbe3f1; font-size:0.88rem; color:#0f172a; background:#fff; width:auto; transition:border-color 0.2s,box-shadow 0.2s; }
+        .df-select:focus { outline:none; border-color:#2563eb; box-shadow:0 0 0 4px rgba(37,99,235,0.2); }
+
+        .dist-table-wrap { overflow-x:auto; border-radius:12px; border:1px solid rgba(15,23,42,0.08); }
+        .dist-table { border-collapse:collapse; font-size:0.78rem; white-space:nowrap; width:100%; font-variant-numeric:tabular-nums; }
+        .dist-table thead th { background:#2563eb; color:#fff; padding:8px 10px; text-align:center; font-weight:700; font-size:0.76rem; position:sticky; top:0; z-index:2; }
+        .dist-table thead th:first-child { background:#1d4ed8; position:sticky; left:0; z-index:3; }
+        .dist-table tbody td { padding:5px 10px; text-align:center; border-bottom:1px solid rgba(15,23,42,0.05); border-right:1px solid rgba(15,23,42,0.04); color:#1e293b; cursor:pointer; transition:background 0.1s; }
+        .dist-table tbody tr:nth-child(even) td { background:#f8fafc; }
+        .dist-table tbody tr:nth-child(even) td:first-child { background:rgba(37,99,235,0.1); }
+        .dist-table tbody td:first-child { font-weight:700; background:rgba(37,99,235,0.07); color:#1e40af; position:sticky; left:0; z-index:1; border-right:2px solid rgba(37,99,235,0.2); }
+        .dist-table tbody tr:hover td { background:rgba(37,99,235,0.08); }
+        .dist-table tbody tr:hover td:first-child { background:rgba(37,99,235,0.15); }
+        .dist-table td.cell-highlight { background:rgba(37,99,235,0.25) !important; font-weight:700; color:#1d4ed8; }
+
+        .lookup-result { margin-top:12px; padding:12px 16px; border-radius:12px; background:rgba(79,70,229,0.08); border:1px solid rgba(79,70,229,0.2); color:#312e81; font-size:0.95rem; font-weight:600; min-height:44px; display:flex; align-items:center; }
+        .lookup-result span { color:#64748b; font-weight:400; }
+
+        .info-box { margin-bottom:16px; padding:12px 16px; border-radius:10px; background:rgba(8,145,178,0.07); border:1px solid rgba(8,145,178,0.2); font-size:0.87rem; color:#0e7490; line-height:1.55; }
+        .info-box strong { color:#0c4a6e; }
+
+        .table-section-title { font-size:0.82rem; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.06em; margin:16px 0 8px; }
+
+        @media (max-width:640px) {
+            .site-nav-links a { padding:6px 10px; font-size:0.82rem; }
+            .dist-table { font-size:0.72rem; }
+            .dist-table thead th, .dist-table tbody td { padding:4px 7px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="/">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="binomial.html">Calculadora Binomial</a></li>
+            <li><a href="tabla-poisson.html">Tabla Poisson</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tablas estadísticas</p>
+        <h1>Distribución Binomial</h1>
+        <p class="hero-subtitle">Tabla de la distribución binomial B(n, p): función de masa P(X = k) y función de distribución acumulada P(X ≤ k). Selecciona n y el rango de p. Haz clic en cualquier celda para leer el valor exacto.</p>
+    </header>
+
+    <main>
+        <section class="card" style="margin-top:4px;">
+            <div class="tab-bar" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true"  onclick="switchTab('pmf',this)">P(X = k) — Función de masa</button>
+                <button class="tab-btn"         role="tab" aria-selected="false" onclick="switchTab('cdf',this)">P(X ≤ k) — Acumulada</button>
+            </div>
+
+            <!-- PMF TAB -->
+            <div id="tab-pmf" class="tab-content active">
+                <div class="info-box">
+                    <strong>Cómo leer la tabla:</strong> cada celda muestra P(X = k) = C(n,k)·p^k·(1−p)^(n−k). Las filas son los valores de k (0, 1, …, n); las columnas son los valores de p. Usa el selector n para cambiar el número de ensayos y el botón para cambiar el rango de p.
+                </div>
+                <div class="df-control">
+                    <label for="n-pmf">n (ensayos):</label>
+                    <select id="n-pmf" class="df-select" onchange="rebuildBinomTable('pmf')"></select>
+                </div>
+                <div class="sign-toggle">
+                    <button class="sign-btn active" onclick="switchPRange('pmf','lo',this)">p ≤ 0.50</button>
+                    <button class="sign-btn"        onclick="switchPRange('pmf','hi',this)">p &gt; 0.50</button>
+                </div>
+                <div id="lookup-pmf" class="lookup-result"><span>Haz clic en una celda para leer el valor.</span></div>
+                <div id="pmf-lo-wrap">
+                    <p class="table-section-title">P(X = k) — p de 0.05 a 0.50</p>
+                    <div class="dist-table-wrap"><table id="tbl-pmf-lo" class="dist-table"></table></div>
+                </div>
+                <div id="pmf-hi-wrap" style="display:none;">
+                    <p class="table-section-title">P(X = k) — p de 0.55 a 0.95</p>
+                    <div class="dist-table-wrap"><table id="tbl-pmf-hi" class="dist-table"></table></div>
+                </div>
+            </div>
+
+            <!-- CDF TAB -->
+            <div id="tab-cdf" class="tab-content">
+                <div class="info-box">
+                    <strong>Cómo leer la tabla:</strong> cada celda muestra P(X ≤ k) = Σᵢ₌₀ᵏ C(n,i)·p^i·(1−p)^(n−i). Para calcular P(X &gt; k) usa el complemento: 1 − P(X ≤ k).
+                </div>
+                <div class="df-control">
+                    <label for="n-cdf">n (ensayos):</label>
+                    <select id="n-cdf" class="df-select" onchange="rebuildBinomTable('cdf')"></select>
+                </div>
+                <div class="sign-toggle">
+                    <button class="sign-btn active" onclick="switchPRange('cdf','lo',this)">p ≤ 0.50</button>
+                    <button class="sign-btn"        onclick="switchPRange('cdf','hi',this)">p &gt; 0.50</button>
+                </div>
+                <div id="lookup-cdf" class="lookup-result"><span>Haz clic en una celda para leer el valor.</span></div>
+                <div id="cdf-lo-wrap">
+                    <p class="table-section-title">P(X ≤ k) — p de 0.05 a 0.50</p>
+                    <div class="dist-table-wrap"><table id="tbl-cdf-lo" class="dist-table"></table></div>
+                </div>
+                <div id="cdf-hi-wrap" style="display:none;">
+                    <p class="table-section-title">P(X ≤ k) — p de 0.55 a 0.95</p>
+                    <div class="dist-table-wrap"><table id="tbl-cdf-hi" class="dist-table"></table></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card content-card" style="border-top:3px solid #2563eb;">
+            <h2>Cómo usar estas tablas</h2>
+            <h3>Distribución Binomial</h3>
+            <p>Un experimento binomial consiste en n ensayos independientes, cada uno con probabilidad p de éxito. El número de éxitos X sigue una distribución B(n, p) con función de masa:</p>
+            <p class="formula-line">\( P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, \ldots, n \)</p>
+            <p>La media es μ = np y la varianza σ² = np(1 − p).</p>
+
+            <h3>Propiedades útiles</h3>
+            <ul>
+                <li><strong>Simetría:</strong> P(X = k; n, p) = P(X = n − k; n, 1 − p). Usa esto para p &gt; 0.5 mirando la columna equivalente con p' = 1 − p.</li>
+                <li><strong>Complemento:</strong> P(X &gt; k) = 1 − P(X ≤ k).</li>
+                <li><strong>Intervalo:</strong> P(a ≤ X ≤ b) = P(X ≤ b) − P(X ≤ a − 1).</li>
+                <li>Para n grande y p pequeño, la binomial se aproxima a una Poisson con λ = np.</li>
+                <li>Para n grande, la binomial se aproxima a una Normal N(np, np(1−p)).</li>
+            </ul>
+
+            <h3>Calculadoras relacionadas</h3>
+            <ul class="distribution-links">
+                <li><a href="binomial.html">Calculadora Binomial</a></li>
+                <li><a href="tabla-poisson.html">Tabla Poisson</a></li>
+                <li><a href="tabla-normal.html">Tabla Normal estándar</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script>
+    const P_LO = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50];
+    const P_HI = [0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95];
+
+    function buildNSelector(id) {
+        const sel = document.getElementById(id);
+        for (let n = 1; n <= 30; n++) {
+            const opt = document.createElement('option');
+            opt.value = n;
+            opt.textContent = n;
+            sel.appendChild(opt);
+        }
+        sel.value = 10;
+    }
+
+    function buildBinomTable(tableId, type, n, pList) {
+        const el = document.getElementById(tableId);
+        let html = '<thead><tr><th>k</th>';
+        pList.forEach(p => { html += `<th>p = ${p.toFixed(2)}</th>`; });
+        html += '</tr></thead><tbody>';
+
+        for (let k = 0; k <= n; k++) {
+            html += `<tr><td>${k}</td>`;
+            pList.forEach(p => {
+                let val;
+                if (type === 'pmf') {
+                    val = jStat.binomial.pdf(k, n, p).toFixed(4);
+                } else {
+                    val = jStat.binomial.cdf(k, n, p).toFixed(4);
+                }
+                html += `<td data-k="${k}" data-n="${n}" data-p="${p.toFixed(2)}" data-val="${val}" data-type="${type}" onclick="cellClick(this)">${val}</td>`;
+            });
+            html += '</tr>';
+        }
+
+        html += '</tbody>';
+        el.innerHTML = html;
+    }
+
+    function rebuildBinomTable(type) {
+        const n = parseInt(document.getElementById('n-' + type).value, 10);
+        buildBinomTable('tbl-' + type + '-lo', type, n, P_LO);
+        buildBinomTable('tbl-' + type + '-hi', type, n, P_HI);
+        document.getElementById('lookup-' + type).innerHTML = '<span>Haz clic en una celda para leer el valor.</span>';
+    }
+
+    function switchTab(tab, btn) {
+        document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected','true');
+        document.getElementById('tab-' + tab).classList.add('active');
+    }
+
+    function switchPRange(type, range, btn) {
+        btn.parentElement.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const isLo = range === 'lo';
+        document.getElementById(type + '-lo-wrap').style.display = isLo ? '' : 'none';
+        document.getElementById(type + '-hi-wrap').style.display = isLo ? 'none' : '';
+        document.getElementById('lookup-' + type).innerHTML = '<span>Haz clic en una celda para leer el valor.</span>';
+    }
+
+    let lastHighlight = null;
+
+    function cellClick(td) {
+        if (lastHighlight) lastHighlight.classList.remove('cell-highlight');
+        td.classList.add('cell-highlight');
+        lastHighlight = td;
+
+        const k    = td.dataset.k;
+        const n    = td.dataset.n;
+        const p    = td.dataset.p;
+        const val  = td.dataset.val;
+        const type = td.dataset.type;
+        const el   = document.getElementById('lookup-' + type);
+
+        if (type === 'pmf') {
+            el.innerHTML = `n = ${n}, p = ${p}, <strong>k = ${k}</strong>: <strong>P(X = ${k}) = ${val}</strong>`;
+        } else {
+            el.innerHTML = `n = ${n}, p = ${p}, <strong>k = ${k}</strong>: <strong>P(X ≤ ${k}) = ${val}</strong>`;
+        }
+    }
+
+    buildNSelector('n-pmf');
+    buildNSelector('n-cdf');
+    buildBinomTable('tbl-pmf-lo', 'pmf', 10, P_LO);
+    buildBinomTable('tbl-pmf-hi', 'pmf', 10, P_HI);
+    buildBinomTable('tbl-cdf-lo', 'cdf', 10, P_LO);
+    buildBinomTable('tbl-cdf-hi', 'cdf', 10, P_HI);
+</script>
+</body>
+</html>

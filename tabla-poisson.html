@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla distribución de Poisson — P(X=k) y P(X≤k) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tabla completa de la distribución de Poisson: función de masa P(X=k) y distribución acumulada P(X≤k) para distintos valores del parámetro λ.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="canonical" href="https://problabtools.es/tabla-poisson.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tabla distribución de Poisson | ProbLab">
+    <meta property="og:description" content="Tabla de la distribución de Poisson: PMF P(X=k) y CDF P(X≤k) para distintos valores de λ.">
+    <meta property="og:url" content="https://problabtools.es/tabla-poisson.html">
+    <meta property="og:site_name" content="ProbLab">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_new.css?v=20260503-1">
+    <style>
+        .site-nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(15,23,42,0.08); }
+        .site-nav-inner { width:min(1200px,94vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
+        .site-brand { font-size:1.15rem; font-weight:700; color:#2563eb; text-decoration:none; letter-spacing:-0.03em; }
+        .site-brand:hover { color:#1d4ed8; }
+        .site-nav-links { list-style:none; margin:0; padding:0; display:flex; gap:4px; }
+        .site-nav-links a { display:block; padding:6px 14px; border-radius:999px; font-size:0.875rem; font-weight:600; color:#334155; text-decoration:none; transition:background 0.15s,color 0.15s; }
+        .site-nav-links a:hover { background:rgba(37,99,235,0.08); color:#2563eb; }
+
+        .tab-bar { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+        .tab-btn { padding:8px 18px; border-radius:999px; border:1px solid rgba(37,99,235,0.25); background:#f8fafc; color:#334155; font-size:0.875rem; font-weight:600; cursor:pointer; transition:background 0.15s,color 0.15s,border-color 0.15s; }
+        .tab-btn.active { background:#2563eb; color:#fff; border-color:#2563eb; }
+        .tab-btn:hover:not(.active) { background:rgba(37,99,235,0.08); color:#2563eb; }
+        .tab-content { display:none; }
+        .tab-content.active { display:block; }
+
+        .df-control { display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
+        .df-control label { font-size:0.85rem; font-weight:600; color:#334155; margin:0; }
+        .df-select { padding:7px 12px; border-radius:10px; border:1px solid #dbe3f1; font-size:0.88rem; color:#0f172a; background:#fff; width:auto; transition:border-color 0.2s,box-shadow 0.2s; }
+        .df-select:focus { outline:none; border-color:#2563eb; box-shadow:0 0 0 4px rgba(37,99,235,0.2); }
+
+        .dist-table-wrap { overflow-x:auto; border-radius:12px; border:1px solid rgba(15,23,42,0.08); }
+        .dist-table { border-collapse:collapse; font-size:0.78rem; white-space:nowrap; width:100%; font-variant-numeric:tabular-nums; }
+        .dist-table thead th { background:#2563eb; color:#fff; padding:8px 10px; text-align:center; font-weight:700; font-size:0.76rem; position:sticky; top:0; z-index:2; }
+        .dist-table thead th:first-child { background:#1d4ed8; position:sticky; left:0; z-index:3; }
+        .dist-table tbody td { padding:5px 10px; text-align:center; border-bottom:1px solid rgba(15,23,42,0.05); border-right:1px solid rgba(15,23,42,0.04); color:#1e293b; cursor:pointer; transition:background 0.1s; }
+        .dist-table tbody tr:nth-child(even) td { background:#f8fafc; }
+        .dist-table tbody tr:nth-child(even) td:first-child { background:rgba(37,99,235,0.1); }
+        .dist-table tbody td:first-child { font-weight:700; background:rgba(37,99,235,0.07); color:#1e40af; position:sticky; left:0; z-index:1; border-right:2px solid rgba(37,99,235,0.2); }
+        .dist-table tbody tr:hover td { background:rgba(37,99,235,0.08); }
+        .dist-table tbody tr:hover td:first-child { background:rgba(37,99,235,0.15); }
+        .dist-table td.cell-highlight { background:rgba(37,99,235,0.25) !important; font-weight:700; color:#1d4ed8; }
+
+        .lookup-result { margin-top:12px; padding:12px 16px; border-radius:12px; background:rgba(79,70,229,0.08); border:1px solid rgba(79,70,229,0.2); color:#312e81; font-size:0.95rem; font-weight:600; min-height:44px; display:flex; align-items:center; }
+        .lookup-result span { color:#64748b; font-weight:400; }
+
+        .info-box { margin-bottom:16px; padding:12px 16px; border-radius:10px; background:rgba(8,145,178,0.07); border:1px solid rgba(8,145,178,0.2); font-size:0.87rem; color:#0e7490; line-height:1.55; }
+        .info-box strong { color:#0c4a6e; }
+
+        .table-section-title { font-size:0.82rem; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.06em; margin:16px 0 8px; }
+
+        @media (max-width:640px) {
+            .site-nav-links a { padding:6px 10px; font-size:0.82rem; }
+            .dist-table { font-size:0.72rem; }
+            .dist-table thead th, .dist-table tbody td { padding:4px 7px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="/">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="poisson.html">Calculadora Poisson</a></li>
+            <li><a href="tabla-binomial.html">Tabla Binomial</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tablas estadísticas</p>
+        <h1>Distribución de Poisson</h1>
+        <p class="hero-subtitle">Tabla de la distribución de Poisson Po(λ): función de masa P(X = k) y acumulada P(X ≤ k) para distintos valores de λ. Haz clic en cualquier celda para leer el valor exacto.</p>
+    </header>
+
+    <main>
+        <section class="card" style="margin-top:4px;">
+            <div class="tab-bar" role="tablist">
+                <button class="tab-btn active" role="tab" aria-selected="true"  onclick="switchTab('pmf',this)">P(X = k) — Función de masa</button>
+                <button class="tab-btn"         role="tab" aria-selected="false" onclick="switchTab('cdf',this)">P(X ≤ k) — Acumulada</button>
+            </div>
+
+            <!-- PMF TAB -->
+            <div id="tab-pmf" class="tab-content active">
+                <div class="info-box">
+                    <strong>Cómo leer la tabla:</strong> cada celda muestra P(X = k) = e<sup>−λ</sup>·λ<sup>k</sup>/k! Filas: valores de k. Columnas: valores de λ. Para k muy grande respecto a λ las probabilidades son prácticamente 0 (se muestran como 0.0000).
+                </div>
+                <div class="df-control">
+                    <label for="kmax-pmf">k máximo:</label>
+                    <select id="kmax-pmf" class="df-select" onchange="rebuildPoissonTable('pmf')">
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30" selected>30</option>
+                    </select>
+                </div>
+                <div id="lookup-pmf" class="lookup-result"><span>Haz clic en una celda para leer el valor.</span></div>
+                <p class="table-section-title">P(X = k) para λ de 0.5 a 10</p>
+                <div class="dist-table-wrap"><table id="tbl-pmf" class="dist-table"></table></div>
+            </div>
+
+            <!-- CDF TAB -->
+            <div id="tab-cdf" class="tab-content">
+                <div class="info-box">
+                    <strong>Cómo leer la tabla:</strong> cada celda muestra P(X ≤ k) = Σᵢ₌₀ᵏ e<sup>−λ</sup>·λ<sup>i</sup>/i! Para P(X &gt; k) usa el complemento: 1 − P(X ≤ k). Para P(a ≤ X ≤ b) = P(X ≤ b) − P(X ≤ a − 1).
+                </div>
+                <div class="df-control">
+                    <label for="kmax-cdf">k máximo:</label>
+                    <select id="kmax-cdf" class="df-select" onchange="rebuildPoissonTable('cdf')">
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30" selected>30</option>
+                    </select>
+                </div>
+                <div id="lookup-cdf" class="lookup-result"><span>Haz clic en una celda para leer el valor.</span></div>
+                <p class="table-section-title">P(X ≤ k) para λ de 0.5 a 10</p>
+                <div class="dist-table-wrap"><table id="tbl-cdf" class="dist-table"></table></div>
+            </div>
+        </section>
+
+        <section class="card content-card" style="border-top:3px solid #2563eb;">
+            <h2>Cómo usar estas tablas</h2>
+            <h3>Distribución de Poisson</h3>
+            <p>La distribución de Poisson modela el número de eventos que ocurren en un intervalo de tiempo o espacio, cuando los eventos ocurren con tasa media λ de forma independiente. Su función de masa es:</p>
+            <p class="formula-line">\( P(X = k) = \dfrac{e^{-\lambda}\,\lambda^k}{k!}, \quad k = 0, 1, 2, \ldots \)</p>
+            <p>La media y la varianza coinciden: E[X] = Var[X] = λ.</p>
+
+            <h3>Propiedades útiles</h3>
+            <ul>
+                <li><strong>Suma de Poissons:</strong> si X ~ Po(λ₁) e Y ~ Po(λ₂) son independientes, entonces X + Y ~ Po(λ₁ + λ₂).</li>
+                <li><strong>Aproximación a la binomial:</strong> B(n, p) ≈ Po(np) cuando n es grande y p es pequeño (np ≤ 5 como guía).</li>
+                <li><strong>Aproximación normal:</strong> para λ grande, Po(λ) ≈ N(λ, λ).</li>
+            </ul>
+
+            <h3>Calculadoras relacionadas</h3>
+            <ul class="distribution-links">
+                <li><a href="poisson.html">Calculadora Poisson</a></li>
+                <li><a href="tabla-binomial.html">Tabla Binomial</a></li>
+                <li><a href="tabla-normal.html">Tabla Normal estándar</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script>
+    const LAMBDA_LIST = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0];
+
+    function buildPoissonTable(tableId, type, kMax) {
+        const el = document.getElementById(tableId);
+        let html = '<thead><tr><th>k</th>';
+        LAMBDA_LIST.forEach(lam => { html += `<th>λ = ${lam % 1 === 0 ? lam.toFixed(0) : lam}</th>`; });
+        html += '</tr></thead><tbody>';
+
+        for (let k = 0; k <= kMax; k++) {
+            html += `<tr><td>${k}</td>`;
+            LAMBDA_LIST.forEach(lam => {
+                let val;
+                if (type === 'pmf') {
+                    val = jStat.poisson.pdf(k, lam).toFixed(4);
+                } else {
+                    val = jStat.poisson.cdf(k, lam).toFixed(4);
+                }
+                html += `<td data-k="${k}" data-lam="${lam}" data-val="${val}" data-type="${type}" onclick="cellClick(this)">${val}</td>`;
+            });
+            html += '</tr>';
+        }
+
+        html += '</tbody>';
+        el.innerHTML = html;
+    }
+
+    function rebuildPoissonTable(type) {
+        const kMax = parseInt(document.getElementById('kmax-' + type).value, 10);
+        buildPoissonTable('tbl-' + type, type, kMax);
+        document.getElementById('lookup-' + type).innerHTML = '<span>Haz clic en una celda para leer el valor.</span>';
+    }
+
+    function switchTab(tab, btn) {
+        document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected','true');
+        document.getElementById('tab-' + tab).classList.add('active');
+    }
+
+    let lastHighlight = null;
+
+    function cellClick(td) {
+        if (lastHighlight) lastHighlight.classList.remove('cell-highlight');
+        td.classList.add('cell-highlight');
+        lastHighlight = td;
+
+        const k    = td.dataset.k;
+        const lam  = td.dataset.lam;
+        const val  = td.dataset.val;
+        const type = td.dataset.type;
+        const el   = document.getElementById('lookup-' + type);
+
+        if (type === 'pmf') {
+            el.innerHTML = `λ = ${lam}, <strong>k = ${k}</strong>: <strong>P(X = ${k}) = ${val}</strong>`;
+        } else {
+            el.innerHTML = `λ = ${lam}, <strong>k = ${k}</strong>: <strong>P(X ≤ ${k}) = ${val}</strong>`;
+        }
+    }
+
+    buildPoissonTable('tbl-pmf', 'pmf', 30);
+    buildPoissonTable('tbl-cdf', 'cdf', 30);
+</script>
+</body>
+</html>
