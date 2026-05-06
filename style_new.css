@@ -92,9 +92,23 @@ body {
 }
 
 .breadcrumbs {
-    margin: 0 0 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    margin: 0 0 22px;
+    padding: 10px 14px;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    background: rgba(37, 99, 235, 0.07);
+    border: 1px solid rgba(37, 99, 235, 0.16);
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+}
+
+.breadcrumbs-label {
+    color: var(--text-main);
+    font-weight: 700;
 }
 
 .breadcrumbs ol {
@@ -115,12 +129,13 @@ body {
 
 .breadcrumbs li:not(:last-child)::after {
     content: "/";
-    color: #94a3b8;
+    color: #64748b;
+    font-weight: 700;
 }
 
 .breadcrumbs a {
     color: var(--accent);
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
 }
 
@@ -132,7 +147,8 @@ body {
 }
 
 .breadcrumbs [aria-current="page"] {
-    color: var(--text-muted);
+    color: var(--text-main);
+    font-weight: 600;
 }
 
 
