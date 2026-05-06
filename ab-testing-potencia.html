@@ -64,6 +64,38 @@
     .mode-section { display: none; }
     .mode-section.active { display: block; }
   </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿El cálculo de n asume asignación igual 1:1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La fórmula implementada maximiza la potencia con asignación balanceada. Para asignación desigual usa la calculadora general de dos proporciones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo cambiar n y ver cómo cambia la potencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: cambia al modo Potencia, introduce tu n actual y comprueba si alcanza el umbral deseado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El MDE es el efecto que espero, o el mínimo que importa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El MDE es el mínimo detectable con la muestra dada. Deberías requerir n suficiente para que el MDE sea igual o menor al efecto mínimo que te importaría detectar en la práctica."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
