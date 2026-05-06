@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metodología de cálculo | ProbLab</title>
+  <meta name="description" content="Metodología de ProbLab: fórmulas estadísticas, supuestos, redondeos, precisión numérica y limitaciones de las calculadoras online.">
+  <link rel="canonical" href="https://problabtools.es/metodologia.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:title" content="Metodología de cálculo | ProbLab">
+  <meta property="og:description" content="Criterios de cálculo, supuestos y limitaciones de las herramientas estadísticas de ProbLab.">
+  <meta property="og:url" content="https://problabtools.es/metodologia.html">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Metodología de cálculo | ProbLab">
+  <meta name="twitter:description" content="Fórmulas, supuestos, precisión numérica y limitaciones de las calculadoras estadísticas.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Metodología", "item": "https://problabtools.es/metodologia.html"}
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "Metodología de cálculo | ProbLab",
+        "url": "https://problabtools.es/metodologia.html",
+        "description": "Criterios de cálculo, supuestos, precisión numérica y limitaciones de las calculadoras estadísticas de ProbLab.",
+        "inLanguage": "es",
+        "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style_new.css?v=20260506-1">
+</head>
+<body>
+<div class="page-wrap">
+  <header class="hero">
+    <p class="eyebrow">Transparencia</p>
+    <h1>Metodología de cálculo</h1>
+    <p class="hero-subtitle">Resumen de fórmulas, supuestos, redondeos y límites que conviene revisar al usar las calculadoras estadísticas de ProbLab.</p>
+    <p class="hero-links"><a class="hero-link-button" href="index.html">Volver al inicio</a></p>
+  </header>
+
+  <main>
+    <section class="card content-card">
+      <h2>Principios generales</h2>
+      <ul>
+        <li>Las calculadoras muestran resultados numéricos y, cuando procede, fórmulas y explicación de interpretación.</li>
+        <li>Los tamaños muestrales se redondean hacia arriba para asegurar el mínimo requerido bajo los supuestos introducidos.</li>
+        <li>Los intervalos y contrastes dependen de supuestos como independencia, aleatorización, normalidad aproximada o tamaños esperados suficientes.</li>
+        <li>Los resultados deben revisarse con criterio metodológico, especialmente en estudios clínicos, regulatorios, financieros o de alto impacto.</li>
+      </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>Distribuciones y tablas</h2>
+      <p>Las páginas de <a href="distribuciones/">distribuciones de probabilidad</a> calculan densidad o masa, probabilidad acumulada, colas e inversas cuando la distribución lo permite. Las <a href="tablas-estadisticas/">tablas estadísticas</a> ofrecen valores críticos y cuantiles para usos frecuentes en inferencia.</p>
+      <p>Para evitar errores de interpretación, revisa siempre la parametrización: por ejemplo, media y desviación típica en la normal, grados de libertad en t, chi-cuadrado y F, o tasa λ en Poisson y exponencial.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Intervalos, contrastes y tamaños muestrales</h2>
+      <p>Los intervalos de confianza combinan estimación puntual, error estándar y valor crítico. Los contrastes de hipótesis comparan un estadístico observado con una distribución nula para obtener p-valor o región crítica. Las herramientas de tamaño muestral estiman el número mínimo necesario según confianza, margen de error, variabilidad, potencia y efecto mínimo detectable.</p>
+      <p>Si cambias el nivel de confianza, la potencia o el efecto mínimo detectable, el tamaño muestral puede variar de forma sustancial. Por eso es recomendable hacer análisis de sensibilidad antes de cerrar un diseño.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Precisión numérica y redondeos</h2>
+      <p>Las operaciones se ejecutan en el navegador con JavaScript y bibliotecas estadísticas cuando son necesarias. Los resultados se formatean para lectura humana, por lo que pueden existir pequeñas diferencias respecto a software especializado por redondeo, precisión de coma flotante o parametrizaciones alternativas.</p>
+      <p>Cuando el resultado vaya a publicarse o usarse en una decisión relevante, contrástalo con una segunda herramienta o software estadístico y documenta las entradas usadas.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Limitaciones</h2>
+      <ul>
+        <li>No todas las calculadoras cubren diseños complejos, estratificación, clustering, ponderaciones o correcciones por múltiples comparaciones.</li>
+        <li>Un resultado estadísticamente significativo no implica relevancia práctica ni causalidad si el diseño no la justifica.</li>
+        <li>En A/B testing, parar un experimento al observar significación puntual puede inflar falsos positivos.</li>
+        <li>En muestras pequeñas o datos extremos, conviene revisar métodos exactos o simulaciones.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="sobre.html">Sobre ProbLab</a> ·
+      <a href="aviso-legal.html">Aviso legal</a> ·
+      <a href="privacidad.html">Privacidad</a> ·
+      <a href="cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+</body>
+</html>

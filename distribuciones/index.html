@@ -113,7 +113,35 @@
         <li><strong>Bernoulli:</strong> discreta binaria; un solo ensayo con éxito (1) o fracaso (0).</li>
       </ul>
     </section>
+
+    <section class="card content-card pillar-guide">
+      <h2>Cómo elegir una distribución de probabilidad</h2>
+      <p>Empieza identificando si la variable es discreta o continua. Si cuentas éxitos en un número fijo de ensayos, normalmente usarás la <a href="../binomial.html">binomial</a>; si cuentas eventos en un intervalo con tasa estable, la <a href="../poisson.html">Poisson</a>; si trabajas con mediciones continuas alrededor de una media, la <a href="../normal.html">normal</a> suele ser el punto de partida.</p>
+      <div class="decision-grid">
+        <div><h3>Datos discretos</h3><p>Conteos, éxitos/fracaso, defectos, llegadas o extracciones sin reemplazo.</p></div>
+        <div><h3>Datos continuos</h3><p>Mediciones, tiempos de espera, importes positivos, proporciones modeladas o variables transformadas.</p></div>
+        <div><h3>Valores críticos</h3><p>Para contrastes e intervalos, consulta también las <a href="../tablas-estadisticas/">tablas estadísticas</a>.</p></div>
+      </div>
+    </section>
+
+    <section class="card content-card example-card">
+      <h2>Ejemplo resuelto: elegir distribución</h2>
+      <p>Una tienda recibe de media 12 pedidos por hora y quiere calcular la probabilidad de recibir 18 o más en la próxima hora. La variable es un conteo de eventos en un intervalo fijo, por lo que la herramienta adecuada es la <a href="../poisson.html">calculadora de Poisson</a> con λ = 12.</p>
+    </section>
+
   </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="../sobre.html">Sobre ProbLab</a> ·
+      <a href="../metodologia.html">Metodología</a> ·
+      <a href="../aviso-legal.html">Aviso legal</a> ·
+      <a href="../privacidad.html">Privacidad</a> ·
+      <a href="../cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
 </div>
 </body>
 </html>

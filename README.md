@@ -1,16 +1,17 @@
-# SimProbs
+# ProbLab
 
-SimProbs es una pequeña herramienta interactiva para simular y visualizar distribuciones de probabilidad de manera sencilla y rápida.  
-Está pensada para estudiantes, docentes y cualquier persona que necesite explorar conceptos estadísticos sin instalar software adicional.
+ProbLab es una herramienta web educativa para calcular, simular y visualizar conceptos estadísticos directamente en el navegador. Está pensada para estudiantes, docentes, analistas y cualquier persona que necesite resolver problemas de probabilidad e inferencia sin instalar software adicional.
 
 ---
 
 ## 🚀 Características
 
-- Simulación de distribuciones de probabilidad.
-- Interfaz simple y directa.
-- Resultados visuales inmediatos.
-- Funciona completamente en el navegador.
+- Calculadoras de distribuciones de probabilidad continuas y discretas.
+- Tablas estadísticas online para valores críticos, CDF y cuantiles.
+- Calculadoras de tamaños muestrales para medias, proporciones y comparaciones.
+- Intervalos de confianza y contrastes de hipótesis con explicación de supuestos.
+- Herramientas de test A/B: z-test, enfoque bayesiano, potencia y simulación.
+- Resultados visuales inmediatos y funcionamiento completamente en el navegador.
 
 ---
 
@@ -33,12 +34,10 @@ Puedes usar la versión online aquí:
 
 ## 🤝 Contribuciones
 
-Las contribuciones son bienvenidas.  
-Si deseas mejorar la herramienta, abrir issues o proponer nuevas distribuciones, no dudes en participar.
+Las contribuciones son bienvenidas. Si deseas mejorar la herramienta, abrir issues o proponer nuevas calculadoras, distribuciones o ejemplos resueltos, no dudes en participar.
 
 ---
 
 ## 📄 Licencia
 
 Este proyecto se distribuye bajo la licencia MIT.
-
