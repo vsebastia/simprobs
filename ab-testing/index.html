@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadoras de test A/B online | ProbLab</title>
+  <meta name="description" content="Herramientas estadísticas para test A/B: contraste Z de proporciones, análisis bayesiano Beta-Binomial, cálculo de tamaño muestral y MDE, y simulación de experimentos.">
+  <link rel="canonical" href="https://problabtools.es/ab-testing/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Calculadoras de test A/B online | ProbLab">
+  <meta property="og:description" content="Herramientas estadísticas para test A/B: contraste Z de proporciones, análisis bayesiano, tamaño muestral y simulación.">
+  <meta property="og:url" content="https://problabtools.es/ab-testing/">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/ab-testing/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculadoras de test A/B online | ProbLab">
+  <meta name="twitter:description" content="Herramientas estadísticas para test A/B: contraste Z de proporciones, análisis bayesiano, tamaño muestral y simulación.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Test A/B", "item": "https://problabtools.es/ab-testing/"}
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "Calculadoras de test A/B online | ProbLab",
+        "url": "https://problabtools.es/ab-testing/",
+        "description": "Herramientas estadísticas para test A/B: contraste Z, análisis bayesiano, tamaño muestral y simulación.",
+        "inLanguage": "es",
+        "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../style_new.css?v=20260503-1">
+</head>
+<body>
+<div class="page-wrap">
+  <header class="hero">
+    <p class="eyebrow">Test A/B</p>
+    <h1>Calculadoras de test A/B online</h1>
+    <p class="hero-subtitle">Herramientas estadísticas completas para diseñar, analizar y simular experimentos A/B: enfoque frecuentista, bayesiano, planificación de tamaño muestral y simulación Monte Carlo.</p>
+    <p class="hero-links"><a class="hero-link-button" href="../index.html">Volver al inicio</a></p>
+  </header>
+
+  <main>
+    <section class="card content-card">
+      <h2>¿Qué es un test A/B?</h2>
+      <p>Un test A/B es un experimento controlado en el que se comparan dos variantes —control (A) y tratamiento (B)— para determinar cuál produce mejores resultados en una métrica binaria como clics, conversiones o suscripciones. El objetivo es concluir con rigor estadístico si la diferencia observada se debe al tratamiento o puede explicarse por azar.</p>
+      <h3>Frecuentista vs. Bayesiano</h3>
+      <p>El enfoque <strong>frecuentista</strong> contrasta hipótesis: fija un nivel de significación α y decide si rechazar H₀ según el p-valor. El enfoque <strong>bayesiano</strong> actualiza una distribución de creencias previa con los datos y devuelve directamente la probabilidad P(B &gt; A), más intuitiva para decisiones de negocio.</p>
+      <h3>Por qué importa el tamaño muestral</h3>
+      <p>Sin planificación previa, un test A/B puede concluir demasiado pronto (peeking) o con potencia insuficiente para detectar efectos relevantes. Las calculadoras de esta sección te ayudan a estimar el tamaño mínimo necesario, el efecto mínimo detectable (MDE) y la potencia del experimento.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Todas las herramientas A/B disponibles</h2>
+      <ul class="tools-grid ab-tools-grid" aria-label="Listado de calculadoras de test A/B">
+        <li><a href="../ab-testing-z-test.html">Test Z de conversión</a></li>
+        <li><a href="../ab-testing-bayesiano.html">Bayesiano Beta-Binomial</a></li>
+        <li><a href="../ab-testing-potencia.html">MDE, potencia y tamaño muestral</a></li>
+        <li><a href="../ab-testing-simulacion.html">Simulación de experimentos</a></li>
+      </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>¿Cuándo usar cada herramienta?</h2>
+      <h3>Test Z de conversión</h3>
+      <p>Cuando ya tienes los datos del experimento y quieres decidir si la diferencia de proporciones es estadísticamente significativa. Incluye opción de corrección por continuidad de Yates e intervalo de confianza para la diferencia.</p>
+      <h3>Bayesiano Beta-Binomial</h3>
+      <p>Cuando prefieres una interpretación probabilística directa: ¿cuál es la probabilidad de que B sea mejor que A? Útil cuando el tamaño muestral es pequeño o cuando quieres comunicar resultados sin hablar de p-valores.</p>
+      <h3>MDE, potencia y tamaño muestral</h3>
+      <p>Antes de lanzar el experimento, para estimar cuántos usuarios necesitas por variante, qué potencia tendrás con un n dado, o cuál es el efecto mínimo que podrás detectar con tus recursos actuales.</p>
+      <h3>Simulación de experimentos</h3>
+      <p>Para validar supuestos estadísticos, estimar la tasa de error real bajo distintos escenarios o explorar cómo se comporta el test con tus propios parámetros mediante Monte Carlo.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Buenas prácticas en tests A/B</h2>
+      <ul>
+        <li><strong>Define el tamaño muestral antes de empezar.</strong> No termines el test cuando el p-valor sea &lt; 0.05 por primera vez (peeking bias).</li>
+        <li><strong>Elige una única métrica primaria.</strong> Testear múltiples métricas sin corrección de comparaciones múltiples infla el error de tipo I.</li>
+        <li><strong>Aleatoriza correctamente.</strong> Asegúrate de que la asignación a grupos es independiente e idéntica para cada unidad de análisis.</li>
+        <li><strong>Comprueba el equilibrio entre grupos.</strong> Un test de chi-cuadrado o t sobre covariables pre-experimento detecta fallos en la aleatorización.</li>
+        <li><strong>Informa el intervalo de confianza, no solo el p-valor.</strong> El tamaño del efecto y su incertidumbre son tan importantes como la decisión de rechazar H₀.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="../aviso-legal.html">Aviso legal</a> ·
+      <a href="../privacidad.html">Privacidad</a> ·
+      <a href="../cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body>
+</html>
