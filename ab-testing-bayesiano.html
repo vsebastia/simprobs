@@ -47,6 +47,46 @@
   }
   </script>
   <link rel="stylesheet" href="style_new.css?v=20260506-3">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué prior usar si no tengo datos históricos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beta(1, 1), la prior uniforme. Si tienes tasas de conversión históricas, puedes parametrizar la prior como si tuvieras α₀ éxitos y β₀ fracasos previos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas muestras Monte Carlo usa la calculadora?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "30 000. Esto da un error estándar de estimación de P(B > A) de aproximadamente ±0.003 para valores en torno a 0.5."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar esto con tamaños muestrales pequeños?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La mayor ventaja del enfoque bayesiano es que funciona correctamente con muestras pequeñas, donde el test Z puede ser impreciso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre P(B > A) = 0.97 y p-valor = 0.03?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El p-valor mide la probabilidad de observar datos tan extremos bajo H₀; P(B > A) mide directamente cuánto crees que B supera a A dado lo que has observado. La segunda es más intuitiva."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">

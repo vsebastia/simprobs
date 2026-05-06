@@ -96,6 +96,46 @@
       .stats-summary { grid-template-columns: 1fr 1fr; }
     }
   </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿La simulación usa muestras binomiales exactas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: cada réplica genera x_A ~ Bin(n, p_A) y x_B ~ Bin(n, p_B) usando la transformación inversa de la CDF de la normal (aproximación de De Moivre-Laplace). Para n ≥ 30 y proporciones no extremas, la aproximación es muy precisa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué la potencia empírica no coincide exactamente con la teórica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Siempre hay varianza de muestreo. Con 5 000 réplicas, el error estándar de la proporción simulada es de aproximadamente ±0.007 para potencias en torno al 80%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo simular con p_A = p_B para verificar el nivel α?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: introduce el mismo valor en p_A y p_B y comprueba que la tasa de rechazo empírica se aproxima a α."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Las réplicas son independientes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: cada réplica genera nuevas muestras sin dependencia con las anteriores."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">

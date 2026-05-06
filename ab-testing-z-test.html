@@ -47,6 +47,46 @@
   }
   </script>
   <link rel="stylesheet" href="style_new.css?v=20260506-3">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué diferencia hay respecto al contraste general de dos proporciones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ninguna matemática: el test Z es el mismo. Esta calculadora añade el intervalo de confianza para la diferencia, la corrección de Yates y métricas específicas de A/B (lift relativo)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es válido con proporciones muy bajas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, pero requiere tamaños muestrales mayores para que la aproximación normal sea fiable. Como regla práctica, necesitas n·p ≥ 5 y n·(1−p) ≥ 5 en cada grupo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Debo usar contraste bilateral o unilateral?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si antes de ver los datos no sabes en qué dirección podría ir el efecto, usa bilateral. El unilateral tiene más potencia, pero solo es legítimo cuando la dirección se fijó a priori."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El p-valor = 0.04 significa que B es mejor al 96%?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. El p-valor mide la probabilidad de observar un estadístico tan extremo o más si H₀ fuese cierta, no la probabilidad de que B sea mejor."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
