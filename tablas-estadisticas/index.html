@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablas estadísticas online | Normal, t, chi-cuadrado, F y más</title>
+  <meta name="description" content="Tablas estadísticas online para distribución normal, t de Student, chi-cuadrado, F de Snedecor, binomial, Poisson, gamma y beta. Valores críticos, CDF y cuantiles.">
+  <link rel="canonical" href="https://problabtools.es/tablas-estadisticas/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/tablas-estadisticas/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:title" content="Tablas estadísticas online | ProbLab">
+  <meta property="og:description" content="Consulta tablas estadísticas de normal, t de Student, chi-cuadrado, F, binomial, Poisson, gamma y beta con valores críticos y probabilidades.">
+  <meta property="og:url" content="https://problabtools.es/tablas-estadisticas/">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:image:alt" content="Tablas estadísticas online en ProbLab">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tablas estadísticas online | ProbLab">
+  <meta name="twitter:description" content="Valores críticos, cuantiles y probabilidades para distribuciones estadísticas habituales.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Tablas estadísticas", "item": "https://problabtools.es/tablas-estadisticas/"}
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "Tablas estadísticas online | ProbLab",
+        "url": "https://problabtools.es/tablas-estadisticas/",
+        "description": "Tablas estadísticas online para valores críticos, probabilidades acumuladas y cuantiles de distribuciones habituales.",
+        "inLanguage": "es",
+        "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="../style_new.css?v=20260506-1">
+</head>
+<body>
+<div class="page-wrap">
+  <header class="hero">
+    <p class="eyebrow">Tablas estadísticas</p>
+    <h1>Tablas estadísticas online</h1>
+    <p class="hero-subtitle">Consulta valores críticos, probabilidades acumuladas, densidades y cuantiles de las distribuciones más usadas en inferencia estadística.</p>
+    <p class="hero-links"><a class="hero-link-button" href="../index.html">Volver al inicio</a></p>
+  </header>
+
+  <main>
+    <section class="card content-card">
+      <h2>¿Para qué sirven las tablas estadísticas?</h2>
+      <p>Las tablas estadísticas permiten transformar un estadístico de prueba en una probabilidad o localizar un valor crítico para tomar decisiones en intervalos de confianza y contrastes de hipótesis. En ProbLab puedes usarlas de forma interactiva sin interpolar a mano.</p>
+      <p>Si buscas una calculadora completa, cada tabla enlaza con su distribución relacionada para calcular PDF, CDF, colas y percentiles con parámetros personalizados.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Todas las tablas disponibles</h2>
+      <ul class="tools-grid tables-tools-grid" aria-label="Listado de tablas estadísticas">
+        <li><a href="../tabla-normal.html">Tabla normal estándar — f(z), Φ(z) y valores Z</a></li>
+        <li><a href="../tabla-t-student.html">Tabla t de Student — CDF y valores críticos</a></li>
+        <li><a href="../tabla-chi-cuadrado.html">Tabla chi-cuadrado — cuantiles χ²</a></li>
+        <li><a href="../tabla-f-snedecor.html">Tabla F de Snedecor — valores críticos F</a></li>
+        <li><a href="../tabla-binomial.html">Tabla binomial — P(X=k) y P(X≤k)</a></li>
+        <li><a href="../tabla-poisson.html">Tabla Poisson — probabilidades por λ</a></li>
+        <li><a href="../tabla-gamma.html">Tabla gamma — CDF, densidad y cuantiles</a></li>
+        <li><a href="../tabla-beta.html">Tabla beta — CDF, densidad y cuantiles</a></li>
+      </ul>
+    </section>
+
+    <section class="card content-card pillar-guide">
+      <h2>Qué tabla usar según el problema</h2>
+      <div class="decision-grid">
+        <div><h3>Normal Z</h3><p>Para puntuaciones tipificadas, aproximaciones normales, proporciones grandes y valores críticos de confianza.</p></div>
+        <div><h3>t de Student</h3><p>Para medias con desviación típica poblacional desconocida, especialmente con muestras pequeñas.</p></div>
+        <div><h3>Chi-cuadrado</h3><p>Para varianzas, bondad de ajuste e independencia en tablas de contingencia.</p></div>
+        <div><h3>F de Snedecor</h3><p>Para comparar varianzas y modelos con cocientes de varianzas, como ANOVA.</p></div>
+      </div>
+    </section>
+
+    <section class="card content-card example-card">
+      <h2>Ejemplo resuelto: valor crítico del 95%</h2>
+      <p>Para un intervalo bilateral del 95% con distribución normal estándar necesitas dejar 2,5% en cada cola. En la <a href="../tabla-normal.html">tabla normal</a>, el cuantil acumulado 0,975 corresponde aproximadamente a z = 1,96. Ese valor se usa en intervalos de confianza y tests Z.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Herramientas relacionadas</h2>
+      <ul>
+        <li><a href="../distribuciones/">Calculadoras de distribuciones de probabilidad</a></li>
+        <li><a href="../intervalos-confianza/">Calculadoras de intervalos de confianza</a></li>
+        <li><a href="../contrastes-hipotesis/">Calculadoras de contrastes de hipótesis</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="../sobre.html">Sobre ProbLab</a> ·
+      <a href="../metodologia.html">Metodología</a> ·
+      <a href="../aviso-legal.html">Aviso legal</a> ·
+      <a href="../privacidad.html">Privacidad</a> ·
+      <a href="../cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+</body>
+</html>
