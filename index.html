@@ -352,6 +352,34 @@
             color: #7c3aed;
         }
 
+        .section-ab {
+            border-top: 3px solid #0f766e;
+        }
+
+        .section-icon-ab {
+            background: rgba(15, 118, 110, 0.1);
+            color: #0f766e;
+        }
+
+        .ab-tools-grid a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ab-tools-grid a::before {
+            content: "";
+            width: 28px;
+            height: 18px;
+            flex: 0 0 28px;
+            border-radius: 5px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Ccircle cx='18' cy='20' r='9' fill='%23d1fae5' stroke='%230f766e' stroke-width='2'/%3E%3Ccircle cx='46' cy='20' r='9' fill='%23d1fae5' stroke='%230f766e' stroke-width='2'/%3E%3Cline x1='27' y1='20' x2='37' y2='20' stroke='%230f766e' stroke-width='2'/%3E%3Ctext x='14' y='25' font-size='12' fill='%230f766e' font-family='sans-serif' font-weight='bold'%3EA%3C/text%3E%3Ctext x='42' y='25' font-size='12' fill='%230f766e' font-family='sans-serif' font-weight='bold'%3EB%3C/text%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.95;
+        }
+
         @media (max-width: 640px) {
             .hero-index {
                 padding: 28px 4px 20px;
@@ -388,6 +416,7 @@
             <li><a href="#intervalos">Intervalos de confianza</a></li>
             <li><a href="#tamano-muestral">Tamaño muestral</a></li>
             <li><a href="#contrastes">Contrastes</a></li>
+            <li><a href="#ab-testing">Test A/B</a></li>
         </ul>
     </div>
 </nav>
@@ -403,6 +432,7 @@
                 <a class="hero-link-button hero-link-secondary" href="tamano-muestral/">Tamaño muestral</a>
                 <a class="hero-link-button hero-link-secondary" href="contrastes-hipotesis/">Contrastes</a>
                 <a class="hero-link-button hero-link-secondary" href="intervalos-confianza/">Intervalos de confianza</a>
+                <a class="hero-link-button hero-link-secondary" href="ab-testing/">Test A/B</a>
             </div>
         </div>
     </header>
@@ -432,6 +462,11 @@
             <div class="stat-item">
                 <span class="stat-number">5</span>
                 <span class="stat-label">Intervalos IC</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Test A/B</span>
             </div>
         </div>
 
@@ -566,6 +601,30 @@
                 <li><a href="chi-cuadrado-bondad-ajuste.html">Chi-cuadrado de bondad de ajuste</a></li>
                 <li><a href="kolmogorov-smirnov-bondad-ajuste.html">Kolmogorov–Smirnov</a></li>
                 <li><a href="shapiro-wilk-normalidad.html">Shapiro–Wilk</a></li>
+            </ul>
+        </section>
+        <section id="ab-testing" class="card content-card section-ab" aria-labelledby="ab-title">
+            <div class="section-heading">
+                <span class="section-icon section-icon-ab" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="7" cy="12" r="3"/>
+                        <circle cx="17" cy="12" r="3"/>
+                        <line x1="10" y1="12" x2="14" y2="12"/>
+                        <line x1="7" y1="5" x2="7" y2="9"/>
+                        <line x1="17" y1="5" x2="17" y2="9"/>
+                        <line x1="7" y1="15" x2="7" y2="19"/>
+                        <line x1="17" y1="15" x2="17" y2="19"/>
+                    </svg>
+                </span>
+                <h2 id="ab-title">Test A/B</h2>
+            </div>
+            <p>Herramientas estadísticas completas para diseñar, analizar y simular experimentos A/B: contraste frecuentista z, análisis bayesiano Beta-Binomial, planificación de tamaño muestral y MDE, y simulación Monte Carlo.</p>
+            <p><a class="hero-link-button" href="ab-testing/">Explorar test A/B</a></p>
+            <ul class="tools-grid ab-tools-grid" aria-label="Listado de calculadoras de test A/B">
+                <li><a href="ab-testing-z-test.html">Test Z de conversión</a></li>
+                <li><a href="ab-testing-bayesiano.html">Bayesiano Beta-Binomial</a></li>
+                <li><a href="ab-testing-potencia.html">MDE, potencia y tamaño muestral</a></li>
+                <li><a href="ab-testing-simulacion.html">Simulación de experimentos</a></li>
             </ul>
         </section>
     </main>

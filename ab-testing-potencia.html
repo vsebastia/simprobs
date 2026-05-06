@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MDE, potencia y tamaño muestral para A/B testing | ProbLab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculadora de tamaño muestral, potencia estadística y efecto mínimo detectable (MDE) para experimentos A/B con métricas de conversión.">
+  <link rel="canonical" href="https://problabtools.es/ab-testing-potencia.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MDE, potencia y tamaño muestral para A/B testing | ProbLab">
+  <meta property="og:description" content="Calcula el tamaño muestral, la potencia y el efecto mínimo detectable para tu experimento A/B.">
+  <meta property="og:url" content="https://problabtools.es/ab-testing-potencia.html">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/ab-testing-potencia.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MDE, potencia y tamaño muestral para A/B testing | ProbLab">
+  <meta name="twitter:description" content="Calcula el tamaño muestral, la potencia y el efecto mínimo detectable para tu experimento A/B.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Test A/B", "item": "https://problabtools.es/ab-testing/"},
+          {"@type": "ListItem", "position": 3, "name": "MDE, potencia y tamaño muestral A/B", "item": "https://problabtools.es/ab-testing-potencia.html"}
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "MDE, potencia y tamaño muestral para A/B testing",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "url": "https://problabtools.es/ab-testing-potencia.html",
+        "description": "Calculadora de tamaño muestral, potencia y MDE para experimentos A/B.",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style_new.css?v=20260503-1">
+  <style>
+    .mode-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .mode-tab {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid #dbe3f1;
+      background: #f8fafc;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      color: #334155;
+    }
+    .mode-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .mode-section { display: none; }
+    .mode-section.active { display: block; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <header class="hero">
+    <p class="eyebrow">Test A/B</p>
+    <h1>MDE, potencia y tamaño muestral — A/B testing</h1>
+    <p class="hero-subtitle">Planifica tu experimento: calcula cuántos usuarios necesitas, qué potencia tendrás con tus recursos o cuál es el menor efecto que podrás detectar.</p>
+    <p class="hero-links"><a class="hero-link-button" href="ab-testing/">Ver todas las herramientas A/B</a></p>
+  </header>
+
+  <main>
+    <section class="card content-card">
+      <h2>Fórmulas utilizadas</h2>
+      <p>Para la comparación de dos proporciones con asignación 1:1, el tamaño muestral necesario por grupo es:</p>
+      <p class="formula-line">\( n = \left\lceil \dfrac{\left(z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})} + z_\beta\sqrt{p_A(1-p_A)+p_B(1-p_B)}\right)^2}{(p_A - p_B)^2} \right\rceil \)</p>
+      <p>donde \(\bar{p} = (p_A + p_B)/2\), \(z_{\alpha/2}\) es el cuantil normal para el nivel de significación y \(z_\beta\) el cuantil para la potencia deseada.</p>
+      <p>La potencia dado n se obtiene invirtiendo la expresión:</p>
+      <p class="formula-line">\( 1-\beta = \Phi\!\left(\dfrac{|p_A - p_B|\sqrt{n} - z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})}}{\sqrt{p_A(1-p_A)+p_B(1-p_B)}}\right) \)</p>
+      <p>El <strong>MDE</strong> (efecto mínimo detectable) se obtiene por búsqueda binaria sobre el efecto que consigue la potencia objetivo con el n disponible.</p>
+    </section>
+
+    <section class="card sample-size-panel">
+      <div class="panel-heading">
+        <h2>Calculadora</h2>
+        <p>Selecciona el modo según lo que quieras calcular e introduce los parámetros restantes.</p>
+      </div>
+
+      <div class="mode-tabs" role="tablist" aria-label="Modo de cálculo">
+        <button class="mode-tab active" data-target="modeN" role="tab" aria-selected="true">Tamaño muestral</button>
+        <button class="mode-tab" data-target="modePower" role="tab" aria-selected="false">Potencia</button>
+        <button class="mode-tab" data-target="modeMDE" role="tab" aria-selected="false">MDE</button>
+      </div>
+
+      <!-- MODE: Sample size -->
+      <div id="modeN" class="mode-section active">
+        <div class="form-grid sample-grid">
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="nPA">Tasa base grupo A (p<sub>A</sub>)</label>
+              <input type="number" id="nPA" value="0.12" step="0.001" min="0.001" max="0.999">
+            </div>
+            <div class="form-group">
+              <label for="nPB">Tasa esperada grupo B (p<sub>B</sub>)</label>
+              <input type="number" id="nPB" value="0.138" step="0.001" min="0.001" max="0.999">
+            </div>
+          </div>
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="nAlpha">Nivel de significación (α)</label>
+              <input type="number" id="nAlpha" value="0.05" step="0.001" min="0.001" max="0.2">
+            </div>
+            <div class="form-group">
+              <label for="nPower">Potencia deseada (1−β)</label>
+              <input type="number" id="nPower" value="0.8" step="0.01" min="0.5" max="0.999">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="nTail">Tipo de contraste</label>
+            <select id="nTail">
+              <option value="two" selected>Bilateral</option>
+              <option value="one">Unilateral</option>
+            </select>
+          </div>
+        </div>
+        <button class="calculate-btn" id="calcNBtn">Calcular tamaño muestral</button>
+        <div id="nResult" class="result-box" style="line-height:1.9;">Resultado pendiente…</div>
+      </div>
+
+      <!-- MODE: Power -->
+      <div id="modePower" class="mode-section">
+        <div class="form-grid sample-grid">
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="pwPA">Tasa base grupo A (p<sub>A</sub>)</label>
+              <input type="number" id="pwPA" value="0.12" step="0.001" min="0.001" max="0.999">
+            </div>
+            <div class="form-group">
+              <label for="pwPB">Tasa grupo B (p<sub>B</sub>)</label>
+              <input type="number" id="pwPB" value="0.138" step="0.001" min="0.001" max="0.999">
+            </div>
+          </div>
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="pwN">Muestra por grupo (n)</label>
+              <input type="number" id="pwN" value="1500" step="1" min="1">
+            </div>
+            <div class="form-group">
+              <label for="pwAlpha">Nivel de significación (α)</label>
+              <input type="number" id="pwAlpha" value="0.05" step="0.001" min="0.001" max="0.2">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pwTail">Tipo de contraste</label>
+            <select id="pwTail">
+              <option value="two" selected>Bilateral</option>
+              <option value="one">Unilateral</option>
+            </select>
+          </div>
+        </div>
+        <button class="calculate-btn" id="calcPwBtn">Calcular potencia</button>
+        <div id="pwResult" class="result-box" style="line-height:1.9;">Resultado pendiente…</div>
+      </div>
+
+      <!-- MODE: MDE -->
+      <div id="modeMDE" class="mode-section">
+        <div class="form-grid sample-grid">
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="mPA">Tasa base grupo A (p<sub>A</sub>)</label>
+              <input type="number" id="mPA" value="0.12" step="0.001" min="0.001" max="0.999">
+            </div>
+            <div class="form-group">
+              <label for="mN">Muestra por grupo (n)</label>
+              <input type="number" id="mN" value="1500" step="1" min="1">
+            </div>
+          </div>
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="mAlpha">Nivel de significación (α)</label>
+              <input type="number" id="mAlpha" value="0.05" step="0.001" min="0.001" max="0.2">
+            </div>
+            <div class="form-group">
+              <label for="mPower">Potencia objetivo (1−β)</label>
+              <input type="number" id="mPower" value="0.8" step="0.01" min="0.5" max="0.999">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="mTail">Tipo de contraste</label>
+            <select id="mTail">
+              <option value="two" selected>Bilateral</option>
+              <option value="one">Unilateral</option>
+            </select>
+          </div>
+        </div>
+        <button class="calculate-btn" id="calcMDEBtn">Calcular MDE</button>
+        <div id="mdeResult" class="result-box" style="line-height:1.9;">Resultado pendiente…</div>
+      </div>
+
+      <div class="chart-wrap" style="margin-top:24px;">
+        <canvas id="powerChart" aria-label="Curva de potencia en función del tamaño muestral" role="img"></canvas>
+      </div>
+    </section>
+
+    <section id="seo-support-content" class="card content-card">
+      <h2>¿Qué es el MDE?</h2>
+      <p>El <strong>efecto mínimo detectable</strong> (MDE, Minimum Detectable Effect) es la diferencia absoluta más pequeña entre las tasas de conversión de A y B que el experimento puede detectar con la potencia y el nivel de significación elegidos. Si el verdadero efecto es menor que el MDE, el experimento no lo verá aunque exista.</p>
+      <h2>¿Qué es la potencia estadística?</h2>
+      <p>La potencia (1 − β) es la probabilidad de detectar un efecto real cuando existe. Una potencia del 80% significa que, si B es realmente mejor que A en la magnitud especificada, el experimento concluirá correctamente en el 80% de las réplicas. Una potencia baja implica muchos falsos negativos.</p>
+      <h2>Recomendaciones prácticas</h2>
+      <ul>
+        <li><strong>Potencia ≥ 0.80</strong> es el mínimo recomendado; usa 0.90 para decisiones críticas.</li>
+        <li><strong>α = 0.05</strong> es el estándar; considera α = 0.01 si el coste de un falso positivo es alto.</li>
+        <li>El MDE relativo suele ser más relevante que el absoluto: un MDE del 10% sobre una tasa base del 5% equivale a pB = 0.055.</li>
+        <li>Con tráfico limitado, acepta efectos más grandes o reduce α para compensar.</li>
+      </ul>
+      <section class="related-tools">
+        <h2>Calculadoras relacionadas</h2>
+        <ul>
+          <li><a href="ab-testing-z-test.html">Test Z de conversión (frecuentista)</a></li>
+          <li><a href="ab-testing-bayesiano.html">Test A/B bayesiano (Beta-Binomial)</a></li>
+          <li><a href="ab-testing-simulacion.html">Simulación de experimentos A/B</a></li>
+          <li><a href="tamano-muestral-dos-proporciones.html">Tamaño muestral para dos proporciones</a></li>
+        </ul>
+      </section>
+      <h2>Preguntas frecuentes</h2>
+      <ul>
+        <li><strong>¿El cálculo de n asume asignación igual 1:1?</strong> Sí. La fórmula implementada maximiza la potencia con asignación balanceada. Para asignación desigual usa la calculadora general de dos proporciones.</li>
+        <li><strong>¿Puedo cambiar n y ver cómo cambia la potencia?</strong> Sí: cambia al modo Potencia, introduce tu n actual y comprueba si alcanza el umbral deseado.</li>
+        <li><strong>¿El MDE es el efecto que espero, o el mínimo que importa?</strong> El MDE es el mínimo detectable con la muestra dada. Deberías requerir n suficiente para que el MDE sea igual o menor al efecto mínimo que te importaría detectar en la práctica.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="aviso-legal.html">Aviso legal</a> ·
+      <a href="privacidad.html">Privacidad</a> ·
+      <a href="cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let powerChart;
+
+function getZAlpha(alpha, tail) {
+  return tail === 'two'
+    ? jStat.normal.inv(1 - alpha / 2, 0, 1)
+    : jStat.normal.inv(1 - alpha, 0, 1);
+}
+
+function computePower(pA, pB, n, alpha, tail) {
+  const pBar = (pA + pB) / 2;
+  const diff = Math.abs(pA - pB);
+  const zAlpha = getZAlpha(alpha, tail);
+  const denom = Math.sqrt(pA * (1 - pA) + pB * (1 - pB));
+  if (denom === 0) return 0;
+  const zStat = (diff * Math.sqrt(n) - zAlpha * Math.sqrt(2 * pBar * (1 - pBar))) / denom;
+  return jStat.normal.cdf(zStat, 0, 1);
+}
+
+function computeSampleSize(pA, pB, alpha, power, tail) {
+  const pBar = (pA + pB) / 2;
+  const diff = Math.abs(pA - pB);
+  if (diff === 0) return Infinity;
+  const zAlpha = getZAlpha(alpha, tail);
+  const zBeta = jStat.normal.inv(power, 0, 1);
+  const num = Math.pow(
+    zAlpha * Math.sqrt(2 * pBar * (1 - pBar)) + zBeta * Math.sqrt(pA * (1 - pA) + pB * (1 - pB)),
+    2
+  );
+  return Math.ceil(num / (diff * diff));
+}
+
+function computeMDE(pA, n, alpha, power, tail) {
+  let lo = 0, hi = Math.min(pA, 1 - pA);
+  for (let i = 0; i < 80; i++) {
+    const mid = (lo + hi) / 2;
+    const pB = pA + mid;
+    if (pB >= 1 || pB <= 0) { hi = mid; continue; }
+    const pw = computePower(pA, pB, n, alpha, tail);
+    if (pw >= power) hi = mid;
+    else lo = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+function renderPowerChart(pA, alpha, tail, nFixed) {
+  const ctx = document.getElementById('powerChart');
+  if (!ctx) return;
+
+  const startN = 50;
+  const endN = Math.max(nFixed ? nFixed * 3 : 5000, 2000);
+  const steps = 80;
+  const stepSize = Math.ceil((endN - startN) / steps);
+  const effectSizes = [0.05, 0.1, 0.2].map(rel => pA * rel).filter(d => d > 0 && pA + d < 1 && d > 0.001);
+  const colors = ['#2563eb', '#059669', '#f59e0b'];
+  const datasets = effectSizes.map((d, i) => {
+    const pB = pA + d;
+    const points = [];
+    for (let n = startN; n <= endN; n += stepSize) {
+      points.push({ x: n, y: computePower(pA, pB, n, alpha, tail) });
+    }
+    return {
+      label: `Δ = +${(d * 100).toFixed(1)}pp (lift ${(d / pA * 100).toFixed(0)}%)`,
+      data: points,
+      borderColor: colors[i],
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      pointRadius: 0,
+      parsing: false
+    };
+  });
+
+  const refLine = nFixed ? [{
+    label: 'n actual',
+    data: [{ x: nFixed, y: 0 }, { x: nFixed, y: 1 }],
+    borderColor: '#94a3b8',
+    borderDash: [5, 4],
+    borderWidth: 1.5,
+    pointRadius: 0,
+    parsing: false
+  }] : [];
+
+  if (powerChart) powerChart.destroy();
+  powerChart = new Chart(ctx, {
+    type: 'line',
+    data: { datasets: [...datasets, ...refLine] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { type: 'linear', min: startN, max: endN, title: { display: true, text: 'n por grupo' } },
+        y: { min: 0, max: 1, title: { display: true, text: 'Potencia (1−β)' } }
+      },
+      plugins: { legend: { display: true, position: 'top' } }
+    }
+  });
+}
+
+function validateProp(val, name) {
+  if (!Number.isFinite(val) || val <= 0 || val >= 1) throw new Error(`${name} debe estar en (0, 1).`);
+}
+function validateAlpha(val) {
+  if (!Number.isFinite(val) || val <= 0 || val >= 1) throw new Error('α debe estar en (0, 1).');
+}
+
+function calcSampleSize() {
+  const resultEl = document.getElementById('nResult');
+  try {
+    const pA = parseFloat(document.getElementById('nPA').value);
+    const pB = parseFloat(document.getElementById('nPB').value);
+    const alpha = parseFloat(document.getElementById('nAlpha').value);
+    const power = parseFloat(document.getElementById('nPower').value);
+    const tail = document.getElementById('nTail').value;
+    validateProp(pA, 'p_A'); validateProp(pB, 'p_B'); validateAlpha(alpha);
+    if (!Number.isFinite(power) || power <= 0 || power >= 1) throw new Error('La potencia debe estar en (0, 1).');
+    if (Math.abs(pA - pB) < 1e-9) throw new Error('p_A y p_B no pueden ser iguales.');
+
+    const n = computeSampleSize(pA, pB, alpha, power, tail);
+    const diff = pB - pA;
+    const lift = (diff / pA * 100);
+
+    resultEl.innerHTML =
+      `<strong>Tamaño muestral por grupo:</strong> ${n.toLocaleString()}<br>` +
+      `<strong>Total (ambos grupos):</strong> ${(2 * n).toLocaleString()}<br>` +
+      `<strong>Efecto absoluto Δ:</strong> ${diff >= 0 ? '+' : ''}${(diff * 100).toFixed(3)} pp<br>` +
+      `<strong>Lift relativo:</strong> ${lift >= 0 ? '+' : ''}${lift.toFixed(2)}%<br>` +
+      `<strong>Potencia objetivo:</strong> ${(power * 100).toFixed(0)}% &nbsp;|&nbsp; <strong>α:</strong> ${alpha} &nbsp;|&nbsp; <strong>Contraste:</strong> ${tail === 'two' ? 'bilateral' : 'unilateral'}`;
+
+    renderPowerChart(pA, alpha, tail, n);
+  } catch (e) {
+    resultEl.innerHTML = 'Error: ' + e.message;
+  }
+}
+
+function calcPower() {
+  const resultEl = document.getElementById('pwResult');
+  try {
+    const pA = parseFloat(document.getElementById('pwPA').value);
+    const pB = parseFloat(document.getElementById('pwPB').value);
+    const n = parseFloat(document.getElementById('pwN').value);
+    const alpha = parseFloat(document.getElementById('pwAlpha').value);
+    const tail = document.getElementById('pwTail').value;
+    validateProp(pA, 'p_A'); validateProp(pB, 'p_B'); validateAlpha(alpha);
+    if (!Number.isFinite(n) || n <= 0) throw new Error('n debe ser un entero positivo.');
+    if (Math.abs(pA - pB) < 1e-9) throw new Error('p_A y p_B no pueden ser iguales.');
+
+    const pw = computePower(pA, pB, n, alpha, tail);
+    const nNeeded = computeSampleSize(pA, pB, alpha, 0.8, tail);
+    const diff = pB - pA;
+
+    resultEl.innerHTML =
+      `<strong>Potencia (1−β):</strong> ${(pw * 100).toFixed(2)}%<br>` +
+      `<strong>Efecto Δ:</strong> ${diff >= 0 ? '+' : ''}${(diff * 100).toFixed(3)} pp (lift ${(diff / pA * 100).toFixed(1)}%)<br>` +
+      `<strong>n por grupo:</strong> ${Math.round(n).toLocaleString()} &nbsp;|&nbsp; <strong>α:</strong> ${alpha}<br>` +
+      `<em>Para potencia ≥ 80% se necesitarían ${nNeeded.toLocaleString()} usuarios por grupo.</em>`;
+
+    renderPowerChart(pA, alpha, tail, Math.round(n));
+  } catch (e) {
+    resultEl.innerHTML = 'Error: ' + e.message;
+  }
+}
+
+function calcMDE() {
+  const resultEl = document.getElementById('mdeResult');
+  try {
+    const pA = parseFloat(document.getElementById('mPA').value);
+    const n = parseFloat(document.getElementById('mN').value);
+    const alpha = parseFloat(document.getElementById('mAlpha').value);
+    const power = parseFloat(document.getElementById('mPower').value);
+    const tail = document.getElementById('mTail').value;
+    validateProp(pA, 'p_A'); validateAlpha(alpha);
+    if (!Number.isFinite(n) || n <= 0) throw new Error('n debe ser un entero positivo.');
+    if (!Number.isFinite(power) || power <= 0 || power >= 1) throw new Error('La potencia debe estar en (0, 1).');
+
+    const mde = computeMDE(pA, n, alpha, power, tail);
+    const pBup = pA + mde;
+    const pBdown = pA - mde;
+
+    resultEl.innerHTML =
+      `<strong>MDE absoluto:</strong> ±${(mde * 100).toFixed(4)} pp<br>` +
+      `<strong>MDE relativo:</strong> ±${(mde / pA * 100).toFixed(2)}%<br>` +
+      `<strong>p_B detectable:</strong> ${pBup.toFixed(4)} (subida) o ${Math.max(0, pBdown).toFixed(4)} (bajada)<br>` +
+      `<strong>n por grupo:</strong> ${Math.round(n).toLocaleString()} &nbsp;|&nbsp; <strong>α:</strong> ${alpha} &nbsp;|&nbsp; <strong>Potencia:</strong> ${(power * 100).toFixed(0)}%`;
+
+    renderPowerChart(pA, alpha, tail, Math.round(n));
+  } catch (e) {
+    resultEl.innerHTML = 'Error: ' + e.message;
+  }
+}
+
+document.querySelectorAll('.mode-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.mode-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.mode-section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    document.getElementById(tab.dataset.target).classList.add('active');
+  });
+});
+
+document.getElementById('calcNBtn').addEventListener('click', calcSampleSize);
+document.getElementById('calcPwBtn').addEventListener('click', calcPower);
+document.getElementById('calcMDEBtn').addEventListener('click', calcMDE);
+
+calcSampleSize();
+</script>
+</body>
+</html>
