@@ -565,3 +565,48 @@ footer {
 .decision-grid h3 {
     margin-top: 0;
 }
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 8px 0 10px;
+}
+
+.table-action-btn {
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1e40af;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 7px 14px;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, color 0.15s;
+}
+
+.table-action-btn:hover,
+.table-action-btn:focus-visible {
+    background: rgba(37, 99, 235, 0.08);
+    border-color: rgba(37, 99, 235, 0.5);
+    color: #1d4ed8;
+    outline: none;
+}
+
+.table-action-btn:focus-visible {
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+}
+
+.table-action-btn-print {
+    border-color: rgba(15, 23, 42, 0.18);
+    color: #334155;
+}
+
+@media print {
+    .table-actions {
+        display: none !important;
+    }
+}
