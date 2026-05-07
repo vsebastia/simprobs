@@ -89,13 +89,28 @@
 
   <main>
     <section class="card content-card">
+      <h2>Conceptos clave antes de empezar</h2>
+      <p>Estos tres parámetros controlan el equilibrio entre riesgo, recursos y sensibilidad del experimento. Entenderlos es fundamental para interpretar cualquier resultado.</p>
+
+      <h3>Nivel de significación α — riesgo de falso positivo</h3>
+      <p>Es la probabilidad de concluir que B es mejor que A cuando en realidad <em>no hay diferencia</em>. Con α = 0.05, uno de cada 20 experimentos donde no existe efecto real dará un resultado "estadísticamente significativo" por puro azar. <strong>Reducir α</strong> disminuye los falsos positivos, pero exige más muestra para mantener la potencia.</p>
+
+      <h3>Potencia estadística 1−β — capacidad de detectar un efecto real</h3>
+      <p>Es la probabilidad de <em>sí</em> detectar la diferencia cuando realmente existe. Con potencia = 80 % y un efecto real igual al que hayas especificado, el experimento lo detectará correctamente 8 de cada 10 veces. El 20 % restante son <strong>falsos negativos</strong> (β): el efecto existe pero el test no lo ve. En decisiones críticas conviene subir la potencia a 90 % o más.</p>
+
+      <h3>MDE — efecto mínimo detectable</h3>
+      <p>Es la diferencia absoluta más pequeña entre p_A y p_B que el experimento puede detectar con la potencia y α configurados. Si el verdadero efecto es menor que el MDE, el test probablemente no lo detectará aunque exista. El MDE depende directamente de n: <strong>cuanta más muestra, menor MDE</strong>, y por tanto mayor sensibilidad.</p>
+
+      <h3>Tasa base p_A y tasa esperada p_B</h3>
+      <p>p_A es la tasa de conversión actual del grupo de control (por ejemplo, 12 % de clicks → 0.12). p_B es la tasa que esperas, o la mínima mejora que te importaría detectar en la variante. La diferencia \(\Delta = p_B - p_A\) es el efecto del experimento.</p>
+
       <h2>Fórmulas utilizadas</h2>
       <p>Para la comparación de dos proporciones con asignación 1:1, el tamaño muestral necesario por grupo es:</p>
       <p class="formula-line">\( n = \left\lceil \dfrac{\left(z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})} + z_\beta\sqrt{p_A(1-p_A)+p_B(1-p_B)}\right)^2}{(p_A - p_B)^2} \right\rceil \)</p>
       <p>donde \(\bar{p} = (p_A + p_B)/2\), \(z_{\alpha/2}\) es el cuantil normal para el nivel de significación y \(z_\beta\) el cuantil para la potencia deseada.</p>
       <p>La potencia dado n se obtiene invirtiendo la expresión:</p>
       <p class="formula-line">\( 1-\beta = \Phi\!\left(\dfrac{|p_A - p_B|\sqrt{n} - z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})}}{\sqrt{p_A(1-p_A)+p_B(1-p_B)}}\right) \)</p>
-      <p>El <strong>MDE</strong> (efecto mínimo detectable) se obtiene por búsqueda binaria sobre el efecto que consigue la potencia objetivo con el n disponible.</p>
+      <p>El <strong>MDE</strong> se obtiene por búsqueda binaria sobre el efecto que consigue la potencia objetivo con el n disponible.</p>
     </section>
 
     <section class="card sample-size-panel">
@@ -218,20 +233,45 @@
       <div class="chart-wrap" style="margin-top:24px;">
         <canvas id="powerChart" aria-label="Curva de potencia en función del tamaño muestral" role="img"></canvas>
       </div>
+
+      <div style="margin-top:20px;">
+        <h3 style="margin-top:0;">Cómo leer el gráfico</h3>
+        <p>El gráfico muestra la <strong>curva de potencia</strong>: cómo varía la probabilidad de detectar el efecto a medida que aumenta el tamaño muestral por grupo.</p>
+        <ul>
+          <li><strong>Eje X (horizontal)</strong> — tamaño muestral por grupo (n). Cuanto más a la derecha, más usuarios por variante.</li>
+          <li><strong>Eje Y (vertical)</strong> — potencia (1−β), entre 0 y 1. El objetivo habitual es alcanzar al menos 0.80.</li>
+          <li><strong>Cada línea de color</strong> representa un tamaño de efecto diferente expresado como lift relativo sobre p_A (+5 %, +10 %, +20 %). Efectos mayores (línea amarilla) se detectan con menos muestra; efectos pequeños (línea azul) requieren muchos más usuarios.</li>
+          <li><strong>Línea vertical discontinua</strong> — aparece cuando calculas con un n fijo (modos Potencia y MDE) y marca exactamente dónde está tu muestra actual en las curvas.</li>
+        </ul>
+        <p><strong>Cómo usarlo en la práctica:</strong> si tu n cae en la parte empinada de la curva, añadir más usuarios mejora la potencia notablemente. Si ya estás en la zona plana (parte alta), agregar muestra apenas aporta. Si las curvas del efecto que te interesa están todas por debajo de 0.80 en tu n actual, el experimento es demasiado pequeño para ser fiable.</p>
+      </div>
+
     </section>
 
     <section id="seo-support-content" class="card content-card">
-      <h2>¿Qué es el MDE?</h2>
-      <p>El <strong>efecto mínimo detectable</strong> (MDE, Minimum Detectable Effect) es la diferencia absoluta más pequeña entre las tasas de conversión de A y B que el experimento puede detectar con la potencia y el nivel de significación elegidos. Si el verdadero efecto es menor que el MDE, el experimento no lo verá aunque exista.</p>
-      <h2>¿Qué es la potencia estadística?</h2>
-      <p>La potencia (1 − β) es la probabilidad de detectar un efecto real cuando existe. Una potencia del 80% significa que, si B es realmente mejor que A en la magnitud especificada, el experimento concluirá correctamente en el 80% de las réplicas. Una potencia baja implica muchos falsos negativos.</p>
+      <h2>Cómo interpretar cada resultado</h2>
+
+      <h3>Modo: Tamaño muestral</h3>
+      <p>La calculadora devuelve el número mínimo de usuarios <em>por grupo</em> necesarios para que el experimento tenga la potencia deseada. Por ejemplo, si obtienes n = 2 000, necesitas 2 000 usuarios en el grupo A y otros 2 000 en el grupo B, es decir 4 000 en total. Si lanzas el experimento con menos usuarios, la probabilidad de detectar el efecto real cae por debajo del umbral que has fijado y aumentan los falsos negativos.</p>
+      <p>El resultado también muestra el efecto absoluto Δ (diferencia en puntos porcentuales entre p_A y p_B) y el lift relativo (cuánto sube la tasa en términos porcentuales respecto a la base). Estos dos números ayudan a juzgar si el efecto que estás diseñando detectar es realista para tu negocio.</p>
+
+      <h3>Modo: Potencia</h3>
+      <p>Con una muestra fija (porque ya tienes los datos o sabes cuánto tráfico recibirás), la potencia te dice qué probabilidad tienes de detectar la diferencia especificada. Una potencia del 55 %, por ejemplo, significa que aunque la variante sea realmente mejor en la magnitud indicada, la mitad de las veces el test no lo detectará. Si la potencia es baja, debes plantearte: (a) esperar más tiempo para acumular más muestra, o (b) aceptar que solo detectarás efectos más grandes.</p>
+      <p>El resultado incluye también cuántos usuarios necesitarías para alcanzar el 80 % de potencia, lo que te sirve de referencia para saber cuánto te falta.</p>
+
+      <h3>Modo: MDE</h3>
+      <p>Dada la muestra disponible, el MDE te dice cuál es la diferencia mínima que puedes detectar de forma fiable. Si tu MDE es ±3 pp y la mejora real de tu variante es de 1 pp, el experimento no la verá con la potencia objetivo. Antes de lanzar, compara el MDE con el efecto mínimo que tendría impacto de negocio real: si el MDE es mayor, el test no sirve para tomar esa decisión.</p>
+      <p>El resultado muestra también los valores concretos de p_B que corresponden al MDE hacia arriba y hacia abajo, para que puedas razonar en términos absolutos de tasa de conversión.</p>
+
       <h2>Recomendaciones prácticas</h2>
       <ul>
-        <li><strong>Potencia ≥ 0.80</strong> es el mínimo recomendado; usa 0.90 para decisiones críticas.</li>
-        <li><strong>α = 0.05</strong> es el estándar; considera α = 0.01 si el coste de un falso positivo es alto.</li>
-        <li>El MDE relativo suele ser más relevante que el absoluto: un MDE del 10% sobre una tasa base del 5% equivale a pB = 0.055.</li>
-        <li>Con tráfico limitado, acepta efectos más grandes o reduce α para compensar.</li>
+        <li><strong>Potencia ≥ 0.80</strong> es el mínimo recomendado; usa 0.90 para decisiones críticas o cuando el coste de un falso negativo sea alto.</li>
+        <li><strong>α = 0.05</strong> es el estándar; considera α = 0.01 si el coste de un falso positivo es elevado (lanzar una variante que en realidad no mejora).</li>
+        <li>Fija el tamaño muestral <em>antes</em> de lanzar el experimento. Pararlo antes de alcanzar n o seguir hasta ver significación infla el error de tipo I.</li>
+        <li>El MDE relativo suele ser más relevante que el absoluto: un MDE del 10 % sobre una tasa base del 5 % equivale a p_B = 0.055, una diferencia de solo 0.5 pp.</li>
+        <li>Con tráfico limitado, acepta detectar solo efectos más grandes (MDE mayor) o extiende la duración del experimento en lugar de bajar α para compensar.</li>
       </ul>
+
       <section class="related-tools">
         <h2>Calculadoras relacionadas</h2>
         <ul>
@@ -241,11 +281,13 @@
           <li><a href="tamano-muestral-dos-proporciones.html">Tamaño muestral para dos proporciones</a></li>
         </ul>
       </section>
+
       <h2>Preguntas frecuentes</h2>
       <ul>
         <li><strong>¿El cálculo de n asume asignación igual 1:1?</strong> Sí. La fórmula implementada maximiza la potencia con asignación balanceada. Para asignación desigual usa la calculadora general de dos proporciones.</li>
-        <li><strong>¿Puedo cambiar n y ver cómo cambia la potencia?</strong> Sí: cambia al modo Potencia, introduce tu n actual y comprueba si alcanza el umbral deseado.</li>
-        <li><strong>¿El MDE es el efecto que espero, o el mínimo que importa?</strong> El MDE es el mínimo detectable con la muestra dada. Deberías requerir n suficiente para que el MDE sea igual o menor al efecto mínimo que te importaría detectar en la práctica.</li>
+        <li><strong>¿Qué diferencia hay entre contraste bilateral y unilateral?</strong> El bilateral detecta efectos en ambas direcciones (p_B mayor o menor que p_A) y es el más usado. El unilateral solo detecta efectos en una dirección y necesita menos muestra, pero es válido únicamente si de antemano sabes que la variante solo puede mejorar, nunca empeorar.</li>
+        <li><strong>¿El MDE es el efecto que espero o el mínimo que importa?</strong> El MDE es el mínimo detectable con la muestra dada. Deberías dimensionar el experimento para que su MDE sea igual o menor al efecto mínimo que tendría relevancia práctica para tu negocio.</li>
+        <li><strong>¿Por qué el gráfico muestra lifts relativos y no el efecto exacto que introduje?</strong> El gráfico ilustra cómo varía la potencia con n para tres escenarios de referencia (+5 %, +10 %, +20 % relativo sobre p_A). Tu cálculo concreto está en el cuadro de resultados; el gráfico aporta contexto visual para entender la sensibilidad general del experimento.</li>
       </ul>
     </section>
   </main>
