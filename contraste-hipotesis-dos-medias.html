@@ -89,21 +89,11 @@
 
     <main>
         <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
-        
 
-        
 
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Este contraste se utiliza para evaluar si dos medias poblacionales son iguales cuando se comparan dos grupos independientes y no se asume varianza común. Por eso se usa habitualmente la versión de Welch, que es más robusta cuando la dispersión de ambos grupos no coincide.</p>
-            <p>Además de la decisión estadística, conviene interpretar la magnitud de la diferencia \(\bar{x}_1-\bar{x}_2\), su intervalo de confianza y su relevancia en el contexto aplicado.</p>
 
-            <h2>Hipótesis y estadístico</h2>
-            <p class="formula-line">\(H_0: \mu_1 - \mu_2 = 0\)</p>
-            <p class="formula-line">\( t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} \)</p>
-        </section>
 
-<section class="card sample-size-panel">
+        <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
                 <p>Calculadora online: introduce medias, desviaciones y tamaños muestrales de ambos grupos.</p>
@@ -142,14 +132,26 @@
             </div>
         </section>
 
-        
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Este contraste se utiliza para evaluar si dos medias poblacionales son iguales cuando se comparan dos grupos independientes y no se asume varianza común. Por eso se usa habitualmente la versión de Welch, que es más robusta cuando la dispersión de ambos grupos no coincide.</p>
+            <p>Además de la decisión estadística, conviene interpretar la magnitud de la diferencia \(\bar{x}_1-\bar{x}_2\), su intervalo de confianza y su relevancia en el contexto aplicado.</p>
+
+            <h2>Hipótesis y estadístico</h2>
+            <p class="formula-line">\(H_0: \mu_1 - \mu_2 = 0\)</p>
+            <p class="formula-line">\( t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} \)</p>
+        </section>
+
+
+
+
 
         <section class="card content-card">
             <h2>Contraste rápido</h2>
             <p>Se utiliza la fórmula de Welch porque no obliga a suponer varianzas iguales entre grupos. En práctica aplicada, es una opción robusta cuando \(s_1\) y \(s_2\), o \(n_1\) y \(n_2\), son distintos.</p>
             <p>Por eso también se usan grados de libertad aproximados (Welch-Satterthwaite), que pueden no ser enteros.</p>
         </section>
-    
+
         <section class="card content-card">
             <h2>¿También hay versión con desviación poblacional conocida?</h2>
             <p>Sí. Igual que en el contraste de una media, en dos medias existen dos enfoques: <strong>z de dos muestras</strong> cuando se conocen las desviaciones poblacionales \(\sigma_1\) y \(\sigma_2\), y <strong>t</strong> cuando solo se conocen las desviaciones muestrales \(s_1\) y \(s_2\).</p>

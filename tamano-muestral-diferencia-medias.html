@@ -88,40 +88,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Este cálculo se usa para comparar dos medias de grupos independientes (por ejemplo, tiempo promedio de dos procesos). Debes definir desviaciones estándar esperadas <strong>\(\sigma_1\)</strong> y <strong>\(\sigma_2\)</strong>, diferencia mínima detectable <strong>\(\Delta\)</strong>, alfa, potencia y la razón de asignación <strong>k</strong>.</p>
-
-            <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n_1 = \frac{(Z_{\alpha/2}+Z_\beta)^2(\sigma_1^2+\sigma_2^2/k)}{\Delta^2} \)</p>
-            <p class="formula-line">\( n_2 = k\,n_1 \)</p>
-            <ul>
-                <li><strong>n1, n2</strong>: tamaños por grupo.</li>
-                <li><strong>\(\Delta\)</strong>: diferencia mínima de medias que quieres detectar.</li>
-                <li><strong>k</strong>: razón de asignación entre grupos.</li>
-            </ul>
-        </section>
-
-        <section class="card content-card">
-            <h2>Configuración rápida</h2>
-            <ul>
-                <li><strong>σ1 y σ2:</strong> usa datos históricos o piloto para cada grupo.</li>
-                <li><strong>Δ:</strong> fija la diferencia mínima relevante en términos prácticos.</li>
-                <li><strong>Alfa y potencia:</strong> 0.05 y 0.80 son valores base habituales.</li>
-                <li><strong>Asignación:</strong> prioriza 1:1 para reducir el tamaño total.</li>
-            </ul>
-
-            <h2>Ejemplo sencillo</h2>
-            <p>Comparas dos procesos con <strong>σ1 = 10</strong>, <strong>σ2 = 10</strong>, diferencia mínima detectable <strong>Δ = 5</strong>, <strong>α = 0.05</strong> y potencia <strong>0.80</strong>. El resultado es aproximadamente <strong>63 casos por grupo</strong> (total ≈ 126).</p>
-
-            <h2>Usos frecuentes</h2>
-            <ul>
-                <li>Comparación de productividad entre equipos o turnos.</li>
-                <li>Ensayos clínicos con variable continua.</li>
-                <li>Medición de impacto de mejoras en tiempos o costos.</li>
-            </ul>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -174,7 +140,43 @@
             <button class="calculate-btn" id="twoMeanCalculateBtn">Calcular tamaño muestral</button>
             <div id="twoMeanResult" class="result-box">Resultado pendiente…</div>
         </section>
-    
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Este cálculo se usa para comparar dos medias de grupos independientes (por ejemplo, tiempo promedio de dos procesos). Debes definir desviaciones estándar esperadas <strong>\(\sigma_1\)</strong> y <strong>\(\sigma_2\)</strong>, diferencia mínima detectable <strong>\(\Delta\)</strong>, alfa, potencia y la razón de asignación <strong>k</strong>.</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n_1 = \frac{(Z_{\alpha/2}+Z_\beta)^2(\sigma_1^2+\sigma_2^2/k)}{\Delta^2} \)</p>
+            <p class="formula-line">\( n_2 = k\,n_1 \)</p>
+            <ul>
+                <li><strong>n1, n2</strong>: tamaños por grupo.</li>
+                <li><strong>\(\Delta\)</strong>: diferencia mínima de medias que quieres detectar.</li>
+                <li><strong>k</strong>: razón de asignación entre grupos.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li><strong>σ1 y σ2:</strong> usa datos históricos o piloto para cada grupo.</li>
+                <li><strong>Δ:</strong> fija la diferencia mínima relevante en términos prácticos.</li>
+                <li><strong>Alfa y potencia:</strong> 0.05 y 0.80 son valores base habituales.</li>
+                <li><strong>Asignación:</strong> prioriza 1:1 para reducir el tamaño total.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Comparas dos procesos con <strong>σ1 = 10</strong>, <strong>σ2 = 10</strong>, diferencia mínima detectable <strong>Δ = 5</strong>, <strong>α = 0.05</strong> y potencia <strong>0.80</strong>. El resultado es aproximadamente <strong>63 casos por grupo</strong> (total ≈ 126).</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Comparación de productividad entre equipos o turnos.</li>
+                <li>Ensayos clínicos con variable continua.</li>
+                <li>Medición de impacto de mejoras en tiempos o costos.</li>
+            </ul>
+        </section>
+
+
+
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>

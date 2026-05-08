@@ -88,38 +88,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Para datos binarios apareados (sí/no antes y después), el contraste se basa en pares discordantes: p01 (pasa de 0 a 1) y p10 (pasa de 1 a 0).</p>
-
-            <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n = \frac{(Z_{\alpha/2}+Z_\beta)^2\,(p_{01}+p_{10})}{(p_{10}-p_{01})^2} \)</p>
-            <ul>
-                <li><strong>p01</strong>: proporción de pares 0→1.</li>
-                <li><strong>p10</strong>: proporción de pares 1→0.</li>
-                <li><strong>n</strong>: número de pares.</li>
-            </ul>
-        </section>
-
-        <section class="card content-card">
-            <h2>Configuración rápida</h2>
-            <ul>
-                <li>p01 y p10 deben salir de un piloto o hipótesis realista.</li>
-                <li>Si p01≈p10, necesitarás muestras grandes.</li>
-                <li>Usa α=0.05 y potencia 0.8 como base.</li>
-            </ul>
-
-            <h2>Ejemplo sencillo</h2>
-            <p>Con p01=0.18 y p10=0.08, α=0.05 y potencia=0.8, el tamaño requerido es ~205 pares.</p>
-
-            <h2>Usos frecuentes</h2>
-            <ul>
-                <li>Cambio de adherencia antes/después de una intervención.</li>
-                <li>Comparación de diagnóstico binario en dos momentos.</li>
-                <li>Evaluación de cumplimiento pre y post política.</li>
-            </ul>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -152,7 +120,41 @@
             <button class="calculate-btn" id="pairedPropCalculateBtn">Calcular tamaño muestral</button>
             <div id="pairedPropResult" class="result-box">Resultado pendiente…</div>
         </section>
-    
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Para datos binarios apareados (sí/no antes y después), el contraste se basa en pares discordantes: p01 (pasa de 0 a 1) y p10 (pasa de 1 a 0).</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n = \frac{(Z_{\alpha/2}+Z_\beta)^2\,(p_{01}+p_{10})}{(p_{10}-p_{01})^2} \)</p>
+            <ul>
+                <li><strong>p01</strong>: proporción de pares 0→1.</li>
+                <li><strong>p10</strong>: proporción de pares 1→0.</li>
+                <li><strong>n</strong>: número de pares.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li>p01 y p10 deben salir de un piloto o hipótesis realista.</li>
+                <li>Si p01≈p10, necesitarás muestras grandes.</li>
+                <li>Usa α=0.05 y potencia 0.8 como base.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Con p01=0.18 y p10=0.08, α=0.05 y potencia=0.8, el tamaño requerido es ~205 pares.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Cambio de adherencia antes/después de una intervención.</li>
+                <li>Comparación de diagnóstico binario en dos momentos.</li>
+                <li>Evaluación de cumplimiento pre y post política.</li>
+            </ul>
+        </section>
+
+
+
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>

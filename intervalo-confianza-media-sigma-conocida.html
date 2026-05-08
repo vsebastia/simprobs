@@ -70,33 +70,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Cuando conoces la desviación típica poblacional \(\sigma\) (o puedes suponerla conocida con certeza), el intervalo de confianza para la media se construye usando la distribución normal estándar. Es el caso más sencillo y sirve como punto de partida para entender la lógica de los intervalos de confianza.</p>
-            <p>En la práctica, \(\sigma\) raramente se conoce con exactitud. Sin embargo, este intervalo es una buena aproximación cuando el tamaño muestral es grande (n ≥ 30) y la varianza poblacional es estable y conocida de estudios anteriores.</p>
-
-            <h2>Fórmula</h2>
-            <p class="formula-line">\( \bar{x} \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \)</p>
-            <ul>
-                <li><strong>\(\bar{x}\)</strong>: media muestral observada.</li>
-                <li><strong>\(z_{\alpha/2}\)</strong>: valor crítico de la normal estándar para el nivel de confianza elegido.</li>
-                <li><strong>\(\sigma\)</strong>: desviación típica poblacional (conocida).</li>
-                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
-            </ul>
-            <p>El margen de error es \(E = z_{\alpha/2} \cdot \sigma/\sqrt{n}\), y el intervalo queda \([\bar{x} - E,\; \bar{x} + E]\).</p>
-
-            <h2>Valores críticos z habituales</h2>
-            <ul>
-                <li>Confianza 90 %: \(z_{0,05} = 1{,}645\)</li>
-                <li>Confianza 95 %: \(z_{0,025} = 1{,}960\)</li>
-                <li>Confianza 99 %: \(z_{0,005} = 2{,}576\)</li>
-            </ul>
-
-            <h2>Ejemplo real</h2>
-            <p>Una fábrica de tornillos conoce por especificaciones técnicas que \(\sigma = 0{,}08\) mm. Se mide una muestra de 50 tornillos y se obtiene \(\bar{x} = 10{,}02\) mm. Con un 95 % de confianza, el intervalo es:</p>
-            <p class="formula-line">\( 10{,}02 \pm 1{,}960 \cdot \frac{0{,}08}{\sqrt{50}} \approx [9{,}998,\; 10{,}042] \text{ mm} \)</p>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -143,6 +116,35 @@
                 <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza sobre la distribución normal estándar" role="img"></canvas>
             </div>
         </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Cuando conoces la desviación típica poblacional \(\sigma\) (o puedes suponerla conocida con certeza), el intervalo de confianza para la media se construye usando la distribución normal estándar. Es el caso más sencillo y sirve como punto de partida para entender la lógica de los intervalos de confianza.</p>
+            <p>En la práctica, \(\sigma\) raramente se conoce con exactitud. Sin embargo, este intervalo es una buena aproximación cuando el tamaño muestral es grande (n ≥ 30) y la varianza poblacional es estable y conocida de estudios anteriores.</p>
+
+            <h2>Fórmula</h2>
+            <p class="formula-line">\( \bar{x} \pm z_{\alpha/2} \cdot \dfrac{\sigma}{\sqrt{n}} \)</p>
+            <ul>
+                <li><strong>\(\bar{x}\)</strong>: media muestral observada.</li>
+                <li><strong>\(z_{\alpha/2}\)</strong>: valor crítico de la normal estándar para el nivel de confianza elegido.</li>
+                <li><strong>\(\sigma\)</strong>: desviación típica poblacional (conocida).</li>
+                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
+            </ul>
+            <p>El margen de error es \(E = z_{\alpha/2} \cdot \sigma/\sqrt{n}\), y el intervalo queda \([\bar{x} - E,\; \bar{x} + E]\).</p>
+
+            <h2>Valores críticos z habituales</h2>
+            <ul>
+                <li>Confianza 90 %: \(z_{0,05} = 1{,}645\)</li>
+                <li>Confianza 95 %: \(z_{0,025} = 1{,}960\)</li>
+                <li>Confianza 99 %: \(z_{0,005} = 2{,}576\)</li>
+            </ul>
+
+            <h2>Ejemplo resuelto</h2>
+            <p>Una fábrica de tornillos conoce por especificaciones técnicas que \(\sigma = 0{,}08\) mm. Se mide una muestra de 50 tornillos y se obtiene \(\bar{x} = 10{,}02\) mm. Con un 95 % de confianza, el intervalo es:</p>
+            <p class="formula-line">\( 10{,}02 \pm 1{,}960 \cdot \frac{0{,}08}{\sqrt{50}} \approx [9{,}998,\; 10{,}042] \text{ mm} \)</p>
+        </section>
+
+
 
         <section class="card content-card">
             <h2>Cómo interpretar el resultado</h2>

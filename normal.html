@@ -91,26 +91,6 @@
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
-    <article class="card content-card">
-        <h2>Distribución normal</h2>
-        <h3>Explicación sencilla</h3>
-        La distribución normal modela mediciones que se concentran alrededor de un valor medio y se vuelven 
-        menos frecuentes al alejarse del centro. Alturas, notas de exámenes y muchas variables de fabricación 
-        suelen seguir esta forma cuando intervienen muchos factores pequeños. Su curva de campana es simétrica: 
-        valores igual de alejados por encima y por debajo de la media son igual de probables. 
-        En esta calculadora, elige Normal cuando tu variable sea continua y tome muchos valores alrededor de una tendencia central.
-        <h3>Fórmula</h3>
-        <p class="formula-line">\( f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \)</p>
-        <h3>Parámetros</h3>
-        <ul>
-            <li><strong>μ (mu):</strong> media o centro de la distribución.</li>
-            <li><strong>σ (sigma):</strong> desviación estándar, que controla la dispersión.</li>
-        </ul>
-        <h3>Ejemplos reales y uso</h3>
-            <p>Supón que una fábrica llena botellas con objetivo de 500 ml. Si la variación del proceso es mayoritariamente aleatoria,
-                los volúmenes suelen aproximarse a una normal. Puedes usar PDF para inspeccionar la densidad cerca de un objetivo,
-                CDF para calcular la probabilidad de quedar por debajo de un umbral y cuantiles para fijar puntos de corte.</p>
-        </article>
 
     <main>
         <section class="app-shell" aria-label="Calculadora Normal">
@@ -192,8 +172,26 @@
             </section>
         </section>
 
-    <p class="hero-links app-shell-link"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
-    
+        <article class="card content-card">
+        <h2>Distribución normal</h2>
+        <h3>Explicación breve</h3>
+        La distribución normal modela mediciones que se concentran alrededor de un valor medio y se vuelven
+        menos frecuentes al alejarse del centro. Alturas, notas de exámenes y muchas variables de fabricación
+        suelen seguir esta forma cuando intervienen muchos factores pequeños. Su curva de campana es simétrica:
+        valores igual de alejados por encima y por debajo de la media son igual de probables.
+        En esta calculadora, elige Normal cuando tu variable sea continua y tome muchos valores alrededor de una tendencia central.
+        <h3>Fórmula</h3>
+        <p class="formula-line">\( f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \)</p>
+        <h3>Parámetros</h3>
+        <ul>
+            <li><strong>μ (mu):</strong> media o centro de la distribución.</li>
+            <li><strong>σ (sigma):</strong> desviación estándar, que controla la dispersión.</li>
+        </ul>
+        <h3>Ejemplo resuelto</h3>
+            <p>Supón que una fábrica llena botellas con objetivo de 500 ml. Si la variación del proceso es mayoritariamente aleatoria,
+                los volúmenes suelen aproximarse a una normal. Puedes usar PDF para inspeccionar la densidad cerca de un objetivo,
+                CDF para calcular la probabilidad de quedar por debajo de un umbral y cuantiles para fijar puntos de corte.</p>
+        </article>
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>

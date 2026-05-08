@@ -88,31 +88,6 @@
   </header>
 
   <main>
-    <section class="card content-card">
-      <h2>Conceptos clave antes de empezar</h2>
-      <p>Estos tres parámetros controlan el equilibrio entre riesgo, recursos y sensibilidad del experimento. Entenderlos es fundamental para interpretar cualquier resultado.</p>
-
-      <h3>Nivel de significación α — riesgo de falso positivo</h3>
-      <p>Es la probabilidad de concluir que B es mejor que A cuando en realidad <em>no hay diferencia</em>. Con α = 0.05, uno de cada 20 experimentos donde no existe efecto real dará un resultado "estadísticamente significativo" por puro azar. <strong>Reducir α</strong> disminuye los falsos positivos, pero exige más muestra para mantener la potencia.</p>
-
-      <h3>Potencia estadística 1−β — capacidad de detectar un efecto real</h3>
-      <p>Es la probabilidad de <em>sí</em> detectar la diferencia cuando realmente existe. Con potencia = 80 % y un efecto real igual al que hayas especificado, el experimento lo detectará correctamente 8 de cada 10 veces. El 20 % restante son <strong>falsos negativos</strong> (β): el efecto existe pero el test no lo ve. En decisiones críticas conviene subir la potencia a 90 % o más.</p>
-
-      <h3>MDE — efecto mínimo detectable</h3>
-      <p>Es la diferencia absoluta más pequeña entre p_A y p_B que el experimento puede detectar con la potencia y α configurados. Si el verdadero efecto es menor que el MDE, el test probablemente no lo detectará aunque exista. El MDE depende directamente de n: <strong>cuanta más muestra, menor MDE</strong>, y por tanto mayor sensibilidad.</p>
-
-      <h3>Tasa base p_A y tasa esperada p_B</h3>
-      <p>p_A es la tasa de conversión actual del grupo de control (por ejemplo, 12 % de clicks → 0.12). p_B es la tasa que esperas, o la mínima mejora que te importaría detectar en la variante. La diferencia \(\Delta = p_B - p_A\) es el efecto del experimento.</p>
-
-      <h2>Fórmulas utilizadas</h2>
-      <p>Para la comparación de dos proporciones con asignación 1:1, el tamaño muestral necesario por grupo es:</p>
-      <p class="formula-line">\( n = \left\lceil \dfrac{\left(z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})} + z_\beta\sqrt{p_A(1-p_A)+p_B(1-p_B)}\right)^2}{(p_A - p_B)^2} \right\rceil \)</p>
-      <p>donde \(\bar{p} = (p_A + p_B)/2\), \(z_{\alpha/2}\) es el cuantil normal para el nivel de significación y \(z_\beta\) el cuantil para la potencia deseada.</p>
-      <p>La potencia dado n se obtiene invirtiendo la expresión:</p>
-      <p class="formula-line">\( 1-\beta = \Phi\!\left(\dfrac{|p_A - p_B|\sqrt{n} - z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})}}{\sqrt{p_A(1-p_A)+p_B(1-p_B)}}\right) \)</p>
-      <p>El <strong>MDE</strong> se obtiene por búsqueda binaria sobre el efecto que consigue la potencia objetivo con el n disponible.</p>
-    </section>
-
     <section class="card sample-size-panel">
       <div class="panel-heading">
         <h2>Calculadora</h2>
@@ -247,6 +222,33 @@
       </div>
 
     </section>
+
+        <section class="card content-card">
+      <h2>Conceptos clave antes de empezar</h2>
+      <p>Estos tres parámetros controlan el equilibrio entre riesgo, recursos y sensibilidad del experimento. Entenderlos es fundamental para interpretar cualquier resultado.</p>
+
+      <h3>Nivel de significación α — riesgo de falso positivo</h3>
+      <p>Es la probabilidad de concluir que B es mejor que A cuando en realidad <em>no hay diferencia</em>. Con α = 0.05, uno de cada 20 experimentos donde no existe efecto real dará un resultado "estadísticamente significativo" por puro azar. <strong>Reducir α</strong> disminuye los falsos positivos, pero exige más muestra para mantener la potencia.</p>
+
+      <h3>Potencia estadística 1−β — capacidad de detectar un efecto real</h3>
+      <p>Es la probabilidad de <em>sí</em> detectar la diferencia cuando realmente existe. Con potencia = 80 % y un efecto real igual al que hayas especificado, el experimento lo detectará correctamente 8 de cada 10 veces. El 20 % restante son <strong>falsos negativos</strong> (β): el efecto existe pero el test no lo ve. En decisiones críticas conviene subir la potencia a 90 % o más.</p>
+
+      <h3>MDE — efecto mínimo detectable</h3>
+      <p>Es la diferencia absoluta más pequeña entre p_A y p_B que el experimento puede detectar con la potencia y α configurados. Si el verdadero efecto es menor que el MDE, el test probablemente no lo detectará aunque exista. El MDE depende directamente de n: <strong>cuanta más muestra, menor MDE</strong>, y por tanto mayor sensibilidad.</p>
+
+      <h3>Tasa base p_A y tasa esperada p_B</h3>
+      <p>p_A es la tasa de conversión actual del grupo de control (por ejemplo, 12 % de clicks → 0.12). p_B es la tasa que esperas, o la mínima mejora que te importaría detectar en la variante. La diferencia \(\Delta = p_B - p_A\) es el efecto del experimento.</p>
+
+      <h2>Fórmulas utilizadas</h2>
+      <p>Para la comparación de dos proporciones con asignación 1:1, el tamaño muestral necesario por grupo es:</p>
+      <p class="formula-line">\( n = \left\lceil \dfrac{\left(z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})} + z_\beta\sqrt{p_A(1-p_A)+p_B(1-p_B)}\right)^2}{(p_A - p_B)^2} \right\rceil \)</p>
+      <p>donde \(\bar{p} = (p_A + p_B)/2\), \(z_{\alpha/2}\) es el cuantil normal para el nivel de significación y \(z_\beta\) el cuantil para la potencia deseada.</p>
+      <p>La potencia dado n se obtiene invirtiendo la expresión:</p>
+      <p class="formula-line">\( 1-\beta = \Phi\!\left(\dfrac{|p_A - p_B|\sqrt{n} - z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})}}{\sqrt{p_A(1-p_A)+p_B(1-p_B)}}\right) \)</p>
+      <p>El <strong>MDE</strong> se obtiene por búsqueda binaria sobre el efecto que consigue la potencia objetivo con el n disponible.</p>
+    </section>
+
+
 
     <section id="seo-support-content" class="card content-card">
       <h2>Cómo interpretar cada resultado</h2>

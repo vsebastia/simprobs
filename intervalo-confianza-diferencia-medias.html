@@ -70,25 +70,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Cuando se comparan dos grupos independientes (tratamiento A vs. B, planta 1 vs. planta 2, antes vs. después con muestras diferentes), el intervalo de confianza para la diferencia de medias \(\mu_1 - \mu_2\) permite cuantificar la magnitud de la diferencia y su incertidumbre.</p>
-            <p>Existen dos variantes según si las varianzas poblacionales son iguales o distintas. Si 0 queda fuera del intervalo, hay evidencia de que las medias difieren.</p>
-
-            <h2>Varianzas iguales (pooled)</h2>
-            <p class="formula-line">\( (\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\, n_1+n_2-2} \cdot s_p\sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}} \)</p>
-            <p>con varianza agrupada:</p>
-            <p class="formula-line">\( s_p^2 = \dfrac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2} \)</p>
-
-            <h2>Varianzas distintas (Welch)</h2>
-            <p class="formula-line">\( (\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\, \nu} \cdot \sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}} \)</p>
-            <p>con grados de libertad de Welch–Satterthwaite:</p>
-            <p class="formula-line">\( \nu = \dfrac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1-1} + \dfrac{(s_2^2/n_2)^2}{n_2-1}} \)</p>
-
-            <h2>Ejemplo real</h2>
-            <p>Grupo A (nuevo fármaco): \(\bar{x}_1 = 5{,}2\), \(s_1 = 1{,}4\), \(n_1 = 20\). Grupo B (placebo): \(\bar{x}_2 = 4{,}7\), \(s_2 = 1{,}6\), \(n_2 = 22\). Con 95 % de confianza (Welch), el IC de la diferencia incluiría el 0, por lo que no habría evidencia significativa de diferencia.</p>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -158,6 +139,27 @@
                 <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza para la diferencia de medias" role="img"></canvas>
             </div>
         </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Cuando se comparan dos grupos independientes (tratamiento A vs. B, planta 1 vs. planta 2, antes vs. después con muestras diferentes), el intervalo de confianza para la diferencia de medias \(\mu_1 - \mu_2\) permite cuantificar la magnitud de la diferencia y su incertidumbre.</p>
+            <p>Existen dos variantes según si las varianzas poblacionales son iguales o distintas. Si 0 queda fuera del intervalo, hay evidencia de que las medias difieren.</p>
+
+            <h2>Varianzas iguales (pooled)</h2>
+            <p class="formula-line">\( (\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\, n_1+n_2-2} \cdot s_p\sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}} \)</p>
+            <p>con varianza agrupada:</p>
+            <p class="formula-line">\( s_p^2 = \dfrac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1 + n_2 - 2} \)</p>
+
+            <h2>Varianzas distintas (Welch)</h2>
+            <p class="formula-line">\( (\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\, \nu} \cdot \sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}} \)</p>
+            <p>con grados de libertad de Welch–Satterthwaite:</p>
+            <p class="formula-line">\( \nu = \dfrac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1-1} + \dfrac{(s_2^2/n_2)^2}{n_2-1}} \)</p>
+
+            <h2>Ejemplo resuelto</h2>
+            <p>Grupo A (nuevo fármaco): \(\bar{x}_1 = 5{,}2\), \(s_1 = 1{,}4\), \(n_1 = 20\). Grupo B (placebo): \(\bar{x}_2 = 4{,}7\), \(s_2 = 1{,}6\), \(n_2 = 22\). Con 95 % de confianza (Welch), el IC de la diferencia incluiría el 0, por lo que no habría evidencia significativa de diferencia.</p>
+        </section>
+
+
 
         <section class="card content-card">
             <h2>¿Varianzas iguales o distintas?</h2>

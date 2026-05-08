@@ -70,26 +70,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>En la práctica, la desviación típica poblacional \(\sigma\) raramente se conoce con exactitud. Cuando se estima a partir de los propios datos muestrales usando \(s\), aparece una incertidumbre adicional que modela la distribución t de Student con \(n-1\) grados de libertad.</p>
-            <p>Con muestras grandes (n ≥ 30), la t de Student converge a la normal estándar y ambos intervalos dan resultados muy similares. Para muestras pequeñas, la t produce intervalos más anchos, reflejando correctamente la mayor incertidumbre.</p>
-
-            <h2>Fórmula</h2>
-            <p class="formula-line">\( \bar{x} \pm t_{\alpha/2,\, n-1} \cdot \dfrac{s}{\sqrt{n}} \)</p>
-            <ul>
-                <li><strong>\(\bar{x}\)</strong>: media muestral observada.</li>
-                <li><strong>\(t_{\alpha/2,\, n-1}\)</strong>: valor crítico de la t de Student con \(n-1\) grados de libertad.</li>
-                <li><strong>\(s\)</strong>: desviación estándar muestral (con divisor \(n-1\)).</li>
-                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
-            </ul>
-            <p>El margen de error es \(E = t_{\alpha/2,\, n-1} \cdot s/\sqrt{n}\) y el intervalo es \([\bar{x} - E,\; \bar{x} + E]\).</p>
-
-            <h2>Ejemplo real</h2>
-            <p>Se mide el tiempo de respuesta (en ms) de un servicio web en 15 peticiones: \(\bar{x} = 245{,}3\) ms, \(s = 38{,}7\) ms. Con 95 % de confianza y \(gl = 14\):</p>
-            <p class="formula-line">\( 245{,}3 \pm 2{,}145 \cdot \frac{38{,}7}{\sqrt{15}} \approx [224{,}0,\; 266{,}7] \text{ ms} \)</p>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -136,6 +116,28 @@
                 <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza sobre la distribución t de Student" role="img"></canvas>
             </div>
         </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>En la práctica, la desviación típica poblacional \(\sigma\) raramente se conoce con exactitud. Cuando se estima a partir de los propios datos muestrales usando \(s\), aparece una incertidumbre adicional que modela la distribución t de Student con \(n-1\) grados de libertad.</p>
+            <p>Con muestras grandes (n ≥ 30), la t de Student converge a la normal estándar y ambos intervalos dan resultados muy similares. Para muestras pequeñas, la t produce intervalos más anchos, reflejando correctamente la mayor incertidumbre.</p>
+
+            <h2>Fórmula</h2>
+            <p class="formula-line">\( \bar{x} \pm t_{\alpha/2,\, n-1} \cdot \dfrac{s}{\sqrt{n}} \)</p>
+            <ul>
+                <li><strong>\(\bar{x}\)</strong>: media muestral observada.</li>
+                <li><strong>\(t_{\alpha/2,\, n-1}\)</strong>: valor crítico de la t de Student con \(n-1\) grados de libertad.</li>
+                <li><strong>\(s\)</strong>: desviación estándar muestral (con divisor \(n-1\)).</li>
+                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
+            </ul>
+            <p>El margen de error es \(E = t_{\alpha/2,\, n-1} \cdot s/\sqrt{n}\) y el intervalo es \([\bar{x} - E,\; \bar{x} + E]\).</p>
+
+            <h2>Ejemplo resuelto</h2>
+            <p>Se mide el tiempo de respuesta (en ms) de un servicio web en 15 peticiones: \(\bar{x} = 245{,}3\) ms, \(s = 38{,}7\) ms. Con 95 % de confianza y \(gl = 14\):</p>
+            <p class="formula-line">\( 245{,}3 \pm 2{,}145 \cdot \frac{38{,}7}{\sqrt{15}} \approx [224{,}0,\; 266{,}7] \text{ ms} \)</p>
+        </section>
+
+
 
         <section class="card content-card">
             <h2>Supuestos del intervalo t</h2>
