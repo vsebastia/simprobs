@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style_new.css?v=20260506-3">
+    <link rel="stylesheet" href="style_new.css?v=20260506-4">
     <style>
         .site-nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(15,23,42,0.08); }
         .site-nav-inner { width:min(1200px,94vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 0; }
@@ -84,10 +84,20 @@
 </nav>
 
 <div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Miga de pan">
+        <span class="breadcrumbs-label">Ruta:</span>
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tablas-estadisticas/">Tablas estadísticas</a></li>
+            <li aria-current="page">Distribución Gamma</li>
+        </ol>
+    </nav>
+
     <header class="hero">
         <p class="eyebrow">Tablas estadísticas</p>
         <h1>Distribución Gamma</h1>
         <p class="hero-subtitle">Tabla de la distribución Gamma Γ(α, β): distribución acumulada P(X ≤ x), densidad f(x) y cuantiles para distintos parámetros de forma α y escala β. Haz clic en una celda para leer el valor.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tablas-estadisticas/">Ver todas las tablas estadísticas</a></p>
     </header>
 
     <main>
