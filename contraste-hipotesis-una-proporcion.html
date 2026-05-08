@@ -89,21 +89,11 @@
 
     <main>
         <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
-        
 
-        
 
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\). Es una prueba habitual en validación de campañas, calidad de producción, ensayos clínicos y estudios de opinión.</p>
-            <p>El método se apoya en la aproximación normal de la proporción muestral bajo \(H_0\), por lo que la calidad de la aproximación mejora con tamaños muestrales adecuados.</p>
 
-            <h2>Hipótesis y estadístico</h2>
-            <p class="formula-line">\(H_0: p = p_0\)</p>
-            <p class="formula-line">\( z = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \)</p>
-        </section>
 
-<section class="card sample-size-panel">
+        <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
                 <p>Calculadora online que calcula z, p-valor y la decisión del contraste para una proporción.</p>
@@ -147,14 +137,26 @@
             </div>
         </section>
 
-        
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\). Es una prueba habitual en validación de campañas, calidad de producción, ensayos clínicos y estudios de opinión.</p>
+            <p>El método se apoya en la aproximación normal de la proporción muestral bajo \(H_0\), por lo que la calidad de la aproximación mejora con tamaños muestrales adecuados.</p>
+
+            <h2>Hipótesis y estadístico</h2>
+            <p class="formula-line">\(H_0: p = p_0\)</p>
+            <p class="formula-line">\( z = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \)</p>
+        </section>
+
+
+
+
 
         <section class="card content-card">
             <h2>Contraste rápido</h2>
             <p>Bajo \(H_0\), la variabilidad de \(\hat{p}\) viene dada por \(p_0(1-p_0)/n\). Por eso el denominador usa \(p_0\): estamos evaluando compatibilidad con la hipótesis nula concreta.</p>
             <p>La aproximación normal es razonable cuando \(n p_0\) y \(n(1-p_0)\) son suficientemente grandes (regla práctica: al menos 5 o 10).</p>
         </section>
-    
+
                 <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora de contraste de hipótesis para una proporción estima el estadístico z, el p-valor y la decisión estadística al comparar una proporción observada con una proporción teórica \(p_0\). Es frecuente en encuestas, tasas de conversión y control de defectos.</p>

@@ -88,46 +88,6 @@
 
     <main>
 
-        <section class="card content-card">
-            <h2>Descripción</h2>
-
-            <p>
-                El test de Kolmogorov-Smirnov de bondad de ajuste (test KS) permite evaluar si una
-                muestra de datos proviene de una distribución de probabilidad continua previamente
-                especificada. A diferencia del chi-cuadrado de bondad de ajuste, no requiere agrupar
-                los datos en intervalos y trabaja directamente con los valores individuales de la
-                muestra, lo que lo hace especialmente adecuado para distribuciones continuas.
-            </p>
-
-            <p>
-                La idea central es comparar la función de distribución empírica \(F_n(x)\) —la
-                proporción de observaciones menores o iguales que \(x\)— con la función de
-                distribución teórica \(F_0(x)\) bajo la hipótesis nula. El estadístico de contraste
-                es la máxima discrepancia en valor absoluto entre ambas funciones.
-            </p>
-
-            <p>
-                Por ejemplo, si se registran los tiempos de respuesta de 25 servidores y se quiere
-                saber si siguen una distribución Exponencial con tasa λ = 0,5, el test KS cuantifica
-                cuánto se aleja la distribución empírica de esa Exponencial y calcula la probabilidad
-                de que esa diferencia sea atribuible al azar de muestreo.
-            </p>
-
-            <p>
-                El estadístico \(D_n\) sigue la distribución de Kolmogorov bajo la hipótesis nula
-                cuando los parámetros de la distribución son conocidos y no se estiman con los propios
-                datos. El test es siempre bilateral: detecta cualquier tipo de desviación respecto al
-                modelo teórico, en cualquier región de la distribución.
-            </p>
-
-            <h2>Hipótesis y estadístico</h2>
-            <p class="formula-line">\(H_0\): la muestra proviene de la distribución teórica \(F_0\)</p>
-            <p class="formula-line">\(H_1\): la muestra no proviene de \(F_0\)</p>
-            <p class="formula-line">
-                \(D_n = \sup_x \left| F_n(x) - F_0(x) \right|\)
-            </p>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -193,6 +153,48 @@
                 <canvas id="ksChart" aria-label="Gráfico de funciones de distribución empírica y teórica para el test de Kolmogorov-Smirnov" role="img"></canvas>
             </div>
         </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+
+            <p>
+                El test de Kolmogorov-Smirnov de bondad de ajuste (test KS) permite evaluar si una
+                muestra de datos proviene de una distribución de probabilidad continua previamente
+                especificada. A diferencia del chi-cuadrado de bondad de ajuste, no requiere agrupar
+                los datos en intervalos y trabaja directamente con los valores individuales de la
+                muestra, lo que lo hace especialmente adecuado para distribuciones continuas.
+            </p>
+
+            <p>
+                La idea central es comparar la función de distribución empírica \(F_n(x)\) —la
+                proporción de observaciones menores o iguales que \(x\)— con la función de
+                distribución teórica \(F_0(x)\) bajo la hipótesis nula. El estadístico de contraste
+                es la máxima discrepancia en valor absoluto entre ambas funciones.
+            </p>
+
+            <p>
+                Por ejemplo, si se registran los tiempos de respuesta de 25 servidores y se quiere
+                saber si siguen una distribución Exponencial con tasa λ = 0,5, el test KS cuantifica
+                cuánto se aleja la distribución empírica de esa Exponencial y calcula la probabilidad
+                de que esa diferencia sea atribuible al azar de muestreo.
+            </p>
+
+            <p>
+                El estadístico \(D_n\) sigue la distribución de Kolmogorov bajo la hipótesis nula
+                cuando los parámetros de la distribución son conocidos y no se estiman con los propios
+                datos. El test es siempre bilateral: detecta cualquier tipo de desviación respecto al
+                modelo teórico, en cualquier región de la distribución.
+            </p>
+
+            <h2>Hipótesis y estadístico</h2>
+            <p class="formula-line">\(H_0\): la muestra proviene de la distribución teórica \(F_0\)</p>
+            <p class="formula-line">\(H_1\): la muestra no proviene de \(F_0\)</p>
+            <p class="formula-line">
+                \(D_n = \sup_x \left| F_n(x) - F_0(x) \right|\)
+            </p>
+        </section>
+
+
 
         <section class="card content-card">
             <h2>Contraste rápido</h2>

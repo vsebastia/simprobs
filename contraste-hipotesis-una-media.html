@@ -89,30 +89,11 @@
 
     <main>
         <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
-        
 
-        
 
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Este contraste se usa cuando quieres comprobar si la media poblacional es igual a un valor de referencia \(\mu_0\). Es uno de los procedimientos más utilizados en control de procesos, investigación biomédica, educación y analítica de negocio, porque permite contrastar una afirmación concreta con evidencia cuantitativa.</p>
-            <p>En la práctica hay dos escenarios: si conoces la desviación típica poblacional \(\sigma\), empleas un contraste z; si \(\sigma\) es desconocida y se estima con la desviación muestral \(s\), empleas un contraste t de Student. Esta distinción es importante porque refleja la incertidumbre adicional al estimar la variabilidad con la propia muestra.</p>
 
-            <h2>Hipótesis y estadístico</h2>
-            <p class="formula-line">\(H_0: \mu = \mu_0\)</p>
-            <p class="formula-line">\(H_1: \mu \neq \mu_0\), \(\mu > \mu_0\) o \(\mu < \mu_0\)</p>
-            <p class="formula-line">Si \(\sigma\) es conocida: \( z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \)</p>
-            <p class="formula-line">Si \(\sigma\) es desconocida: \( t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \), con \(gl=n-1\)</p>
-            <ul>
-                <li><strong>\(\bar{x}\)</strong>: media muestral.</li>
-                <li><strong>\(\mu_0\)</strong>: media planteada en la hipótesis nula.</li>
-                <li><strong>\(\sigma\)</strong>: desviación típica poblacional (si es conocida).</li>
-                <li><strong>\(s\)</strong>: desviación estándar muestral (si \(\sigma\) es desconocida).</li>
-                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
-            </ul>
-        </section>
 
-<section class="card sample-size-panel">
+        <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
                 <p>Introduce tus datos para obtener estadístico (z o t), p-valor y decisión del contraste.</p>
@@ -171,7 +152,28 @@
             </div>
         </section>
 
-        
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Este contraste se usa cuando quieres comprobar si la media poblacional es igual a un valor de referencia \(\mu_0\). Es uno de los procedimientos más utilizados en control de procesos, investigación biomédica, educación y analítica de negocio, porque permite contrastar una afirmación concreta con evidencia cuantitativa.</p>
+            <p>En la práctica hay dos escenarios: si conoces la desviación típica poblacional \(\sigma\), empleas un contraste z; si \(\sigma\) es desconocida y se estima con la desviación muestral \(s\), empleas un contraste t de Student. Esta distinción es importante porque refleja la incertidumbre adicional al estimar la variabilidad con la propia muestra.</p>
+
+            <h2>Hipótesis y estadístico</h2>
+            <p class="formula-line">\(H_0: \mu = \mu_0\)</p>
+            <p class="formula-line">\(H_1: \mu \neq \mu_0\), \(\mu > \mu_0\) o \(\mu < \mu_0\)</p>
+            <p class="formula-line">Si \(\sigma\) es conocida: \( z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \)</p>
+            <p class="formula-line">Si \(\sigma\) es desconocida: \( t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}} \), con \(gl=n-1\)</p>
+            <ul>
+                <li><strong>\(\bar{x}\)</strong>: media muestral.</li>
+                <li><strong>\(\mu_0\)</strong>: media planteada en la hipótesis nula.</li>
+                <li><strong>\(\sigma\)</strong>: desviación típica poblacional (si es conocida).</li>
+                <li><strong>\(s\)</strong>: desviación estándar muestral (si \(\sigma\) es desconocida).</li>
+                <li><strong>\(n\)</strong>: tamaño de la muestra.</li>
+            </ul>
+        </section>
+
+
+
+
 
         <section class="card content-card">
             <h2>Contraste rápido</h2>
@@ -182,7 +184,7 @@
             </ul>
         </section>
 
-        
+
 
         <section class="card content-card">
             <h2>¿Por qué hay dos fórmulas en este contraste?</h2>
@@ -190,7 +192,7 @@
             <p><strong>Contraste t</strong>: se usa cuando \(\sigma\) es desconocida y se sustituye por \(s\). Esa incertidumbre extra se modela con la t de Student con \(n-1\) grados de libertad.</p>
             <p>Cuando \(n\) crece, la t se parece mucho a la normal, por eso ambos métodos convergen con muestras grandes.</p>
         </section>
-    
+
                 <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora de contraste de hipótesis para una media estima automáticamente el estadístico de prueba (z o t), el p-valor exacto y la decisión estadística final según el nivel de significación elegido. Es útil para control de calidad, investigación, docencia y validación de cambios en procesos.</p>

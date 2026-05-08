@@ -90,21 +90,6 @@
         <p class="hero-subtitle">Calcula densidad, acumuladas y cuantiles de la distribución chi-cuadrado para pruebas estadísticas.</p>
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
-           <article class="card content-card">
-                <h2>Distribución chi-cuadrado</h2>
-                <h3>Explicación sencilla</h3>
-                <p>La distribución chi-cuadrado aparece al sumar cuadrados de variables normales estandarizadas y solo toma valores positivos. Es asimétrica (especialmente con pocos grados de libertad) y se vuelve más parecida a una campana a medida que aumentan los grados de libertad. Se utiliza con frecuencia en inferencia estadística para contrastes de bondad de ajuste, independencia en tablas de contingencia y estimación de varianzas.</p>
-                <h3>Fórmula</h3>
-                <p class="formula-line">\( f(x;k)=\frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2-1}e^{-x/2},\quad x&gt;0 \)</p>
-                <h3>Parámetros</h3>
-                <ul>
-                    <li><strong>k (grados de libertad):</strong> determina la forma y dispersión de la distribución.</li>
-                    <li><strong>x:</strong> valor del estadístico chi-cuadrado observado.</li>
-                </ul>
-                <h3>Ejemplos reales y uso</h3>
-                <p>Si quieres comprobar si la distribución observada de respuestas en una encuesta coincide con una distribución teórica, puedes calcular un estadístico chi-cuadrado y evaluar su probabilidad en cola derecha. En la calculadora, usa <em>Chi-cuadrado</em> con los grados de libertad apropiados para obtener probabilidades acumuladas o cuantiles críticos (por ejemplo, el punto de corte del 95%).</p>
-            </article>
-
 
     <main>
         <section class="app-shell" aria-label="Calculadora Chi-cuadrado">
@@ -186,8 +171,20 @@
             </section>
         </section>
 
-    <p class="hero-links app-shell-link"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
-    
+        <article class="card content-card">
+                <h2>Distribución chi-cuadrado</h2>
+                <h3>Explicación breve</h3>
+                <p>La distribución chi-cuadrado aparece al sumar cuadrados de variables normales estandarizadas y solo toma valores positivos. Es asimétrica (especialmente con pocos grados de libertad) y se vuelve más parecida a una campana a medida que aumentan los grados de libertad. Se utiliza con frecuencia en inferencia estadística para contrastes de bondad de ajuste, independencia en tablas de contingencia y estimación de varianzas.</p>
+                <h3>Fórmula</h3>
+                <p class="formula-line">\( f(x;k)=\frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2-1}e^{-x/2},\quad x&gt;0 \)</p>
+                <h3>Parámetros</h3>
+                <ul>
+                    <li><strong>k (grados de libertad):</strong> determina la forma y dispersión de la distribución.</li>
+                    <li><strong>x:</strong> valor del estadístico chi-cuadrado observado.</li>
+                </ul>
+                <h3>Ejemplo resuelto</h3>
+                <p>Si quieres comprobar si la distribución observada de respuestas en una encuesta coincide con una distribución teórica, puedes calcular un estadístico chi-cuadrado y evaluar su probabilidad en cola derecha. En la calculadora, usa <em>Chi-cuadrado</em> con los grados de libertad apropiados para obtener probabilidades acumuladas o cuantiles críticos (por ejemplo, el punto de corte del 95%).</p>
+            </article>
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>

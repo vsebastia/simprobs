@@ -91,20 +91,6 @@
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
-    <article class="card content-card">
-        <h2>Distribución exponencial</h2>
-        <h3>Explicación sencilla</h3>
-        <p>La distribución exponencial modela tiempos de espera entre eventos cuando estos ocurren a tasa constante e independiente (un escenario típico de procesos de Poisson). Es una distribución continua definida para valores no negativos y tiene la propiedad de “falta de memoria”: la probabilidad de esperar un tiempo adicional no depende de cuánto ya se haya esperado.</p>
-        <h3>Fórmula</h3>
-        <p class="formula-line">\( f(x;\lambda)=\lambda e^{-\lambda x},\quad x\geq 0 \)</p>
-        <h3>Parámetros</h3>
-        <ul>
-            <li><strong>λ (lambda):</strong> tasa media de ocurrencia por unidad de tiempo (o espacio).</li>
-            <li><strong>x:</strong> tiempo de espera hasta que ocurre el evento.</li>
-        </ul>
-        <h3>Ejemplos reales y uso</h3>
-        <p>En un sistema donde llegan llamadas con una tasa media de 12 por hora, el tiempo entre llamadas puede modelarse con una exponencial. Con la calculadora puedes estimar la probabilidad de que el tiempo de espera sea menor que 3 minutos, mayor que 10 minutos o encontrar el cuantil correspondiente a un nivel de servicio concreto.</p>
-    </article>
 
     <main>
         <section class="app-shell" aria-label="Calculadora Exponencial">
@@ -186,8 +172,20 @@
             </section>
         </section>
 
-    <p class="hero-links app-shell-link"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
-    
+        <article class="card content-card">
+        <h2>Distribución exponencial</h2>
+        <h3>Explicación breve</h3>
+        <p>La distribución exponencial modela tiempos de espera entre eventos cuando estos ocurren a tasa constante e independiente (un escenario típico de procesos de Poisson). Es una distribución continua definida para valores no negativos y tiene la propiedad de “falta de memoria”: la probabilidad de esperar un tiempo adicional no depende de cuánto ya se haya esperado.</p>
+        <h3>Fórmula</h3>
+        <p class="formula-line">\( f(x;\lambda)=\lambda e^{-\lambda x},\quad x\geq 0 \)</p>
+        <h3>Parámetros</h3>
+        <ul>
+            <li><strong>λ (lambda):</strong> tasa media de ocurrencia por unidad de tiempo (o espacio).</li>
+            <li><strong>x:</strong> tiempo de espera hasta que ocurre el evento.</li>
+        </ul>
+        <h3>Ejemplo resuelto</h3>
+        <p>En un sistema donde llegan llamadas con una tasa media de 12 por hora, el tiempo entre llamadas puede modelarse con una exponencial. Con la calculadora puedes estimar la probabilidad de que el tiempo de espera sea menor que 3 minutos, mayor que 10 minutos o encontrar el cuantil correspondiente a un nivel de servicio concreto.</p>
+    </article>
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>

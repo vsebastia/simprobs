@@ -88,38 +88,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Utiliza este cálculo para estimar una media poblacional (por ejemplo, gasto medio mensual) con un margen de error <strong>E</strong>. Necesitas una estimación previa de la desviación estándar <strong>\(\sigma\)</strong> y un nivel de confianza para obtener <strong>Z</strong>.</p>
-
-            <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n = \left(\frac{Z \cdot \sigma}{E}\right)^2 \)</p>
-            <ul>
-                <li><strong>n</strong>: tamaño muestral mínimo.</li>
-                <li><strong>\(\sigma\)</strong>: desviación estándar esperada.</li>
-                <li><strong>E</strong>: error máximo tolerable en la estimación de la media.</li>
-            </ul>
-        </section>
-
-        <section class="card content-card">
-            <h2>Configuración rápida</h2>
-            <ul>
-                <li><strong>Desviación estándar (σ):</strong> tómala de estudios previos o de una muestra piloto.</li>
-                <li><strong>Nivel de confianza:</strong> 95% es el punto de partida más común.</li>
-                <li><strong>Error máximo (E):</strong> define una precisión útil para la decisión del negocio.</li>
-            </ul>
-
-            <h2>Ejemplo sencillo</h2>
-            <p>Quieres estimar el gasto medio mensual. Si esperas <strong>σ = 10</strong>, deseas <strong>95%</strong> de confianza y toleras <strong>E = 2</strong>, el cálculo da <strong>n ≈ 97</strong> observaciones.</p>
-
-            <h2>Usos frecuentes</h2>
-            <ul>
-                <li>Estimación de tiempos promedio de proceso.</li>
-                <li>Cálculo de consumo o gasto medio.</li>
-                <li>Control de variables continuas en calidad y operaciones.</li>
-            </ul>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -151,7 +119,41 @@
             <button class="calculate-btn" id="oneMeanCalculateBtn">Calcular tamaño muestral</button>
             <div id="oneMeanResult" class="result-box">Resultado pendiente…</div>
         </section>
-    
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Utiliza este cálculo para estimar una media poblacional (por ejemplo, gasto medio mensual) con un margen de error <strong>E</strong>. Necesitas una estimación previa de la desviación estándar <strong>\(\sigma\)</strong> y un nivel de confianza para obtener <strong>Z</strong>.</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n = \left(\frac{Z \cdot \sigma}{E}\right)^2 \)</p>
+            <ul>
+                <li><strong>n</strong>: tamaño muestral mínimo.</li>
+                <li><strong>\(\sigma\)</strong>: desviación estándar esperada.</li>
+                <li><strong>E</strong>: error máximo tolerable en la estimación de la media.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li><strong>Desviación estándar (σ):</strong> tómala de estudios previos o de una muestra piloto.</li>
+                <li><strong>Nivel de confianza:</strong> 95% es el punto de partida más común.</li>
+                <li><strong>Error máximo (E):</strong> define una precisión útil para la decisión del negocio.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Quieres estimar el gasto medio mensual. Si esperas <strong>σ = 10</strong>, deseas <strong>95%</strong> de confianza y toleras <strong>E = 2</strong>, el cálculo da <strong>n ≈ 97</strong> observaciones.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Estimación de tiempos promedio de proceso.</li>
+                <li>Cálculo de consumo o gasto medio.</li>
+                <li>Control de variables continuas en calidad y operaciones.</li>
+            </ul>
+        </section>
+
+
+
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>

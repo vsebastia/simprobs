@@ -91,36 +91,6 @@
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
-    <article class="card content-card">
-        <h2>Distribución t de Student</h2>
-        
-        <h3>Explicación sencilla</h3>
-        <p>La distribución t de Student es una distribución continua similar a la normal, pero con colas más pesadas. 
-        Se utiliza cuando el tamaño de muestra es pequeño y la desviación estándar de la población es desconocida. 
-        A medida que aumentan los grados de libertad, la distribución t se aproxima cada vez más a la distribución normal. 
-        Es muy utilizada en inferencia estadística, especialmente en pruebas de hipótesis y en intervalos de confianza para medias.</p>
-        
-        <h3>Fórmula</h3>
-        <p class="formula-line">
-        $$
-        f(x)=
-        \frac{\Gamma\left(\frac{\nu+1}{2}\right)}
-        {\sqrt{\nu\pi}\,\Gamma\left(\frac{\nu}{2}\right)}
-        \left(1+\frac{x^2}{\nu}\right)^{-(\nu+1)/2}
-        $$
-        </p>
-        
-        <h3>Parámetros</h3>
-        <ul>
-        <li><strong>ν (nu):</strong> grados de libertad de la distribución.</li>
-        </ul>
-        
-        <h3>Ejemplos reales y uso</h3>
-        <p>Supón que quieres estimar la media de una población a partir de una muestra pequeña, por ejemplo el peso medio de un producto medido en 10 unidades. 
-        La distribución t de Student permite calcular probabilidades, valores críticos y intervalos de confianza cuando la varianza poblacional es desconocida. 
-        En la calculadora, selecciona <em>t de Student</em>, introduce los grados de libertad y utiliza PDF para densidad, 
-            CDF para probabilidades acumuladas o cuantiles para obtener valores críticos en contrastes estadísticos.</p>
-  </article>
 
     <main>
         <section class="app-shell" aria-label="Calculadora t de Student">
@@ -201,8 +171,37 @@
                 </div>
             </section>
         </section>
-    <p class="hero-links app-shell-link"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
-    
+
+        <article class="card content-card">
+        <h2>Distribución t de Student</h2>
+
+        <h3>Explicación breve</h3>
+        <p>La distribución t de Student es una distribución continua similar a la normal, pero con colas más pesadas.
+        Se utiliza cuando el tamaño de muestra es pequeño y la desviación estándar de la población es desconocida.
+        A medida que aumentan los grados de libertad, la distribución t se aproxima cada vez más a la distribución normal.
+        Es muy utilizada en inferencia estadística, especialmente en pruebas de hipótesis y en intervalos de confianza para medias.</p>
+
+        <h3>Fórmula</h3>
+        <p class="formula-line">
+        $$
+        f(x)=
+        \frac{\Gamma\left(\frac{\nu+1}{2}\right)}
+        {\sqrt{\nu\pi}\,\Gamma\left(\frac{\nu}{2}\right)}
+        \left(1+\frac{x^2}{\nu}\right)^{-(\nu+1)/2}
+        $$
+        </p>
+
+        <h3>Parámetros</h3>
+        <ul>
+        <li><strong>ν (nu):</strong> grados de libertad de la distribución.</li>
+        </ul>
+
+        <h3>Ejemplo resuelto</h3>
+        <p>Supón que quieres estimar la media de una población a partir de una muestra pequeña, por ejemplo el peso medio de un producto medido en 10 unidades.
+        La distribución t de Student permite calcular probabilidades, valores críticos y intervalos de confianza cuando la varianza poblacional es desconocida.
+        En la calculadora, selecciona <em>t de Student</em>, introduce los grados de libertad y utiliza PDF para densidad,
+            CDF para probabilidades acumuladas o cuantiles para obtener valores críticos en contrastes estadísticos.</p>
+  </article>
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>

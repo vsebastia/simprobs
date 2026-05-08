@@ -88,39 +88,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Si quieres estimar una proporción y conoces el tamaño total de la población (<strong>N</strong>), conviene aplicar la corrección por población finita. Esta corrección reduce el tamaño necesario frente a la fórmula clásica cuando N no es muy grande.</p>
-
-            <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n_0 = \frac{Z^2\,p(1-p)}{E^2} \)</p>
-            <p class="formula-line">\( n = \frac{n_0}{1 + \frac{n_0-1}{N}} \)</p>
-            <ul>
-                <li><strong>p</strong>: proporción esperada.</li>
-                <li><strong>E</strong>: margen de error absoluto.</li>
-                <li><strong>N</strong>: tamaño total de la población.</li>
-            </ul>
-        </section>
-
-        <section class="card content-card">
-            <h2>Configuración rápida</h2>
-            <ul>
-                <li>Si no conoces <strong>p</strong>, usa 0.5 (escenario conservador).</li>
-                <li>Usa 95% de confianza como referencia inicial.</li>
-                <li>Aplica esta calculadora cuando tengas un <strong>N</strong> realista y cerrado.</li>
-            </ul>
-
-            <h2>Ejemplo sencillo</h2>
-            <p>Con N = 2000, p = 0.5, E = 0.05 y 95% de confianza: sin corrección serían ~385 casos, pero con población finita baja a ~323.</p>
-
-            <h2>Usos frecuentes</h2>
-            <ul>
-                <li>Encuestas a plantillas de empresa.</li>
-                <li>Estudios de alumnos de un centro concreto.</li>
-                <li>Auditorías sobre carteras de clientes limitadas.</li>
-            </ul>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -156,7 +123,42 @@
             <button class="calculate-btn" id="finitePropCalculateBtn">Calcular tamaño muestral</button>
             <div id="finitePropResult" class="result-box">Resultado pendiente…</div>
         </section>
-    
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Si quieres estimar una proporción y conoces el tamaño total de la población (<strong>N</strong>), conviene aplicar la corrección por población finita. Esta corrección reduce el tamaño necesario frente a la fórmula clásica cuando N no es muy grande.</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n_0 = \frac{Z^2\,p(1-p)}{E^2} \)</p>
+            <p class="formula-line">\( n = \frac{n_0}{1 + \frac{n_0-1}{N}} \)</p>
+            <ul>
+                <li><strong>p</strong>: proporción esperada.</li>
+                <li><strong>E</strong>: margen de error absoluto.</li>
+                <li><strong>N</strong>: tamaño total de la población.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li>Si no conoces <strong>p</strong>, usa 0.5 (escenario conservador).</li>
+                <li>Usa 95% de confianza como referencia inicial.</li>
+                <li>Aplica esta calculadora cuando tengas un <strong>N</strong> realista y cerrado.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Con N = 2000, p = 0.5, E = 0.05 y 95% de confianza: sin corrección serían ~385 casos, pero con población finita baja a ~323.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Encuestas a plantillas de empresa.</li>
+                <li>Estudios de alumnos de un centro concreto.</li>
+                <li>Auditorías sobre carteras de clientes limitadas.</li>
+            </ul>
+        </section>
+
+
+
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>

@@ -88,38 +88,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>En diseños apareados se mide dos veces a la misma unidad (antes y después). El análisis se hace sobre la diferencia por pareja, por eso se usa la desviación estándar de diferencias.</p>
-
-            <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n = \left(\frac{(Z_{\alpha/2}+Z_\beta)\sigma_d}{\Delta}\right)^2 \)</p>
-            <ul>
-                <li><strong>σd</strong>: desviación estándar de las diferencias.</li>
-                <li><strong>Δ</strong>: cambio medio mínimo a detectar.</li>
-                <li><strong>n</strong>: número de pares.</li>
-            </ul>
-        </section>
-
-        <section class="card content-card">
-            <h2>Configuración rápida</h2>
-            <ul>
-                <li>Estima σd con piloto, no σ de cada medición por separado.</li>
-                <li>Usa α=0.05 y potencia 0.8 como base.</li>
-                <li>Define Δ como cambio clínico/operativo relevante.</li>
-            </ul>
-
-            <h2>Ejemplo sencillo</h2>
-            <p>Si σd=8, Δ=3, α=0.05 y potencia=0.8, necesitas ~56 pares.</p>
-
-            <h2>Usos frecuentes</h2>
-            <ul>
-                <li>Programas de mejora pre y post intervención.</li>
-                <li>Estudios de entrenamiento.</li>
-                <li>Evaluaciones de cambio en pacientes.</li>
-            </ul>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -152,7 +120,41 @@
             <button class="calculate-btn" id="pairedMeanCalculateBtn">Calcular tamaño muestral</button>
             <div id="pairedMeanResult" class="result-box">Resultado pendiente…</div>
         </section>
-    
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>En diseños apareados se mide dos veces a la misma unidad (antes y después). El análisis se hace sobre la diferencia por pareja, por eso se usa la desviación estándar de diferencias.</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n = \left(\frac{(Z_{\alpha/2}+Z_\beta)\sigma_d}{\Delta}\right)^2 \)</p>
+            <ul>
+                <li><strong>σd</strong>: desviación estándar de las diferencias.</li>
+                <li><strong>Δ</strong>: cambio medio mínimo a detectar.</li>
+                <li><strong>n</strong>: número de pares.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li>Estima σd con piloto, no σ de cada medición por separado.</li>
+                <li>Usa α=0.05 y potencia 0.8 como base.</li>
+                <li>Define Δ como cambio clínico/operativo relevante.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Si σd=8, Δ=3, α=0.05 y potencia=0.8, necesitas ~56 pares.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Programas de mejora pre y post intervención.</li>
+                <li>Estudios de entrenamiento.</li>
+                <li>Evaluaciones de cambio en pacientes.</li>
+            </ul>
+        </section>
+
+
+
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>

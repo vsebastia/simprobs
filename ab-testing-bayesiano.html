@@ -71,18 +71,6 @@
   </header>
 
   <main>
-    <section class="card content-card">
-      <h2>Modelo Beta-Binomial</h2>
-      <p>En el modelo bayesiano conjugado para proporciones, la prior es una distribución Beta y la likelihood es binomial. La posterior resultante es también una Beta, lo que permite cálculos analíticos exactos.</p>
-      <p class="formula-line">\( p_A \sim \text{Beta}(\alpha_0, \beta_0) \xrightarrow{\text{datos}} p_A \mid \text{datos} \sim \text{Beta}(\alpha_0 + x_A,\; \beta_0 + n_A - x_A) \)</p>
-      <p class="formula-line">\( p_B \sim \text{Beta}(\alpha_0, \beta_0) \xrightarrow{\text{datos}} p_B \mid \text{datos} \sim \text{Beta}(\alpha_0 + x_B,\; \beta_0 + n_B - x_B) \)</p>
-      <h3>Elección de la prior</h3>
-      <p>La prior Beta(1, 1) es uniforme: expresa ignorancia total sobre la tasa de conversión. Una prior Beta(α₀, β₀) con α₀ + β₀ grande equivale a tener datos históricos previos. La calculadora permite personalizarla.</p>
-      <h3>P(B &gt; A) mediante Monte Carlo</h3>
-      <p>La probabilidad de que la tasa de conversión de B supere a la de A se estima muestreando de ambas posteriores:</p>
-      <p class="formula-line">\( P(p_B > p_A) \approx \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}\!\left[p_B^{(i)} > p_A^{(i)}\right], \quad p_A^{(i)}, p_B^{(i)} \sim \text{posteriores} \)</p>
-    </section>
-
     <section class="card sample-size-panel">
       <div class="panel-heading">
         <h2>Calculadora</h2>
@@ -136,6 +124,20 @@
         <canvas id="bayesChart" aria-label="Distribuciones posteriores Beta de las tasas de conversión A y B" role="img"></canvas>
       </div>
     </section>
+
+        <section class="card content-card">
+      <h2>Modelo Beta-Binomial</h2>
+      <p>En el modelo bayesiano conjugado para proporciones, la prior es una distribución Beta y la likelihood es binomial. La posterior resultante es también una Beta, lo que permite cálculos analíticos exactos.</p>
+      <p class="formula-line">\( p_A \sim \text{Beta}(\alpha_0, \beta_0) \xrightarrow{\text{datos}} p_A \mid \text{datos} \sim \text{Beta}(\alpha_0 + x_A,\; \beta_0 + n_A - x_A) \)</p>
+      <p class="formula-line">\( p_B \sim \text{Beta}(\alpha_0, \beta_0) \xrightarrow{\text{datos}} p_B \mid \text{datos} \sim \text{Beta}(\alpha_0 + x_B,\; \beta_0 + n_B - x_B) \)</p>
+      <h3>Elección de la prior</h3>
+      <p>La prior Beta(1, 1) es uniforme: expresa ignorancia total sobre la tasa de conversión. Una prior Beta(α₀, β₀) con α₀ + β₀ grande equivale a tener datos históricos previos. La calculadora permite personalizarla.</p>
+      <h3>P(B &gt; A) mediante Monte Carlo</h3>
+      <p>La probabilidad de que la tasa de conversión de B supere a la de A se estima muestreando de ambas posteriores:</p>
+      <p class="formula-line">\( P(p_B > p_A) \approx \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}\!\left[p_B^{(i)} > p_A^{(i)}\right], \quad p_A^{(i)}, p_B^{(i)} \sim \text{posteriores} \)</p>
+    </section>
+
+
 
     <section id="seo-support-content" class="card content-card">
       <h2>¿Qué calcula esta herramienta?</h2>

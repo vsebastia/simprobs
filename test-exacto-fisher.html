@@ -126,40 +126,6 @@
 
     <main>
 
-        <section class="card content-card">
-            <h2>Descripción</h2>
-
-            <p>
-                El test exacto de Fisher permite contrastar si existe asociación entre dos variables
-                categóricas binarias organizadas en una tabla 2×2. A diferencia del chi-cuadrado de
-                Pearson, no necesita ninguna aproximación asintótica: calcula la probabilidad exacta
-                de cada tabla posible con los mismos márgenes fijos usando la distribución
-                hipergeométrica.
-            </p>
-
-            <p>
-                Es especialmente adecuado cuando las frecuencias esperadas son bajas (por ejemplo,
-                menores que 5 en alguna celda), en ensayos clínicos pequeños, estudios de eventos
-                raros o análisis de subgrupos. Cuando el tamaño muestral es grande, el chi-cuadrado
-                de Pearson tiende a coincidir con Fisher.
-            </p>
-
-            <p>
-                Bajo la hipótesis nula de independencia, el recuento en la celda (1,1) sigue una
-                distribución hipergeométrica condicionada a los márgenes de la tabla:
-            </p>
-
-            <h2>Hipótesis y estadístico</h2>
-            <p class="formula-line">\(H_0\): independencia entre filas y columnas (OR = 1)</p>
-            <p class="formula-line">\(H_1\): asociación (OR ≠ 1)</p>
-            <p class="formula-line">
-                \[P(X = k) = \frac{\dbinom{a+b}{k}\dbinom{c+d}{a+c-k}}{\dbinom{n}{a+c}}\]
-            </p>
-            <p class="formula-line">
-                \[\text{OR} = \frac{a \cdot d}{b \cdot c}\]
-            </p>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -227,6 +193,42 @@
                 El p-valor es la suma de las probabilidades rojas.
             </p>
         </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+
+            <p>
+                El test exacto de Fisher permite contrastar si existe asociación entre dos variables
+                categóricas binarias organizadas en una tabla 2×2. A diferencia del chi-cuadrado de
+                Pearson, no necesita ninguna aproximación asintótica: calcula la probabilidad exacta
+                de cada tabla posible con los mismos márgenes fijos usando la distribución
+                hipergeométrica.
+            </p>
+
+            <p>
+                Es especialmente adecuado cuando las frecuencias esperadas son bajas (por ejemplo,
+                menores que 5 en alguna celda), en ensayos clínicos pequeños, estudios de eventos
+                raros o análisis de subgrupos. Cuando el tamaño muestral es grande, el chi-cuadrado
+                de Pearson tiende a coincidir con Fisher.
+            </p>
+
+            <p>
+                Bajo la hipótesis nula de independencia, el recuento en la celda (1,1) sigue una
+                distribución hipergeométrica condicionada a los márgenes de la tabla:
+            </p>
+
+            <h2>Hipótesis y estadístico</h2>
+            <p class="formula-line">\(H_0\): independencia entre filas y columnas (OR = 1)</p>
+            <p class="formula-line">\(H_1\): asociación (OR ≠ 1)</p>
+            <p class="formula-line">
+                \[P(X = k) = \frac{\dbinom{a+b}{k}\dbinom{c+d}{a+c-k}}{\dbinom{n}{a+c}}\]
+            </p>
+            <p class="formula-line">
+                \[\text{OR} = \frac{a \cdot d}{b \cdot c}\]
+            </p>
+        </section>
+
+
 
         <section class="card content-card">
             <h2>Contraste rápido</h2>

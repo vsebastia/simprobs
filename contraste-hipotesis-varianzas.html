@@ -92,44 +92,6 @@
     <main>
         <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
 
-        <section class="card content-card">
-            <h2>Descripción</h2>
-
-            <p>
-                El contraste de varianza se utiliza para comprobar si la variabilidad de una población
-                es compatible con un valor teórico o de referencia. A diferencia de los contrastes sobre
-                la media, este contraste no analiza si los datos son más altos o más bajos en promedio,
-                sino si son más o menos dispersos de lo esperado.
-            </p>
-
-            <p>
-                En industria, laboratorio y control de calidad no solo importa el promedio: la varianza
-                define riesgo, consistencia y estabilidad. Un proceso puede tener una media correcta y,
-                aun así, ser demasiado irregular.
-            </p>
-
-            <p>
-                Por ejemplo, una máquina puede llenar botellas con una cantidad media correcta de líquido,
-                pero hacerlo con demasiada variabilidad. Aunque el promedio sea adecuado, una varianza
-                excesiva implicaría que algunas botellas se llenan demasiado y otras demasiado poco.
-                El contraste de varianza permite comprobar si la dispersión observada en una muestra es
-                compatible con la variabilidad considerada aceptable.
-            </p>
-
-            <p>
-                Para una única varianza se utiliza un contraste basado en la distribución chi-cuadrado.
-                Para comparar dos varianzas se utiliza habitualmente un contraste basado en la distribución F.
-                En ambos casos, los contrastes clásicos asumen que los datos proceden de poblaciones
-                aproximadamente normales.
-            </p>
-
-            <h2>Hipótesis y estadístico</h2>
-            <p class="formula-line">\(H_0: \sigma^2 = \sigma_0^2\)</p>
-            <p class="formula-line">\( \chi^2 = \frac{(n-1)s^2}{\sigma_0^2} \)</p>
-            <p class="formula-line">\(H_0: \sigma_1^2 = \sigma_2^2\)</p>
-            <p class="formula-line">\( F = \frac{s_1^2}{s_2^2} \)</p>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -214,6 +176,46 @@
                 <canvas id="varianceTestChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste de varianzas" role="img"></canvas>
             </div>
         </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+
+            <p>
+                El contraste de varianza se utiliza para comprobar si la variabilidad de una población
+                es compatible con un valor teórico o de referencia. A diferencia de los contrastes sobre
+                la media, este contraste no analiza si los datos son más altos o más bajos en promedio,
+                sino si son más o menos dispersos de lo esperado.
+            </p>
+
+            <p>
+                En industria, laboratorio y control de calidad no solo importa el promedio: la varianza
+                define riesgo, consistencia y estabilidad. Un proceso puede tener una media correcta y,
+                aun así, ser demasiado irregular.
+            </p>
+
+            <p>
+                Por ejemplo, una máquina puede llenar botellas con una cantidad media correcta de líquido,
+                pero hacerlo con demasiada variabilidad. Aunque el promedio sea adecuado, una varianza
+                excesiva implicaría que algunas botellas se llenan demasiado y otras demasiado poco.
+                El contraste de varianza permite comprobar si la dispersión observada en una muestra es
+                compatible con la variabilidad considerada aceptable.
+            </p>
+
+            <p>
+                Para una única varianza se utiliza un contraste basado en la distribución chi-cuadrado.
+                Para comparar dos varianzas se utiliza habitualmente un contraste basado en la distribución F.
+                En ambos casos, los contrastes clásicos asumen que los datos proceden de poblaciones
+                aproximadamente normales.
+            </p>
+
+            <h2>Hipótesis y estadístico</h2>
+            <p class="formula-line">\(H_0: \sigma^2 = \sigma_0^2\)</p>
+            <p class="formula-line">\( \chi^2 = \frac{(n-1)s^2}{\sigma_0^2} \)</p>
+            <p class="formula-line">\(H_0: \sigma_1^2 = \sigma_2^2\)</p>
+            <p class="formula-line">\( F = \frac{s_1^2}{s_2^2} \)</p>
+        </section>
+
+
 
         <section class="card content-card">
             <h2>Contraste rápido</h2>

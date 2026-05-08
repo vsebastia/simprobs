@@ -91,20 +91,6 @@
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
-    <article class="card content-card">
-    <h2>Distribución de Poisson</h2>
-    <h3>Explicación sencilla</h3>
-    <p>La distribución de Poisson sirve para modelar cuántas veces ocurre un evento en un intervalo fijo de tiempo, espacio o cualquier otra unidad cuando esos eventos suceden de forma independiente y con una tasa media estable. Por ejemplo, puede usarse para estimar cuántas llamadas llegan en una hora, cuántos clientes entran en una tienda en diez minutos o cuántos errores aparecen en una página. Es una distribución discreta, así que solo toma valores enteros no negativos: 0, 1, 2, 3, ...</p>
-    <h3>Fórmula</h3>
-    <p class="formula-line">\( P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!} \)</p>
-    <h3>Parámetros</h3>
-        <ul>
-            <li><strong>λ (lambda):</strong> número esperado de eventos en el intervalo.</li>
-            <li><strong>k:</strong> conteo de eventos observado.</li>
-        </ul>
-    <h3>Ejemplos reales y uso</h3>
-    <p>Un centro de soporte puede recibir en promedio 6 tickets por hora. Poisson permite estimar probabilidades de recibir exactamente 10 tickets, como máximo 4 o al menos 8 en la próxima hora. En la calculadora, selecciona <em>Poisson</em>, introduce λ y evalúa PMF para conteos exactos o CDF para límites acumulados.</p>
-    </article>
 
     <main>
         <section class="app-shell" aria-label="Calculadora Poisson">
@@ -186,8 +172,20 @@
             </section>
         </section>
 
-    <p class="hero-links app-shell-link"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
-    
+        <article class="card content-card">
+    <h2>Distribución de Poisson</h2>
+    <h3>Explicación breve</h3>
+    <p>La distribución de Poisson sirve para modelar cuántas veces ocurre un evento en un intervalo fijo de tiempo, espacio o cualquier otra unidad cuando esos eventos suceden de forma independiente y con una tasa media estable. Por ejemplo, puede usarse para estimar cuántas llamadas llegan en una hora, cuántos clientes entran en una tienda en diez minutos o cuántos errores aparecen en una página. Es una distribución discreta, así que solo toma valores enteros no negativos: 0, 1, 2, 3, ...</p>
+    <h3>Fórmula</h3>
+    <p class="formula-line">\( P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!} \)</p>
+    <h3>Parámetros</h3>
+        <ul>
+            <li><strong>λ (lambda):</strong> número esperado de eventos en el intervalo.</li>
+            <li><strong>k:</strong> conteo de eventos observado.</li>
+        </ul>
+    <h3>Ejemplo resuelto</h3>
+    <p>Un centro de soporte puede recibir en promedio 6 tickets por hora. Poisson permite estimar probabilidades de recibir exactamente 10 tickets, como máximo 4 o al menos 8 en la próxima hora. En la calculadora, selecciona <em>Poisson</em>, introduce λ y evalúa PMF para conteos exactos o CDF para límites acumulados.</p>
+    </article>
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>

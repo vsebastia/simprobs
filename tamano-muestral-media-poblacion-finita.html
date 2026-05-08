@@ -88,39 +88,6 @@
     </header>
 
     <main>
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Cuando estimas una media y conoces el tamaño total de población <strong>N</strong>, la corrección por población finita reduce la muestra necesaria respecto al caso infinito.</p>
-
-            <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n_0 = \left(\frac{Z\sigma}{E}\right)^2 \)</p>
-            <p class="formula-line">\( n = \frac{n_0}{1 + \frac{n_0-1}{N}} \)</p>
-            <ul>
-                <li><strong>σ</strong>: desviación estándar esperada.</li>
-                <li><strong>E</strong>: margen de error tolerado.</li>
-                <li><strong>N</strong>: tamaño poblacional total.</li>
-            </ul>
-        </section>
-
-        <section class="card content-card">
-            <h2>Configuración rápida</h2>
-            <ul>
-                <li>Obtén σ de un piloto o histórico.</li>
-                <li>95% de confianza es punto de partida estándar.</li>
-                <li>Si N es grande, la corrección casi no cambia n.</li>
-            </ul>
-
-            <h2>Ejemplo sencillo</h2>
-            <p>Con N=1200, σ=12, E=2 y 95% de confianza: n infinito≈139 y n corregido≈127.</p>
-
-            <h2>Usos frecuentes</h2>
-            <ul>
-                <li>Tiempo medio en una planta concreta.</li>
-                <li>Gasto medio de clientes activos de un club.</li>
-                <li>Consumo medio en una comunidad cerrada.</li>
-            </ul>
-        </section>
-
         <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
@@ -158,7 +125,42 @@
             <button class="calculate-btn" id="finiteMeanCalculateBtn">Calcular tamaño muestral</button>
             <div id="finiteMeanResult" class="result-box">Resultado pendiente…</div>
         </section>
-    
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Cuando estimas una media y conoces el tamaño total de población <strong>N</strong>, la corrección por población finita reduce la muestra necesaria respecto al caso infinito.</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n_0 = \left(\frac{Z\sigma}{E}\right)^2 \)</p>
+            <p class="formula-line">\( n = \frac{n_0}{1 + \frac{n_0-1}{N}} \)</p>
+            <ul>
+                <li><strong>σ</strong>: desviación estándar esperada.</li>
+                <li><strong>E</strong>: margen de error tolerado.</li>
+                <li><strong>N</strong>: tamaño poblacional total.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li>Obtén σ de un piloto o histórico.</li>
+                <li>95% de confianza es punto de partida estándar.</li>
+                <li>Si N es grande, la corrección casi no cambia n.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Con N=1200, σ=12, E=2 y 95% de confianza: n infinito≈139 y n corregido≈127.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Tiempo medio en una planta concreta.</li>
+                <li>Gasto medio de clientes activos de un club.</li>
+                <li>Consumo medio en una comunidad cerrada.</li>
+            </ul>
+        </section>
+
+
+
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>

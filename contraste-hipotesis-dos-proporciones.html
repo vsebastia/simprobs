@@ -89,22 +89,11 @@
 
     <main>
         <!-- Orden de secciones: 1) Conceptos clave, 2) Descripción, 3) Calculadora, 4) Contraste rápido, 5) Resto -->
-        
 
-        
 
-        <section class="card content-card">
-            <h2>Descripción</h2>
-            <p>Se usa cuando comparas dos grupos independientes con resultados binarios. En \(H_0\), se asume \(p_1 = p_2\) y se utiliza una proporción combinada para el error estándar, porque bajo la hipótesis nula ambos grupos comparten la misma probabilidad de éxito.</p>
-            <p>Este planteamiento permite evaluar de forma coherente si la diferencia observada responde a una fluctuación muestral o a un cambio estructural entre condiciones.</p>
 
-            <h2>Hipótesis y estadístico</h2>
-            <p class="formula-line">\(H_0: p_1 - p_2 = 0\)</p>
-            <p class="formula-line">\( z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})(1/n_1 + 1/n_2)}} \)</p>
-            <p class="formula-line">\(\hat{p}=\frac{x_1+x_2}{n_1+n_2}\)</p>
-        </section>
 
-<section class="card sample-size-panel">
+        <section class="card sample-size-panel">
             <div class="panel-heading">
                 <h2>Calculadora</h2>
                 <p>Calculadora online: introduce éxitos y tamaño muestral de cada grupo para obtener p-valor y decisión.</p>
@@ -139,14 +128,27 @@
             </div>
         </section>
 
-        
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Se usa cuando comparas dos grupos independientes con resultados binarios. En \(H_0\), se asume \(p_1 = p_2\) y se utiliza una proporción combinada para el error estándar, porque bajo la hipótesis nula ambos grupos comparten la misma probabilidad de éxito.</p>
+            <p>Este planteamiento permite evaluar de forma coherente si la diferencia observada responde a una fluctuación muestral o a un cambio estructural entre condiciones.</p>
+
+            <h2>Hipótesis y estadístico</h2>
+            <p class="formula-line">\(H_0: p_1 - p_2 = 0\)</p>
+            <p class="formula-line">\( z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1-\hat{p})(1/n_1 + 1/n_2)}} \)</p>
+            <p class="formula-line">\(\hat{p}=\frac{x_1+x_2}{n_1+n_2}\)</p>
+        </section>
+
+
+
+
 
         <section class="card content-card">
             <h2>Contraste rápido</h2>
             <p>Bajo \(H_0\), ambas muestras comparten la misma proporción poblacional desconocida. La estimación conjunta natural de esa proporción común es \(\hat{p}=(x_1+x_2)/(n_1+n_2)\).</p>
             <p>Por eso el error estándar del contraste se construye con \(\hat{p}\), coherente con la hipótesis nula de igualdad \(p_1=p_2\).</p>
         </section>
-    
+
                 <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora de contraste de hipótesis para dos proporciones compara la tasa de éxito de dos grupos y devuelve estadístico z, p-valor y decisión sobre si existe diferencia estadísticamente significativa entre ambas proporciones.</p>

@@ -120,13 +120,6 @@
   </header>
 
   <main>
-    <section class="card content-card">
-      <h2>Qué simula esta herramienta</h2>
-      <p>En cada réplica, la calculadora genera muestras aleatorias de tamaño n de dos distribuciones Bernoulli con las tasas verdaderas p_A y p_B, calcula el estadístico z del test de dos proporciones y registra si se rechaza H₀. Tras N réplicas, obtiene la distribución empírica de z y p-valores, y compara la tasa de rechazo con la potencia teórica.</p>
-      <p class="formula-line">\( z^{(i)} = \dfrac{\hat{p}_B^{(i)} - \hat{p}_A^{(i)}}{\sqrt{\hat{p}^{(i)}(1-\hat{p}^{(i)})\left(\tfrac{1}{n_A}+\tfrac{1}{n_B}\right)}} \)</p>
-      <p>Si p_A = p_B, la tasa de rechazo empírica estima el <strong>error de tipo I real</strong> (debería aproximarse a α). Si p_A ≠ p_B, estima la <strong>potencia empírica</strong>.</p>
-    </section>
-
     <section class="card sample-size-panel">
       <div class="panel-heading">
         <h2>Parámetros de simulación</h2>
@@ -221,6 +214,15 @@
         </div>
       </div>
     </section>
+
+        <section class="card content-card">
+      <h2>Qué simula esta herramienta</h2>
+      <p>En cada réplica, la calculadora genera muestras aleatorias de tamaño n de dos distribuciones Bernoulli con las tasas verdaderas p_A y p_B, calcula el estadístico z del test de dos proporciones y registra si se rechaza H₀. Tras N réplicas, obtiene la distribución empírica de z y p-valores, y compara la tasa de rechazo con la potencia teórica.</p>
+      <p class="formula-line">\( z^{(i)} = \dfrac{\hat{p}_B^{(i)} - \hat{p}_A^{(i)}}{\sqrt{\hat{p}^{(i)}(1-\hat{p}^{(i)})\left(\tfrac{1}{n_A}+\tfrac{1}{n_B}\right)}} \)</p>
+      <p>Si p_A = p_B, la tasa de rechazo empírica estima el <strong>error de tipo I real</strong> (debería aproximarse a α). Si p_A ≠ p_B, estima la <strong>potencia empírica</strong>.</p>
+    </section>
+
+
 
     <section id="seo-support-content" class="card content-card">
       <h2>¿Para qué sirve simular un test A/B?</h2>

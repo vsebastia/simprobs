@@ -91,24 +91,6 @@
         <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
     </header>
 
-    <article class="card content-card">
-    <h2>Distribución binomial</h2>
-    <h3>Explicación sencilla</h3>
-        <p>La distribución binomial describe cuántos éxitos ocurren en un número fijo de ensayos independientes de tipo sí/no. 
-            Cada ensayo tiene la misma probabilidad de éxito y el conteo solo puede ser un entero entre 0 y <em>n</em>. 
-            Es ideal cuando conoces el número de intentos de antemano y quieres probabilidades de conteos, 
-            como “exactamente 7 éxitos” o “a lo sumo 3 fallos”.</p>
-    <h3>Fórmula</h3>
-    <p class="formula-line">\( P(X=k)=\binom{n}{k}p^k(1-p)^{n-k} \)</p>
-    <h3>Parámetros</h3>
-    <ul>
-        <li><strong>n:</strong> número total de ensayos.</li>
-        <li><strong>p:</strong> probabilidad de éxito en cada ensayo.</li>
-        <li><strong>k:</strong> número de éxitos observados.</li>
-    </ul>
-        <h3>Ejemplos reales y uso</h3>
-        <p>Imagina una campaña de correo enviada a 20 contactos, donde cada contacto tiene una probabilidad 0.15 de convertir. El modelo binomial permite estimar la probabilidad de obtener exactamente 4 conversiones, al menos 5 o un rango de conversiones. En control de calidad también sirve para estimar unidades defectuosas en una muestra.</p>
-    </article>
 
     <main>
         <section class="app-shell" aria-label="Calculadora Binomial">
@@ -189,8 +171,25 @@
                 </div>
             </section>
         </section>
-    <p class="hero-links app-shell-link"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
-    
+
+        <article class="card content-card">
+    <h2>Distribución binomial</h2>
+    <h3>Explicación breve</h3>
+        <p>La distribución binomial describe cuántos éxitos ocurren en un número fijo de ensayos independientes de tipo sí/no.
+            Cada ensayo tiene la misma probabilidad de éxito y el conteo solo puede ser un entero entre 0 y <em>n</em>.
+            Es ideal cuando conoces el número de intentos de antemano y quieres probabilidades de conteos,
+            como “exactamente 7 éxitos” o “a lo sumo 3 fallos”.</p>
+    <h3>Fórmula</h3>
+    <p class="formula-line">\( P(X=k)=\binom{n}{k}p^k(1-p)^{n-k} \)</p>
+    <h3>Parámetros</h3>
+    <ul>
+        <li><strong>n:</strong> número total de ensayos.</li>
+        <li><strong>p:</strong> probabilidad de éxito en cada ensayo.</li>
+        <li><strong>k:</strong> número de éxitos observados.</li>
+    </ul>
+        <h3>Ejemplo resuelto</h3>
+        <p>Imagina una campaña de correo enviada a 20 contactos, donde cada contacto tiene una probabilidad 0.15 de convertir. El modelo binomial permite estimar la probabilidad de obtener exactamente 4 conversiones, al menos 5 o un rango de conversiones. En control de calidad también sirve para estimar unidades defectuosas en una muestra.</p>
+    </article>
         <section id="seo-support-content" class="card content-card">
             <h2>¿Qué calcula esta herramienta?</h2>
             <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
