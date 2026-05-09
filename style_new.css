@@ -291,6 +291,48 @@ input:focus {
     box-shadow: 0 10px 20px rgba(79, 70, 229, 0.28);
 }
 
+.wide-textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 12px;
+    border: 1px solid #dbe3f1;
+    border-radius: 12px;
+    font: inherit;
+    resize: vertical;
+}
+
+.wide-textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    outline: none;
+}
+
+.result-table-wrap {
+    margin-top: 12px;
+    overflow-x: auto;
+}
+
+.result-box table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    font-weight: 500;
+    background: #fff;
+}
+
+.result-box th,
+.result-box td {
+    padding: 8px 10px;
+    border: 1px solid rgba(79, 70, 229, 0.18);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.result-box th {
+    color: #1e1b4b;
+    background: rgba(79, 70, 229, 0.12);
+}
+
 .result-box {
     margin-top: 18px;
     font-size: 1.05rem;

@@ -7,11 +7,11 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Calculadoras de contrastes de hipótesis | ProbLab</title>
-  <meta name="description" content="Calculadoras online para contrastes de hipótesis: medias, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.">
+  <meta name="description" content="Calculadoras online para contrastes de hipótesis: medias, ANOVA, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.">
   <link rel="canonical" href="https://problabtools.es/contrastes-hipotesis/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Calculadoras de contrastes de hipótesis | ProbLab">
-  <meta property="og:description" content="Calculadoras online para contrastes de hipótesis: medias, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.">
+  <meta property="og:description" content="Calculadoras online para contrastes de hipótesis: medias, ANOVA, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.">
   <meta property="og:url" content="https://problabtools.es/contrastes-hipotesis/">
   <meta property="og:site_name" content="ProbLab">
   <meta property="og:image" content="https://problabtools.es/og-image.png">
@@ -24,7 +24,7 @@
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Calculadoras de contrastes de hipótesis | ProbLab">
-  <meta name="twitter:description" content="Calculadoras online para contrastes de hipótesis: medias, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.">
+  <meta name="twitter:description" content="Calculadoras online para contrastes de hipótesis: medias, ANOVA, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.">
   <meta name="twitter:image" content="https://problabtools.es/og-image.png">
   <meta name="twitter:image:alt" content="Calculadoras de contrastes de hipótesis">
   <link rel="stylesheet" href="../style_new.css?v=20260506-3">
@@ -43,7 +43,7 @@
         "@type": "WebPage",
         "name": "Calculadoras de contrastes de hipótesis | ProbLab",
         "url": "https://problabtools.es/contrastes-hipotesis/",
-        "description": "Calculadoras online para contrastes de hipótesis: medias, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.",
+        "description": "Calculadoras online para contrastes de hipótesis: medias, ANOVA, proporciones, varianzas, independencia, Fisher exacto y bondad de ajuste.",
         "inLanguage": "es",
         "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
       }
@@ -116,6 +116,7 @@
       <ul class="tools-grid hypothesis-tools-grid" aria-label="Grid de calculadoras de contrastes">
         <li><a href="../contraste-hipotesis-una-media.html">Una media</a></li>
         <li><a href="../contraste-hipotesis-dos-medias.html">Dos medias</a></li>
+        <li><a href="../anova.html">ANOVA de un factor</a></li>
         <li><a href="../contraste-hipotesis-una-proporcion.html">Una proporción</a></li>
         <li><a href="../contraste-hipotesis-dos-proporciones.html">Dos proporciones</a></li>
         <li><a href="../contraste-hipotesis-varianzas.html">Contrastes sobre varianzas</a></li>
@@ -129,9 +130,9 @@
 
     <section class="card content-card pillar-guide">
       <h2>Qué contraste estadístico usar</h2>
-      <p>El contraste depende del tipo de variable, el número de grupos y si las muestras son independientes o apareadas. Para una media se usa normalmente un test t o z; para proporciones, un test z; para tablas de contingencia, chi-cuadrado o Fisher; y para normalidad, Shapiro-Wilk o Kolmogorov-Smirnov.</p>
+      <p>El contraste depende del tipo de variable, el número de grupos y si las muestras son independientes o apareadas. Para una o dos medias se usa normalmente un test t o z; para tres o más medias independientes, ANOVA; para proporciones, un test z; para tablas de contingencia, chi-cuadrado o Fisher; y para normalidad, Shapiro-Wilk o Kolmogorov-Smirnov.</p>
       <div class="decision-grid">
-        <div><h3>Variable numérica</h3><p>Una o dos medias, varianzas y muestras apareadas.</p></div>
+        <div><h3>Variable numérica</h3><p>Una media, dos medias, ANOVA para tres o más grupos, varianzas y muestras apareadas.</p></div>
         <div><h3>Variable categórica</h3><p>Una proporción, dos proporciones, independencia o bondad de ajuste.</p></div>
         <div><h3>Supuestos</h3><p>Revisa normalidad, independencia, tamaños esperados y varianzas antes de interpretar el p-valor.</p></div>
       </div>

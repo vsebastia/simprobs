@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora online de ANOVA de un factor | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online de ANOVA de un factor: introduce varios grupos, calcula suma de cuadrados, grados de libertad, estadístico F, p-valor y tamaño de efecto η².">
+    <link rel="canonical" href="https://problabtools.es/anova.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora online de ANOVA de un factor | ProbLab">
+    <meta property="og:description" content="Calcula ANOVA de un factor con tabla ANOVA, estadístico F, p-valor, decisión e interpretación para comparar tres o más medias.">
+    <meta property="og:url" content="https://problabtools.es/anova.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora online de ANOVA de un factor">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/anova.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora online de ANOVA de un factor | ProbLab">
+    <meta name="twitter:description" content="Calcula ANOVA de un factor con tabla ANOVA, estadístico F, p-valor, decisión e interpretación para comparar tres o más medias.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora online de ANOVA de un factor">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Contrastes de hipótesis", "item": "https://problabtools.es/contrastes-hipotesis/"},
+            {"@type": "ListItem", "position": 3, "name": "ANOVA de un factor", "item": "https://problabtools.es/anova.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora online de ANOVA de un factor | ProbLab",
+          "url": "https://problabtools.es/anova.html",
+          "description": "Calculadora online de ANOVA de un factor para comparar tres o más medias mediante el estadístico F y su p-valor.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora online de ANOVA de un factor",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/anova.html",
+      "description": "Calculadora online de ANOVA de un factor con tabla ANOVA, p-valor y tamaño de efecto.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260506-3">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora online de ANOVA de un factor</h1>
+        <p class="hero-subtitle">Compara tres o más medias independientes y obtiene el estadístico F, p-valor, tabla ANOVA y tamaño de efecto.</p>
+        <p class="hero-links"><a class="hero-link-button" href="https://problabtools.es/">ir a la página principal</a></p>
+    </header>
+
+    <main>
+        <section class="card content-card">
+            <h2>¿Qué contrasta el ANOVA?</h2>
+            <p>El <strong>ANOVA de un factor</strong> contrasta si varias poblaciones tienen la misma media. Es la extensión natural del contraste de dos medias cuando existen tres o más grupos independientes.</p>
+            <p>La hipótesis nula es \(H_0: \mu_1=\mu_2=\cdots=\mu_k\). La alternativa indica que al menos una media difiere, pero el ANOVA no especifica por sí solo qué par de grupos es diferente.</p>
+        </section>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce un grupo por línea. Dentro de cada línea separa observaciones con comas, espacios o punto y coma. Usa punto decimal si necesitas decimales.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="anovaData">Datos por grupos</label>
+                    <textarea id="anovaData" rows="8" class="wide-textarea" aria-describedby="anovaHelp">12, 15, 14, 13, 16
+10, 11, 9, 12, 10
+17, 18, 16, 19, 20</textarea>
+                    <small id="anovaHelp">Ejemplo: cada línea representa un tratamiento, segmento o grupo independiente.</small>
+                </div>
+                <div class="form-group">
+                    <label for="alpha">Nivel de significación (α)</label>
+                    <input type="number" id="alpha" value="0.05" min="0.001" max="0.2" step="0.001">
+                </div>
+            </div>
+
+            <button id="calcAnovaBtn">Calcular ANOVA</button>
+            <div id="anovaResult" class="result-box" aria-live="polite"></div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Visualización del contraste F</h2>
+            <p>La zona roja representa la región de rechazo de cola derecha para el nivel α elegido. La línea naranja marca el estadístico F observado.</p>
+            <div class="chart-wrap"><canvas id="anovaChart" aria-label="Distribución F del ANOVA" role="img"></canvas></div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Fórmulas del ANOVA de un factor</h2>
+            <p>El ANOVA descompone la variabilidad total en variabilidad <strong>entre grupos</strong> y variabilidad <strong>dentro de los grupos</strong>:</p>
+            <div class="formula-box">
+                <p class="formula-line">\(SC_T = SC_{entre} + SC_{dentro}\)</p>
+                <p class="formula-line">\(F = \dfrac{CM_{entre}}{CM_{dentro}} = \dfrac{SC_{entre}/(k-1)}{SC_{dentro}/(N-k)}\)</p>
+                <p class="formula-line">\(\eta^2 = SC_{entre}/SC_T\)</p>
+            </div>
+            <p>Bajo \(H_0\), el estadístico F sigue aproximadamente una distribución F de Snedecor con \(k-1\) y \(N-k\) grados de libertad.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h2>Cómo interpretar el resultado</h2>
+            <p>Si el p-valor es menor que α, se rechaza \(H_0\): hay evidencia de que no todas las medias son iguales. Si el p-valor es mayor o igual que α, no hay evidencia suficiente para afirmar diferencias entre medias con ese nivel de significación.</p>
+            <h2>Supuestos importantes</h2>
+            <ul>
+                <li><strong>Independencia:</strong> las observaciones deben ser independientes dentro y entre grupos.</li>
+                <li><strong>Normalidad aproximada:</strong> los residuos de cada grupo deberían ser razonablemente normales, especialmente con muestras pequeñas.</li>
+                <li><strong>Homogeneidad de varianzas:</strong> las varianzas poblacionales deberían ser similares. Si no se cumple, considera alternativas como Welch ANOVA.</li>
+            </ul>
+            <h2>Después de un ANOVA significativo</h2>
+            <p>Un ANOVA significativo indica que existe alguna diferencia, pero no cuál. Para identificar pares concretos se suelen aplicar comparaciones post hoc, como Tukey HSD, ajustando por comparaciones múltiples.</p>
+            <section class="related-tools">
+              <h2>Calculadoras relacionadas</h2>
+              <ul>
+                <li><a href="contraste-hipotesis-dos-medias.html">Contraste para dos medias</a></li>
+                <li><a href="contraste-hipotesis-varianzas.html">Contrastes sobre varianzas</a></li>
+                <li><a href="tabla-f-snedecor.html">Tabla F de Snedecor</a></li>
+              </ul>
+            </section>
+            <h2>Preguntas frecuentes</h2>
+            <ul>
+                <li><strong>¿Puedo usar ANOVA con solo dos grupos?</strong> Matemáticamente sí, pero normalmente es más directo usar el contraste para dos medias.</li>
+                <li><strong>¿Qué significa η²?</strong> Es una medida de tamaño de efecto: proporción de variabilidad total explicada por la pertenencia al grupo.</li>
+                <li><strong>¿El ANOVA prueba que todas las medias son distintas?</strong> No. Solo prueba si hay evidencia de que al menos una media no coincide con las demás.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+  <p>
+    © 2026 problabtools.
+    <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="privacidad.html">Privacidad</a> ·
+    <a href="cookies.html">Cookies</a> ·
+    <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+  </p>
+</footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let anovaChart;
+
+function parseAnovaGroups(raw) {
+    return raw
+        .split(/\n+/)
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .map((line) => line
+            .split(/[;,\s]+/)
+            .map(Number)
+            .filter(Number.isFinite)
+        )
+        .filter((group) => group.length > 0);
+}
+
+function mean(values) {
+    return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function sumSquares(values, center) {
+    return values.reduce((sum, value) => sum + (value - center) ** 2, 0);
+}
+
+function formatNumber(value, digits = 4) {
+    return Number.isFinite(value) ? value.toFixed(digits) : '—';
+}
+
+function renderAnovaChart(alpha, dfBetween, dfWithin, fObserved) {
+    const ctx = document.getElementById('anovaChart');
+    if (!ctx) return;
+
+    const critical = jStat.centralF.inv(1 - alpha, dfBetween, dfWithin);
+    const maxX = Math.max(critical * 1.8, fObserved * 1.25, 5);
+    const step = maxX / 320;
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+
+    for (let x = 0.001; x <= maxX; x += step) {
+        const y = jStat.centralF.pdf(x, dfBetween, dfWithin);
+        curve.push({ x, y });
+        if (x < critical) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+
+    const maxY = Math.max(...curve.map((point) => point.y));
+    const fLine = Number.isFinite(fObserved)
+        ? [{ x: fObserved, y: 0 }, { x: fObserved, y: maxY }]
+        : [];
+
+    if (anovaChart) anovaChart.destroy();
+    anovaChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Zona de no rechazo', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Distribución F', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'F observado', data: fLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: 0, max: maxX, title: { display: true, text: 'Estadístico F' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculateAnova() {
+    const groups = parseAnovaGroups(document.getElementById('anovaData').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const resultEl = document.getElementById('anovaResult');
+
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: α debe estar entre 0 y 1.';
+        return;
+    }
+
+    if (groups.length < 2 || groups.some((group) => group.length < 2)) {
+        resultEl.innerText = 'Error: introduce al menos dos grupos y un mínimo de dos observaciones por grupo.';
+        if (anovaChart) {
+            anovaChart.destroy();
+            anovaChart = null;
+        }
+        return;
+    }
+
+    const allValues = groups.flat();
+    const totalN = allValues.length;
+    const k = groups.length;
+    const grandMean = mean(allValues);
+    const groupMeans = groups.map(mean);
+    const ssBetween = groups.reduce((sum, group, index) => sum + group.length * (groupMeans[index] - grandMean) ** 2, 0);
+    const ssWithin = groups.reduce((sum, group, index) => sum + sumSquares(group, groupMeans[index]), 0);
+    const ssTotal = ssBetween + ssWithin;
+    const dfBetween = k - 1;
+    const dfWithin = totalN - k;
+
+    if (dfWithin <= 0 || ssWithin <= 0) {
+        resultEl.innerText = 'Error: no hay variabilidad suficiente dentro de los grupos para calcular el estadístico F.';
+        return;
+    }
+
+    const msBetween = ssBetween / dfBetween;
+    const msWithin = ssWithin / dfWithin;
+    const fObserved = msBetween / msWithin;
+    const pValue = 1 - jStat.centralF.cdf(fObserved, dfBetween, dfWithin);
+    const etaSquared = ssTotal > 0 ? ssBetween / ssTotal : NaN;
+    const critical = jStat.centralF.inv(1 - alpha, dfBetween, dfWithin);
+    const decision = pValue < alpha ? 'Se rechaza H₀: hay evidencia de diferencias entre medias.' : 'No se rechaza H₀: la evidencia no basta para afirmar diferencias entre medias.';
+
+    const summaries = groups.map((group, index) => `Grupo ${index + 1}: n=${group.length}, media=${formatNumber(groupMeans[index])}`).join('<br>');
+
+    resultEl.innerHTML = `
+        <p><strong>Resultado:</strong> F(${dfBetween}, ${dfWithin}) = ${formatNumber(fObserved)} | p-valor = ${formatNumber(pValue, 6)} | F crítico = ${formatNumber(critical)} | η² = ${formatNumber(etaSquared)}</p>
+        <p>${decision}</p>
+        <p><strong>Resumen de grupos</strong><br>${summaries}</p>
+        <div class="result-table-wrap">
+            <table>
+                <thead><tr><th>Fuente</th><th>SC</th><th>gl</th><th>CM</th><th>F</th><th>p-valor</th></tr></thead>
+                <tbody>
+                    <tr><td>Entre grupos</td><td>${formatNumber(ssBetween)}</td><td>${dfBetween}</td><td>${formatNumber(msBetween)}</td><td>${formatNumber(fObserved)}</td><td>${formatNumber(pValue, 6)}</td></tr>
+                    <tr><td>Dentro de grupos</td><td>${formatNumber(ssWithin)}</td><td>${dfWithin}</td><td>${formatNumber(msWithin)}</td><td>—</td><td>—</td></tr>
+                    <tr><td>Total</td><td>${formatNumber(ssTotal)}</td><td>${totalN - 1}</td><td>—</td><td>—</td><td>—</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    renderAnovaChart(alpha, dfBetween, dfWithin, fObserved);
+}
+
+document.getElementById('calcAnovaBtn').addEventListener('click', calculateAnova);
+calculateAnova();
+</script>
+</body>
+</html>
