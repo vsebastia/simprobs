@@ -98,6 +98,47 @@
             line-height: 1.5;
         }
     </style>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuándo elegir Fisher frente a chi-cuadrado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando alguna frecuencia esperada es inferior a 5, o cuando el tamaño muestral\n                    total es menor de 20."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es conservador el test de Fisher?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En algunos escenarios puede serlo respecto a alternativas como el test de\n                    Barnard, pero es el estándar más aceptado para tablas 2×2 con pocos datos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar Fisher con muestras grandes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, aunque con muestras grandes el chi-cuadrado de Pearson ofrece resultados\n                    prácticamente idénticos y es computacionalmente más directo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué significa que la OR sea 0 o infinita?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ocurre cuando alguna celda vale 0. En ese caso la OR no está definida, aunque\n                    el p-valor exacto sí puede calcularse."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 
 <body>

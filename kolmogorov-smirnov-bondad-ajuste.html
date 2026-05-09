@@ -63,6 +63,63 @@
     </script>
 
     <link rel="stylesheet" href="style_new.css?v=20260509">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuándo usar el test KS en lugar del chi-cuadrado de bondad de ajuste?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El test KS es preferible para distribuciones continuas y muestras no muy grandes,\n                    porque no requiere agrupar datos en intervalos y es más potente en ese contexto.\n                    El chi-cuadrado es más adecuado para datos categóricos o cuando se trabaja con\n                    grandes muestras de datos continuos previamente agrupados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué ocurre si estimo los parámetros con los propios datos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si los parámetros de la distribución teórica se estiman con la misma muestra,\n                    el test KS estándar es conservador: los p-valores son mayores de lo que deberían,\n                    lo que reduce la potencia. Para normalidad con parámetros estimados usa el test\n                    de Lilliefors; para otras distribuciones existen variantes análogas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El test KS funciona para distribuciones discretas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No está diseñado para distribuciones discretas. Con ellas, la distribución del\n                    estadístico \\(D_n\\) bajo \\(H_0\\) cambia y la aproximación de Kolmogorov es\n                    inexacta. Para datos discretos (recuentos por categoría), usa el\n                    chi-cuadrado de bondad de ajuste."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas observaciones se necesitan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para que la aproximación asintótica del p-valor sea fiable se recomienda\n                    \\(n \\geq 20\\). Con muestras más pequeñas el p-valor es aproximado y la\n                    potencia para detectar desviaciones moderadas es baja."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El test es siempre bilateral?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. El estadístico \\(D_n = \\sup|F_n - F_0|\\) mide la máxima discrepancia en\n                    cualquier dirección, de modo que el test detecta tanto exceso como defecto de\n                    masa respecto al modelo teórico en cualquier región. No existe una versión\n                    estándar unilateral del test KS de una muestra."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué diferencia hay con el test KS de dos muestras?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El test de una muestra (bondad de ajuste) compara los datos con una distribución\n                    teórica completamente especificada. El test de dos muestras contrasta si dos\n                    muestras independientes provienen de la misma distribución, sin necesidad de\n                    especificar cuál es esa distribución."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
