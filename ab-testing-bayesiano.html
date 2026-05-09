@@ -47,6 +47,47 @@
   }
   </script>
   <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué prior usar si no tengo datos históricos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beta(1, 1), la prior uniforme. Si tienes tasas de conversión históricas, puedes parametrizar la prior como si tuvieras α₀ éxitos y β₀ fracasos previos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántas muestras Monte Carlo usa la calculadora?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "30 000. Esto da un error estándar de estimación de P(B > A) de aproximadamente ±0.003 para valores en torno a 0.5."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar esto con tamaños muestrales pequeños?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La mayor ventaja del enfoque bayesiano es que funciona correctamente con muestras pequeñas, donde el test Z puede ser impreciso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la diferencia entre P(B > A) = 0.97 y p-valor = 0.03?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El p-valor mide la probabilidad de observar datos tan extremos bajo H₀; P(B > A) mide directamente cuánto crees que B supera a A dado lo que has observado. La segunda es más intuitiva."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -140,11 +181,11 @@
 
 
     <section id="seo-support-content" class="card content-card">
-      <h2>¿Qué calcula esta herramienta?</h2>
+      <h3>¿Qué calcula esta herramienta?</h3>
       <p>Esta calculadora implementa el modelo Beta-Binomial conjugado para el análisis bayesiano de experimentos A/B con métricas binarias (conversión, clics, registros). A partir de los datos observados y una prior Beta, actualiza la distribución de creencias sobre cada tasa de conversión y estima P(B &gt; A) por Monte Carlo con 30 000 muestras.</p>
-      <h2>Interpretación de los resultados</h2>
+      <h3>Interpretación de los resultados</h3>
       <p><strong>P(B &gt; A):</strong> Probabilidad directa de que la tasa de conversión de B sea superior a la de A dado lo observado. Un valor ≥ 0.95 suele considerarse suficiente para tomar la decisión de implementar B. <strong>Lift esperado:</strong> Mejora relativa media de B sobre A según las posteriores. <strong>Intervalo de credibilidad:</strong> Rango que contiene el verdadero parámetro con la probabilidad indicada, interpretable directamente (a diferencia del IC frecuentista).</p>
-      <h2>Ventajas del enfoque bayesiano</h2>
+      <h3>Ventajas del enfoque bayesiano</h3>
       <ul>
         <li>P(B &gt; A) es directamente interpretable por stakeholders sin formación estadística.</li>
         <li>No requiere fijar el tamaño muestral a priori; puede actualizarse con datos nuevos (aunque hay que controlar el peeking).</li>
@@ -152,7 +193,7 @@
         <li>Evita el problema del p-valor: no hay umbral binario de significación.</li>
       </ul>
       <section class="related-tools">
-        <h2>Calculadoras relacionadas</h2>
+        <h3>Calculadoras relacionadas</h3>
         <ul>
           <li><a href="ab-testing-z-test.html">Test Z de conversión (frecuentista)</a></li>
           <li><a href="ab-testing-potencia.html">MDE, potencia y tamaño muestral para A/B</a></li>
@@ -160,7 +201,7 @@
           <li><a href="beta.html">Distribución Beta</a></li>
         </ul>
       </section>
-      <h2>Preguntas frecuentes</h2>
+      <h3>Preguntas frecuentes</h3>
       <ul>
         <li><strong>¿Qué prior usar si no tengo datos históricos?</strong> Beta(1, 1), la prior uniforme. Si tienes tasas de conversión históricas, puedes parametrizar la prior como si tuvieras α₀ éxitos y β₀ fracasos previos.</li>
         <li><strong>¿Cuántas muestras Monte Carlo usa la calculadora?</strong> 30 000. Esto da un error estándar de estimación de P(B &gt; A) de aproximadamente ±0.003 para valores en torno a 0.5.</li>

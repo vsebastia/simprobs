@@ -64,6 +64,55 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Es válido para grupos dependientes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No; para datos emparejados se necesita un método específico para proporciones apareadas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué mide exactamente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si la diferencia observada entre \\(p_1\\) y \\(p_2\\) puede explicarse por azar bajo \\(H_0\\)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tamaño de muestra se recomienda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuanto mayor, mejor precisión; con muestras pequeñas la potencia puede ser limitada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué debo reportar además del p-valor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Diferencia de proporciones, intervalo de confianza y contexto práctico de la decisión."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Aquí también hay caso de desviación típica poblacional conocida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No como en contrastes de medias. En dos proporciones la variabilidad bajo \\(H_0\\) se estima con la proporción combinada \\(\\hat{p}\\), por eso no se elige entre test z o t según \\(\\sigma\\)."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -150,18 +199,18 @@
         </section>
 
                 <section id="seo-support-content" class="card content-card">
-            <h2>¿Qué calcula esta herramienta?</h2>
+            <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora de contraste de hipótesis para dos proporciones compara la tasa de éxito de dos grupos y devuelve estadístico z, p-valor y decisión sobre si existe diferencia estadísticamente significativa entre ambas proporciones.</p>
-            <h2>Fórmula utilizada</h2>
+            <h3>Fórmula utilizada</h3>
             <p>El contraste parte de \(H_0: p_1=p_2\) y utiliza proporción combinada para el error estándar bajo la hipótesis nula. A partir del estadístico z se calcula el p-valor en contraste bilateral o unilateral.</p>
-            <h2>Ejemplo de uso</h2>
+            <h3>Ejemplo de uso</h3>
             <p>En un experimento A/B, puedes comparar la conversión de dos versiones de una página introduciendo éxitos y tamaños muestrales de cada variante para comprobar si una supera a la otra.</p>
-            <h2>Cómo interpretar el resultado</h2>
+            <h3>Cómo interpretar el resultado</h3>
             <p>Si p-valor &lt; α, rechazas igualdad de proporciones y concluyes que hay evidencia de diferencia. Si p-valor ≥ α, la evidencia no es suficiente; puede ser necesario ampliar muestra para ganar potencia.</p>
-            <h2>Ejemplo resuelto: comparación de conversiones</h2>
+            <h3>Ejemplo resuelto: comparación de conversiones</h3>
             <p>Una versión A consigue 420 conversiones de 10.000 visitas y una versión B consigue 480 de 10.000. Introduce éxitos y tamaños de ambos grupos para obtener z, p-valor y decisión. Además de significación, revisa la diferencia absoluta: 4,8% − 4,2% = 0,6 puntos porcentuales.</p>
             <section class="related-tools">
-              <h2>Calculadoras relacionadas</h2>
+              <h3>Calculadoras relacionadas</h3>
               <ul>
                 <li><a href="contraste-hipotesis-una-proporcion.html">Contraste para una proporción</a></li>
                 <li><a href="tamano-muestral-dos-proporciones.html">Tamaño muestral para dos proporciones</a></li>
@@ -170,7 +219,7 @@
                 <li><a href="intervalo-confianza-proporcion.html">Intervalo de confianza para proporciones</a></li>
               </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Es válido para grupos dependientes?</strong> No; para datos emparejados se necesita un método específico para proporciones apareadas.</li>
                 <li><strong>¿Qué mide exactamente?</strong> Si la diferencia observada entre \(p_1\) y \(p_2\) puede explicarse por azar bajo \(H_0\).</li>

@@ -64,6 +64,47 @@
     .mode-section { display: none; }
     .mode-section.active { display: block; }
   </style>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿El cálculo de n asume asignación igual 1:1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La fórmula implementada maximiza la potencia con asignación balanceada. Para asignación desigual usa la calculadora general de dos proporciones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué diferencia hay entre contraste bilateral y unilateral?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El bilateral detecta efectos en ambas direcciones (p_B mayor o menor que p_A) y es el más usado. El unilateral solo detecta efectos en una dirección y necesita menos muestra, pero es válido únicamente si de antemano sabes que la variante solo puede mejorar, nunca empeorar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El MDE es el efecto que espero o el mínimo que importa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El MDE es el mínimo detectable con la muestra dada. Deberías dimensionar el experimento para que su MDE sea igual o menor al efecto mínimo que tendría relevancia práctica para tu negocio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué el gráfico muestra lifts relativos y no el efecto exacto que introduje?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El gráfico ilustra cómo varía la potencia con n para tres escenarios de referencia (+5 %, +10 %, +20 % relativo sobre p_A). Tu cálculo concreto está en el cuadro de resultados; el gráfico aporta contexto visual para entender la sensibilidad general del experimento."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -251,7 +292,7 @@
 
 
     <section id="seo-support-content" class="card content-card">
-      <h2>Cómo interpretar cada resultado</h2>
+      <h3>Cómo interpretar cada resultado</h3>
 
       <h3>Modo: Tamaño muestral</h3>
       <p>La calculadora devuelve el número mínimo de usuarios <em>por grupo</em> necesarios para que el experimento tenga la potencia deseada. Por ejemplo, si obtienes n = 2 000, necesitas 2 000 usuarios en el grupo A y otros 2 000 en el grupo B, es decir 4 000 en total. Si lanzas el experimento con menos usuarios, la probabilidad de detectar el efecto real cae por debajo del umbral que has fijado y aumentan los falsos negativos.</p>
@@ -265,7 +306,7 @@
       <p>Dada la muestra disponible, el MDE te dice cuál es la diferencia mínima que puedes detectar de forma fiable. Si tu MDE es ±3 pp y la mejora real de tu variante es de 1 pp, el experimento no la verá con la potencia objetivo. Antes de lanzar, compara el MDE con el efecto mínimo que tendría impacto de negocio real: si el MDE es mayor, el test no sirve para tomar esa decisión.</p>
       <p>El resultado muestra también los valores concretos de p_B que corresponden al MDE hacia arriba y hacia abajo, para que puedas razonar en términos absolutos de tasa de conversión.</p>
 
-      <h2>Recomendaciones prácticas</h2>
+      <h3>Recomendaciones prácticas</h3>
       <ul>
         <li><strong>Potencia ≥ 0.80</strong> es el mínimo recomendado; usa 0.90 para decisiones críticas o cuando el coste de un falso negativo sea alto.</li>
         <li><strong>α = 0.05</strong> es el estándar; considera α = 0.01 si el coste de un falso positivo es elevado (lanzar una variante que en realidad no mejora).</li>
@@ -275,7 +316,7 @@
       </ul>
 
       <section class="related-tools">
-        <h2>Calculadoras relacionadas</h2>
+        <h3>Calculadoras relacionadas</h3>
         <ul>
           <li><a href="ab-testing-z-test.html">Test Z de conversión (frecuentista)</a></li>
           <li><a href="ab-testing-bayesiano.html">Test A/B bayesiano (Beta-Binomial)</a></li>
@@ -284,7 +325,7 @@
         </ul>
       </section>
 
-      <h2>Preguntas frecuentes</h2>
+      <h3>Preguntas frecuentes</h3>
       <ul>
         <li><strong>¿El cálculo de n asume asignación igual 1:1?</strong> Sí. La fórmula implementada maximiza la potencia con asignación balanceada. Para asignación desigual usa la calculadora general de dos proporciones.</li>
         <li><strong>¿Qué diferencia hay entre contraste bilateral y unilateral?</strong> El bilateral detecta efectos en ambas direcciones (p_B mayor o menor que p_A) y es el más usado. El unilateral solo detecta efectos en una dirección y necesita menos muestra, pero es válido únicamente si de antemano sabes que la variante solo puede mejorar, nunca empeorar.</li>

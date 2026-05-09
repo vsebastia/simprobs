@@ -33,7 +33,8 @@
           "@type": "BreadcrumbList",
           "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
-            {"@type": "ListItem", "position": 2, "name": "Distribución Weibull", "item": "https://problabtools.es/weibull.html"}
+            {"@type": "ListItem", "position": 2, "name": "Distribuciones", "item": "https://problabtools.es/distribuciones/"},
+            {"@type": "ListItem", "position": 3, "name": "Distribución Weibull", "item": "https://problabtools.es/weibull.html"}
           ]
         },
         {
@@ -68,6 +69,39 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué significa P(X ≤ x)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es la probabilidad acumulada hasta el valor x."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué diferencia hay entre cola izquierda y derecha?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es un percentil?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es el valor de la variable que deja por debajo una probabilidad acumulada concreta."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body data-default-distribution="weibull" data-lock-distribution="true">
 <nav class="site-nav" aria-label="Navegación principal">
@@ -188,23 +222,23 @@
         <p>Muy útil en mantenimiento predictivo y control de calidad para estimar probabilidad de fallo antes de cierto tiempo.</p>
     </article>
         <section id="seo-support-content" class="card content-card">
-            <h2>¿Qué calcula esta herramienta?</h2>
+            <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h2>Fórmula utilizada</h2>
+            <h3>Fórmula utilizada</h3>
             <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h2>Ejemplo de uso</h2>
+            <h3>Ejemplo de uso</h3>
             <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
-            <h2>Cómo interpretar el resultado</h2>
+            <h3>Cómo interpretar el resultado</h3>
             <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
             <section class="related-tools">
-              <h2>Calculadoras relacionadas</h2>
+              <h3>Calculadoras relacionadas</h3>
               <ul>
                 <li><a href="studentt.html">Calculadora de distribución t de Student</a></li>
                 <li><a href="binomial.html">Calculadora de distribución binomial</a></li>
                 <li><a href="poisson.html">Calculadora de distribución de Poisson</a></li>
               </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Qué significa P(X ≤ x)?</strong> Es la probabilidad acumulada hasta el valor x.</li>
                 <li><strong>¿Qué diferencia hay entre cola izquierda y derecha?</strong> La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores.</li>

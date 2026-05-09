@@ -96,6 +96,47 @@
       .stats-summary { grid-template-columns: 1fr 1fr; }
     }
   </style>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿La simulación usa muestras binomiales exactas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: cada réplica genera x_A ~ Bin(n, p_A) y x_B ~ Bin(n, p_B) usando la transformación inversa de la CDF de la normal (aproximación de De Moivre-Laplace). Para n ≥ 30 y proporciones no extremas, la aproximación es muy precisa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué la potencia empírica no coincide exactamente con la teórica?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Siempre hay varianza de muestreo. Con 5 000 réplicas, el error estándar de la proporción simulada es de aproximadamente ±0.007 para potencias en torno al 80%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo simular con p_A = p_B para verificar el nivel α?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: introduce el mismo valor en p_A y p_B y comprueba que la tasa de rechazo empírica se aproxima a α."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Las réplicas son independientes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí: cada réplica genera nuevas muestras sin dependencia con las anteriores."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -225,21 +266,21 @@
 
 
     <section id="seo-support-content" class="card content-card">
-      <h2>¿Para qué sirve simular un test A/B?</h2>
+      <h3>¿Para qué sirve simular un test A/B?</h3>
       <p>La simulación Monte Carlo permite verificar empíricamente las propiedades del test: si el error de tipo I es realmente α cuando p_A = p_B, si la potencia coincide con la teórica, y cómo se comporta la distribución del estadístico z en la práctica. Es especialmente útil cuando quieres entender el comportamiento del test bajo condiciones concretas o cuando los supuestos del modelo no se cumplen exactamente.</p>
-      <h2>Cómo leer el histograma de z</h2>
+      <h3>Cómo leer el histograma de z</h3>
       <p>Bajo H₀ (p_A = p_B), el estadístico z sigue aproximadamente una N(0,1): el histograma debería ser simétrico centrado en 0. La región coloreada en rojo marca los valores fuera de la zona de aceptación según α. Bajo H₁ (p_A ≠ p_B), el histograma se desplaza hacia la dirección del efecto.</p>
-      <h2>Cómo leer la distribución de p-valores</h2>
+      <h3>Cómo leer la distribución de p-valores</h3>
       <p>Bajo H₀ perfecta, los p-valores siguen una distribución Uniforme(0,1): la barra de 0 a 0.05 debería contener el 5% de las réplicas. Bajo H₁, los p-valores se concentran cerca de 0: la proporción de réplicas con p &lt; α es la potencia empírica.</p>
       <section class="related-tools">
-        <h2>Calculadoras relacionadas</h2>
+        <h3>Calculadoras relacionadas</h3>
         <ul>
           <li><a href="ab-testing-z-test.html">Test Z de conversión (frecuentista)</a></li>
           <li><a href="ab-testing-bayesiano.html">Test A/B bayesiano (Beta-Binomial)</a></li>
           <li><a href="ab-testing-potencia.html">MDE, potencia y tamaño muestral para A/B</a></li>
         </ul>
       </section>
-      <h2>Preguntas frecuentes</h2>
+      <h3>Preguntas frecuentes</h3>
       <ul>
         <li><strong>¿La simulación usa muestras binomiales exactas?</strong> Sí: cada réplica genera x_A ~ Bin(n, p_A) y x_B ~ Bin(n, p_B) usando la transformación inversa de la CDF de la normal (aproximación de De Moivre-Laplace). Para n ≥ 30 y proporciones no extremas, la aproximación es muy precisa.</li>
         <li><strong>¿Por qué la potencia empírica no coincide exactamente con la teórica?</strong> Siempre hay varianza de muestreo. Con 5 000 réplicas, el error estándar de la proporción simulada es de aproximadamente ±0.007 para potencias en torno al 80%.</li>

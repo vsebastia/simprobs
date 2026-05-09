@@ -46,6 +46,39 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuándo el IC indica diferencia significativa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando el valor 0 queda fuera del intervalo [L, U]."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Welch es siempre válido?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para muestras independientes con distribución aproximadamente normal sí. Para muestras muy pequeñas y distribuciones muy asimétricas considera tests no paramétricos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué significa que el IC incluya el 0?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Que con el nivel de confianza elegido no puedes descartar que ambas medias sean iguales."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -167,10 +200,10 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h2>¿Qué calcula esta herramienta?</h2>
+            <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora obtiene el intervalo de confianza para \(\mu_1 - \mu_2\) con dos muestras independientes. Ofrece el método de Welch (varianzas desiguales) y el método pooled (varianzas iguales), calculando automáticamente los grados de libertad y el valor crítico t.</p>
             <section class="related-tools">
-                <h2>Calculadoras relacionadas</h2>
+                <h3>Calculadoras relacionadas</h3>
                 <ul>
                     <li><a href="intervalo-confianza-media.html">IC para una media (σ desconocida)</a></li>
                     <li><a href="contraste-hipotesis-dos-medias.html">Contraste de hipótesis para dos medias</a></li>
@@ -178,7 +211,7 @@
                     <li><a href="studentt.html">Distribución t de Student</a></li>
                 </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Cuándo el IC indica diferencia significativa?</strong> Cuando el valor 0 queda fuera del intervalo [L, U].</li>
                 <li><strong>¿Welch es siempre válido?</strong> Para muestras independientes con distribución aproximadamente normal sí. Para muestras muy pequeñas y distribuciones muy asimétricas considera tests no paramétricos.</li>

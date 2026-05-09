@@ -64,6 +64,47 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Sirve para muestras apareadas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No; para datos apareados debe usarse el contraste de medias apareadas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué hipótesis contrasta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Normalmente \\(H_0: \\mu_1=\\mu_2\\), frente a alternativa bilateral o unilateral."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si hay tamaños muestrales muy distintos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se puede calcular igualmente, pero es importante revisar supuestos y varianzas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo mejorar la interpretación?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reporta también diferencia estimada, intervalo de confianza y contexto del problema."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -159,23 +200,23 @@
         </section>
 
                 <section id="seo-support-content" class="card content-card">
-            <h2>¿Qué calcula esta herramienta?</h2>
+            <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora de contraste de hipótesis para dos medias compara dos grupos independientes y devuelve estadístico de prueba, p-valor y decisión final. Resulta útil para A/B testing, comparación de tratamientos y estudios de rendimiento entre poblaciones.</p>
-            <h2>Fórmula utilizada</h2>
+            <h3>Fórmula utilizada</h3>
             <p>El estadístico se basa en la diferencia \(\bar{x}_1-\bar{x}_2\) y su error estándar. Según la información disponible, puede utilizarse versión z (desviaciones poblacionales conocidas) o t (desviaciones desconocidas), ajustando la distribución de referencia para obtener el p-valor.</p>
-            <h2>Ejemplo de uso</h2>
+            <h3>Ejemplo de uso</h3>
             <p>Puedes contrastar si el salario medio de dos departamentos es distinto, o si una nueva metodología reduce el tiempo promedio frente a la metodología anterior, introduciendo medias, desviaciones y tamaños muestrales de ambos grupos.</p>
-            <h2>Cómo interpretar el resultado</h2>
+            <h3>Cómo interpretar el resultado</h3>
             <p>Un p-valor pequeño indica evidencia contra la hipótesis de igualdad de medias. Si el resultado no es significativo, conviene revisar potencia estadística y tamaño muestral antes de concluir que no existen diferencias reales.</p>
             <section class="related-tools">
-              <h2>Calculadoras relacionadas</h2>
+              <h3>Calculadoras relacionadas</h3>
               <ul>
                 <li><a href="contraste-hipotesis-una-media.html">Contraste para una media</a></li>
                 <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para dos medias</a></li>
                 <li><a href="studentt.html">Distribución t de Student</a></li>
               </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Sirve para muestras apareadas?</strong> No; para datos apareados debe usarse el contraste de medias apareadas.</li>
                 <li><strong>¿Qué hipótesis contrasta?</strong> Normalmente \(H_0: \mu_1=\mu_2\), frente a alternativa bilateral o unilateral.</li>
