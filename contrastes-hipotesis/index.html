@@ -73,45 +73,7 @@
   </header>
 
   <main>
-    <section class="card content-card">
-      <h2>¿Qué es un contraste de hipótesis?</h2>
-      <p>Un contraste de hipótesis es un procedimiento estadístico para decidir, a partir de datos muestrales, si la evidencia es suficiente para rechazar una afirmación inicial sobre una población.</p>
-      <h3>Hipótesis nula y alternativa</h3>
-      <ul>
-        <li><strong>Hipótesis nula (H₀):</strong> representa el escenario de referencia (por ejemplo, “no hay diferencia” o “el parámetro vale un valor concreto”).</li>
-        <li><strong>Hipótesis alternativa (H₁):</strong> plantea el efecto o diferencia que se quiere detectar.</li>
-      </ul>
-      <h3>Errores tipo I y tipo II</h3>
-      <ul>
-        <li><strong>Error tipo I (α):</strong> rechazar H₀ siendo verdadera (falso positivo).</li>
-        <li><strong>Error tipo II (β):</strong> no rechazar H₀ siendo falsa (falso negativo).</li>
-        <li><strong>Potencia (1-β):</strong> probabilidad de detectar un efecto real cuando realmente existe.</li>
-      </ul>
-      <p>Una confusión habitual es pensar que un resultado “no significativo” demuestra que no hay efecto. En realidad, muchas veces solo indica que la muestra no tiene suficiente potencia para detectarlo con el nivel de ruido disponible.</p>
-
-      <h3>Potencia estadística: qué es y de qué depende</h3>
-      <p>La <strong>potencia</strong> responde a esta pregunta: “si de verdad existe una diferencia relevante, ¿qué probabilidad tiene mi estudio de detectarla?”. No depende de un único factor; está determinada por varios elementos que actúan conjuntamente.</p>
-      <ul>
-        <li><strong>Tamaño muestral:</strong> a mayor n, más fácil detectar diferencias reales pequeñas o moderadas.</li>
-        <li><strong>Tamaño del efecto:</strong> cuanto mayor es la diferencia real entre hipótesis nula y realidad, más fácil detectarla.</li>
-        <li><strong>Variabilidad de los datos:</strong> más ruido implica menos potencia, porque la señal queda más “tapada”.</li>
-        <li><strong>Nivel α:</strong> un α muy exigente (por ejemplo 0,01) reduce falsos positivos, pero también puede reducir potencia.</li>
-      </ul>
-
-      <h3>Tamaño del efecto vs significación estadística</h3>
-      <p>Otro punto que suele generar dudas: <strong>significativo</strong> no es sinónimo de <strong>importante</strong>. Con muestras muy grandes, diferencias minúsculas pueden dar p-valores muy bajos; con muestras pequeñas, diferencias relevantes pueden no llegar a significativas.</p>
-      <p>Por eso, además del p-valor, conviene reportar siempre:</p>
-      <ul>
-        <li>la <strong>estimación del efecto</strong> (diferencia de medias, diferencia de proporciones, etc.),</li>
-        <li>su <strong>intervalo de confianza</strong>,</li>
-        <li>y una interpretación en contexto (impacto clínico, económico o operativo).</li>
-      </ul>
-      <h3>Estadístico de contraste y regiones de decisión</h3>
-      <p>El <strong>estadístico de contraste</strong> resume la evidencia de la muestra (por ejemplo, un estadístico z o t). A partir de su distribución bajo H₀ se define una <strong>región de rechazo</strong> y una <strong>región de no rechazo</strong> (a veces llamada de aceptación en un sentido operativo). Si el estadístico cae en la región de rechazo, se rechaza H₀; si no, no se rechaza.</p>
-      <p>El <strong>p-valor</strong> cuantifica cuán extremos son los datos observados bajo H₀: cuanto menor es, mayor evidencia contra H₀.</p>
-    </section>
-
-    <section class="card content-card">
+    <section class=”card content-card”>
       <h2>Todos los contrastes disponibles</h2>
       <ul class="tools-grid hypothesis-tools-grid" aria-label="Grid de calculadoras de contrastes">
         <li><a href="../contraste-hipotesis-una-media.html">Una media</a></li>
@@ -126,6 +88,44 @@
         <li><a href="../kolmogorov-smirnov-bondad-ajuste.html">Kolmogorov–Smirnov (no paramétrico)</a></li>
         <li><a href="../shapiro-wilk-normalidad.html">Shapiro–Wilk (normalidad)</a></li>
       </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>¿Qué es un contraste de hipótesis?</h2>
+      <p>Un contraste de hipótesis es un procedimiento estadístico para decidir, a partir de datos muestrales, si la evidencia es suficiente para rechazar una afirmación inicial sobre una población.</p>
+      <h3>Hipótesis nula y alternativa</h3>
+      <ul>
+        <li><strong>Hipótesis nula (H₀):</strong> representa el escenario de referencia (por ejemplo, "no hay diferencia" o "el parámetro vale un valor concreto").</li>
+        <li><strong>Hipótesis alternativa (H₁):</strong> plantea el efecto o diferencia que se quiere detectar.</li>
+      </ul>
+      <h3>Errores tipo I y tipo II</h3>
+      <ul>
+        <li><strong>Error tipo I (α):</strong> rechazar H₀ siendo verdadera (falso positivo).</li>
+        <li><strong>Error tipo II (β):</strong> no rechazar H₀ siendo falsa (falso negativo).</li>
+        <li><strong>Potencia (1-β):</strong> probabilidad de detectar un efecto real cuando realmente existe.</li>
+      </ul>
+      <p>Una confusión habitual es pensar que un resultado "no significativo" demuestra que no hay efecto. En realidad, muchas veces solo indica que la muestra no tiene suficiente potencia para detectarlo con el nivel de ruido disponible.</p>
+
+      <h3>Potencia estadística: qué es y de qué depende</h3>
+      <p>La <strong>potencia</strong> responde a esta pregunta: "si de verdad existe una diferencia relevante, ¿qué probabilidad tiene mi estudio de detectarla?". No depende de un único factor; está determinada por varios elementos que actúan conjuntamente.</p>
+      <ul>
+        <li><strong>Tamaño muestral:</strong> a mayor n, más fácil detectar diferencias reales pequeñas o moderadas.</li>
+        <li><strong>Tamaño del efecto:</strong> cuanto mayor es la diferencia real entre hipótesis nula y realidad, más fácil detectarla.</li>
+        <li><strong>Variabilidad de los datos:</strong> más ruido implica menos potencia, porque la señal queda más "tapada".</li>
+        <li><strong>Nivel α:</strong> un α muy exigente (por ejemplo 0,01) reduce falsos positivos, pero también puede reducir potencia.</li>
+      </ul>
+
+      <h3>Tamaño del efecto vs significación estadística</h3>
+      <p>Otro punto que suele generar dudas: <strong>significativo</strong> no es sinónimo de <strong>importante</strong>. Con muestras muy grandes, diferencias minúsculas pueden dar p-valores muy bajos; con muestras pequeñas, diferencias relevantes pueden no llegar a significativas.</p>
+      <p>Por eso, además del p-valor, conviene reportar siempre:</p>
+      <ul>
+        <li>la <strong>estimación del efecto</strong> (diferencia de medias, diferencia de proporciones, etc.),</li>
+        <li>su <strong>intervalo de confianza</strong>,</li>
+        <li>y una interpretación en contexto (impacto clínico, económico o operativo).</li>
+      </ul>
+      <h3>Estadístico de contraste y regiones de decisión</h3>
+      <p>El <strong>estadístico de contraste</strong> resume la evidencia de la muestra (por ejemplo, un estadístico z o t). A partir de su distribución bajo H₀ se define una <strong>región de rechazo</strong> y una <strong>región de no rechazo</strong> (a veces llamada de aceptación en un sentido operativo). Si el estadístico cae en la región de rechazo, se rechaza H₀; si no, no se rechaza.</p>
+      <p>El <strong>p-valor</strong> cuantifica cuán extremos son los datos observados bajo H₀: cuanto menor es, mayor evidencia contra H₀.</p>
     </section>
 
     <section class="card content-card pillar-guide">
