@@ -63,6 +63,63 @@
     </script>
 
     <link rel="stylesheet" href="style_new.css?v=20260509">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuándo se usa el contraste chi-cuadrado de bondad de ajuste?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando se quiere saber si los recuentos observados en categorías mutuamente\n                    excluyentes son compatibles con una distribución teórica previamente especificada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos grados de libertad tiene el estadístico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los grados de libertad son \\(k - 1\\), donde \\(k\\) es el número de categorías.\n                    Si se han estimado parámetros adicionales del modelo con la propia muestra,\n                    se resta uno por cada parámetro estimado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué condición deben cumplir las frecuencias esperadas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La aproximación es adecuada cuando todas las frecuencias esperadas son ≥ 5.\n                    Si alguna es inferior, considera agrupar categorías poco frecuentes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué diferencia hay con el chi-cuadrado de independencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El de bondad de ajuste contrasta si una variable sigue una distribución\n                    teórica concreta. El de independencia contrasta si dos variables están\n                    asociadas entre sí, a partir de una tabla de contingencia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Las probabilidades teóricas deben sumar exactamente 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La herramienta verifica que las probabilidades introducidas sumen 1\n                    (con tolerancia numérica) y avisa si no se cumple esa condición."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo afecta el tamaño muestral al resultado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Con muestras muy grandes, el contraste puede detectar desviaciones muy\n                    pequeñas respecto al modelo teórico que no son relevantes en la práctica.\n                    En esos casos conviene complementar el p-valor con una medida de tamaño\n                    del efecto."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">

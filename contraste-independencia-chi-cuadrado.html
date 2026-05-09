@@ -28,6 +28,63 @@
     </script>
 
     <link rel="stylesheet" href="style_new.css?v=20260509">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuándo se usa el contraste chi-cuadrado de independencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando se quiere saber si dos variables categóricas están asociadas a partir\n                    de los recuentos de una tabla de contingencia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos grados de libertad tiene el estadístico?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los grados de libertad son \\((r-1)(c-1)\\), donde \\(r\\) es el número de\n                    filas y \\(c\\) el número de columnas de la tabla."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué condición deben cumplir las frecuencias esperadas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La aproximación es adecuada cuando la mayoría de las frecuencias esperadas\n                    son ≥ 5. Si hay celdas con frecuencias esperadas muy bajas, conviene usar\n                    el test exacto de Fisher o agrupar categorías."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué diferencia hay con el chi-cuadrado de bondad de ajuste?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El de bondad de ajuste contrasta si una variable sigue una distribución\n                    teórica concreta. El de independencia contrasta si dos variables están\n                    asociadas entre sí, sin asumir ninguna distribución específica."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puede haber asociación sin causalidad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. El contraste detecta asociación estadística, pero no permite concluir\n                    que una variable causa la otra. La causalidad requiere diseño experimental\n                    o argumentación adicional."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo afecta el tamaño muestral al resultado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Con muestras muy grandes, el contraste puede detectar asociaciones muy\n                    pequeñas que no son relevantes en la práctica. En esos casos conviene\n                    complementar el p-valor con una medida de tamaño del efecto como la V\n                    de Cramér."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">

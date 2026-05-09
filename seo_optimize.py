@@ -125,7 +125,7 @@ def fix_headings(content):
 # ── #2: add FAQPage JSON-LD ──────────────────────────────────────────────────
 
 FAQ_ITEM_RE = re.compile(
-    r'<li><strong>(¿[^<]+)</strong>\s*(.*?)</li>',
+    r'<li>\s*<strong>\s*(¿[^<]+)</strong>\s*(.*?)</li>',
     re.DOTALL
 )
 
