@@ -64,6 +64,39 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar ANOVA con solo dos grupos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Matemáticamente sí, pero normalmente es más directo usar el contraste para dos medias."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué significa η²?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es una medida de tamaño de efecto: proporción de variabilidad total explicada por la pertenencia al grupo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El ANOVA prueba que todas las medias son distintas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Solo prueba si hay evidencia de que al menos una media no coincide con las demás."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -136,25 +169,25 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h2>Cómo interpretar el resultado</h2>
+            <h3>Cómo interpretar el resultado</h3>
             <p>Si el p-valor es menor que α, se rechaza \(H_0\): hay evidencia de que no todas las medias son iguales. Si el p-valor es mayor o igual que α, no hay evidencia suficiente para afirmar diferencias entre medias con ese nivel de significación.</p>
-            <h2>Supuestos importantes</h2>
+            <h3>Supuestos importantes</h3>
             <ul>
                 <li><strong>Independencia:</strong> las observaciones deben ser independientes dentro y entre grupos.</li>
                 <li><strong>Normalidad aproximada:</strong> los residuos de cada grupo deberían ser razonablemente normales, especialmente con muestras pequeñas.</li>
                 <li><strong>Homogeneidad de varianzas:</strong> las varianzas poblacionales deberían ser similares. Si no se cumple, considera alternativas como Welch ANOVA.</li>
             </ul>
-            <h2>Después de un ANOVA significativo</h2>
+            <h3>Después de un ANOVA significativo</h3>
             <p>Un ANOVA significativo indica que existe alguna diferencia, pero no cuál. Para identificar pares concretos se suelen aplicar comparaciones post hoc, como Tukey HSD, ajustando por comparaciones múltiples.</p>
             <section class="related-tools">
-              <h2>Calculadoras relacionadas</h2>
+              <h3>Calculadoras relacionadas</h3>
               <ul>
                 <li><a href="contraste-hipotesis-dos-medias.html">Contraste para dos medias</a></li>
                 <li><a href="contraste-hipotesis-varianzas.html">Contrastes sobre varianzas</a></li>
                 <li><a href="tabla-f-snedecor.html">Tabla F de Snedecor</a></li>
               </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Puedo usar ANOVA con solo dos grupos?</strong> Matemáticamente sí, pero normalmente es más directo usar el contraste para dos medias.</li>
                 <li><strong>¿Qué significa η²?</strong> Es una medida de tamaño de efecto: proporción de variabilidad total explicada por la pertenencia al grupo.</li>

@@ -46,6 +46,39 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Por qué se usa z y no t?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Porque \\(\\sigma\\) es conocida; la distribución del estadístico \\((\\bar{x}-\\mu)/(\\sigma/\\sqrt{n})\\) es exactamente normal estándar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si el IC no contiene el valor de referencia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Que con ese nivel de confianza rechazarías la hipótesis de que \\(\\mu\\) es ese valor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo reduzco la amplitud a la mitad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuadruplica el tamaño muestral (el margen de error varía con \\(1/\\sqrt{n}\\))."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -156,12 +189,12 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h2>¿Qué calcula esta herramienta?</h2>
+            <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora obtiene el intervalo de confianza bilateral para la media poblacional \(\mu\) usando el estadístico z cuando \(\sigma\) es conocida. Calcula automáticamente el valor crítico, el margen de error y los límites inferior y superior del intervalo.</p>
-            <h2>Cuándo usar este intervalo</h2>
+            <h3>Cuándo usar este intervalo</h3>
             <p>Usa el IC z cuando el tamaño muestral es grande (n ≥ 30) o cuando \(\sigma\) está determinada con certeza por el proceso (por ejemplo, equipos de medición calibrados). Para muestras pequeñas con \(\sigma\) desconocida, usa el <a href="intervalo-confianza-media.html">IC con t de Student</a>.</p>
             <section class="related-tools">
-                <h2>Calculadoras relacionadas</h2>
+                <h3>Calculadoras relacionadas</h3>
                 <ul>
                     <li><a href="intervalo-confianza-media.html">IC para una media (σ desconocida)</a></li>
                     <li><a href="intervalo-confianza-proporcion.html">IC para una proporción</a></li>
@@ -169,7 +202,7 @@
                     <li><a href="normal.html">Distribución Normal</a></li>
                 </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Por qué se usa z y no t?</strong> Porque \(\sigma\) es conocida; la distribución del estadístico \((\bar{x}-\mu)/(\sigma/\sqrt{n})\) es exactamente normal estándar.</li>
                 <li><strong>¿Qué pasa si el IC no contiene el valor de referencia?</strong> Que con ese nivel de confianza rechazarías la hipótesis de que \(\mu\) es ese valor.</li>

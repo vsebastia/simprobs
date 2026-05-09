@@ -46,6 +46,39 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Puedo introducir p̂ directamente en lugar de x?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Introduce x = p̂ × n redondeado al entero más cercano; el resultado será equivalente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si x = 0 o x = n?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wald da un intervalo de anchura cero, lo cual no es útil. Wilson maneja estos casos correctamente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo se cumple la condición de normalidad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando n·p̂ ≥ 5 y n·(1−p̂) ≥ 5. La calculadora te avisa si no se cumple."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -147,10 +180,10 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h2>¿Qué calcula esta herramienta?</h2>
+            <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora obtiene el intervalo de confianza para la proporción poblacional p usando los métodos de Wald (aproximación normal clásica) y Wilson (score interval), mostrando ambos para comparación y una representación gráfica de la distribución normal estándar con la región de confianza.</p>
             <section class="related-tools">
-                <h2>Calculadoras relacionadas</h2>
+                <h3>Calculadoras relacionadas</h3>
                 <ul>
                     <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
                     <li><a href="contraste-hipotesis-una-proporcion.html">Contraste de hipótesis para una proporción</a></li>
@@ -158,7 +191,7 @@
                     <li><a href="binomial.html">Distribución Binomial</a></li>
                 </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Puedo introducir p̂ directamente en lugar de x?</strong> Introduce x = p̂ × n redondeado al entero más cercano; el resultado será equivalente.</li>
                 <li><strong>¿Qué pasa si x = 0 o x = n?</strong> Wald da un intervalo de anchura cero, lo cual no es útil. Wilson maneja estos casos correctamente.</li>

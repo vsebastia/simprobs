@@ -46,6 +46,39 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Por qué se usa t en lugar de z?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Porque al estimar \\(\\sigma\\) con \\(s\\) se introduce incertidumbre adicional; la distribución t tiene colas más pesadas para captarla."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo convergen t y z?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para n ≥ 30 la diferencia es prácticamente despreciable en la mayoría de aplicaciones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito que los datos sean normales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para n pequeño sí importa. Para n grande, el TCL garantiza que \\(\\bar{x}\\) se distribuye aproximadamente normal."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -149,12 +182,12 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h2>¿Qué calcula esta herramienta?</h2>
+            <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora construye el intervalo de confianza bilateral para la media poblacional \(\mu\) usando la distribución t de Student cuando \(\sigma\) es desconocida. Calcula automáticamente los grados de libertad, el valor crítico t, el error estándar y los límites del intervalo.</p>
-            <h2>Ejemplo resuelto: intervalo para una media</h2>
+            <h3>Ejemplo resuelto: intervalo para una media</h3>
             <p>Una muestra de 25 entregas tiene media 38 minutos y desviación típica 12 minutos. Con 95% de confianza y σ desconocida, usa n = 25, media = 38 y s = 12; el intervalo se basa en t con 24 grados de libertad y cuantifica el rango plausible para el tiempo medio real.</p>
             <section class="related-tools">
-                <h2>Calculadoras relacionadas</h2>
+                <h3>Calculadoras relacionadas</h3>
                 <ul>
                     <li><a href="intervalo-confianza-media-sigma-conocida.html">IC para una media (σ conocida)</a></li>
                     <li><a href="intervalo-confianza-diferencia-medias.html">IC para diferencia de medias</a></li>
@@ -162,7 +195,7 @@
                     <li><a href="studentt.html">Distribución t de Student</a></li>
                 </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Por qué se usa t en lugar de z?</strong> Porque al estimar \(\sigma\) con \(s\) se introduce incertidumbre adicional; la distribución t tiene colas más pesadas para captarla.</li>
                 <li><strong>¿Cuándo convergen t y z?</strong> Para n ≥ 30 la diferencia es prácticamente despreciable en la mayoría de aplicaciones.</li>

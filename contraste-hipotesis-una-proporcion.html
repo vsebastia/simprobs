@@ -64,6 +64,55 @@
     }
     </script>
     <link rel="stylesheet" href="style_new.css?v=20260506-3">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuándo es válida la aproximación normal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando el tamaño muestral permite esperar suficientes éxitos y fracasos bajo \\(H_0\\)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo usar porcentaje en lugar de proporción?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, pero conviértelo a escala 0–1 para el cálculo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué cola debo elegir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bilateral si buscas cualquier diferencia; unilateral si solo te interesa aumento o disminución."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Significativo equivale a importante?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No siempre; valora también el tamaño del cambio en términos de negocio o impacto real."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Aquí se distingue entre desviación muestral y poblacional?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No de la misma forma que en medias. En proporciones el error estándar se construye con \\(p_0\\) (o con proporción combinada en dos proporciones), no con una \\(\\sigma\\) introducida por el usuario."
+      }
+    }
+  ]
+}
+    </script>
 </head>
 <body>
 <nav class="site-nav" aria-label="Navegación principal">
@@ -158,23 +207,23 @@
         </section>
 
                 <section id="seo-support-content" class="card content-card">
-            <h2>¿Qué calcula esta herramienta?</h2>
+            <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora de contraste de hipótesis para una proporción estima el estadístico z, el p-valor y la decisión estadística al comparar una proporción observada con una proporción teórica \(p_0\). Es frecuente en encuestas, tasas de conversión y control de defectos.</p>
-            <h2>Fórmula utilizada</h2>
+            <h3>Fórmula utilizada</h3>
             <p>Se contrasta \(H_0: p=p_0\) usando aproximación normal para proporciones, con error estándar calculado bajo la hipótesis nula. El p-valor se obtiene según el tipo de cola seleccionado: bilateral, izquierda o derecha.</p>
-            <h2>Ejemplo de uso</h2>
+            <h3>Ejemplo de uso</h3>
             <p>Si una web espera una conversión del 12%, puedes introducir éxitos y tamaño muestral para evaluar si el porcentaje real observado difiere significativamente de ese objetivo.</p>
-            <h2>Cómo interpretar el resultado</h2>
+            <h3>Cómo interpretar el resultado</h3>
             <p>Si p-valor &lt; α, hay evidencia de que la proporción poblacional no coincide con \(p_0\) (o es mayor/menor, según el contraste). Si p-valor ≥ α, no hay evidencia suficiente con la muestra analizada.</p>
             <section class="related-tools">
-              <h2>Calculadoras relacionadas</h2>
+              <h3>Calculadoras relacionadas</h3>
               <ul>
                 <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste para dos proporciones</a></li>
                 <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
                 <li><a href="binomial.html">Distribución binomial</a></li>
               </ul>
             </section>
-            <h2>Preguntas frecuentes</h2>
+            <h3>Preguntas frecuentes</h3>
             <ul>
                 <li><strong>¿Cuándo es válida la aproximación normal?</strong> Cuando el tamaño muestral permite esperar suficientes éxitos y fracasos bajo \(H_0\).</li>
                 <li><strong>¿Puedo usar porcentaje en lugar de proporción?</strong> Sí, pero conviértelo a escala 0–1 para el cálculo.</li>
