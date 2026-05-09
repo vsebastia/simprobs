@@ -90,57 +90,375 @@
       </ul>
     </section>
 
+    <!-- ARTÍCULO COMPLETO: TEORÍA DE CONTRASTES DE HIPÓTESIS -->
+
     <section class="card content-card">
       <h2>¿Qué es un contraste de hipótesis?</h2>
-      <p>Un contraste de hipótesis es un procedimiento estadístico para decidir, a partir de datos muestrales, si la evidencia es suficiente para rechazar una afirmación inicial sobre una población.</p>
-      <h3>Hipótesis nula y alternativa</h3>
-      <ul>
-        <li><strong>Hipótesis nula (H₀):</strong> representa el escenario de referencia (por ejemplo, "no hay diferencia" o "el parámetro vale un valor concreto").</li>
-        <li><strong>Hipótesis alternativa (H₁):</strong> plantea el efecto o diferencia que se quiere detectar.</li>
-      </ul>
-      <h3>Errores tipo I y tipo II</h3>
-      <ul>
-        <li><strong>Error tipo I (α):</strong> rechazar H₀ siendo verdadera (falso positivo).</li>
-        <li><strong>Error tipo II (β):</strong> no rechazar H₀ siendo falsa (falso negativo).</li>
-        <li><strong>Potencia (1-β):</strong> probabilidad de detectar un efecto real cuando realmente existe.</li>
-      </ul>
-      <p>Una confusión habitual es pensar que un resultado "no significativo" demuestra que no hay efecto. En realidad, muchas veces solo indica que la muestra no tiene suficiente potencia para detectarlo con el nivel de ruido disponible.</p>
+      <p>Un <strong>contraste de hipótesis</strong> (también llamado prueba de hipótesis o test estadístico) es un procedimiento formal que permite decidir, a partir de datos muestrales, si la evidencia empírica es suficiente para rechazar una afirmación de partida sobre la población. La idea central es sencilla: formulamos dos hipótesis en conflicto y usamos los datos para ver cuál de las dos es más compatible con la realidad.</p>
+      <p>Este tipo de razonamiento está presente en multitud de ámbitos: medicina (¿es este fármaco más eficaz que el placebo?), ingeniería (¿ha mejorado el nuevo proceso de producción?), marketing (¿cuál de las dos versiones de la página convierte más?) o ciencias sociales (¿difieren las puntuaciones entre dos grupos?). En todos los casos, el esquema lógico es el mismo.</p>
 
-      <h3>Potencia estadística: qué es y de qué depende</h3>
-      <p>La <strong>potencia</strong> responde a esta pregunta: "si de verdad existe una diferencia relevante, ¿qué probabilidad tiene mi estudio de detectarla?". No depende de un único factor; está determinada por varios elementos que actúan conjuntamente.</p>
+      <h3>La lógica del contraste: reducción al absurdo estadística</h3>
+      <p>El mecanismo funciona de forma análoga a una demostración por contradicción. Se parte de una hipótesis de referencia —la <strong>hipótesis nula (H₀)</strong>— que representa el escenario que se quiere cuestionar: "no hay efecto", "no hay diferencia", "el parámetro vale exactamente μ₀". A continuación se calculan los datos que cabría esperar si H₀ fuese verdad. Si los datos observados son muy improbables bajo ese escenario, se concluye que H₀ es inverosímil y se rechaza a favor de la <strong>hipótesis alternativa (H₁)</strong>.</p>
+      <p>Es crucial entender que un contraste de hipótesis nunca "demuestra" nada con certeza absoluta. Lo que hace es cuantificar la compatibilidad entre los datos y H₀, y a partir de un umbral de probabilidad (el nivel de significación α) tomar una decisión operativa.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Las hipótesis: nula y alternativa</h2>
+
+      <h3>Hipótesis nula (H₀)</h3>
+      <p>La hipótesis nula es el punto de partida conservador. Suele afirmar que no existe efecto, que las medias son iguales o que un parámetro toma un valor concreto. Se redacta siempre con igualdad (=, ≤ o ≥ según el tipo de contraste). Ejemplos:</p>
       <ul>
-        <li><strong>Tamaño muestral:</strong> a mayor n, más fácil detectar diferencias reales pequeñas o moderadas.</li>
-        <li><strong>Tamaño del efecto:</strong> cuanto mayor es la diferencia real entre hipótesis nula y realidad, más fácil detectarla.</li>
-        <li><strong>Variabilidad de los datos:</strong> más ruido implica menos potencia, porque la señal queda más "tapada".</li>
-        <li><strong>Nivel α:</strong> un α muy exigente (por ejemplo 0,01) reduce falsos positivos, pero también puede reducir potencia.</li>
+        <li>H₀: μ = 50 (la media poblacional es 50)</li>
+        <li>H₀: μ₁ = μ₂ (las dos medias son iguales)</li>
+        <li>H₀: p = 0,30 (la proporción es del 30 %)</li>
+        <li>H₀: σ₁² = σ₂² (las varianzas son iguales)</li>
       </ul>
 
-      <h3>Tamaño del efecto vs significación estadística</h3>
-      <p>Otro punto que suele generar dudas: <strong>significativo</strong> no es sinónimo de <strong>importante</strong>. Con muestras muy grandes, diferencias minúsculas pueden dar p-valores muy bajos; con muestras pequeñas, diferencias relevantes pueden no llegar a significativas.</p>
-      <p>Por eso, además del p-valor, conviene reportar siempre:</p>
+      <h3>Hipótesis alternativa (H₁ o Hₐ)</h3>
+      <p>La hipótesis alternativa expresa lo que se sospecha o quiere demostrar: que existe un efecto, una diferencia o un cambio de dirección. Se formula en tres variantes según el tipo de contraste:</p>
       <ul>
-        <li>la <strong>estimación del efecto</strong> (diferencia de medias, diferencia de proporciones, etc.),</li>
-        <li>su <strong>intervalo de confianza</strong>,</li>
-        <li>y una interpretación en contexto (impacto clínico, económico o operativo).</li>
+        <li><strong>Bilateral (dos colas):</strong> H₁: μ ≠ μ₀ — se rechaza tanto si el estadístico es muy alto como si es muy bajo.</li>
+        <li><strong>Unilateral derecho (cola derecha):</strong> H₁: μ &gt; μ₀ — solo se rechaza si el estadístico cae en la cola superior.</li>
+        <li><strong>Unilateral izquierdo (cola izquierda):</strong> H₁: μ &lt; μ₀ — solo se rechaza si el estadístico cae en la cola inferior.</li>
       </ul>
-      <h3>Estadístico de contraste y regiones de decisión</h3>
-      <p>El <strong>estadístico de contraste</strong> resume la evidencia de la muestra (por ejemplo, un estadístico z o t). A partir de su distribución bajo H₀ se define una <strong>región de rechazo</strong> y una <strong>región de no rechazo</strong> (a veces llamada de aceptación en un sentido operativo). Si el estadístico cae en la región de rechazo, se rechaza H₀; si no, no se rechaza.</p>
-      <p>El <strong>p-valor</strong> cuantifica cuán extremos son los datos observados bajo H₀: cuanto menor es, mayor evidencia contra H₀.</p>
+      <p>La elección entre bilateral y unilateral debe tomarse <em>antes</em> de ver los datos, basándose en la pregunta de investigación. Elegir el tipo de contraste <em>después</em> de ver los datos infla artificialmente la tasa de falsos positivos.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>El estadístico de contraste y el p-valor</h2>
+
+      <h3>Estadístico de contraste</h3>
+      <p>El estadístico de contraste es un número calculado a partir de la muestra que resume la evidencia frente a H₀. Su distribución exacta bajo H₀ es conocida matemáticamente, lo que permite calcular probabilidades. Los más habituales son:</p>
+      <ul>
+        <li><strong>z:</strong> cuando se conoce la varianza poblacional o el tamaño de muestra es grande (≥ 30 aproximadamente). Sigue una distribución normal estándar N(0, 1) bajo H₀.</li>
+        <li><strong>t de Student:</strong> cuando se desconoce la varianza poblacional y se estima con la muestra. Sigue una t con n − 1 grados de libertad.</li>
+        <li><strong>F de Snedecor:</strong> en comparaciones de varianzas o en ANOVA, donde se comparan varianzas entre grupos.</li>
+        <li><strong>χ² (chi-cuadrado):</strong> en tablas de contingencia y en contrastes de bondad de ajuste.</li>
+      </ul>
+
+      <h3>El p-valor</h3>
+      <p>El <strong>p-valor</strong> es la probabilidad de obtener un estadístico tan extremo o más extremo que el observado, <em>asumiendo que H₀ es verdadera</em>. Formalmente:</p>
+      <ul>
+        <li>Contraste bilateral: p = P(|T| ≥ |t_obs| | H₀)</li>
+        <li>Cola derecha: p = P(T ≥ t_obs | H₀)</li>
+        <li>Cola izquierda: p = P(T ≤ t_obs | H₀)</li>
+      </ul>
+      <p>Un p-valor pequeño indica que los datos observados serían muy poco probables si H₀ fuese cierta, por lo que hay evidencia en contra de H₀. La decisión se toma comparando el p-valor con el nivel de significación α fijado de antemano:</p>
+      <ul>
+        <li>Si p-valor &lt; α → se <strong>rechaza H₀</strong>.</li>
+        <li>Si p-valor ≥ α → <strong>no se rechaza H₀</strong> (no se "acepta", simplemente no hay evidencia suficiente para rechazarla).</li>
+      </ul>
+
+      <h3>Qué no es el p-valor</h3>
+      <p>El p-valor es uno de los conceptos más malinterpretados en estadística. Es importante tener claro lo que <strong>no</strong> significa:</p>
+      <ul>
+        <li>No es la probabilidad de que H₀ sea verdadera.</li>
+        <li>No es la probabilidad de haber cometido un error.</li>
+        <li>No indica la magnitud ni la importancia práctica del efecto.</li>
+        <li>Un p-valor de 0,049 no es "casi significativo"; 0,051 no es "casi no significativo". El umbral α es una convención operativa, no una frontera del conocimiento.</li>
+      </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>Errores tipo I y tipo II</h2>
+      <p>Al tomar una decisión estadística siempre existe la posibilidad de equivocarse. Hay dos tipos de error distintos, y existe una tensión fundamental entre ellos:</p>
+
+      <div class="decision-grid">
+        <div>
+          <h3>Error tipo I (α) — Falso positivo</h3>
+          <p>Rechazar H₀ cuando en realidad es verdadera. Es el error de "ver un efecto que no existe". La probabilidad de cometerlo es exactamente α (el nivel de significación elegido). Si fijamos α = 0,05, en promedio el 5 % de los contrastes realizados cuando H₀ es cierta producirán un falso positivo.</p>
+        </div>
+        <div>
+          <h3>Error tipo II (β) — Falso negativo</h3>
+          <p>No rechazar H₀ cuando en realidad es falsa. Es el error de "no ver un efecto que sí existe". Su probabilidad es β, y depende del tamaño de muestra, la magnitud del efecto real y el nivel α. Se controla mediante el diseño del estudio.</p>
+        </div>
+        <div>
+          <h3>Potencia estadística (1 − β)</h3>
+          <p>La probabilidad de detectar un efecto real cuando efectivamente existe. Un estudio con potencia del 80 % fallará en detectar el efecto el 20 % de las veces aunque ese efecto sea real. Lo habitual es diseñar estudios con potencia ≥ 0,80.</p>
+        </div>
+      </div>
+
+      <p>La relación entre α y β es inversa si todo lo demás permanece constante: reducir α (ser más exigente para rechazar H₀) aumenta β (hace más difícil detectar efectos reales). La única forma de reducir ambos a la vez es aumentar el tamaño muestral.</p>
+
+      <div class="table-responsive" style="overflow-x:auto; margin-top: 1rem;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem; text-align:center;">
+          <thead>
+            <tr style="background:var(--accent); color:#fff;">
+              <th style="padding:10px 14px; border:1px solid var(--surface-border);"></th>
+              <th style="padding:10px 14px; border:1px solid var(--surface-border);">H₀ verdadera</th>
+              <th style="padding:10px 14px; border:1px solid var(--surface-border);">H₀ falsa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px 14px; border:1px solid var(--surface-border); font-weight:600;">No rechazar H₀</td>
+              <td style="padding:10px 14px; border:1px solid var(--surface-border); color:#16a34a;">Decisión correcta (prob. = 1 − α)</td>
+              <td style="padding:10px 14px; border:1px solid var(--surface-border); color:#dc2626;">Error tipo II (prob. = β)</td>
+            </tr>
+            <tr style="background:var(--bg);">
+              <td style="padding:10px 14px; border:1px solid var(--surface-border); font-weight:600;">Rechazar H₀</td>
+              <td style="padding:10px 14px; border:1px solid var(--surface-border); color:#dc2626;">Error tipo I (prob. = α)</td>
+              <td style="padding:10px 14px; border:1px solid var(--surface-border); color:#16a34a;">Decisión correcta · Potencia (1 − β)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card content-card">
+      <h2>Potencia estadística: qué es y de qué depende</h2>
+      <p>La <strong>potencia</strong> responde a la pregunta: "si de verdad existe el efecto que sospecho, ¿qué probabilidad tiene mi estudio de detectarlo?". Es uno de los criterios más importantes en el diseño de estudios, aunque en la práctica suele quedar en un segundo plano.</p>
+
+      <p>La potencia estadística (1 − β) depende de cuatro factores que interactúan entre sí:</p>
+      <ul>
+        <li><strong>Tamaño muestral (n):</strong> es el factor de mayor impacto práctico. A mayor n, el error estándar se reduce, los intervalos de confianza se estrechan y la distribución del estadístico bajo H₁ se aleja más de la distribución bajo H₀, facilitando la detección.</li>
+        <li><strong>Tamaño del efecto (d, f, w…):</strong> cuanto mayor sea la diferencia real entre el parámetro bajo H₁ y el valor bajo H₀, más fácil será detectarla. Si el efecto real es muy pequeño, se necesitará una muestra mucho mayor para tener suficiente potencia.</li>
+        <li><strong>Variabilidad de los datos (σ):</strong> una mayor dispersión "enmascara" la señal. Con datos más homogéneos, la misma diferencia es más fácil de detectar.</li>
+        <li><strong>Nivel de significación (α):</strong> aumentar α (por ejemplo, pasar de 0,01 a 0,05) amplía la región de rechazo y aumenta la potencia, pero a costa de admitir más falsos positivos.</li>
+      </ul>
+
+      <p>El <strong>análisis de potencia a priori</strong> —realizado antes de recoger datos— permite determinar el tamaño muestral necesario para alcanzar una potencia objetivo (habitualmente 0,80 o 0,90) dado un tamaño de efecto mínimo de interés. Realizarlo es una práctica imprescindible en estudios científicos rigurosos.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Tamaño del efecto: más allá del p-valor</h2>
+      <p><strong>Significativo estadísticamente</strong> no equivale a <strong>importante en la práctica</strong>. Esta confusión es una de las más graves y frecuentes en el uso aplicado de la estadística.</p>
+      <p>Con una muestra muy grande, una diferencia de 0,1 puntos entre dos grupos puede producir p &lt; 0,001, aunque carezca de cualquier relevancia práctica. Al contrario, con muestras pequeñas, una diferencia clínicamente relevante puede no alcanzar significación estadística.</p>
+
+      <p>Los <strong>índices de tamaño del efecto</strong> cuantifican la magnitud de la diferencia en unidades estandarizadas, independientemente del tamaño muestral:</p>
+      <ul>
+        <li><strong>d de Cohen</strong> (diferencia de dos medias): d = (μ₁ − μ₂) / σ_agrupada. Valores orientativos: pequeño ≈ 0,2; mediano ≈ 0,5; grande ≈ 0,8.</li>
+        <li><strong>r de Pearson</strong> (correlación o ANOVA): r = 0,1 (pequeño), 0,3 (mediano), 0,5 (grande).</li>
+        <li><strong>η² y η²_parcial</strong> (ANOVA): proporción de varianza explicada por el factor.</li>
+        <li><strong>w de Cohen</strong> (chi-cuadrado): w = 0,1 (pequeño), 0,3 (mediano), 0,5 (grande).</li>
+        <li><strong>Riesgo relativo, odds ratio</strong> (proporciones): indican cuántas veces más probable es el evento en un grupo respecto al otro.</li>
+      </ul>
+
+      <p>La recomendación de práctica estadística actual es reportar siempre, junto al p-valor:</p>
+      <ul>
+        <li>La estimación puntual del efecto (diferencia de medias, diferencia de proporciones, odds ratio…).</li>
+        <li>El intervalo de confianza del efecto (habitualmente al 95 %).</li>
+        <li>Un índice de tamaño del efecto estandarizado.</li>
+        <li>Una valoración de la relevancia práctica en el contexto del problema.</li>
+      </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>Pasos para realizar un contraste de hipótesis</h2>
+      <p>Independientemente del tipo de contraste, el procedimiento sigue siempre el mismo esquema:</p>
+      <ol style="line-height:2rem;">
+        <li><strong>Plantear las hipótesis:</strong> formular H₀ y H₁ en función de la pregunta de investigación, y decidir si el contraste es bilateral o unilateral.</li>
+        <li><strong>Fijar el nivel de significación (α):</strong> habitualmente 0,05, aunque en contextos más exigentes se usa 0,01. Debe fijarse <em>antes</em> de recoger datos.</li>
+        <li><strong>Verificar los supuestos del test:</strong> normalidad, independencia de las observaciones, homogeneidad de varianzas, tamaño de frecuencias esperadas, etc.</li>
+        <li><strong>Elegir el estadístico apropiado:</strong> z, t, F, χ²… según el tipo de variable, número de grupos y supuestos verificados.</li>
+        <li><strong>Calcular el estadístico y el p-valor</strong> a partir de los datos muestrales.</li>
+        <li><strong>Tomar la decisión:</strong> si p-valor &lt; α, rechazar H₀; si p-valor ≥ α, no rechazar H₀.</li>
+        <li><strong>Calcular el tamaño del efecto</strong> e interpretar los resultados en contexto.</li>
+        <li><strong>Reportar los resultados:</strong> incluir el estadístico, los grados de libertad, el p-valor, el efecto estimado y el intervalo de confianza.</li>
+      </ol>
+    </section>
+
+    <section class="card content-card">
+      <h2>Supuestos habituales y cómo verificarlos</h2>
+      <p>Cada contraste descansa sobre una serie de supuestos que deben cumplirse (al menos aproximadamente) para que la inferencia sea válida. Ignorar los supuestos es una de las fuentes más comunes de resultados engañosos.</p>
+
+      <h3>Normalidad</h3>
+      <p>Los tests paramétricos (t, z, F) suponen que los datos proceden de una distribución normal o, por el Teorema Central del Límite, que el tamaño muestral es suficientemente grande para que el estadístico converja a la distribución teórica. Para n ≥ 30 el TCL suele ser suficiente; con muestras pequeñas conviene verificar normalidad con el <a href="../shapiro-wilk-normalidad.html">test de Shapiro-Wilk</a> o con el <a href="../kolmogorov-smirnov-bondad-ajuste.html">test de Kolmogorov-Smirnov</a>.</p>
+
+      <h3>Independencia de las observaciones</h3>
+      <p>Las observaciones deben ser independientes entre sí. La violación más frecuente ocurre cuando hay medidas repetidas en el mismo sujeto (antes/después) o cuando los datos están agrupados por conglomerados. En estos casos se debe usar un test para muestras apareadas o modelos mixtos.</p>
+
+      <h3>Homogeneidad de varianzas (homocedasticidad)</h3>
+      <p>En el test t de dos muestras independientes y en ANOVA se asume que las varianzas de los grupos son iguales. Puede verificarse con el test de Levene. Si no se cumple, existen variantes robustas como el test de Welch para dos medias.</p>
+
+      <h3>Frecuencias mínimas esperadas (chi-cuadrado)</h3>
+      <p>En las tablas de contingencia, cada celda debe tener una frecuencia esperada de al menos 5 (algunas fuentes dicen 1 si no más del 20 % de celdas están por debajo de 5). Si no se cumple, se debe usar el <a href="../test-exacto-fisher.html">test exacto de Fisher</a>.</p>
     </section>
 
     <section class="card content-card pillar-guide">
-      <h2>Qué contraste estadístico usar</h2>
-      <p>El contraste depende del tipo de variable, el número de grupos y si las muestras son independientes o apareadas. Para una o dos medias se usa normalmente un test t o z; para tres o más medias independientes, ANOVA; para proporciones, un test z; para tablas de contingencia, chi-cuadrado o Fisher; y para normalidad, Shapiro-Wilk o Kolmogorov-Smirnov.</p>
+      <h2>Qué contraste estadístico usar: guía de selección</h2>
+      <p>La elección del contraste depende de tres factores principales: el tipo de variable, el número de grupos o muestras, y si las muestras son independientes o apareadas.</p>
       <div class="decision-grid">
-        <div><h3>Variable numérica</h3><p>Una media, dos medias, ANOVA para tres o más grupos, varianzas y muestras apareadas.</p></div>
-        <div><h3>Variable categórica</h3><p>Una proporción, dos proporciones, independencia o bondad de ajuste.</p></div>
-        <div><h3>Supuestos</h3><p>Revisa normalidad, independencia, tamaños esperados y varianzas antes de interpretar el p-valor.</p></div>
+        <div>
+          <h3>Variable numérica — 1 grupo</h3>
+          <p><a href="../contraste-hipotesis-una-media.html">Contraste de una media</a>: compara la media muestral con un valor hipotético μ₀. Se usa z si se conoce σ, o t si σ es desconocida.</p>
+        </div>
+        <div>
+          <h3>Variable numérica — 2 grupos independientes</h3>
+          <p><a href="../contraste-hipotesis-dos-medias.html">Contraste de dos medias</a>: compara las medias de dos grupos distintos. Se usa t de Welch (varianzas distintas) o t de Student agrupada (varianzas iguales).</p>
+        </div>
+        <div>
+          <h3>Variable numérica — 2 grupos apareados</h3>
+          <p><a href="../contraste-hipotesis-dos-medias.html">Contraste de medias apareadas</a>: cuando cada observación de un grupo está emparejada con una del otro (antes/después, gemelos…). Se calcula sobre las diferencias.</p>
+        </div>
+        <div>
+          <h3>Variable numérica — ≥ 3 grupos</h3>
+          <p><a href="../anova.html">ANOVA de un factor</a>: contrasta si al menos una media difiere del resto. Si ANOVA es significativo, se realizan comparaciones múltiples <em>post hoc</em>.</p>
+        </div>
+        <div>
+          <h3>Variable categórica — 1 grupo</h3>
+          <p><a href="../contraste-hipotesis-una-proporcion.html">Contraste de una proporción</a>: compara la proporción muestral con un valor hipotético p₀. Se usa z si n es grande, o test binomial exacto si n es pequeño.</p>
+        </div>
+        <div>
+          <h3>Variable categórica — 2 grupos independientes</h3>
+          <p><a href="../contraste-hipotesis-dos-proporciones.html">Contraste de dos proporciones</a>: contrasta si las proporciones de dos grupos son iguales. Alternativa: <a href="../test-exacto-fisher.html">Fisher</a> para muestras pequeñas.</p>
+        </div>
+        <div>
+          <h3>Tabla de contingencia (independencia)</h3>
+          <p><a href="../contraste-independencia-chi-cuadrado.html">Chi-cuadrado de independencia</a>: contrasta si dos variables categóricas son independientes. Para tablas 2×2 con frecuencias bajas, usar <a href="../test-exacto-fisher.html">test de Fisher</a>.</p>
+        </div>
+        <div>
+          <h3>Bondad de ajuste</h3>
+          <p><a href="../chi-cuadrado-bondad-ajuste.html">Chi-cuadrado de bondad de ajuste</a>: contrasta si una distribución empírica se ajusta a una distribución teórica. Para distribuciones continuas, <a href="../kolmogorov-smirnov-bondad-ajuste.html">Kolmogorov-Smirnov</a>.</p>
+        </div>
+        <div>
+          <h3>Comparación de varianzas</h3>
+          <p><a href="../contraste-hipotesis-varianzas.html">Contraste de varianzas</a>: usa el estadístico F para comparar dos varianzas poblacionales. Es sensible a la no normalidad.</p>
+        </div>
+        <div>
+          <h3>Verificación de normalidad</h3>
+          <p><a href="../shapiro-wilk-normalidad.html">Shapiro-Wilk</a> (preferido para n &lt; 50) o <a href="../kolmogorov-smirnov-bondad-ajuste.html">Kolmogorov-Smirnov</a> (válido para muestras grandes). Son tests previos, no el contraste principal.</p>
+        </div>
       </div>
     </section>
 
     <section class="card content-card example-card">
-      <h2>Ejemplo resuelto: dos proporciones</h2>
-      <p>Si una variante A convierte 420 de 10.000 visitas y B convierte 480 de 10.000, se contrasta H₀: pA = pB frente a una alternativa de diferencia. La <a href="../contraste-hipotesis-dos-proporciones.html">calculadora de dos proporciones</a> entrega estadístico z, p-valor e intervalo de confianza.</p>
+      <h2>Ejemplo resuelto 1: contraste de una media (test t)</h2>
+      <p><strong>Problema:</strong> Un fabricante afirma que el peso medio de sus paquetes es 500 g. Se toma una muestra de n = 25 paquetes y se obtiene una media muestral de x̄ = 493 g y una desviación típica muestral de s = 15 g. ¿Hay evidencia suficiente para concluir que el peso medio difiere de 500 g con α = 0,05?</p>
+
+      <p><strong>Paso 1 — Hipótesis:</strong><br>
+      H₀: μ = 500 g<br>
+      H₁: μ ≠ 500 g (contraste bilateral)</p>
+
+      <p><strong>Paso 2 — Nivel de significación:</strong> α = 0,05.</p>
+
+      <p><strong>Paso 3 — Verificar supuestos:</strong> muestra aleatoria, σ desconocida → test t con n − 1 = 24 grados de libertad.</p>
+
+      <p><strong>Paso 4 — Estadístico de contraste:</strong><br>
+      t = (x̄ − μ₀) / (s / √n) = (493 − 500) / (15 / √25) = −7 / 3 = <strong>−2,333</strong></p>
+
+      <p><strong>Paso 5 — P-valor:</strong> para t = −2,333 con 24 grados de libertad y contraste bilateral, p-valor ≈ <strong>0,028</strong>.</p>
+
+      <p><strong>Paso 6 — Decisión:</strong> p-valor (0,028) &lt; α (0,05) → <strong>se rechaza H₀</strong>. Hay evidencia estadística suficiente para concluir que el peso medio difiere de 500 g.</p>
+
+      <p><strong>Paso 7 — Tamaño del efecto:</strong> d de Cohen = (x̄ − μ₀) / s = 7 / 15 ≈ 0,47 (efecto medio-moderado). El intervalo de confianza al 95 % para μ sería aproximadamente (486,8 g ; 499,2 g).</p>
+
+      <p>Puedes verificar este resultado con la <a href="../contraste-hipotesis-una-media.html">calculadora de contraste de una media</a>.</p>
+    </section>
+
+    <section class="card content-card example-card">
+      <h2>Ejemplo resuelto 2: contraste de dos proporciones</h2>
+      <p><strong>Problema:</strong> Una empresa lanza una nueva página de aterrizaje (variante B) frente a la actual (variante A). En la variante A, 420 de 10.000 visitantes realizan una compra. En la variante B, 480 de 10.000 visitantes compran. ¿Hay evidencia de que la tasa de conversión es diferente entre las dos variantes? α = 0,05.</p>
+
+      <p><strong>Hipótesis:</strong><br>
+      H₀: p_A = p_B (las tasas de conversión son iguales)<br>
+      H₁: p_A ≠ p_B (bilateral)</p>
+
+      <p><strong>Proporciones muestrales:</strong><br>
+      p̂_A = 420 / 10.000 = 0,042 (4,2 %)<br>
+      p̂_B = 480 / 10.000 = 0,048 (4,8 %)</p>
+
+      <p><strong>Proporción agrupada bajo H₀:</strong><br>
+      p̂ = (420 + 480) / (10.000 + 10.000) = 900 / 20.000 = 0,045</p>
+
+      <p><strong>Estadístico z:</strong><br>
+      z = (p̂_A − p̂_B) / √[p̂(1 − p̂)(1/n_A + 1/n_B)]<br>
+      z = (0,042 − 0,048) / √[0,045 × 0,955 × (1/10.000 + 1/10.000)]<br>
+      z = −0,006 / √[0,045 × 0,955 × 0,0002]<br>
+      z = −0,006 / √[0,00000859] ≈ −0,006 / 0,002931 ≈ <strong>−2,047</strong></p>
+
+      <p><strong>P-valor</strong> (bilateral): p ≈ 0,041.</p>
+
+      <p><strong>Decisión:</strong> p (0,041) &lt; α (0,05) → se rechaza H₀. La diferencia de 0,6 puntos porcentuales es estadísticamente significativa. Sin embargo, el tamaño del efecto es muy pequeño (w ≈ 0,02), y conviene valorar si un incremento relativo del ~14 % en conversión tiene relevancia económica real antes de tomar decisiones.</p>
+
+      <p>Prueba con la <a href="../contraste-hipotesis-dos-proporciones.html">calculadora de dos proporciones</a>.</p>
+    </section>
+
+    <section class="card content-card example-card">
+      <h2>Ejemplo resuelto 3: chi-cuadrado de independencia</h2>
+      <p><strong>Problema:</strong> Se quiere saber si el género está asociado a la preferencia por tres tipos de música (pop, rock, electrónica). Se encuesta a 300 personas y se obtiene la siguiente tabla:</p>
+
+      <div style="overflow-x:auto; margin: 1rem 0;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.9rem; text-align:center;">
+          <thead>
+            <tr style="background:var(--accent); color:#fff;">
+              <th style="padding:8px 12px; border:1px solid var(--surface-border);"></th>
+              <th style="padding:8px 12px; border:1px solid var(--surface-border);">Pop</th>
+              <th style="padding:8px 12px; border:1px solid var(--surface-border);">Rock</th>
+              <th style="padding:8px 12px; border:1px solid var(--surface-border);">Electrónica</th>
+              <th style="padding:8px 12px; border:1px solid var(--surface-border);">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border); font-weight:600;">Hombres</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">50</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">70</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">30</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">150</td>
+            </tr>
+            <tr style="background:var(--bg);">
+              <td style="padding:8px 12px; border:1px solid var(--surface-border); font-weight:600;">Mujeres</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">80</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">40</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">30</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">150</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border); font-weight:600;">Total</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">130</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">110</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">60</td>
+              <td style="padding:8px 12px; border:1px solid var(--surface-border);">300</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Hipótesis:</strong><br>
+      H₀: el género y la preferencia musical son independientes<br>
+      H₁: existe asociación entre género y preferencia musical</p>
+
+      <p><strong>Estadístico χ²</strong> = Σ [(O − E)² / E], donde E = (total fila × total columna) / n.</p>
+      <p>Calculando las frecuencias esperadas y el estadístico: χ² ≈ <strong>18,46</strong> con (2 − 1)(3 − 1) = 2 grados de libertad.</p>
+      <p><strong>P-valor</strong> ≈ 0,0001 &lt; 0,05 → se rechaza H₀. El género está significativamente asociado a la preferencia musical. El tamaño del efecto (V de Cramér ≈ 0,25) indica una asociación moderada.</p>
+
+      <p>Calcula el tuyo con la <a href="../contraste-independencia-chi-cuadrado.html">calculadora de chi-cuadrado de independencia</a>.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Errores frecuentes y mitos sobre los contrastes de hipótesis</h2>
+
+      <h3>1. "p &lt; 0,05 significa que hay un efecto real"</h3>
+      <p>Un p-valor pequeño solo indica que los datos son poco compatibles con H₀. No garantiza que el efecto sea real ni reproducible. Con muchas comparaciones simultáneas (problema de comparaciones múltiples), es esperable obtener p &lt; 0,05 por puro azar.</p>
+
+      <h3>2. "p = 0,06 no es significativo, así que no hay efecto"</h3>
+      <p>La ausencia de significación estadística no es evidencia de ausencia de efecto. Puede deberse a una muestra insuficiente. Informar solo si se cruzó el umbral de 0,05 es una práctica pobre que descarta información valiosa.</p>
+
+      <h3>3. "El p-valor es la probabilidad de que H₀ sea verdadera"</h3>
+      <p>El p-valor es P(datos tan extremos o más | H₀ verdadera), no P(H₀ verdadera | datos). Para obtener probabilidades sobre hipótesis se necesita un enfoque bayesiano con una distribución a priori.</p>
+
+      <h3>4. "Con n grande siempre se obtiene significación"</h3>
+      <p>Correcto, pero ese es precisamente el problema. Con n = 1.000.000, una diferencia irrelevante de 0,001 unidades puede tener p &lt; 0,001. Por eso el tamaño del efecto y el intervalo de confianza son indispensables.</p>
+
+      <h3>5. "Si el test no cumple supuestos, los resultados no sirven"</h3>
+      <p>Depende del grado de violación. Muchos tests son robustos ante desviaciones moderadas de la normalidad, especialmente con n grande. En casos graves, existen alternativas no paramétricas o transformaciones de los datos.</p>
+
+      <h3>6. "Un contraste de hipótesis es suficiente para tomar una decisión"</h3>
+      <p>Un contraste es una herramienta, no un oráculo. Las decisiones deben integrarse con el contexto, los costes, el tamaño del efecto y la incertidumbre representada por el intervalo de confianza.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Recomendaciones de buenas prácticas</h2>
+      <ul>
+        <li><strong>Pre-registro:</strong> Define las hipótesis, el tamaño muestral y el nivel α antes de recoger datos. Evita el p-hacking (ajustar el análisis hasta obtener p &lt; 0,05).</li>
+        <li><strong>Calcula el tamaño muestral a priori</strong> mediante un análisis de potencia. Usa las <a href="../tamano-muestral/">calculadoras de tamaño muestral</a> disponibles.</li>
+        <li><strong>Reporta el efecto estimado y su intervalo de confianza</strong>, no solo el p-valor y la decisión.</li>
+        <li><strong>Distingue significación estadística de relevancia práctica.</strong> Interpreta los resultados en el contexto del problema real.</li>
+        <li><strong>Verifica los supuestos</strong> del test antes de interpretar los resultados.</li>
+        <li><strong>Aplica corrección por comparaciones múltiples</strong> (Bonferroni, Benjamini-Hochberg…) cuando realices más de un contraste simultáneamente.</li>
+        <li><strong>Considera el enfoque bayesiano</strong> como alternativa o complemento, especialmente cuando la distribución a priori tiene información relevante.</li>
+      </ul>
     </section>
 
   </main>
