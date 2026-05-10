@@ -210,20 +210,29 @@
         <article class="card content-card">
         <h2>Distribución hipergeométrica</h2>
         <h3>Explicación breve</h3>
-        <p>La distribución hipergeométrica es una distribución de probabilidad que describe el número de éxitos x en una extracción
-            aleatoria y sin reemplazo de n elementos de una población de tamaño N que contiene K éxitos totales.
-            Esta distribución se utiliza en situaciones donde se realizan extracciones sin reemplazo,
-            y cada extracción puede resultar en un éxito o un fracaso.</p>
+        <p>La distribución hipergeométrica modela el número de éxitos en una muestra extraída sin reemplazo de una población finita.
+        A diferencia de la binomial, que asume extracción con reemplazo (probabilidad constante en cada intento),
+        la hipergeométrica tiene en cuenta que cada extracción modifica la composición del grupo restante,
+        lo que hace que los ensayos no sean independientes.
+        Cuando la población es muy grande en comparación con la muestra (N ≫ n), la hipergeométrica se aproxima bien
+        a la binomial con p = K/N. Su media es n·K/N y su varianza es n·(K/N)·(1 − K/N)·(N − n)/(N − 1),
+        donde el factor (N − n)/(N − 1) es la corrección por población finita que reduce la varianza respecto a la binomial.</p>
         <h3>Fórmula</h3>
         <p class="formula-line">\( P(X=x)=\frac{\binom{K}{x}\binom{N-K}{n-x}}{\binom{N}{n}} \)</p>
         <h3>Parámetros</h3>
         <ul>
-            <li><strong>N:</strong> tamaño total de la población.</li>
-            <li><strong>K:</strong> éxitos totales en la población.</li>
-            <li><strong>n:</strong> tamaño de muestra sin reemplazo.</li>
+            <li><strong>N:</strong> tamaño total de la población (número entero positivo).</li>
+            <li><strong>K:</strong> número de elementos de interés (éxitos) en la población. Debe cumplir 0 ≤ K ≤ N.</li>
+            <li><strong>n:</strong> tamaño de la muestra extraída sin reemplazo. Debe cumplir 0 ≤ n ≤ N.</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Ideal para auditoría de lotes, control de calidad y escenarios donde extraes elementos sin reposición.</p>
+        <p>Un inspector de calidad audita un lote de N = 50 unidades del que se sabe que K = 8 son defectuosas.
+        Extrae una muestra aleatoria de n = 10 unidades sin reposición.
+        El número de defectuosas en la muestra sigue una Hipergeométrica(N = 50, K = 8, n = 10).
+        La media es 10 × 8/50 = 1,6 defectuosas esperadas.
+        Con la calculadora, usa la probabilidad acumulada con x = 0 para saber la probabilidad de que ninguna unidad
+        defectuosa entre en la muestra (≈ 17 %), o con x = 3 para calcular la probabilidad de encontrar 3 o más defectos
+        y decidir si se rechaza el lote.</p>
     </article>
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>

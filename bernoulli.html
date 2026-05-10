@@ -208,18 +208,28 @@
         </section>
 
         <article class="card content-card">
-        <h2>Distribución bernoulli</h2>
+        <h2>Distribución Bernoulli</h2>
         <h3>Explicación breve</h3>
-        <p>La distribución Bernoulli es el caso más simple: un único ensayo con dos resultados posibles (éxito/fracaso).</p>
+        <p>La distribución Bernoulli modela el resultado de un único experimento aleatorio con exactamente dos posibles resultados:
+        éxito (X = 1) con probabilidad p, y fracaso (X = 0) con probabilidad 1 − p.
+        Es la distribución discreta más elemental y sirve de bloque fundamental para construir otras distribuciones:
+        la suma de n ensayos Bernoulli independientes con la misma p da lugar a la distribución binomial.
+        Se aplica siempre que una observación sea de tipo sí/no: un cliente compra o no compra, un componente falla o no falla,
+        un correo es spam o no lo es. Su media es p y su varianza es p(1 − p), que alcanza su máximo en p = 0,5.</p>
         <h3>Fórmula</h3>
-        <p class="formula-line">\( P(X=1)=p,\quad P(X=0)=1-p \)</p>
+        <p class="formula-line">\( P(X=k)=p^{k}(1-p)^{1-k},\quad k\in\{0,1\} \)</p>
         <h3>Parámetros</h3>
         <ul>
-            <li><strong>p:</strong> probabilidad de éxito (X=1).</li>
-            <li><strong>x:</strong> solo toma valores 0 o 1.</li>
+            <li><strong>p:</strong> probabilidad de éxito, con 0 ≤ p ≤ 1.</li>
+            <li><strong>x:</strong> solo toma los valores 0 (fracaso) o 1 (éxito).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Es la base de modelos binarios (clic/no clic, compra/no compra) y del modelo binomial.</p>
+        <p>Una tienda online registra que el 8 % de los visitantes añaden un artículo al carrito.
+        Modelamos cada visita como un ensayo Bernoulli con p = 0,08.
+        La probabilidad de éxito (añadir al carrito) es P(X = 1) = 0,08 y la de fracaso es P(X = 0) = 0,92.
+        La varianza del proceso es p(1 − p) = 0,08 × 0,92 = 0,0736, lo que nos da una desviación estándar de ≈ 0,27.
+        Si repetimos el experimento para n = 500 visitas diarias, el número esperado de conversiones es 500 × 0,08 = 40,
+        y podemos modelar ese total con una distribución binomial de parámetros n = 500 y p = 0,08.</p>
     </article>
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
