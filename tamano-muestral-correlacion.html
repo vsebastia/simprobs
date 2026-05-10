@@ -147,15 +147,25 @@
         <section class="card content-card">
             <h2>Explicación breve</h2>
             <p>Este cálculo determina cuántos pares de observaciones (n) se necesitan para detectar una correlación poblacional \(\rho\) diferente de cero con una potencia y un nivel de significación dados. La lógica es diferente a la de las calculadoras de medias o proporciones: aquí se utiliza la <strong>transformación z de Fisher</strong>, que estabiliza la varianza de \(\hat{\rho}\).</p>
+            <p>El estimador muestral \(\hat{\rho}\) (correlación de Pearson) tiene una distribución sesgada y asimétrica cuando \(\rho \neq 0\), con varianza que depende del propio \(\rho\). La transformación \(z = \operatorname{arctanh}(\hat{\rho})\) convierte esta distribución en aproximadamente normal con varianza \(1/(n-3)\), independiente de \(\rho\). Esto permite derivar n de forma directa a partir del cociente señal-ruido.</p>
 
             <h2>Fórmula de tamaño muestral</h2>
             <p>Sea \(z_\rho = \operatorname{arctanh}(\rho) = \frac{1}{2}\ln\!\left(\frac{1+\rho}{1-\rho}\right)\). Entonces:</p>
             <p class="formula-line">\( n = \left\lceil \frac{(Z_{\alpha/2} + Z_\beta)^2}{z_\rho^2} \right\rceil + 3 \)</p>
             <p>donde \(Z_{\alpha/2}\) es el cuantil normal para contraste bilateral (o \(Z_\alpha\) para unilateral) y \(Z_\beta = \Phi^{-1}(1-\beta)\).</p>
             <ul>
-                <li><strong>ρ</strong>: correlación mínima de interés (en valor absoluto).</li>
-                <li><strong>+3</strong>: corrección estándar derivada de la distribución exacta de \(\hat{\rho}\).</li>
-                <li>Referencia: ρ = 0,10 (pequeña), 0,30 (moderada), 0,50 (grande).</li>
+                <li><strong>ρ</strong>: correlación mínima de interés (en valor absoluto). El signo no importa para el tamaño muestral.</li>
+                <li><strong>z<sub>ρ</sub></strong>: la transformación arctanh actúa como el "efecto estandarizado"; correlaciones pequeñas producen z<sub>ρ</sub> pequeños y n grandes.</li>
+                <li><strong>+3</strong>: corrección estándar derivada de la distribución exacta de \(\hat{\rho}\); mejora la aproximación para n pequeños.</li>
+                <li>Referencia (Cohen, 1988): ρ = 0,10 (pequeña), 0,30 (moderada), 0,50 (grande).</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li><strong>Normalidad bivariada:</strong> la fórmula asume que (X, Y) sigue una distribución normal bivariada. Desviaciones severas afectan la distribución de \(\hat{\rho}\).</li>
+                <li><strong>Independencia:</strong> cada par (x<sub>i</sub>, y<sub>i</sub>) es independiente de los demás.</li>
+                <li><strong>Relación lineal:</strong> la correlación de Pearson mide únicamente asociación lineal; una relación curvilínea fuerte con ρ ≈ 0 no sería detectada.</li>
+                <li><strong>Ausencia de valores atípicos influyentes:</strong> los outliers pueden distorsionar gravemente \(\hat{\rho}\); en muestras pequeñas es especialmente relevante.</li>
             </ul>
         </section>
 
@@ -164,18 +174,28 @@
             <ul>
                 <li><strong>ρ desconocido:</strong> usa ρ = 0,30 como referencia conservadora de efecto moderado.</li>
                 <li><strong>Contraste bilateral:</strong> usa cuando no tienes hipótesis direccional previa.</li>
-                <li><strong>Contraste unilateral:</strong> solo si tienes razones sólidas para esperar una correlación positiva (o negativa).</li>
-                <li><strong>Potencia:</strong> 0,80 es el mínimo habitual; 0,90 para estudios confirmatorios.</li>
+                <li><strong>Contraste unilateral:</strong> solo si tienes razones sólidas para esperar una correlación positiva (o negativa) — reduce n pero exige justificación a priori.</li>
+                <li><strong>Potencia:</strong> 0,80 es el mínimo habitual; 0,90 para estudios confirmatorios o validación psicométrica.</li>
             </ul>
 
             <h2>Ejemplo sencillo</h2>
-            <p>Quieres detectar una correlación de al menos ρ = 0,30 con α = 0,05 bilateral y potencia 0,80. Necesitas aproximadamente <strong>84 pares de observaciones</strong>.</p>
+            <p>Quieres detectar una correlación de al menos ρ = 0,30 con α = 0,05 bilateral y potencia 0,80. La transformación da z<sub>ρ</sub> = arctanh(0,30) ≈ 0,3095. Necesitas aproximadamente <strong>84 pares de observaciones</strong>.</p>
 
             <h2>Usos frecuentes</h2>
             <ul>
-                <li>Validación de escalas psicométricas y cuestionarios.</li>
-                <li>Estudios de asociación entre dos variables continuas (biomarcadores, escalas clínicas).</li>
-                <li>Análisis de fiabilidad inter-observador (correlación intraclase, Pearson).</li>
+                <li>Validación de escalas psicométricas y cuestionarios (correlación ítem-total, fiabilidad test-retest).</li>
+                <li>Estudios de asociación entre dos variables continuas (biomarcadores, escalas clínicas, parámetros fisiológicos).</li>
+                <li>Análisis de concordancia inter-observador mediante correlación de Pearson o intraclase.</li>
+                <li>Estudios de validación de métodos de medición (p. ej. comparación de dos técnicas de laboratorio).</li>
+            </ul>
+
+            <h2>Referencias externas</h2>
+            <ul>
+                <li><a href="https://es.wikipedia.org/wiki/Coeficiente_de_correlaci%C3%B3n_de_Pearson" target="_blank" rel="noopener">Coeficiente de correlación de Pearson (Wikipedia en español)</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Fisher_transformation" target="_blank" rel="noopener">Fisher transformation (Wikipedia en inglés)</a> — transformación arctanh y su uso para inferencia sobre ρ</li>
+                <li><a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient" target="_blank" rel="noopener">Pearson correlation coefficient (Wikipedia en inglés)</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Sample_size_determination" target="_blank" rel="noopener">Sample size determination (Wikipedia en inglés)</a></li>
+                <li>Cohen, J. (1988). <em>Statistical Power Analysis for the Behavioral Sciences</em> (2ª ed.). Lawrence Erlbaum Associates. — referencia de los umbrales ρ = 0,10/0,30/0,50.</li>
             </ul>
         </section>
 
@@ -198,10 +218,11 @@
             </section>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué es la transformación z de Fisher?</strong> z = arctanh(ρ); estabiliza la varianza de r̂ para aplicar la aproximación normal.</li>
-                <li><strong>¿Correlación negativa?</strong> El módulo |ρ| es lo que determina el tamaño muestral; usa el valor absoluto.</li>
-                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar un efecto real cuando existe.</li>
-                <li><strong>¿El tamaño muestral es exacto?</strong> Es una aproximación; funciona bien para n > 20.</li>
+                <li><strong>¿Qué es la transformación z de Fisher?</strong> z = arctanh(ρ) = ½·ln((1+ρ)/(1−ρ)); convierte la distribución sesgada de r̂ en aproximadamente normal con varianza 1/(n−3), lo que permite aplicar la aproximación normal para derivar n directamente.</li>
+                <li><strong>¿Correlación negativa?</strong> El módulo |ρ| es lo que determina el tamaño muestral; la dirección (positiva o negativa) no afecta a n, aunque sí al tipo de contraste (usa unilateral si tienes una hipótesis direccional).</li>
+                <li><strong>¿Qué diferencia hay entre bilateral y unilateral?</strong> Bilateral (H₁: ρ ≠ 0) usa Z_{α/2} y es apropiado cuando no tienes hipótesis previa sobre el signo. Unilateral (H₁: ρ > 0) usa Z_α y da n ligeramente menor, pero exige justificación a priori.</li>
+                <li><strong>¿Funciona para correlación de Spearman o tau?</strong> La fórmula de Fisher es estricta para la correlación de Pearson con normalidad bivariada. Para Spearman puede usarse como aproximación, aunque con menor precisión.</li>
+                <li><strong>¿El tamaño muestral es exacto?</strong> Es una aproximación; funciona bien para n > 20. Para n muy pequeños, métodos exactos (simulación o tablas de potencia) son más precisos.</li>
             </ul>
         </section>
     </main>

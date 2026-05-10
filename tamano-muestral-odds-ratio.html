@@ -143,7 +143,8 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p>En un estudio <strong>caso-control</strong> el parámetro de interés no es la diferencia de medias sino el <strong>odds ratio</strong>: el cociente entre las odds de exposición en casos y en controles. Para calcular el tamaño muestral se transforma el OR en proporciones de exposición y se aplica la fórmula de dos proporciones independientes.</p>
+            <p>En un estudio <strong>caso-control</strong> el parámetro de interés no es la diferencia de medias sino el <strong>odds ratio</strong> (OR): el cociente entre las odds de exposición en casos y en controles. El OR es una medida de asociación fundamental en epidemiología, especialmente útil cuando la enfermedad es rara, porque estima el riesgo relativo con buena aproximación en ese escenario.</p>
+            <p>Para calcular el tamaño muestral se convierte el OR en proporciones de exposición y se aplica la fórmula de Fleiss para dos proporciones independientes. La clave es que el OR define implícitamente la proporción de expuestos en los casos (\(p_1\)) a partir de la proporción en controles (\(p_0\)) y del OR deseado. Permite además ajustar la razón de controles por caso (r), lo que resulta útil cuando los casos son escasos y los controles abundantes.</p>
 
             <h2>Fórmula de tamaño muestral</h2>
             <p>Sea \(p_0\) la proporción de expuestos en controles. La proporción en casos se obtiene como:</p>
@@ -152,29 +153,49 @@
             <p class="formula-line">\( n_{\text{casos}} = \frac{\left(Z_{\alpha/2}\sqrt{(1+1/r)\,\bar{p}(1-\bar{p})} + Z_\beta\sqrt{p_1(1-p_1)+p_0(1-p_0)/r}\right)^2}{(p_1-p_0)^2} \)</p>
             <p class="formula-line">\( n_{\text{controles}} = r\cdot n_{\text{casos}} \)</p>
             <ul>
-                <li><strong>p₀</strong>: prevalencia de exposición en la población de controles.</li>
-                <li><strong>p₁</strong>: prevalencia implícita en casos dado el OR.</li>
-                <li><strong>r</strong>: número de controles por caso.</li>
+                <li><strong>p₀</strong>: prevalencia de exposición en la población de controles (o en la población general si la enfermedad es rara).</li>
+                <li><strong>p₁</strong>: prevalencia implícita de exposición en casos dado el OR; se calcula automáticamente.</li>
+                <li><strong>r</strong>: número de controles por caso. Aumentar r incrementa la potencia cuando los casos son escasos, pero con rendimientos decrecientes: pasar de r = 1 a r = 2 gana más que de r = 3 a r = 4.</li>
+                <li><strong>p̄</strong>: proporción ponderada de exposición conjunta en la muestra.</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li><strong>Muestreo independiente:</strong> casos y controles se seleccionan de forma independiente, sin emparejamiento (para diseños emparejados, usar el método de McNemar).</li>
+                <li><strong>Exposición binaria:</strong> el factor de riesgo se considera expuesto/no expuesto. Para exposiciones politómicas o continuas se necesitan otros enfoques.</li>
+                <li><strong>p₀ estable:</strong> la prevalencia de exposición en controles debe ser representativa de la población fuente de los casos.</li>
+                <li><strong>OR constante:</strong> la fórmula supone un OR homogéneo; no considera interacción ni confusión residual.</li>
+                <li><strong>Enfermedad rara:</strong> la interpretación del OR como aproximación al riesgo relativo es válida cuando la incidencia es baja (&lt; 10 %). Con enfermedades frecuentes, el OR sobreestima el RR.</li>
             </ul>
         </section>
 
         <section class="card content-card">
             <h2>Configuración rápida</h2>
             <ul>
-                <li><strong>p₀:</strong> usa datos poblacionales o registros de salud. Si es desconocido, 0,20–0,30 es frecuente en muchos factores de riesgo.</li>
-                <li><strong>OR:</strong> el OR mínimo relevante que quieres detectar. OR = 2 es un efecto moderado en epidemiología.</li>
-                <li><strong>r:</strong> aumentar a 2–3 controles por caso mejora la potencia cuando los casos son escasos; más de 4 aporta poco.</li>
-                <li><strong>OR protector (OR &lt; 1):</strong> introdúcelo directamente; la calculadora lo maneja correctamente.</li>
+                <li><strong>p₀:</strong> usa datos poblacionales o registros de salud. Si es desconocido, 0,20–0,30 es frecuente en muchos factores de riesgo ambientales y de estilo de vida.</li>
+                <li><strong>OR:</strong> el OR mínimo relevante que quieres detectar. OR = 2 es un efecto moderado en epidemiología; OR = 1,5 es pequeño y requiere muestras grandes.</li>
+                <li><strong>r:</strong> aumentar a 2–3 controles por caso mejora la potencia cuando los casos son escasos; más de 4 controles por caso aporta poca ganancia adicional de potencia.</li>
+                <li><strong>OR protector (OR &lt; 1):</strong> introdúcelo directamente; la calculadora lo maneja correctamente (p₁ &lt; p₀ en ese caso).</li>
             </ul>
 
             <h2>Ejemplo sencillo</h2>
-            <p>Estudio sobre tabaquismo y cáncer: exposición en controles p₀ = 0,30, OR = 2,0, α = 0,05 bilateral, potencia 0,80, relación 1:1. Necesitas aproximadamente <strong>113 casos y 113 controles</strong> (total ≈ 226).</p>
+            <p>Estudio sobre tabaquismo y cáncer de pulmón: exposición (fumadores) en controles p₀ = 0,30, OR = 2,0, α = 0,05 bilateral, potencia 0,80, relación 1:1. Esto implica p₁ = 0,462. Necesitas aproximadamente <strong>113 casos y 113 controles</strong> (total ≈ 226).</p>
 
             <h2>Usos frecuentes</h2>
             <ul>
-                <li>Estudios sobre factores de riesgo de enfermedades raras.</li>
-                <li>Farmacoepidemiología y vigilancia de efectos adversos.</li>
-                <li>Investigación de brotes o exposiciones ocupacionales.</li>
+                <li>Estudios sobre factores de riesgo de enfermedades raras (canceres poco frecuentes, enfermedades autoinmunes).</li>
+                <li>Farmacoepidemiología y vigilancia de efectos adversos de medicamentos.</li>
+                <li>Investigación de brotes infecciosos o exposiciones ocupacionales.</li>
+                <li>Estudios de casos y controles anidados en cohortes.</li>
+            </ul>
+
+            <h2>Referencias externas</h2>
+            <ul>
+                <li><a href="https://es.wikipedia.org/wiki/Odds_ratio" target="_blank" rel="noopener">Odds ratio (Wikipedia en español)</a> — definición, interpretación y relación con el riesgo relativo</li>
+                <li><a href="https://en.wikipedia.org/wiki/Odds_ratio" target="_blank" rel="noopener">Odds ratio (Wikipedia en inglés)</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Case%E2%80%93control_study" target="_blank" rel="noopener">Case–control study (Wikipedia en inglés)</a> — diseño, ventajas, limitaciones y sesgos comunes</li>
+                <li><a href="https://en.wikipedia.org/wiki/Sample_size_determination" target="_blank" rel="noopener">Sample size determination (Wikipedia en inglés)</a></li>
+                <li>Fleiss, J. L., Levin, B., &amp; Paik, M. C. (2003). <em>Statistical Methods for Rates and Proportions</em> (3ª ed.). Wiley. — fuente de la fórmula de dos proporciones aquí implementada.</li>
             </ul>
         </section>
 
@@ -197,10 +218,11 @@
             </section>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué es el odds ratio?</strong> La razón de odds de exposición entre casos y controles. OR = 1 implica sin asociación.</li>
-                <li><strong>¿Cómo obtengo p₀?</strong> De estudios previos o registros de prevalencia del factor de riesgo en la población.</li>
-                <li><strong>¿El tamaño muestral es exacto?</strong> No; depende de los supuestos y se redondea al entero superior.</li>
-                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar el OR cuando realmente existe.</li>
+                <li><strong>¿Qué es el odds ratio?</strong> La razón de odds de exposición entre casos y controles: OR = [p₁/(1−p₁)] / [p₀/(1−p₀)]. OR = 1 implica sin asociación; OR > 1, el factor es de riesgo; OR &lt; 1, es protector.</li>
+                <li><strong>¿Por qué no usar el riesgo relativo (RR) directamente?</strong> En estudios caso-control, el investigador elige cuántos casos y controles incluir, por lo que no se puede estimar la incidencia real y, por tanto, tampoco el RR. El OR sí se puede estimar directamente y aproxima bien al RR cuando la enfermedad es rara (&lt; 10 %).</li>
+                <li><strong>¿Cómo obtengo p₀?</strong> De estudios de prevalencia, encuestas nacionales de salud o registros de la exposición en la población de referencia. Pequeños errores en p₀ pueden afectar bastante al n calculado.</li>
+                <li><strong>¿Cuántos controles por caso?</strong> Aumentar r de 1 a 2 o 3 reduce n de casos notablemente cuando los casos son escasos; pasar de r = 3 a r = 4 aporta poco. La regla práctica es r ≤ 4.</li>
+                <li><strong>¿El tamaño muestral es exacto?</strong> No; depende de los supuestos (p₀, OR real) y se redondea al entero superior. Añade un margen del 10–20 % por pérdidas esperadas.</li>
             </ul>
         </section>
     </main>

@@ -165,61 +165,78 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p>En diseños apareados se mide dos veces a la misma unidad (antes y después). El análisis se hace sobre la diferencia por pareja, por eso se usa la desviación estándar de diferencias.</p>
+            <p>En un diseño apareado se mide la misma unidad experimental en dos condiciones (antes/después, tratamiento/control cruzado, ojo derecho/izquierdo). El contraste de interés no es la diferencia de medias de dos grupos independientes, sino la <strong>media de las diferencias individuales</strong> \(\bar{d} = \bar{X}_1 - \bar{X}_2\).</p>
+            <p>La ventaja clave del diseño apareado es que elimina la variabilidad entre individuos, que suele ser la mayor fuente de ruido. Por eso, el parámetro relevante es \(\sigma_d\) (desviación estándar de las diferencias intraindividuales), que generalmente es mucho menor que \(\sigma\) de cada grupo por separado. Esto se traduce en muestras significativamente más pequeñas comparado con el diseño de dos grupos independientes.</p>
+            <p>La relación entre \(\sigma_d\) y las desviaciones estándar de cada medición es: \(\sigma_d^2 = \sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2\), donde \(\rho\) es la correlación entre ambas mediciones. Cuanto mayor sea \(\rho\), menor será \(\sigma_d\) y más eficiente el diseño apareado.</p>
 
             <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n = \left(\frac{(Z_{\alpha/2}+Z_\beta)\sigma_d}{\Delta}\right)^2 \)</p>
+            <p class="formula-line">\( n = \left\lceil\left(\frac{(Z_{\alpha/2}+Z_\beta)\,\sigma_d}{\Delta}\right)^2\right\rceil \)</p>
             <ul>
-                <li><strong>σd</strong>: desviación estándar de las diferencias.</li>
-                <li><strong>Δ</strong>: cambio medio mínimo a detectar.</li>
-                <li><strong>n</strong>: número de pares.</li>
+                <li><strong>n</strong>: número de pares (individuos o unidades, no observaciones totales).</li>
+                <li><strong>\(\sigma_d\)</strong>: desviación estándar de las diferencias intraindividuales (no de cada grupo).</li>
+                <li><strong>\(\Delta\)</strong>: diferencia media mínima que quieres detectar.</li>
+                <li><strong>\(Z_{\alpha/2}\)</strong> y <strong>\(Z_\beta\)</strong>: cuantiles normales para alfa bilateral y potencia.</li>
             </ul>
         </section>
 
         <section class="card content-card">
             <h2>Configuración rápida</h2>
             <ul>
-                <li>Estima σd con piloto, no σ de cada medición por separado.</li>
-                <li>Usa α=0.05 y potencia 0.8 como base.</li>
-                <li>Define Δ como cambio clínico/operativo relevante.</li>
+                <li><strong>σd:</strong> estímala de un piloto apareado (mide diferencias en cada par) o de la literatura. <em>No</em> uses las σ individuales de cada grupo por separado.</li>
+                <li><strong>Si solo tienes σ individual y ρ estimada:</strong> calcula σd = σ·√(2(1−ρ)) asumiendo varianzas iguales.</li>
+                <li><strong>Δ:</strong> la diferencia mínima prácticamente relevante (cambio clínico mínimo, mínima mejora operativa).</li>
+                <li><strong>Alfa y potencia:</strong> 0,05 y 0,80 como base; 0,90 si los falsos negativos son costosos.</li>
             </ul>
 
             <h2>Ejemplo sencillo</h2>
-            <p>Si σd=8, Δ=3, α=0.05 y potencia=0.8, necesitas ~56 pares.</p>
+            <p>Intervención de entrenamiento: <strong>σd = 8</strong>, cambio mínimo a detectar <strong>Δ = 3</strong>, <strong>α = 0,05</strong>, potencia <strong>0,80</strong>. Resultado: <strong>≈ 56 pares</strong>. Para la misma situación con dos grupos independientes (σ = 8) necesitarías ~113 por grupo si ρ = 0, pero solo ~56 pares si ρ = 0,5 gracias al diseño apareado.</p>
 
             <h2>Usos frecuentes</h2>
             <ul>
-                <li>Programas de mejora pre y post intervención.</li>
-                <li>Estudios de entrenamiento.</li>
-                <li>Evaluaciones de cambio en pacientes.</li>
+                <li>Estudios pre-post intervención (antes y después del tratamiento).</li>
+                <li>Diseños cruzados (crossover) en ensayos clínicos.</li>
+                <li>Comparación de dos métodos de medición aplicados al mismo sujeto.</li>
+                <li>Evaluaciones de cambio de habilidad, peso, presión arterial, etc.</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li>Las diferencias \(d_i = X_{1i} - X_{2i}\) son independientes entre pares.</li>
+                <li>Las diferencias siguen aproximadamente una distribución normal (o n es grande).</li>
+                <li>\(\sigma_d\) es constante en todos los pares (homocedasticidad de las diferencias).</li>
+                <li>El efecto del orden no contamina las mediciones (en diseños cruzados, usa periodos de lavado adecuados).</li>
             </ul>
         </section>
 
-
-
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>
+            <p>Calcula el número mínimo de pares para detectar un cambio medio Δ en un diseño de medidas repetidas o apareado, dado σd (desviación estándar de las diferencias), α y potencia.</p>
             <h3>Fórmula utilizada</h3>
-            <p>El cálculo combina valores críticos, variabilidad esperada y diferencia mínima detectable para obtener el número de observaciones necesario en el escenario planteado.</p>
+            <p>\( n = \lceil((Z_{α/2}+Z_β)·σ_d/Δ)^2\rceil \). El resultado es el número de <em>pares</em>, no de observaciones totales.</p>
             <h3>Ejemplo de uso</h3>
-            <p>Introduce tus supuestos iniciales, pulsa en calcular y revisa el tamaño recomendado. Si aumentas precisión o potencia, el tamaño muestral requerido también aumentará.</p>
+            <p>σd = 8, Δ = 3, α = 0,05, potencia = 0,80 → n = 56 pares. Si σd fuese 12, n subiría a 126 pares.</p>
             <h3>Cómo interpretar el resultado</h3>
-            <p>El tamaño calculado es orientativo y depende de los supuestos introducidos; conviene revisar sensibilidad con distintos márgenes de error o niveles de potencia.</p>
+            <p>El n es el número de individuos (cada uno medido dos veces). El número total de observaciones es 2·n. Comprueba siempre si tu σd proviene de diferencias, no de mediciones individuales.</p>
             <section class="related-tools">
-              <h3>Calculadoras relacionadas</h3>
-              <ul>
-                <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
-                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
-              </ul>
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-diferencia-medias.html">Dos medias independientes</a></li>
+                    <li><a href="tamano-muestral-proporciones-apareadas.html">Proporciones apareadas</a></li>
+                    <li><a href="tamano-muestral-una-media.html">Una media</a></li>
+                </ul>
             </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Paired_difference_test" target="_blank" rel="noopener">Paired difference test</a> — fundamento estadístico del test t apareado.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Crossover_study" target="_blank" rel="noopener">Crossover study</a> — diseños cruzados y consideraciones de orden.</li>
+                <li>Cohen, J. (1988). <em>Statistical Power Analysis for the Behavioral Sciences</em> (2.ª ed.). Lawrence Erlbaum. — capítulo sobre la t de diferencias correladas.</li>
+            </ul>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué es el margen de error?</strong> Es la precisión máxima tolerada respecto al valor real.</li>
-                <li><strong>¿Qué significa nivel de confianza?</strong> El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero.</li>
-                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar un efecto real cuando existe.</li>
-                <li><strong>¿El tamaño muestral es exacto?</strong> No, depende de supuestos y redondeos prácticos de diseño.</li>
+                <li><strong>¿Por qué σd y no σ de cada grupo?</strong> Porque el análisis opera sobre las diferencias intraindividuales, no sobre las medias grupales. Usar σ individual sobreestimaría σd si los individuos son heterogéneos.</li>
+                <li><strong>¿Cómo obtengo σd sin piloto?</strong> Si conoces σ individual y la correlación esperada ρ entre mediciones: σd ≈ σ·√(2(1−ρ)). Para ρ = 0,7 y σ = 10 → σd ≈ 7,7.</li>
+                <li><strong>¿Cuándo conviene diseño apareado frente a dos grupos?</strong> Siempre que la correlación entre mediciones sea positiva (ρ &gt; 0) y puedas aplicar ambas condiciones al mismo individuo sin efecto arrastre.</li>
+                <li><strong>¿El resultado es exacto?</strong> Es la aproximación normal; para n pequeño considera usar cuantiles t con n−1 grados de libertad de forma iterativa.</li>
             </ul>
         </section>
 

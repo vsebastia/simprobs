@@ -170,62 +170,78 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p>Cuando estimas una media y conoces el tamaño total de población <strong>N</strong>, la corrección por población finita reduce la muestra necesaria respecto al caso infinito.</p>
+            <p>Cuando estimas una media poblacional y el tamaño total de la población N es conocido y finito, la fórmula estándar sobreestima la muestra necesaria. El <strong>factor de corrección por población finita</strong> (FPC) aprovecha el hecho de que muestrear una fracción grande de la población aporta más información de la que predice la fórmula infinita.</p>
+            <p>La corrección es relevante cuando n₀/N &gt; 5 %. Por ejemplo, para N = 1 000 y n₀ = 139, la fracción de muestreo es 13,9 %, lo que justifica la corrección. Si N &gt; 10 000 y n₀ es pequeño, el ahorro es mínimo y puedes usar la <a href="tamano-muestral-una-media.html">fórmula estándar para una media</a>.</p>
 
             <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n_0 = \left(\frac{Z\sigma}{E}\right)^2 \)</p>
-            <p class="formula-line">\( n = \frac{n_0}{1 + \frac{n_0-1}{N}} \)</p>
+            <p class="formula-line">\( n_0 = \left(\frac{Z\,\sigma}{E}\right)^2 \)</p>
+            <p class="formula-line">\( n = \frac{n_0}{1 + \dfrac{n_0-1}{N}} \)</p>
             <ul>
-                <li><strong>σ</strong>: desviación estándar esperada.</li>
-                <li><strong>E</strong>: margen de error tolerado.</li>
-                <li><strong>N</strong>: tamaño poblacional total.</li>
+                <li><strong>n₀</strong>: tamaño sin corrección (fórmula estándar para población infinita).</li>
+                <li><strong>n</strong>: tamaño corregido por la finitud de la población.</li>
+                <li><strong>σ</strong>: desviación estándar esperada de la variable.</li>
+                <li><strong>E</strong>: margen de error absoluto máximo tolerable.</li>
+                <li><strong>N</strong>: tamaño total conocido de la población.</li>
             </ul>
         </section>
 
         <section class="card content-card">
             <h2>Configuración rápida</h2>
             <ul>
-                <li>Obtén σ de un piloto o histórico.</li>
-                <li>95% de confianza es punto de partida estándar.</li>
-                <li>Si N es grande, la corrección casi no cambia n.</li>
+                <li><strong>σ:</strong> obtén de datos históricos, un piloto o la literatura. Si no la tienes, usa rango/4 como estimación conservadora.</li>
+                <li><strong>N:</strong> debe ser el recuento exacto y conocido de la población objetivo antes del muestreo.</li>
+                <li><strong>E:</strong> define el error en las mismas unidades que σ — ¿a partir de qué diferencia cambia tu decisión?</li>
+                <li><strong>Nivel de confianza:</strong> 95 % es el estándar; 99 % para decisiones críticas.</li>
             </ul>
 
             <h2>Ejemplo sencillo</h2>
-            <p>Con N=1200, σ=12, E=2 y 95% de confianza: n infinito≈139 y n corregido≈127.</p>
+            <p>Planta industrial con <strong>N = 1 200</strong> trabajadores, <strong>σ = 12 min</strong> en tiempo de tarea, margen <strong>E = 2 min</strong>, confianza 95 %: sin corrección n₀ = 139, con corrección <strong>n = 127</strong>. El ahorro es modesto porque la fracción de muestreo es ~11 %.</p>
 
             <h2>Usos frecuentes</h2>
             <ul>
-                <li>Tiempo medio en una planta concreta.</li>
-                <li>Gasto medio de clientes activos de un club.</li>
-                <li>Consumo medio en una comunidad cerrada.</li>
+                <li>Tiempo medio de tarea en una planta o departamento concreto.</li>
+                <li>Gasto medio de clientes activos en un programa de fidelización.</li>
+                <li>Consumo medio en una comunidad cerrada (edificio, campus, residencia).</li>
+                <li>Inventario: peso o valor medio de artículos en un almacén conocido.</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li>Muestreo aleatorio simple sin reemplazamiento de una población de tamaño N exactamente conocido.</li>
+                <li>La variable sigue aproximadamente una distribución normal, o n es suficientemente grande (TLC).</li>
+                <li>N es fijo y no cambia durante el muestreo.</li>
             </ul>
         </section>
 
-
-
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>
+            <p>Calcula el tamaño muestral mínimo para estimar una media con margen de error E en una población finita de tamaño N conocido, aplicando la corrección por población finita a la fórmula estándar.</p>
             <h3>Fórmula utilizada</h3>
-            <p>El cálculo combina valores críticos, variabilidad esperada y diferencia mínima detectable para obtener el número de observaciones necesario en el escenario planteado.</p>
+            <p>Primero se calcula n₀ = (Z·σ/E)² y luego n = n₀/(1+(n₀−1)/N). Cuando N → ∞, n → n₀.</p>
             <h3>Ejemplo de uso</h3>
-            <p>Introduce tus supuestos iniciales, pulsa en calcular y revisa el tamaño recomendado. Si aumentas precisión o potencia, el tamaño muestral requerido también aumentará.</p>
+            <p>N = 1 200, σ = 12, E = 2, 95 % → n₀ = 139, n = 127. Para N = 300 con los mismos parámetros → n = 94.</p>
             <h3>Cómo interpretar el resultado</h3>
-            <p>El tamaño calculado es orientativo y depende de los supuestos introducidos; conviene revisar sensibilidad con distintos márgenes de error o niveles de potencia.</p>
+            <p>Si n/N &lt; 5 %, la corrección es marginal. La ganancia aumenta cuanto mayor es la fracción de muestreo. Verifica siempre que N sea el recuento real de la población objetivo.</p>
             <section class="related-tools">
-              <h3>Calculadoras relacionadas</h3>
-              <ul>
-                <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
-                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
-              </ul>
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-una-media.html">Una media (población infinita)</a></li>
+                    <li><a href="tamano-muestral-proporcion-poblacion-finita.html">Proporción (población finita)</a></li>
+                    <li><a href="intervalo-confianza-media.html">Intervalo de confianza para una media</a></li>
+                </ul>
             </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Finite_population_correction" target="_blank" rel="noopener">Finite population correction</a> — derivación y cuándo la corrección es relevante.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Simple_random_sample" target="_blank" rel="noopener">Simple random sample</a> — fundamentos del muestreo aleatorio sin reemplazamiento.</li>
+                <li>Cochran, W. G. (1977). <em>Sampling Techniques</em> (3.ª ed.). Wiley. — referencia clásica del muestreo en poblaciones finitas.</li>
+            </ul>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué es el margen de error?</strong> Es la precisión máxima tolerada respecto al valor real.</li>
-                <li><strong>¿Qué significa nivel de confianza?</strong> El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero.</li>
-                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar un efecto real cuando existe.</li>
-                <li><strong>¿El tamaño muestral es exacto?</strong> No, depende de supuestos y redondeos prácticos de diseño.</li>
+                <li><strong>¿Cuándo merece la pena aplicar la corrección?</strong> Cuando n₀/N &gt; 5 %. Con fracciones menores, el ahorro es inferior al 5 % de observaciones.</li>
+                <li><strong>¿Qué pasa si N no se conoce exactamente?</strong> Usa la fórmula sin corrección; sobreestimará la muestra pero el resultado siempre será válido.</li>
+                <li><strong>¿Puede n ser mayor que N?</strong> No: la corrección garantiza n &lt; N. Si n₀ ≥ N, el censo completo es necesario.</li>
+                <li><strong>¿Por qué no usar siempre la corrección?</strong> Porque requiere conocer N con exactitud. Si N es incierto o variable, la corrección puede ser engañosa.</li>
             </ul>
         </section>
 

@@ -165,61 +165,77 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p>Para datos binarios apareados (sí/no antes y después), el contraste se basa en pares discordantes: p01 (pasa de 0 a 1) y p10 (pasa de 1 a 0).</p>
+            <p>Para datos binarios apareados (sí/no medido dos veces en la misma unidad), el contraste adecuado es el <strong>test de McNemar</strong>. Su lógica central es que los <em>pares concordantes</em> (0→0 y 1→1) no aportan información sobre el cambio: solo los <strong>pares discordantes</strong> determinan si la intervención tiene efecto.</p>
+            <p>Los pares discordantes son de dos tipos: \(p_{01}\) (la respuesta cambió de negativa a positiva, 0→1) y \(p_{10}\) (cambió de positiva a negativa, 1→0). El efecto de interés es la diferencia \(p_{10} - p_{01}\): si la intervención es efectiva, \(p_{10}\) será mayor que \(p_{01}\) (más sujetos pasan a respuesta negativa bajo el tratamiento, o viceversa según el diseño).</p>
+            <p>La eficiencia del diseño apareado frente al de dos grupos independientes depende de la concordancia: cuantos más pares concordantes (sujetos que no cambian), el apareo ayuda menos porque esos pares quedan excluidos del análisis efectivo.</p>
 
             <h2>Fórmula de tamaño muestral</h2>
-            <p class="formula-line">\( n = \frac{(Z_{\alpha/2}+Z_\beta)^2\,(p_{01}+p_{10})}{(p_{10}-p_{01})^2} \)</p>
+            <p class="formula-line">\( n = \left\lceil\frac{(Z_{\alpha/2}+Z_\beta)^2\,(p_{01}+p_{10})}{(p_{10}-p_{01})^2}\right\rceil \)</p>
             <ul>
-                <li><strong>p01</strong>: proporción de pares 0→1.</li>
-                <li><strong>p10</strong>: proporción de pares 1→0.</li>
-                <li><strong>n</strong>: número de pares.</li>
+                <li><strong>n</strong>: número total de pares (concordantes + discordantes).</li>
+                <li><strong>p₀₁</strong>: probabilidad de que un par cambie de 0 a 1 (respuesta negativa → positiva).</li>
+                <li><strong>p₁₀</strong>: probabilidad de que un par cambie de 1 a 0 (respuesta positiva → negativa).</li>
+                <li><strong>Nota:</strong> el denominador \((p_{10}-p_{01})^2\) requiere \(p_{10} \neq p_{01}\); si son iguales, no hay efecto que detectar.</li>
             </ul>
         </section>
 
         <section class="card content-card">
             <h2>Configuración rápida</h2>
             <ul>
-                <li>p01 y p10 deben salir de un piloto o hipótesis realista.</li>
-                <li>Si p01≈p10, necesitarás muestras grandes.</li>
-                <li>Usa α=0.05 y potencia 0.8 como base.</li>
+                <li><strong>p₀₁ y p₁₀:</strong> deben estimarse de un piloto o de datos históricos. Si solo tienes la prevalencia antes (p_antes) y el efecto esperado, necesitas hacer suposiciones sobre la estructura de pares.</li>
+                <li><strong>Si p₀₁ ≈ p₁₀:</strong> la diferencia es pequeña y la muestra necesaria será muy grande — revisa si el efecto es clínicamente relevante.</li>
+                <li><strong>Relación con prevalencias:</strong> p_antes = p₁₀ + p₁₁ (concordantes positivos); p_después = p₀₁ + p₁₁. Si conoces ambas prevalencias y una de las p discordantes, puedes calcular la otra.</li>
+                <li><strong>Alfa y potencia:</strong> 0,05 y 0,80 son la base estándar.</li>
             </ul>
 
             <h2>Ejemplo sencillo</h2>
-            <p>Con p01=0.18 y p10=0.08, α=0.05 y potencia=0.8, el tamaño requerido es ~205 pares.</p>
+            <p>Evaluación de una campaña de vacunación: <strong>p₀₁ = 0,18</strong> (se vacunan tras la campaña quienes no lo habían hecho), <strong>p₁₀ = 0,08</strong> (dejan de estar vacunados — muy improbable en la práctica). Con <strong>α = 0,05</strong> y potencia <strong>0,80</strong>, el resultado es <strong>≈ 205 pares</strong>.</p>
 
             <h2>Usos frecuentes</h2>
             <ul>
-                <li>Cambio de adherencia antes/después de una intervención.</li>
-                <li>Comparación de diagnóstico binario en dos momentos.</li>
-                <li>Evaluación de cumplimiento pre y post política.</li>
+                <li>Evaluación de adherencia a tratamiento o comportamiento antes/después de una intervención.</li>
+                <li>Comparación de diagnóstico binario de dos observadores o en dos momentos.</li>
+                <li>Estudios de cambio en variables dicotómicas (sí/no, positivo/negativo) en el mismo individuo.</li>
+                <li>Diseños cruzados con resultado binario.</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li>Los pares son independientes entre sí.</li>
+                <li>Dentro de cada par, las dos observaciones pueden estar correlacionadas (es el punto de la prueba de McNemar).</li>
+                <li>Los valores de p₀₁ y p₁₀ se estiman correctamente; errores en ellos impactan directamente en el n calculado.</li>
             </ul>
         </section>
 
-
-
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>
+            <p>Calcula el número mínimo de pares para detectar una diferencia entre dos proporciones relacionadas (medidas en la misma unidad), dado p₀₁, p₁₀, α y potencia. Usa la fórmula basada en el test de McNemar.</p>
             <h3>Fórmula utilizada</h3>
-            <p>El cálculo combina valores críticos, variabilidad esperada y diferencia mínima detectable para obtener el número de observaciones necesario en el escenario planteado.</p>
+            <p>n = ⌈(Z_{α/2}+Z_β)²·(p₀₁+p₁₀)/(p₁₀−p₀₁)²⌉. El denominador depende solo de los pares discordantes; los concordantes contribuyen a n pero no al poder discriminatorio del test.</p>
             <h3>Ejemplo de uso</h3>
-            <p>Introduce tus supuestos iniciales, pulsa en calcular y revisa el tamaño recomendado. Si aumentas precisión o potencia, el tamaño muestral requerido también aumentará.</p>
+            <p>p₀₁ = 0,18, p₁₀ = 0,08, α = 0,05, potencia = 0,80 → n = 205 pares. Si la diferencia fuera p₁₀−p₀₁ = 0,05 (en lugar de 0,10), la muestra se cuadruplicaría.</p>
             <h3>Cómo interpretar el resultado</h3>
-            <p>El tamaño calculado es orientativo y depende de los supuestos introducidos; conviene revisar sensibilidad con distintos márgenes de error o niveles de potencia.</p>
+            <p>El n es el número de pares totales (incluyendo concordantes). Si la proporción esperada de pares discordantes es baja, habrá que reclutar muchos más sujetos para que el análisis disponga de suficientes pares útiles.</p>
             <section class="related-tools">
-              <h3>Calculadoras relacionadas</h3>
-              <ul>
-                <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
-                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
-              </ul>
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-medias-apareadas.html">Medias apareadas</a></li>
+                    <li><a href="tamano-muestral-dos-proporciones.html">Dos proporciones independientes</a></li>
+                    <li><a href="tamano-muestral-una-proporcion.html">Una proporción</a></li>
+                </ul>
             </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/McNemar%27s_test" target="_blank" rel="noopener">McNemar's test</a> — fundamento estadístico del contraste subyacente.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Matched_pairs" target="_blank" rel="noopener">Matched pairs</a> — diseños de pares emparejados y sus aplicaciones.</li>
+                <li>Fleiss, J. L., Levin, B. y Paik, M. C. (2003). <em>Statistical Methods for Rates and Proportions</em> (3.ª ed.). Wiley. — capítulo sobre el test de McNemar y cálculo de n.</li>
+            </ul>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué es el margen de error?</strong> Es la precisión máxima tolerada respecto al valor real.</li>
-                <li><strong>¿Qué significa nivel de confianza?</strong> El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero.</li>
-                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar un efecto real cuando existe.</li>
-                <li><strong>¿El tamaño muestral es exacto?</strong> No, depende de supuestos y redondeos prácticos de diseño.</li>
+                <li><strong>¿Por qué solo importan los pares discordantes?</strong> Porque los pares concordantes (respuesta igual en ambas condiciones) no aportan información sobre si la intervención cambió el resultado.</li>
+                <li><strong>¿Cómo estimo p₀₁ y p₁₀ sin piloto?</strong> Si conoces la prevalencia antes (p_a) y después (p_d) y la correlación entre mediciones, puedes aproximar: p₀₁ ≈ p_d·(1−ρ) y p₁₀ ≈ p_a·(1−ρ).</li>
+                <li><strong>¿Cuándo es mejor diseño apareado que dos grupos?</strong> Cuando la correlación entre mediciones es alta (ρ &gt; 0,3) y puedes aplicar ambas condiciones al mismo individuo sin arrastre.</li>
+                <li><strong>¿Es exacta la fórmula?</strong> Es la aproximación normal. Para n pequeño o proporciones extremas, usa la versión exacta del test de McNemar.</li>
             </ul>
         </section>
 

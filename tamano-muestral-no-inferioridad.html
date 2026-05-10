@@ -146,7 +146,8 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p>Los ensayos de <strong>no inferioridad</strong> buscan demostrar que el tratamiento nuevo (T) no es peor que el de referencia (C) en más de un margen preestablecido M. Los ensayos de <strong>equivalencia</strong> (TOST) exigen que la diferencia esté dentro de ±M en ambas direcciones. En ambos casos, α es <em>unilateral</em>; el valor habitual es 0,025 (equivalente a un intervalo de confianza del 95 % para la diferencia).</p>
+            <p>Los ensayos de <strong>no inferioridad</strong> buscan demostrar que el tratamiento nuevo (T) no es peor que el de referencia (C) en más de un margen preestablecido M. Los ensayos de <strong>equivalencia</strong> (TOST, <em>Two One-Sided Tests</em>) exigen que la diferencia esté dentro de ±M en ambas direcciones. En ambos casos, α es <em>unilateral</em>; el valor habitual es 0,025 (equivalente a un intervalo de confianza del 95 % para la diferencia).</p>
+            <p>Este tipo de ensayos contrasta con los ensayos de <strong>superioridad</strong>, donde se busca demostrar que T es mejor que C. En no inferioridad la hipótesis nula es "T es inferior a C en más de M", y rechazarla —demostrando que la diferencia cae por encima de −M— basta para concluir no inferioridad. La elección del margen M es la decisión clínica más crítica del diseño: debe ser la pérdida máxima de eficacia que sería clínica y regulatoriamente aceptable.</p>
 
             <h2>Fórmulas</h2>
             <p><strong>No inferioridad</strong> — con \(\delta = \mu_T - \mu_C\) asumido:</p>
@@ -155,29 +156,49 @@
             <p class="formula-line">\( n = \left\lceil \frac{2\,\sigma^2\,(Z_\alpha + Z_\beta)^2}{(M - |\delta|)^2} \right\rceil \)</p>
             <ul>
                 <li><strong>M</strong>: margen de no inferioridad o equivalencia (definido clínicamente, siempre positivo).</li>
-                <li><strong>δ</strong>: diferencia verdadera asumida (habitualmente 0).</li>
-                <li><strong>σ</strong>: desviación estándar común de la variable principal.</li>
-                <li><strong>Z<sub>α</sub></strong>: cuantil normal unilateral.</li>
+                <li><strong>δ</strong>: diferencia verdadera asumida (\(\mu_T - \mu_C\)); el supuesto más conservador es δ = 0.</li>
+                <li><strong>σ</strong>: desviación estándar común de la variable principal (tomada de estudios previos o piloto).</li>
+                <li><strong>Z<sub>α</sub></strong>: cuantil normal unilateral. Para α = 0,025 corresponde a Z = 1,96.</li>
+                <li>La fórmula de equivalencia exige \(M > |\delta|\); si δ = 0 ambas fórmulas producen el mismo n.</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li><strong>Normalidad:</strong> la variable de resultado sigue una distribución normal (o n suficientemente grande para aplicar el TCL).</li>
+                <li><strong>Varianzas iguales:</strong> la fórmula supone \(\sigma_T = \sigma_C = \sigma\). Si difieren, usa la media cuadrática como aproximación o métodos más elaborados.</li>
+                <li><strong>Diseño paralelo 1:1:</strong> la fórmula da n por grupo en un ensayo balanceado de dos grupos independientes.</li>
+                <li><strong>Margen definido a priori:</strong> el margen M debe fijarse antes de ver los datos; cambiarlo post-hoc invalida el análisis.</li>
+                <li><strong>σ conocida:</strong> en la práctica σ se estima; para muestras pequeñas considerar usar cuantiles t en lugar de Z (aumenta ligeramente n).</li>
             </ul>
         </section>
 
         <section class="card content-card">
             <h2>Configuración rápida</h2>
             <ul>
-                <li><strong>M:</strong> defínelo clínicamente antes del estudio; refleja la pérdida máxima aceptable de eficacia.</li>
-                <li><strong>δ = 0:</strong> supuesto conservador; significa que T y C tienen exactamente la misma eficacia media.</li>
-                <li><strong>α = 0,025 unilateral:</strong> el estándar regulatorio (EMA/FDA) para ensayos de no inferioridad equivale a un IC del 95 %.</li>
-                <li><strong>Potencia:</strong> 0,80 habitualmente; 0,90 en estudios pivotales.</li>
+                <li><strong>M:</strong> defínelo clínicamente antes del estudio; refleja la pérdida máxima aceptable de eficacia. Regulatoriamente suele fijarse entre el 50 % y el 80 % del efecto del comparador sobre placebo.</li>
+                <li><strong>δ = 0:</strong> supuesto conservador; significa que T y C tienen exactamente la misma eficacia media. Si esperas que T sea algo peor, δ negativo aumentará n; si crees que T es algo mejor, δ positivo lo reduce.</li>
+                <li><strong>α = 0,025 unilateral:</strong> el estándar regulatorio (EMA/FDA) para ensayos de no inferioridad equivale a un IC del 95 % para la diferencia.</li>
+                <li><strong>Potencia:</strong> 0,80 habitualmente; 0,90 en estudios pivotales o con consecuencias regulatorias.</li>
             </ul>
 
             <h2>Ejemplo sencillo</h2>
-            <p>Un nuevo fármaco frente a estándar: σ = 10, M = 5, δ = 0, α = 0,025 unilateral, potencia 0,80. El resultado es aproximadamente <strong>85 pacientes por grupo</strong> (total ≈ 170).</p>
+            <p>Un nuevo fármaco frente a estándar: σ = 10, M = 5, δ = 0, α = 0,025 unilateral, potencia 0,80. El denominador es (5+0)² = 25; el resultado es aproximadamente <strong>85 pacientes por grupo</strong> (total ≈ 170).</p>
 
             <h2>Usos frecuentes</h2>
             <ul>
-                <li>Ensayos de medicamentos genéricos o biosimilares.</li>
-                <li>Comparación de un tratamiento menos tóxico con el estándar.</li>
-                <li>Validación de procedimientos diagnósticos alternativos.</li>
+                <li>Ensayos de medicamentos genéricos o biosimilares frente al innovador.</li>
+                <li>Comparación de un tratamiento menos tóxico o de administración más cómoda con el estándar de eficacia probada.</li>
+                <li>Validación de procedimientos diagnósticos o quirúrgicos alternativos.</li>
+                <li>Bioequivalencia farmacocinética (aunque para PK se usan modelos ANOVA cruzado con límites específicos del 80–125 %).</li>
+            </ul>
+
+            <h2>Referencias externas</h2>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Non-inferiority_trial" target="_blank" rel="noopener">Non-inferiority trial (Wikipedia en inglés)</a> — diseño, hipótesis nula y alternativa, margen M</li>
+                <li><a href="https://en.wikipedia.org/wiki/Equivalence_trial" target="_blank" rel="noopener">Equivalence trial (Wikipedia en inglés)</a> — TOST y bioequivalencia</li>
+                <li><a href="https://en.wikipedia.org/wiki/Two_one-sided_tests" target="_blank" rel="noopener">Two one-sided tests — TOST (Wikipedia en inglés)</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Sample_size_determination" target="_blank" rel="noopener">Sample size determination (Wikipedia en inglés)</a></li>
+                <li>ICH E9 (1998). <em>Statistical Principles for Clinical Trials</em>. International Council for Harmonisation — guía regulatoria de referencia para α unilateral y definición del margen.</li>
             </ul>
         </section>
 
@@ -200,10 +221,11 @@
             </section>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué diferencia hay entre NI y equivalencia?</strong> NI es unilateral (no peor); equivalencia es bilateral (ni peor ni mejor).</li>
-                <li><strong>¿Por qué α unilateral = 0,025?</strong> Es el estándar regulatorio EMA/FDA que garantiza un IC del 95 % para la diferencia.</li>
-                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de demostrar NI o equivalencia cuando realmente se cumple.</li>
-                <li><strong>¿El tamaño muestral es exacto?</strong> Es una aproximación normal; funciona bien para σ conocida o muestras moderadas.</li>
+                <li><strong>¿Qué diferencia hay entre NI y equivalencia?</strong> No inferioridad es unilateral: basta con demostrar que T no es peor en más de M (solo un límite). Equivalencia (TOST) es bilateral: hay que demostrar que la diferencia cae dentro de ±M en ambas direcciones, lo que requiere mayor muestra cuando δ ≠ 0.</li>
+                <li><strong>¿Por qué α unilateral = 0,025?</strong> Es el estándar regulatorio EMA/FDA: usar α = 0,025 unilateral equivale a un IC del 95 % para la diferencia, garantizando el mismo control del error de tipo I que en un ensayo de superioridad.</li>
+                <li><strong>¿Cómo elijo M?</strong> Siguiendo las guías regulatorias (EMA, FDA), M suele fijarse como fracción (50–80 %) del efecto del comparador frente a placebo. Debe determinarse antes del estudio y justificarse clínica y estadísticamente en el protocolo.</li>
+                <li><strong>¿Qué pasa si δ ≠ 0?</strong> Si esperas que el nuevo tratamiento sea algo inferior (δ negativo en NI), el denominador M+δ se reduce y n aumenta; si esperas que sea algo superior, n disminuye. En equivalencia, |δ| debe ser estrictamente menor que M.</li>
+                <li><strong>¿El tamaño muestral es exacto?</strong> Es una aproximación normal; funciona bien para σ conocida o muestras moderadas. Con σ desconocida o n < 30, considerar añadir un 5–10 % por incertidumbre en σ.</li>
             </ul>
         </section>
     </main>
