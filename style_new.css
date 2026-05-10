@@ -410,6 +410,18 @@ canvas {
     padding-left: 18px;
 }
 
+.external-ref {
+    margin-top: 16px;
+    font-size: 0.88rem;
+    color: #64748b;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 10px;
+}
+
+.external-ref a {
+    color: #4f46e5;
+}
+
 .distribution-links {
     list-style: none;
     padding-left: 0 !important;
