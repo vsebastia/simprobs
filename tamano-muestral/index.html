@@ -67,8 +67,9 @@
 </nav>
 <div class="page-wrap">
   <header class="hero">
+    <p class="eyebrow">Herramientas estadísticas</p>
     <h1>Calculadoras de tamaño muestral</h1>
-    <p class="hero-subtitle">Visualiza todas las opciones en un solo bloque y entra al cálculo que necesitas.</p>
+    <p class="hero-subtitle">Calcula el número mínimo de observaciones para estimar un parámetro o detectar una diferencia con la precisión y la fiabilidad que necesitas.</p>
     <p class="hero-links"><a class="hero-link-button" href="../index.html">Volver al inicio</a></p>
   </header>
 
@@ -88,33 +89,89 @@
     </section>
 
     <section class="card content-card">
-      <h2>Introducción al tamaño muestral</h2>
-      <p>El tamaño muestral es el número de observaciones necesarias para responder una pregunta de investigación con una precisión y una fiabilidad predefinidas. Elegir bien ese tamaño evita estudios con poca información (muestras demasiado pequeñas) o con consumo innecesario de recursos (muestras excesivas).</p>
+      <h2>¿Qué es el tamaño muestral y por qué importa?</h2>
+      <p>El tamaño muestral es el número de observaciones que hay que recoger para responder una pregunta de investigación con una precisión y una fiabilidad predefinidas. Calcularlo antes de iniciar el estudio es esencial: una muestra demasiado pequeña produce resultados poco fiables (no detecta efectos reales, genera intervalos de confianza amplios); una muestra excesiva malgasta recursos sin aportar ganancia apreciable.</p>
+      <p>La fórmula genérica varía según el objetivo, pero en todos los casos n crece cuando se exige más precisión o más potencia, y disminuye cuando el efecto esperado es grande o la variabilidad baja. La lógica matemática subyacente es siempre la misma: controlar los errores de estimación o de decisión a un coste aceptable.</p>
+
+      <h3>Dos enfoques principales</h3>
+      <div class="decision-grid">
+        <div>
+          <h3>Estimación (precisión)</h3>
+          <p>Quieres conocer el valor de un parámetro (media, proporción) con un margen de error máximo. Se fija el nivel de confianza \(1-\alpha\) y el error admisible \(E\); la muestra mínima garantiza que el intervalo de confianza no supere ese ancho.</p>
+          <p><strong>Calculadoras:</strong> una proporción, una media, población finita.</p>
+        </div>
+        <div>
+          <h3>Comparación (potencia)</h3>
+          <p>Quieres detectar una diferencia entre grupos si realmente existe. Se fijan el nivel de significación \(\alpha\), la potencia \(1-\beta\) y el tamaño del efecto mínimo relevante. La muestra asegura que, con esa probabilidad, el contraste rechazará \(H_0\) cuando sea falsa.</p>
+          <p><strong>Calculadoras:</strong> dos proporciones, dos medias, medias/proporciones apareadas.</p>
+        </div>
+      </div>
+
       <h3>Conceptos clave</h3>
       <ul>
-        <li><strong>Nivel de significación (α):</strong> probabilidad máxima de cometer error tipo I (rechazar una hipótesis nula verdadera). Habitualmente se usa 0,05.</li>
-        <li><strong>Potencia (1-β):</strong> probabilidad de detectar un efecto real cuando existe. Valores frecuentes: 80% o 90%.</li>
-        <li><strong>Error tipo II (β):</strong> no detectar una diferencia real.</li>
-        <li><strong>Tamaño del efecto:</strong> magnitud mínima relevante que quieres ser capaz de detectar.</li>
-        <li><strong>Precisión o margen de error:</strong> ancho deseado del intervalo de confianza para una estimación.</li>
-        <li><strong>Variabilidad:</strong> dispersión esperada de la variable (por ejemplo, desviación estándar en medias).</li>
+        <li><strong>Nivel de significación (\(\alpha\)):</strong> probabilidad máxima de cometer error tipo I (rechazar una hipótesis nula verdadera). El valor habitual es 0,05, que equivale a un nivel de confianza del 95 %.</li>
+        <li><strong>Potencia (\(1-\beta\)):</strong> probabilidad de detectar un efecto real cuando existe. Los valores más frecuentes son 80 % y 90 %. Aumentar la potencia requiere muestras más grandes.</li>
+        <li><strong>Error tipo II (\(\beta\)):</strong> probabilidad de no detectar una diferencia real (falso negativo). Es complementario a la potencia: \(\beta = 1 - (1-\beta)\).</li>
+        <li><strong>Tamaño del efecto:</strong> magnitud mínima relevante que se quiere detectar (diferencia de medias, diferencia de proporciones, correlación…). Cuanto más pequeño es el efecto, más grande debe ser la muestra.</li>
+        <li><strong>Margen de error (\(E\)):</strong> en estudios de estimación, es la máxima desviación tolerable entre el estimador muestral y el valor poblacional.</li>
+        <li><strong>Variabilidad:</strong> dispersión esperada de la variable (desviación estándar \(\sigma\) para medias, \(p(1-p)\) para proporciones). Valores más inciertos obligan a usar supuestos conservadores.</li>
+        <li><strong>Población finita:</strong> cuando la muestra representa una fracción apreciable del total (\(n/N > 5\,\%\)), se aplica un factor de corrección que reduce el tamaño muestral necesario.</li>
       </ul>
-      <p>En la práctica, el tamaño final depende del tipo de variable (proporción o media), del diseño (grupos independientes o apareados), del contraste planteado y de si la población es finita.</p>
     </section>
 
     <section class="card content-card pillar-guide">
-      <h2>Guía rápida para planificar una muestra</h2>
-      <p>Antes de calcular n, define variable principal, nivel de confianza, precisión deseada y si buscas estimar un parámetro o comparar grupos. Una encuesta de porcentaje usa una calculadora de proporciones; una medición continua usa medias; un test A/B suele requerir dos proporciones y potencia.</p>
+      <h2>¿Qué calculadora elegir?</h2>
+      <p>Responde tres preguntas para ir directamente a la herramienta correcta.</p>
       <ol>
-        <li>Elige la métrica primaria antes de recoger datos.</li>
-        <li>Usa supuestos conservadores si no tienes datos piloto.</li>
-        <li>Redondea siempre hacia arriba y añade margen por pérdidas o respuestas inválidas.</li>
+        <li>
+          <strong>¿Cuál es tu variable principal?</strong>
+          <ul>
+            <li>Porcentaje o tasa → calculadoras de <em>proporciones</em>.</li>
+            <li>Valor continuo (peso, tiempo, puntuación) → calculadoras de <em>medias</em>.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>¿Cuántos grupos tienes?</strong>
+          <ul>
+            <li>Un solo grupo o parámetro de referencia → <a href="../tamano-muestral-una-proporcion.html">una proporción</a> o <a href="../tamano-muestral-una-media.html">una media</a>.</li>
+            <li>Dos grupos independientes → <a href="../tamano-muestral-dos-proporciones.html">dos proporciones</a> o <a href="../tamano-muestral-diferencia-medias.html">dos medias</a>.</li>
+            <li>Dos mediciones en el mismo sujeto (antes/después, pares) → <a href="../tamano-muestral-medias-apareadas.html">medias apareadas</a> o <a href="../tamano-muestral-proporciones-apareadas.html">proporciones apareadas</a>.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>¿La población total es conocida y relativamente pequeña?</strong>
+          <ul>
+            <li>Sí → aplica la corrección por <a href="../tamano-muestral-proporcion-poblacion-finita.html">población finita (proporción)</a> o <a href="../tamano-muestral-media-poblacion-finita.html">población finita (media)</a>.</li>
+            <li>No (o es muy grande) → usa las calculadoras estándar.</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <section class="card content-card">
+      <h2>Guía rápida para planificar una muestra</h2>
+      <p>Antes de calcular \(n\), define con precisión qué quieres medir y con qué garantías. Cambiar el objetivo a mitad del estudio invalida el cálculo inicial.</p>
+      <ol>
+        <li><strong>Define la métrica primaria antes de recoger datos.</strong> Un estudio con múltiples variables primarias requiere calcular \(n\) para cada una y tomar la muestra más grande, o ajustar el nivel de significación.</li>
+        <li><strong>Usa supuestos conservadores si no tienes datos piloto.</strong> Para proporciones sin información previa, usa \(p = 0{,}5\) (máxima variabilidad). Para medias, busca estimaciones de \(\sigma\) en literatura similar.</li>
+        <li><strong>Considera las pérdidas esperadas.</strong> Una vez obtenido \(n\), divídelo por \((1 - \text{tasa de abandono})\). Por ejemplo, si esperas un 15 % de pérdidas, recluta \(n / 0{,}85\) sujetos.</li>
+        <li><strong>Redondea siempre hacia arriba.</strong> El tamaño muestral es un número entero; nunca truncues.</li>
+        <li><strong>Documenta los supuestos.</strong> Registra los valores de \(\alpha\), potencia, efecto esperado y variabilidad usados para poder justificar el diseño y recalcular si las condiciones cambian.</li>
       </ol>
     </section>
 
     <section class="card content-card example-card">
-      <h2>Ejemplo resuelto: encuesta de satisfacción</h2>
-      <p>Si quieres estimar un porcentaje con 95% de confianza, p = 0.5 y error máximo ±5%, la fórmula de una proporción devuelve n ≈ 385 respuestas válidas. Si la población es limitada, revisa la versión con <a href="../tamano-muestral-proporcion-poblacion-finita.html">corrección por población finita</a>.</p>
+      <h2>Ejemplos resueltos</h2>
+
+      <h3>Ejemplo 1: encuesta de satisfacción (una proporción)</h3>
+      <p>Quieres estimar el porcentaje de clientes satisfechos con un margen de error máximo de ±5 % y un nivel de confianza del 95 %. Sin información previa usas \(p = 0{,}5\). La fórmula es:</p>
+      <p class="formula-line">\( n = \frac{z_{\alpha/2}^{2}\, p\,(1-p)}{E^{2}} = \frac{(1{,}96)^2 \cdot 0{,}5 \cdot 0{,}5}{(0{,}05)^2} \approx 385 \)</p>
+      <p>Necesitas al menos 385 respuestas válidas. Si la empresa tiene solo 1 000 clientes, aplica la <a href="../tamano-muestral-proporcion-poblacion-finita.html">corrección por población finita</a> y la muestra se reduce a unos 278.</p>
+
+      <h3>Ejemplo 2: ensayo clínico (dos medias independientes)</h3>
+      <p>Buscas detectar una diferencia de 5 puntos en una escala de dolor entre tratamiento y control, con desviación estándar estimada de 10 puntos, potencia del 80 % y \(\alpha = 0{,}05\) bilateral. La fórmula por grupo es:</p>
+      <p class="formula-line">\( n = \frac{2\,\sigma^2\,(z_{\alpha/2}+z_{\beta})^2}{\delta^2} = \frac{2 \cdot 100 \cdot (1{,}96+0{,}84)^2}{25} \approx 63 \)</p>
+      <p>Necesitas 63 sujetos por grupo (126 en total). Usa la calculadora de <a href="../tamano-muestral-diferencia-medias.html">dos medias</a> para ajustar esos parámetros con precisión.</p>
     </section>
 
   </main>
@@ -131,5 +188,9 @@
     </p>
   </footer>
 </div>
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 </body>
 </html>
