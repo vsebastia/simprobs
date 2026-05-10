@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para correlación de Pearson | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral mínimo para detectar una correlación de Pearson significativa. Usa la transformación z de Fisher con nivel de confianza y potencia configurables.">
+    <meta name="keywords" content="tamaño muestral correlación Pearson, calcular muestra correlación, potencia test correlación, transformación Fisher z, muestra para detectar correlación, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-correlacion.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para correlación de Pearson | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral mínimo para detectar una correlación de Pearson significativa. Usa la transformación z de Fisher con nivel de confianza y potencia configurables.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-correlacion.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para correlación de Pearson">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-correlacion.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para correlación de Pearson | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral mínimo para detectar una correlación de Pearson significativa. Usa la transformación z de Fisher con nivel de confianza y potencia configurables.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para correlación de Pearson">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Tamaño muestral correlación", "item": "https://problabtools.es/tamano-muestral-correlacion.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para correlación de Pearson | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-correlacion.html",
+          "description": "Calcula el tamaño muestral para detectar una correlación de Pearson mediante la transformación z de Fisher.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para correlación de Pearson",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-correlacion.html",
+      "description": "Calcula el tamaño muestral para detectar una correlación de Pearson mediante la transformación z de Fisher.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "¿Qué es la transformación z de Fisher?", "acceptedAnswer": {"@type": "Answer", "text": "Es una transformación que estabiliza la varianza del coeficiente de correlación: z = arctanh(ρ). Permite usar aproximaciones normales para el contraste y el cálculo de tamaño muestral."}},
+        {"@type": "Question", "name": "¿Qué correlación mínima debo indicar?", "acceptedAnswer": {"@type": "Answer", "text": "La correlación más pequeña que consideras relevante detectar. Valores de referencia: ρ = 0,10 (pequeña), ρ = 0,30 (moderada), ρ = 0,50 (grande)."}},
+        {"@type": "Question", "name": "¿Cuándo usar contraste unilateral?", "acceptedAnswer": {"@type": "Answer", "text": "Cuando tienes una hipótesis direccional previa (solo te interesa detectar correlaciones positivas o solo negativas). Si la dirección es incierta, usa bilateral."}},
+        {"@type": "Question", "name": "¿El tamaño muestral es exacto?", "acceptedAnswer": {"@type": "Answer", "text": "No; es la aproximación basada en la transformación de Fisher, válida para muestras de tamaño moderado-grande."}}
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260509">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para correlación de Pearson</h1>
+        <p class="hero-subtitle">Calcula cuántos pares de observaciones necesitas para detectar una correlación mínima significativa.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la correlación mínima a detectar, el alfa, la potencia y el tipo de contraste.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="corrRho">Correlación mínima a detectar (ρ)</label>
+                        <input type="number" id="corrRho" value="0.30" step="0.01" min="-0.9999" max="0.9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="corrAlpha">Alfa (α)</label>
+                        <input type="number" id="corrAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="corrPower">Potencia (1-β)</label>
+                        <input type="number" id="corrPower" value="0.80" step="0.01" min="0.5" max="0.999">
+                    </div>
+                    <div class="form-group">
+                        <label for="corrTail">Tipo de contraste</label>
+                        <select id="corrTail">
+                            <option value="two" selected>Bilateral (H1: ρ ≠ 0)</option>
+                            <option value="one">Unilateral (H1: ρ &gt; 0 o ρ &lt; 0)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="corrPreset">Referencia rápida de ρ</label>
+                    <select id="corrPreset">
+                        <option value="">— Seleccionar —</option>
+                        <option value="0.10">Pequeña (ρ = 0,10)</option>
+                        <option value="0.30">Moderada (ρ = 0,30)</option>
+                        <option value="0.50">Grande (ρ = 0,50)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="corrCalculateBtn">Calcular tamaño muestral</button>
+            <div id="corrResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Este cálculo determina cuántos pares de observaciones (n) se necesitan para detectar una correlación poblacional \(\rho\) diferente de cero con una potencia y un nivel de significación dados. La lógica es diferente a la de las calculadoras de medias o proporciones: aquí se utiliza la <strong>transformación z de Fisher</strong>, que estabiliza la varianza de \(\hat{\rho}\).</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p>Sea \(z_\rho = \operatorname{arctanh}(\rho) = \frac{1}{2}\ln\!\left(\frac{1+\rho}{1-\rho}\right)\). Entonces:</p>
+            <p class="formula-line">\( n = \left\lceil \frac{(Z_{\alpha/2} + Z_\beta)^2}{z_\rho^2} \right\rceil + 3 \)</p>
+            <p>donde \(Z_{\alpha/2}\) es el cuantil normal para contraste bilateral (o \(Z_\alpha\) para unilateral) y \(Z_\beta = \Phi^{-1}(1-\beta)\).</p>
+            <ul>
+                <li><strong>ρ</strong>: correlación mínima de interés (en valor absoluto).</li>
+                <li><strong>+3</strong>: corrección estándar derivada de la distribución exacta de \(\hat{\rho}\).</li>
+                <li>Referencia: ρ = 0,10 (pequeña), 0,30 (moderada), 0,50 (grande).</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li><strong>ρ desconocido:</strong> usa ρ = 0,30 como referencia conservadora de efecto moderado.</li>
+                <li><strong>Contraste bilateral:</strong> usa cuando no tienes hipótesis direccional previa.</li>
+                <li><strong>Contraste unilateral:</strong> solo si tienes razones sólidas para esperar una correlación positiva (o negativa).</li>
+                <li><strong>Potencia:</strong> 0,80 es el mínimo habitual; 0,90 para estudios confirmatorios.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Quieres detectar una correlación de al menos ρ = 0,30 con α = 0,05 bilateral y potencia 0,80. Necesitas aproximadamente <strong>84 pares de observaciones</strong>.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Validación de escalas psicométricas y cuestionarios.</li>
+                <li>Estudios de asociación entre dos variables continuas (biomarcadores, escalas clínicas).</li>
+                <li>Análisis de fiabilidad inter-observador (correlación intraclase, Pearson).</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora estima el número mínimo de pares de observaciones para detectar una correlación de Pearson de magnitud ρ con el nivel de significación y la potencia indicados.</p>
+            <h3>Fórmula utilizada</h3>
+            <p>Se aplica la transformación z de Fisher (arctanh) para obtener una estadística con varianza aproximadamente 1/(n-3), lo que permite derivar directamente n.</p>
+            <h3>Ejemplo de uso</h3>
+            <p>Introduce ρ = 0,30, α = 0,05 bilateral y potencia = 0,80, y pulsa Calcular. Si aumentas la potencia a 0,90 obtendrás una muestra mayor.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El n calculado es el número de pares (individuos con las dos medidas). Si la correlación real es mayor de la esperada, el contraste tendrá más potencia de la planificada.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para dos medias</a></li>
+                    <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
+                    <li><a href="tamano-muestral-anova.html">Tamaño muestral para ANOVA</a></li>
+                </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué es la transformación z de Fisher?</strong> z = arctanh(ρ); estabiliza la varianza de r̂ para aplicar la aproximación normal.</li>
+                <li><strong>¿Correlación negativa?</strong> El módulo |ρ| es lo que determina el tamaño muestral; usa el valor absoluto.</li>
+                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar un efecto real cuando existe.</li>
+                <li><strong>¿El tamaño muestral es exacto?</strong> Es una aproximación; funciona bien para n > 20.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculateCorrSampleSize() {
+    const resultEl = document.getElementById("corrResult");
+    try {
+        const rho = parseFloat(document.getElementById("corrRho").value);
+        const alpha = parseFloat(document.getElementById("corrAlpha").value);
+        const power = parseFloat(document.getElementById("corrPower").value);
+        const tail = document.getElementById("corrTail").value;
+
+        if (!Number.isFinite(rho) || Math.abs(rho) >= 1 || rho === 0) {
+            throw new Error("ρ debe estar entre −1 y 1 (sin incluir los extremos ni el cero).");
+        }
+        if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) throw new Error("α debe estar entre 0 y 1.");
+        if (!Number.isFinite(power) || power <= 0 || power >= 1) throw new Error("La potencia debe estar entre 0 y 1.");
+
+        const zAlpha = tail === "two"
+            ? jStat.normal.inv(1 - alpha / 2, 0, 1)
+            : jStat.normal.inv(1 - alpha, 0, 1);
+        const zBeta = jStat.normal.inv(power, 0, 1);
+        const zRho = Math.atanh(Math.abs(rho));
+
+        const n = Math.ceil(Math.pow((zAlpha + zBeta) / zRho, 2)) + 3;
+
+        resultEl.innerText =
+            `n mínimo (pares de observaciones): ${n}.\n` +
+            `Parámetros: ρ = ${rho}, α = ${alpha} (${tail === "two" ? "bilateral" : "unilateral"}), potencia = ${(power * 100).toFixed(0)} %.`;
+    } catch (e) {
+        resultEl.innerText = `Error: ${e.message}`;
+    }
+}
+
+document.getElementById("corrPreset").addEventListener("change", function () {
+    if (this.value) {
+        document.getElementById("corrRho").value = this.value;
+        this.value = "";
+    }
+});
+document.getElementById("corrCalculateBtn").addEventListener("click", calculateCorrSampleSize);
+calculateCorrSampleSize();
+</script>
+</body>
+</html>

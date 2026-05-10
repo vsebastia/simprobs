@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para no inferioridad y equivalencia | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral para ensayos de no inferioridad y equivalencia (TOST). Configura el margen, la diferencia asumida, la desviación estándar, alfa y potencia.">
+    <meta name="keywords" content="tamaño muestral no inferioridad, calculadora equivalencia TOST, muestra ensayo no inferioridad, margen de equivalencia estadística, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-no-inferioridad.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para no inferioridad y equivalencia | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral para ensayos de no inferioridad y equivalencia (TOST). Configura el margen, la diferencia asumida, la desviación estándar, alfa y potencia.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-no-inferioridad.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para no inferioridad y equivalencia">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-no-inferioridad.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para no inferioridad y equivalencia | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral para ensayos de no inferioridad y equivalencia (TOST). Configura el margen, la diferencia asumida, la desviación estándar, alfa y potencia.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para no inferioridad y equivalencia">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Tamaño muestral no inferioridad", "item": "https://problabtools.es/tamano-muestral-no-inferioridad.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para no inferioridad y equivalencia | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-no-inferioridad.html",
+          "description": "Calcula el tamaño muestral para ensayos de no inferioridad y equivalencia con margen configurable.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para no inferioridad y equivalencia",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-no-inferioridad.html",
+      "description": "Calcula el tamaño muestral para ensayos de no inferioridad y equivalencia con margen configurable.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "¿Qué diferencia hay entre no inferioridad y equivalencia?", "acceptedAnswer": {"@type": "Answer", "text": "En no inferioridad se comprueba que el tratamiento nuevo no es peor que el de referencia en más de un margen M (contraste unilateral). En equivalencia se comprueba que la diferencia está dentro de ±M en ambas direcciones (TOST, dos contrastes unilaterales)."}},
+        {"@type": "Question", "name": "¿Cómo se elige el margen de no inferioridad?", "acceptedAnswer": {"@type": "Answer", "text": "El margen M debe definirse clínicamente antes del estudio: es la máxima diferencia que se considera aceptable. Suele derivarse de datos históricos del comparador activo."}},
+        {"@type": "Question", "name": "¿Por qué los ensayos de no inferioridad necesitan más muestra que los de superioridad?", "acceptedAnswer": {"@type": "Answer", "text": "Porque la hipótesis nula es la inversa: hay que demostrar que algo NO es peor, lo que exige mayor precisión para excluir diferencias pequeñas."}},
+        {"@type": "Question", "name": "¿Qué diferencia asumida (δ) debo usar?", "acceptedAnswer": {"@type": "Answer", "text": "Habitualmente δ = 0 (se asume que el tratamiento es equivalente al control). Si se espera una pequeña ventaja del tratamiento, δ puede ser positivo; si se espera ligera inferioridad, negativo (solo para NI)."}}
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260509">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para no inferioridad y equivalencia</h1>
+        <p class="hero-subtitle">Planifica ensayos clínicos donde el objetivo es demostrar que un nuevo tratamiento no es peor (o es intercambiable) respecto a uno de referencia.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Selecciona el tipo de ensayo y configura los parámetros del diseño.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="form-group">
+                    <label for="niType">Tipo de ensayo</label>
+                    <select id="niType">
+                        <option value="ni" selected>No inferioridad (unilateral)</option>
+                        <option value="eq">Equivalencia — TOST (bilateral)</option>
+                    </select>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="niSigma">Desviación estándar común (σ)</label>
+                        <input type="number" id="niSigma" value="10" step="0.1" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="niMargin">Margen M (positivo)</label>
+                        <input type="number" id="niMargin" value="5" step="0.1" min="0.0001">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="niDelta" id="niDeltaLabel">Diferencia asumida (δ = μT − μC)</label>
+                        <input type="number" id="niDelta" value="0" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="niAlpha">Alfa (α) — unilateral</label>
+                        <input type="number" id="niAlpha" value="0.025" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="niPower">Potencia (1-β)</label>
+                    <input type="number" id="niPower" value="0.80" step="0.01" min="0.5" max="0.999">
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="niCalculateBtn">Calcular tamaño muestral</button>
+            <div id="niResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Los ensayos de <strong>no inferioridad</strong> buscan demostrar que el tratamiento nuevo (T) no es peor que el de referencia (C) en más de un margen preestablecido M. Los ensayos de <strong>equivalencia</strong> (TOST) exigen que la diferencia esté dentro de ±M en ambas direcciones. En ambos casos, α es <em>unilateral</em>; el valor habitual es 0,025 (equivalente a un intervalo de confianza del 95 % para la diferencia).</p>
+
+            <h2>Fórmulas</h2>
+            <p><strong>No inferioridad</strong> — con \(\delta = \mu_T - \mu_C\) asumido:</p>
+            <p class="formula-line">\( n = \left\lceil \frac{2\,\sigma^2\,(Z_\alpha + Z_\beta)^2}{(M + \delta)^2} \right\rceil \)</p>
+            <p><strong>Equivalencia (TOST)</strong> — con \(\delta\) asumido:</p>
+            <p class="formula-line">\( n = \left\lceil \frac{2\,\sigma^2\,(Z_\alpha + Z_\beta)^2}{(M - |\delta|)^2} \right\rceil \)</p>
+            <ul>
+                <li><strong>M</strong>: margen de no inferioridad o equivalencia (definido clínicamente, siempre positivo).</li>
+                <li><strong>δ</strong>: diferencia verdadera asumida (habitualmente 0).</li>
+                <li><strong>σ</strong>: desviación estándar común de la variable principal.</li>
+                <li><strong>Z<sub>α</sub></strong>: cuantil normal unilateral.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li><strong>M:</strong> defínelo clínicamente antes del estudio; refleja la pérdida máxima aceptable de eficacia.</li>
+                <li><strong>δ = 0:</strong> supuesto conservador; significa que T y C tienen exactamente la misma eficacia media.</li>
+                <li><strong>α = 0,025 unilateral:</strong> el estándar regulatorio (EMA/FDA) para ensayos de no inferioridad equivale a un IC del 95 %.</li>
+                <li><strong>Potencia:</strong> 0,80 habitualmente; 0,90 en estudios pivotales.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Un nuevo fármaco frente a estándar: σ = 10, M = 5, δ = 0, α = 0,025 unilateral, potencia 0,80. El resultado es aproximadamente <strong>85 pacientes por grupo</strong> (total ≈ 170).</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Ensayos de medicamentos genéricos o biosimilares.</li>
+                <li>Comparación de un tratamiento menos tóxico con el estándar.</li>
+                <li>Validación de procedimientos diagnósticos alternativos.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Estima el número mínimo de sujetos por grupo para demostrar no inferioridad o equivalencia en una variable continua, dado el margen M, la variabilidad σ, la diferencia asumida δ y los parámetros de diseño α y potencia.</p>
+            <h3>Fórmula utilizada</h3>
+            <p>La fórmula es análoga a la de dos medias pero el denominador usa (M + δ) para NI o (M − |δ|) para equivalencia; el alfa es siempre unilateral.</p>
+            <h3>Ejemplo de uso</h3>
+            <p>Selecciona "No inferioridad", introduce σ = 10, M = 5, δ = 0, α = 0,025 y potencia = 0,80. Pulsa Calcular para ver el n por grupo.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El n calculado es por grupo (diseño balanceado 1:1). Aumentar M reduce la muestra; aumentar la potencia o reducir σ también afecta al resultado.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para dos medias (superioridad)</a></li>
+                    <li><a href="tamano-muestral-dos-proporciones.html">Tamaño muestral para dos proporciones</a></li>
+                    <li><a href="tamano-muestral-anova.html">Tamaño muestral para ANOVA</a></li>
+                </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué diferencia hay entre NI y equivalencia?</strong> NI es unilateral (no peor); equivalencia es bilateral (ni peor ni mejor).</li>
+                <li><strong>¿Por qué α unilateral = 0,025?</strong> Es el estándar regulatorio EMA/FDA que garantiza un IC del 95 % para la diferencia.</li>
+                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de demostrar NI o equivalencia cuando realmente se cumple.</li>
+                <li><strong>¿El tamaño muestral es exacto?</strong> Es una aproximación normal; funciona bien para σ conocida o muestras moderadas.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculateNISampleSize() {
+    const resultEl = document.getElementById("niResult");
+    try {
+        const type = document.getElementById("niType").value;
+        const sigma = parseFloat(document.getElementById("niSigma").value);
+        const margin = parseFloat(document.getElementById("niMargin").value);
+        const delta = parseFloat(document.getElementById("niDelta").value);
+        const alpha = parseFloat(document.getElementById("niAlpha").value);
+        const power = parseFloat(document.getElementById("niPower").value);
+
+        if (!Number.isFinite(sigma) || sigma <= 0) throw new Error("σ debe ser mayor que 0.");
+        if (!Number.isFinite(margin) || margin <= 0) throw new Error("El margen M debe ser mayor que 0.");
+        if (!Number.isFinite(delta)) throw new Error("δ debe ser un número.");
+        if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) throw new Error("α debe estar entre 0 y 1.");
+        if (!Number.isFinite(power) || power <= 0 || power >= 1) throw new Error("La potencia debe estar entre 0 y 1.");
+
+        const zAlpha = jStat.normal.inv(1 - alpha, 0, 1);
+        const zBeta = jStat.normal.inv(power, 0, 1);
+
+        let denom;
+        if (type === "ni") {
+            denom = margin + delta;
+            if (denom <= 0) throw new Error("Para no inferioridad se requiere M + δ > 0. Aumenta M o reduce δ.");
+        } else {
+            denom = margin - Math.abs(delta);
+            if (denom <= 0) throw new Error("Para equivalencia se requiere M > |δ|. El efecto asumido supera el margen.");
+        }
+
+        const n = Math.ceil(2 * sigma * sigma * Math.pow(zAlpha + zBeta, 2) / (denom * denom));
+        const typeLabel = type === "ni" ? "no inferioridad" : "equivalencia (TOST)";
+
+        resultEl.innerText =
+            `n mínimo por grupo (${typeLabel}): ${n} (total: ${2 * n}).\n` +
+            `Parámetros: σ = ${sigma}, M = ${margin}, δ = ${delta}, α = ${alpha} unilateral, potencia = ${(power * 100).toFixed(0)} %.`;
+    } catch (e) {
+        resultEl.innerText = `Error: ${e.message}`;
+    }
+}
+
+document.getElementById("niCalculateBtn").addEventListener("click", calculateNISampleSize);
+calculateNISampleSize();
+</script>
+</body>
+</html>
