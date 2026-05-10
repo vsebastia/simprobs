@@ -210,17 +210,27 @@
         <article class="card content-card">
         <h2>Distribución log-normal</h2>
         <h3>Explicación breve</h3>
-        <p>La distribución log-normal describe variables positivas cuyo logaritmo sigue una distribución normal. Suele producir colas derechas largas.</p>
+        <p>Una variable aleatoria X sigue una distribución log-normal si su logaritmo natural ln(X) sigue una distribución normal.
+        Esto ocurre de forma natural en procesos donde el resultado es el producto de muchos factores aleatorios independientes,
+        igual que la suma de factores lleva a la normal por el teorema central del límite.
+        La distribución es siempre positiva y presenta una cola derecha larga, lo que la hace adecuada para modelar
+        ingresos, precios de activos financieros, tiempos de reparación, tamaños de partículas y duraciones de tareas.
+        Atención: μ y σ son los parámetros de ln(X), no de X directamente.
+        La media de X es exp(μ + σ²/2) y su varianza es [exp(σ²) − 1]·exp(2μ + σ²).</p>
         <h3>Fórmula</h3>
         <p class="formula-line">\( f(x;\mu,\sigma)=\frac{1}{x\sigma\sqrt{2\pi}}e^{-\frac{(\ln x-\mu)^2}{2\sigma^2}},\quad x>0 \)</p>
         <h3>Parámetros</h3>
         <ul>
-            <li><strong>μ:</strong> media del logaritmo de la variable.</li>
-            <li><strong>σ:</strong> desviación estándar del logaritmo (σ &gt; 0).</li>
-            <li><strong>x:</strong> valor positivo de la variable original.</li>
+            <li><strong>μ (mu):</strong> media del logaritmo natural de la variable. Puede ser cualquier número real.</li>
+            <li><strong>σ (sigma):</strong> desviación estándar del logaritmo natural. Debe ser σ &gt; 0.</li>
+            <li><strong>x:</strong> valor positivo de la variable original (x &gt; 0).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Aparece en ingresos, tamaños de archivo, duraciones y procesos multiplicativos con cola derecha larga.</p>
+        <p>Los salarios anuales de una empresa se modelan con una log-normal con μ = 10,8 y σ = 0,4
+        (en logaritmo natural de euros). La media salarial es exp(10,8 + 0,4²/2) = exp(10,88) ≈ 53 300 €.
+        Con la calculadora, introduce μ = 10,8 y σ = 0,4 y usa la CDF con x = 40 000 para conocer la proporción
+        de empleados que gana menos de 40 000 €, o usa cuantiles para encontrar el salario mediano (percentil 50)
+        que coincide con exp(μ) = exp(10,8) ≈ 49 000 €.</p>
     </article>
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>

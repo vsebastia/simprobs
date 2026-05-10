@@ -210,17 +210,27 @@
         <article class="card content-card">
         <h2>Distribución uniforme</h2>
         <h3>Explicación breve</h3>
-        <p>La distribución uniforme continua asigna la misma densidad a cualquier valor dentro del intervalo [a,b]. Es un modelo base cuando solo conoces límites mínimo y máximo sin preferencia por valores intermedios.</p>
+        <p>La distribución uniforme continua asigna exactamente la misma densidad de probabilidad a todos los valores dentro
+        del intervalo [a, b] y probabilidad cero fuera de él. Es el modelo que expresa ignorancia total sobre qué valor
+        es más probable dentro de ese rango: si solo sabes que algo ocurrirá entre a y b pero no tienes razón para preferir
+        ningún valor concreto, la uniforme es la elección natural.
+        Se usa como distribución base en generadores de números aleatorios, en simulación Monte Carlo (donde se transforma
+        mediante la inversa de la CDF para obtener otras distribuciones), y en modelos de optimización robusta.
+        Su media es (a + b) / 2, su varianza es (b − a)² / 12 y su función de distribución acumulada es lineal: F(x) = (x − a) / (b − a).</p>
         <h3>Fórmula</h3>
         <p class="formula-line">\( f(x)=\frac{1}{b-a},\quad a\le x\le b \)</p>
         <h3>Parámetros</h3>
         <ul>
-            <li><strong>a:</strong> límite inferior del intervalo.</li>
-            <li><strong>b:</strong> límite superior del intervalo (debe cumplir b &gt; a).</li>
-            <li><strong>x:</strong> valor dentro del eje donde evalúas PDF/CDF.</li>
+            <li><strong>a:</strong> límite inferior del intervalo. Puede ser cualquier número real.</li>
+            <li><strong>b:</strong> límite superior del intervalo. Debe cumplir b &gt; a.</li>
+            <li><strong>x:</strong> valor donde se evalúa la PDF o la CDF, dentro del intervalo [a, b].</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Útil en simulaciones y escenarios donde cualquier valor dentro de un rango es igual de probable, por ejemplo tiempos entre 5 y 10 minutos sin sesgo.</p>
+        <p>Un autobús pasa con una frecuencia exacta de 20 minutos, pero un viajero llega en un momento aleatorio.
+        El tiempo de espera hasta el próximo autobús sigue una Uniforme(0, 20).
+        La espera media es (0 + 20) / 2 = 10 minutos y la varianza es 20² / 12 ≈ 33,3 min².
+        Con la calculadora, introduce a = 0 y b = 20 y usa la CDF con x = 5 para calcular la probabilidad de esperar
+        menos de 5 minutos (resultado: 25 %), o usa cuantiles para encontrar el tiempo que no se supera el 75 % de las veces (15 minutos).</p>
     </article>
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
