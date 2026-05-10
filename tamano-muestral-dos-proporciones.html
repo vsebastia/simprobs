@@ -179,63 +179,82 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p>Este cálculo se aplica cuando comparas dos grupos independientes (por ejemplo, conversión de control vs. tratamiento). Requiere <strong>p1</strong>, <strong>p2</strong>, nivel de significación <strong>\(\alpha\)</strong>, potencia <strong>\(1-\beta\)</strong> y la razón de asignación <strong>k = n_2 / n_1</strong>.</p>
+            <p>Este cálculo determina el número mínimo de observaciones por grupo para detectar una diferencia entre dos proporciones independientes con una potencia y un nivel de significación especificados. A diferencia de estimar una proporción individual, aquí el objetivo es un contraste de hipótesis bilateral: \(H_0\!: p_1 = p_2\) frente a \(H_1\!: p_1 \neq p_2\).</p>
+            <p>La fórmula implementada es la de Fleiss, Levin y Paik (2003), que es más precisa que la aproximación de arco seno de Cohen porque tiene en cuenta la variabilidad separada de cada grupo bajo \(H_1\).</p>
+            <p>El tamaño del efecto aquí es la diferencia absoluta \(|p_1 - p_2|\): cuanto más pequeña, más difícil de detectar y mayor la muestra necesaria. Para efectos muy pequeños (diferencias &lt; 0,05) considera si el efecto es clínica o prácticamente relevante antes de planificar el estudio.</p>
 
             <h2>Fórmula de tamaño muestral</h2>
             <p class="formula-line">\( n_1 = \frac{\left(Z_{\alpha/2}\sqrt{(1+1/k)\bar{p}(1-\bar{p})} + Z_\beta\sqrt{p_1(1-p_1)+\frac{p_2(1-p_2)}{k}}\right)^2}{(p_1-p_2)^2} \)</p>
             <p class="formula-line">\( n_2 = k\,n_1,\quad \bar{p}=\frac{p_1 + kp_2}{1+k} \)</p>
             <ul>
                 <li><strong>n1, n2</strong>: tamaños muestrales por grupo.</li>
-                <li><strong>k</strong>: razón entre tamaños de grupo.</li>
-                <li><strong>\(Z_{\alpha/2}\)</strong> y <strong>\(Z_\beta\)</strong>: cuantiles normales para alfa y potencia.</li>
+                <li><strong>k</strong>: razón de asignación n2/n1 (k = 1 para diseño 1:1).</li>
+                <li><strong>\(\bar{p}\)</strong>: proporción ponderada bajo H0.</li>
+                <li><strong>\(Z_{\alpha/2}\)</strong> y <strong>\(Z_\beta\)</strong>: cuantiles normales para alfa bilateral y potencia.</li>
             </ul>
         </section>
 
         <section class="card content-card">
             <h2>Configuración rápida</h2>
             <ul>
-                <li><strong>p1 y p2:</strong> usa estimaciones de un piloto, histórico o literatura.</li>
-                <li><strong>Alfa (α):</strong> 0.05 es el valor más habitual.</li>
-                <li><strong>Potencia:</strong> 0.80 es mínima recomendada; 0.90 si el estudio es crítico.</li>
-                <li><strong>Asignación:</strong> usa 1:1 cuando puedas para mayor eficiencia.</li>
+                <li><strong>p1 y p2:</strong> usa estimaciones de un piloto, datos históricos o literatura. Si p2 es el grupo de control, p1 es lo que esperas observar en el grupo de intervención.</li>
+                <li><strong>Alfa (α):</strong> 0,05 bilateral es el valor más habitual. Para estudios confirmatorios usa 0,01.</li>
+                <li><strong>Potencia:</strong> 0,80 como mínimo; 0,90 si las consecuencias de un falso negativo son graves.</li>
+                <li><strong>Asignación 1:1:</strong> el diseño más eficiente cuando el coste de ambos grupos es similar. Asignaciones desiguales aumentan el total.</li>
+                <li><strong>Pérdidas:</strong> divide n por (1 − tasa de abandono esperada).</li>
             </ul>
 
             <h2>Ejemplo sencillo</h2>
-            <p>Comparas conversión entre dos campañas: <strong>p1 = 0.50</strong> y <strong>p2 = 0.40</strong>, con <strong>α = 0.05</strong>, potencia <strong>0.80</strong> y asignación 1:1. El resultado es aproximadamente <strong>387 participantes por grupo</strong> (total ≈ 774).</p>
+            <p>Comparas conversión entre dos campañas: <strong>p1 = 0,50</strong>, <strong>p2 = 0,40</strong>, <strong>α = 0,05</strong>, potencia <strong>0,80</strong>, asignación 1:1. Resultado: aproximadamente <strong>387 participantes por grupo</strong> (total ≈ 774).</p>
 
             <h2>Usos frecuentes</h2>
             <ul>
-                <li>Tests A/B en marketing y producto digital.</li>
-                <li>Comparación de tasas de éxito entre tratamientos.</li>
-                <li>Evaluación de cambios en procesos con resultado binario.</li>
+                <li>Tests A/B en marketing y producto digital (tasas de conversión o clics).</li>
+                <li>Comparación de tasas de respuesta a dos tratamientos en ensayos clínicos.</li>
+                <li>Evaluación de cambios en procesos con resultado binario (sí/no, éxito/fracaso).</li>
+                <li>Estudios epidemiológicos de cohortes con resultado dicotómico.</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li>Los dos grupos son independientes entre sí.</li>
+                <li>Muestreo aleatorio en cada grupo.</li>
+                <li>Distribución binomial aproximada por la normal (válida para n·p ≥ 5 y n·(1−p) ≥ 5 en cada grupo).</li>
+                <li>Contraste bilateral (si tienes hipótesis direccional, la muestra puede reducirse algo usando un contraste unilateral, aunque esto es menos conservador).</li>
             </ul>
         </section>
 
-
-
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>
+            <p>Calcula el tamaño muestral por grupo para detectar una diferencia entre dos proporciones independientes con potencia y nivel de significación especificados, usando la fórmula de Fleiss, Levin y Paik (2003).</p>
             <h3>Fórmula utilizada</h3>
-            <p>El cálculo combina valores críticos, variabilidad esperada y diferencia mínima detectable para obtener el número de observaciones necesario en el escenario planteado.</p>
+            <p>La fórmula de Fleiss es más precisa que la aproximación de Cohen porque modela la varianza bajo H1 de cada grupo por separado. El denominador es (p1−p2)² y el numerador combina los cuantiles normales con la variabilidad ponderada.</p>
             <h3>Ejemplo de uso</h3>
-            <p>Introduce tus supuestos iniciales, pulsa en calcular y revisa el tamaño recomendado. Si aumentas precisión o potencia, el tamaño muestral requerido también aumentará.</p>
+            <p>p1 = 0,50, p2 = 0,40, α = 0,05, potencia = 0,80, k = 1 → n por grupo ≈ 387. Subir la potencia a 0,90 eleva el n a ≈ 519 por grupo.</p>
             <h3>Cómo interpretar el resultado</h3>
-            <p>El tamaño calculado es orientativo y depende de los supuestos introducidos; conviene revisar sensibilidad con distintos márgenes de error o niveles de potencia.</p>
+            <p>El n calculado es por grupo. Multiplica por (1 + k) para el total. Si p1 y p2 son muy similares (diferencia &lt; 0,05), el n puede ser muy grande — revisa si la diferencia es prácticamente relevante.</p>
             <section class="related-tools">
-              <h3>Calculadoras relacionadas</h3>
-              <ul>
-                <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
-                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
-              </ul>
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-una-proporcion.html">Una proporción</a></li>
+                    <li><a href="tamano-muestral-proporciones-apareadas.html">Proporciones apareadas</a></li>
+                    <li><a href="tamano-muestral-odds-ratio.html">Odds ratio (caso-control)</a></li>
+                    <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste de hipótesis para dos proporciones</a></li>
+                    <li><a href="ab-testing-potencia.html">Potencia y tamaño muestral para A/B</a></li>
+                </ul>
             </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Sample_size_determination" target="_blank" rel="noopener">Sample size determination</a> — sección sobre comparación de proporciones.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Statistical_power" target="_blank" rel="noopener">Statistical power</a> — relación entre potencia, alfa y tamaño muestral.</li>
+                <li>Fleiss, J. L., Levin, B. y Paik, M. C. (2003). <em>Statistical Methods for Rates and Proportions</em> (3.ª ed.). Wiley. — fuente de la fórmula implementada.</li>
+            </ul>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué es el margen de error?</strong> Es la precisión máxima tolerada respecto al valor real.</li>
-                <li><strong>¿Qué significa nivel de confianza?</strong> El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero.</li>
-                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar un efecto real cuando existe.</li>
-                <li><strong>¿El tamaño muestral es exacto?</strong> No, depende de supuestos y redondeos prácticos de diseño.</li>
+                <li><strong>¿Qué diferencia hay con la fórmula de Cohen?</strong> La de Fleiss es más precisa porque modela la varianza de cada grupo bajo H1; la de Cohen usa la varianza ponderada en ambos términos.</li>
+                <li><strong>¿Puedo usar asignación desigual (k ≠ 1)?</strong> Sí, pero el tamaño total siempre será mayor que con k = 1. Solo compensa cuando el reclutamiento de un grupo es mucho más barato.</li>
+                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de rechazar H0 cuando H1 es cierta, es decir, de detectar la diferencia real.</li>
+                <li><strong>¿El resultado es exacto?</strong> Es una aproximación normal; para muestras muy pequeñas o proporciones extremas considera métodos exactos.</li>
             </ul>
         </section>
 

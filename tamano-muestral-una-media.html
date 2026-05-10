@@ -164,61 +164,85 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p>Utiliza este cálculo para estimar una media poblacional (por ejemplo, gasto medio mensual) con un margen de error <strong>E</strong>. Necesitas una estimación previa de la desviación estándar <strong>\(\sigma\)</strong> y un nivel de confianza para obtener <strong>Z</strong>.</p>
+            <p>Esta calculadora determina el número mínimo de observaciones para estimar una media poblacional \(\mu\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado. Es el cálculo análogo al de una proporción, pero para variables cuantitativas continuas.</p>
+            <p>El parámetro clave que debes conocer de antemano es la desviación estándar \(\sigma\). Si no la tienes, puedes estimarla de datos históricos, de la literatura o de un estudio piloto. Una regla práctica conservadora cuando la distribución es aproximadamente normal: \(\sigma \approx \text{rango} / 4\) (un cuarto del rango probable de los datos).</p>
+            <p>Esta fórmula usa el cuantil normal Z, lo que supone que \(\sigma\) es conocida o que la muestra es suficientemente grande para que el cuantil t converja a Z. Para muestras pequeñas (&lt; 30) con \(\sigma\) desconocida, el n real puede ser algo mayor (usa el cuantil t con n−1 grados de libertad de forma iterativa).</p>
 
             <h2>Fórmula de tamaño muestral</h2>
             <p class="formula-line">\( n = \left(\frac{Z \cdot \sigma}{E}\right)^2 \)</p>
             <ul>
-                <li><strong>n</strong>: tamaño muestral mínimo.</li>
-                <li><strong>\(\sigma\)</strong>: desviación estándar esperada.</li>
-                <li><strong>E</strong>: error máximo tolerable en la estimación de la media.</li>
+                <li><strong>n</strong>: tamaño muestral mínimo (redondeado al entero superior).</li>
+                <li><strong>Z</strong>: cuantil normal — 1,645 (90 %), 1,960 (95 %), 2,576 (99 %).</li>
+                <li><strong>\(\sigma\)</strong>: desviación estándar esperada de la variable.</li>
+                <li><strong>E</strong>: margen de error absoluto máximo tolerable (en las mismas unidades que \(\sigma\)).</li>
             </ul>
+
+            <h2>Relación entre σ, E y n</h2>
+            <p>El tamaño muestral crece cuadráticamente con la precisión exigida: reducir E a la mitad cuadruplica n. También crece cuadráticamente con \(\sigma\): si la variabilidad de la población es el doble, necesitas cuatro veces más observaciones para la misma precisión. Comprueba siempre que E sea razonable en términos prácticos: un E muy pequeño puede hacer el estudio inviable.</p>
         </section>
 
         <section class="card content-card">
             <h2>Configuración rápida</h2>
             <ul>
-                <li><strong>Desviación estándar (σ):</strong> tómala de estudios previos o de una muestra piloto.</li>
-                <li><strong>Nivel de confianza:</strong> 95% es el punto de partida más común.</li>
-                <li><strong>Error máximo (E):</strong> define una precisión útil para la decisión del negocio.</li>
+                <li><strong>Desviación estándar (σ):</strong> tómala de estudios previos, de la literatura o de una muestra piloto de 10–30 observaciones.</li>
+                <li><strong>Si no tienes σ:</strong> usa la regla del rango dividido por 4 o por 6 como estimación inicial conservadora.</li>
+                <li><strong>Nivel de confianza:</strong> 95 % es el estándar en la mayoría de disciplinas científicas.</li>
+                <li><strong>Error máximo E:</strong> defínelo en términos prácticos — ¿a partir de qué diferencia respecto a la media real tomarías una decisión diferente?</li>
+                <li><strong>Pérdidas esperadas:</strong> divide n entre (1 − tasa de abandono esperada).</li>
             </ul>
 
             <h2>Ejemplo sencillo</h2>
-            <p>Quieres estimar el gasto medio mensual. Si esperas <strong>σ = 10</strong>, deseas <strong>95%</strong> de confianza y toleras <strong>E = 2</strong>, el cálculo da <strong>n ≈ 97</strong> observaciones.</p>
+            <p>Quieres estimar el tiempo medio de atención en minutos. Esperas <strong>σ = 10</strong>, deseas <strong>95 %</strong> de confianza y toleras <strong>E = 2 min</strong>. Resultado: <strong>n ≈ 97</strong> observaciones. Si reduces E a 1 min, la muestra sube a 385.</p>
 
             <h2>Usos frecuentes</h2>
             <ul>
-                <li>Estimación de tiempos promedio de proceso.</li>
-                <li>Cálculo de consumo o gasto medio.</li>
-                <li>Control de variables continuas en calidad y operaciones.</li>
+                <li>Estimación de tiempos medios de proceso o servicio.</li>
+                <li>Medición de consumo o gasto medio en clientes o usuarios.</li>
+                <li>Control estadístico de procesos en manufactura y calidad.</li>
+                <li>Encuestas sobre variables continuas (peso, altura, puntuación).</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li>Muestreo aleatorio simple de una población muy grande (o infinita).</li>
+                <li>La variable sigue aproximadamente una distribución normal, o n es suficientemente grande para que el TLC garantice la normalidad del estimador.</li>
+                <li>La desviación estándar \(\sigma\) es conocida o se estima de forma fiable.</li>
+                <li>Si la población es finita y n/N &gt; 5 %, aplica la <a href="tamano-muestral-media-poblacion-finita.html">corrección por población finita</a>.</li>
             </ul>
         </section>
 
-
-
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora estima el tamaño de muestra mínimo recomendado según nivel de confianza, margen de error, potencia y supuestos del diseño estadístico correspondiente.</p>
+            <p>Calcula el número mínimo de observaciones para estimar una media poblacional con un margen de error absoluto máximo E y un nivel de confianza dado, usando el cuantil normal Z y la desviación estándar σ.</p>
             <h3>Fórmula utilizada</h3>
-            <p>El cálculo combina valores críticos, variabilidad esperada y diferencia mínima detectable para obtener el número de observaciones necesario en el escenario planteado.</p>
+            <p>\( n = (Z \cdot \sigma / E)^2 \). El resultado se redondea al entero superior. La fórmula asume σ conocida; para σ desconocida con n pequeño, usa cuantiles t iterativamente.</p>
             <h3>Ejemplo de uso</h3>
-            <p>Introduce tus supuestos iniciales, pulsa en calcular y revisa el tamaño recomendado. Si aumentas precisión o potencia, el tamaño muestral requerido también aumentará.</p>
+            <p>σ = 10, E = 2, 95 % confianza → n = 97. Con E = 1 → n = 385. La relación es inversa al cuadrado del error.</p>
             <h3>Cómo interpretar el resultado</h3>
-            <p>El tamaño calculado es orientativo y depende de los supuestos introducidos; conviene revisar sensibilidad con distintos márgenes de error o niveles de potencia.</p>
+            <p>El n es el mínimo de observaciones válidas. Si dudas del valor de σ, calcula n para σ±25 % y usa el mayor como margen de seguridad.</p>
             <section class="related-tools">
-              <h3>Calculadoras relacionadas</h3>
-              <ul>
-                <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media</a></li>
-                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
-                <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
-              </ul>
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-media-poblacion-finita.html">Media (población finita)</a></li>
+                    <li><a href="tamano-muestral-diferencia-medias.html">Dos medias independientes</a></li>
+                    <li><a href="tamano-muestral-medias-apareadas.html">Medias apareadas</a></li>
+                    <li><a href="intervalo-confianza-media.html">Intervalo de confianza para una media</a></li>
+                    <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
+                </ul>
             </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Wikipedia: <a href="https://es.wikipedia.org/wiki/Tama%C3%B1o_de_la_muestra" target="_blank" rel="noopener">Tamaño de la muestra</a> — fórmulas para media y proporción.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Sample_size_determination" target="_blank" rel="noopener">Sample size determination</a> — derivación para medias y otras variantes.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Standard_deviation" target="_blank" rel="noopener">Standard deviation</a> — cómo estimar σ de datos previos.</li>
+                <li>Montgomery, D. C. (2019). <em>Introduction to Statistical Quality Control</em> (8.ª ed.). Wiley. — aplicaciones de tamaño muestral en control de procesos.</li>
+            </ul>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué es el margen de error?</strong> Es la precisión máxima tolerada respecto al valor real.</li>
-                <li><strong>¿Qué significa nivel de confianza?</strong> El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero.</li>
-                <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de detectar un efecto real cuando existe.</li>
-                <li><strong>¿El tamaño muestral es exacto?</strong> No, depende de supuestos y redondeos prácticos de diseño.</li>
+                <li><strong>¿Qué hago si no conozco σ?</strong> Usa una muestra piloto de 15–30 observaciones para estimarla, o busca σ en literatura similar. Como fallback conservador, usa rango/4.</li>
+                <li><strong>¿Cuándo debo usar t en lugar de Z?</strong> Cuando n &lt; 30 y σ es desconocida. Para esos casos, itera: calcula n con Z, luego reemplaza Z por t(n−1) y recalcula hasta convergencia.</li>
+                <li><strong>¿El resultado es exacto?</strong> Es la muestra mínima teórica. En la práctica, añade un colchón del 10–20 % para compensar observaciones inválidas o perdidas.</li>
+                <li><strong>¿Qué es el nivel de confianza?</strong> El porcentaje de veces que el intervalo de confianza calculado con ese procedimiento contendría el verdadero valor poblacional si repitiéramos el muestreo.</li>
             </ul>
         </section>
 

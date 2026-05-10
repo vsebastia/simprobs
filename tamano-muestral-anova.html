@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para ANOVA | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral por grupo para un ANOVA de un factor con k grupos. Introduce el número de grupos, el tamaño del efecto de Cohen (f), alfa y potencia.">
+    <meta name="keywords" content="tamaño muestral ANOVA, calcular muestra ANOVA un factor, potencia estadística ANOVA, tamaño del efecto Cohen f, muestra para comparar k medias, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-anova.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para ANOVA | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral por grupo para un ANOVA de un factor con k grupos. Introduce el número de grupos, el tamaño del efecto de Cohen (f), alfa y potencia.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-anova.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para ANOVA">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-anova.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para ANOVA | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral por grupo para un ANOVA de un factor con k grupos. Introduce el número de grupos, el tamaño del efecto de Cohen (f), alfa y potencia.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para ANOVA">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Tamaño muestral ANOVA", "item": "https://problabtools.es/tamano-muestral-anova.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para ANOVA | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-anova.html",
+          "description": "Calcula el tamaño muestral por grupo para un ANOVA de un factor con k grupos.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para ANOVA",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-anova.html",
+      "description": "Calcula el tamaño muestral por grupo para un ANOVA de un factor con k grupos.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "¿Qué es el tamaño del efecto f de Cohen en ANOVA?", "acceptedAnswer": {"@type": "Answer", "text": "Es el cociente entre la desviación estándar de las medias grupales y la desviación estándar dentro de los grupos. Valores de referencia: f = 0,10 (pequeño), f = 0,25 (mediano), f = 0,40 (grande)."}},
+        {"@type": "Question", "name": "¿Qué es la potencia estadística?", "acceptedAnswer": {"@type": "Answer", "text": "La probabilidad de detectar un efecto real cuando existe. Lo habitual es fijarla en 0,80 o 0,90."}},
+        {"@type": "Question", "name": "¿El tamaño muestral es exacto?", "acceptedAnswer": {"@type": "Answer", "text": "No, depende de los supuestos introducidos y del redondeo práctico de diseño."}},
+        {"@type": "Question", "name": "¿Cómo obtengo f si conozco las medias y la desviación estándar residual?", "acceptedAnswer": {"@type": "Answer", "text": "Calcula la desviación estándar de las k medias (σ_m) y divídela entre la desviación estándar dentro de los grupos (σ): f = σ_m / σ."}}
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260509">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para ANOVA</h1>
+        <p class="hero-subtitle">Determina cuántas observaciones necesitas por grupo para detectar diferencias entre k medias con la potencia deseada.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>ANOVA de un factor balanceado. Introduce el número de grupos, el tamaño del efecto, alfa y potencia.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="anovaK">Número de grupos (k)</label>
+                        <input type="number" id="anovaK" value="3" step="1" min="2" max="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="anovaF">Tamaño del efecto de Cohen (f)</label>
+                        <input type="number" id="anovaF" value="0.25" step="0.01" min="0.01" max="5">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="anovaAlpha">Alfa (α)</label>
+                        <input type="number" id="anovaAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="anovaPower">Potencia (1-β)</label>
+                        <input type="number" id="anovaPower" value="0.80" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="anovaPreset">Referencia rápida de f</label>
+                    <select id="anovaPreset">
+                        <option value="">— Seleccionar —</option>
+                        <option value="0.10">Pequeño (f = 0,10)</option>
+                        <option value="0.25">Mediano (f = 0,25)</option>
+                        <option value="0.40">Grande (f = 0,40)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="anovaCalculateBtn">Calcular tamaño muestral</button>
+            <div id="anovaResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>El ANOVA de un factor (<em>one-way ANOVA</em>) contrasta la hipótesis nula de que las medias de <strong>k ≥ 2</strong> grupos independientes son iguales frente a la alternativa de que al menos dos difieren. Cuando k = 2 es equivalente al test t de dos muestras, pero para k ≥ 3 ofrece control del error global de tipo I sin necesidad de múltiples comparaciones bilaterales.</p>
+            <p>El parámetro que resume el tamaño del efecto es la <strong>f de Cohen</strong>, definida como \(f = \sigma_{\text{medias}} / \sigma_{\text{residual}}\), donde \(\sigma_{\text{medias}}\) es la desviación estándar de las medias grupales y \(\sigma_{\text{residual}}\) la variabilidad dentro de los grupos. La f está relacionada con el \(\eta^2\) (eta cuadrado) mediante \(f = \sqrt{\eta^2/(1-\eta^2)}\).</p>
+            <p>El cálculo de potencia se basa en la <strong>distribución F no central</strong>: bajo H₁, el estadístico F sigue una F no central con parámetro de no centralidad \(\lambda = n \cdot k \cdot f^2\). Esta calculadora busca el mínimo n entero para el que la potencia supera el objetivo mediante búsqueda iterativa.</p>
+
+            <h2>Fórmula y método de cálculo</h2>
+            <p>Con <em>n</em> observaciones por grupo (diseño balanceado):</p>
+            <p class="formula-line">\( \lambda = n \cdot k \cdot f^2 \)</p>
+            <p class="formula-line">\( 1-\beta = P\!\left(F'(k-1,\;k(n-1),\;\lambda) > F_{\alpha,\,k-1,\,k(n-1)}\right) \)</p>
+            <p>Se incrementa n de 2 en adelante hasta que la potencia calculada supera el objetivo.</p>
+            <ul>
+                <li><strong>f</strong>: efecto de Cohen = \(\sigma_{\text{medias}} / \sigma_{\text{residual}}\). Referencia: 0,10 (pequeño), 0,25 (mediano), 0,40 (grande).</li>
+                <li><strong>λ</strong>: parámetro de no centralidad; crece linealmente con n, k y cuadráticamente con f.</li>
+                <li><strong>k−1 y k(n−1)</strong>: grados de libertad del numerador y del denominador del estadístico F.</li>
+            </ul>
+
+            <h2>Cómo calcular f a partir de datos previos</h2>
+            <p>Si conoces las medias esperadas de cada grupo \(\mu_1, \ldots, \mu_k\) y la desviación estándar residual común \(\sigma\):</p>
+            <p class="formula-line">\( \sigma_{\text{medias}} = \sqrt{\frac{1}{k}\sum_{i=1}^{k}(\mu_i - \bar{\mu})^2}, \quad f = \frac{\sigma_{\text{medias}}}{\sigma} \)</p>
+            <p>Alternativamente, si tienes \(\eta^2\) de un estudio previo: \(f = \sqrt{\eta^2/(1-\eta^2)}\).</p>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li><strong>f desconocido:</strong> usa f = 0,25 (mediano) como punto de partida conservador.</li>
+                <li><strong>f desde medias y σ:</strong> calcula \(\sigma_{\text{medias}}\) a partir de las medias esperadas de cada grupo y divídela entre σ residual.</li>
+                <li><strong>Número de grupos (k):</strong> incluye todos los grupos del diseño, aunque alguno sea control. Aumentar k reduce la potencia por grupo si n no crece.</li>
+                <li><strong>Alfa:</strong> 0,05 es el estándar; 0,01 para estudios confirmatorios o con múltiples comparaciones post-hoc.</li>
+                <li><strong>Potencia:</strong> 0,80 mínimo; 0,90 en estudios donde las comparaciones post-hoc son el objetivo principal.</li>
+            </ul>
+
+            <h2>Ejemplo sencillo</h2>
+            <p>Ensayo comparando 3 dietas (k = 3) con efecto mediano (f = 0,25), α = 0,05 y potencia 0,80: <strong>n ≈ 52 por grupo</strong> (total ≈ 156). Con 4 grupos y mismo f: n ≈ 45 por grupo (total ≈ 180) — la muestra total crece al añadir grupos aunque el n por grupo baje.</p>
+
+            <h2>Usos frecuentes</h2>
+            <ul>
+                <li>Comparación de 3 o más tratamientos, dosis o condiciones experimentales.</li>
+                <li>Diseños factoriales de un factor con varios niveles.</li>
+                <li>Estudios donde el análisis se completará con comparaciones post-hoc (Tukey, Bonferroni, etc.).</li>
+                <li>Psicología experimental, agronomía, farmacología, educación.</li>
+            </ul>
+
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li>Los k grupos son independientes entre sí.</li>
+                <li>La variable sigue una distribución normal en cada grupo (o n es suficientemente grande).</li>
+                <li>Las varianzas de los grupos son iguales (homocedasticidad). Si no, considera Welch ANOVA.</li>
+                <li>Diseño balanceado (mismo n por grupo). Para grupos desiguales, usa el n armónico como aproximación.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Calcula el n mínimo por grupo para un ANOVA de un factor balanceado con k grupos, dado f de Cohen, α y potencia. Usa la distribución F no central con λ = n·k·f² mediante búsqueda iterativa.</p>
+            <h3>Fórmula utilizada</h3>
+            <p>Potencia = P(F'(k−1, k(n−1), λ) &gt; F_crit). La F no central se calcula mediante la suma de Poisson sobre funciones beta incompletas reguladas (serie exacta).</p>
+            <h3>Ejemplo de uso</h3>
+            <p>k = 3, f = 0,25, α = 0,05, potencia = 0,80 → n = 52 por grupo (total 156). Con f = 0,40 → n = 21 por grupo (total 63).</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El n es por grupo (diseño balanceado). Multiplica por k para el total. Para comparaciones post-hoc, el n calculado con α global = 0,05 puede ser insuficiente; considera α corregida (p.ej. Bonferroni).</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-diferencia-medias.html">Dos medias independientes</a></li>
+                    <li><a href="tamano-muestral-una-media.html">Una media</a></li>
+                    <li><a href="anova.html">Calculadora ANOVA</a></li>
+                </ul>
+            </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/One-way_analysis_of_variance" target="_blank" rel="noopener">One-way analysis of variance</a> — fundamento teórico del ANOVA.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Effect_size#Cohen's_f" target="_blank" rel="noopener">Effect size — Cohen's f</a> — definición y conversión con η².</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Noncentral_F-distribution" target="_blank" rel="noopener">Noncentral F-distribution</a> — distribución usada para el cálculo de potencia.</li>
+                <li>Cohen, J. (1988). <em>Statistical Power Analysis for the Behavioral Sciences</em> (2.ª ed.). Lawrence Erlbaum. — capítulo 8 sobre ANOVA de un factor.</li>
+            </ul>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué es f de Cohen y cómo se obtiene?</strong> f = σ_medias/σ_residual. Desde η²: f = √(η²/(1−η²)). Valores de referencia: 0,10 pequeño, 0,25 mediano, 0,40 grande.</li>
+                <li><strong>¿Funciona para ANOVA con grupos desiguales?</strong> Esta calculadora asume diseño balanceado. Para grupos desiguales usa el n armónico \(\tilde{n} = k/\sum(1/n_i)\) como aproximación.</li>
+                <li><strong>¿Cómo afecta aumentar k al n por grupo?</strong> Añadir grupos con el mismo f reduce el n por grupo porque hay más grados de libertad del error, pero el n total aumenta.</li>
+                <li><strong>¿El tamaño calculado garantiza potencia para comparaciones post-hoc?</strong> No; para múltiples comparaciones post-hoc puede necesitarse más muestra o un α corregido.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+// Non-central F CDF via Poisson-weighted sum of regularized incomplete beta functions.
+// P(F'(df1, df2, ncp) <= x) = sum_{j>=0} Pois(j; ncp/2) * I(df1*x/(df1*x+df2); (df1+2j)/2; df2/2)
+function noncentralFCDF(x, df1, df2, ncp) {
+    if (x <= 0) return 0;
+    const halfNcp = ncp / 2;
+    const betaArg = (df1 * x) / (df1 * x + df2);
+    let sum = 0;
+    // log-space Poisson weights to avoid overflow
+    let logW = -halfNcp; // j=0
+    for (let j = 0; j <= 600; j++) {
+        const w = Math.exp(logW);
+        if (j > 5 && w < 1e-14) break;
+        sum += w * jStat.ibeta(betaArg, (df1 + 2 * j) / 2, df2 / 2);
+        if (halfNcp === 0) break;
+        logW += Math.log(halfNcp) - Math.log(j + 1);
+    }
+    return Math.min(Math.max(sum, 0), 1);
+}
+
+function anovapower(n, k, f, alpha) {
+    const df1 = k - 1;
+    const df2 = k * (n - 1);
+    const ncp = n * k * f * f;
+    const fcrit = jStat.centralF.inv(1 - alpha, df1, df2);
+    return 1 - noncentralFCDF(fcrit, df1, df2, ncp);
+}
+
+function calculateAnovaSampleSize() {
+    const resultEl = document.getElementById("anovaResult");
+    try {
+        const k = parseInt(document.getElementById("anovaK").value);
+        const f = parseFloat(document.getElementById("anovaF").value);
+        const alpha = parseFloat(document.getElementById("anovaAlpha").value);
+        const power = parseFloat(document.getElementById("anovaPower").value);
+
+        if (!Number.isInteger(k) || k < 2) throw new Error("El número de grupos (k) debe ser un entero mayor o igual a 2.");
+        if (!Number.isFinite(f) || f <= 0) throw new Error("El tamaño del efecto (f) debe ser mayor que 0.");
+        if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) throw new Error("α debe estar entre 0 y 1.");
+        if (!Number.isFinite(power) || power <= 0 || power >= 1) throw new Error("La potencia debe estar entre 0 y 1.");
+
+        let n = 2;
+        while (n <= 100000) {
+            if (anovapower(n, k, f, alpha) >= power) break;
+            n++;
+        }
+        if (n > 100000) throw new Error("No se encontró solución con n ≤ 100 000. Revisa los parámetros.");
+
+        const achievedPower = anovapower(n, k, f, alpha);
+        resultEl.innerText =
+            `n mínimo por grupo: ${n} (total N = ${n * k}).\n` +
+            `Potencia alcanzada: ${(achievedPower * 100).toFixed(1)} %.`;
+    } catch (e) {
+        resultEl.innerText = `Error: ${e.message}`;
+    }
+}
+
+document.getElementById("anovaPreset").addEventListener("change", function () {
+    if (this.value) {
+        document.getElementById("anovaF").value = this.value;
+        this.value = "";
+    }
+});
+document.getElementById("anovaCalculateBtn").addEventListener("click", calculateAnovaSampleSize);
+calculateAnovaSampleSize();
+</script>
+</body>
+</html>
