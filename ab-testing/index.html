@@ -211,7 +211,7 @@
 
         <h3>Enfoque bayesiano</h3>
         <p>El enfoque bayesiano parte de una <strong>distribución a priori</strong> sobre las tasas de conversión (habitualmente una distribución Beta) y la actualiza con los datos observados para obtener una <strong>distribución a posteriori</strong>. El resultado principal es <strong>P(B &gt; A)</strong>: la probabilidad directa de que la variante B sea mejor que la variante A.</p>
-        <p>Esta interpretación es más intuitiva para equipos de producto y negocio, ya que responde directamente a la pregunta relevante. Además, el análisis bayesiano permite tomar decisiones en cualquier momento sin inflar el error de tipo I, aunque requiere especificar una distribución a priori.</p>
+        <p>Esta interpretación es más intuitiva para equipos de producto y negocio, ya que responde directamente a la pregunta relevante. Además, el análisis bayesiano no utiliza el concepto frecuentista de error de tipo I, aunque eso no significa que el peeking sea inocuo: tomar decisiones repetidamente basándose en un umbral de P(B &gt; A) puede producir tasas de falsos positivos elevadas a largo plazo. Requiere también especificar una distribución a priori.</p>
         <p>Usa el <a href="../ab-testing-bayesiano.html">analizador bayesiano Beta-Binomial</a> para este enfoque.</p>
 
         <h3>¿Cuál elegir?</h3>
@@ -231,7 +231,7 @@
           <div>
             <h3>Error de tipo II (falso negativo)</h3>
             <p>Concluir que no hay diferencia cuando en realidad B sí es mejor que A. Se produce con probabilidad β = 1 − potencia. En experimentación digital este error es igual de costoso: descartarías mejoras reales.</p>
-            <p>Se controla aumentando el tamaño muestral o relajando ligeramente α, siempre dentro de los límites aceptables para el contexto.</p>
+            <p>Se controla principalmente aumentando el tamaño muestral. Relajar α también reduce β, pero a costa de elevar el error de tipo I: ambos errores son vasos comunicantes y no puede reducirse uno sin incrementar el otro o aumentar n.</p>
           </div>
         </div>
 
