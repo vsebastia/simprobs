@@ -284,9 +284,9 @@
       <h2>Fórmulas utilizadas</h2>
       <p>Para la comparación de dos proporciones con asignación 1:1, el tamaño muestral necesario por grupo es:</p>
       <p class="formula-line">\( n = \left\lceil \dfrac{\left(z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})} + z_\beta\sqrt{p_A(1-p_A)+p_B(1-p_B)}\right)^2}{(p_A - p_B)^2} \right\rceil \)</p>
-      <p>donde \(\bar{p} = (p_A + p_B)/2\), \(z_{\alpha/2}\) es el cuantil normal para el nivel de significación y \(z_\beta\) el cuantil para la potencia deseada.</p>
-      <p>La potencia dado n se obtiene invirtiendo la expresión:</p>
-      <p class="formula-line">\( 1-\beta = \Phi\!\left(\dfrac{|p_A - p_B|\sqrt{n} - z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})}}{\sqrt{p_A(1-p_A)+p_B(1-p_B)}}\right) \)</p>
+      <p>donde \(\bar{p} = (p_A + p_B)/2\), \(z_{\alpha/2}\) es el cuantil normal para el nivel de significación bilateral (o \(z_{\alpha}\) en unilateral) y \(z_{1-\beta}\) el cuantil para la potencia deseada.</p>
+      <p>La potencia dado n se obtiene con la aproximación normal equivalente; en contraste bilateral se suman ambas colas de rechazo:</p>
+      <p class="formula-line">\( 1-\beta \approx P\!\left(\hat{p}_B-\hat{p}_A > z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})/n}\right) + P\!\left(\hat{p}_B-\hat{p}_A < -z_{\alpha/2}\sqrt{2\bar{p}(1-\bar{p})/n}\right) \)</p>
       <p>El <strong>MDE</strong> se obtiene por búsqueda binaria sobre el efecto que consigue la potencia objetivo con el n disponible.</p>
     </section>
 
@@ -364,12 +364,21 @@ function getZAlpha(alpha, tail) {
 
 function computePower(pA, pB, n, alpha, tail) {
   const pBar = (pA + pB) / 2;
-  const diff = Math.abs(pA - pB);
+  const effect = pB - pA;
+  const nullScale = Math.sqrt(2 * pBar * (1 - pBar));
+  const altScale = Math.sqrt(pA * (1 - pA) + pB * (1 - pB));
+  if (altScale === 0) return 0;
+
+  if (tail === 'two') {
+    const zAlpha = getZAlpha(alpha, tail);
+    const upper = 1 - jStat.normal.cdf((zAlpha * nullScale - effect * Math.sqrt(n)) / altScale, 0, 1);
+    const lower = jStat.normal.cdf((-zAlpha * nullScale - effect * Math.sqrt(n)) / altScale, 0, 1);
+    return Math.min(1, Math.max(0, upper + lower));
+  }
+
   const zAlpha = getZAlpha(alpha, tail);
-  const denom = Math.sqrt(pA * (1 - pA) + pB * (1 - pB));
-  if (denom === 0) return 0;
-  const zStat = (diff * Math.sqrt(n) - zAlpha * Math.sqrt(2 * pBar * (1 - pBar))) / denom;
-  return jStat.normal.cdf(zStat, 0, 1);
+  const plannedEffect = Math.abs(effect);
+  return 1 - jStat.normal.cdf((zAlpha * nullScale - plannedEffect * Math.sqrt(n)) / altScale, 0, 1);
 }
 
 function computeSampleSize(pA, pB, alpha, power, tail) {
@@ -495,7 +504,7 @@ function calcPower() {
     const alpha = parseFloat(document.getElementById('pwAlpha').value);
     const tail = document.getElementById('pwTail').value;
     validateProp(pA, 'p_A'); validateProp(pB, 'p_B'); validateAlpha(alpha);
-    if (!Number.isFinite(n) || n <= 0) throw new Error('n debe ser un entero positivo.');
+    if (!Number.isInteger(n) || n <= 0) throw new Error('n debe ser un entero positivo.');
     if (Math.abs(pA - pB) < 1e-9) throw new Error('p_A y p_B no pueden ser iguales.');
 
     const pw = computePower(pA, pB, n, alpha, tail);
@@ -523,7 +532,7 @@ function calcMDE() {
     const power = parseFloat(document.getElementById('mPower').value);
     const tail = document.getElementById('mTail').value;
     validateProp(pA, 'p_A'); validateAlpha(alpha);
-    if (!Number.isFinite(n) || n <= 0) throw new Error('n debe ser un entero positivo.');
+    if (!Number.isInteger(n) || n <= 0) throw new Error('n debe ser un entero positivo.');
     if (!Number.isFinite(power) || power <= 0 || power >= 1) throw new Error('La potencia debe estar en (0, 1).');
 
     const mde = computeMDE(pA, n, alpha, power, tail);
