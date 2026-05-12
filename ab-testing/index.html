@@ -59,7 +59,7 @@
             "name": "¿Cuántos usuarios necesito para un test A/B?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Depende de la tasa de conversión base, el efecto mínimo detectable (MDE) que quieres detectar, el nivel de significación α y la potencia deseada. Con una tasa base del 5% y un MDE del 10% relativo, necesitas aproximadamente 15.000 usuarios por variante con α=0,05 y potencia=0,80."
+              "text": "Depende de la tasa de conversión base, el efecto mínimo detectable (MDE) que quieres detectar, el nivel de significación α y la potencia deseada. Con una tasa base del 5% y un MDE del 10% relativo (p_B = 5,5%), necesitas aproximadamente 31.200 usuarios por variante con α=0,05, contraste bilateral y potencia=0,80."
             }
           },
           {
@@ -270,14 +270,14 @@
 
       <section class="card content-card example-card">
         <h2>Ejemplo resuelto: test A/B de conversión</h2>
-        <p>Supongamos que tienes una página de producto con una tasa de conversión del <strong>4,2%</strong> y quieres evaluar si un nuevo diseño del botón de compra mejora esa tasa. Tu MDE es del 10% relativo (es decir, quieres detectar si la nueva tasa supera el 4,62%). Con α = 0,05 y potencia = 0,80, la <a href="../ab-testing-potencia.html">calculadora de tamaño muestral</a> te indica que necesitas aproximadamente <strong>14.700 usuarios por variante</strong>.</p>
+        <p>Supongamos que tienes una página de producto con una tasa de conversión del <strong>4,2%</strong> y quieres evaluar si un nuevo diseño del botón de compra mejora esa tasa. Tu MDE es del 10% relativo (es decir, quieres detectar si la nueva tasa supera el 4,62%). Con α = 0,05, contraste bilateral y potencia = 0,80, la <a href="../ab-testing-potencia.html">calculadora de tamaño muestral</a> te indica que necesitas aproximadamente <strong>37.500 usuarios por variante</strong>.</p>
         <p>Tras ejecutar el test durante tres semanas completas obtienes los siguientes resultados:</p>
         <ul>
-          <li><strong>Control (A)</strong>: 15.000 visitas, 630 conversiones → tasa = 4,20%</li>
-          <li><strong>Variante (B)</strong>: 15.000 visitas, 720 conversiones → tasa = 4,80%</li>
+          <li><strong>Control (A)</strong>: 37.500 visitas, 1.575 conversiones → tasa = 4,20%</li>
+          <li><strong>Variante (B)</strong>: 37.500 visitas, 1.800 conversiones → tasa = 4,80%</li>
         </ul>
-        <p>La mejora absoluta es de <strong>0,60 puntos porcentuales</strong> y la mejora relativa es del <strong>14,3%</strong>. Con el <a href="../ab-testing-z-test.html">test Z de conversión</a> obtienes un p-valor de 0,018, inferior a α = 0,05, por lo que <strong>se rechaza H₀</strong>: la diferencia es estadísticamente significativa. El intervalo de confianza al 95% para la diferencia va de +0,09 pp a +1,11 pp, lo que indica que el efecto real es positivo con alta probabilidad aunque puede ser modesto.</p>
-        <p>Con el <a href="../ab-testing-bayesiano.html">analizador bayesiano</a>, P(B &gt; A) = 98,9%, lo que refuerza la conclusión. Puedes entonces implementar el nuevo diseño con confianza estadística y un tamaño de efecto relevante para el negocio.</p>
+        <p>La mejora absoluta es de <strong>0,60 puntos porcentuales</strong> y la mejora relativa es del <strong>14,3%</strong>. Con el <a href="../ab-testing-z-test.html">test Z de conversión</a> obtienes un p-valor de aproximadamente 0,000074, inferior a α = 0,05, por lo que <strong>se rechaza H₀</strong>: la diferencia es estadísticamente significativa. El intervalo de confianza al 95% para la diferencia va de +0,30 pp a +0,90 pp, lo que indica que el efecto real es positivo aunque todavía debe valorarse su impacto práctico.</p>
+        <p>Con el <a href="../ab-testing-bayesiano.html">analizador bayesiano</a>, P(B &gt; A) es prácticamente 100%, lo que refuerza la conclusión. Puedes entonces implementar el nuevo diseño con confianza estadística y un tamaño de efecto relevante para el negocio.</p>
       </section>
 
       <section class="card content-card pillar-guide">

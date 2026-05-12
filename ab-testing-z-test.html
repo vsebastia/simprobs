@@ -297,9 +297,10 @@ function calculateZTest() {
   const resultEl = document.getElementById('zResult');
 
   if (![xA, nA, xB, nB, alpha].every(Number.isFinite) ||
+      ![xA, nA, xB, nB].every(Number.isInteger) ||
       nA <= 0 || nB <= 0 || xA < 0 || xB < 0 ||
       xA > nA || xB > nB || alpha <= 0 || alpha >= 1) {
-    resultEl.innerHTML = 'Error: verifica que 0 ≤ x ≤ n para ambos grupos y que 0 &lt; α &lt; 1.';
+    resultEl.innerHTML = 'Error: verifica que visitantes y conversiones sean enteros con 0 ≤ x ≤ n, y que 0 &lt; α &lt; 1.';
     if (zChart) { zChart.destroy(); zChart = null; }
     return;
   }

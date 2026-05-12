@@ -314,10 +314,11 @@ function calculateBayes() {
   const cred = parseFloat(document.getElementById('credLevel').value);
   const resultEl = document.getElementById('bayesResult');
 
-  if (![xA, nA, xB, nB, a0, b0].every(Number.isFinite) ||
+  if (![xA, nA, xB, nB, a0, b0, cred].every(Number.isFinite) ||
+      ![xA, nA, xB, nB].every(Number.isInteger) ||
       nA <= 0 || nB <= 0 || xA < 0 || xB < 0 ||
-      xA > nA || xB > nB || a0 <= 0 || b0 <= 0) {
-    resultEl.innerHTML = 'Error: verifica los valores. Las conversiones no pueden superar los visitantes y los parámetros de la prior deben ser &gt; 0.';
+      xA > nA || xB > nB || a0 <= 0 || b0 <= 0 || cred <= 0 || cred >= 1) {
+    resultEl.innerHTML = 'Error: verifica los valores. Visitantes y conversiones deben ser enteros, las conversiones no pueden superar los visitantes y los parámetros de la prior deben ser &gt; 0.';
     if (bayesChart) { bayesChart.destroy(); bayesChart = null; }
     return;
   }
