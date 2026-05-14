@@ -85,6 +85,51 @@ body {
     outline: none;
 }
 
+.breadcrumbs {
+    margin: -8px 4px 10px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.breadcrumbs ol {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.breadcrumbs li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.breadcrumbs li + li::before {
+    content: ">";
+    color: #94a3b8;
+    font-size: 0.78rem;
+}
+
+.breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover,
+.breadcrumbs a:focus-visible {
+    color: var(--accent-dark);
+    text-decoration: underline;
+    outline: none;
+}
+
+.breadcrumbs [aria-current="page"] {
+    color: #475569;
+    font-weight: 600;
+}
+
 .page-wrap {
     width: min(1200px, 94vw);
     margin: 0 auto;
