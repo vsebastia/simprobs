@@ -205,22 +205,6 @@
             padding: 48px 4px 28px;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin: 0 0 14px;
-            padding: 5px 14px;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #1d4ed8;
-            background: rgba(37, 99, 235, 0.08);
-            border: 1px solid rgba(37, 99, 235, 0.2);
-        }
-
         .hero-cta-group {
             display: flex;
             flex-wrap: wrap;
@@ -517,77 +501,6 @@
             .featured-tools-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* Search bar */
-        .hero-search-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-            margin: 20px 0 0;
-            max-width: 560px;
-        }
-
-        .hero-search-icon {
-            position: absolute;
-            left: 14px;
-            color: #94a3b8;
-            pointer-events: none;
-            flex-shrink: 0;
-        }
-
-        .hero-search-input {
-            width: 100%;
-            padding: 12px 40px 12px 42px;
-            border-radius: 12px;
-            border: 1.5px solid rgba(15, 23, 42, 0.15);
-            background: #ffffff;
-            font-family: inherit;
-            font-size: 0.95rem;
-            color: #0f172a;
-            outline: none;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
-            transition: border-color 0.15s, box-shadow 0.15s;
-        }
-
-        .hero-search-input:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-        }
-
-        .hero-search-input::placeholder { color: #94a3b8; }
-
-        .hero-search-clear {
-            position: absolute;
-            right: 10px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #94a3b8;
-            font-size: 0.85rem;
-            padding: 4px 6px;
-            border-radius: 6px;
-            line-height: 1;
-        }
-
-        .hero-search-clear:hover { color: #64748b; background: rgba(15, 23, 42, 0.06); }
-
-        .search-status {
-            margin: 8px 0 0;
-            font-size: 0.88rem;
-            color: #64748b;
-        }
-
-        .tool-hidden { display: none !important; }
-
-        .search-highlight {
-            background: rgba(250, 204, 21, 0.4);
-            border-radius: 3px;
-            padding: 0 2px;
-        }
-
-        @media (max-width: 640px) {
-            .hero-search-wrap { max-width: 100%; }
-        }
-
         @media (max-width: 640px) {
             .hero-index {
                 padding: 28px 4px 20px;
@@ -632,18 +545,9 @@
 <div class="page-wrap">
     <header class="hero hero-index">
         <div>
-            <p class="hero-badge">Más de 50 herramientas estadísticas gratuitas</p>
             <h1>Calculadora de probabilidades y estadística online</h1>
-            <p class="hero-subtitle">Calcula probabilidades, contrasta hipótesis, estima tamaños muestrales y diseña experimentos A/B. 16 distribuciones, tablas estadísticas, intervalos de confianza y más. Sin instalación, sin registro, con resultados y explicaciones inmediatas.</p>
-            <div class="hero-search-wrap" role="search" aria-label="Buscar herramienta">
-                <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input id="tool-search" class="hero-search-input" type="search" placeholder="Busca una herramienta… ej: normal, ANOVA, proporción" autocomplete="off" spellcheck="false" aria-label="Buscar herramienta estadística">
-                <button id="tool-search-clear" class="hero-search-clear" aria-label="Limpiar búsqueda" hidden>✕</button>
-            </div>
-            <p id="search-status" class="search-status" aria-live="polite" hidden></p>
             <div class="hero-cta-group">
-                <a class="hero-link-button" href="distribuciones/">Explorar distribuciones</a>
-                <a class="hero-link-button hero-link-secondary" href="#todas-las-herramientas">Ver todas las herramientas ↓</a>
+                <a class="hero-link-button" href="#todas-las-herramientas">Ver todas las herramientas ↓</a>
             </div>
         </div>
     </header>
@@ -984,51 +888,6 @@
     </footer>
 </div>
 
-<script>
-(function () {
-    var input = document.getElementById('tool-search');
-    var clearBtn = document.getElementById('tool-search-clear');
-    var status = document.getElementById('search-status');
-    if (!input) return;
-
-    var allItems = Array.from(document.querySelectorAll('.tools-grid li, .featured-tools-grid li'));
-
-    function normalize(str) {
-        return str.toLowerCase()
-            .normalize('NFD').replace(/[̀-ͯ]/g, '');
-    }
-
-    function search(query) {
-        var q = normalize(query.trim());
-        clearBtn.hidden = !q;
-        status.hidden = !q;
-
-        if (!q) {
-            allItems.forEach(function (li) { li.classList.remove('tool-hidden'); });
-            status.textContent = '';
-            return;
-        }
-
-        var matched = 0;
-        allItems.forEach(function (li) {
-            var text = normalize(li.textContent);
-            var show = text.includes(q);
-            li.classList.toggle('tool-hidden', !show);
-            if (show) matched++;
-        });
-
-        status.textContent = matched === 0
-            ? 'Sin resultados para "' + query.trim() + '".'
-            : matched + (matched === 1 ? ' herramienta encontrada.' : ' herramientas encontradas.');
-    }
-
-    input.addEventListener('input', function () { search(input.value); });
-    clearBtn.addEventListener('click', function () {
-        input.value = '';
-        search('');
-        input.focus();
-    });
-})();
 </script>
 
 </body>
