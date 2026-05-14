@@ -225,51 +225,6 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12) !important;
         }
 
-        /* Stats strip */
-        .stats-strip {
-            display: flex;
-            align-items: center;
-            gap: 0;
-            margin: 0 0 8px;
-            padding: 18px 24px;
-            border-radius: 16px;
-            background: #ffffff;
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-        }
-
-        .stat-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 2px;
-        }
-
-        .stat-number {
-            font-size: 1.75rem;
-            font-weight: 700;
-            line-height: 1;
-            color: #2563eb;
-            letter-spacing: -0.03em;
-        }
-
-        .stat-label {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        .stat-divider {
-            width: 1px;
-            height: 36px;
-            background: rgba(148, 163, 184, 0.35);
-            flex: 0 0 1px;
-        }
-
         /* Section card accents */
         .section-dist {
             border-top: 3px solid #2563eb;
@@ -506,14 +461,7 @@
                 padding: 28px 4px 20px;
             }
 
-            .stats-strip {
-                gap: 0;
-                padding: 14px 16px;
-            }
 
-            .stat-number {
-                font-size: 1.4rem;
-            }
 
             .site-nav-links a {
                 padding: 6px 10px;
@@ -553,38 +501,6 @@
     </header>
 
     <main>
-        <div class="stats-strip" aria-label="Resumen de herramientas disponibles">
-            <div class="stat-item">
-                <span class="stat-number">16</span>
-                <span class="stat-label">Distribuciones</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">8</span>
-                <span class="stat-label">Tablas</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">12</span>
-                <span class="stat-label">Tamaños muestrales</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">10</span>
-                <span class="stat-label">Contrastes</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">5</span>
-                <span class="stat-label">Intervalos IC</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">4</span>
-                <span class="stat-label">Test A/B</span>
-            </div>
-        </div>
-
         <section class="card content-card featured-tools-card" aria-labelledby="featured-title">
             <h2 id="featured-title">Herramientas más usadas</h2>
             <ul class="featured-tools-grid" aria-label="Herramientas más populares">
