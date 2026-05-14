@@ -446,6 +446,148 @@
             line-height: 1.65;
         }
 
+        /* Featured tools section */
+        .featured-tools-card {
+            border-top: 3px solid #f59e0b;
+        }
+
+        .featured-tools-card h2 {
+            margin: 0 0 16px;
+            font-size: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .featured-tools-grid {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .featured-tool-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 14px 14px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            background: #f8fafc;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+        }
+
+        .featured-tool-item:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .featured-tool-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            margin-bottom: 2px;
+        }
+
+        .feat-blue   { background: rgba(37, 99, 235, 0.1);  color: #2563eb; }
+        .feat-indigo { background: rgba(79, 70, 229, 0.1);  color: #4f46e5; }
+        .feat-purple { background: rgba(124, 58, 237, 0.1); color: #7c3aed; }
+        .feat-cyan   { background: rgba(8, 145, 178, 0.1);  color: #0891b2; }
+        .feat-teal   { background: rgba(15, 118, 110, 0.1); color: #0f766e; }
+
+        .featured-tool-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0f172a;
+            line-height: 1.3;
+        }
+
+        .featured-tool-desc {
+            font-size: 0.78rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 1024px) {
+            .featured-tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Search bar */
+        .hero-search-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin: 20px 0 0;
+            max-width: 560px;
+        }
+
+        .hero-search-icon {
+            position: absolute;
+            left: 14px;
+            color: #94a3b8;
+            pointer-events: none;
+            flex-shrink: 0;
+        }
+
+        .hero-search-input {
+            width: 100%;
+            padding: 12px 40px 12px 42px;
+            border-radius: 12px;
+            border: 1.5px solid rgba(15, 23, 42, 0.15);
+            background: #ffffff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #0f172a;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .hero-search-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .hero-search-input::placeholder { color: #94a3b8; }
+
+        .hero-search-clear {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            padding: 4px 6px;
+            border-radius: 6px;
+            line-height: 1;
+        }
+
+        .hero-search-clear:hover { color: #64748b; background: rgba(15, 23, 42, 0.06); }
+
+        .search-status {
+            margin: 8px 0 0;
+            font-size: 0.88rem;
+            color: #64748b;
+        }
+
+        .tool-hidden { display: none !important; }
+
+        .search-highlight {
+            background: rgba(250, 204, 21, 0.4);
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+
+        @media (max-width: 640px) {
+            .hero-search-wrap { max-width: 100%; }
+        }
+
         @media (max-width: 640px) {
             .hero-index {
                 padding: 28px 4px 20px;
@@ -493,25 +635,20 @@
             <p class="hero-badge">Más de 50 herramientas estadísticas gratuitas</p>
             <h1>Calculadora de probabilidades y estadística online</h1>
             <p class="hero-subtitle">Calcula probabilidades, contrasta hipótesis, estima tamaños muestrales y diseña experimentos A/B. 16 distribuciones, tablas estadísticas, intervalos de confianza y más. Sin instalación, sin registro, con resultados y explicaciones inmediatas.</p>
+            <div class="hero-search-wrap" role="search" aria-label="Buscar herramienta">
+                <svg class="hero-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input id="tool-search" class="hero-search-input" type="search" placeholder="Busca una herramienta… ej: normal, ANOVA, proporción" autocomplete="off" spellcheck="false" aria-label="Buscar herramienta estadística">
+                <button id="tool-search-clear" class="hero-search-clear" aria-label="Limpiar búsqueda" hidden>✕</button>
+            </div>
+            <p id="search-status" class="search-status" aria-live="polite" hidden></p>
             <div class="hero-cta-group">
-                <a class="hero-link-button" href="distribuciones/">Distribuciones</a>
-                <a class="hero-link-button hero-link-secondary" href="tablas-estadisticas/">Tablas estadísticas</a>
-                <a class="hero-link-button hero-link-secondary" href="tamano-muestral/">Tamaño muestral</a>
-                <a class="hero-link-button hero-link-secondary" href="contrastes-hipotesis/">Contrastes</a>
-                <a class="hero-link-button hero-link-secondary" href="intervalos-confianza/">Intervalos de confianza</a>
-                <a class="hero-link-button hero-link-secondary" href="ab-testing/">Test A/B</a>
+                <a class="hero-link-button" href="distribuciones/">Explorar distribuciones</a>
+                <a class="hero-link-button hero-link-secondary" href="#todas-las-herramientas">Ver todas las herramientas ↓</a>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="card content-card intro-seo-card" aria-labelledby="intro-title">
-            <h2 id="intro-title">Herramientas estadísticas online para calcular, interpretar y aprender</h2>
-            <p>ProbLab es una suite gratuita de más de 50 calculadoras estadísticas online para resolver cálculos de probabilidad e inferencia directamente desde el navegador, sin instalar software ni crear una cuenta. Encontrarás calculadoras de 16 distribuciones de probabilidad —normal, binomial, Poisson, t de Student, chi-cuadrado, F de Snedecor, exponencial, gamma, beta, lognormal, Weibull y más—, tablas estadísticas clásicas, tamaños muestrales, intervalos de confianza, contrastes de hipótesis y herramientas completas para test A/B.</p>
-            <p>La plataforma está orientada a estudiantes de estadística y probabilidad, docentes universitarios, investigadores, analistas de datos y equipos de producto que necesitan resultados rigurosos y verificables. Cada calculadora incluye un formulario interactivo, la fórmula utilizada, una representación gráfica de la distribución y una interpretación del resultado que ayuda a entender el significado estadístico, no solo a copiar un número.</p>
-            <p>A diferencia de una tabla estática en papel o una calculadora aislada, ProbLab permite ajustar parámetros al instante y ver cómo cambia la distribución o el resultado. Puedes pasar de calcular la probabilidad acumulada de una distribución normal a consultar los valores críticos de la t de Student, estimar cuántas observaciones necesitas para tu estudio o ejecutar un contraste de hipótesis sobre medias o proporciones —todo sin salir del navegador y con explicación del procedimiento en cada paso.</p>
-        </section>
-
         <div class="stats-strip" aria-label="Resumen de herramientas disponibles">
             <div class="stat-item">
                 <span class="stat-number">16</span>
@@ -524,7 +661,7 @@
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-number">8</span>
+                <span class="stat-number">12</span>
                 <span class="stat-label">Tamaños muestrales</span>
             </div>
             <div class="stat-divider"></div>
@@ -543,6 +680,86 @@
                 <span class="stat-label">Test A/B</span>
             </div>
         </div>
+
+        <section class="card content-card featured-tools-card" aria-labelledby="featured-title">
+            <h2 id="featured-title">Herramientas más usadas</h2>
+            <ul class="featured-tools-grid" aria-label="Herramientas más populares">
+                <li>
+                    <a href="normal.html" class="featured-tool-item">
+                        <span class="featured-tool-icon feat-blue">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 C7 20 9 6 12 6 C15 6 17 20 21 20"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+                        </span>
+                        <span class="featured-tool-name">Distribución Normal</span>
+                        <span class="featured-tool-desc">PDF, CDF, percentiles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="binomial.html" class="featured-tool-item">
+                        <span class="featured-tool-icon feat-blue">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="3"/><circle cx="17" cy="8" r="3"/><line x1="12" y1="12" x2="14" y2="10"/></svg>
+                        </span>
+                        <span class="featured-tool-name">Distribución Binomial</span>
+                        <span class="featured-tool-desc">P(X=k), P(X≤k)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="studentt.html" class="featured-tool-item">
+                        <span class="featured-tool-icon feat-blue">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 C7 20 9 7 12 7 C15 7 17 20 21 20"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+                        </span>
+                        <span class="featured-tool-name">t de Student</span>
+                        <span class="featured-tool-desc">Valores críticos y CDF</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tamano-muestral-una-proporcion.html" class="featured-tool-item">
+                        <span class="featured-tool-icon feat-indigo">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="7" x2="9" y2="17"/><line x1="15" y1="7" x2="15" y2="17"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+                        </span>
+                        <span class="featured-tool-name">Tamaño muestral — Proporción</span>
+                        <span class="featured-tool-desc">Encuestas y estudios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="contraste-hipotesis-una-media.html" class="featured-tool-item">
+                        <span class="featured-tool-icon feat-purple">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 C7 20 9 6 12 6 C15 6 17 20 21 20"/><path d="M17 20 L19 14 L21 20" fill="currentColor" fill-opacity="0.4" stroke="none"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+                        </span>
+                        <span class="featured-tool-name">Contraste sobre una media</span>
+                        <span class="featured-tool-desc">p-valor e interpretación</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="intervalo-confianza-proporcion.html" class="featured-tool-item">
+                        <span class="featured-tool-icon feat-cyan">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="8" y1="8" x2="8" y2="16"/><line x1="16" y1="8" x2="16" y2="16"/><circle cx="12" cy="12" r="2" fill="currentColor" fill-opacity="0.5" stroke="none"/></svg>
+                        </span>
+                        <span class="featured-tool-name">IC Proporción</span>
+                        <span class="featured-tool-desc">Límites con gráfica</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ab-testing-z-test.html" class="featured-tool-item">
+                        <span class="featured-tool-icon feat-teal">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+                        </span>
+                        <span class="featured-tool-name">Test A/B — Test Z</span>
+                        <span class="featured-tool-desc">Significación estadística</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="shapiro-wilk-normalidad.html" class="featured-tool-item">
+                        <span class="featured-tool-icon feat-purple">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 18 8 12 12 16 16 8 20 14"/></svg>
+                        </span>
+                        <span class="featured-tool-name">Shapiro–Wilk</span>
+                        <span class="featured-tool-desc">Test de normalidad</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <div id="todas-las-herramientas"></div>
 
         <section id="distribuciones" class="card content-card section-dist" aria-labelledby="dist-title">
             <div class="section-heading">
@@ -708,6 +925,13 @@
             </ul>
         </section>
 
+        <section class="card content-card intro-seo-card" aria-labelledby="intro-title">
+            <h2 id="intro-title">Herramientas estadísticas online para calcular, interpretar y aprender</h2>
+            <p>ProbLab es una suite gratuita de más de 50 calculadoras estadísticas online para resolver cálculos de probabilidad e inferencia directamente desde el navegador, sin instalar software ni crear una cuenta. Encontrarás calculadoras de 16 distribuciones de probabilidad —normal, binomial, Poisson, t de Student, chi-cuadrado, F de Snedecor, exponencial, gamma, beta, lognormal, Weibull y más—, tablas estadísticas clásicas, tamaños muestrales, intervalos de confianza, contrastes de hipótesis y herramientas completas para test A/B.</p>
+            <p>La plataforma está orientada a estudiantes de estadística y probabilidad, docentes universitarios, investigadores, analistas de datos y equipos de producto que necesitan resultados rigurosos y verificables. Cada calculadora incluye un formulario interactivo, la fórmula utilizada, una representación gráfica de la distribución y una interpretación del resultado que ayuda a entender el significado estadístico, no solo a copiar un número.</p>
+            <p>A diferencia de una tabla estática en papel o una calculadora aislada, ProbLab permite ajustar parámetros al instante y ver cómo cambia la distribución o el resultado. Puedes pasar de calcular la probabilidad acumulada de una distribución normal a consultar los valores críticos de la t de Student, estimar cuántas observaciones necesitas para tu estudio o ejecutar un contraste de hipótesis sobre medias o proporciones —todo sin salir del navegador y con explicación del procedimiento en cada paso.</p>
+        </section>
+
         <section id="preguntas-frecuentes" class="card content-card faq-card" aria-labelledby="faq-title">
             <h2 id="faq-title">Preguntas frecuentes sobre ProbLab</h2>
             <div class="faq-list">
@@ -759,6 +983,53 @@
         </p>
     </footer>
 </div>
+
+<script>
+(function () {
+    var input = document.getElementById('tool-search');
+    var clearBtn = document.getElementById('tool-search-clear');
+    var status = document.getElementById('search-status');
+    if (!input) return;
+
+    var allItems = Array.from(document.querySelectorAll('.tools-grid li, .featured-tools-grid li'));
+
+    function normalize(str) {
+        return str.toLowerCase()
+            .normalize('NFD').replace(/[̀-ͯ]/g, '');
+    }
+
+    function search(query) {
+        var q = normalize(query.trim());
+        clearBtn.hidden = !q;
+        status.hidden = !q;
+
+        if (!q) {
+            allItems.forEach(function (li) { li.classList.remove('tool-hidden'); });
+            status.textContent = '';
+            return;
+        }
+
+        var matched = 0;
+        allItems.forEach(function (li) {
+            var text = normalize(li.textContent);
+            var show = text.includes(q);
+            li.classList.toggle('tool-hidden', !show);
+            if (show) matched++;
+        });
+
+        status.textContent = matched === 0
+            ? 'Sin resultados para "' + query.trim() + '".'
+            : matched + (matched === 1 ? ' herramienta encontrada.' : ' herramientas encontradas.');
+    }
+
+    input.addEventListener('input', function () { search(input.value); });
+    clearBtn.addEventListener('click', function () {
+        input.value = '';
+        search('');
+        input.focus();
+    });
+})();
+</script>
 
 </body>
 </html>
