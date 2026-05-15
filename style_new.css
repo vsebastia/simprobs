@@ -811,14 +811,3 @@ footer {
     }
 }
 
-/* FIX CLS DESKTOP: reservar altura exacta del header */
-@media (min-width: 1025px) {
-    .site-nav-links {
-        flex-wrap: nowrap;
-    }
-
-    /* Reservar altura final del header en desktop */
-    .site-nav {
-        min-height: 76px;
-    }
-}
