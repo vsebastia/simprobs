@@ -15,10 +15,19 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Inter-fallback';
+    src: local('Arial');
+    ascent-override: 90.44%;
+    descent-override: 22.52%;
+    line-gap-override: 0%;
+    size-adjust: 107.64%;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Inter-fallback', sans-serif;
     color: var(--text-main);
     background: linear-gradient(180deg, var(--bg), var(--bg-soft));
 }
@@ -387,10 +396,13 @@ input:focus {
     color: #312e81;
     background: rgba(79, 70, 229, 0.09);
     border: 1px solid rgba(79, 70, 229, 0.2);
+    min-height: 3rem;
 }
 
 .chart-wrap {
     margin-top: 14px;
+    min-height: 440px;
+    contain: layout;
 }
 
 canvas {
@@ -419,6 +431,8 @@ canvas {
     border: 1px solid rgba(148, 163, 184, 0.35);
     font-size: 0.93rem;
     line-height: 1.5;
+    min-height: 3.5rem;
+    contain: layout;
 }
 
 .formula-box code {
@@ -591,6 +605,8 @@ canvas {
     color: #312e81;
     font-weight: 600;
     overflow-wrap: anywhere;
+    min-height: 2.5rem;
+    contain: layout;
 }
 
 .learning-grid {
@@ -706,6 +722,10 @@ footer {
         height: 350px !important;
     }
 
+    .chart-wrap {
+        min-height: 350px;
+    }
+
     .learning-grid {
         grid-template-columns: 1fr;
     }
@@ -747,7 +767,7 @@ footer {
     justify-content: flex-end;
     gap: 8px;
     flex-wrap: wrap;
-    margin: 8px 0 10px;
+    margin: 10px 0 8px;
 }
 
 .table-action-btn {
