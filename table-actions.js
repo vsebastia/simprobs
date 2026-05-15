@@ -1,6 +1,10 @@
 (function () {
     "use strict";
 
+    const scheduleIdle = window.requestIdleCallback
+        ? callback => window.requestIdleCallback(callback, { timeout: 700 })
+        : callback => window.setTimeout(callback, 0);
+
     function slugify(value) {
         return (value || "tabla-estadistica")
             .toString()
@@ -41,26 +45,28 @@
     }
 
     function tableToCsv(table) {
-        const rows = Array.from(table.querySelectorAll("tr"));
+        const rows = Array.from(table.rows);
         return rows
-            .map(row => Array.from(row.querySelectorAll("th, td"))
+            .map(row => Array.from(row.cells)
                 .map(cell => csvEscape(cell.textContent))
                 .join(";"))
             .join("\n");
     }
 
     function downloadTableCsv(table) {
-        const title = getTableTitle(table);
-        const csv = `sep=;\n${tableToCsv(table)}`;
-        const blob = new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8;" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `${slugify(document.title)}-${slugify(title || table.id)}.csv`;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-        URL.revokeObjectURL(url);
+        scheduleIdle(() => {
+            const title = getTableTitle(table);
+            const csv = `sep=;\n${tableToCsv(table)}`;
+            const blob = new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `${slugify(document.title)}-${slugify(title || table.id)}.csv`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+        });
     }
 
     function printTable(table) {
@@ -72,10 +78,11 @@
             return;
         }
 
-        const tableHtml = table.outerHTML;
-        const safeTitle = escapeHtml(title);
-        const safeDocumentTitle = escapeHtml(document.title);
-        printWindow.document.write(`<!doctype html>
+        scheduleIdle(() => {
+            const tableHtml = table.outerHTML;
+            const safeTitle = escapeHtml(title);
+            const safeDocumentTitle = escapeHtml(document.title);
+            printWindow.document.write(`<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -97,9 +104,10 @@
 ${tableHtml}
 </body>
 </html>`);
-        printWindow.document.close();
-        printWindow.focus();
-        printWindow.print();
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+        });
     }
 
     function createButton(label, type, onClick) {
@@ -112,24 +120,62 @@ ${tableHtml}
     }
 
     function ensureTableActions() {
-        document.querySelectorAll(".dist-table").forEach(table => {
-            const wrapper = table.closest(".dist-table-wrap");
-            if (!wrapper || wrapper.dataset.tableActionsReady === "true") {
-                return;
+        const tables = Array.from(document.querySelectorAll(".dist-table"));
+        let index = 0;
+
+        function addNext(deadline) {
+            while (index < tables.length && (!deadline || deadline.timeRemaining() > 4)) {
+                const table = tables[index];
+                const wrapper = table.closest(".dist-table-wrap");
+                index += 1;
+
+                if (!wrapper || wrapper.dataset.tableActionsReady === "true") {
+                    continue;
+                }
+
+                const actions = document.createElement("div");
+                actions.className = "table-actions";
+                actions.setAttribute("aria-label", "Acciones de tabla");
+                actions.appendChild(createButton("Descargar CSV", "csv", () => downloadTableCsv(table)));
+                actions.appendChild(createButton("Imprimir tabla", "print", () => printTable(table)));
+                wrapper.before(actions);
+                wrapper.dataset.tableActionsReady = "true";
             }
 
-            const actions = document.createElement("div");
-            actions.className = "table-actions";
-            actions.setAttribute("aria-label", "Acciones de tabla");
-            actions.appendChild(createButton("Descargar CSV", "csv", () => downloadTableCsv(table)));
-            actions.appendChild(createButton("Imprimir tabla", "print", () => printTable(table)));
-            wrapper.parentNode.insertBefore(actions, wrapper);
-            wrapper.dataset.tableActionsReady = "true";
-        });
+            if (index < tables.length) {
+                scheduleIdle(addNext);
+            }
+        }
+
+        scheduleIdle(addNext);
     }
 
+    function delegateTableCellClick(event) {
+        const cell = event.target.closest(".dist-table td[data-val]");
+
+        if (!cell) {
+            return;
+        }
+
+        if (cell.dataset.f && typeof window.cdfCellClick === "function") {
+            window.cdfCellClick(cell);
+        } else if (
+            (cell.dataset.a1 || cell.dataset.alpha || (cell.dataset.df && cell.dataset.p && !cell.dataset.type))
+            && !cell.dataset.x
+            && typeof window.critCellClick === "function"
+        ) {
+            window.critCellClick(cell, cell.dataset.tab);
+        } else if (cell.dataset.p && !cell.dataset.x && !cell.dataset.k && typeof window.quantCellClick === "function") {
+            window.quantCellClick(cell);
+        } else if (typeof window.cellClick === "function") {
+            window.cellClick(cell);
+        }
+    }
+
+    document.addEventListener("click", delegateTableCellClick);
+
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", ensureTableActions);
+        document.addEventListener("DOMContentLoaded", ensureTableActions, { once: true });
     } else {
         ensureTableActions();
     }

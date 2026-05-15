@@ -306,7 +306,7 @@
 </nav>
 
 <div class="page-wrap">
-    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <nav class="breadcrumbs" aria-label="breadcrumb">
         <ol>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="tablas-estadisticas/">Tablas</a></li>
@@ -411,6 +411,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <script>
+
+    function scheduleTableInit(callback) {
+        if ("requestIdleCallback" in window) {
+            window.requestIdleCallback(callback, { timeout: 900 });
+            return;
+        }
+
+        window.setTimeout(callback, 0);
+    }
+
     // ── Table generation ──────────────────────────────────────────────────────
 
     const COL_DECS = [0,1,2,3,4,5,6,7,8,9]; // .00 to .09
@@ -439,7 +449,7 @@
                 } else {
                     val = jStat.normal.pdf(Math.abs(z), 0, 1).toFixed(4);
                 }
-                html += `<td data-z="${z.toFixed(2)}" data-val="${val}" data-type="${type}" onclick="cellClick(this)">${val}</td>`;
+                html += `<td data-z="${z.toFixed(2)}" data-val="${val}" data-type="${type}">${val}</td>`;
             });
             html += '</tr>';
         }
@@ -494,9 +504,11 @@
 
     // ── Init ──────────────────────────────────────────────────────────────────
 
-    buildNormalTable('tbl-cdf-pos', 'cdf',  1);
-    buildNormalTable('tbl-cdf-neg', 'cdf', -1);
-    buildNormalTable('tbl-pdf-pos', 'pdf',  1);
+    scheduleTableInit(() => {
+        buildNormalTable('tbl-cdf-pos', 'cdf',  1);
+        buildNormalTable('tbl-cdf-neg', 'cdf', -1);
+        buildNormalTable('tbl-pdf-pos', 'pdf',  1);
+    });
 </script>
 <script src="table-actions.js?v=20260509"></script>
 </body>

@@ -142,7 +142,7 @@
 </nav>
 
 <div class="page-wrap">
-    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <nav class="breadcrumbs" aria-label="breadcrumb">
         <ol>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="tablas-estadisticas/">Tablas</a></li>
@@ -251,6 +251,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <script>
+    function scheduleTableInit(callback) {
+        if ("requestIdleCallback" in window) {
+            window.requestIdleCallback(callback, { timeout: 900 });
+            return;
+        }
+
+        window.setTimeout(callback, 0);
+    }
+
     const P_LO = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50];
     const P_HI = [0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95];
 
@@ -280,7 +289,7 @@
                 } else {
                     val = jStat.binomial.cdf(k, n, p).toFixed(4);
                 }
-                html += `<td data-k="${k}" data-n="${n}" data-p="${p.toFixed(2)}" data-val="${val}" data-type="${type}" onclick="cellClick(this)">${val}</td>`;
+                html += `<td data-k="${k}" data-n="${n}" data-p="${p.toFixed(2)}" data-val="${val}" data-type="${type}">${val}</td>`;
             });
             html += '</tr>';
         }
@@ -336,10 +345,12 @@
 
     buildNSelector('n-pmf');
     buildNSelector('n-cdf');
-    buildBinomTable('tbl-pmf-lo', 'pmf', 10, P_LO);
-    buildBinomTable('tbl-pmf-hi', 'pmf', 10, P_HI);
-    buildBinomTable('tbl-cdf-lo', 'cdf', 10, P_LO);
-    buildBinomTable('tbl-cdf-hi', 'cdf', 10, P_HI);
+    scheduleTableInit(() => {
+        buildBinomTable('tbl-pmf-lo', 'pmf', 10, P_LO);
+        buildBinomTable('tbl-pmf-hi', 'pmf', 10, P_HI);
+        buildBinomTable('tbl-cdf-lo', 'cdf', 10, P_LO);
+        buildBinomTable('tbl-cdf-hi', 'cdf', 10, P_HI);
+    });
 </script>
 <script src="table-actions.js?v=20260509"></script>
 </body>
