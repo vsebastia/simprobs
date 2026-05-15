@@ -213,7 +213,7 @@
 </nav>
 
 <div class="page-wrap">
-    <nav class="breadcrumbs" aria-label="breadcrumb">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
         <ol>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="tablas-estadisticas/">Tablas</a></li>
@@ -327,15 +327,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <script>
-    function scheduleTableInit(callback) {
-        if ("requestIdleCallback" in window) {
-            window.requestIdleCallback(callback, { timeout: 900 });
-            return;
-        }
-
-        window.setTimeout(callback, 0);
-    }
-
     // ── Constants ─────────────────────────────────────────────────────────────
 
     const COL_DECS = [0,1,2,3,4,5,6,7,8,9];
@@ -390,7 +381,7 @@
                 // t such that P(T > t) = a1  →  inv CDF at (1 - a1)
                 const t = jStat.studentt.inv(1 - a1, df);
                 const val = t.toFixed(3);
-                html += `<td data-df="${df}" data-a1="${a1}" data-a2="${ALPHA2[i]}" data-val="${val}">${val}</td>`;
+                html += `<td data-df="${df}" data-a1="${a1}" data-a2="${ALPHA2[i]}" data-val="${val}" onclick="critCellClick(this)">${val}</td>`;
             });
             html += '</tr>';
         });
@@ -421,7 +412,7 @@
                 } else {
                     val = jStat.studentt.pdf(Math.abs(tVal), df).toFixed(4);
                 }
-                html += `<td data-t="${tVal.toFixed(2)}" data-val="${val}" data-type="${type}" data-df="${df}">${val}</td>`;
+                html += `<td data-t="${tVal.toFixed(2)}" data-val="${val}" data-type="${type}" data-df="${df}" onclick="cellClick(this)">${val}</td>`;
             });
             html += '</tr>';
         }
@@ -501,14 +492,12 @@
 
     buildDfSelector('df-cdf');
     buildDfSelector('df-pdf');
+    buildCritTable();
 
     const defaultDf = 10;
-    scheduleTableInit(() => {
-        buildCritTable();
-        buildStudentTable('tbl-cdf-pos', 'cdf',  1, defaultDf);
-        buildStudentTable('tbl-cdf-neg', 'cdf', -1, defaultDf);
-        buildStudentTable('tbl-pdf-pos', 'pdf',  1, defaultDf);
-    });
+    buildStudentTable('tbl-cdf-pos', 'cdf',  1, defaultDf);
+    buildStudentTable('tbl-cdf-neg', 'cdf', -1, defaultDf);
+    buildStudentTable('tbl-pdf-pos', 'pdf',  1, defaultDf);
 </script>
 <script src="table-actions.js?v=20260509"></script>
 </body>

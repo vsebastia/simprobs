@@ -138,7 +138,7 @@
 </nav>
 
 <div class="page-wrap">
-    <nav class="breadcrumbs" aria-label="breadcrumb">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
         <ol>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="tablas-estadisticas/">Tablas</a></li>
@@ -247,15 +247,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <script>
-    function scheduleTableInit(callback) {
-        if ("requestIdleCallback" in window) {
-            window.requestIdleCallback(callback, { timeout: 900 });
-            return;
-        }
-
-        window.setTimeout(callback, 0);
-    }
-
     const DF_LIST = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
                      21,22,23,24,25,26,27,28,29,30,35,40,45,50,60,70,80,90,100,120,150,200];
 
@@ -284,7 +275,7 @@
             html += `<tr><td>${df}</td>`;
             CRIT_P.forEach(p => {
                 const val = jStat.chisquare.inv(p, df).toFixed(3);
-                html += `<td data-df="${df}" data-p="${p}" data-val="${val}">${val}</td>`;
+                html += `<td data-df="${df}" data-p="${p}" data-val="${val}" onclick="critCellClick(this)">${val}</td>`;
             });
             html += '</tr>';
         });
@@ -314,7 +305,7 @@
                         val = isFinite(raw) ? raw.toFixed(4) : '0.0000';
                     }
                 }
-                html += `<td data-x="${x.toFixed(1)}" data-val="${val}" data-type="${type}" data-df="${df}">${val}</td>`;
+                html += `<td data-x="${x.toFixed(1)}" data-val="${val}" data-type="${type}" data-df="${df}" onclick="cellClick(this)">${val}</td>`;
             });
             html += '</tr>';
         }
@@ -371,11 +362,9 @@
 
     buildDfSelector('df-cdf');
     buildDfSelector('df-pdf');
-    scheduleTableInit(() => {
-        buildCritTable();
-        buildChiTable('tbl-cdf', 'cdf', 5);
-        buildChiTable('tbl-pdf', 'pdf', 5);
-    });
+    buildCritTable();
+    buildChiTable('tbl-cdf', 'cdf', 5);
+    buildChiTable('tbl-pdf', 'pdf', 5);
 </script>
 <script src="table-actions.js?v=20260509"></script>
 </body>
