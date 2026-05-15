@@ -23,10 +23,15 @@ function hasOwn(obj, key) {
     return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
+let _mathJaxRafId = null;
+
 function refreshMathJax() {
-    if (window.MathJax && typeof window.MathJax.typesetPromise === "function") {
+    if (!window.MathJax || typeof window.MathJax.typesetPromise !== "function") return;
+    if (_mathJaxRafId !== null) return;
+    _mathJaxRafId = requestAnimationFrame(() => {
+        _mathJaxRafId = null;
         window.MathJax.typesetPromise();
-    }
+    });
 }
 
 
