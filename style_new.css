@@ -15,10 +15,19 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "Inter Fallback";
+    src: local("Arial");
+    ascent-override: 90.20%;
+    descent-override: 22.48%;
+    line-gap-override: 0%;
+    size-adjust: 107.40%;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', "Inter Fallback", sans-serif;
     color: var(--text-main);
     background: linear-gradient(180deg, var(--bg), var(--bg-soft));
 }
@@ -89,6 +98,8 @@ body {
     margin: -8px 4px 10px;
     color: var(--text-muted);
     font-size: 0.82rem;
+    line-height: 1.4;
+    min-height: 1.15rem;
 }
 
 .breadcrumbs ol {
