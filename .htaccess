@@ -1,10 +1,4 @@
 RewriteEngine On
-
-# Canonicaliza todas las señales SEO en una única URL pública.
-RewriteCond %{HTTPS} !=on [OR]
-RewriteCond %{HTTP_HOST} ^www\.problabtools\.es$ [NC]
-RewriteRule ^ https://problabtools.es%{REQUEST_URI} [R=301,L,NE]
-
 RewriteRule ^index\.html$ / [R=301,L]
 
 <IfModule mod_headers.c>
@@ -14,13 +8,9 @@ RewriteRule ^index\.html$ / [R=301,L]
     Header set Expires "0"
   </FilesMatch>
 
-  <FilesMatch "\.(?:css|js|png|svg|webp|jpg|jpeg|gif|ico|woff2?)$">
+  <FilesMatch "\.(?:css|js)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
     Header unset Pragma
     Header unset Expires
   </FilesMatch>
-</IfModule>
-
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/xml image/svg+xml
 </IfModule>
