@@ -11,10 +11,6 @@
     --ring: rgba(37, 99, 235, 0.2);
 }
 
-html {
-    scrollbar-gutter: stable;
-}
-
 * {
     box-sizing: border-box;
 }
@@ -295,8 +291,6 @@ main > .app-shell {
     color: var(--text-muted);
     font-size: 0.87rem;
     line-height: 1.4;
-    min-height: 2.5rem;
-    contain: layout;
 }
 
 .inline-inputs {
