@@ -137,7 +137,7 @@
 </nav>
 
 <div class="page-wrap">
-    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <nav class="breadcrumbs" aria-label="breadcrumb">
         <ol>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="tablas-estadisticas/">Tablas</a></li>
@@ -232,6 +232,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
 <script>
+    function scheduleTableInit(callback) {
+        if ("requestIdleCallback" in window) {
+            window.requestIdleCallback(callback, { timeout: 900 });
+            return;
+        }
+
+        window.setTimeout(callback, 0);
+    }
+
     const LAMBDA_LIST = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0];
 
     function buildPoissonTable(tableId, type, kMax) {
@@ -249,7 +258,7 @@
                 } else {
                     val = jStat.poisson.cdf(k, lam).toFixed(4);
                 }
-                html += `<td data-k="${k}" data-lam="${lam}" data-val="${val}" data-type="${type}" onclick="cellClick(this)">${val}</td>`;
+                html += `<td data-k="${k}" data-lam="${lam}" data-val="${val}" data-type="${type}">${val}</td>`;
             });
             html += '</tr>';
         }
@@ -292,8 +301,10 @@
         }
     }
 
-    buildPoissonTable('tbl-pmf', 'pmf', 30);
-    buildPoissonTable('tbl-cdf', 'cdf', 30);
+    scheduleTableInit(() => {
+        buildPoissonTable('tbl-pmf', 'pmf', 30);
+        buildPoissonTable('tbl-cdf', 'cdf', 30);
+    });
 </script>
 <script src="table-actions.js?v=20260509"></script>
 </body>
