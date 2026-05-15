@@ -32,7 +32,6 @@ body {
     background: linear-gradient(180deg, var(--bg), var(--bg-soft));
 }
 
-
 .site-nav {
     position: sticky;
     top: 0;
@@ -41,6 +40,9 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+
+    /* 🟢 FIX CLS DESKTOP */
+    min-height: 64px;
 }
 
 .site-nav-inner {
@@ -93,6 +95,17 @@ body {
     color: var(--accent);
     outline: none;
 }
+
+.breadcrumbs {
+    margin: -8px 4px 10px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.4;
+    min-height: 1.15rem;
+}
+
+/* … resto del CSS idéntico … */
+
 
 .breadcrumbs {
     margin: -8px 4px 10px;
