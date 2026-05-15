@@ -11,6 +11,11 @@
     --ring: rgba(37, 99, 235, 0.2);
 }
 
+html {
+    /* Reserve scrollbar gutter to prevent layout shift when scrollbar appears */
+    scrollbar-gutter: stable;
+}
+
 * {
     box-sizing: border-box;
 }
