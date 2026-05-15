@@ -813,10 +813,7 @@ footer {
 
 /* FIX CLS DESKTOP: reservar altura exacta del header */
 @media (min-width: 1025px) {
-    .site-nav {
-        height: 76px; /* ajusta si tu header final mide más o menos */
-    }
-    .site-nav-inner {
-        height: 100%;
+    .site-nav-links {
+        flex-wrap: nowrap;
     }
 }
