@@ -123,7 +123,7 @@ ${tableHtml}
             actions.setAttribute("aria-label", "Acciones de tabla");
             actions.appendChild(createButton("Descargar CSV", "csv", () => downloadTableCsv(table)));
             actions.appendChild(createButton("Imprimir tabla", "print", () => printTable(table)));
-            wrapper.parentNode.insertBefore(actions, wrapper);
+            wrapper.parentNode.insertBefore(actions, wrapper.nextSibling);
             wrapper.dataset.tableActionsReady = "true";
         });
     }
