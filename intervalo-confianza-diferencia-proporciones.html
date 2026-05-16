@@ -182,11 +182,11 @@
             <p>Es el método clásico y resulta adecuado cuando en ambos grupos hay suficientes éxitos y fracasos: \(n_i\hat{p}_i \geq 5\) y \(n_i(1-\hat{p}_i) \geq 5\).</p>
 
             <h2>Método de Newcombe-Wilson (recomendado)</h2>
-            <p>El método de Newcombe-Wilson no aplica directamente la normal a la diferencia \(\hat{p}_1-\hat{p}_2\). Primero calcula, por separado, un intervalo de Wilson para cada proporción: \([L_1, U_1]\) para \(p_1\) y \([L_2, U_2]\) para \(p_2\). Wilson corrige mejor la asimetría de las proporciones y evita límites imposibles cuando hay pocos éxitos o pocos fracasos.</p>
-            <p>Después combina las distancias desde cada proporción observada hasta sus límites Wilson, conservando el signo de la diferencia estimada \(d = \hat{p}_1 - \hat{p}_2\):</p>
+            <p>El método de Newcombe-Wilson no aplica directamente la normal a la diferencia \(\hat{p}_1-\hat{p}_2\). Primero calcula, por separado, un intervalo score de Wilson para cada proporción: \([L_1, U_1]\) para \(p_1\) y \([L_2, U_2]\) para \(p_2\). La idea viene del trabajo de Newcombe (1998), que comparó varios métodos para la diferencia de proporciones y destacó el buen comportamiento de los métodos basados en Wilson.</p>
+            <p>Después combina las distancias desde cada proporción observada hasta sus límites Wilson, conservando el signo de la diferencia estimada \(d = \hat{p}_1 - \hat{p}_2\). La combinación no es simplemente \([L_1-U_2, U_1-L_2]\): se suman cuadráticamente las incertidumbres de ambos grupos para construir cada extremo del intervalo:</p>
             <p class="formula-line">\( L = d - \sqrt{(\hat{p}_1-L_1)^2 + (U_2-\hat{p}_2)^2} \)</p>
             <p class="formula-line">\( U = d + \sqrt{(U_1-\hat{p}_1)^2 + (\hat{p}_2-L_2)^2} \)</p>
-            <p>Esta combinación suele mantener mejor la cobertura real del intervalo que Wald, especialmente con muestras pequeñas o proporciones cercanas a 0 o 1. Por eso es una buena opción por defecto para comparar dos porcentajes independientes.</p>
+            <p>Esta combinación suele mantener mejor la cobertura real del intervalo que Wald, especialmente con muestras pequeñas o proporciones cercanas a 0 o 1. Por eso es una buena opción por defecto para comparar dos porcentajes independientes. En esta página se usa la versión sin corrección de continuidad, que es la forma habitual para una calculadora rápida y reproducible.</p>
 
             <h2>Ejemplo resuelto</h2>
             <p>En el grupo 1 hay 84 éxitos de 120 observaciones y en el grupo 2 hay 57 éxitos de 110 observaciones. \(\hat{p}_1 = 0{,}70\), \(\hat{p}_2 \approx 0{,}518\) y la diferencia estimada es \(0{,}182\). Con 95 % de confianza (Wald):</p>
@@ -218,7 +218,13 @@
                 <li><strong>¿Qué diferencia se calcula?</strong> La herramienta calcula p₁ − p₂; si inviertes los grupos, el signo de la diferencia cambia.</li>
                 <li><strong>¿Qué significa que el IC incluya el 0?</strong> Que con el nivel de confianza elegido no puedes descartar que ambas proporciones poblacionales sean iguales.</li>
             </ul>
-            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Intervalo_de_confianza" target="_blank" rel="noopener noreferrer">Intervalo de confianza</a> — Wikipedia</p>
+            <h3>Referencias usadas</h3>
+            <ul>
+                <li><a href="https://www.graphpad.com/support/faq/how-does-prism-compute-the-95-confidence-interval-for-the-difference-between-two-proportions/" target="_blank" rel="noopener noreferrer">GraphPad: IC para la diferencia entre dos proporciones</a> — explica el intervalo clásico tipo Wald y cita la comparación de métodos de Newcombe.</li>
+                <li><a href="https://www.statology.org/confidence-interval-difference-in-proportions/" target="_blank" rel="noopener noreferrer">Statology: Confidence Interval for the Difference in Proportions</a> — desarrollo divulgativo de la fórmula normal/Wald.</li>
+                <li><a href="https://studylib.net/doc/8712043/confidence-intervals-for-the-difference-between-two-propo..." target="_blank" rel="noopener noreferrer">NCSS/PASS: Confidence Intervals for the Difference Between Two Proportions</a> — documentación con el método score de Wilson modificado por Newcombe y sus referencias bibliográficas.</li>
+                <li>Newcombe, R. G. (1998). <em>Interval estimation for the difference between independent proportions: comparison of eleven methods</em>, Statistics in Medicine, 17, 873–890.</li>
+            </ul>
         </section>
     </main>
 
