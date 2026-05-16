@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalo de confianza para la diferencia de proporciones | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online del intervalo de confianza para la diferencia de dos proporciones independientes. Método Wald y Newcombe-Wilson. Fórmula, gráfico y ejemplos.">
+    <meta name="keywords" content="intervalo de confianza diferencia proporciones, IC dos proporciones independientes, calcular IC diferencia de proporciones, intervalo confianza proporciones, diferencia de porcentajes, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/intervalo-confianza-diferencia-proporciones.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intervalo de confianza para la diferencia de proporciones | ProbLab">
+    <meta property="og:description" content="Calculadora online del intervalo de confianza para la diferencia de dos proporciones independientes. Método Wald y Newcombe-Wilson. Fórmula, gráfico y ejemplos.">
+    <meta property="og:url" content="https://problabtools.es/intervalo-confianza-diferencia-proporciones.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalo-confianza-diferencia-proporciones.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intervalo de confianza para la diferencia de proporciones | ProbLab">
+    <meta name="twitter:description" content="Calculadora online del intervalo de confianza para la diferencia de dos proporciones independientes. Método Wald y Newcombe-Wilson. Fórmula, gráfico y ejemplos.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"},
+            {"@type": "ListItem", "position": 3, "name": "IC diferencia de proporciones", "item": "https://problabtools.es/intervalo-confianza-diferencia-proporciones.html"}
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Intervalo de confianza para la diferencia de proporciones",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://problabtools.es/intervalo-confianza-diferencia-proporciones.html",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260515">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuándo el IC indica diferencia significativa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando el valor 0 queda fuera del intervalo [L, U], la diferencia de proporciones es significativa con el nivel de confianza elegido."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué diferencia se calcula?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La calculadora estima p₁ − p₂, es decir, la proporción del grupo 1 menos la proporción del grupo 2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo conviene usar Newcombe-Wilson?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es recomendable cuando las muestras son pequeñas, las proporciones están cerca de 0 o 1, o la condición normal de Wald no se cumple."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="intervalos-confianza/">Intervalos</a></li>
+            <li><span aria-current="page">Diferencia de proporciones</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Intervalos de confianza</p>
+        <h1>Intervalo de confianza para la diferencia de proporciones</h1>
+        <p class="hero-subtitle">Estima la diferencia entre dos proporciones poblacionales independientes, con el método de Wald o Newcombe-Wilson.</p>
+        <p class="hero-links"><a class="hero-link-button" href="intervalos-confianza/">Ver todos los intervalos</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los éxitos y tamaños muestrales de cada grupo para obtener el intervalo de confianza para p₁ − p₂.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="x1">Éxitos grupo 1 (x₁)</label>
+                        <input type="number" id="x1" value="84" step="1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="n1">Tamaño muestral grupo 1 (n₁)</label>
+                        <input type="number" id="n1" value="120" step="1" min="1">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="x2">Éxitos grupo 2 (x₂)</label>
+                        <input type="number" id="x2" value="57" step="1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="n2">Tamaño muestral grupo 2 (n₂)</label>
+                        <input type="number" id="n2" value="110" step="1" min="1">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="conf">Nivel de confianza</label>
+                        <select id="conf">
+                            <option value="0.90">90 %</option>
+                            <option value="0.95" selected>95 %</option>
+                            <option value="0.99">99 %</option>
+                            <option value="custom">Personalizado…</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="method">Método</label>
+                        <select id="method">
+                            <option value="both" selected>Ambos (Wald + Newcombe-Wilson)</option>
+                            <option value="wald">Solo Wald</option>
+                            <option value="newcombe">Solo Newcombe-Wilson</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs" id="customConfRow" style="display:none">
+                    <div class="form-group">
+                        <label for="customConf">Nivel de confianza personalizado (0–1)</label>
+                        <input type="number" id="customConf" value="0.95" step="0.01" min="0.01" max="0.9999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular intervalo</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza para la diferencia de proporciones" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Cuando se comparan dos grupos independientes (por ejemplo, conversión en A/B testing, prevalencia en dos poblaciones o porcentaje de satisfacción por segmento), el intervalo de confianza para la diferencia de proporciones cuantifica el tamaño de la diferencia y su incertidumbre.</p>
+            <p>La calculadora estima \(p_1 - p_2\) a partir de \(\hat{p}_1 = x_1/n_1\) y \(\hat{p}_2 = x_2/n_2\). Si el intervalo contiene el 0, la diferencia observada puede ser compatible con ausencia de diferencia al nivel de confianza elegido.</p>
+
+            <h2>Método de Wald (aproximación normal)</h2>
+            <p class="formula-line">\( (\hat{p}_1 - \hat{p}_2) \pm z_{\alpha/2} \cdot \sqrt{\dfrac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \dfrac{\hat{p}_2(1-\hat{p}_2)}{n_2}} \)</p>
+            <p>Es el método clásico y resulta adecuado cuando en ambos grupos hay suficientes éxitos y fracasos: \(n_i\hat{p}_i \geq 5\) y \(n_i(1-\hat{p}_i) \geq 5\).</p>
+
+            <h2>Método de Newcombe-Wilson (recomendado)</h2>
+            <p>Construye primero intervalos de Wilson para cada proporción y después combina sus límites para obtener un intervalo más estable para \(p_1 - p_2\):</p>
+            <p class="formula-line">\( [L_1 - U_2,\; U_1 - L_2] \)</p>
+            <p>Es más fiable cuando las proporciones están cerca de 0 o 1, o cuando los tamaños muestrales son pequeños.</p>
+
+            <h2>Ejemplo resuelto</h2>
+            <p>En el grupo 1 hay 84 éxitos de 120 observaciones y en el grupo 2 hay 57 éxitos de 110 observaciones. \(\hat{p}_1 = 0{,}70\), \(\hat{p}_2 \approx 0{,}518\) y la diferencia estimada es \(0{,}182\). Con 95 % de confianza (Wald):</p>
+            <p class="formula-line">\( 0{,}182 \pm 1{,}960 \cdot \sqrt{\frac{0{,}70\cdot0{,}30}{120} + \frac{0{,}518\cdot0{,}482}{110}} \approx [0{,}058,\; 0{,}306] \)</p>
+        </section>
+
+
+
+        <section class="card content-card">
+            <h2>¿Wald o Newcombe-Wilson?</h2>
+            <p>Wald es fácil de interpretar y suele funcionar bien con muestras grandes y proporciones no extremas. Newcombe-Wilson suele ser preferible por defecto si algún grupo tiene pocos éxitos o pocos fracasos, porque evita varios problemas de cobertura del intervalo normal clásico.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora obtiene el intervalo de confianza para \(p_1 - p_2\) con dos muestras independientes. Ofrece el método de Wald (aproximación normal sin agrupar) y el método Newcombe-Wilson, mostrando el valor crítico z, el error estándar, los límites del intervalo y una representación gráfica de la región de confianza.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="intervalo-confianza-proporcion.html">IC para una proporción</a></li>
+                    <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste de hipótesis para dos proporciones</a></li>
+                    <li><a href="tamano-muestral-dos-proporciones.html">Tamaño muestral para dos proporciones</a></li>
+                    <li><a href="binomial.html">Distribución Binomial</a></li>
+                </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Cuándo el IC indica diferencia significativa?</strong> Cuando el valor 0 queda fuera del intervalo [L, U].</li>
+                <li><strong>¿Qué diferencia se calcula?</strong> La herramienta calcula p₁ − p₂; si inviertes los grupos, el signo de la diferencia cambia.</li>
+                <li><strong>¿Qué significa que el IC incluya el 0?</strong> Que con el nivel de confianza elegido no puedes descartar que ambas proporciones poblacionales sean iguales.</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Intervalo_de_confianza" target="_blank" rel="noopener noreferrer">Intervalo de confianza</a> — Wikipedia</p>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let ciChart;
+
+document.getElementById('conf').addEventListener('change', function () {
+    document.getElementById('customConfRow').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function getConfLevel() {
+    const sel = document.getElementById('conf').value;
+    if (sel === 'custom') return parseFloat(document.getElementById('customConf').value);
+    return parseFloat(sel);
+}
+
+function wilsonInterval(x, n, zCrit) {
+    const pHat = x / n;
+    const z2 = zCrit * zCrit;
+    const center = (pHat + z2 / (2 * n)) / (1 + z2 / n);
+    const halfWidth = (zCrit / (1 + z2 / n)) * Math.sqrt(pHat * (1 - pHat) / n + z2 / (4 * n * n));
+    return [Math.max(0, center - halfWidth), Math.min(1, center + halfWidth)];
+}
+
+function renderChart(zCrit) {
+    const ctx = document.getElementById('ciChart');
+    if (!ctx) return;
+
+    const bound = Math.max(4, zCrit + 0.8);
+    const minX = -bound, maxX = bound;
+    const step = 0.02;
+
+    const curve = [], inside = [], outside = [];
+    for (let x = minX; x <= maxX; x += step) {
+        const y = jStat.normal.pdf(x, 0, 1);
+        curve.push({ x, y });
+        if (x >= -zCrit && x <= zCrit) {
+            inside.push({ x, y });
+            outside.push({ x, y: null });
+        } else {
+            inside.push({ x, y: null });
+            outside.push({ x, y });
+        }
+    }
+
+    if (ciChart) ciChart.destroy();
+    ciChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Región de confianza', data: inside, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Colas (α/2 cada una)', data: outside, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Distribución Normal estándar', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'z' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const x1 = parseFloat(document.getElementById('x1').value);
+    const n1 = parseFloat(document.getElementById('n1').value);
+    const x2 = parseFloat(document.getElementById('x2').value);
+    const n2 = parseFloat(document.getElementById('n2').value);
+    const conf = getConfLevel();
+    const method = document.getElementById('method').value;
+    const resultEl = document.getElementById('result');
+
+    if (![x1, n1, x2, n2, conf].every(Number.isFinite) ||
+        x1 < 0 || x2 < 0 || n1 < 1 || n2 < 1 || x1 > n1 || x2 > n2 || conf <= 0 || conf >= 1) {
+        resultEl.innerText = 'Error: revisa que 0 ≤ x₁ ≤ n₁, 0 ≤ x₂ ≤ n₂, n₁,n₂ ≥ 1 y 0 < confianza < 1.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const alpha = 1 - conf;
+    const zCrit = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const p1 = x1 / n1;
+    const p2 = x2 / n2;
+    const diff = p1 - p2;
+
+    const seWald = Math.sqrt(p1 * (1 - p1) / n1 + p2 * (1 - p2) / n2);
+    const margin = zCrit * seWald;
+    const waldL = Math.max(-1, diff - margin);
+    const waldU = Math.min(1, diff + margin);
+
+    const [w1L, w1U] = wilsonInterval(x1, n1, zCrit);
+    const [w2L, w2U] = wilsonInterval(x2, n2, zCrit);
+    const newcombeL = Math.max(-1, w1L - w2U);
+    const newcombeU = Math.min(1, w1U - w2L);
+
+    const waldOk = n1 * p1 >= 5 && n1 * (1 - p1) >= 5 && n2 * p2 >= 5 && n2 * (1 - p2) >= 5;
+    const warning = waldOk ? '' : '\n⚠ Condición de normalidad no cumplida en algún grupo. Se recomienda usar Newcombe-Wilson.';
+    const waldIncludesZero = waldL <= 0 && waldU >= 0;
+    const newcombeIncludesZero = newcombeL <= 0 && newcombeU >= 0;
+
+    let lines = [
+        `p̂₁ = ${p1.toFixed(6)}  |  p̂₂ = ${p2.toFixed(6)}  |  Diferencia p̂₁ − p̂₂ = ${diff.toFixed(6)}`,
+        `Nivel de confianza: ${(conf * 100).toFixed(1)} %  |  z crítico: ±${zCrit.toFixed(4)}  |  Error estándar Wald: ${seWald.toFixed(6)}`
+    ];
+    if (method === 'both' || method === 'wald') {
+        lines.push(`Wald:             [${waldL.toFixed(6)}, ${waldU.toFixed(6)}]  (margen: ±${margin.toFixed(6)})`);
+    }
+    if (method === 'both' || method === 'newcombe') {
+        lines.push(`Newcombe-Wilson:  [${newcombeL.toFixed(6)}, ${newcombeU.toFixed(6)}]  (amplitud: ${(newcombeU - newcombeL).toFixed(6)})`);
+    }
+    if (method === 'both') {
+        if (waldIncludesZero && newcombeIncludesZero) {
+            lines.push('ℹ Ambos intervalos incluyen el 0: no hay evidencia de diferencia significativa.');
+        } else if (!waldIncludesZero && !newcombeIncludesZero) {
+            lines.push('✓ Ambos intervalos excluyen el 0: hay evidencia de diferencia significativa.');
+        } else {
+            lines.push('ℹ Los métodos difieren sobre la inclusión del 0; revisa supuestos y prioriza Newcombe-Wilson si Wald no cumple la condición normal.');
+        }
+    } else {
+        const zeroIncluded = method === 'newcombe' ? newcombeIncludesZero : waldIncludesZero;
+        lines.push(zeroIncluded ? 'ℹ El intervalo seleccionado incluye el 0: no hay evidencia de diferencia significativa.' : '✓ El intervalo seleccionado no incluye el 0: hay evidencia de diferencia significativa.');
+    }
+    if (warning) lines.push(warning);
+
+    resultEl.innerText = lines.join('\n');
+    renderChart(zCrit);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('conf').addEventListener('change', calculate);
+document.getElementById('method').addEventListener('change', calculate);
+document.getElementById('customConf').addEventListener('input', calculate);
+calculate();
+</script>
+</body>
+</html>
