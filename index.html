@@ -479,6 +479,36 @@
             font-size: 0.92rem;
         }
 
+        .popular-tools {
+            border-top: 3px solid #0f766e;
+        }
+
+        .popular-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin: 16px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .popular-tools-grid a {
+            display: block;
+            padding: 12px 13px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 14px;
+            background: #f8fafc;
+            color: #0f172a;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+        }
+
+        .popular-tools-grid a:hover {
+            transform: translateY(-2px);
+            background: rgba(15, 118, 110, 0.08);
+            color: #0f766e;
+        }
 
         .use-case-grid {
             display: grid;
@@ -585,13 +615,18 @@
                 grid-template-columns: 1fr;
             }
 
-            .intent-grid {
+            .intent-grid,
+            .popular-tools-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (min-width: 641px) and (max-width: 980px) {
             .intent-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .popular-tools-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
@@ -673,6 +708,22 @@
             </div>
         </section>
 
+        <section class="card content-card popular-tools" aria-labelledby="popular-title">
+            <p class="guided-eyebrow">Herramientas destacadas</p>
+            <h2 id="popular-title">Accesos directos a recursos frecuentes</h2>
+            <ul class="popular-tools-grid" aria-label="Herramientas estadísticas populares">
+                <li><a href="normal.html">Distribución normal</a></li>
+                <li><a href="binomial.html">Distribución binomial</a></li>
+                <li><a href="poisson.html">Distribución de Poisson</a></li>
+                <li><a href="studentt.html">Distribución t de Student</a></li>
+                <li><a href="tabla-normal.html">Tabla normal estándar Z</a></li>
+                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
+                <li><a href="contraste-hipotesis-dos-medias.html">Contraste de dos medias</a></li>
+                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste de dos proporciones</a></li>
+                <li><a href="intervalo-confianza-media.html">Intervalo de confianza para la media</a></li>
+                <li><a href="ab-testing-z-test.html">Test A/B de proporciones</a></li>
+            </ul>
+        </section>
 
         <section class="card content-card guided-section" aria-labelledby="cases-title">
             <p class="guided-eyebrow">Casos de uso frecuentes</p>
