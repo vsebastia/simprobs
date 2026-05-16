@@ -231,6 +231,39 @@
         </section>
 
         <section class="card content-card">
+            <h2>¿En qué se diferencia del IC para ratio de proporciones?</h2>
+            <p>Aunque esta calculadora y la de <a href="intervalo-confianza-ratio-proporciones.html">IC para ratio de proporciones</a> usan una escala logarítmica y comparan el intervalo con el valor nulo 1, estiman medidas distintas.</p>
+            <div class="content-table-wrap">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Medida</th>
+                            <th>Qué compara</th>
+                            <th>Fórmula en una tabla 2x2</th>
+                            <th>Uso típico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Odds ratio (OR)</th>
+                            <td>Odds del evento: casos con evento divididos entre casos sin evento.</td>
+                            <td>\( OR = \dfrac{a/b}{c/d} = \dfrac{a\cdot d}{b\cdot c} \)</td>
+                            <td>Estudios caso-control, regresión logística y análisis donde se modelan odds.</td>
+                        </tr>
+                        <tr>
+                            <th>Ratio de proporciones / riesgo relativo (RR)</th>
+                            <td>Probabilidades o proporciones del evento en dos grupos.</td>
+                            <td>\( RR = \dfrac{x_1/n_1}{x_2/n_2} \)</td>
+                            <td>Cohortes, ensayos, experimentos A/B o estudios con denominadores reales de riesgo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Con los mismos datos del ejemplo (35 eventos y 65 no eventos en expuestos; 20 eventos y 80 no eventos en no expuestos), el riesgo relativo sería \(RR=(35/100)/(20/100)=1{,}75\), mientras que la odds ratio es \(OR=(35/65)/(20/80)\approx2{,}154\). La OR es mayor porque compara odds, no probabilidades.</p>
+            <p>La diferencia es pequeña cuando el evento es raro, porque entonces odds y probabilidad son parecidas. Cuando el evento es frecuente, la OR puede alejarse bastante del RR y no conviene interpretarla como si fuera un riesgo relativo.</p>
+        </section>
+
+        <section class="card content-card">
             <h2>Cómo interpretar el intervalo</h2>
             <ul>
                 <li>Si el IC incluye 1, los datos son compatibles con ausencia de asociación al nivel de confianza seleccionado.</li>
