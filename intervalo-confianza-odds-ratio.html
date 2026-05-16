@@ -174,14 +174,46 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p>La odds ratio (OR) compara las odds del evento en dos grupos. En una tabla 2x2 con expuestos y no expuestos, se calcula como:</p>
+            <p>La odds ratio (OR) compara las <em>odds</em> del evento en dos grupos. La <em>odds</em> no es la probabilidad, sino el cociente entre casos con evento y casos sin evento dentro de un mismo grupo.</p>
+            <p>Por ejemplo, si queremos estudiar si una exposición se asocia con un evento, los datos se organizan así:</p>
+            <div class="content-table-wrap">
+                <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Grupo</th>
+                        <th>Con evento</th>
+                        <th>Sin evento</th>
+                        <th>Odds del evento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Expuestos</th>
+                        <td>a = 35</td>
+                        <td>b = 65</td>
+                        <td>a/b = 35/65</td>
+                    </tr>
+                    <tr>
+                        <th>No expuestos</th>
+                        <td>c = 20</td>
+                        <td>d = 80</td>
+                        <td>c/d = 20/80</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            <p>La OR divide las odds de ambos grupos. En una tabla 2x2 con expuestos y no expuestos, se calcula como:</p>
             <p class="formula-line">\( \widehat{OR} = \dfrac{a/b}{c/d} = \dfrac{a\cdot d}{b\cdot c} \)</p>
-            <p>Una OR igual a 1 indica ausencia de asociación. Una OR mayor que 1 indica mayores odds del evento en el grupo expuesto; una OR menor que 1 indica menores odds.</p>
+            <p>En el ejemplo, \(\widehat{OR} = (35\cdot80)/(65\cdot20) \approx 2{,}154\). Esto significa que las odds observadas del evento en expuestos son aproximadamente 2,15 veces las odds observadas en no expuestos. Una OR igual a 1 indica ausencia de asociación; una OR mayor que 1 indica mayores odds del evento en el grupo expuesto; y una OR menor que 1 indica menores odds.</p>
 
             <h2>Método logarítmico de Woolf</h2>
-            <p>El intervalo clásico se calcula en la escala logarítmica, donde la distribución de \(\log(\widehat{OR})\) se aproxima por una normal:</p>
-            <p class="formula-line">\( \log(\widehat{OR}) \pm z_{\alpha/2}\sqrt{\dfrac{1}{a}+\dfrac{1}{b}+\dfrac{1}{c}+\dfrac{1}{d}} \)</p>
-            <p>Después se aplica la exponencial a los límites para volver a la escala original de la odds ratio.</p>
+            <p>El método de Woolf construye el intervalo en la escala logarítmica porque la distribución muestral de \(\widehat{OR}\) es asimétrica y solo toma valores positivos. Al transformar con logaritmos, \(\log(\widehat{OR})\) puede aproximarse mejor por una distribución normal cuando los recuentos son suficientemente grandes.</p>
+            <p>El primer paso es calcular la estimación puntual \(\widehat{OR} = ad/(bc)\) y su logaritmo. Después se estima el error estándar de \(\log(\widehat{OR})\) sumando la contribución de incertidumbre de las cuatro celdas:</p>
+            <p class="formula-line">\( SE\left[\log(\widehat{OR})\right] = \sqrt{\dfrac{1}{a}+\dfrac{1}{b}+\dfrac{1}{c}+\dfrac{1}{d}} \)</p>
+            <p>Con ese error estándar, el intervalo bilateral en escala logarítmica es:</p>
+            <p class="formula-line">\( \log(\widehat{OR}) \pm z_{\alpha/2}\cdot SE\left[\log(\widehat{OR})\right] \)</p>
+            <p>Por último, se aplica la exponencial a ambos límites para volver a la escala original de la odds ratio. Este paso es importante: el intervalo final no queda centrado de forma simétrica alrededor de la OR, sino que es simétrico en la escala \(\log(OR)\). Por eso los límites inferior y superior suelen estar a distancias diferentes de la estimación puntual cuando se miran en la escala original.</p>
+            <p>El método funciona mejor si las cuatro celdas tienen recuentos moderados. Si hay celdas pequeñas, el error estándar aumenta y el intervalo se ensancha; si una celda vale 0, se necesita una corrección como Haldane-Anscombe para evitar divisiones por cero.</p>
 
             <h2>Corrección de Haldane-Anscombe</h2>
             <p>Si alguna celda es 0, la OR o el error estándar no pueden calcularse directamente porque aparecen divisiones por cero y logaritmos indefinidos. La corrección de Haldane-Anscombe suma 0,5 a las cuatro celdas antes de calcular el intervalo.</p>
