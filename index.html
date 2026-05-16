@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de probabilidades y estadística online | ProbLab</title>
+    <title>Herramientas estadísticas online para probabilidad e inferencia | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="description" content="Calculadora de probabilidades y estadística online: normal, binomial, Poisson, t de Student, contrastes, intervalos de confianza y tamaños muestrales. Gratis y sin registro.">
+    <meta name="description" content="Suite de herramientas estadísticas online: calculadoras, tablas y guías para distribuciones, contrastes, intervalos de confianza, tamaños muestrales y test A/B. Gratis y sin registro.">
     <meta name="keywords" content="calculadora estadística online, estadística online gratis, herramientas estadísticas, calculadora probabilidad, distribuciones de probabilidad online, tamaño muestral calculadora, contraste de hipótesis online, prueba de hipótesis calculadora, intervalo de confianza calculadora, tablas estadísticas online, estadística para estudiantes, ProbLab, estadística online, calculadora estadística">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Vicente Castellar">
@@ -19,8 +19,8 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_ES">
     <meta property="og:site_name" content="ProbLab">
-    <meta property="og:title" content="Calculadora de probabilidades y estadística online | ProbLab">
-    <meta property="og:description" content="Calculadora de probabilidades y estadística online: normal, binomial, Poisson, t de Student, contrastes, intervalos y tamaños muestrales. Gratis y sin registro.">
+    <meta property="og:title" content="Herramientas estadísticas online para probabilidad e inferencia | ProbLab">
+    <meta property="og:description" content="Suite de herramientas estadísticas online: calculadoras, tablas y guías para distribuciones, contrastes, intervalos de confianza, tamaños muestrales y test A/B. Gratis y sin registro.">
     <meta property="og:url" content="https://problabtools.es/">
     <meta property="og:image" content="https://problabtools.es/og-image.svg">
     <meta property="og:image:width" content="1200">
@@ -29,8 +29,8 @@
     <meta property="og:image:alt" content="Calculadoras estadísticas online gratuitas - ProbLab">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Calculadora de probabilidades y estadística online | ProbLab">
-    <meta name="twitter:description" content="Calculadora de probabilidades y estadística online: normal, binomial, Poisson, t de Student, contrastes, intervalos y tamaños muestrales. Gratis y sin registro.">
+    <meta name="twitter:title" content="Herramientas estadísticas online para probabilidad e inferencia | ProbLab">
+    <meta name="twitter:description" content="Suite de herramientas estadísticas online: calculadoras, tablas y guías para distribuciones, contrastes, intervalos de confianza, tamaños muestrales y test A/B. Gratis y sin registro.">
     <meta name="twitter:image" content="https://problabtools.es/og-image.svg">
     <meta name="twitter:image:alt" content="Calculadoras estadísticas online gratuitas - ProbLab">
     <meta name="msvalidate.01" content="6C80CF0098FAD0E30F116381989DDD0E" />
@@ -404,6 +404,146 @@
             opacity: 0.95;
         }
 
+
+
+        .guided-section {
+            margin: 0 0 18px;
+            border-top: 3px solid #2563eb;
+        }
+
+        .guided-eyebrow {
+            margin: 0 0 8px;
+            color: #2563eb;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .intent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .intent-card {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 160px;
+            padding: 18px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 18px;
+            background: #ffffff;
+            color: inherit;
+            text-decoration: none;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+        }
+
+        .intent-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(37, 99, 235, 0.32);
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+        }
+
+        .intent-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            color: #1d4ed8;
+            background: rgba(37, 99, 235, 0.1);
+            font-size: 1.35rem;
+        }
+
+        .intent-card h3 {
+            margin: 0;
+            color: #0f172a;
+            font-size: 1.08rem;
+            letter-spacing: -0.01em;
+        }
+
+        .intent-card p {
+            margin: 0;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .intent-link {
+            margin-top: auto;
+            color: #1d4ed8;
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .popular-tools {
+            border-top: 3px solid #0f766e;
+        }
+
+        .popular-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin: 16px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .popular-tools-grid a {
+            display: block;
+            padding: 12px 13px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 14px;
+            background: #f8fafc;
+            color: #0f172a;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+        }
+
+        .popular-tools-grid a:hover {
+            transform: translateY(-2px);
+            background: rgba(15, 118, 110, 0.08);
+            color: #0f766e;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .use-case {
+            padding: 16px;
+            border-radius: 16px;
+            background: #f8fafc;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .use-case h3 {
+            margin: 0 0 6px;
+            color: #0f172a;
+            font-size: 1rem;
+        }
+
+        .use-case p {
+            margin: 0;
+            color: #475569;
+            line-height: 1.55;
+        }
+
+        .use-case a {
+            color: #1d4ed8;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .use-case a:hover { text-decoration: underline; }
+
         /* Intro and FAQ content */
         .intro-seo-card {
             margin: 0 0 18px;
@@ -470,6 +610,25 @@
             .hero-cta-group {
                 gap: 8px;
             }
+
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intent-grid,
+            .popular-tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 980px) {
+            .intent-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .popular-tools-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
     </style>
 </head>
@@ -492,59 +651,96 @@
 <div class="page-wrap">
     <header class="hero hero-index">
         <div>
-            <p class="hero-badge">Más de 50 herramientas estadísticas gratuitas</p>
-            <h1>Calculadora de probabilidades y estadística online</h1>
-            <p class="hero-subtitle">Calcula probabilidades, contrasta hipótesis, estima tamaños muestrales y diseña experimentos A/B. 16 distribuciones, tablas estadísticas, intervalos de confianza y más. Sin instalación, sin registro, con resultados y explicaciones inmediatas.</p>
-            <div class="hero-cta-group">
-                <a class="hero-link-button" href="distribuciones/">Distribuciones</a>
-                <a class="hero-link-button hero-link-secondary" href="tablas-estadisticas/">Tablas estadísticas</a>
-                <a class="hero-link-button hero-link-secondary" href="tamano-muestral/">Tamaño muestral</a>
-                <a class="hero-link-button hero-link-secondary" href="contrastes-hipotesis/">Contrastes</a>
-                <a class="hero-link-button hero-link-secondary" href="intervalos-confianza/">Intervalos de confianza</a>
-                <a class="hero-link-button hero-link-secondary" href="ab-testing/">Test A/B</a>
-            </div>
+            <p class="hero-badge">Suite profesional de herramientas estadísticas</p>
+            <h1>Herramientas estadísticas online para análisis, inferencia y probabilidad</h1>
+            <p class="hero-subtitle">Calculadoras, tablas y guías interactivas para trabajar con distribuciones, contrastes de hipótesis, intervalos de confianza, tamaños muestrales y test A/B. Gratis, sin registro y directamente desde el navegador.</p>
         </div>
     </header>
 
     <main>
-        <section class="card content-card intro-seo-card" aria-labelledby="intro-title">
-            <h2 id="intro-title">Herramientas estadísticas online para calcular, interpretar y aprender</h2>
-            <p>ProbLab es una suite gratuita de más de 50 calculadoras estadísticas online para resolver cálculos de probabilidad e inferencia directamente desde el navegador, sin instalar software ni crear una cuenta. Encontrarás calculadoras de 16 distribuciones de probabilidad —normal, binomial, Poisson, t de Student, chi-cuadrado, F de Snedecor, exponencial, gamma, beta, lognormal, Weibull y más—, tablas estadísticas clásicas, tamaños muestrales, intervalos de confianza, contrastes de hipótesis y herramientas completas para test A/B.</p>
-            <p>La plataforma está orientada a estudiantes de estadística y probabilidad, docentes universitarios, investigadores, analistas de datos y equipos de producto que necesitan resultados rigurosos y verificables. Cada calculadora incluye un formulario interactivo, la fórmula utilizada, una representación gráfica de la distribución y una interpretación del resultado que ayuda a entender el significado estadístico, no solo a copiar un número.</p>
-            <p>A diferencia de una tabla estática en papel o una calculadora aislada, ProbLab permite ajustar parámetros al instante y ver cómo cambia la distribución o el resultado. Puedes pasar de calcular la probabilidad acumulada de una distribución normal a consultar los valores críticos de la t de Student, estimar cuántas observaciones necesitas para tu estudio o ejecutar un contraste de hipótesis sobre medias o proporciones —todo sin salir del navegador y con explicación del procedimiento en cada paso.</p>
+        <section class="card content-card guided-section" aria-labelledby="guided-title">
+            <p class="guided-eyebrow">Áreas principales</p>
+            <h2 id="guided-title">Tipos de herramientas estadísticas disponibles</h2>
+            <p>ProbLab reúne las principales familias de recursos estadísticos para consulta, cálculo e interpretación de resultados.</p>
+            <div class="intent-grid" aria-label="Accesos por objetivo estadístico">
+                <a class="intent-card" href="distribuciones/">
+                    <span class="intent-icon" aria-hidden="true">∫</span>
+                    <h3>Distribuciones de probabilidad</h3>
+                    <p>Para P(X≤x), colas, percentiles o valores de normal, binomial, Poisson, t y otras distribuciones.</p>
+                    <span class="intent-link">Ver distribuciones →</span>
+                </a>
+                <a class="intent-card" href="tablas-estadisticas/">
+                    <span class="intent-icon" aria-hidden="true">▦</span>
+                    <h3>Tablas estadísticas</h3>
+                    <p>Consulta tablas Z, t de Student, chi-cuadrado, F, binomial, Poisson, gamma o beta.</p>
+                    <span class="intent-link">Ver tablas →</span>
+                </a>
+                <a class="intent-card" href="tamano-muestral/">
+                    <span class="intent-icon" aria-hidden="true">n</span>
+                    <h3>Tamaño muestral</h3>
+                    <p>Antes de recoger datos: encuestas, medias, proporciones, potencia, supervivencia o test A/B.</p>
+                    <span class="intent-link">Calcular tamaño →</span>
+                </a>
+                <a class="intent-card" href="contrastes-hipotesis/">
+                    <span class="intent-icon" aria-hidden="true">p</span>
+                    <h3>Contrastes de hipótesis</h3>
+                    <p>Contrastes para medias, proporciones, varianzas, ANOVA, chi-cuadrado y normalidad.</p>
+                    <span class="intent-link">Elegir contraste →</span>
+                </a>
+                <a class="intent-card" href="intervalos-confianza/">
+                    <span class="intent-icon" aria-hidden="true">±</span>
+                    <h3>Intervalos de confianza</h3>
+                    <p>Obtén rangos plausibles para medias, proporciones, diferencias de medias o varianzas.</p>
+                    <span class="intent-link">Ver intervalos →</span>
+                </a>
+                <a class="intent-card" href="ab-testing/">
+                    <span class="intent-icon" aria-hidden="true">A/B</span>
+                    <h3>Test A/B y experimentación</h3>
+                    <p>Significación, bayesiano Beta-Binomial, potencia, MDE, tamaño muestral y simulación.</p>
+                    <span class="intent-link">Analizar test A/B →</span>
+                </a>
+            </div>
         </section>
 
-        <div class="stats-strip" aria-label="Resumen de herramientas disponibles">
-            <div class="stat-item">
-                <span class="stat-number">16</span>
-                <span class="stat-label">Distribuciones</span>
+        <section class="card content-card popular-tools" aria-labelledby="popular-title">
+            <p class="guided-eyebrow">Herramientas destacadas</p>
+            <h2 id="popular-title">Accesos directos a recursos frecuentes</h2>
+            <ul class="popular-tools-grid" aria-label="Herramientas estadísticas populares">
+                <li><a href="normal.html">Distribución normal</a></li>
+                <li><a href="binomial.html">Distribución binomial</a></li>
+                <li><a href="poisson.html">Distribución de Poisson</a></li>
+                <li><a href="studentt.html">Distribución t de Student</a></li>
+                <li><a href="tabla-normal.html">Tabla normal estándar Z</a></li>
+                <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción</a></li>
+                <li><a href="contraste-hipotesis-dos-medias.html">Contraste de dos medias</a></li>
+                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste de dos proporciones</a></li>
+                <li><a href="intervalo-confianza-media.html">Intervalo de confianza para la media</a></li>
+                <li><a href="ab-testing-z-test.html">Test A/B de proporciones</a></li>
+            </ul>
+        </section>
+
+        <section class="card content-card guided-section" aria-labelledby="cases-title">
+            <p class="guided-eyebrow">Casos de uso frecuentes</p>
+            <h2 id="cases-title">Puntos de partida habituales en análisis estadístico</h2>
+            <div class="use-case-grid">
+                <article class="use-case">
+                    <h3>Cálculo de probabilidades</h3>
+                    <p>Empieza por <a href="distribuciones/">distribuciones</a>: normal, binomial, Poisson, t de Student, chi-cuadrado y más.</p>
+                </article>
+                <article class="use-case">
+                    <h3>Consulta de valores críticos</h3>
+                    <p>Ve a <a href="tablas-estadisticas/">tablas estadísticas</a> para Z, t, χ², F, binomial, Poisson, gamma o beta.</p>
+                </article>
+                <article class="use-case">
+                    <h3>Comparación entre grupos</h3>
+                    <p>Usa <a href="contrastes-hipotesis/">contrastes</a> para medias, proporciones, varianzas, ANOVA o tablas de contingencia.</p>
+                </article>
+                <article class="use-case">
+                    <h3>Planificación del tamaño muestral</h3>
+                    <p>Calcula primero el <a href="tamano-muestral/">tamaño muestral</a> necesario para tu encuesta, estudio o experimento.</p>
+                </article>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">8</span>
-                <span class="stat-label">Tablas</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">8</span>
-                <span class="stat-label">Tamaños muestrales</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">10</span>
-                <span class="stat-label">Contrastes</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">5</span>
-                <span class="stat-label">Intervalos IC</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-                <span class="stat-number">4</span>
-                <span class="stat-label">Test A/B</span>
-            </div>
-        </div>
+        </section>
 
         <section id="distribuciones" class="card content-card section-dist" aria-labelledby="dist-title">
             <div class="section-heading">
@@ -710,6 +906,13 @@
             </ul>
         </section>
 
+        <section class="card content-card intro-seo-card" aria-labelledby="intro-title">
+            <h2 id="intro-title">Herramientas estadísticas online para calcular, interpretar y aprender</h2>
+            <p>ProbLab es una suite gratuita de más de 50 calculadoras estadísticas online para resolver cálculos de probabilidad e inferencia directamente desde el navegador, sin instalar software ni crear una cuenta. Encontrarás calculadoras de 16 distribuciones de probabilidad —normal, binomial, Poisson, t de Student, chi-cuadrado, F de Snedecor, exponencial, gamma, beta, lognormal, Weibull y más—, tablas estadísticas clásicas, tamaños muestrales, intervalos de confianza, contrastes de hipótesis y herramientas completas para test A/B.</p>
+            <p>La plataforma está orientada a estudiantes de estadística y probabilidad, docentes universitarios, investigadores, analistas de datos y equipos de producto que necesitan resultados rigurosos y verificables. Cada calculadora incluye un formulario interactivo, la fórmula utilizada, una representación gráfica de la distribución y una interpretación del resultado que ayuda a entender el significado estadístico, no solo a copiar un número.</p>
+            <p>A diferencia de una tabla estática en papel o una calculadora aislada, ProbLab permite ajustar parámetros al instante y ver cómo cambia la distribución o el resultado. Puedes pasar de calcular la probabilidad acumulada de una distribución normal a consultar los valores críticos de la t de Student, estimar cuántas observaciones necesitas para tu estudio o ejecutar un contraste de hipótesis sobre medias o proporciones —todo sin salir del navegador y con explicación del procedimiento en cada paso.</p>
+        </section>
+
         <section id="preguntas-frecuentes" class="card content-card faq-card" aria-labelledby="faq-title">
             <h2 id="faq-title">Preguntas frecuentes sobre ProbLab</h2>
             <div class="faq-list">
@@ -761,6 +964,8 @@
         </p>
     </footer>
 </div>
+
+
 
 </body>
 </html>
