@@ -221,7 +221,13 @@
             <h2>Ejemplo resuelto</h2>
             <p>Con a = 35, b = 65, c = 20 y d = 80, la odds ratio estimada es:</p>
             <p class="formula-line">\( \widehat{OR} = \dfrac{35\cdot80}{65\cdot20} \approx 2{,}154 \)</p>
-            <p>Con 95 % de confianza, se calcula el intervalo sobre \(\log(OR)\) y luego se transforma con la exponencial para obtener los límites en la escala original.</p>
+            <p>Para un 95 % de confianza, el valor crítico es \(z_{0{,}025} \approx 1{,}960\). El error estándar en escala logarítmica es:</p>
+            <p class="formula-line">\( SE = \sqrt{\dfrac{1}{35}+\dfrac{1}{65}+\dfrac{1}{20}+\dfrac{1}{80}} \approx 0{,}326 \)</p>
+            <p>Como \(\log(2{,}154) \approx 0{,}767\), el intervalo en escala logarítmica es:</p>
+            <p class="formula-line">\( 0{,}767 \pm 1{,}960\cdot0{,}326 \approx [0{,}128,\;1{,}407] \)</p>
+            <p>Finalmente se aplica la exponencial a ambos límites:</p>
+            <p class="formula-line">\( IC_{95\%}(OR) = [e^{0{,}128},\;e^{1{,}407}] \approx [1{,}136,\;4{,}083] \)</p>
+            <p>El intervalo completo queda por encima de 1, por lo que en este ejemplo las odds del evento son significativamente mayores en el grupo expuesto al 95 % de confianza.</p>
         </section>
 
         <section class="card content-card">
