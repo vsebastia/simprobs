@@ -265,6 +265,16 @@
         </section>
 
         <section class="card content-card">
+            <h2>Supuestos para el IC de odds ratio</h2>
+            <ul>
+                <li>La tabla 2x2 debe representar recuentos independientes de exposición y evento, o casos y controles correctamente clasificados.</li>
+                <li>Las observaciones deben ser independientes dentro de cada celda; si hay datos emparejados, se necesitan métodos específicos para pares.</li>
+                <li>El método de Woolf usa una aproximación normal para \(\log(OR)\), por lo que funciona mejor con recuentos moderados en las cuatro celdas.</li>
+                <li>Si alguna celda vale 0, aplica la corrección de Haldane-Anscombe y considera interpretar el resultado como aproximado.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
             <h2>Cómo interpretar el intervalo</h2>
             <ul>
                 <li>Si el IC incluye 1, los datos son compatibles con ausencia de asociación al nivel de confianza seleccionado.</li>

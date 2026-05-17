@@ -213,6 +213,16 @@
 
 
         <section class="card content-card">
+            <h2>Supuestos para la diferencia de medias independientes</h2>
+            <ul>
+                <li>Los dos grupos deben ser independientes; si son mediciones antes/después o unidades emparejadas, usa el <a href="intervalo-confianza-medias-apareadas.html">IC para medias apareadas</a>.</li>
+                <li>Las observaciones dentro de cada grupo deben ser independientes y proceder de muestras representativas.</li>
+                <li>La distribución de la variable debe ser aproximadamente normal en cada grupo, especialmente con tamaños muestrales pequeños. Con muestras grandes, el teorema central del límite hace más robusto el intervalo.</li>
+                <li>Para el método pooled debe ser razonable asumir varianzas poblacionales iguales. Si no hay evidencia clara de igualdad, Welch suele ser la opción más segura.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
             <h2>¿Varianzas iguales o distintas?</h2>
             <p>En la práctica se recomienda usar Welch por defecto: es robusto tanto si las varianzas son iguales como si no, y su pérdida de potencia con varianzas iguales es mínima. El supuesto de varianzas iguales solo debería adoptarse si hay fuerte evidencia previa de que \(\sigma_1 = \sigma_2\).</p>
         </section>

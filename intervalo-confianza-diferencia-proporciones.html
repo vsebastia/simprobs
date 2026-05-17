@@ -198,6 +198,16 @@
 
 
         <section class="card content-card">
+            <h2>Supuestos para comparar dos proporciones</h2>
+            <ul>
+                <li>Los dos grupos deben ser independientes entre sí; no debe haber emparejamiento unidad a unidad.</li>
+                <li>En cada grupo, cada observación debe clasificarse como éxito o fracaso y tener la misma probabilidad de éxito dentro de ese grupo.</li>
+                <li>Las observaciones dentro de cada grupo deben ser independientes.</li>
+                <li>Para Wald se requieren suficientes éxitos y fracasos en ambos grupos: \(n_i\hat p_i\ge 5\) y \(n_i(1-\hat p_i)\ge 5\). Si no se cumple, Newcombe-Wilson suele ser preferible.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
             <h2>¿Wald o Newcombe-Wilson?</h2>
             <p>Wald es fácil de interpretar y suele funcionar bien con muestras grandes y proporciones no extremas. Newcombe-Wilson suele ser preferible por defecto si algún grupo tiene pocos éxitos o pocos fracasos, porque usa intervalos Wilson individuales y combina sus incertidumbres de forma cuadrática, no mediante una resta directa de límites. Así reduce los problemas de cobertura del intervalo normal clásico.</p>
         </section>

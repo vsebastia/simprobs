@@ -228,6 +228,16 @@
 
 
         <section class="card content-card">
+            <h2>Supuestos para el IC de una proporción</h2>
+            <ul>
+                <li>Los datos deben proceder de ensayos Bernoulli: cada observación se clasifica como éxito o fracaso.</li>
+                <li>Las observaciones deben ser independientes; si se muestrea sin reemplazo en una población finita, la muestra debería ser pequeña respecto a la población o aplicarse una corrección específica.</li>
+                <li>La probabilidad de éxito debe ser la misma para todas las observaciones dentro del grupo analizado.</li>
+                <li>Para Wald se necesitan suficientes éxitos y fracasos: \(n\hat p\ge 5\) y \(n(1-\hat p)\ge 5\). Wilson es más fiable cuando esta condición es dudosa.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
             <h2>¿Cuándo usar cada método?</h2>
             <ul>
                 <li><strong>Usa Wilson por defecto</strong> si quieres un intervalo robusto para la mayoría de situaciones.</li>
