@@ -180,6 +180,28 @@
             <p class="formula-line">\( \dfrac{\hat{p} + \dfrac{z^2}{2n} \pm z\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n} + \dfrac{z^2}{4n^2}}}{1 + \dfrac{z^2}{n}} \)</p>
             <p>Wilson suele recomendarse porque mantiene mejor la cobertura real del nivel de confianza, especialmente con muestras pequeñas o proporciones cercanas a 0 o 1. También maneja correctamente casos extremos como \(x=0\) o \(x=n\), donde Wald puede dar intervalos degenerados o poco informativos.</p>
 
+            <h2>Ejemplo resuelto</h2>
+            <p>En una encuesta a 200 clientes, 134 declaran estar satisfechos. \(\hat{p} = 134/200 = 0{,}67\). Con 95 % de confianza (\(C=0{,}95\), \(\alpha=0{,}05\), \(z_{0{,}025}=1{,}960\)):</p>
+            <p>Con Wald, el error estándar es \(\sqrt{0{,}67\cdot0{,}33/200}\approx0{,}03325\), y el intervalo queda:</p>
+            <p class="formula-line">\( 0{,}67 \pm 1{,}960 \cdot 0{,}03325 \approx [0{,}605,\; 0{,}735] \)</p>
+            <p>Con Wilson, aplicando la fórmula score al mismo \(x=134\), \(n=200\) y \(z=1{,}960\), se obtiene:</p>
+            <p class="formula-line">\( IC_{Wilson} \approx [0{,}602,\;0{,}731] \)</p>
+            <p>En este ejemplo ambos métodos son parecidos porque la muestra es grande y la proporción no es extrema. Si hubiéramos observado muy pocos éxitos, muy pocos fracasos o una muestra pequeña, la diferencia sería mayor y Wilson sería la opción más fiable.</p>
+        </section>
+
+
+
+        <section class="card content-card">
+            <h2>Supuestos para el IC de una proporción</h2>
+            <ul>
+                <li>Los datos deben proceder de ensayos Bernoulli: cada observación se clasifica como éxito o fracaso.</li>
+                <li>Las observaciones deben ser independientes; si se muestrea sin reemplazo en una población finita, la muestra debería ser pequeña respecto a la población o aplicarse una corrección específica.</li>
+                <li>La probabilidad de éxito debe ser la misma para todas las observaciones dentro del grupo analizado.</li>
+                <li>Para Wald se necesitan suficientes éxitos y fracasos: \(n\hat p\ge 5\) y \(n(1-\hat p)\ge 5\). Wilson es más fiable cuando esta condición es dudosa.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
             <h2>Diferencias entre Wald y Wilson</h2>
             <div class="content-table-wrap">
                 <table class="content-table">
@@ -215,26 +237,6 @@
                 </table>
             </div>
             <p>En resumen: Wald es útil como aproximación didáctica y rápida; Wilson es preferible como resultado principal porque respeta mejor la naturaleza binomial de los datos y evita límites imposibles.</p>
-
-            <h2>Ejemplo resuelto</h2>
-            <p>En una encuesta a 200 clientes, 134 declaran estar satisfechos. \(\hat{p} = 134/200 = 0{,}67\). Con 95 % de confianza (\(C=0{,}95\), \(\alpha=0{,}05\), \(z_{0{,}025}=1{,}960\)):</p>
-            <p>Con Wald, el error estándar es \(\sqrt{0{,}67\cdot0{,}33/200}\approx0{,}03325\), y el intervalo queda:</p>
-            <p class="formula-line">\( 0{,}67 \pm 1{,}960 \cdot 0{,}03325 \approx [0{,}605,\; 0{,}735] \)</p>
-            <p>Con Wilson, aplicando la fórmula score al mismo \(x=134\), \(n=200\) y \(z=1{,}960\), se obtiene:</p>
-            <p class="formula-line">\( IC_{Wilson} \approx [0{,}602,\;0{,}731] \)</p>
-            <p>En este ejemplo ambos métodos son parecidos porque la muestra es grande y la proporción no es extrema. Si hubiéramos observado muy pocos éxitos, muy pocos fracasos o una muestra pequeña, la diferencia sería mayor y Wilson sería la opción más fiable.</p>
-        </section>
-
-
-
-        <section class="card content-card">
-            <h2>Supuestos para el IC de una proporción</h2>
-            <ul>
-                <li>Los datos deben proceder de ensayos Bernoulli: cada observación se clasifica como éxito o fracaso.</li>
-                <li>Las observaciones deben ser independientes; si se muestrea sin reemplazo en una población finita, la muestra debería ser pequeña respecto a la población o aplicarse una corrección específica.</li>
-                <li>La probabilidad de éxito debe ser la misma para todas las observaciones dentro del grupo analizado.</li>
-                <li>Para Wald se necesitan suficientes éxitos y fracasos: \(n\hat p\ge 5\) y \(n(1-\hat p)\ge 5\). Wilson es más fiable cuando esta condición es dudosa.</li>
-            </ul>
         </section>
 
         <section class="card content-card">

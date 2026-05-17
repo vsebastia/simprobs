@@ -186,6 +186,15 @@
             <p>Este intervalo asume que la variable subyacente sigue una distribución normal. A diferencia del IC para la media, el IC para la varianza no está protegido por el teorema central del límite: es muy sensible a desviaciones de la normalidad. Si los datos no son normales, considera transformaciones o métodos robustos.</p>
         </section>
 
+        <section class="card content-card">
+            <h2>Cómo interpretar el resultado</h2>
+            <p>El intervalo para \(\sigma^2\) describe valores plausibles de la variabilidad poblacional; el intervalo para \(\sigma\) expresa la misma incertidumbre en las unidades originales de la variable. Al basarse en la chi-cuadrado, los límites no son simétricos alrededor de \(s^2\).</p>
+            <ul>
+                <li>Un intervalo amplio indica mucha incertidumbre sobre la variabilidad real, normalmente por tamaño muestral pequeño.</li>
+                <li>Si el objetivo es controlar dispersión de un proceso, presta atención especialmente al límite superior.</li>
+            </ul>
+        </section>
+
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora construye el intervalo de confianza para la varianza \(\sigma^2\) y la desviación típica \(\sigma\) poblacional usando la distribución chi-cuadrado con \(n-1\) grados de libertad. Calcula automáticamente los percentiles chi-cuadrado necesarios y muestra la región de confianza sobre la distribución.</p>

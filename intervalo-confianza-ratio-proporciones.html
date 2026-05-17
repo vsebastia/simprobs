@@ -231,6 +231,16 @@
         </section>
 
         <section class="card content-card">
+            <h2>Supuestos para el ratio de proporciones</h2>
+            <ul>
+                <li>Los dos grupos deben ser independientes y tener denominadores reales de riesgo o proporción.</li>
+                <li>En cada grupo, las observaciones deben ser binarias e independientes.</li>
+                <li>El método logarítmico necesita eventos positivos en ambos grupos; si algún grupo tiene 0 eventos, usa la corrección 0,5 e interpreta con cautela.</li>
+                <li>La aproximación normal de \(\log(RR)\) funciona mejor con muestras moderadas o grandes y con recuentos no extremos.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
             <h2>¿En qué se diferencia del IC para odds ratio?</h2>
             <p>Aunque esta calculadora y la de <a href="intervalo-confianza-odds-ratio.html">IC para odds ratio</a> usan una escala logarítmica y comparan el intervalo con el valor nulo 1, estiman medidas distintas.</p>
             <div class="content-table-wrap">
@@ -261,16 +271,6 @@
             </div>
             <p>Con los mismos datos del ejemplo (35 eventos y 65 no eventos en el grupo 1; 20 eventos y 80 no eventos en el grupo 2), esta herramienta calcula \(RR=(35/100)/(20/100)=1{,}75\). La herramienta de odds ratio calcularía \(OR=(35/65)/(20/80)\approx2{,}154\).</p>
             <p>El RR responde a “cuántas veces mayor es la probabilidad del evento”. La OR responde a “cuántas veces mayores son las odds del evento”. Si el evento es raro, ambos valores suelen ser parecidos; si el evento es frecuente, la OR puede ser bastante mayor que el RR y no debe interpretarse como un riesgo relativo.</p>
-        </section>
-
-        <section class="card content-card">
-            <h2>Supuestos para el ratio de proporciones</h2>
-            <ul>
-                <li>Los dos grupos deben ser independientes y tener denominadores reales de riesgo o proporción.</li>
-                <li>En cada grupo, las observaciones deben ser binarias e independientes.</li>
-                <li>El método logarítmico necesita eventos positivos en ambos grupos; si algún grupo tiene 0 eventos, usa la corrección 0,5 e interpreta con cautela.</li>
-                <li>La aproximación normal de \(\log(RR)\) funciona mejor con muestras moderadas o grandes y con recuentos no extremos.</li>
-            </ul>
         </section>
 
         <section class="card content-card">
