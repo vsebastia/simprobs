@@ -207,6 +207,7 @@
             <p>Un valor igual a 1 indica igualdad de proporciones. Valores mayores que 1 indican que la proporción del grupo 1 es mayor; valores menores que 1 indican que es menor.</p>
 
             <h2>Método logarítmico para el ratio de proporciones</h2>
+            <p>Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total fuera del intervalo. Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\) en cada cola.</p>
             <p>El intervalo se construye en escala logarítmica porque el ratio solo puede tomar valores positivos y su distribución suele ser asimétrica. En la escala \(\log(RR)\), la aproximación normal es más estable para muestras moderadas o grandes.</p>
             <p>Primero se calcula \(\widehat{RR} = (x_1/n_1)/(x_2/n_2)\). Después se estima el error estándar de \(\log(\widehat{RR})\) con:</p>
             <p class="formula-line">\( SE\left[\log(\widehat{RR})\right] = \sqrt{\dfrac{1}{x_1}-\dfrac{1}{n_1}+\dfrac{1}{x_2}-\dfrac{1}{n_2}} \)</p>
@@ -220,7 +221,7 @@
             <h2>Ejemplo resuelto</h2>
             <p>Con x₁ = 35, n₁ = 100, x₂ = 20 y n₂ = 100:</p>
             <p class="formula-line">\( \widehat{RR} = \dfrac{35/100}{20/100} = 1{,}75 \)</p>
-            <p>Para un 95 % de confianza, \(z_{0{,}025} \approx 1{,}960\). El error estándar en escala logarítmica es:</p>
+            <p>Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\), \(\alpha/2=0{,}025\) y \(z_{0{,}025} \approx 1{,}960\). El error estándar en escala logarítmica es:</p>
             <p class="formula-line">\( SE = \sqrt{\dfrac{1}{35}-\dfrac{1}{100}+\dfrac{1}{20}-\dfrac{1}{100}} \approx 0{,}242 \)</p>
             <p>Como \(\log(1{,}75) \approx 0{,}560\), el intervalo en escala logarítmica es:</p>
             <p class="formula-line">\( 0{,}560 \pm 1{,}960\cdot0{,}242 \approx [0{,}085,\;1{,}034] \)</p>

@@ -167,6 +167,8 @@
             <p>Cuando queremos estimar la proporción real de una característica en una población (tasa de defectos, porcentaje de usuarios satisfechos, prevalencia de una enfermedad…), el intervalo de confianza para una proporción nos da el rango plausible para ese valor.</p>
             <p>La proporción muestral \(\hat{p} = x/n\) (éxitos entre observaciones) es el estimador. Existen varios métodos para construir el intervalo; los más habituales son Wald (aproximación normal) y Wilson (más preciso para proporciones extremas o muestras pequeñas).</p>
 
+            <p>Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total fuera del intervalo. Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\) en cada cola.</p>
+
             <h2>Método de Wald (aproximación normal)</h2>
             <p class="formula-line">\( \hat{p} \pm z_{\alpha/2} \cdot \sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}} \)</p>
             <p>Válido cuando se cumple la regla práctica: \(n\hat{p} \geq 5\) y \(n(1-\hat{p}) \geq 5\).</p>
@@ -176,7 +178,7 @@
             <p>Más preciso especialmente cuando \(\hat{p}\) está cerca de 0 o 1, o la muestra es pequeña.</p>
 
             <h2>Ejemplo resuelto</h2>
-            <p>En una encuesta a 200 clientes, 134 declaran estar satisfechos. \(\hat{p} = 134/200 = 0{,}67\). Con 95 % de confianza (Wald):</p>
+            <p>En una encuesta a 200 clientes, 134 declaran estar satisfechos. \(\hat{p} = 134/200 = 0{,}67\). Con 95 % de confianza (\(C=0{,}95\), \(\alpha=0{,}05\), método Wald):</p>
             <p class="formula-line">\( 0{,}67 \pm 1{,}960 \cdot \sqrt{\frac{0{,}67 \cdot 0{,}33}{200}} \approx [0{,}605,\; 0{,}735] \)</p>
         </section>
 
