@@ -167,24 +167,86 @@
             <p>Cuando queremos estimar la proporción real de una característica en una población (tasa de defectos, porcentaje de usuarios satisfechos, prevalencia de una enfermedad…), el intervalo de confianza para una proporción nos da el rango plausible para ese valor.</p>
             <p>La proporción muestral \(\hat{p} = x/n\) (éxitos entre observaciones) es el estimador. Existen varios métodos para construir el intervalo; los más habituales son Wald (aproximación normal) y Wilson (más preciso para proporciones extremas o muestras pequeñas).</p>
 
-            <h2>Método de Wald (aproximación normal)</h2>
-            <p class="formula-line">\( \hat{p} \pm z_{\alpha/2} \cdot \sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}} \)</p>
-            <p>Válido cuando se cumple la regla práctica: \(n\hat{p} \geq 5\) y \(n(1-\hat{p}) \geq 5\).</p>
+            <p>Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total fuera del intervalo. Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\) en cada cola.</p>
 
-            <h2>Método de Wilson (recomendado)</h2>
+            <h2>Método de Wald (aproximación normal)</h2>
+            <p>Wald aplica directamente la aproximación normal a la proporción muestral \(\hat{p}\). Es el intervalo más sencillo y el más fácil de calcular a mano:</p>
+            <p class="formula-line">\( \hat{p} \pm z_{\alpha/2} \cdot \sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}} \)</p>
+            <p>Funciona razonablemente bien cuando la muestra es grande y la proporción no está cerca de 0 ni de 1. Como regla práctica, conviene exigir \(n\hat{p} \geq 5\) y \(n(1-\hat{p}) \geq 5\), aunque con muestras moderadas esta regla no siempre garantiza una cobertura real buena.</p>
+            <p>Su principal limitación es que centra el intervalo exactamente en \(\hat{p}\) y usa un error estándar estimado solo con \(\hat{p}\). Por eso puede producir límites por debajo de 0 o por encima de 1, y puede subestimar la incertidumbre cuando hay pocos éxitos, pocos fracasos o proporciones extremas.</p>
+
+            <h2>Método de Wilson (score, recomendado)</h2>
+            <p>Wilson parte del contraste score para una proporción y resuelve qué valores de \(p\) serían compatibles con los datos. No se limita a sumar y restar el mismo margen alrededor de \(\hat{p}\); el centro del intervalo se desplaza ligeramente hacia valores menos extremos y los límites quedan dentro de \([0,1]\).</p>
             <p class="formula-line">\( \dfrac{\hat{p} + \dfrac{z^2}{2n} \pm z\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n} + \dfrac{z^2}{4n^2}}}{1 + \dfrac{z^2}{n}} \)</p>
-            <p>Más preciso especialmente cuando \(\hat{p}\) está cerca de 0 o 1, o la muestra es pequeña.</p>
+            <p>Wilson suele recomendarse porque mantiene mejor la cobertura real del nivel de confianza, especialmente con muestras pequeñas o proporciones cercanas a 0 o 1. También maneja correctamente casos extremos como \(x=0\) o \(x=n\), donde Wald puede dar intervalos degenerados o poco informativos.</p>
 
             <h2>Ejemplo resuelto</h2>
-            <p>En una encuesta a 200 clientes, 134 declaran estar satisfechos. \(\hat{p} = 134/200 = 0{,}67\). Con 95 % de confianza (Wald):</p>
-            <p class="formula-line">\( 0{,}67 \pm 1{,}960 \cdot \sqrt{\frac{0{,}67 \cdot 0{,}33}{200}} \approx [0{,}605,\; 0{,}735] \)</p>
+            <p>En una encuesta a 200 clientes, 134 declaran estar satisfechos. \(\hat{p} = 134/200 = 0{,}67\). Con 95 % de confianza (\(C=0{,}95\), \(\alpha=0{,}05\), \(z_{0{,}025}=1{,}960\)):</p>
+            <p>Con Wald, el error estándar es \(\sqrt{0{,}67\cdot0{,}33/200}\approx0{,}03325\), y el intervalo queda:</p>
+            <p class="formula-line">\( 0{,}67 \pm 1{,}960 \cdot 0{,}03325 \approx [0{,}605,\; 0{,}735] \)</p>
+            <p>Con Wilson, aplicando la fórmula score al mismo \(x=134\), \(n=200\) y \(z=1{,}960\), se obtiene:</p>
+            <p class="formula-line">\( IC_{Wilson} \approx [0{,}602,\;0{,}731] \)</p>
+            <p>En este ejemplo ambos métodos son parecidos porque la muestra es grande y la proporción no es extrema. Si hubiéramos observado muy pocos éxitos, muy pocos fracasos o una muestra pequeña, la diferencia sería mayor y Wilson sería la opción más fiable.</p>
         </section>
 
 
 
         <section class="card content-card">
-            <h2>¿Cuándo usar Wilson en lugar de Wald?</h2>
-            <p>Wilson es preferible cuando \(\hat{p}\) está cerca de 0 o 1 (por debajo de 0,1 o por encima de 0,9) o cuando n es pequeño. Wald puede dar límites fuera de [0,1] en esos casos, lo que no tiene sentido para una proporción.</p>
+            <h2>Supuestos para el IC de una proporción</h2>
+            <ul>
+                <li>Los datos deben proceder de ensayos Bernoulli: cada observación se clasifica como éxito o fracaso.</li>
+                <li>Las observaciones deben ser independientes; si se muestrea sin reemplazo en una población finita, la muestra debería ser pequeña respecto a la población o aplicarse una corrección específica.</li>
+                <li>La probabilidad de éxito debe ser la misma para todas las observaciones dentro del grupo analizado.</li>
+                <li>Para Wald se necesitan suficientes éxitos y fracasos: \(n\hat p\ge 5\) y \(n(1-\hat p)\ge 5\). Wilson es más fiable cuando esta condición es dudosa.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Diferencias entre Wald y Wilson</h2>
+            <div class="content-table-wrap">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Aspecto</th>
+                            <th>Wald</th>
+                            <th>Wilson</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Idea</th>
+                            <td>Aproximación normal directa de \(\hat{p}\).</td>
+                            <td>Intervalo score: valores de \(p\) compatibles con los datos.</td>
+                        </tr>
+                        <tr>
+                            <th>Centro</th>
+                            <td>Centrado en \(\hat{p}\).</td>
+                            <td>Centro ajustado hacia valores menos extremos.</td>
+                        </tr>
+                        <tr>
+                            <th>Límites</th>
+                            <td>Puede salir de \([0,1]\).</td>
+                            <td>Permanece dentro de \([0,1]\).</td>
+                        </tr>
+                        <tr>
+                            <th>Cuándo usarlo</th>
+                            <td>Muestras grandes, proporciones no extremas y cálculo rápido.</td>
+                            <td>Uso general recomendado; especialmente si \(n\) es pequeño, \(\hat{p}\) es extrema o hay pocos éxitos/fracasos.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>En resumen: Wald es útil como aproximación didáctica y rápida; Wilson es preferible como resultado principal porque respeta mejor la naturaleza binomial de los datos y evita límites imposibles.</p>
+        </section>
+
+        <section class="card content-card">
+            <h2>¿Cuándo usar cada método?</h2>
+            <ul>
+                <li><strong>Usa Wilson por defecto</strong> si quieres un intervalo robusto para la mayoría de situaciones.</li>
+                <li><strong>Usa Wald</strong> solo como aproximación rápida cuando \(n\) es grande y hay suficientes éxitos y fracasos.</li>
+                <li><strong>Evita Wald</strong> si \(x=0\), \(x=n\), \(n\) es pequeño o \(\hat{p}\) está cerca de 0 o 1.</li>
+                <li><strong>Compara ambos</strong> si estás en una zona intermedia: si difieren mucho, interpreta Wald con cautela y prioriza Wilson.</li>
+            </ul>
         </section>
 
         <section id="seo-support-content" class="card content-card">

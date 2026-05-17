@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalo de confianza para odds ratio | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online del intervalo de confianza para una odds ratio en tablas 2x2. Método logarítmico de Woolf, corrección de Haldane-Anscombe, fórmula, gráfico y ejemplo.">
+    <meta name="keywords" content="intervalo de confianza odds ratio, IC odds ratio calculadora, odds ratio tabla 2x2, método Woolf odds ratio, corrección Haldane Anscombe, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/intervalo-confianza-odds-ratio.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intervalo de confianza para odds ratio | ProbLab">
+    <meta property="og:description" content="Calculadora online del intervalo de confianza para una odds ratio en tablas 2x2. Método logarítmico de Woolf y corrección para celdas cero.">
+    <meta property="og:url" content="https://problabtools.es/intervalo-confianza-odds-ratio.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalo-confianza-odds-ratio.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intervalo de confianza para odds ratio | ProbLab">
+    <meta name="twitter:description" content="Calculadora online del intervalo de confianza para una odds ratio en tablas 2x2. Método logarítmico de Woolf y corrección para celdas cero.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"},
+            {"@type": "ListItem", "position": 3, "name": "IC odds ratio", "item": "https://problabtools.es/intervalo-confianza-odds-ratio.html"}
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Intervalo de confianza para odds ratio",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://problabtools.es/intervalo-confianza-odds-ratio.html",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260515">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué significa una odds ratio igual a 1?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Una odds ratio igual a 1 indica ausencia de asociación entre exposición y evento. Si el intervalo de confianza incluye 1, el resultado no descarta ausencia de asociación al nivel elegido."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué hago si hay una celda con valor cero?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La calculadora puede aplicar la corrección de Haldane-Anscombe, que suma 0,5 a las cuatro celdas para poder calcular el logaritmo y su error estándar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Este intervalo sirve para estudios de casos y controles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. La odds ratio es especialmente habitual en estudios de casos y controles y en tablas 2x2 de exposición frente a evento."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="intervalos-confianza/">Intervalos</a></li>
+            <li><span aria-current="page">Odds ratio</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Intervalos de confianza</p>
+        <h1>Intervalo de confianza para odds ratio</h1>
+        <p class="hero-subtitle">Calcula el intervalo de confianza de una odds ratio a partir de una tabla 2x2, con escala logarítmica y corrección opcional para celdas cero.</p>
+        <p class="hero-links"><a class="hero-link-button" href="intervalos-confianza/">Ver todos los intervalos</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los cuatro recuentos de la tabla 2x2 para estimar la odds ratio y su intervalo de confianza.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="a">Expuestos con evento (a)</label>
+                        <input type="number" id="a" value="35" step="1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="b">Expuestos sin evento (b)</label>
+                        <input type="number" id="b" value="65" step="1" min="0">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="c">No expuestos con evento (c)</label>
+                        <input type="number" id="c" value="20" step="1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="d">No expuestos sin evento (d)</label>
+                        <input type="number" id="d" value="80" step="1" min="0">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="conf">Nivel de confianza</label>
+                        <select id="conf">
+                            <option value="0.90">90 %</option>
+                            <option value="0.95" selected>95 %</option>
+                            <option value="0.99">99 %</option>
+                            <option value="custom">Personalizado…</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="correction">Celdas cero</label>
+                        <select id="correction">
+                            <option value="auto" selected>Corrección 0,5 automática</option>
+                            <option value="always">Aplicar siempre 0,5</option>
+                            <option value="none">No aplicar corrección</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs" id="customConfRow" style="display:none">
+                    <div class="form-group">
+                        <label for="customConf">Nivel de confianza personalizado (0–1)</label>
+                        <input type="number" id="customConf" value="0.95" step="0.01" min="0.01" max="0.9999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular intervalo</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="ciChart" aria-label="Gráfico del intervalo de confianza para odds ratio en escala logarítmica" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>La odds ratio (OR) compara las <em>odds</em> del evento en dos grupos. La <em>odds</em> no es la probabilidad, sino el cociente entre casos con evento y casos sin evento dentro de un mismo grupo.</p>
+            <p>Por ejemplo, si queremos estudiar si una exposición se asocia con un evento, los datos se organizan así:</p>
+            <div class="content-table-wrap">
+                <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Grupo</th>
+                        <th>Con evento</th>
+                        <th>Sin evento</th>
+                        <th>Odds del evento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Expuestos</th>
+                        <td>a = 35</td>
+                        <td>b = 65</td>
+                        <td>a/b = 35/65</td>
+                    </tr>
+                    <tr>
+                        <th>No expuestos</th>
+                        <td>c = 20</td>
+                        <td>d = 80</td>
+                        <td>c/d = 20/80</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            <p>La OR divide las odds de ambos grupos. En una tabla 2x2 con expuestos y no expuestos, se calcula como:</p>
+            <p class="formula-line">\( \widehat{OR} = \dfrac{a/b}{c/d} = \dfrac{a\cdot d}{b\cdot c} \)</p>
+            <p>En el ejemplo, \(\widehat{OR} = (35\cdot80)/(65\cdot20) \approx 2{,}154\). Esto significa que las odds observadas del evento en expuestos son aproximadamente 2,15 veces las odds observadas en no expuestos. Una OR igual a 1 indica ausencia de asociación; una OR mayor que 1 indica mayores odds del evento en el grupo expuesto; y una OR menor que 1 indica menores odds.</p>
+
+            <h2>Método logarítmico de Woolf</h2>
+            <p>Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total fuera del intervalo. Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\) en cada cola.</p>
+            <p>El método de Woolf construye el intervalo en la escala logarítmica porque la distribución muestral de \(\widehat{OR}\) es asimétrica y solo toma valores positivos. Al transformar con logaritmos, \(\log(\widehat{OR})\) puede aproximarse mejor por una distribución normal cuando los recuentos son suficientemente grandes.</p>
+            <p>El primer paso es calcular la estimación puntual \(\widehat{OR} = ad/(bc)\) y su logaritmo. Después se estima el error estándar de \(\log(\widehat{OR})\) sumando la contribución de incertidumbre de las cuatro celdas:</p>
+            <p class="formula-line">\( SE\left[\log(\widehat{OR})\right] = \sqrt{\dfrac{1}{a}+\dfrac{1}{b}+\dfrac{1}{c}+\dfrac{1}{d}} \)</p>
+            <p>Con ese error estándar, el intervalo bilateral en escala logarítmica es:</p>
+            <p class="formula-line">\( \log(\widehat{OR}) \pm z_{\alpha/2}\cdot SE\left[\log(\widehat{OR})\right] \)</p>
+            <p>Por último, se aplica la exponencial a ambos límites para volver a la escala original de la odds ratio. Este paso es importante: el intervalo final no queda centrado de forma simétrica alrededor de la OR, sino que es simétrico en la escala \(\log(OR)\). Por eso los límites inferior y superior suelen estar a distancias diferentes de la estimación puntual cuando se miran en la escala original.</p>
+            <p>El método funciona mejor si las cuatro celdas tienen recuentos moderados. Si hay celdas pequeñas, el error estándar aumenta y el intervalo se ensancha; si una celda vale 0, se necesita una corrección como Haldane-Anscombe para evitar divisiones por cero.</p>
+
+            <h2>Corrección de Haldane-Anscombe</h2>
+            <p>Si alguna celda es 0, la OR o el error estándar no pueden calcularse directamente porque aparecen divisiones por cero y logaritmos indefinidos. La corrección de Haldane-Anscombe suma 0,5 a las cuatro celdas antes de calcular el intervalo.</p>
+
+            <h2>Ejemplo resuelto</h2>
+            <p>Con a = 35, b = 65, c = 20 y d = 80, la odds ratio estimada es:</p>
+            <p class="formula-line">\( \widehat{OR} = \dfrac{35\cdot80}{65\cdot20} \approx 2{,}154 \)</p>
+            <p>Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\), \(\alpha/2=0{,}025\) y el valor crítico es \(z_{0{,}025} \approx 1{,}960\). El error estándar en escala logarítmica es:</p>
+            <p class="formula-line">\( SE = \sqrt{\dfrac{1}{35}+\dfrac{1}{65}+\dfrac{1}{20}+\dfrac{1}{80}} \approx 0{,}326 \)</p>
+            <p>Como \(\log(2{,}154) \approx 0{,}767\), el intervalo en escala logarítmica es:</p>
+            <p class="formula-line">\( 0{,}767 \pm 1{,}960\cdot0{,}326 \approx [0{,}128,\;1{,}407] \)</p>
+            <p>Finalmente se aplica la exponencial a ambos límites:</p>
+            <p class="formula-line">\( IC_{95\%}(OR) = [e^{0{,}128},\;e^{1{,}407}] \approx [1{,}136,\;4{,}083] \)</p>
+            <p>El intervalo completo queda por encima de 1, por lo que en este ejemplo las odds del evento son significativamente mayores en el grupo expuesto al 95 % de confianza.</p>
+        </section>
+
+        <section class="card content-card">
+            <h2>Supuestos para el IC de odds ratio</h2>
+            <ul>
+                <li>La tabla 2x2 debe representar recuentos independientes de exposición y evento, o casos y controles correctamente clasificados.</li>
+                <li>Las observaciones deben ser independientes dentro de cada celda; si hay datos emparejados, se necesitan métodos específicos para pares.</li>
+                <li>El método de Woolf usa una aproximación normal para \(\log(OR)\), por lo que funciona mejor con recuentos moderados en las cuatro celdas.</li>
+                <li>Si alguna celda vale 0, aplica la corrección de Haldane-Anscombe y considera interpretar el resultado como aproximado.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>¿En qué se diferencia del IC para ratio de proporciones?</h2>
+            <p>Aunque esta calculadora y la de <a href="intervalo-confianza-ratio-proporciones.html">IC para ratio de proporciones</a> usan una escala logarítmica y comparan el intervalo con el valor nulo 1, estiman medidas distintas.</p>
+            <div class="content-table-wrap">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Medida</th>
+                            <th>Qué compara</th>
+                            <th>Fórmula en una tabla 2x2</th>
+                            <th>Uso típico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Odds ratio (OR)</th>
+                            <td>Odds del evento: casos con evento divididos entre casos sin evento.</td>
+                            <td>\( OR = \dfrac{a/b}{c/d} = \dfrac{a\cdot d}{b\cdot c} \)</td>
+                            <td>Estudios caso-control, regresión logística y análisis donde se modelan odds.</td>
+                        </tr>
+                        <tr>
+                            <th>Ratio de proporciones / riesgo relativo (RR)</th>
+                            <td>Probabilidades o proporciones del evento en dos grupos.</td>
+                            <td>\( RR = \dfrac{x_1/n_1}{x_2/n_2} \)</td>
+                            <td>Cohortes, ensayos, experimentos A/B o estudios con denominadores reales de riesgo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Con los mismos datos del ejemplo (35 eventos y 65 no eventos en expuestos; 20 eventos y 80 no eventos en no expuestos), el riesgo relativo sería \(RR=(35/100)/(20/100)=1{,}75\), mientras que la odds ratio es \(OR=(35/65)/(20/80)\approx2{,}154\). La OR es mayor porque compara odds, no probabilidades.</p>
+            <p>La diferencia es pequeña cuando el evento es raro, porque entonces odds y probabilidad son parecidas. Cuando el evento es frecuente, la OR puede alejarse bastante del RR y no conviene interpretarla como si fuera un riesgo relativo.</p>
+        </section>
+
+        <section class="card content-card">
+            <h2>Cómo interpretar el intervalo</h2>
+            <ul>
+                <li>Si el IC incluye 1, los datos son compatibles con ausencia de asociación al nivel de confianza seleccionado.</li>
+                <li>Si todo el IC está por encima de 1, las odds del evento son mayores en el grupo expuesto.</li>
+                <li>Si todo el IC está por debajo de 1, las odds del evento son menores en el grupo expuesto.</li>
+                <li>La amplitud del intervalo refleja la precisión: recuentos pequeños generan intervalos más anchos.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora obtiene la odds ratio de una tabla 2x2 y su intervalo de confianza bilateral mediante el método logarítmico de Woolf. Muestra los recuentos utilizados, el valor crítico z, el error estándar de \(\log(OR)\), los límites del intervalo y un gráfico de la región de confianza en escala logarítmica.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="intervalo-confianza-proporcion.html">IC para una proporción</a></li>
+                    <li><a href="intervalo-confianza-diferencia-proporciones.html">IC para diferencia de proporciones</a></li>
+                    <li><a href="test-exacto-fisher.html">Test exacto de Fisher</a></li>
+                    <li><a href="tamano-muestral-odds-ratio.html">Tamaño muestral para odds ratio</a></li>
+                </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué valor indica ausencia de efecto?</strong> En una odds ratio, el valor nulo es 1.</li>
+                <li><strong>¿Se interpreta como riesgo relativo?</strong> No exactamente. La OR compara odds, no probabilidades; solo se aproxima al riesgo relativo cuando el evento es poco frecuente.</li>
+                <li><strong>¿Qué pasa con recuentos muy pequeños?</strong> El método normal sobre \(\log(OR)\) puede ser impreciso; conviene interpretar el resultado con cautela y considerar métodos exactos.</li>
+            </ul>
+            <h3>Referencias usadas</h3>
+            <ul>
+                <li>Woolf, B. (1955). <em>On estimating the relation between blood group and disease</em>, Annals of Human Genetics, 19, 251–253.</li>
+                <li>Haldane, J. B. S. (1956). <em>The estimation and significance of the logarithm of a ratio of frequencies</em>, Annals of Human Genetics, 20, 309–311.</li>
+                <li>Agresti, A. (2013). <em>Categorical Data Analysis</em>. Wiley.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let ciChart;
+
+document.getElementById('conf').addEventListener('change', function () {
+    document.getElementById('customConfRow').style.display = this.value === 'custom' ? '' : 'none';
+});
+
+function getConfLevel() {
+    const sel = document.getElementById('conf').value;
+    if (sel === 'custom') return parseFloat(document.getElementById('customConf').value);
+    return parseFloat(sel);
+}
+
+function formatNumber(value, digits = 6) {
+    if (!Number.isFinite(value)) return 'no definido';
+    if (value >= 10000 || value < 0.0001) return value.toExponential(4);
+    return value.toFixed(digits);
+}
+
+function renderChart(logOr, lowerLog, upperLog, zCrit, seLog) {
+    const ctx = document.getElementById('ciChart');
+    if (!ctx) return;
+
+    const margin = Math.max(0.2, (zCrit + 0.8) * seLog);
+    const minX = logOr - margin;
+    const maxX = logOr + margin;
+    const step = (maxX - minX) / 300;
+    const curve = [], inside = [], outside = [];
+
+    for (let x = minX; x <= maxX; x += step) {
+        const y = jStat.normal.pdf(x, logOr, seLog);
+        curve.push({ x, y });
+        if (x >= lowerLog && x <= upperLog) {
+            inside.push({ x, y });
+            outside.push({ x, y: null });
+        } else {
+            inside.push({ x, y: null });
+            outside.push({ x, y });
+        }
+    }
+
+    if (ciChart) ciChart.destroy();
+    ciChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Región de confianza', data: inside, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Colas (α/2 cada una)', data: outside, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.3)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Normal sobre log(OR)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'log(OR)' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad aproximada' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const raw = ['a', 'b', 'c', 'd'].map(id => parseFloat(document.getElementById(id).value));
+    const conf = getConfLevel();
+    const correction = document.getElementById('correction').value;
+    const resultEl = document.getElementById('result');
+
+    if (![...raw, conf].every(Number.isFinite) || raw.some(v => v < 0) || conf <= 0 || conf >= 1) {
+        resultEl.innerText = 'Error: revisa que todas las celdas sean recuentos ≥ 0 y que 0 < confianza < 1.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const hasZero = raw.some(v => v === 0);
+    const addHalf = correction === 'always' || (correction === 'auto' && hasZero);
+
+    if (hasZero && correction === 'none') {
+        resultEl.innerText = 'Error: hay al menos una celda con valor 0. Aplica la corrección 0,5 o introduce recuentos positivos.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const [a, b, c, d] = raw.map(v => addHalf ? v + 0.5 : v);
+    if ([a, b, c, d].some(v => v <= 0)) {
+        resultEl.innerText = 'Error: para calcular log(OR), todas las celdas utilizadas deben ser positivas.';
+        if (ciChart) { ciChart.destroy(); ciChart = null; }
+        return;
+    }
+
+    const alpha = 1 - conf;
+    const zCrit = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const orValue = (a * d) / (b * c);
+    const logOr = Math.log(orValue);
+    const seLog = Math.sqrt(1 / a + 1 / b + 1 / c + 1 / d);
+    const marginLog = zCrit * seLog;
+    const lowerLog = logOr - marginLog;
+    const upperLog = logOr + marginLog;
+    const lower = Math.exp(lowerLog);
+    const upper = Math.exp(upperLog);
+    const includesOne = lower <= 1 && upper >= 1;
+
+    const correctionText = addHalf
+        ? `Sí: se han usado a=${formatNumber(a, 3)}, b=${formatNumber(b, 3)}, c=${formatNumber(c, 3)}, d=${formatNumber(d, 3)}.`
+        : 'No: se han usado los recuentos introducidos.';
+    const interpretation = includesOne
+        ? 'ℹ El intervalo incluye 1: no se descarta ausencia de asociación al nivel de confianza elegido.'
+        : (orValue > 1
+            ? '✓ El intervalo queda por encima de 1: las odds del evento son mayores en expuestos.'
+            : '✓ El intervalo queda por debajo de 1: las odds del evento son menores en expuestos.');
+    const smallCounts = [a, b, c, d].some(v => v < 5)
+        ? '\n⚠ Hay celdas utilizadas menores que 5. Interpreta el intervalo normal con cautela.'
+        : '';
+
+    resultEl.innerText = [
+        `OR = ${formatNumber(orValue)}  |  log(OR) = ${formatNumber(logOr)}  |  SE[log(OR)] = ${formatNumber(seLog)}`,
+        `Nivel de confianza: ${(conf * 100).toFixed(1)} %  |  z crítico: ±${zCrit.toFixed(4)}  |  Margen en log(OR): ±${formatNumber(marginLog)}`,
+        `IC para OR: [${formatNumber(lower)}, ${formatNumber(upper)}]`,
+        `IC en escala log(OR): [${formatNumber(lowerLog)}, ${formatNumber(upperLog)}]`,
+        `Corrección 0,5: ${correctionText}`,
+        interpretation + smallCounts
+    ].join('\n');
+
+    renderChart(logOr, lowerLog, upperLog, zCrit, seLog);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+document.getElementById('conf').addEventListener('change', calculate);
+document.getElementById('correction').addEventListener('change', calculate);
+document.getElementById('customConf').addEventListener('input', calculate);
+calculate();
+</script>
+</body>
+</html>

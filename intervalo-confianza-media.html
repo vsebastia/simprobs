@@ -164,6 +164,7 @@
             <p>Con muestras grandes (n ≥ 30), la t de Student converge a la normal estándar y ambos intervalos dan resultados muy similares. Para muestras pequeñas, la t produce intervalos más anchos, reflejando correctamente la mayor incertidumbre.</p>
 
             <h2>Fórmula</h2>
+            <p>Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total fuera del intervalo. Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\) en cada cola.</p>
             <p class="formula-line">\( \bar{x} \pm t_{\alpha/2,\, n-1} \cdot \dfrac{s}{\sqrt{n}} \)</p>
             <ul>
                 <li><strong>\(\bar{x}\)</strong>: media muestral observada.</li>
@@ -174,7 +175,7 @@
             <p>El margen de error es \(E = t_{\alpha/2,\, n-1} \cdot s/\sqrt{n}\) y el intervalo es \([\bar{x} - E,\; \bar{x} + E]\).</p>
 
             <h2>Ejemplo resuelto</h2>
-            <p>Se mide el tiempo de respuesta (en ms) de un servicio web en 15 peticiones: \(\bar{x} = 245{,}3\) ms, \(s = 38{,}7\) ms. Con 95 % de confianza y \(gl = 14\):</p>
+            <p>Se mide el tiempo de respuesta (en ms) de un servicio web en 15 peticiones: \(\bar{x} = 245{,}3\) ms, \(s = 38{,}7\) ms. Con 95 % de confianza (\(C=0{,}95\), \(\alpha=0{,}05\)) y \(gl = 14\):</p>
             <p class="formula-line">\( 245{,}3 \pm 2{,}145 \cdot \frac{38{,}7}{\sqrt{15}} \approx [224{,}0,\; 266{,}7] \text{ ms} \)</p>
         </section>
 
@@ -189,11 +190,20 @@
             </ul>
         </section>
 
+        <section class="card content-card">
+            <h2>Cómo interpretar el resultado</h2>
+            <p>El intervalo \([L, U]\) es el rango de medias poblacionales compatibles con los datos y el nivel de confianza elegido. Si repitiéramos el muestreo muchas veces y construyéramos un IC del mismo modo, aproximadamente una proporción \(C\) de esos intervalos contendría la media real \(\mu\).</p>
+            <ul>
+                <li>Un intervalo más estrecho indica mayor precisión, normalmente por mayor \(n\) o menor variabilidad \(s\).</li>
+                <li>Si un valor de referencia queda fuera del intervalo, sería incompatible con los datos al nivel de confianza elegido en un contraste bilateral equivalente.</li>
+            </ul>
+        </section>
+
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
             <p>Esta calculadora construye el intervalo de confianza bilateral para la media poblacional \(\mu\) usando la distribución t de Student cuando \(\sigma\) es desconocida. Calcula automáticamente los grados de libertad, el valor crítico t, el error estándar y los límites del intervalo.</p>
             <h3>Ejemplo resuelto: intervalo para una media</h3>
-            <p>Una muestra de 25 entregas tiene media 38 minutos y desviación típica 12 minutos. Con 95% de confianza y σ desconocida, usa n = 25, media = 38 y s = 12; el intervalo se basa en t con 24 grados de libertad y cuantifica el rango plausible para el tiempo medio real.</p>
+            <p>Una muestra de 25 entregas tiene media 38 minutos y desviación típica 12 minutos. Con 95% de confianza (\(\alpha=0{,}05\)) y σ desconocida, usa n = 25, media = 38 y s = 12; el intervalo se basa en t con 24 grados de libertad y cuantifica el rango plausible para el tiempo medio real.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

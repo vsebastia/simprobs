@@ -395,6 +395,35 @@ input:focus {
     outline: none;
 }
 
+.content-table-wrap {
+    margin: 18px 0;
+    overflow-x: auto;
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background: #fff;
+    border: 1px solid rgba(79, 70, 229, 0.16);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.content-table th,
+.content-table td {
+    padding: 10px 12px;
+    border: 1px solid rgba(79, 70, 229, 0.14);
+    text-align: left;
+    vertical-align: top;
+}
+
+.content-table th {
+    color: #1e1b4b;
+    background: rgba(79, 70, 229, 0.10);
+    font-weight: 700;
+}
+
 .result-table-wrap {
     margin-top: 12px;
     overflow-x: auto;
