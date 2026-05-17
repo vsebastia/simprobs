@@ -7,11 +7,11 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <title>Calculadoras de tamaño muestral | ProbLab</title>
-  <meta name="description" content="Calculadoras online de tamaño muestral para medias, proporciones, comparaciones y estudios con nivel de confianza, margen de error y potencia.">
+  <meta name="description" content="Calculadoras online de tamaño muestral separadas por objetivo: estimar parámetros con margen de error o diseñar contrastes de hipótesis con potencia.">
   <link rel="canonical" href="https://problabtools.es/tamano-muestral/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Calculadoras de tamaño muestral | ProbLab">
-  <meta property="og:description" content="Calculadoras online de tamaño muestral para medias, proporciones, comparaciones y estudios con nivel de confianza, margen de error y potencia.">
+  <meta property="og:description" content="Calculadoras online de tamaño muestral separadas por objetivo: estimar parámetros con margen de error o diseñar contrastes de hipótesis con potencia.">
   <meta property="og:url" content="https://problabtools.es/tamano-muestral/">
   <meta property="og:site_name" content="ProbLab">
   <meta property="og:image" content="https://problabtools.es/og-image.png">
@@ -24,7 +24,7 @@
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Calculadoras de tamaño muestral | ProbLab">
-  <meta name="twitter:description" content="Calculadoras online de tamaño muestral para medias, proporciones, comparaciones y estudios con nivel de confianza, margen de error y potencia.">
+  <meta name="twitter:description" content="Calculadoras online de tamaño muestral separadas por objetivo: estimar parámetros con margen de error o diseñar contrastes de hipótesis con potencia.">
   <meta name="twitter:image" content="https://problabtools.es/og-image.png">
   <meta name="twitter:image:alt" content="Calculadoras de tamaño muestral">
   <link rel="stylesheet" href="../style_new.css?v=20260517">
@@ -43,7 +43,7 @@
         "@type": "WebPage",
         "name": "Calculadoras de tamaño muestral | ProbLab",
         "url": "https://problabtools.es/tamano-muestral/",
-        "description": "Calculadoras online de tamaño muestral para medias, proporciones, comparaciones y estudios con nivel de confianza, margen de error y potencia.",
+        "description": "Calculadoras online de tamaño muestral separadas por objetivo: estimar parámetros con margen de error o diseñar contrastes de hipótesis con potencia.",
         "inLanguage": "es",
         "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
       }
@@ -75,20 +75,29 @@
   <header class="hero">
     <p class="eyebrow">Herramientas estadísticas</p>
     <h1>Calculadoras de tamaño muestral</h1>
-    <p class="hero-subtitle">Calcula el número mínimo de observaciones para estimar un parámetro o detectar una diferencia con la precisión y la fiabilidad que necesitas.</p>
+    <p class="hero-subtitle">Calcula el número mínimo de observaciones según el objetivo: estimar un parámetro con precisión o diseñar un contraste de hipótesis con potencia suficiente.</p>
     <p class="hero-links"><a class="hero-link-button" href="../index.html">Volver al inicio</a></p>
   </header>
 
   <main>
     <section class="card content-card">
-      <h2>Todas las calculadoras de tamaño muestral</h2>
-      <ul class="tools-grid sample-size-tools-grid" aria-label="Grid de calculadoras de tamaño muestral">
+      <h2>Calculadoras de tamaño muestral por objetivo</h2>
+      <p>Primero elige si tu estudio necesita <strong>estimar un parámetro</strong> con un margen de error o <strong>plantear un contraste de hipótesis</strong> con una potencia determinada. Son problemas distintos y usan supuestos diferentes.</p>
+
+      <h3>Para estimar el valor de un parámetro</h3>
+      <p>Usa estas herramientas cuando el resultado principal será un intervalo de confianza para una media o una proporción. Debes fijar nivel de confianza, margen de error y variabilidad esperada.</p>
+      <ul class="tools-grid sample-size-tools-grid" aria-label="Calculadoras para estimar parámetros">
         <li><a href="../tamano-muestral-una-proporcion.html">Una proporción</a></li>
-        <li><a href="../tamano-muestral-dos-proporciones.html">Dos proporciones</a></li>
         <li><a href="../tamano-muestral-una-media.html">Una media</a></li>
-        <li><a href="../tamano-muestral-diferencia-medias.html">Dos medias</a></li>
         <li><a href="../tamano-muestral-proporcion-poblacion-finita.html">Proporción (población finita)</a></li>
         <li><a href="../tamano-muestral-media-poblacion-finita.html">Media (población finita)</a></li>
+      </ul>
+
+      <h3>Para diseñar un contraste de hipótesis</h3>
+      <p>Usa estas herramientas cuando quieres detectar una diferencia, asociación o efecto mínimo relevante. Debes fijar nivel de significación, potencia y tamaño del efecto.</p>
+      <ul class="tools-grid sample-size-tools-grid" aria-label="Calculadoras para contrastes de hipótesis">
+        <li><a href="../tamano-muestral-dos-proporciones.html">Dos proporciones</a></li>
+        <li><a href="../tamano-muestral-diferencia-medias.html">Dos medias</a></li>
         <li><a href="../tamano-muestral-medias-apareadas.html">Medias apareadas</a></li>
         <li><a href="../tamano-muestral-proporciones-apareadas.html">Proporciones apareadas</a></li>
         <li><a href="../tamano-muestral-anova.html">ANOVA (k grupos)</a></li>
@@ -111,9 +120,9 @@
           <p><strong>Calculadoras:</strong> una proporción, una media, población finita.</p>
         </div>
         <div>
-          <h3>Comparación (potencia)</h3>
-          <p>Quieres detectar una diferencia entre grupos si realmente existe. Se fijan el nivel de significación \(\alpha\), la potencia \(1-\beta\) y el tamaño del efecto mínimo relevante. La muestra asegura que, con esa probabilidad, el contraste rechazará \(H_0\) cuando sea falsa.</p>
-          <p><strong>Calculadoras:</strong> dos proporciones, dos medias, medias/proporciones apareadas.</p>
+          <h3>Contraste de hipótesis (potencia)</h3>
+          <p>Quieres detectar una diferencia, asociación o efecto si realmente existe. Se fijan el nivel de significación \(\alpha\), la potencia \(1-\beta\) y el tamaño del efecto mínimo relevante. La muestra asegura que, con esa probabilidad, el contraste rechazará \(H_0\) cuando sea falsa.</p>
+          <p><strong>Calculadoras:</strong> dos proporciones, dos medias, medias/proporciones apareadas, ANOVA, correlación, no inferioridad y odds ratio.</p>
         </div>
       </div>
 
@@ -131,7 +140,7 @@
 
     <section class="card content-card pillar-guide">
       <h2>¿Qué calculadora elegir?</h2>
-      <p>Responde tres preguntas para ir directamente a la herramienta correcta.</p>
+      <p>Responde estas preguntas para ir directamente a la herramienta correcta sin mezclar objetivos de estimación y contraste.</p>
       <ol>
         <li>
           <strong>¿Cuál es tu variable principal?</strong>
@@ -141,10 +150,10 @@
           </ul>
         </li>
         <li>
-          <strong>¿Cuántos grupos tienes?</strong>
+          <strong>Si vas a contrastar hipótesis, ¿cuántos grupos tienes?</strong>
           <ul>
-            <li>Un solo grupo o parámetro de referencia → <a href="../tamano-muestral-una-proporcion.html">una proporción</a> o <a href="../tamano-muestral-una-media.html">una media</a>.</li>
-            <li>Dos grupos independientes → <a href="../tamano-muestral-dos-proporciones.html">dos proporciones</a> o <a href="../tamano-muestral-diferencia-medias.html">dos medias</a>.</li>
+            <li>Si solo quieres estimar un parámetro → <a href="../tamano-muestral-una-proporcion.html">una proporción</a> o <a href="../tamano-muestral-una-media.html">una media</a>.</li>
+            <li>Dos grupos independientes para contrastar diferencias → <a href="../tamano-muestral-dos-proporciones.html">dos proporciones</a> o <a href="../tamano-muestral-diferencia-medias.html">dos medias</a>.</li>
             <li>Dos mediciones en el mismo sujeto (antes/después, pares) → <a href="../tamano-muestral-medias-apareadas.html">medias apareadas</a> o <a href="../tamano-muestral-proporciones-apareadas.html">proporciones apareadas</a>.</li>
             <li>Tres o más grupos (k grupos) → <a href="../tamano-muestral-anova.html">ANOVA</a>.</li>
           </ul>
@@ -175,7 +184,7 @@
         <li><strong>Usa supuestos conservadores si no tienes datos piloto.</strong> Para proporciones sin información previa, usa \(p = 0{,}5\) (máxima variabilidad). Para medias, busca estimaciones de \(\sigma\) en literatura similar.</li>
         <li><strong>Considera las pérdidas esperadas.</strong> Una vez obtenido \(n\), divídelo por \((1 - \text{tasa de abandono})\). Por ejemplo, si esperas un 15 % de pérdidas, recluta \(n / 0{,}85\) sujetos.</li>
         <li><strong>Redondea siempre hacia arriba.</strong> El tamaño muestral es un número entero; nunca truncues.</li>
-        <li><strong>Documenta los supuestos.</strong> Registra los valores de \(\alpha\), potencia, efecto esperado y variabilidad usados para poder justificar el diseño y recalcular si las condiciones cambian.</li>
+        <li><strong>Documenta los supuestos.</strong> Registra el margen de error y el nivel de confianza (si estimas un parámetro), o \(\alpha\), potencia, efecto esperado y variabilidad (si diseñas un contraste), para poder justificar el diseño y recalcular si las condiciones cambian.</li>
       </ol>
     </section>
 
