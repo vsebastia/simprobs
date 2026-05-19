@@ -144,58 +144,24 @@
             </div>
 
             <div class="form-grid sample-grid">
-                <div class="form-group">
-                    <label for="oneMeanMode">Objetivo del cálculo</label>
-                    <select id="oneMeanMode">
-                        <option value="estimation" selected>Estimación de una media (margen de error)</option>
-                        <option value="hypothesis">Contraste para una media (potencia)</option>
-                    </select>
-                </div>
                 <div class="inline-inputs">
                     <div class="form-group">
                         <label for="oneMeanSigma">Desviación estándar (σ)</label>
                         <input type="number" id="oneMeanSigma" value="10" step="0.1" min="0.0001">
                     </div>
-                    <div class="form-group" id="oneMeanEGroup">
+                    <div class="form-group">
                         <label for="oneMeanE">Margen de error (E)</label>
                         <input type="number" id="oneMeanE" value="2" step="0.1" min="0.0001">
                     </div>
-                    <div class="form-group" id="oneMeanDeltaGroup" hidden>
-                        <label for="oneMeanDelta">Diferencia mínima detectable |μ−μ0| (Δ)</label>
-                        <input type="number" id="oneMeanDelta" value="2" step="0.1" min="0.0001">
-                    </div>
                 </div>
-                <div class="inline-inputs">
-                    <div class="form-group" id="oneMeanConfidenceGroup">
+
+                <div class="form-group">
                     <label for="oneMeanConfidence">Nivel de confianza</label>
                     <select id="oneMeanConfidence">
                         <option value="0.90">90%</option>
                         <option value="0.95" selected>95%</option>
                         <option value="0.99">99%</option>
                     </select>
-                    </div>
-                    <div class="form-group" id="oneMeanAlphaGroup" hidden>
-                        <label for="oneMeanAlpha">Alfa (α)</label>
-                        <input type="number" id="oneMeanAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
-                    </div>
-                    <div class="form-group" id="oneMeanPowerGroup" hidden>
-                        <label for="oneMeanPower">Potencia (1-β)</label>
-                        <input type="number" id="oneMeanPower" value="0.8" step="0.01" min="0.5" max="0.999">
-                    </div>
-                </div>
-                <div class="inline-inputs" id="oneMeanHypothesisGroup" hidden>
-                    <div class="form-group">
-                        <label for="oneMeanH0">Hipótesis nula (μ0)</label>
-                        <input type="number" id="oneMeanH0" value="0" step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="oneMeanAlternative">Hipótesis alternativa</label>
-                        <select id="oneMeanAlternative">
-                            <option value="two-sided">Ha: μ ≠ μ0</option>
-                            <option value="greater">Ha: μ ≥ μ0</option>
-                            <option value="less">Ha: μ ≤ μ0</option>
-                        </select>
-                    </div>
                 </div>
             </div>
 
@@ -205,7 +171,6 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p><strong>Modo contraste de hipótesis:</strong> además del modo de estimación, esta página incluye el tamaño muestral para contraste de una media con <em>H0 = x</em> y alternativas bilaterales o unilaterales (Ha ≠ x, Ha ≥ x, Ha ≤ x), configurando α, potencia y diferencia mínima detectable Δ.</p>
             <p>Esta calculadora determina el número mínimo de observaciones para estimar una media poblacional \(\mu\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado. Es el cálculo análogo al de una proporción, pero para variables cuantitativas continuas.</p>
             <p>El parámetro clave que debes conocer de antemano es la desviación estándar \(\sigma\). Si no la tienes, puedes estimarla de datos históricos, de la literatura o de un estudio piloto. Una regla práctica conservadora cuando la distribución es aproximadamente normal: \(\sigma \approx \text{rango} / 4\) (un cuarto del rango probable de los datos).</p>
             <p>Esta fórmula usa el cuantil normal Z, lo que supone que \(\sigma\) es conocida o que la muestra es suficientemente grande para que el cuantil t converja a Z. Para muestras pequeñas (&lt; 30) con \(\sigma\) desconocida, el n real puede ser algo mayor (usa el cuantil t con n−1 grados de libertad de forma iterativa).</p>
@@ -315,58 +280,32 @@ function refreshMathJaxOneMean() {
 
 function calculateOneMeanSampleSize() {
     const sigma = parseFloat(document.getElementById("oneMeanSigma").value);
-    const mode = document.getElementById("oneMeanMode").value;
+    const e = parseFloat(document.getElementById("oneMeanE").value);
+    const confidence = parseFloat(document.getElementById("oneMeanConfidence").value);
     const resultEl = document.getElementById("oneMeanResult");
 
     if (!Number.isFinite(sigma) || sigma <= 0) {
         resultEl.innerText = "Error: σ debe ser mayor que 0.";
         return;
     }
-    if (mode === "estimation") {
-        const e = parseFloat(document.getElementById("oneMeanE").value);
-        const confidence = parseFloat(document.getElementById("oneMeanConfidence").value);
-        if (!Number.isFinite(e) || e <= 0) {
-            resultEl.innerText = "Error: E debe ser mayor que 0.";
-            return;
-        }
-        if (!Number.isFinite(confidence) || confidence <= 0 || confidence >= 1) {
-            resultEl.innerText = "Error: el nivel de confianza debe estar entre 0 y 1.";
-            return;
-        }
-        const alpha = 1 - confidence;
-        const z = jStat.normal.inv(1 - (alpha / 2), 0, 1);
-        const n = Math.ceil(Math.pow((z * sigma) / e, 2));
-        resultEl.innerText = `n mínimo recomendado: ${n} observaciones (${Math.round(confidence * 100)}% de confianza).`;
-    } else {
-        const delta = parseFloat(document.getElementById("oneMeanDelta").value);
-        const alpha = parseFloat(document.getElementById("oneMeanAlpha").value);
-        const power = parseFloat(document.getElementById("oneMeanPower").value);
-        const h0 = parseFloat(document.getElementById("oneMeanH0").value);
-        const alternative = document.getElementById("oneMeanAlternative").value;
-        if (!Number.isFinite(delta) || delta <= 0) return void (resultEl.innerText = "Error: Δ debe ser mayor que 0.");
-        if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) return void (resultEl.innerText = "Error: α debe estar entre 0 y 1.");
-        if (!Number.isFinite(power) || power <= 0 || power >= 1) return void (resultEl.innerText = "Error: la potencia debe estar entre 0 y 1.");
-        const zAlpha = alternative === "two-sided" ? jStat.normal.inv(1 - alpha / 2, 0, 1) : jStat.normal.inv(1 - alpha, 0, 1);
-        const zBeta = jStat.normal.inv(power, 0, 1);
-        const n = Math.ceil(Math.pow(((zAlpha + zBeta) * sigma) / delta, 2));
-        const altText = alternative === "two-sided" ? "Ha: μ ≠ μ0" : (alternative === "greater" ? "Ha: μ ≥ μ0" : "Ha: μ ≤ μ0");
-        resultEl.innerText = `n mínimo recomendado: ${n} observaciones para H0: μ = ${h0} y ${altText}.`;
+    if (!Number.isFinite(e) || e <= 0) {
+        resultEl.innerText = "Error: E debe ser mayor que 0.";
+        return;
     }
+    if (!Number.isFinite(confidence) || confidence <= 0 || confidence >= 1) {
+        resultEl.innerText = "Error: el nivel de confianza debe estar entre 0 y 1.";
+        return;
+    }
+
+    const alpha = 1 - confidence;
+    const z = jStat.normal.inv(1 - (alpha / 2), 0, 1);
+    const n = Math.ceil(Math.pow((z * sigma) / e, 2));
+
+    resultEl.innerText = `n mínimo recomendado: ${n} observaciones (${Math.round(confidence * 100)}% de confianza).`;
     refreshMathJaxOneMean();
 }
-function updateOneMeanMode() {
-    const isHyp = document.getElementById("oneMeanMode").value === "hypothesis";
-    document.getElementById("oneMeanEGroup").hidden = isHyp;
-    document.getElementById("oneMeanConfidenceGroup").hidden = isHyp;
-    document.getElementById("oneMeanDeltaGroup").hidden = !isHyp;
-    document.getElementById("oneMeanAlphaGroup").hidden = !isHyp;
-    document.getElementById("oneMeanPowerGroup").hidden = !isHyp;
-    document.getElementById("oneMeanHypothesisGroup").hidden = !isHyp;
-}
 
-document.getElementById("oneMeanMode").addEventListener("change", () => { updateOneMeanMode(); calculateOneMeanSampleSize(); });
 document.getElementById("oneMeanCalculateBtn").addEventListener("click", calculateOneMeanSampleSize);
-updateOneMeanMode();
 calculateOneMeanSampleSize();
 </script>
 </body>

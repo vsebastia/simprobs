@@ -144,58 +144,24 @@
             </div>
 
             <div class="form-grid sample-grid">
-                <div class="form-group">
-                    <label for="onePropMode">Objetivo del cálculo</label>
-                    <select id="onePropMode">
-                        <option value="estimation" selected>Estimación de una proporción (margen de error)</option>
-                        <option value="hypothesis">Contraste para una proporción (potencia)</option>
-                    </select>
-                </div>
                 <div class="inline-inputs">
                     <div class="form-group">
                         <label for="onePropP">Proporción esperada (p)</label>
                         <input type="number" id="onePropP" value="0.5" step="0.01" min="0.0001" max="0.9999">
                     </div>
-                    <div class="form-group" id="onePropEGroup">
+                    <div class="form-group">
                         <label for="onePropE">Margen de error (E)</label>
                         <input type="number" id="onePropE" value="0.05" step="0.001" min="0.0001" max="0.9999">
                     </div>
-                    <div class="form-group" id="onePropDeltaGroup" hidden>
-                        <label for="onePropDelta">Diferencia mínima detectable |p−p0| (Δ)</label>
-                        <input type="number" id="onePropDelta" value="0.1" step="0.001" min="0.0001" max="0.9999">
-                    </div>
                 </div>
-                <div class="inline-inputs">
-                    <div class="form-group" id="onePropConfidenceGroup">
+
+                <div class="form-group">
                     <label for="onePropConfidence">Nivel de confianza</label>
                     <select id="onePropConfidence">
                         <option value="0.90">90%</option>
                         <option value="0.95" selected>95%</option>
                         <option value="0.99">99%</option>
                     </select>
-                    </div>
-                    <div class="form-group" id="onePropAlphaGroup" hidden>
-                        <label for="onePropAlpha">Alfa (α)</label>
-                        <input type="number" id="onePropAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
-                    </div>
-                    <div class="form-group" id="onePropPowerGroup" hidden>
-                        <label for="onePropPower">Potencia (1-β)</label>
-                        <input type="number" id="onePropPower" value="0.8" step="0.01" min="0.5" max="0.999">
-                    </div>
-                </div>
-                <div class="inline-inputs" id="onePropHypothesisGroup" hidden>
-                    <div class="form-group">
-                        <label for="onePropH0">Hipótesis nula (p0)</label>
-                        <input type="number" id="onePropH0" value="0" step="0.01" min="0" max="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="onePropAlternative">Hipótesis alternativa</label>
-                        <select id="onePropAlternative">
-                            <option value="two-sided">Ha: p ≠ p0</option>
-                            <option value="greater">Ha: p ≥ p0</option>
-                            <option value="less">Ha: p ≤ p0</option>
-                        </select>
-                    </div>
                 </div>
             </div>
 
@@ -205,7 +171,6 @@
 
         <section class="card content-card">
             <h2>Explicación breve</h2>
-            <p><strong>Modo contraste de hipótesis:</strong> además del modo de estimación, esta página incluye el tamaño muestral para contraste de una proporción con <em>H0 = x</em> y alternativas bilaterales o unilaterales (Ha ≠ x, Ha ≥ x, Ha ≤ x), configurando α, potencia y diferencia mínima detectable Δ.</p>
             <p>Esta calculadora aplica la fórmula de Cochran para determinar el número mínimo de observaciones necesarias para estimar una proporción poblacional \(p\) con una precisión preestablecida. El objetivo es que el intervalo de confianza resultante tenga un semiancho máximo igual al margen de error \(E\).</p>
             <p>El parámetro más influyente es la proporción esperada \(p\): la varianza de una proporción es \(p(1-p)\), que alcanza su máximo en \(p = 0{,}5\). Por eso, si no tienes información previa, usar \(p = 0{,}5\) garantiza que la muestra será suficiente cualquiera que sea el valor real.</p>
             <p>Esta fórmula asume muestreo aleatorio simple en una población muy grande. Si la muestra representará más del 5 % del total, usa la <a href="tamano-muestral-proporcion-poblacion-finita.html">calculadora con corrección por población finita</a>.</p>
@@ -313,8 +278,9 @@ function refreshMathJaxOneProp() {
 }
 
 function calculateOnePropSampleSize() {
-    const mode = document.getElementById("onePropMode").value;
     const p = parseFloat(document.getElementById("onePropP").value);
+    const e = parseFloat(document.getElementById("onePropE").value);
+    const confidence = parseFloat(document.getElementById("onePropConfidence").value);
     const resultEl = document.getElementById("onePropResult");
 
     if (!Number.isFinite(p) || p <= 0 || p >= 1) {
@@ -322,47 +288,25 @@ function calculateOnePropSampleSize() {
         return;
     }
 
-    if (mode === "estimation") {
-        const e = parseFloat(document.getElementById("onePropE").value);
-        const confidence = parseFloat(document.getElementById("onePropConfidence").value);
-        if (!Number.isFinite(e) || e <= 0 || e >= 1) return void (resultEl.innerText = "Error: E debe estar entre 0 y 1 (sin incluir extremos).");
-        if (!Number.isFinite(confidence) || confidence <= 0 || confidence >= 1) return void (resultEl.innerText = "Error: el nivel de confianza debe estar entre 0 y 1.");
-        const alpha = 1 - confidence;
-        const z = jStat.normal.inv(1 - (alpha / 2), 0, 1);
-        const n = Math.ceil((Math.pow(z, 2) * p * (1 - p)) / Math.pow(e, 2));
-        resultEl.innerText = `n mínimo recomendado: ${n} observaciones (${Math.round(confidence * 100)}% de confianza).`;
-    } else {
-        const delta = parseFloat(document.getElementById("onePropDelta").value);
-        const alpha = parseFloat(document.getElementById("onePropAlpha").value);
-        const power = parseFloat(document.getElementById("onePropPower").value);
-        const p0 = parseFloat(document.getElementById("onePropH0").value);
-        const alternative = document.getElementById("onePropAlternative").value;
-        if (!Number.isFinite(delta) || delta <= 0 || delta >= 1) return void (resultEl.innerText = "Error: Δ debe estar entre 0 y 1.");
-        if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) return void (resultEl.innerText = "Error: α debe estar entre 0 y 1.");
-        if (!Number.isFinite(power) || power <= 0 || power >= 1) return void (resultEl.innerText = "Error: la potencia debe estar entre 0 y 1.");
-        if (!Number.isFinite(p0) || p0 < 0 || p0 > 1) return void (resultEl.innerText = "Error: p0 debe estar entre 0 y 1.");
-        const zAlpha = alternative === "two-sided" ? jStat.normal.inv(1 - alpha / 2, 0, 1) : jStat.normal.inv(1 - alpha, 0, 1);
-        const zBeta = jStat.normal.inv(power, 0, 1);
-        const pAlt = Math.min(0.9999, Math.max(0.0001, p0 + delta));
-        const n = Math.ceil(Math.pow((zAlpha * Math.sqrt(p0 * (1 - p0)) + zBeta * Math.sqrt(pAlt * (1 - pAlt))) / delta, 2));
-        const altText = alternative === "two-sided" ? "Ha: p ≠ p0" : (alternative === "greater" ? "Ha: p ≥ p0" : "Ha: p ≤ p0");
-        resultEl.innerText = `n mínimo recomendado: ${n} observaciones para H0: p = ${p0} y ${altText}.`;
+    if (!Number.isFinite(e) || e <= 0 || e >= 1) {
+        resultEl.innerText = "Error: E debe estar entre 0 y 1 (sin incluir extremos).";
+        return;
     }
+
+    if (!Number.isFinite(confidence) || confidence <= 0 || confidence >= 1) {
+        resultEl.innerText = "Error: el nivel de confianza debe estar entre 0 y 1.";
+        return;
+    }
+
+    const alpha = 1 - confidence;
+    const z = jStat.normal.inv(1 - (alpha / 2), 0, 1);
+    const n = Math.ceil((Math.pow(z, 2) * p * (1 - p)) / Math.pow(e, 2));
+
+    resultEl.innerText = `n mínimo recomendado: ${n} observaciones (${Math.round(confidence * 100)}% de confianza).`;
     refreshMathJaxOneProp();
 }
-function updateOnePropMode() {
-    const isHyp = document.getElementById("onePropMode").value === "hypothesis";
-    document.getElementById("onePropEGroup").hidden = isHyp;
-    document.getElementById("onePropConfidenceGroup").hidden = isHyp;
-    document.getElementById("onePropDeltaGroup").hidden = !isHyp;
-    document.getElementById("onePropAlphaGroup").hidden = !isHyp;
-    document.getElementById("onePropPowerGroup").hidden = !isHyp;
-    document.getElementById("onePropHypothesisGroup").hidden = !isHyp;
-}
 
-document.getElementById("onePropMode").addEventListener("change", () => { updateOnePropMode(); calculateOnePropSampleSize(); });
 document.getElementById("onePropCalculateBtn").addEventListener("click", calculateOnePropSampleSize);
-updateOnePropMode();
 calculateOnePropSampleSize();
 </script>
 </body>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para contraste de una proporción | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral para estimar una proporción poblacional. Especifica p esperada, margen de error E y nivel de confianza. Resultados inmediatos.">
+    <meta name="keywords" content="calculadora tamaño muestral proporción, calcular tamaño de muestra proporción, muestra mínima para estimar proporción, margen de error encuesta, tamaño muestral estadística, muestra aleatoria simple proporción, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-contraste-una-proporcion.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para contraste de una proporción | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral para estimar una proporción poblacional. Especifica p esperada, margen de error E y nivel de confianza. Resultados inmediatos.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-contraste-una-proporcion.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para contraste de una proporción">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-contraste-una-proporcion.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para contraste de una proporción | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral para estimar una proporción poblacional. Especifica p esperada, margen de error E y nivel de confianza. Resultados inmediatos.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para contraste de una proporción">
+        <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Tamaño muestral una proporción", "item": "https://problabtools.es/tamano-muestral-contraste-una-proporcion.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para contraste de una proporción | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-contraste-una-proporcion.html",
+          "description": "Calcula el tamaño de muestra mínimo para estimar una proporción con nivel de confianza y margen de error definidos.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para contraste de una proporción",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-contraste-una-proporcion.html",
+      "description": "Calcula el tamaño de muestra mínimo para estimar una proporción con nivel de confianza y margen de error definidos.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es el margen de error?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es la precisión máxima tolerada respecto al valor real."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué significa nivel de confianza?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es la potencia estadística?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La probabilidad de detectar un efecto real cuando existe."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿El tamaño muestral es exacto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, depende de supuestos y redondeos prácticos de diseño."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Contraste una proporción</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para contraste de una proporción</h1>
+        <p class="hero-subtitle">Calcula el tamaño mínimo de muestra para contrastar una proporción con potencia deseada.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce tus supuestos y obtén el tamaño muestral mínimo recomendado para un contraste de una proporción.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="onePropH0">Hipótesis nula (p0)</label>
+                        <input type="number" id="onePropH0" value="0" step="0.01" min="0" max="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="onePropDelta">Diferencia mínima detectable |p−p0| (Δ)</label>
+                        <input type="number" id="onePropDelta" value="0.1" step="0.001" min="0.0001" max="0.9999">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="onePropAlpha">Alfa (α)</label>
+                        <input type="number" id="onePropAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="onePropPower">Potencia (1-β)</label>
+                        <input type="number" id="onePropPower" value="0.8" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="onePropAlternative">Hipótesis alternativa</label>
+                    <select id="onePropAlternative">
+                        <option value="two-sided">Ha: p ≠ p0</option>
+                        <option value="greater">Ha: p ≥ p0</option>
+                        <option value="less">Ha: p ≤ p0</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="onePropCalculateBtn">Calcular tamaño muestral</button>
+            <div id="onePropResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card"><h2>Explicación breve</h2><p>Esta calculadora obtiene el tamaño muestral para contrastar una proporción: \(H_0: p=p_0\) con alternativas bilateral o unilateral.</p><h2>Fórmula utilizada</h2><p class="formula-line">\( n = ((Z_{lpha^*}\sqrt{p_0(1-p_0)} + Z_{eta}\sqrt{p_1(1-p_1)})/\Delta)^2 \)</p><p>donde \(\Delta=|p_1-p_0|\), con \(lpha^*=lpha/2\) en bilateral y \(lpha^*=lpha\) en unilateral.</p><ul><li>\(p_0\): proporción bajo la hipótesis nula.</li><li>\(\Delta\): diferencia mínima detectable.</li><li>\(1-eta\): potencia objetivo.</li></ul><h2>Ejemplo</h2><p>Con \(p_0=0{,}20\), \(\Delta=0{,}05\), \(lpha=0{,}05\) y potencia \(0{,}80\), el tamaño muestral requerido es del orden de cientos de observaciones.</p></section>
+
+    </main>
+
+    <footer class="legal-footer">
+  <p>
+    © 2026 problabtools.
+    <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="privacidad.html">Privacidad</a> ·
+    <a href="cookies.html">Cookies</a> ·
+    <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+  </p>
+</footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function refreshMathJaxOneProp() {
+    if (window.MathJax?.typesetPromise) {
+        MathJax.typesetPromise();
+    }
+}
+
+function calculateOnePropSampleSize() {
+    const p0 = parseFloat(document.getElementById("onePropH0").value);
+    const delta = parseFloat(document.getElementById("onePropDelta").value);
+    const alpha = parseFloat(document.getElementById("onePropAlpha").value);
+    const power = parseFloat(document.getElementById("onePropPower").value);
+    const alternative = document.getElementById("onePropAlternative").value;
+    const resultEl = document.getElementById("onePropResult");
+
+    if (!Number.isFinite(p0) || p0 < 0 || p0 > 1) return void (resultEl.innerText = "Error: p0 debe estar entre 0 y 1.");
+    if (!Number.isFinite(delta) || delta <= 0 || delta >= 1) return void (resultEl.innerText = "Error: Δ debe estar entre 0 y 1.");
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) return void (resultEl.innerText = "Error: α debe estar entre 0 y 1.");
+    if (!Number.isFinite(power) || power <= 0 || power >= 1) return void (resultEl.innerText = "Error: la potencia debe estar entre 0 y 1.");
+
+    const zAlpha = alternative === "two-sided" ? jStat.normal.inv(1 - alpha / 2, 0, 1) : jStat.normal.inv(1 - alpha, 0, 1);
+    const zBeta = jStat.normal.inv(power, 0, 1);
+    const p1 = Math.min(0.9999, Math.max(0.0001, p0 + delta));
+    const n = Math.ceil(Math.pow((zAlpha * Math.sqrt(p0 * (1 - p0)) + zBeta * Math.sqrt(p1 * (1 - p1))) / delta, 2));
+    const altText = alternative === "two-sided" ? "Ha: p ≠ p0" : (alternative === "greater" ? "Ha: p ≥ p0" : "Ha: p ≤ p0");
+
+    resultEl.innerText = `n mínimo recomendado: ${n} observaciones para H0: p = ${p0} y ${altText}.`;
+    refreshMathJaxOneProp();
+}
+
+document.getElementById("onePropCalculateBtn").addEventListener("click", calculateOnePropSampleSize);
+calculateOnePropSampleSize();
+</script>
+</body>
+</html>
