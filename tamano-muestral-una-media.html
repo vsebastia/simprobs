@@ -218,6 +218,25 @@
             </ul>
         </section>
 
+        <section class="card content-card quick-guide-card">
+            <h2>Checklist para usarla como cálculo de tamaño muestral en contraste</h2>
+            <ol>
+                <li><strong>Define el error relevante</strong>: fija el máximo error absoluto aceptable (E) según la decisión del estudio.</li>
+                <li><strong>Elige el nivel de confianza equivalente</strong>: 95 % suele corresponder a \(\alpha = 0{,}05\) bilateral.</li>
+                <li><strong>Usa un valor conservador del parámetro de variabilidad</strong>: para media, una \(\sigma\) algo alta; para proporción, \(p=0{,}5\) si hay incertidumbre.</li>
+                <li><strong>Ajusta por pérdidas</strong>: incrementa la n calculada con \(n_{ajustada}=n/(1-r)\), siendo \(r\) la tasa esperada de no respuesta.</li>
+                <li><strong>Valida sensibilidad</strong>: recalcula con escenarios optimista/base/pesimista y usa el mayor n para el protocolo.</li>
+            </ol>
+
+            <h2>Errores frecuentes</h2>
+            <ul>
+                <li>Usar una precisión demasiado ambiciosa sin presupuesto (n crece con \(1/E^2\)).</li>
+                <li>No justificar de dónde sale \(\sigma\) o \(p\) en el protocolo.</li>
+                <li>Olvidar pérdidas de seguimiento, registros incompletos o exclusiones.</li>
+                <li>No aplicar corrección por población finita cuando la fracción muestral es elevada.</li>
+            </ul>
+        </section>
+
         <section id="seo-support-content" class="card content-card">
             <h3>¿Qué calcula esta herramienta?</h3>
             <p>Calcula el número mínimo de observaciones para estimar una media poblacional con un margen de error absoluto máximo E y un nivel de confianza dado, usando el cuantil normal Z y la desviación estándar σ.</p>
