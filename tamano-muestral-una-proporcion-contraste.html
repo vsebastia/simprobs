@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Tamaño muestral: contraste para una proporción | ProbLab</title><meta name="description" content="Calcula n para contrastar H0: p = p0 (por defecto p0=0) con potencia y alfa."><link rel="canonical" href="https://problabtools.es/tamano-muestral-una-proporcion-contraste.html"><link rel="stylesheet" href="style_new.css?v=20260517"></head>
+<body><nav class="site-nav"><div class="site-nav-inner"><a class="site-brand" href="index.html">ProbLab</a></div></nav><div class="page-wrap"><nav class="breadcrumbs"><ol><li><a href="index.html">Inicio</a></li><li><a href="tamano-muestral/">Tamaño muestral</a></li><li><span aria-current="page">Contraste para una proporción</span></li></ol></nav><header class="hero"><p class="eyebrow">Tamaño muestral</p><h1>Contraste para una proporción (H₀: p = p₀)</h1><p class="hero-subtitle">Calcula n para detectar una proporción alternativa p₁ distinta de p₀ (p. ej., p₀=0).</p></header><main><section class="card sample-size-panel"><div class="form-grid sample-grid"><div class="inline-inputs"><div class="form-group"><label for="p0">Proporción nula (p₀)</label><input id="p0" type="number" value="0" step="0.01" min="0" max="1"></div><div class="form-group"><label for="p1">Proporción bajo H₁ (p₁)</label><input id="p1" type="number" value="0.1" step="0.01" min="0" max="1"></div></div><div class="inline-inputs"><div class="form-group"><label for="alpha">Alfa (α)</label><input id="alpha" type="number" value="0.05" step="0.001" min="0.0001" max="0.2"></div><div class="form-group"><label for="power">Potencia (1-β)</label><input id="power" type="number" value="0.8" step="0.01" min="0.5" max="0.999"></div></div><div class="form-group"><label for="tail">Tipo de contraste</label><select id="tail"><option value="two" selected>Bilateral</option><option value="one">Unilateral</option></select></div></div><button class="calculate-btn" id="calcBtn">Calcular tamaño muestral</button><div id="result" class="result-box">Resultado pendiente…</div></section></main></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calc(){
+ const p0=parseFloat(p0El.value),p1=parseFloat(p1El.value),alpha=parseFloat(alphaEl.value),power=parseFloat(powerEl.value),tail=tailEl.value;
+ if(!(p0>=0&&p0<=1&&p1>=0&&p1<=1)) throw new Error('p0 y p1 deben estar entre 0 y 1.');
+ if(p0===p1) throw new Error('p1 debe ser distinto de p0.');
+ if(!(alpha>0&&alpha<1)) throw new Error('α inválido.');
+ if(!(power>0&&power<1)) throw new Error('Potencia inválida.');
+ const zAlpha= tail==='two' ? jStat.normal.inv(1-alpha/2,0,1) : jStat.normal.inv(1-alpha,0,1);
+ const zBeta=jStat.normal.inv(power,0,1);
+ const num=Math.pow(zAlpha*Math.sqrt(p0*(1-p0))+zBeta*Math.sqrt(p1*(1-p1)),2);
+ const den=Math.pow(p1-p0,2);
+ const n=Math.ceil(num/den);
+ result.innerHTML=`<strong>Tamaño muestral mínimo:</strong> ${n} observaciones.<br><small>Contraste ${tail==='two'?'bilateral':'unilateral'} para H₀: p=${p0} vs H₁: p=${p1}.</small>`;
+}
+const p0El=document.getElementById('p0'),p1El=document.getElementById('p1'),alphaEl=document.getElementById('alpha'),powerEl=document.getElementById('power'),tailEl=document.getElementById('tail'),result=document.getElementById('result');
+document.getElementById('calcBtn').addEventListener('click',()=>{try{calc();}catch(e){result.textContent='Error: '+e.message;}});
+</script></body></html>
