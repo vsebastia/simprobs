@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Calculadora de tamaño muestral para contraste de una proporción | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calcula el tamaño muestral para estimar una proporción poblacional. Especifica p esperada, margen de error E y nivel de confianza. Resultados inmediatos.">
-    <meta name="keywords" content="calculadora tamaño muestral proporción, calcular tamaño de muestra proporción, muestra mínima para estimar proporción, margen de error encuesta, tamaño muestral estadística, muestra aleatoria simple proporción, ProbLab, estadística online, calculadora estadística">
+    <meta name="description" content="Calcula el tamaño muestral para contraste de hipótesis de una proporción con H0: p = p0, alternativas bilateral/unilateral, alfa, potencia y Δ.">
+    <meta name="keywords" content="tamaño muestral contraste una proporción, calcular muestra test una proporción, potencia estadística proporción, H0 p igual p0, contraste unilateral bilateral proporción, ProbLab">
     <link rel="canonical" href="https://problabtools.es/tamano-muestral-contraste-una-proporcion.html">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Calculadora de tamaño muestral para contraste de una proporción | ProbLab">
-    <meta property="og:description" content="Calcula el tamaño muestral para estimar una proporción poblacional. Especifica p esperada, margen de error E y nivel de confianza. Resultados inmediatos.">
+    <meta property="og:description" content="Calcula el tamaño muestral para contraste de hipótesis de una proporción con H0: p = p0, alternativas bilateral/unilateral, alfa, potencia y Δ.">
     <meta property="og:url" content="https://problabtools.es/tamano-muestral-contraste-una-proporcion.html">
     <meta property="og:site_name" content="ProbLab">
     <meta property="og:image" content="https://problabtools.es/og-image.png">
@@ -22,7 +22,7 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Calculadora de tamaño muestral para contraste de una proporción | ProbLab">
-    <meta name="twitter:description" content="Calcula el tamaño muestral para estimar una proporción poblacional. Especifica p esperada, margen de error E y nivel de confianza. Resultados inmediatos.">
+    <meta name="twitter:description" content="Calcula el tamaño muestral para contraste de hipótesis de una proporción con H0: p = p0, alternativas bilateral/unilateral, alfa, potencia y Δ.">
     <meta name="twitter:image" content="https://problabtools.es/og-image.png">
     <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para contraste de una proporción">
         <script type="application/ld+json">
@@ -41,7 +41,7 @@
           "@type": "WebPage",
           "name": "Calculadora de tamaño muestral para contraste de una proporción | ProbLab",
           "url": "https://problabtools.es/tamano-muestral-contraste-una-proporcion.html",
-          "description": "Calcula el tamaño de muestra mínimo para estimar una proporción con nivel de confianza y margen de error definidos.",
+          "description": "Calcula el tamaño muestral para contraste de hipótesis de una proporción con alfa, potencia y diferencia mínima detectable.",
           "inLanguage": "es",
           "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
         }
@@ -56,7 +56,7 @@
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "url": "https://problabtools.es/tamano-muestral-contraste-una-proporcion.html",
-      "description": "Calcula el tamaño de muestra mínimo para estimar una proporción con nivel de confianza y margen de error definidos.",
+      "description": "Calcula el tamaño muestral para contraste de hipótesis de una proporción con alfa, potencia y diferencia mínima detectable.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -73,18 +73,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Qué es el margen de error?",
+      "name": "¿Qué representa Δ en esta calculadora?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Es la precisión máxima tolerada respecto al valor real."
+        "text": "Es la diferencia mínima entre p y p0 que quieres poder detectar con la potencia indicada."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Qué significa nivel de confianza?",
+      "name": "¿Qué alternativa debo elegir?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero."
+        "text": "Usa bilateral si no tienes dirección previa y unilateral si solo te interesa detectar cambio en un sentido."
       }
     },
     {
@@ -178,7 +178,50 @@
             <div id="onePropResult" class="result-box">Resultado pendiente…</div>
         </section>
 
-        <section class="card content-card"><h2>Explicación breve</h2><p>Esta calculadora obtiene el tamaño muestral para contrastar una proporción: \(H_0: p=p_0\) con alternativas bilateral o unilateral.</p><h2>Fórmula utilizada</h2><p class="formula-line">\( n = ((Z_{lpha^*}\sqrt{p_0(1-p_0)} + Z_{eta}\sqrt{p_1(1-p_1)})/\Delta)^2 \)</p><p>donde \(\Delta=|p_1-p_0|\), con \(lpha^*=lpha/2\) en bilateral y \(lpha^*=lpha\) en unilateral.</p><ul><li>\(p_0\): proporción bajo la hipótesis nula.</li><li>\(\Delta\): diferencia mínima detectable.</li><li>\(1-eta\): potencia objetivo.</li></ul><h2>Ejemplo</h2><p>Con \(p_0=0{,}20\), \(\Delta=0{,}05\), \(lpha=0{,}05\) y potencia \(0{,}80\), el tamaño muestral requerido es del orden de cientos de observaciones.</p></section>
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Esta calculadora estima el tamaño muestral para contrastar una proporción con hipótesis nula \(H_0: p=p_0\), nivel de significación \(\alpha\), potencia \(1-\beta\) y diferencia mínima detectable \(\Delta=|p_1-p_0|\).</p>
+            <p>Permite alternativas bilateral (\(H_a: p\neq p_0\)) o unilateral (\(H_a: p\geq p_0\), \(H_a: p\leq p_0\)).</p>
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n=\left(\frac{Z_{\alpha^*}\sqrt{p_0(1-p_0)} + Z_{\beta}\sqrt{p_1(1-p_1)}}{\Delta}\right)^2 \)</p>
+            <ul>
+                <li><strong>\(\alpha^*\)</strong>: \(\alpha/2\) en bilateral y \(\alpha\) en unilateral.</li>
+                <li><strong>\(p_0\)</strong>: proporción bajo hipótesis nula.</li>
+                <li><strong>\(p_1\)</strong>: proporción bajo alternativa (según \(\Delta\) y dirección).</li>
+                <li><strong>\(1-\beta\)</strong>: potencia objetivo.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li><strong>p0:</strong> valor nulo que quieres contrastar.</li>
+                <li><strong>Δ:</strong> diferencia mínima clínicamente o prácticamente relevante.</li>
+                <li><strong>α:</strong> 0,05 como valor típico.</li>
+                <li><strong>Potencia:</strong> 0,80 o 0,90 según exigencia del estudio.</li>
+                <li><strong>Sentido de Ha:</strong> elige bilateral o unilateral según hipótesis previa.</li>
+            </ul>
+            <h2>Ejemplo sencillo</h2>
+            <p>Si \(p_0=0{,}20\), \(\Delta=0{,}05\), \(\alpha=0{,}05\) y potencia 0,80, el tamaño muestral requerido es del orden de cientos de observaciones.</p>
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li>Muestreo aleatorio e independencia.</li>
+                <li>Aproximación normal válida para la proporción en el rango de n planificado.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Calcula n mínimo para contraste de una proporción con potencia, alfa y tamaño de efecto absoluto fijado.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-una-proporcion.html">Una proporción (estimación)</a></li>
+                    <li><a href="tamano-muestral-dos-proporciones.html">Dos proporciones</a></li>
+                    <li><a href="contraste-hipotesis-una-proporcion.html">Contraste de hipótesis para una proporción</a></li>
+                </ul>
+            </section>
+        </section>
 
     </main>
 
@@ -220,7 +263,8 @@ function calculateOnePropSampleSize() {
 
     const zAlpha = alternative === "two-sided" ? jStat.normal.inv(1 - alpha / 2, 0, 1) : jStat.normal.inv(1 - alpha, 0, 1);
     const zBeta = jStat.normal.inv(power, 0, 1);
-    const p1 = Math.min(0.9999, Math.max(0.0001, p0 + delta));
+    const signedDelta = alternative === "less" ? -delta : delta;
+    const p1 = Math.min(0.9999, Math.max(0.0001, p0 + signedDelta));
     const n = Math.ceil(Math.pow((zAlpha * Math.sqrt(p0 * (1 - p0)) + zBeta * Math.sqrt(p1 * (1 - p1))) / delta, 2));
     const altText = alternative === "two-sided" ? "Ha: p ≠ p0" : (alternative === "greater" ? "Ha: p ≥ p0" : "Ha: p ≤ p0");
 

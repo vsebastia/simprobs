@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Calculadora de tamaño muestral para contraste de una media | ProbLab</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calcula el tamaño muestral mínimo para estimar una media poblacional con precisión definida. Introduce desviación estándar, margen de error y confianza.">
-    <meta name="keywords" content="calculadora tamaño muestral media, calcular muestra para estimar media, tamaño muestral desviación estándar, muestra mínima estimación media, precisión estadística tamaño muestra, ProbLab, estadística online, calculadora estadística">
+    <meta name="description" content="Calcula el tamaño muestral para contraste de hipótesis de una media con H0: μ = μ0, alternativas bilateral/unilateral, alfa, potencia y Δ.">
+    <meta name="keywords" content="tamaño muestral contraste una media, calcular muestra test una media, potencia estadística una media, H0 mu igual mu0, contraste unilateral bilateral media, ProbLab, estadística online">
     <link rel="canonical" href="https://problabtools.es/tamano-muestral-contraste-una-media.html">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Calculadora de tamaño muestral para contraste de una media | ProbLab">
-    <meta property="og:description" content="Calcula el tamaño muestral mínimo para estimar una media poblacional con precisión definida. Introduce desviación estándar, margen de error y confianza.">
+    <meta property="og:description" content="Calcula el tamaño muestral para contraste de hipótesis de una media con H0: μ = μ0, alternativas bilateral/unilateral, alfa, potencia y Δ.">
     <meta property="og:url" content="https://problabtools.es/tamano-muestral-contraste-una-media.html">
     <meta property="og:site_name" content="ProbLab">
     <meta property="og:image" content="https://problabtools.es/og-image.png">
@@ -22,7 +22,7 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Calculadora de tamaño muestral para contraste de una media | ProbLab">
-    <meta name="twitter:description" content="Calcula el tamaño muestral mínimo para estimar una media poblacional con precisión definida. Introduce desviación estándar, margen de error y confianza.">
+    <meta name="twitter:description" content="Calcula el tamaño muestral para contraste de hipótesis de una media con H0: μ = μ0, alternativas bilateral/unilateral, alfa, potencia y Δ.">
     <meta name="twitter:image" content="https://problabtools.es/og-image.png">
     <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para contraste de una media">
         <script type="application/ld+json">
@@ -41,7 +41,7 @@
           "@type": "WebPage",
           "name": "Calculadora de tamaño muestral para contraste de una media | ProbLab",
           "url": "https://problabtools.es/tamano-muestral-contraste-una-media.html",
-          "description": "Calcula la muestra mínima para estimar una media con margen de error, desviación típica y nivel de confianza.",
+          "description": "Calcula el tamaño muestral para contraste de hipótesis de una media con alfa, potencia y diferencia mínima detectable.",
           "inLanguage": "es",
           "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
         }
@@ -56,7 +56,7 @@
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web",
       "url": "https://problabtools.es/tamano-muestral-contraste-una-media.html",
-      "description": "Calcula la muestra mínima para estimar una media con margen de error, desviación típica y nivel de confianza.",
+      "description": "Calcula el tamaño muestral para contraste de hipótesis de una media con alfa, potencia y diferencia mínima detectable.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -73,18 +73,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Qué es el margen de error?",
+      "name": "¿Qué representa Δ en esta calculadora?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Es la precisión máxima tolerada respecto al valor real."
+        "text": "Es la diferencia mínima entre μ y μ0 que quieres poder detectar con la potencia indicada."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Qué significa nivel de confianza?",
+      "name": "¿Qué alternativa debo elegir?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero."
+        "text": "Usa bilateral si no tienes dirección previa y unilateral si solo te interesa detectar cambio en un sentido."
       }
     },
     {
@@ -184,8 +184,54 @@
             <div id="oneMeanResult" class="result-box">Resultado pendiente…</div>
         </section>
 
-        <section class="card content-card"><h2>Explicación breve</h2><p>Esta calculadora estima el tamaño muestral para un contraste de una media: \(H_0: \mu=\mu_0\) frente a alternativas bilateral o unilateral.</p><h2>Fórmula utilizada</h2><p class="formula-line">\( n = ((Z_{lpha^*}+Z_{eta})\sigma/\Delta)^2 \)</p><p>Con \(lpha^*=lpha/2\) para Ha: \(\mu
-eq\mu_0\), y \(lpha^*=lpha\) para Ha: \(\mu\geq\mu_0\) o Ha: \(\mu\leq\mu_0\).</p><ul><li>\(\sigma\): desviación estándar esperada.</li><li>\(\Delta\): diferencia mínima detectable \(|\mu-\mu_0|\).</li><li>\(1-eta\): potencia objetivo.</li></ul><h2>Ejemplo</h2><p>Si \(\sigma=10\), \(\Delta=2\), \(lpha=0{,}05\), potencia \(0{,}80\) y contraste bilateral, el tamaño muestral es cercano a 196 observaciones.</p></section>
+        <section class="card content-card">
+            <h2>Explicación breve</h2>
+            <p>Esta calculadora estima el tamaño muestral para el contraste de una media poblacional con hipótesis nula \(H_0: \mu=\mu_0\), nivel de significación \(\alpha\), potencia \(1-\beta\) y diferencia mínima detectable \(\Delta=|\mu-\mu_0|\).</p>
+            <p>Se puede configurar alternativa bilateral (\(H_a: \mu \neq \mu_0\)) o unilateral (\(H_a: \mu \geq \mu_0\) o \(H_a: \mu \leq \mu_0\)). En unilateral, el cuantil crítico es menor y el tamaño muestral suele reducirse.</p>
+
+            <h2>Fórmula de tamaño muestral</h2>
+            <p class="formula-line">\( n = \left(\frac{(Z_{\alpha^*}+Z_{\beta})\sigma}{\Delta}\right)^2 \)</p>
+            <ul>
+                <li><strong>\(\alpha^*\)</strong>: \(\alpha/2\) para alternativa bilateral, \(\alpha\) para unilateral.</li>
+                <li><strong>\(\sigma\)</strong>: desviación estándar esperada.</li>
+                <li><strong>\(\Delta\)</strong>: diferencia mínima detectable \(|\mu-\mu_0|\).</li>
+                <li><strong>\(1-\beta\)</strong>: potencia objetivo del contraste.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h2>Configuración rápida</h2>
+            <ul>
+                <li><strong>σ:</strong> usa datos históricos, piloto o literatura.</li>
+                <li><strong>Δ:</strong> define la mínima diferencia relevante en las unidades originales.</li>
+                <li><strong>α:</strong> 0,05 es habitual; 0,01 para escenarios confirmatorios.</li>
+                <li><strong>Potencia:</strong> 0,80 mínimo frecuente; 0,90 cuando quieres reducir falsos negativos.</li>
+                <li><strong>H0 y alternativa:</strong> especifica \(\mu_0\) y el sentido del contraste según el objetivo científico.</li>
+            </ul>
+            <h2>Ejemplo sencillo</h2>
+            <p>Con \(\sigma=10\), \(\Delta=2\), \(\alpha=0{,}05\), potencia 0,80 y alternativa bilateral, se requiere aproximadamente \(n \approx 197\).</p>
+            <h2>Supuestos del modelo</h2>
+            <ul>
+                <li>Muestra aleatoria e independencia entre observaciones.</li>
+                <li>Distribución aproximadamente normal o n grande (TLC).</li>
+                <li>Desviación estándar esperada razonablemente estimada.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Calcula el tamaño muestral mínimo para un contraste de una media con \(H_0: \mu=\mu_0\), potencia objetivo y nivel de significación definido.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El valor obtenido es el mínimo teórico de observaciones válidas. Si prevés pérdidas, incrementa el reclutamiento en consecuencia.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-una-media.html">Una media (estimación)</a></li>
+                    <li><a href="tamano-muestral-diferencia-medias.html">Dos medias independientes</a></li>
+                    <li><a href="contraste-hipotesis-una-media.html">Contraste de hipótesis para una media</a></li>
+                </ul>
+            </section>
+        </section>
 
     </main>
 
