@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para medias apareadas (IC) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral mínimo para estimar la diferencia media en datos apareados (antes/después) con un margen de error y nivel de confianza dados.">
+    <meta name="keywords" content="calculadora tamaño muestral medias apareadas, muestra antes después, tamaño muestral diferencia media apareada, precisión intervalo confianza medias apareadas, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-medias-apareadas-ic.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para medias apareadas (IC) | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral mínimo para estimar la diferencia media en datos apareados (antes/después) con un margen de error y nivel de confianza dados.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-medias-apareadas-ic.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para medias apareadas">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-medias-apareadas-ic.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para medias apareadas (IC) | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral mínimo para estimar la diferencia media en datos apareados (antes/después) con un margen de error y nivel de confianza dados.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para medias apareadas">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Medias apareadas (IC)", "item": "https://problabtools.es/tamano-muestral-medias-apareadas-ic.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para medias apareadas (IC) | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-medias-apareadas-ic.html",
+          "description": "Calcula el número mínimo de pares necesarios para estimar la diferencia media con un margen de error y nivel de confianza predefinidos.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para medias apareadas (IC)",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-medias-apareadas-ic.html",
+      "description": "Calcula el número mínimo de pares necesarios para estimar la diferencia media con un margen de error y nivel de confianza predefinidos.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es σ_d en el tamaño muestral para medias apareadas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es la desviación estándar de las diferencias individuales entre cada par de observaciones, no la desviación estándar de cada grupo por separado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo se usa el tamaño muestral para medias apareadas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cuando el diseño del estudio empareja observaciones: medición antes/después en los mismos sujetos, dos métodos aplicados a las mismas muestras o sujetos emparejados por características relevantes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo estimo σ_d si no tengo datos previos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Usa datos piloto de al menos 10–20 pares, o busca estudios similares en la literatura. Una regla aproximada: σ_d ≈ rango esperado de las diferencias dividido entre 4."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El tamaño muestral es exacto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Depende del supuesto sobre σ_d y del redondeo hacia arriba. En la práctica añade un margen del 10–20 % para compensar pares inválidos o pérdidas."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Medias apareadas (IC)</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para medias apareadas (IC)</h1>
+        <p class="hero-subtitle">Estima el número mínimo de pares necesarios para medir la diferencia media en un diseño antes/después o de medidas repetidas con una precisión objetivo.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Calcula el número mínimo de pares para estimar la diferencia media con precisión objetivo.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="pairedSigmaD">Desviación estándar de las diferencias (σ<sub>d</sub>)</label>
+                        <input type="number" id="pairedSigmaD" value="8" step="0.1" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="pairedE">Margen de error (E)</label>
+                        <input type="number" id="pairedE" value="2" step="0.1" min="0.0001">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pairedConfidence">Nivel de confianza</label>
+                    <select id="pairedConfidence">
+                        <option value="0.90">90%</option>
+                        <option value="0.95" selected>95%</option>
+                        <option value="0.99">99%</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="pairedCalculateBtn">Calcular tamaño muestral</button>
+            <div id="pairedResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>Esta calculadora determina el número mínimo de pares de observaciones para estimar la diferencia media poblacional \(\mu_d\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado. Se usa cuando el diseño empareja cada observación de un grupo con una observación concreta del otro: medición antes/después en los mismos sujetos, dos métodos aplicados a las mismas muestras, o pares emparejados por características relevantes.</p>
+            <p>La fórmula es matemáticamente idéntica a la del tamaño muestral para una media, pero aplicada a las diferencias. El parámetro clave que debes conocer de antemano es \(\sigma_d\), la desviación estándar de las diferencias individuales \(d_i = x_{i,\text{después}} - x_{i,\text{antes}}\). Este valor no es la desviación estándar de cada grupo por separado, sino la dispersión de los cambios individuales.</p>
+            <p>La fórmula usa el cuantil normal Z, lo que supone que \(\sigma_d\) es conocida o que la muestra es suficientemente grande. Para muestras pequeñas (&lt; 30 pares) con \(\sigma_d\) desconocida, el n real puede ser algo mayor; puedes iterar reemplazando Z por el cuantil t con n−1 grados de libertad.</p>
+
+            <h3>Fórmula de tamaño muestral</h3>
+            <p class="formula-line">\( n = \left(\dfrac{Z \cdot \sigma_d}{E}\right)^2 \)</p>
+            <ul>
+                <li><strong>n</strong>: número mínimo de pares (redondeado al entero superior).</li>
+                <li><strong>Z</strong>: cuantil normal — 1,645 (90 %), 1,960 (95 %), 2,576 (99 %).</li>
+                <li><strong>\(\sigma_d\)</strong>: desviación estándar de las diferencias individuales \(d_i\).</li>
+                <li><strong>E</strong>: margen de error absoluto máximo tolerable para \(\mu_d\) (en las mismas unidades que las diferencias).</li>
+            </ul>
+
+            <h3>Relación entre σ_d, E y n</h3>
+            <p>El tamaño muestral crece cuadráticamente con la precisión exigida: reducir E a la mitad cuadruplica n. También crece cuadráticamente con \(\sigma_d\): si la variabilidad de los cambios individuales es el doble, necesitas cuatro veces más pares. Una clave del diseño apareado es que \(\sigma_d\) suele ser menor que la desviación estándar de cada grupo por separado cuando las mediciones están correlacionadas, lo que hace este diseño más eficiente que comparar dos grupos independientes.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Configuración rápida</h3>
+            <ul>
+                <li><strong>Desviación estándar de las diferencias (σ_d):</strong> tómala de estudios piloto, de la literatura o de datos históricos del mismo tipo de medición. No confundas σ_d con la desviación típica de cada grupo.</li>
+                <li><strong>Si no tienes σ_d:</strong> realiza un estudio piloto de 10–20 pares y calcula la desviación estándar de las diferencias. Como alternativa conservadora, usa la desviación estándar de las mediciones individuales (tiende a sobreestimar σ_d cuando los pares están correlacionados).</li>
+                <li><strong>Nivel de confianza:</strong> 95 % es el estándar en la mayoría de disciplinas científicas.</li>
+                <li><strong>Error máximo E:</strong> defínelo en las mismas unidades que las diferencias y en términos prácticos: ¿a partir de qué diferencia en el cambio medio tomarías una decisión diferente?</li>
+                <li><strong>Pérdidas esperadas:</strong> divide n entre (1 − tasa de abandono esperada). En estudios longitudinales es habitual reservar un 10–20 % adicional.</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un equipo clínico quiere estimar el descenso medio de la presión arterial sistólica (mmHg) tras 8 semanas de tratamiento con un nuevo fármaco. De un estudio piloto con 15 pacientes obtienen que la desviación estándar de las diferencias individuales (antes − después) es \(\sigma_d \approx 8{,}0\) mmHg. El equipo decide que la estimación debe ser precisa dentro de \(E = 2\) mmHg con un nivel de confianza del 95 % (\(Z = 1{,}960\)).</p>
+            <p>Aplicamos la fórmula directamente:</p>
+            <p class="formula-line">\( n = \left(\dfrac{Z \cdot \sigma_d}{E}\right)^2 = \left(\dfrac{1{,}960 \times 8{,}0}{2{,}0}\right)^2 = (7{,}84)^2 = 61{,}47 \rightarrow n = 62 \text{ pares} \)</p>
+            <p>Se necesitan al menos <strong>62 pacientes</strong> con mediciones válidas antes y después. Con una pérdida esperada del 15 %, el número de pacientes a reclutar inicialmente es:</p>
+            <p class="formula-line">\( n_{\text{reclutar}} = \frac{62}{1 - 0{,}15} = \frac{62}{0{,}85} \approx 73 \text{ pacientes} \)</p>
+            <p><strong>Análisis de sensibilidad:</strong> si el equipo aceptase un margen de error de \(E = 3\) mmHg, la muestra se reduciría considerablemente: \( n = (1{,}960 \times 8{,}0 / 3{,}0)^2 = (5{,}227)^2 = 27{,}3 \rightarrow n = 28\). Definir correctamente el margen de error tolerable tiene un impacto enorme en la viabilidad del estudio.</p>
+
+            <h3>Usos frecuentes</h3>
+            <ul>
+                <li>Ensayos clínicos de intervención con medición pre y post en los mismos sujetos.</li>
+                <li>Estudios de validación de métodos de medición (comparación instrumento A vs. B en las mismas muestras).</li>
+                <li>Experimentos educativos o psicológicos con diseño antes/después.</li>
+                <li>Control de calidad con muestras medidas por dos operarios o en dos momentos.</li>
+            </ul>
+
+            <h3>Supuestos del modelo</h3>
+            <ul>
+                <li>Los pares son independientes entre sí (pero las dos observaciones dentro de cada par no lo son, y eso es exactamente lo que el diseño aprovecha).</li>
+                <li>La distribución de las diferencias \(d_i\) es aproximadamente normal, o n es suficientemente grande para que el TCL garantice la normalidad del estimador.</li>
+                <li>La desviación estándar \(\sigma_d\) es conocida o se estima de forma fiable.</li>
+                <li>El margen de error \(E\) se aplica a la diferencia media \(\mu_d\), no a cada grupo por separado.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Calcula el número mínimo de pares de observaciones para estimar la diferencia media poblacional \(\mu_d\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado, usando el cuantil normal \(Z\) y la desviación estándar de las diferencias \(\sigma_d\).</p>
+            <h3>Fórmula utilizada</h3>
+            <p>\( n = (Z \cdot \sigma_d / E)^2 \). El resultado se redondea al entero superior. La fórmula asume \(\sigma_d\) conocida; para \(\sigma_d\) desconocida con n pequeño, sustituye \(Z\) por el cuantil \(t(n-1)\) de forma iterativa.</p>
+            <h3>Ejemplo de uso</h3>
+            <p>σ_d = 8, E = 2, 95 % confianza → n = 62 pares. Con E = 3 → n = 28 pares. La relación es inversa al cuadrado del error.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El n es el número mínimo de pares válidos. Si tienes incertidumbre sobre el valor de \(\sigma_d\), calcula n para \(\sigma_d \pm 25\,\%\) y usa el mayor como margen de seguridad.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="intervalo-confianza-medias-apareadas.html">Intervalo de confianza para medias apareadas</a></li>
+                    <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media (IC)</a></li>
+                    <li><a href="tamano-muestral-diferencia-medias.html">Tamaño muestral para dos medias independientes (IC)</a></li>
+                    <li><a href="tamano-muestral-medias-apareadas.html">Tamaño muestral para medias apareadas (contraste H0)</a></li>
+                    <li><a href="contraste-hipotesis-dos-medias.html">Contraste de hipótesis para dos medias</a></li>
+                </ul>
+            </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Altman, D. G. (1991). <em>Practical Statistics for Medical Research</em>. Chapman &amp; Hall. — diseño de estudios apareados y cálculo del tamaño muestral.</li>
+                <li>Machin, D., Campbell, M. J., Tan, S. B., &amp; Tan, S. H. (2018). <em>Sample Sizes for Clinical, Laboratory and Epidemiology Studies</em> (4.ª ed.). Wiley-Blackwell.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Sample_size_determination" target="_blank" rel="noopener">Sample size determination</a> — derivación para medias y otras variantes.</li>
+            </ul>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué pasa si σ_d es mayor de lo esperado?</strong> El margen de error real será mayor que E. Por eso conviene ser conservador al estimar σ_d y, si hay dudas, realizar un análisis de sensibilidad con distintos valores.</li>
+                <li><strong>¿Cuándo debo usar t en lugar de Z?</strong> Cuando n &lt; 30 y σ_d es desconocida. Itera: calcula n con Z, luego reemplaza Z por t(n−1) y recalcula hasta convergencia.</li>
+                <li><strong>¿Este cálculo sirve para el contraste de hipótesis?</strong> No directamente. Para detectar una diferencia con una potencia y nivel de significación dados, usa la <a href="tamano-muestral-medias-apareadas.html">calculadora de medias apareadas para contraste H0</a>.</li>
+                <li><strong>¿Por qué el diseño apareado puede necesitar menos sujetos que el de dos grupos independientes?</strong> Porque \(\sigma_d\) suele ser menor que \(\sqrt{\sigma_1^2 + \sigma_2^2}\) cuando las mediciones dentro de cada par están correlacionadas positivamente. Cuanto mayor es esa correlación, más eficiente es el diseño apareado.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculatePairedMeansSampleSize() {
+    const sigmaD = parseFloat(document.getElementById('pairedSigmaD').value);
+    const e = parseFloat(document.getElementById('pairedE').value);
+    const confidence = parseFloat(document.getElementById('pairedConfidence').value);
+    const resultEl = document.getElementById('pairedResult');
+
+    if (!Number.isFinite(sigmaD) || sigmaD <= 0) {
+        resultEl.innerText = 'Error: σ_d debe ser mayor que 0.';
+        return;
+    }
+    if (!Number.isFinite(e) || e <= 0) {
+        resultEl.innerText = 'Error: E debe ser mayor que 0.';
+        return;
+    }
+    if (!Number.isFinite(confidence) || confidence <= 0 || confidence >= 1) {
+        resultEl.innerText = 'Error: el nivel de confianza debe estar entre 0 y 1.';
+        return;
+    }
+
+    const alpha = 1 - confidence;
+    const z = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const n = Math.ceil(Math.pow((z * sigmaD) / e, 2));
+    const confPct = Math.round(confidence * 100);
+
+    resultEl.innerText =
+        `n mínimo recomendado: ${n} pares (${confPct} % de confianza, σ_d = ${sigmaD}, E = ${e}).\n` +
+        `Z = ${z.toFixed(4)}  |  (Z · σ_d / E)² = ${Math.pow((z * sigmaD) / e, 2).toFixed(2)} → n = ${n}`;
+}
+
+document.getElementById('pairedCalculateBtn').addEventListener('click', calculatePairedMeansSampleSize);
+calculatePairedMeansSampleSize();
+</script>
+</body>
+</html>
