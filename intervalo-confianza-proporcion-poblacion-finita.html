@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intervalo de confianza para una proporción (población finita) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora del intervalo de confianza para una proporción con corrección por población finita (FPC). Compara el IC corregido con el estándar.">
+    <meta name="keywords" content="intervalo de confianza proporción población finita, IC proporción FPC, corrección finita proporción, intervalo confianza muestra finita, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/intervalo-confianza-proporcion-poblacion-finita.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Intervalo de confianza para una proporción (población finita) | ProbLab">
+    <meta property="og:description" content="Calculadora del intervalo de confianza para una proporción con corrección por población finita (FPC).">
+    <meta property="og:url" content="https://problabtools.es/intervalo-confianza-proporcion-poblacion-finita.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="IC para proporción en población finita">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/intervalo-confianza-proporcion-poblacion-finita.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Intervalo de confianza para una proporción (población finita) | ProbLab">
+    <meta name="twitter:description" content="Calculadora del intervalo de confianza para una proporción con corrección por población finita (FPC).">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="IC para proporción en población finita">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Intervalos de confianza", "item": "https://problabtools.es/intervalos-confianza/"},
+            {"@type": "ListItem", "position": 3, "name": "IC proporción población finita", "item": "https://problabtools.es/intervalo-confianza-proporcion-poblacion-finita.html"}
+          ]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Intervalo de confianza para una proporción (población finita)",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Web",
+          "url": "https://problabtools.es/intervalo-confianza-proporcion-poblacion-finita.html",
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuándo se aplica la corrección por población finita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cuando la muestra representa más del 5 % de la población total (n/N > 0,05). Para fracciones menores, la corrección es marginal y el IC estándar es suficiente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es el factor de corrección por población finita (FPC)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "FPC = sqrt((N−n)/(N−1)). Es un factor menor que 1 que reduce el error estándar del estimador cuando se muestrea una fracción apreciable de la población total sin reemplazamiento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué el IC corregido es más estrecho?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque muestrear sin reemplazamiento reduce la incertidumbre respecto a muestrear con reemplazamiento. Cuanto mayor es la fracción de muestreo n/N, mayor es la reducción del error estándar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se puede usar Wilson con FPC?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No de forma directa. La corrección FPC se aplica al error estándar del método de Wald. Para muestras pequeñas con proporciones extremas en poblaciones finitas, la corrección Wald+FPC sigue siendo una buena aproximación práctica."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="intervalos-confianza/">Intervalos</a></li>
+            <li><span aria-current="page">Proporción (población finita)</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Intervalos de confianza</p>
+        <h1>Intervalo de confianza para una proporción (población finita)</h1>
+        <p class="hero-subtitle">Estima la proporción poblacional con la corrección por población finita (FPC) cuando el universo total N es conocido y el tamaño muestral es una fracción apreciable de él.</p>
+        <p class="hero-links"><a class="hero-link-button" href="intervalos-confianza/">Ver todos los intervalos</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los éxitos, el tamaño muestral, el tamaño poblacional y el nivel de confianza.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="fpX">Número de éxitos (x)</label>
+                        <input type="number" id="fpX" value="134" step="1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="fpN">Tamaño muestral (n)</label>
+                        <input type="number" id="fpN" value="200" step="1" min="1">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="fpBigN">Tamaño poblacional (N)</label>
+                        <input type="number" id="fpBigN" value="800" step="1" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="fpConf">Nivel de confianza</label>
+                        <select id="fpConf">
+                            <option value="0.90">90 %</option>
+                            <option value="0.95" selected>95 %</option>
+                            <option value="0.99">99 %</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="fpCalcBtn">Calcular intervalo</button>
+            <div id="fpResult" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="fpChart" aria-label="Gráfico del intervalo de confianza para la proporción" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>Cuando se muestrea sin reemplazamiento una fracción apreciable de una población finita de tamaño \(N\), las observaciones ya no son estrictamente independientes. El <strong>factor de corrección por población finita</strong> (FPC) ajusta el error estándar para tener en cuenta que conocer parte de la población reduce la incertidumbre sobre el resto.</p>
+            <p>El FPC es relevante cuando la fracción de muestreo \(f = n/N\) supera el 5 %. Por debajo de ese umbral, el IC estándar y el corregido son prácticamente iguales.</p>
+
+            <h3>Fórmula del IC con FPC</h3>
+            <p class="formula-line">\( \hat{p} = \frac{x}{n} \)</p>
+            <p class="formula-line">\( \text{FPC} = \sqrt{\frac{N-n}{N-1}} \)</p>
+            <p class="formula-line">\( \text{SE}_{\text{FPC}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \cdot \text{FPC} \)</p>
+            <p class="formula-line">\( \text{IC} = \hat{p} \pm z_{\alpha/2} \cdot \text{SE}_{\text{FPC}} \)</p>
+            <ul>
+                <li><strong>\(\hat{p}\)</strong>: proporción muestral observada (\(x/n\)).</li>
+                <li><strong>FPC</strong>: factor que reduce el error estándar cuando \(n/N\) es grande. Si \(n \ll N\), FPC ≈ 1.</li>
+                <li><strong>z_{α/2}</strong>: cuantil normal estándar (1,645 para 90 %; 1,960 para 95 %; 2,576 para 99 %).</li>
+            </ul>
+
+            <h3>Cuándo el FPC es importante</h3>
+            <ul>
+                <li>\(f = n/N &gt; 5\,\%\): la corrección reduce perceptiblemente el IC.</li>
+                <li>\(f &gt; 20\,\%\): la reducción del IC es sustancial.</li>
+                <li>\(f &lt; 5\,\%\): la diferencia entre IC corregido y sin corregir es menor del 3 % y puede ignorarse.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>En una empresa de 800 empleados (N = 800), se encuesta a 200 (n = 200) y 134 declaran estar satisfechos. La fracción de muestreo es \(f = 200/800 = 25\,\%\), muy superior al umbral del 5 %, por lo que la corrección es obligatoria.</p>
+            <p>\(\hat{p} = 134/200 = 0{,}67\). El FPC es \(\sqrt{(800-200)/(800-1)} = \sqrt{600/799} \approx 0{,}8665\).</p>
+            <p>El error estándar sin corrección es \(\sqrt{0{,}67 \cdot 0{,}33/200} \approx 0{,}03325\), y con FPC es \(0{,}03325 \times 0{,}8665 \approx 0{,}02880\).</p>
+            <p>El IC al 95 % con FPC es \(0{,}67 \pm 1{,}960 \times 0{,}02880 = [0{,}613,\; 0{,}727]\).</p>
+            <p>Sin corrección el IC sería \([0{,}605,\; 0{,}735]\). La corrección reduce la amplitud de ±6,5 pp a ±5,6 pp, un <strong>ahorro del 13 %</strong> en anchura gracias a la información adicional que aporta muestrear el 25 % de la población.</p>
+
+            <h3>Supuestos del modelo</h3>
+            <ul>
+                <li>Muestreo aleatorio simple <strong>sin reemplazamiento</strong> de una población de tamaño N exactamente conocido.</li>
+                <li>Condición de normalidad: \(n\hat{p} \geq 5\) y \(n(1-\hat{p}) \geq 5\).</li>
+                <li>N es fijo y conocido antes del muestreo; si hay incertidumbre sobre N, usa el IC estándar sin corrección.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Calcula el IC de Wald para una proporción con la corrección por población finita, mostrando también el IC sin corrección para comparar el efecto del FPC.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El IC corregido es siempre igual o más estrecho que el estándar. La diferencia es mayor cuanto más grande sea la fracción de muestreo \(n/N\). Si n/N &lt; 5 %, ambos ICs son prácticamente iguales.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="intervalo-confianza-proporcion.html">IC para una proporción (sin FPC)</a></li>
+                    <li><a href="intervalo-confianza-media-poblacion-finita.html">IC para una media (población finita)</a></li>
+                    <li><a href="tamano-muestral-proporcion-poblacion-finita.html">Tamaño muestral para proporción (población finita)</a></li>
+                </ul>
+            </section>
+            <h3>Referencias</h3>
+            <ul>
+                <li>Cochran, W. G. (1977). <em>Sampling Techniques</em> (3.ª ed.). Wiley.</li>
+                <li>Lohr, S. L. (2019). <em>Sampling: Design and Analysis</em> (3.ª ed.). Chapman &amp; Hall.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let fpChart;
+
+function renderFpChart(pHat, corrL, corrU, stdL, stdU) {
+    const ctx = document.getElementById('fpChart');
+    if (!ctx) return;
+
+    const margin = Math.max((stdU - stdL) * 0.5, 0.05);
+    const xMin = Math.max(0, Math.min(corrL, stdL) - margin);
+    const xMax = Math.min(1, Math.max(corrU, stdU) + margin);
+
+    const datasets = [
+        {
+            label: 'IC con FPC',
+            data: [{ x: corrL, y: 2 }, { x: corrU, y: 2 }],
+            borderColor: '#4f46e5',
+            borderWidth: 6,
+            pointRadius: 6,
+            pointBackgroundColor: '#4f46e5',
+            showLine: true,
+            parsing: false
+        },
+        {
+            label: 'IC sin FPC',
+            data: [{ x: stdL, y: 1 }, { x: stdU, y: 1 }],
+            borderColor: '#9ca3af',
+            borderWidth: 4,
+            borderDash: [6, 4],
+            pointRadius: 6,
+            pointBackgroundColor: '#9ca3af',
+            showLine: true,
+            parsing: false
+        },
+        {
+            label: 'p̂',
+            data: [{ x: pHat, y: 2 }, { x: pHat, y: 1 }],
+            borderColor: '#ef4444',
+            borderWidth: 2,
+            borderDash: [3, 3],
+            pointRadius: 0,
+            showLine: true,
+            parsing: false
+        }
+    ];
+
+    if (fpChart) fpChart.destroy();
+    fpChart = new Chart(ctx, {
+        type: 'scatter',
+        data: { datasets },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'linear', min: xMin, max: xMax,
+                    title: { display: true, text: 'Proporción' }
+                },
+                y: {
+                    type: 'linear', min: 0, max: 3,
+                    ticks: {
+                        callback: v => v === 2 ? 'Con FPC' : v === 1 ? 'Sin FPC' : '',
+                        stepSize: 1
+                    },
+                    grid: { display: false }
+                }
+            },
+            plugins: { legend: { display: true } }
+        }
+    });
+}
+
+function calculateFp() {
+    const x = parseFloat(document.getElementById('fpX').value);
+    const n = parseFloat(document.getElementById('fpN').value);
+    const bigN = parseFloat(document.getElementById('fpBigN').value);
+    const conf = parseFloat(document.getElementById('fpConf').value);
+    const resultEl = document.getElementById('fpResult');
+
+    if (!Number.isFinite(x) || x < 0) { resultEl.innerText = 'Error: x debe ser ≥ 0.'; return; }
+    if (!Number.isFinite(n) || n < 1) { resultEl.innerText = 'Error: n debe ser ≥ 1.'; return; }
+    if (x > n) { resultEl.innerText = 'Error: x no puede ser mayor que n.'; return; }
+    if (!Number.isFinite(bigN) || bigN < 2) { resultEl.innerText = 'Error: N debe ser ≥ 2.'; return; }
+    if (n > bigN) { resultEl.innerText = 'Error: n no puede ser mayor que N.'; return; }
+
+    const alpha = 1 - conf;
+    const z = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const pHat = x / n;
+    const fpc = Math.sqrt((bigN - n) / (bigN - 1));
+    const fraction = n / bigN;
+
+    const seStd = Math.sqrt(pHat * (1 - pHat) / n);
+    const seFpc = seStd * fpc;
+
+    const stdL = Math.max(0, pHat - z * seStd);
+    const stdU = Math.min(1, pHat + z * seStd);
+    const corrL = Math.max(0, pHat - z * seFpc);
+    const corrU = Math.min(1, pHat + z * seFpc);
+
+    const normOk = n * pHat >= 5 && n * (1 - pHat) >= 5;
+    const warning = normOk ? '' : '\n⚠ Condición de normalidad no cumplida (n·p̂ < 5 o n·(1−p̂) < 5). Interpreta el IC con precaución.';
+    const fpcMsg = fraction < 0.05 ? ' (fracción < 5 %; FPC marginal)' : '';
+
+    resultEl.innerText =
+        `p̂ = ${pHat.toFixed(6)}  |  Nivel: ${(conf * 100).toFixed(0)} %  |  z = ±${z.toFixed(4)}\n` +
+        `Fracción de muestreo f = n/N = ${(fraction * 100).toFixed(2)} %${fpcMsg}\n` +
+        `FPC = ${fpc.toFixed(6)}\n` +
+        `IC con FPC:   [${corrL.toFixed(6)}, ${corrU.toFixed(6)}]  (amplitud: ${(corrU - corrL).toFixed(6)})\n` +
+        `IC sin FPC:   [${stdL.toFixed(6)}, ${stdU.toFixed(6)}]  (amplitud: ${(stdU - stdL).toFixed(6)})\n` +
+        `Reducción de amplitud: ${((1 - (corrU - corrL) / (stdU - stdL)) * 100).toFixed(2)} %${warning}`;
+
+    renderFpChart(pHat, corrL, corrU, stdL, stdU);
+}
+
+document.getElementById('fpCalcBtn').addEventListener('click', calculateFp);
+calculateFp();
+</script>
+</body>
+</html>

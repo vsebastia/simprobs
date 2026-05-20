@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para odds ratio (IC) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral mínimo por grupo para estimar una odds ratio con una precisión dada en escala logarítmica. Fórmula, ejemplo e interpretación.">
+    <meta name="keywords" content="calculadora tamaño muestral odds ratio, muestra IC odds ratio, tamaño muestral OR intervalo confianza, precisión odds ratio epidemiología, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-odds-ratio-ic.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para odds ratio (IC) | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral mínimo por grupo para estimar una odds ratio con una precisión dada en escala logarítmica. Fórmula, ejemplo e interpretación.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-odds-ratio-ic.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para odds ratio">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-odds-ratio-ic.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para odds ratio (IC) | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral mínimo por grupo para estimar una odds ratio con una precisión dada en escala logarítmica.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para odds ratio">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Odds ratio (IC)", "item": "https://problabtools.es/tamano-muestral-odds-ratio-ic.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para odds ratio (IC) | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-odds-ratio-ic.html",
+          "description": "Calcula el número mínimo de observaciones por grupo para estimar una odds ratio con una amplitud de intervalo de confianza predefinida en escala logarítmica.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para odds ratio (IC)",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-odds-ratio-ic.html",
+      "description": "Calcula el número mínimo de observaciones por grupo para estimar una odds ratio con una amplitud de intervalo de confianza predefinida en escala logarítmica.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Por qué la precisión del IC para OR se expresa en escala logarítmica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque la distribución muestral de log(OR) es aproximadamente normal, mientras que la de OR es asimétrica y solo toma valores positivos. El error estándar de log(OR) es el parámetro estable que permite planificar el estudio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo interpreto el margen E_log?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "E_log es la semi-amplitud del IC en escala log(OR). El IC para OR va de OR·e^(−E_log) a OR·e^(+E_log). Por ejemplo, E_log=0,5 da un IC entre 0,61·OR y 1,65·OR; E_log=log(2)≈0,693 da un IC entre OR/2 y OR·2."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El resultado es por grupo o el total?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La fórmula da el número mínimo de observaciones por grupo (asignación 1:1 entre expuestos y no expuestos). El total de sujetos es 2·n."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El tamaño muestral es exacto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Depende de los valores supuestos de p₂ y OR, que deben estimarse de datos piloto o de la literatura. Añade un colchón del 10–20 % para compensar pérdidas o exclusiones."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Odds ratio (IC)</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para odds ratio (IC)</h1>
+        <p class="hero-subtitle">Estima el número mínimo de observaciones por grupo para obtener un intervalo de confianza para la odds ratio con una amplitud objetivo en escala logarítmica.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la OR esperada, la proporción del evento en el grupo de referencia y la precisión deseada en escala log(OR).</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="orOR">Odds ratio esperada (OR)</label>
+                        <input type="number" id="orOR" value="2.0" step="0.1" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="orP2">Proporción del evento en grupo de referencia (p₂)</label>
+                        <input type="number" id="orP2" value="0.20" step="0.01" min="0.0001" max="0.9999">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="orElog">Semi-amplitud del IC en escala log(OR) (E<sub>log</sub>)</label>
+                        <input type="number" id="orElog" value="0.5" step="0.05" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="orConfidence">Nivel de confianza</label>
+                        <select id="orConfidence">
+                            <option value="0.90">90%</option>
+                            <option value="0.95" selected>95%</option>
+                            <option value="0.99">99%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="orCalculateBtn">Calcular tamaño muestral</button>
+            <div id="orResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>La odds ratio (OR) mide la asociación entre una exposición y un evento en una tabla 2×2. Para planificar cuántos sujetos se necesitan para estimarla con una precisión dada, el cálculo se realiza en la escala logarítmica, porque \(\log(\widehat{OR})\) se distribuye aproximadamente normal con un error estándar que depende de los recuentos de cada celda.</p>
+            <p>Los inputs son: la OR que se espera encontrar, la proporción del evento en el grupo de referencia (\(p_2\)) y la precisión deseada expresada como semi-amplitud del IC en escala \(\log(OR)\). A partir de \(p_2\) y OR, la calculadora deriva \(p_1\) (proporción del evento en el grupo expuesto). Con ambas proporciones calcula el número mínimo de sujetos por grupo para que el IC tenga la amplitud fijada.</p>
+            <p>La fórmula asume asignación equilibrada (mismo número de sujetos en cada grupo) y suficientes recuentos en las cuatro celdas para que la aproximación normal sea válida.</p>
+
+            <h3>Fórmulas</h3>
+            <p>Dada la OR esperada y \(p_2\), la proporción del evento en el grupo expuesto se obtiene invirtiendo la definición de odds ratio:</p>
+            <p class="formula-line">\( p_1 = \frac{OR \cdot p_2}{1 + (OR - 1)\cdot p_2} \)</p>
+            <p>El error estándar de \(\log(\widehat{OR})\) para una tabla con \(n\) observaciones por grupo es:</p>
+            <p class="formula-line">\( SE\!\left[\log(\widehat{OR})\right] = \frac{1}{\sqrt{n}} \cdot \sqrt{\frac{1}{p_1(1-p_1)} + \frac{1}{p_2(1-p_2)}} \)</p>
+            <p>Imponiendo que el margen del IC sea \(E_{\log} = Z \cdot SE\), se despeja \(n\):</p>
+            <p class="formula-line">\( n = \frac{Z^2 \cdot \left[\dfrac{1}{p_1(1-p_1)} + \dfrac{1}{p_2(1-p_2)}\right]}{E_{\log}^2} \)</p>
+            <ul>
+                <li><strong>n</strong>: número mínimo de observaciones por grupo (total N = 2n).</li>
+                <li><strong>Z</strong>: cuantil normal — 1,645 (90 %), 1,960 (95 %), 2,576 (99 %).</li>
+                <li><strong>\(E_{\log}\)</strong>: semi-amplitud del IC en escala \(\log(OR)\). El IC para OR queda entre \(OR \cdot e^{-E_{\log}}\) y \(OR \cdot e^{+E_{\log}}\).</li>
+            </ul>
+
+            <h3>Cómo interpretar E_log</h3>
+            <p>La semi-amplitud \(E_{\log}\) determina cuánto puede alejarse cada límite del IC de la OR estimada en escala multiplicativa. Con OR = 2 y \(E_{\log} = 0{,}5\), el IC va de \(2 \cdot e^{-0{,}5} \approx 1{,}21\) a \(2 \cdot e^{+0{,}5} \approx 3{,}30\). Una referencia útil: \(E_{\log} = \log(2) \approx 0{,}693\) produce un IC donde el límite superior es exactamente el doble del inferior.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Configuración rápida</h3>
+            <ul>
+                <li><strong>OR esperada:</strong> basada en estudios previos o en la mínima asociación que consideras relevante.</li>
+                <li><strong>p₂ (grupo de referencia):</strong> frecuencia del evento en la población no expuesta. Es el parámetro que más influye junto con OR.</li>
+                <li><strong>E_log:</strong> semi-amplitud en escala log. Valores entre 0,3 y 0,7 son habituales. Menor E_log → IC más estrecho → más sujetos.</li>
+                <li><strong>Nivel de confianza:</strong> 95 % es el estándar; usa 99 % en decisiones regulatorias o de alto impacto.</li>
+                <li><strong>Pérdidas esperadas:</strong> divide n por grupo entre (1 − tasa de pérdida).</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un epidemiólogo quiere estimar la odds ratio de una enfermedad en expuestos vs. no expuestos a un factor de riesgo. Según la literatura, la proporción de la enfermedad en no expuestos es \(p_2 = 0{,}20\) y la OR esperada es 2,0. Se desea un IC al 95 % con una semi-amplitud de \(E_{\log} = 0{,}5\) en escala logarítmica.</p>
+            <p>Primero derivamos \(p_1\):</p>
+            <p class="formula-line">\( p_1 = \frac{2{,}0 \times 0{,}20}{1 + (2{,}0 - 1) \times 0{,}20} = \frac{0{,}40}{1{,}20} = 0{,}333 \)</p>
+            <p>Ahora calculamos n:</p>
+            <p class="formula-line">\( n = \frac{(1{,}960)^2 \cdot \left[\dfrac{1}{0{,}333 \times 0{,}667} + \dfrac{1}{0{,}20 \times 0{,}80}\right]}{(0{,}5)^2} = \frac{3{,}8416 \times (4{,}502 + 6{,}25)}{0{,}25} = \frac{41{,}30}{0{,}25} = 165{,}2 \rightarrow n = 166 \text{ por grupo} \)</p>
+            <p>Se necesitan <strong>166 sujetos por grupo</strong> (332 en total). El IC resultante para OR irá aproximadamente de \(2{,}0 \cdot e^{-0{,}5} \approx 1{,}21\) a \(2{,}0 \cdot e^{+0{,}5} \approx 3{,}30\), lo que corresponde a un cociente U/L = e ≈ 2,72.</p>
+            <p><strong>Análisis de sensibilidad:</strong> si la OR real fuese 3,0 en lugar de 2,0, el n se reduciría porque las proporciones estarían más separadas y la OR sería más fácil de estimar con precisión. Siempre es recomendable recalcular para un rango plausible de OR.</p>
+
+            <h3>Usos frecuentes</h3>
+            <ul>
+                <li>Diseño de estudios de cohortes o transversales donde la medida de asociación principal es la OR.</li>
+                <li>Planificación de análisis de regresión logística cuando se quiere caracterizar la OR con precisión suficiente.</li>
+                <li>Estudios de prevalencia de factores de riesgo en epidemiología analítica.</li>
+            </ul>
+
+            <h3>Supuestos del modelo</h3>
+            <ul>
+                <li>Diseño con dos grupos de igual tamaño (asignación 1:1 entre expuestos y no expuestos).</li>
+                <li>Suficientes recuentos en las cuatro celdas (\(n \cdot p_i\) y \(n \cdot (1-p_i)\) ≥ 5 en ambos grupos) para que la aproximación normal a \(\log(OR)\) sea válida.</li>
+                <li>Los valores de p₂ y OR son estimados de forma fiable; la incertidumbre en estos supuestos se propaga al tamaño muestral.</li>
+                <li>Para estudios caso-control con ratio cases:controls ≠ 1:1, la fórmula debe ajustarse.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Calcula el número mínimo de observaciones por grupo para estimar \(\log(OR)\) con una semi-amplitud \(E_{\log}\) y un nivel de confianza dado. Deriva \(p_1\) a partir de OR y \(p_2\), y usa el error estándar del logaritmo de la odds ratio.</p>
+            <h3>Fórmula utilizada</h3>
+            <p>\( p_1 = OR \cdot p_2 / (1 + (OR-1) \cdot p_2) \);  \( n = Z^2 \cdot (1/(p_1(1-p_1)) + 1/(p_2(1-p_2))) / E_{\log}^2 \). Total N = 2n.</p>
+            <h3>Ejemplo de uso</h3>
+            <p>OR=2, p₂=0,20, E_log=0,5, 95 % → n=166 por grupo (332 total). IC para OR: [1,21; 3,30]. Cociente U/L ≈ 2,72.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El n es el mínimo de observaciones por grupo asumiendo p₂ y OR exactos. Comprueba la sensibilidad variando p₂ ±0,05 y OR en un rango razonable.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="intervalo-confianza-odds-ratio.html">IC para la odds ratio</a></li>
+                    <li><a href="tamano-muestral-odds-ratio.html">Tamaño muestral para odds ratio (contraste H0)</a></li>
+                    <li><a href="intervalo-confianza-ratio-proporciones.html">IC para el ratio de proporciones (RR)</a></li>
+                    <li><a href="test-exacto-fisher.html">Test exacto de Fisher</a></li>
+                    <li><a href="contraste-independencia-chi-cuadrado.html">Chi-cuadrado de independencia</a></li>
+                </ul>
+            </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Woolf, B. (1955). On estimating the relation between blood group and disease, <em>Annals of Human Genetics</em>, 19, 251–253.</li>
+                <li>Kelsey, J. L., Whittemore, A. S., Evans, A. S., &amp; Thompson, W. D. (1996). <em>Methods in Observational Epidemiology</em> (2.ª ed.). Oxford University Press.</li>
+                <li>Schlesselman, J. J. (1982). <em>Case-Control Studies: Design, Conduct, Analysis</em>. Oxford University Press.</li>
+            </ul>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué E_log es razonable?</strong> Depende de cuánta imprecisión es tolerable. E_log=0,5 da un IC que varía por un factor e≈2,7 entre límites; E_log=0,3 lo reduce a e^(0,6)≈1,82. Menor E_log exige más muestra.</li>
+                <li><strong>¿Por qué la OR se estima en escala log?</strong> Porque log(OR) tiene distribución muestral aproximadamente normal y error estándar estable, mientras que OR es positiva y asimétrica.</li>
+                <li><strong>¿Este cálculo sirve para estudios caso-control?</strong> Con precaución. En caso-control la lógica es diferente (los grupos son casos y controles, no expuestos y no expuestos), aunque la fórmula puede usarse como aproximación cuando el evento no es raro.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculateORSampleSize() {
+    const OR = parseFloat(document.getElementById('orOR').value);
+    const p2 = parseFloat(document.getElementById('orP2').value);
+    const eLog = parseFloat(document.getElementById('orElog').value);
+    const confidence = parseFloat(document.getElementById('orConfidence').value);
+    const resultEl = document.getElementById('orResult');
+
+    if (!Number.isFinite(OR) || OR <= 0) {
+        resultEl.innerText = 'Error: la OR debe ser mayor que 0.';
+        return;
+    }
+    if (!Number.isFinite(p2) || p2 <= 0 || p2 >= 1) {
+        resultEl.innerText = 'Error: p₂ debe estar entre 0 y 1 (sin incluir extremos).';
+        return;
+    }
+    if (!Number.isFinite(eLog) || eLog <= 0) {
+        resultEl.innerText = 'Error: E_log debe ser mayor que 0.';
+        return;
+    }
+    if (!Number.isFinite(confidence) || confidence <= 0 || confidence >= 1) {
+        resultEl.innerText = 'Error: el nivel de confianza debe estar entre 0 y 1.';
+        return;
+    }
+
+    const p1 = (OR * p2) / (1 + (OR - 1) * p2);
+
+    if (p1 <= 0 || p1 >= 1) {
+        resultEl.innerText = 'Error: la combinación de OR y p₂ produce un p₁ fuera del rango (0, 1). Revisa los valores.';
+        return;
+    }
+
+    const alpha = 1 - confidence;
+    const z = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const varianceTerm = 1 / (p1 * (1 - p1)) + 1 / (p2 * (1 - p2));
+    const n = Math.ceil(z * z * varianceTerm / (eLog * eLog));
+    const confPct = Math.round(confidence * 100);
+    const ciRatio = Math.exp(2 * eLog);
+
+    resultEl.innerText =
+        `p₁ derivada = ${p1.toFixed(4)}  |  p₂ = ${p2.toFixed(4)}  |  OR = ${OR}\n` +
+        `n mínimo por grupo: ${n}  |  Total: ${2 * n} observaciones (${confPct} % de confianza)\n` +
+        `Z = ${z.toFixed(4)}  |  E_log = ${eLog}  |  Cociente U/L del IC = e^(2·E_log) = ${ciRatio.toFixed(3)}\n` +
+        `IC para OR ≈ [${(OR * Math.exp(-eLog)).toFixed(3)}, ${(OR * Math.exp(eLog)).toFixed(3)}]`;
+}
+
+document.getElementById('orCalculateBtn').addEventListener('click', calculateORSampleSize);
+calculateORSampleSize();
+</script>
+</body>
+</html>

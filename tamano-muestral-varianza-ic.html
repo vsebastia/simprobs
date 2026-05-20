@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para la varianza (IC) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral mínimo para estimar la varianza poblacional con un cociente U/L del intervalo de confianza predefinido usando la distribución chi-cuadrado.">
+    <meta name="keywords" content="calculadora tamaño muestral varianza, muestra IC varianza chi-cuadrado, tamaño muestral desviación típica intervalo confianza, precisión varianza poblacional, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-varianza-ic.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para la varianza (IC) | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral mínimo para estimar la varianza poblacional con un cociente U/L del intervalo de confianza predefinido usando la distribución chi-cuadrado.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-varianza-ic.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para la varianza">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-varianza-ic.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para la varianza (IC) | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral mínimo para estimar la varianza poblacional con un cociente U/L del intervalo de confianza predefinido.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para la varianza">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Varianza (IC)", "item": "https://problabtools.es/tamano-muestral-varianza-ic.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para la varianza (IC) | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-varianza-ic.html",
+          "description": "Calcula el número mínimo de observaciones para que el intervalo de confianza chi-cuadrado de la varianza tenga un cociente límite superior/límite inferior no mayor que el valor especificado.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para la varianza (IC)",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-varianza-ic.html",
+      "description": "Calcula el número mínimo de observaciones para que el intervalo de confianza chi-cuadrado de la varianza tenga un cociente U/L no mayor que el valor especificado.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es el cociente U/L del intervalo de confianza para la varianza?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es el cociente entre el límite superior y el límite inferior del IC de σ². Cuanto mayor es este cociente, más amplio e impreciso es el intervalo. Un cociente de 2 significa que el límite superior duplica al inferior."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué no se usa un margen de error absoluto como en otros cálculos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque el ancho absoluto del IC de la varianza depende del valor desconocido de σ². El cociente U/L depende solo del tamaño muestral y del nivel de confianza, no de σ², lo que lo convierte en la medida de precisión relativa más natural."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito conocer σ² para calcular el tamaño muestral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. El cociente U/L es independiente de σ²: U/L = χ²_{1-α/2,n-1}/χ²_{α/2,n-1}. La búsqueda es puramente en función de n y del nivel de confianza."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué supuestos son necesarios?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La variable subyacente debe seguir una distribución normal. El IC chi-cuadrado para la varianza es muy sensible a desviaciones de la normalidad, más que el IC para la media."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Varianza (IC)</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para la varianza (IC)</h1>
+        <p class="hero-subtitle">Estima el número mínimo de observaciones para que el intervalo de confianza chi-cuadrado de la varianza tenga una amplitud relativa máxima.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce el cociente U/L máximo tolerable del IC y el nivel de confianza para obtener el tamaño muestral mínimo.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="varR">Cociente máximo U/L del IC (R)</label>
+                        <input type="number" id="varR" value="2.5" step="0.1" min="1.001">
+                    </div>
+                    <div class="form-group">
+                        <label for="varConfidence">Nivel de confianza</label>
+                        <select id="varConfidence">
+                            <option value="0.90">90%</option>
+                            <option value="0.95" selected>95%</option>
+                            <option value="0.99">99%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="varCalculateBtn">Calcular tamaño muestral</button>
+            <div id="varResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El intervalo de confianza para la varianza \(\sigma^2\) utiliza la distribución chi-cuadrado y tiene la forma:</p>
+            <p class="formula-line">\( \left[\frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}},\;\; \frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}}\right] \)</p>
+            <p>A diferencia de los ICs para medias o proporciones, el ancho <em>absoluto</em> del IC para la varianza depende del valor desconocido de \(\sigma^2\), lo que impide expresar la precisión en unidades absolutas sin conocerla de antemano. La solución natural es especificar la precisión en términos relativos: el <strong>cociente \(U/L\)</strong> entre el límite superior e inferior del IC.</p>
+            <p>Este cociente solo depende de los cuantiles de la chi-cuadrado, y por tanto únicamente del tamaño muestral \(n\) y del nivel de confianza. No se necesita ningún supuesto sobre \(\sigma^2\).</p>
+
+            <h3>Fórmula del cociente U/L</h3>
+            <p class="formula-line">\( \frac{U}{L} = \frac{\chi^2_{1-\alpha/2,\,n-1}}{\chi^2_{\alpha/2,\,n-1}} \)</p>
+            <p>Para un nivel de confianza y un cociente \(R\) deseado, la calculadora busca el menor \(n\) tal que \(\chi^2_{1-\alpha/2,\,n-1}/\chi^2_{\alpha/2,\,n-1} \leq R\). No existe una fórmula cerrada: el resultado se obtiene por búsqueda iterativa sobre \(n\).</p>
+            <ul>
+                <li><strong>R cercano a 1</strong>: IC muy estrecho → muestra enorme.</li>
+                <li><strong>R = 2</strong>: el límite superior dobla al inferior → muestra razonable (≈ 65 observaciones al 95 %).</li>
+                <li><strong>R = 3</strong>: el límite superior triplica al inferior → muestra mucho más pequeña (≈ 28 observaciones al 95 %).</li>
+            </ul>
+
+            <h3>Interpretación del cociente U/L</h3>
+            <p>Un cociente \(R = 2{,}5\) significa que el límite superior del IC puede ser hasta 2,5 veces mayor que el límite inferior. Por ejemplo, si \(s^2 = 4{,}0\), el IC podría ir de 2,5 a 6,25 (una variabilidad de 2,5 a 1 entre los extremos). Cuanto menor sea \(R\), más estrecho y más informativo es el IC, pero más observaciones son necesarias.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Configuración rápida</h3>
+            <ul>
+                <li><strong>Cociente R:</strong> R entre 2 y 4 es habitual en estudios de control de calidad y procesos. R muy cercano a 1 requiere muestras prohibitivamente grandes.</li>
+                <li><strong>Nivel de confianza:</strong> 95 % es el estándar. Con 99 % el n necesario es significativamente mayor para el mismo R.</li>
+                <li><strong>Normalidad:</strong> asegúrate de que los datos sean compatibles con normalidad; el IC chi-cuadrado es muy sensible a este supuesto.</li>
+                <li><strong>Pérdidas esperadas:</strong> divide n entre (1 − tasa de pérdida) para obtener el número de sujetos a reclutar.</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un laboratorio de metrología quiere estimar la varianza del error de medición de un instrumento para validar su calibración. Se establece que el IC al 95 % debe tener un cociente U/L no mayor que \(R = 2{,}5\) (el límite superior no puede ser más de 2,5 veces el inferior).</p>
+            <p>La calculadora busca el menor \(n\) tal que \(\chi^2_{0{,}975,\,n-1} / \chi^2_{0{,}025,\,n-1} \leq 2{,}5\). Para \(n = 39\) (gl = 38): \(\chi^2_{0{,}975,38} \approx 56{,}90\) y \(\chi^2_{0{,}025,38} \approx 22{,}88\), cociente \(\approx 2{,}49 \leq 2{,}5\). Para \(n = 38\): cociente \(\approx 2{,}52 > 2{,}5\). Resultado: <strong>\(n = 39\) observaciones</strong>.</p>
+            <p>Con esas 39 mediciones, si \(s = 0{,}12\) mm (varianza \(s^2 = 0{,}0144\) mm²), el IC al 95 % sería aproximadamente \([0{,}0144/2{,}49 \times r, \; 0{,}0144 \times r/1]\)... más precisamente, usando los cuantiles exactos: \([(38 \times 0{,}0144)/56{,}90,\; (38 \times 0{,}0144)/22{,}88] = [0{,}0096,\; 0{,}0239]\) mm². El cociente U/L real es \(0{,}0239/0{,}0096 \approx 2{,}49\).</p>
+            <p><strong>Análisis de sensibilidad:</strong> si el laboratorio acepta \(R = 3\) (el límite superior puede triplicar al inferior), la muestra se reduce a \(n = 28\). Con \(R = 2\) la muestra sube a \(n \approx 65\). La elección de \(R\) tiene un impacto muy grande en el n necesario.</p>
+
+            <h3>Usos frecuentes</h3>
+            <ul>
+                <li>Control estadístico de procesos (SPC): estimación de la varianza del proceso para cartas de control.</li>
+                <li>Validación de instrumentos de medición y estudios de reproducibilidad.</li>
+                <li>Diseño de experimentos donde la variabilidad es la variable de interés principal.</li>
+                <li>Auditoría de procesos productivos donde se necesita caracterizar la dispersión.</li>
+            </ul>
+
+            <h3>Supuestos del modelo</h3>
+            <ul>
+                <li>La variable de interés sigue una distribución normal. El IC chi-cuadrado para la varianza es muy sensible a la no normalidad, más que cualquier IC para la media.</li>
+                <li>Las observaciones son independientes entre sí.</li>
+                <li>El cociente U/L objetivo debe ser mayor que 1; la búsqueda iterativa parte de \(n = 2\).</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Encuentra por búsqueda iterativa el menor \(n\) tal que el cociente \(\chi^2_{1-\alpha/2,n-1}/\chi^2_{\alpha/2,n-1}\) sea menor o igual al cociente U/L máximo especificado. No requiere conocer \(\sigma^2\).</p>
+            <h3>Fórmula utilizada</h3>
+            <p>Búsqueda de mínimo \(n\) tal que \(U/L = \chi^2_{1-\alpha/2,n-1}/\chi^2_{\alpha/2,n-1} \leq R\). No hay fórmula cerrada; el cálculo es iterativo con cuantiles exactos de la chi-cuadrado.</p>
+            <h3>Ejemplo de uso</h3>
+            <p>R=2,5, 95 % → n≈39. R=2, 95 % → n≈65. R=3, 95 % → n≈28. Reducir R a la mitad aproximadamente cuadruplica la muestra necesaria.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El n garantiza que el IC chi-cuadrado tendrá un cociente U/L ≤ R independientemente del valor real de σ². Comprueba que los datos son compatibles con normalidad antes de aplicar este resultado.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="intervalo-confianza-varianza.html">IC para la varianza</a></li>
+                    <li><a href="tamano-muestral-una-media.html">Tamaño muestral para una media (IC)</a></li>
+                    <li><a href="contraste-hipotesis-varianzas.html">Contraste de hipótesis sobre varianzas</a></li>
+                    <li><a href="shapiro-wilk-normalidad.html">Test de normalidad Shapiro-Wilk</a></li>
+                    <li><a href="chisquare.html">Distribución chi-cuadrado</a></li>
+                </ul>
+            </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Zar, J. H. (2010). <em>Biostatistical Analysis</em> (5.ª ed.). Pearson. — cálculo de tamaño muestral para varianza.</li>
+                <li>Montgomery, D. C. (2019). <em>Introduction to Statistical Quality Control</em> (8.ª ed.). Wiley. — aplicaciones en SPC.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Chi-squared_distribution" target="_blank" rel="noopener">Chi-squared distribution</a> — propiedades y percentiles.</li>
+            </ul>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Por qué necesito tanta muestra para un IC de varianza estrecho?</strong> Porque la distribución chi-cuadrado converge lentamente a la simetría. Con pocos grados de libertad, los cuantiles extremos están muy separados, produciendo ICs muy asimétricos y amplios.</li>
+                <li><strong>¿Qué pasa si los datos no son normales?</strong> El IC chi-cuadrado puede tener una cobertura real muy distinta del nivel de confianza nominal. Aplica primero un test de normalidad (<a href="shapiro-wilk-normalidad.html">Shapiro-Wilk</a>) y, si los datos no son normales, considera transformaciones o métodos bootstrap.</li>
+                <li><strong>¿Puedo usar este resultado si quiero estimar σ en lugar de σ²?</strong> Sí. El IC para σ se obtiene aplicando raíz cuadrada a cada límite del IC de σ², y el cociente U/L es el mismo.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculateVarianceSampleSize() {
+    const R = parseFloat(document.getElementById('varR').value);
+    const confidence = parseFloat(document.getElementById('varConfidence').value);
+    const resultEl = document.getElementById('varResult');
+
+    if (!Number.isFinite(R) || R <= 1) {
+        resultEl.innerText = 'Error: el cociente U/L debe ser mayor que 1.';
+        return;
+    }
+    if (!Number.isFinite(confidence) || confidence <= 0 || confidence >= 1) {
+        resultEl.innerText = 'Error: el nivel de confianza debe estar entre 0 y 1.';
+        return;
+    }
+
+    const alpha = 1 - confidence;
+    const confPct = Math.round(confidence * 100);
+
+    let n = 2;
+    let ratio = Infinity;
+    while (n <= 100000) {
+        const df = n - 1;
+        const chiUpper = jStat.chisquare.inv(1 - alpha / 2, df);
+        const chiLower = jStat.chisquare.inv(alpha / 2, df);
+        ratio = chiUpper / chiLower;
+        if (ratio <= R) break;
+        n++;
+    }
+
+    if (ratio > R) {
+        resultEl.innerText = `No se encontró solución para R=${R} con ${confPct} % de confianza. Prueba con un cociente mayor.`;
+        return;
+    }
+
+    const df = n - 1;
+    const chiUpper = jStat.chisquare.inv(1 - alpha / 2, df);
+    const chiLower = jStat.chisquare.inv(alpha / 2, df);
+    const actualRatio = chiUpper / chiLower;
+
+    resultEl.innerText =
+        `n mínimo recomendado: ${n} observaciones (${confPct} % de confianza, cociente U/L ≤ ${R})\n` +
+        `gl = ${df}  |  χ²_{1-α/2} = ${chiUpper.toFixed(4)}  |  χ²_{α/2} = ${chiLower.toFixed(4)}\n` +
+        `Cociente real U/L = ${actualRatio.toFixed(4)} ≤ ${R}`;
+}
+
+document.getElementById('varCalculateBtn').addEventListener('click', calculateVarianceSampleSize);
+calculateVarianceSampleSize();
+</script>
+</body>
+</html>

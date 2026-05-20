@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral para el test chi-cuadrado de bondad de ajuste usando la w de Cohen, potencia objetivo, nivel de significación y número de categorías.">
+    <meta name="keywords" content="tamaño muestral chi-cuadrado bondad ajuste, calcular muestra test chi cuadrado bondad, potencia estadística bondad de ajuste, w Cohen bondad ajuste, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-chi-cuadrado-bondad.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral para el test chi-cuadrado de bondad de ajuste usando la w de Cohen, potencia objetivo y nivel de significación.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-chi-cuadrado-bondad.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-chi-cuadrado-bondad.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral para el test chi-cuadrado de bondad de ajuste usando la w de Cohen, potencia objetivo y nivel de significación.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Chi-cuadrado bondad de ajuste", "item": "https://problabtools.es/tamano-muestral-chi-cuadrado-bondad.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-chi-cuadrado-bondad.html",
+          "description": "Calcula el tamaño muestral para el test chi-cuadrado de bondad de ajuste con potencia y nivel de significación definidos.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-chi-cuadrado-bondad.html",
+      "description": "Calcula el tamaño muestral para el test chi-cuadrado de bondad de ajuste usando la w de Cohen, potencia objetivo y nivel de significación.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Para qué sirve el test chi-cuadrado de bondad de ajuste?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para contrastar si una variable categórica sigue una distribución de probabilidades específica (uniforme, Poisson, binomial, o cualquier distribución teórica). Por ejemplo: ¿se distribuyen uniformemente los nacimientos entre los días de la semana?"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se calculan los grados de libertad en bondad de ajuste?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "df = k − 1 − p, donde k es el número de categorías y p es el número de parámetros estimados de los datos. Si la distribución teórica está completamente especificada (sin estimar parámetros), df = k − 1."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo calculo la w de Cohen para un test de bondad de ajuste?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "w = sqrt(Σ (p_obs,i − p_teo,i)² / p_teo,i), donde p_obs,i son las proporciones observadas esperadas bajo H1 y p_teo,i las proporciones teóricas bajo H0. El asistente de la calculadora permite calcularla introduciendo las proporciones de cada categoría."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuántas observaciones mínimas se necesitan por celda?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La regla habitual es que la frecuencia esperada en cada celda sea al menos 5. Divide N entre k para comprobar que la frecuencia media esperada por celda sea suficiente."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Chi-cuadrado bondad de ajuste</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste</h1>
+        <p class="hero-subtitle">Calcula el tamaño de muestra necesario para el test chi-cuadrado de bondad de ajuste con una potencia objetivo, usando la \(w\) de Cohen y la distribución chi-cuadrado no central exacta.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la w de Cohen, el número de categorías k, el nivel de significación y la potencia deseada.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="bondadW">Tamaño de efecto w de Cohen</label>
+                        <input type="number" id="bondadW" value="0.3" step="0.01" min="0.001" max="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="bondadK">Número de categorías (k)</label>
+                        <input type="number" id="bondadK" value="5" step="1" min="2">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="bondadAlpha">Alfa (α)</label>
+                        <input type="number" id="bondadAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="bondadPower">Potencia (1-β)</label>
+                        <input type="number" id="bondadPower" value="0.8" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="bondadCalculateBtn">Calcular tamaño muestral</button>
+            <div id="bondadResult" class="result-box">Resultado pendiente…</div>
+
+            <details style="margin-top:1.5rem;">
+                <summary style="cursor:pointer; font-weight:600; color:var(--primary);">Asistente: calcular w desde proporciones observadas y teóricas</summary>
+                <div style="margin-top:1rem;">
+                    <p style="font-size:0.9rem; color:var(--text-muted);">Introduce las proporciones bajo H1 (observadas esperadas) y bajo H0 (teóricas) separadas por comas. El número de valores debe ser igual a k.</p>
+                    <div class="form-group">
+                        <label for="bondadPObs">Proporciones H1 (p_obs) — separadas por comas</label>
+                        <input type="text" id="bondadPObs" value="0.30, 0.25, 0.20, 0.15, 0.10" style="width:100%;">
+                    </div>
+                    <div class="form-group" style="margin-top:0.5rem;">
+                        <label for="bondadPTeo">Proporciones H0 (p_teo) — separadas por comas</label>
+                        <input type="text" id="bondadPTeo" value="0.20, 0.20, 0.20, 0.20, 0.20" style="width:100%;">
+                    </div>
+                    <button class="calculate-btn" id="bondadWBtn" style="margin-top:0.5rem;">Calcular w y actualizar</button>
+                    <div id="bondadWResult" style="margin-top:0.5rem; font-size:0.9rem;"></div>
+                </div>
+            </details>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El test chi-cuadrado de bondad de ajuste contrasta si la distribución observada de una variable categórica se ajusta a una distribución teórica especificada \(H_0\). Con \(k\) categorías, el estadístico tiene \(df = k-1\) grados de libertad bajo \(H_0\) (asumiendo que los parámetros de la distribución teórica son conocidos).</p>
+            <p>Bajo la alternativa, el estadístico sigue una distribución chi-cuadrado no central con parámetro \(\lambda = N \cdot w^2\), donde \(N\) es el tamaño muestral y \(w\) es la \(w\) de Cohen.</p>
+
+            <h3>Parámetro de no centralidad y potencia</h3>
+            <p class="formula-line">\( \lambda = N \cdot w^2 \)</p>
+            <p class="formula-line">\( w = \sqrt{\sum_{i=1}^k \frac{(p_{\text{obs},i} - p_{\text{teo},i})^2}{p_{\text{teo},i}}} \)</p>
+            <p class="formula-line">\( \text{Potencia} = 1 - F_{\chi^2_{df,\,\lambda}}\!\left(\chi^2_{1-\alpha,\,df}\right) \quad \text{con } df = k-1 \)</p>
+            <p>La distribución chi-cuadrado no central se evalúa exactamente mediante la mezcla de Poisson de chi-cuadrados centrales:</p>
+            <p class="formula-line">\( F_{\chi^2_{df,\lambda}}(x) = \sum_{k=0}^{\infty} \frac{e^{-\lambda/2}(\lambda/2)^k}{k!} \cdot F_{\chi^2_{df+2k}}(x) \)</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Configuración rápida</h3>
+            <ul>
+                <li><strong>w:</strong> 0,1 (pequeño), 0,3 (mediano), 0,5 (grande) según Cohen. Usa el asistente si tienes las proporciones esperadas.</li>
+                <li><strong>k:</strong> número total de categorías. Los grados de libertad son df = k−1 (sin parámetros estimados).</li>
+                <li><strong>Frecuencias esperadas:</strong> comprueba que N/k ≥ 5 para que la aproximación chi-cuadrado sea válida.</li>
+                <li><strong>Parámetros estimados:</strong> si estimas p parámetros de los datos, resta p a df: df = k−1−p.</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un biólogo quiere contrastar si el color de ciertos insectos (5 categorías: amarillo, rojo, verde, azul, negro) sigue una distribución uniforme (\(p_0 = 0{,}20\) para cada categoría). Basándose en datos previos, espera que la distribución real sea (0,30; 0,25; 0,20; 0,15; 0,10).</p>
+            <p>Con el asistente: \(w = \sqrt{(0{,}30-0{,}20)^2/0{,}20 + (0{,}25-0{,}20)^2/0{,}20 + 0 + (0{,}15-0{,}20)^2/0{,}20 + (0{,}10-0{,}20)^2/0{,}20} = \sqrt{0{,}05+0{,}0125+0+0{,}0125+0{,}05} = \sqrt{0{,}125} \approx 0{,}354\).</p>
+            <p>Con \(w = 0{,}354\), \(df = 4\), \(\alpha = 0{,}05\) y potencia del 80 %, se necesitan aproximadamente <strong>N = 69 insectos</strong>. Con esa muestra, el test detectará la desviación de la distribución uniforme el 80 % de las veces.</p>
+            <p><strong>Verificación:</strong> N/k = 69/5 = 13,8 ≥ 5. La aproximación chi-cuadrado es adecuada.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Encuentra por búsqueda iterativa el menor \(N\) total para que el test chi-cuadrado de bondad de ajuste alcance la potencia objetivo para el efecto \(w\) y el número de categorías \(k\) especificados.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El valor obtenido es el total de observaciones necesarias. Comprueba que N/k ≥ 5 para que la aproximación sea válida; si no es así, necesitarás fusionar categorías o buscar métodos exactos.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-chi-cuadrado-independencia.html">Tamaño muestral chi-cuadrado independencia (H0)</a></li>
+                    <li><a href="tamano-muestral-una-proporcion.html">Una proporción (IC)</a></li>
+                    <li><a href="chisquare.html">Distribución chi-cuadrado</a></li>
+                </ul>
+            </section>
+            <h3>Referencias</h3>
+            <ul>
+                <li>Cohen, J. (1988). <em>Statistical Power Analysis for the Behavioral Sciences</em> (2.ª ed.). Lawrence Erlbaum Associates.</li>
+                <li>Agresti, A. (2013). <em>Categorical Data Analysis</em> (3.ª ed.). Wiley.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function ncChiSqCDF(x, df, lambda) {
+    if (x <= 0) return 0;
+    const halfLambda = lambda / 2;
+    let sum = 0;
+    let logPoissonWeight = -halfLambda;
+    for (let k = 0; k <= 500; k++) {
+        if (k > 0) logPoissonWeight += Math.log(halfLambda / k);
+        const weight = Math.exp(logPoissonWeight);
+        sum += weight * jStat.chisquare.cdf(x, df + 2 * k);
+        if (weight < 1e-14 && k > halfLambda + 10) break;
+    }
+    return Math.min(1, sum);
+}
+
+function ncChiSqPower(N, df, w, alpha) {
+    const lambda = N * w * w;
+    const critVal = jStat.chisquare.inv(1 - alpha, df);
+    return 1 - ncChiSqCDF(critVal, df, lambda);
+}
+
+function calculateBondadSampleSize() {
+    const w = parseFloat(document.getElementById('bondadW').value);
+    const k = parseInt(document.getElementById('bondadK').value);
+    const alpha = parseFloat(document.getElementById('bondadAlpha').value);
+    const power = parseFloat(document.getElementById('bondadPower').value);
+    const resultEl = document.getElementById('bondadResult');
+
+    if (!Number.isFinite(w) || w <= 0) { resultEl.innerText = 'Error: w debe ser mayor que 0.'; return; }
+    if (!Number.isFinite(k) || k < 2) { resultEl.innerText = 'Error: k debe ser al menos 2.'; return; }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) { resultEl.innerText = 'Error: α debe estar entre 0 y 1.'; return; }
+    if (!Number.isFinite(power) || power <= 0 || power >= 1) { resultEl.innerText = 'Error: la potencia debe estar entre 0 y 1.'; return; }
+
+    const df = k - 1;
+    let N = 2;
+    let actualPower = 0;
+    while (N <= 1000000) {
+        actualPower = ncChiSqPower(N, df, w, alpha);
+        if (actualPower >= power) break;
+        N++;
+    }
+
+    if (actualPower < power) {
+        resultEl.innerText = 'No se encontró solución dentro del límite de búsqueda. Comprueba los parámetros.';
+        return;
+    }
+
+    const freqPerCell = (N / k).toFixed(1);
+    const cellWarning = N / k < 5 ? '  ⚠ Frecuencia media por celda < 5; considera fusionar categorías.' : '';
+    resultEl.innerText =
+        `N total mínimo recomendado: ${N} observaciones (df = ${df})\n` +
+        `Potencia alcanzada: ${(actualPower * 100).toFixed(2)} % (objetivo: ${(power * 100).toFixed(0)} %)\n` +
+        `w = ${w}  |  k = ${k}  |  λ = N·w² = ${(N * w * w).toFixed(2)}  |  α = ${alpha}\n` +
+        `Frecuencia media esperada por celda: N/k = ${freqPerCell}${cellWarning}`;
+}
+
+function calculateWFromCategories() {
+    const obsStr = document.getElementById('bondadPObs').value;
+    const teoStr = document.getElementById('bondadPTeo').value;
+    const resEl = document.getElementById('bondadWResult');
+
+    const pObs = obsStr.split(',').map(s => parseFloat(s.trim())).filter(v => !isNaN(v));
+    const pTeo = teoStr.split(',').map(s => parseFloat(s.trim())).filter(v => !isNaN(v));
+
+    if (pObs.length < 2) { resEl.innerText = 'Error: introduce al menos 2 valores para p_obs.'; return; }
+    if (pObs.length !== pTeo.length) { resEl.innerText = 'Error: p_obs y p_teo deben tener el mismo número de valores.'; return; }
+    if (pTeo.some(p => p <= 0)) { resEl.innerText = 'Error: todos los valores de p_teo deben ser positivos.'; return; }
+
+    const sumObs = pObs.reduce((a, b) => a + b, 0);
+    const sumTeo = pTeo.reduce((a, b) => a + b, 0);
+    const pObsNorm = pObs.map(p => p / sumObs);
+    const pTeoNorm = pTeo.map(p => p / sumTeo);
+
+    let w2 = 0;
+    for (let i = 0; i < pObsNorm.length; i++) {
+        w2 += Math.pow(pObsNorm[i] - pTeoNorm[i], 2) / pTeoNorm[i];
+    }
+    const w = Math.sqrt(w2);
+    const k = pObs.length;
+
+    document.getElementById('bondadW').value = w.toFixed(4);
+    document.getElementById('bondadK').value = k;
+    resEl.innerText = `w calculada = ${w.toFixed(4)}  |  k = ${k}  |  df = ${k - 1}`;
+}
+
+document.getElementById('bondadCalculateBtn').addEventListener('click', calculateBondadSampleSize);
+document.getElementById('bondadWBtn').addEventListener('click', calculateWFromCategories);
+calculateBondadSampleSize();
+</script>
+</body>
+</html>
