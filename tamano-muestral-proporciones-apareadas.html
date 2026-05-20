@@ -73,18 +73,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Qué es el margen de error?",
+      "name": "¿Qué son p₀₁ y p₁₀ en este cálculo?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Es la precisión máxima tolerada respecto al valor real."
+        "text": "p₀₁ es la proporción de pares que cambian de respuesta negativa a positiva (0→1) y p₁₀ la de los que cambian de positiva a negativa (1→0). Son los pares discordantes y los únicos que determinan el tamaño muestral necesario."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Qué significa nivel de confianza?",
+      "name": "¿Por qué solo importan los pares discordantes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero."
+        "text": "Los pares concordantes (respuesta igual en ambas condiciones) no aportan información sobre si la intervención cambió el resultado. Solo los discordantes revelan si existe diferencia entre las dos proporciones."
       }
     },
     {
@@ -92,7 +92,7 @@
       "name": "¿Qué es la potencia estadística?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "La probabilidad de detectar un efecto real cuando existe."
+        "text": "La probabilidad de detectar un efecto real cuando existe. Lo habitual es fijarla en 0,80 o 0,90."
       }
     },
     {
@@ -100,7 +100,7 @@
       "name": "¿El tamaño muestral es exacto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No, depende de supuestos y redondeos prácticos de diseño."
+        "text": "No, es la aproximación normal. Para n pequeño o proporciones extremas, conviene usar la versión exacta del test de McNemar."
       }
     }
   ]
