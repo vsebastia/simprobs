@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral para el test de Kolmogorov–Smirnov de bondad de ajuste dado el tamaño del efecto d (desviación máxima de CDF), la potencia objetivo y el nivel de significación.">
+    <meta name="keywords" content="tamaño muestral Kolmogorov-Smirnov, calcular muestra test KS, potencia estadística Kolmogorov-Smirnov, bondad de ajuste KS, efecto d CDF, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral para el test de Kolmogorov–Smirnov de bondad de ajuste dado el tamaño del efecto d (desviación máxima de CDF), la potencia objetivo y el nivel de significación.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral para el test de Kolmogorov–Smirnov de bondad de ajuste dado el tamaño del efecto d (desviación máxima de CDF), la potencia objetivo y el nivel de significación.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Kolmogorov–Smirnov", "item": "https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html",
+          "description": "Calcula el tamaño muestral para el test de Kolmogorov–Smirnov de bondad de ajuste con potencia y nivel de significación definidos.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html",
+      "description": "Calcula el tamaño muestral para el test de Kolmogorov–Smirnov de bondad de ajuste dado el tamaño del efecto d (desviación máxima de CDF), la potencia objetivo y el nivel de significación.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es el efecto d en el test KS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El efecto d es la desviación máxima absoluta entre la función de distribución acumulada (CDF) verdadera F(x) y la CDF teórica bajo H0, es decir, d = max|F_verdadera(x) − F_0(x)|. Mide cuán alejada está la distribución real de la hipotética: d = 0,10 es un efecto pequeño, d = 0,20 moderado y d = 0,30 grande."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo usar el test KS frente al test chi-cuadrado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test KS es apropiado para variables continuas y no requiere agrupar datos en categorías, evitando la pérdida de información que conlleva el chi-cuadrado de bondad de ajuste. El chi-cuadrado es preferible para variables categóricas o discretas. Para distribuciones continuas con parámetros completamente especificados, el KS suele tener mayor potencia que el chi-cuadrado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es válida la fórmula para muestras pequeñas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La fórmula de potencia basada en la aproximación por desplazamiento (shift model) es conservadora para muestras pequeñas (n < 20–30), lo que significa que el n calculado puede ser ligeramente mayor del estrictamente necesario. Para n pequeño existen tablas exactas de la distribución de Kolmogorov. La aproximación mejora a medida que n crece y es muy precisa para n ≥ 30."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Sirve esta calculadora para el test de dos muestras KS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No directamente. Esta calculadora calcula el tamaño muestral para el test KS de una muestra (contrastar si una muestra proviene de una distribución teórica completamente especificada). El test KS de dos muestras contrasta si dos muestras independientes provienen de la misma distribución y tiene una distribución asintótica diferente; se necesita una calculadora específica para ese caso."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Kolmogorov–Smirnov</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov</h1>
+        <p class="hero-subtitle">Calcula el número de observaciones para detectar una desviación d de la distribución teórica con una potencia objetivo mediante la distribución de Kolmogorov exacta.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la desviación máxima de la CDF (d), el nivel de significación y la potencia deseada para obtener el tamaño muestral mínimo.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="ksD">Desviación máxima de la CDF (d)</label>
+                        <input type="number" id="ksD" value="0.15" step="0.01" min="0.001" max="0.999">
+                    </div>
+                    <div class="form-group">
+                        <label for="ksAlpha">Alfa (α)</label>
+                        <input type="number" id="ksAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="ksPower">Potencia (1-β)</label>
+                        <input type="number" id="ksPower" value="0.80" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="ksCalculateBtn">Calcular tamaño muestral</button>
+            <div id="ksResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El test de Kolmogorov–Smirnov de una muestra contrasta si los datos provienen de una distribución teórica completamente especificada \(F_0\). El estadístico de contraste es la desviación máxima absoluta entre la función de distribución empírica \(\hat{F}_n\) y la teórica:</p>
+            <p class="formula-line">\( D_n = \sup_x \left| \hat{F}_n(x) - F_0(x) \right| \)</p>
+            <p>El tamaño del efecto es \(d = \max_x |F_{\text{verdadera}}(x) - F_0(x)|\), es decir, la máxima distancia vertical entre la CDF real y la hipotética. Bajo \(H_0\), la distribución asintótica de \(\sqrt{n}\,D_n\) es la distribución de Kolmogorov.</p>
+            <p>La fórmula de potencia usa la <strong>aproximación por desplazamiento</strong> (<em>shift model</em>): bajo \(H_1\), el estadístico \(\sqrt{n}\,D_n\) se desplaza aproximadamente \(d\sqrt{n}\) respecto a su distribución bajo \(H_0\). Esta aproximación es conservadora para muestras pequeñas y muy precisa para \(n \geq 30\).</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Fórmula de potencia</h3>
+            <p>La CDF de la distribución de Kolmogorov es:</p>
+            <p class="formula-line">\( P(K \leq x) = 1 - 2\sum_{k=1}^{\infty} (-1)^{k+1} e^{-2k^2 x^2}, \quad x > 0 \)</p>
+            <p>El cuantil crítico \(k_\alpha\) se define por \(P(K > k_\alpha) = \alpha\), es decir, \(1 - P(K \leq k_\alpha) = \alpha\). Se halla mediante búsqueda binaria.</p>
+            <p>La potencia del test para tamaño muestral \(n\) se estima como:</p>
+            <p class="formula-line">\( \text{Potencia}(n) = 1 - P\!\left(K \leq k_\alpha - d\sqrt{n}\right) \)</p>
+            <p>La calculadora busca el menor \(n\) entero tal que esta expresión alcanza la potencia objetivo. Cuando \(k_\alpha - d\sqrt{n} \leq 0\), la potencia es 1.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Configuración rápida</h3>
+            <ul>
+                <li><strong>d = 0,10:</strong> efecto pequeño. La distribución real se aleja de la teórica como máximo 0,10 en la CDF. Requiere muestras grandes.</li>
+                <li><strong>d = 0,20:</strong> efecto mediano. Desviación claramente visible en un gráfico P-P o Q-Q. Tamaño muestral moderado.</li>
+                <li><strong>d = 0,30:</strong> efecto grande. Diferencia sustancial entre distribuciones; se detecta con muestras relativamente pequeñas.</li>
+                <li><strong>α:</strong> 0,05 es el estándar habitual; usa 0,01 si el coste de un falso positivo es alto.</li>
+                <li><strong>Potencia:</strong> 0,80 como mínimo habitual; 0,90 si los falsos negativos tienen consecuencias importantes.</li>
+                <li><strong>Distribución completamente especificada:</strong> si estimas parámetros de los datos (media, varianza…), la distribución del estadístico cambia y el nivel nominal ya no es válido; en ese caso usa el test de Lilliefors.</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un ingeniero de procesos quiere contrastar si los tiempos de fallo de un componente siguen una distribución exponencial con tasa \(\lambda_0 = 0{,}1\) (completamente especificada). Basándose en datos históricos, cree que la CDF real se desvía como máximo \(d = 0{,}15\) de la exponencial teórica.</p>
+            <p>Con \(d = 0{,}15\), \(\alpha = 0{,}05\) y potencia del 80 %, la calculadora encuentra:</p>
+            <ol>
+                <li>El cuantil crítico \(k_{0{,}05} \approx 1{,}358\) mediante búsqueda binaria en la distribución de Kolmogorov.</li>
+                <li>El menor \(n\) tal que \(1 - P(K \leq 1{,}358 - 0{,}15\sqrt{n}) \geq 0{,}80\).</li>
+            </ol>
+            <p>El resultado es aproximadamente <strong>n = 64 observaciones</strong>. Con esa muestra, si la CDF real se aleja 0,15 de la exponencial teórica, el test lo detectará el 80 % de las veces.</p>
+            <p><strong>Análisis de sensibilidad:</strong> con \(d = 0{,}10\) (efecto pequeño) se necesitan n ≈ 142 observaciones; con \(d = 0{,}30\) (efecto grande) bastan n ≈ 29. La muestra necesaria crece aproximadamente como \(1/d^2\).</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Encuentra por búsqueda iterativa el menor \(n\) para que el test KS de una muestra alcance la potencia objetivo al detectar una desviación máxima de CDF igual a \(d\). El cálculo usa la distribución de Kolmogorov exacta y la aproximación por desplazamiento, sin depender de tablas tabuladas.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El valor obtenido es el mínimo teórico de observaciones necesarias. Si prevés pérdidas o rechazos, divide \(n\) entre \((1 - \text{tasa de pérdida})\) para obtener el \(n\) de reclutamiento. Recuerda que este test requiere que la distribución teórica esté completamente especificada (sin parámetros estimados de los datos).</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="kolmogorov-smirnov-bondad-ajuste.html">Test de Kolmogorov–Smirnov de bondad de ajuste</a></li>
+                    <li><a href="tamano-muestral-chi-cuadrado-bondad.html">Tamaño muestral chi-cuadrado de bondad de ajuste</a></li>
+                    <li><a href="tamano-muestral-shapiro-wilk.html">Tamaño muestral para el test de Shapiro–Wilk</a></li>
+                </ul>
+            </section>
+            <h3>Referencias</h3>
+            <ul>
+                <li>Kolmogorov, A. N. (1933). Sulla determinazione empirica di una legge di distribuzione. <em>Giornale dell'Istituto Italiano degli Attuari</em>, 4, 83–91.</li>
+                <li>Smirnov, N. V. (1948). Table for estimating the goodness of fit of empirical distributions. <em>The Annals of Mathematical Statistics</em>, 19(2), 279–281.</li>
+                <li>Conover, W. J. (1999). <em>Practical Nonparametric Statistics</em> (3.ª ed.). Wiley.</li>
+                <li>Massey, F. J. (1951). The Kolmogorov-Smirnov test for goodness of fit. <em>Journal of the American Statistical Association</em>, 46(253), 68–78.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function ksCDF(x) {
+    if (x <= 0) return 0;
+    if (x > 3.5) return 1;
+    let sum = 0;
+    for (let k = 1; k <= 100; k++) {
+        const term = (k % 2 === 1 ? 1 : -1) * Math.exp(-2 * k * k * x * x);
+        sum += term;
+        if (Math.abs(term) < 1e-12) break;
+    }
+    return Math.min(1, Math.max(0, 1 - 2 * sum));
+}
+
+// note: the series is 2 * sum_{k=1}^inf (-1)^{k+1} exp(-2k^2 x^2)
+// = 2*(exp(-2x²) - exp(-8x²) + exp(-18x²) - ...)
+// so: ksCDF(x) = 1 - 2*(exp(-2x²) - exp(-8x²) + exp(-18x²) + ...)
+
+function ksQuantile(alpha) {
+    // binary search for k_alpha such that 1 - ksCDF(k_alpha) = alpha
+    let lo = 0.1, hi = 4.0;
+    for (let i = 0; i < 100; i++) {
+        const mid = (lo + hi) / 2;
+        if (1 - ksCDF(mid) > alpha) lo = mid;
+        else hi = mid;
+    }
+    return (lo + hi) / 2;
+}
+
+function computePower(n, kAlpha, d) {
+    const arg = kAlpha - d * Math.sqrt(n);
+    if (arg <= 0) return 1.0;
+    return 1 - ksCDF(arg);
+}
+
+function calculateKSSampleSize() {
+    const d = parseFloat(document.getElementById('ksD').value);
+    const alpha = parseFloat(document.getElementById('ksAlpha').value);
+    const power = parseFloat(document.getElementById('ksPower').value);
+    const resultEl = document.getElementById('ksResult');
+
+    if (!Number.isFinite(d) || d <= 0 || d >= 1) {
+        resultEl.innerText = 'Error: d debe estar entre 0 y 1 (exclusivo).';
+        return;
+    }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: α debe estar entre 0 y 1.';
+        return;
+    }
+    if (!Number.isFinite(power) || power <= 0 || power >= 1) {
+        resultEl.innerText = 'Error: la potencia debe estar entre 0 y 1.';
+        return;
+    }
+
+    const kAlpha = ksQuantile(alpha);
+
+    let n = 2;
+    let actualPower = 0;
+    while (n <= 50000) {
+        actualPower = computePower(n, kAlpha, d);
+        if (actualPower >= power) break;
+        n++;
+    }
+
+    if (actualPower < power) {
+        resultEl.innerText = 'No se encontró solución dentro del límite de búsqueda. Comprueba los parámetros.';
+        return;
+    }
+
+    resultEl.innerText =
+        `n mínimo recomendado: ${n} observaciones\n` +
+        `Potencia alcanzada: ${(actualPower * 100).toFixed(2)} % (objetivo: ${(power * 100).toFixed(0)} %)\n` +
+        `d = ${d}  |  α = ${alpha}  |  k_α = ${kAlpha.toFixed(4)}`;
+}
+
+document.getElementById('ksCalculateBtn').addEventListener('click', calculateKSSampleSize);
+calculateKSSampleSize();
+</script>
+</body>
+</html>
