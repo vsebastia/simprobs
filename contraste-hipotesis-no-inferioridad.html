@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraste de no inferioridad y equivalencia | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online: contraste de no inferioridad y equivalencia (TOST) para medias y proporciones. Calcula estadísticos z, p-valor y decisión con margen de equivalencia δ.">
+    <meta name="keywords" content="contraste no inferioridad, test equivalencia TOST, margen no inferioridad, TOST proporciones, TOST medias, prueba equivalencia estadística, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-no-inferioridad.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contraste de no inferioridad y equivalencia | ProbLab">
+    <meta property="og:description" content="Calculadora online: contraste de no inferioridad y equivalencia (TOST) para medias y proporciones. Calcula estadísticos z, p-valor y decisión con margen de equivalencia δ.">
+    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-no-inferioridad.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora online de contraste de no inferioridad y equivalencia (TOST)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/contraste-hipotesis-no-inferioridad.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contraste de no inferioridad y equivalencia | ProbLab">
+    <meta name="twitter:description" content="Calculadora online: contraste de no inferioridad y equivalencia (TOST) para medias y proporciones. Calcula estadísticos z, p-valor y decisión con margen de equivalencia δ.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora online de contraste de no inferioridad y equivalencia (TOST)">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Contrastes de hipótesis", "item": "https://problabtools.es/contrastes-hipotesis/"},
+            {"@type": "ListItem", "position": 3, "name": "No inferioridad", "item": "https://problabtools.es/contraste-hipotesis-no-inferioridad.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Contraste de no inferioridad y equivalencia | ProbLab",
+          "url": "https://problabtools.es/contraste-hipotesis-no-inferioridad.html",
+          "description": "Calculadora online: contraste de no inferioridad y equivalencia (TOST) para medias y proporciones. Calcula estadísticos z, p-valor y decisión con margen de equivalencia δ.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora online de contraste de no inferioridad y equivalencia (TOST)",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/contraste-hipotesis-no-inferioridad.html",
+      "description": "Calculadora online: contraste de no inferioridad y equivalencia (TOST) para medias y proporciones. Calcula estadísticos z, p-valor y decisión con margen de equivalencia δ.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es un margen de no inferioridad δ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es la diferencia máxima tolerable a favor del control frente al nuevo tratamiento. Se define antes del estudio con criterio clínico o práctico. Si la diferencia observada está dentro del margen (tratamiento no es peor que δ respecto al control), se declara no inferioridad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué se diferencia no inferioridad de equivalencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No inferioridad (unilateral): el nuevo tratamiento no es inaceptablemente peor que el control. Equivalencia (TOST, bilateral): el nuevo tratamiento es tan bueno como el control, ni mejor ni peor de forma relevante. TOST requiere dos tests unilaterales simultáneos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué se usa el IC al 90% en el TOST?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El TOST con nivel α equivale a verificar que el IC al 100(1-2α)% de Δ̂ está contenido en [-δ, +δ]. Con α=0,05 eso corresponde al IC al 90%. Si el IC al 90% cabe dentro de [-δ, +δ], se declara equivalencia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se elige el margen δ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El margen debe definirse a priori con criterio clínico o regulatorio, no estadístico. En ensayos clínicos, habitualmente representa una fracción (por ejemplo, 50%) de la diferencia mínima clínicamente importante o del efecto demostrado del comparador activo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puede rechazarse la hipótesis de superioridad y aun así declararse no inferioridad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. El contraste de no inferioridad y el de superioridad tienen distintas hipótesis nulas. Es perfectamente coherente que un ensayo no demuestre superioridad pero sí no inferioridad, si la diferencia observada es pequeña y está bien acotada."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><span aria-current="page">No inferioridad</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora online de contraste de no inferioridad y equivalencia</h1>
+        <p class="hero-subtitle">Evalúa si un tratamiento es no inferior, no superior o equivalente a un control, con un margen predefinido δ, para medias o proporciones.</p>
+        <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Ver todos los contrastes</a></p>
+    </header>
+
+    <main>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Selecciona el tipo de contraste y la variable, introduce los datos y el margen δ para obtener los estadísticos z, p-valor, decisión e intervalo de confianza.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="testType">Tipo de contraste</label>
+                        <select id="testType">
+                            <option value="ni">No inferioridad</option>
+                            <option value="tost">Equivalencia (TOST)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="varType">Variable</label>
+                        <select id="varType">
+                            <option value="prop">Proporciones</option>
+                            <option value="means">Medias</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Proportions inputs -->
+                <div id="propInputs">
+                    <div class="inline-inputs">
+                        <div class="form-group">
+                            <label for="p1">Proporción tratamiento (p̂₁)</label>
+                            <input type="number" id="p1" value="0.72" step="0.01" min="0.001" max="0.999">
+                        </div>
+                        <div class="form-group">
+                            <label for="p2">Proporción control (p̂₂)</label>
+                            <input type="number" id="p2" value="0.75" step="0.01" min="0.001" max="0.999">
+                        </div>
+                    </div>
+                    <div class="inline-inputs">
+                        <div class="form-group">
+                            <label for="n1p">Tamaño muestral tratamiento (n₁)</label>
+                            <input type="number" id="n1p" value="200" step="1" min="2">
+                        </div>
+                        <div class="form-group">
+                            <label for="n2p">Tamaño muestral control (n₂)</label>
+                            <input type="number" id="n2p" value="200" step="1" min="2">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Means inputs (hidden by default) -->
+                <div id="meansInputs" style="display:none;">
+                    <div class="inline-inputs">
+                        <div class="form-group">
+                            <label for="xbar1">Media tratamiento (x̄₁)</label>
+                            <input type="number" id="xbar1" value="48" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="xbar2">Media control (x̄₂)</label>
+                            <input type="number" id="xbar2" value="50" step="0.01">
+                        </div>
+                    </div>
+                    <div class="inline-inputs">
+                        <div class="form-group">
+                            <label for="s1">Desv. típica tratamiento (s₁)</label>
+                            <input type="number" id="s1" value="10" step="0.01" min="0.0001">
+                        </div>
+                        <div class="form-group">
+                            <label for="s2">Desv. típica control (s₂)</label>
+                            <input type="number" id="s2" value="10" step="0.01" min="0.0001">
+                        </div>
+                    </div>
+                    <div class="inline-inputs">
+                        <div class="form-group">
+                            <label for="n1m">Tamaño muestral tratamiento (n₁)</label>
+                            <input type="number" id="n1m" value="100" step="1" min="2">
+                        </div>
+                        <div class="form-group">
+                            <label for="n2m">Tamaño muestral control (n₂)</label>
+                            <input type="number" id="n2m" value="100" step="1" min="2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="delta">Margen de equivalencia/no inferioridad (δ > 0)</label>
+                        <input type="number" id="delta" value="0.10" step="0.01" min="0.001">
+                    </div>
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+
+                <!-- Direction selector for NI only -->
+                <div id="directionRow" class="inline-inputs">
+                    <div class="form-group">
+                        <label for="niDirection">Dirección (no inferioridad)</label>
+                        <select id="niDirection">
+                            <option value="ni">Tratamiento no inferior (Δ &gt; −δ)</option>
+                            <option value="ns">Tratamiento no superior (Δ &lt; +δ)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular contraste</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="niChart" aria-label="Gráfico de distribución normal con zonas de decisión para el contraste de no inferioridad o equivalencia" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>Los contrastes de no inferioridad y equivalencia invierten la lógica habitual del contraste de hipótesis. En lugar de intentar demostrar que dos tratamientos difieren, buscan demostrar que son suficientemente similares dentro de un margen clínico o práctico predefinido \(\delta\).</p>
+            <p><strong>No inferioridad</strong>: se quiere demostrar que el nuevo tratamiento (más barato, menos invasivo, etc.) no es inaceptablemente peor que el control. La hipótesis nula es que el tratamiento sí es inferior de forma relevante: \(H_0\colon \Delta \leq -\delta\).</p>
+            <p><strong>Equivalencia (TOST)</strong>: se quiere demostrar que el nuevo tratamiento no es ni mejor ni peor de forma relevante. Requiere dos tests unilaterales simultáneos (Two One-Sided Tests), uno de no inferioridad y uno de no superioridad. Se declara equivalencia cuando ambos se rechazan.</p>
+
+            <h3>Hipótesis y estadísticos</h3>
+            <p>Sea \(\hat{\Delta} = \hat{\theta}_1 - \hat{\theta}_2\) la diferencia estimada (de medias o proporciones) y \(\text{SE}\) su error estándar:</p>
+            <p class="formula-line">\( \hat{\Delta} = \bar{x}_1 - \bar{x}_2 \quad \text{o} \quad \hat{\Delta} = \hat{p}_1 - \hat{p}_2 \)</p>
+            <p class="formula-line">\( \text{SE} = \sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}} \quad \text{(medias)} \)</p>
+            <p class="formula-line">\( \text{SE} = \sqrt{\dfrac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \dfrac{\hat{p}_2(1-\hat{p}_2)}{n_2}} \quad \text{(proporciones)} \)</p>
+            <p><strong>No inferioridad</strong> (\(H_0\colon \Delta \leq -\delta\), \(H_1\colon \Delta > -\delta\)):</p>
+            <p class="formula-line">\( z_{\text{NI}} = \dfrac{\hat{\Delta} + \delta}{\text{SE}}, \quad p_{\text{NI}} = 1 - \Phi(z_{\text{NI}}) \)</p>
+            <p><strong>No superioridad</strong> (\(H_0\colon \Delta \geq +\delta\), \(H_1\colon \Delta &lt; +\delta\)):</p>
+            <p class="formula-line">\( z_{\text{NS}} = \dfrac{\delta - \hat{\Delta}}{\text{SE}}, \quad p_{\text{NS}} = 1 - \Phi(z_{\text{NS}}) \)</p>
+            <p><strong>Equivalencia TOST</strong>: \(p_{\text{TOST}} = \max(p_{\text{NI}}, p_{\text{NS}})\). Se declara equivalencia si \(p_{\text{TOST}} &lt; \alpha\).</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Guía rápida de interpretación</h3>
+            <ul>
+                <li><strong>No inferioridad</strong>: si \(p_{\text{NI}} &lt; \alpha\), se rechaza \(H_0\) y se declara no inferioridad. El IC \(100(1-2\alpha)\%\) de \(\hat{\Delta}\) debe estar completamente por encima de \(-\delta\).</li>
+                <li><strong>TOST</strong>: si \(p_{\text{TOST}} &lt; \alpha\), se declara equivalencia. Equivale a verificar que el IC \(100(1-2\alpha)\%\) de \(\hat{\Delta}\) está contenido en \([-\delta, +\delta\)].</li>
+                <li>Con \(\alpha=0{,}05\), el criterio del IC para TOST usa el IC al 90% (no al 95%).</li>
+                <li>El margen \(\delta\) debe definirse <em>a priori</em> con criterio clínico, no estadístico.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto: no inferioridad de proporciones</h3>
+            <p>Un nuevo tratamiento tiene una tasa de éxito \(\hat{p}_1 = 0{,}72\) en \(n_1 = 200\) pacientes. El tratamiento de referencia tiene \(\hat{p}_2 = 0{,}75\) en \(n_2 = 200\) pacientes. El margen de no inferioridad es \(\delta = 0{,}10\) con \(\alpha = 0{,}05\).</p>
+            <p class="formula-line">\( \hat{\Delta} = 0{,}72 - 0{,}75 = -0{,}03 \)</p>
+            <p class="formula-line">\( \text{SE} = \sqrt{\dfrac{0{,}72\cdot0{,}28}{200} + \dfrac{0{,}75\cdot0{,}25}{200}} = \sqrt{0{,}001008 + 0{,}0009375} \approx 0{,}04437 \)</p>
+            <p class="formula-line">\( z_{\text{NI}} = \dfrac{-0{,}03 + 0{,}10}{0{,}04437} \approx 1{,}578, \quad p \approx 0{,}057 \)</p>
+            <p>Como \(p = 0{,}057 > \alpha = 0{,}05\), <strong>no se declara no inferioridad</strong> al nivel del 5 % (resultado limítrofe). El IC al 90 % de \(\hat{\Delta}\) no cabe completamente por encima de \(-0{,}10\).</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora de no inferioridad y equivalencia computa automáticamente la diferencia estimada \(\hat{\Delta}\), el error estándar, los estadísticos z (uno o dos, según el tipo), los p-valores y la decisión estadística. Para TOST muestra ambos estadísticos y el p-valor conservador. También presenta el intervalo de confianza al \(100(1-2\alpha)\%\) para compararlo con el margen \(\delta\).</p>
+            <h3>Fórmula utilizada</h3>
+            <p>Para <strong>medias</strong>: SE = √(s₁²/n₁ + s₂²/n₂). Para <strong>proporciones</strong>: SE = √(p̂₁(1−p̂₁)/n₁ + p̂₂(1−p̂₂)/n₂). Los estadísticos z se evalúan en la distribución normal estándar. TOST combina dos tests unilaterales y toma el p-valor máximo.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>Para no inferioridad: si p &lt; α, se declara no inferioridad (el tratamiento no es peor que el control más allá del margen δ). Para TOST: si p_TOST &lt; α y el IC al 90% está dentro de [−δ, +δ], se declara equivalencia.</p>
+            <section class="related-tools">
+              <h3>Calculadoras relacionadas</h3>
+              <ul>
+                <li><a href="tamano-muestral-no-inferioridad.html">Tamaño muestral para no inferioridad</a></li>
+                <li><a href="contraste-hipotesis-dos-medias.html">Contraste para dos medias independientes</a></li>
+                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste para dos proporciones independientes</a></li>
+              </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué es el margen δ?</strong> La diferencia máxima tolerable a favor del control. Debe definirse a priori con criterio clínico o regulatorio.</li>
+                <li><strong>¿En qué se diferencia no inferioridad de equivalencia?</strong> No inferioridad es unilateral (el tratamiento no es peor). Equivalencia (TOST) es bilateral (no es ni mejor ni peor de forma relevante).</li>
+                <li><strong>¿Por qué el IC al 90% en TOST?</strong> Con α=0,05, el TOST equivale a verificar que el IC al 90% de Δ̂ está dentro de [−δ, +δ].</li>
+                <li><strong>¿Cómo se elige δ?</strong> Con criterio clínico o regulatorio, no estadístico. Suele ser una fracción del efecto del comparador activo.</li>
+                <li><strong>¿Puede coexistir no inferioridad con no superioridad?</strong> Sí, eso equivale a declarar equivalencia (TOST).</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Ensayo_de_no_inferioridad" target="_blank" rel="noopener noreferrer">Ensayo de no inferioridad</a> — Wikipedia</p>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+      <p>
+        © 2026 problabtools.
+        <a href="aviso-legal.html">Aviso legal</a> ·
+        <a href="privacidad.html">Privacidad</a> ·
+        <a href="cookies.html">Cookies</a> ·
+        <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+      </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let niChart;
+
+// Toggle inputs based on variable type
+function updateInputVisibility() {
+    const varType = document.getElementById('varType').value;
+    document.getElementById('propInputs').style.display  = varType === 'prop'  ? '' : 'none';
+    document.getElementById('meansInputs').style.display = varType === 'means' ? '' : 'none';
+
+    // Update default delta
+    const delta = document.getElementById('delta');
+    if (varType === 'prop' && parseFloat(delta.value) >= 1) delta.value = '0.10';
+    if (varType === 'means' && parseFloat(delta.value) < 1)  delta.value = '5';
+}
+
+function updateDirectionVisibility() {
+    const testType = document.getElementById('testType').value;
+    document.getElementById('directionRow').style.display = testType === 'ni' ? '' : 'none';
+}
+
+document.getElementById('varType').addEventListener('change', () => { updateInputVisibility(); calculate(); });
+document.getElementById('testType').addEventListener('change', () => { updateDirectionVisibility(); calculate(); });
+
+function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+    for (let x = min; x <= max; x += step) {
+        const y = pdfFn(x);
+        curve.push({ x, y });
+        if (isAcceptanceFn(x)) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+    return { curve, acceptance, rejection };
+}
+
+function renderNIChart(alpha, zNI, testType, zNS) {
+    const ctx = document.getElementById('niChart');
+    if (!ctx) return;
+
+    // For NI: one-sided right-tail rejection at z_alpha
+    // For TOST: show both z1 and z2
+    const zCrit = jStat.normal.inv(1 - alpha, 0, 1);
+
+    let allZ = [zNI];
+    if (testType === 'tost') allZ.push(zNS);
+    const maxAbsZ = Math.max(...allZ.map(Math.abs), zCrit, 4);
+    const minX = -(maxAbsZ + 0.8);
+    const maxX =  (maxAbsZ + 0.8);
+
+    let isAcceptanceFn;
+    if (testType === 'ni') {
+        // NI: reject H0 if z > z_alpha → acceptance zone is left of zCrit
+        isAcceptanceFn = (x) => x < zCrit;
+    } else {
+        // TOST: both tests must be significant → acceptance zone between -zCrit and +zCrit
+        isAcceptanceFn = (x) => x > -zCrit && x < zCrit;
+    }
+
+    const { curve, acceptance, rejection } = buildCurvePoints(
+        minX, maxX, 0.02,
+        (x) => jStat.normal.pdf(x, 0, 1),
+        isAcceptanceFn
+    );
+    const maxY = Math.max(...curve.map(p => p.y));
+
+    const makeStatLine = (z) => [{ x: z, y: 0 }, { x: z, y: maxY }];
+
+    const datasets = [
+        { label: 'Zona de no rechazo de H₀', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+        { label: 'Zona de rechazo de H₀', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+        { label: 'Normal estándar', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+        { label: testType === 'tost' ? 'z₁ (NI)' : 'z_NI', data: makeStatLine(zNI), borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+    ];
+
+    if (testType === 'tost' && Number.isFinite(zNS)) {
+        datasets.push({ label: 'z₂ (NS)', data: makeStatLine(zNS), borderColor: '#a21caf', borderWidth: 2, borderDash: [5, 3], pointRadius: 0, fill: false, parsing: false });
+    }
+
+    if (niChart) niChart.destroy();
+    niChart = new Chart(ctx, {
+        type: 'line',
+        data: { datasets },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'Estadístico z' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const testType    = document.getElementById('testType').value;
+    const varType     = document.getElementById('varType').value;
+    const delta       = parseFloat(document.getElementById('delta').value);
+    const alpha       = parseFloat(document.getElementById('alpha').value);
+    const niDirection = document.getElementById('niDirection').value;
+    const resultEl    = document.getElementById('result');
+
+    if (!Number.isFinite(delta) || delta <= 0 || !Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: δ > 0 y 0 < α < 1.';
+        if (niChart) { niChart.destroy(); niChart = null; }
+        return;
+    }
+
+    let deltaHat, SE;
+
+    if (varType === 'prop') {
+        const p1  = parseFloat(document.getElementById('p1').value);
+        const p2  = parseFloat(document.getElementById('p2').value);
+        const n1  = parseFloat(document.getElementById('n1p').value);
+        const n2  = parseFloat(document.getElementById('n2p').value);
+        if (![p1, p2, n1, n2].every(Number.isFinite) || p1 <= 0 || p1 >= 1 || p2 <= 0 || p2 >= 1 || n1 < 2 || n2 < 2) {
+            resultEl.innerText = 'Error: 0 < p̂ < 1 y n ≥ 2 para proporciones.';
+            if (niChart) { niChart.destroy(); niChart = null; }
+            return;
+        }
+        deltaHat = p1 - p2;
+        SE = Math.sqrt(p1 * (1 - p1) / n1 + p2 * (1 - p2) / n2);
+    } else {
+        const xbar1 = parseFloat(document.getElementById('xbar1').value);
+        const xbar2 = parseFloat(document.getElementById('xbar2').value);
+        const s1    = parseFloat(document.getElementById('s1').value);
+        const s2    = parseFloat(document.getElementById('s2').value);
+        const n1    = parseFloat(document.getElementById('n1m').value);
+        const n2    = parseFloat(document.getElementById('n2m').value);
+        if (![xbar1, xbar2, s1, s2, n1, n2].every(Number.isFinite) || s1 <= 0 || s2 <= 0 || n1 < 2 || n2 < 2) {
+            resultEl.innerText = 'Error: s > 0 y n ≥ 2 para medias.';
+            if (niChart) { niChart.destroy(); niChart = null; }
+            return;
+        }
+        deltaHat = xbar1 - xbar2;
+        SE = Math.sqrt(s1 * s1 / n1 + s2 * s2 / n2);
+    }
+
+    // CI at (1 - 2*alpha) level for TOST / NI
+    const zCI = jStat.normal.inv(1 - alpha, 0, 1); // one-sided z
+    const zCI2 = jStat.normal.inv(1 - alpha / 2, 0, 1); // for 95% CI
+    const ciLevel = Math.round((1 - 2 * alpha) * 100);
+    const lowerCI = deltaHat - zCI * SE;
+    const upperCI = deltaHat + zCI * SE;
+    // Full (1-alpha) CI for display
+    const lower95 = deltaHat - zCI2 * SE;
+    const upper95 = deltaHat + zCI2 * SE;
+
+    let resultText = `Δ̂ = ${deltaHat.toFixed(4)} | SE = ${SE.toFixed(4)}\n`;
+
+    if (testType === 'ni') {
+        let zStat, pVal, decisionLabel;
+        if (niDirection === 'ni') {
+            // H0: Δ ≤ -δ, H1: Δ > -δ
+            zStat = (deltaHat + delta) / SE;
+            pVal  = 1 - jStat.normal.cdf(zStat, 0, 1);
+            const declared = pVal < alpha;
+            decisionLabel = declared ? 'Declarado no inferior.' : 'No se declara no inferioridad.';
+            resultText += `z_NI = ${zStat.toFixed(4)} | p = ${pVal.toFixed(6)} | ${decisionLabel}\n`;
+            resultText += `IC ${ciLevel}% de Δ̂: [${lowerCI.toFixed(4)}, ∞) | Margen inferior: −δ = ${(-delta).toFixed(4)}`;
+            renderNIChart(alpha, zStat, 'ni', null);
+        } else {
+            // H0: Δ ≥ +δ, H1: Δ < +δ
+            zStat = (delta - deltaHat) / SE;
+            pVal  = 1 - jStat.normal.cdf(zStat, 0, 1);
+            const declared = pVal < alpha;
+            decisionLabel = declared ? 'Declarado no superior.' : 'No se declara no superioridad.';
+            resultText += `z_NS = ${zStat.toFixed(4)} | p = ${pVal.toFixed(6)} | ${decisionLabel}\n`;
+            resultText += `IC ${ciLevel}% de Δ̂: (−∞, ${upperCI.toFixed(4)}] | Margen superior: +δ = ${delta.toFixed(4)}`;
+            renderNIChart(alpha, -zStat, 'ni', null); // flip sign so it shows as right-tail on standard plot
+        }
+    } else {
+        // TOST
+        const z1 = (deltaHat + delta) / SE; // NI part
+        const z2 = (delta - deltaHat) / SE;  // NS part
+        const p1 = 1 - jStat.normal.cdf(z1, 0, 1);
+        const p2 = 1 - jStat.normal.cdf(z2, 0, 1);
+        const pTOST = Math.max(p1, p2);
+        const equivalent = pTOST < alpha;
+        const decisionLabel = equivalent ? 'Equivalencia declarada.' : 'No se declara equivalencia.';
+        resultText +=
+            `z₁ (NI) = ${z1.toFixed(4)} (p₁ = ${p1.toFixed(4)}) | z₂ (NS) = ${z2.toFixed(4)} (p₂ = ${p2.toFixed(4)})\n` +
+            `p_TOST = ${pTOST.toFixed(6)} | ${decisionLabel}\n` +
+            `IC ${ciLevel}% de Δ̂: [${lowerCI.toFixed(4)}, ${upperCI.toFixed(4)}] | Margen: [${(-delta).toFixed(4)}, ${delta.toFixed(4)}]`;
+        renderNIChart(alpha, z1, 'tost', z2);
+    }
+
+    resultEl.innerText = resultText;
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+updateInputVisibility();
+updateDirectionVisibility();
+calculate();
+</script>
+</body>
+</html>

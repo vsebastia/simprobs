@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraste de hipótesis para proporciones apareadas (McNemar) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online: test de McNemar para proporciones apareadas. Calcula el estadístico chi-cuadrado, p-valor y decisión para datos binarios emparejados.">
+    <meta name="keywords" content="test McNemar, contraste proporciones apareadas, prueba de McNemar, chi-cuadrado apareado, datos binarios emparejados, p-valor McNemar, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-proporciones-apareadas.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contraste de hipótesis para proporciones apareadas (McNemar) | ProbLab">
+    <meta property="og:description" content="Calculadora online: test de McNemar para proporciones apareadas. Calcula el estadístico chi-cuadrado, p-valor y decisión para datos binarios emparejados.">
+    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-proporciones-apareadas.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora online del test de McNemar para proporciones apareadas">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/contraste-hipotesis-proporciones-apareadas.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contraste de hipótesis para proporciones apareadas (McNemar) | ProbLab">
+    <meta name="twitter:description" content="Calculadora online: test de McNemar para proporciones apareadas. Calcula el estadístico chi-cuadrado, p-valor y decisión para datos binarios emparejados.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora online del test de McNemar para proporciones apareadas">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Contrastes de hipótesis", "item": "https://problabtools.es/contrastes-hipotesis/"},
+            {"@type": "ListItem", "position": 3, "name": "Proporciones apareadas", "item": "https://problabtools.es/contraste-hipotesis-proporciones-apareadas.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Contraste de hipótesis para proporciones apareadas (McNemar) | ProbLab",
+          "url": "https://problabtools.es/contraste-hipotesis-proporciones-apareadas.html",
+          "description": "Calculadora online: test de McNemar para proporciones apareadas. Calcula el estadístico chi-cuadrado, p-valor y decisión para datos binarios emparejados.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora online del test de McNemar para proporciones apareadas",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/contraste-hipotesis-proporciones-apareadas.html",
+      "description": "Calculadora online: test de McNemar para proporciones apareadas. Calcula el estadístico chi-cuadrado, p-valor y decisión para datos binarios emparejados.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuándo se usa el test de McNemar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se usa cuando se tiene una variable binaria medida dos veces en los mismos sujetos (diseño antes/después o cruzado) y se quiere comparar las proporciones marginales. Solo los pares discordantes (b y c) informan el contraste."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué son los pares discordantes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Son los pares en los que las dos condiciones dan resultados distintos: b (éxito en condición 1, fallo en condición 2) y c (fallo en condición 1, éxito en condición 2). Los pares concordantes (a y d) no aportan información sobre la diferencia entre proporciones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué se aplica la corrección de continuidad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La corrección de continuidad de Edwards ajusta el estadístico chi-cuadrado discreto hacia la distribución continua chi-cuadrado, reduciendo el error de tipo I cuando b+c es pequeño. Es la opción recomendada por defecto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es la alternativa exacta al test de McNemar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test binomial exacto sobre los pares discordantes: bajo H₀ se espera que b/(b+c) = 0,5. Cuando b+c es pequeño (< 25), se recomienda el método exacto."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puede usarse McNemar con más de dos categorías?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, existe la extensión de McNemar para tablas k×k con más de dos categorías ordinales: el test de simetría de Bowker, que generaliza el principio de solo usar las celdas discordantes."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><span aria-current="page">Proporciones apareadas</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora online del test de McNemar para proporciones apareadas</h1>
+        <p class="hero-subtitle">Contrasta si las proporciones marginales difieren en datos binarios emparejados a partir de los pares discordantes.</p>
+        <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Ver todos los contrastes</a></p>
+    </header>
+
+    <main>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los pares discordantes de la tabla 2×2 para obtener el estadístico chi-cuadrado, p-valor y decisión del test de McNemar.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="bVal">Pares discordantes b (cond. 1 sí, cond. 2 no)</label>
+                        <input type="number" id="bVal" value="18" step="1" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="cVal">Pares discordantes c (cond. 1 no, cond. 2 sí)</label>
+                        <input type="number" id="cVal" value="8" step="1" min="0">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="correction">Corrección de continuidad</label>
+                        <select id="correction">
+                            <option value="yes">Con corrección de continuidad</option>
+                            <option value="no">Sin corrección de continuidad</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular test de McNemar</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="mcnemarChart" aria-label="Gráfico de distribución chi-cuadrado con zona de rechazo para el test de McNemar" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El test de McNemar es el procedimiento estándar para contrastar hipótesis sobre proporciones apareadas cuando la variable respuesta es binaria (éxito/fracaso). Se aplica típicamente en diseños antes/después, estudios de casos y controles apareados, y ensayos cruzados donde se compara la respuesta de los mismos individuos a dos condiciones.</p>
+            <p>La clave del test es que <strong>solo los pares discordantes</strong> aportan información sobre la diferencia entre proporciones. Los pares concordantes (ambos éxito o ambos fracaso) no informan si una condición es mejor que la otra. Esto lleva a una formulación elegante: bajo \(H_0\) se esperaría que los pares discordantes se repartiesen en partes iguales entre b y c.</p>
+
+            <h3>Tabla 2×2 para datos apareados</h3>
+            <p>Cada par contribuye a una de las cuatro celdas:</p>
+            <ul>
+                <li><strong>a</strong>: éxito en ambas condiciones (concordante +/+)</li>
+                <li><strong>b</strong>: éxito en condición 1, fracaso en condición 2 (discordante)</li>
+                <li><strong>c</strong>: fracaso en condición 1, éxito en condición 2 (discordante)</li>
+                <li><strong>d</strong>: fracaso en ambas condiciones (concordante −/−)</li>
+            </ul>
+
+            <h3>Hipótesis y estadístico</h3>
+            <p class="formula-line">\(H_0\colon p_{\text{discordante},12} = p_{\text{discordante},21}\) (i.e., \(\pi_b = \pi_c\))</p>
+            <p class="formula-line">Sin corrección: \( \chi^2 = \dfrac{(b - c)^2}{b + c} \)</p>
+            <p class="formula-line">Con corrección de continuidad: \( \chi^2 = \dfrac{(|b - c| - 1)^2}{b + c} \)</p>
+            <p class="formula-line">\(gl = 1\), p-valor de cola derecha en distribución \(\chi^2\)</p>
+            <p>Equivalente en escala z (test de signo): \( z = \dfrac{b - c}{\sqrt{b + c}} \)</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Guía rápida de interpretación</h3>
+            <ul>
+                <li>Si el <strong>p-valor</strong> es menor que \(\alpha\), se rechaza \(H_0\): hay evidencia de que las proporciones marginales difieren.</li>
+                <li>Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar \(H_0\).</li>
+                <li>Usa la corrección de continuidad como opción predeterminada; omítela solo si \(b + c\) es muy grande (&gt; 100).</li>
+                <li>Si \(b + c &lt; 25\), considera el test binomial exacto sobre los pares discordantes.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>¿Por qué solo importan los pares discordantes?</h3>
+            <p>Imagina que 100 personas toman dos fármacos en orden aleatorio y reportan si mejoran o no. Si alguien mejora con ambos o con ninguno, eso no nos dice cuál fármaco es mejor; solo confirma que esa persona responde o no responde. En cambio, un sujeto que mejora solo con el fármaco A (par discordante b) o solo con el B (par discordante c) aporta evidencia directa sobre la diferencia. Por eso McNemar ignora las celdas concordantes a y d y concentra toda la inferencia en b y c.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>En un ensayo cruzado, 100 pacientes evalúan dos fármacos. La tabla de resultados es: a = 45 (mejoran con ambos), b = 18 (solo fármaco 1), c = 8 (solo fármaco 2), d = 29 (ninguno mejora). Se contrasta \(H_0\colon \pi_b = \pi_c\) con \(\alpha = 0{,}05\).</p>
+            <p>Con corrección de continuidad:</p>
+            <p class="formula-line">\( \chi^2 = \dfrac{(|18 - 8| - 1)^2}{18 + 8} = \dfrac{9^2}{26} = \dfrac{81}{26} \approx 3{,}115 \)</p>
+            <p>El p-valor con \(gl = 1\) es \(p \approx 0{,}078\). Como \(p = 0{,}078 > \alpha = 0{,}05\), <strong>no se rechaza \(H_0\)</strong>.</p>
+            <p>Conclusión: con estos datos no hay evidencia suficiente para afirmar que los dos fármacos producen tasas de mejora distintas al nivel del 5 %, aunque el resultado es limítrofe.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora del test de McNemar computa automáticamente el estadístico chi-cuadrado (con o sin corrección de continuidad de Edwards), el p-valor exacto a partir de la distribución chi-cuadrado con 1 grado de libertad, y la decisión estadística. Es útil en ensayos cruzados, estudios de casos y controles apareados, y análisis antes/después de variables binarias.</p>
+            <h3>Fórmula utilizada</h3>
+            <p>Se aplica el <strong>test de McNemar</strong>: \(\chi^2 = (|b-c|-1)^2/(b+c)\) con corrección, o \(\chi^2 = (b-c)^2/(b+c)\) sin corrección. El p-valor proviene de la distribución chi-cuadrado con \(gl=1\) (cola derecha).</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>Si p-valor &lt; α, rechazas \(H_0\) y concluyes que las proporciones marginales de las dos condiciones difieren significativamente. Si p-valor ≥ α, la evidencia es insuficiente para concluir diferencia.</p>
+            <section class="related-tools">
+              <h3>Calculadoras relacionadas</h3>
+              <ul>
+                <li><a href="tamano-muestral-proporciones-apareadas.html">Tamaño muestral para proporciones apareadas</a></li>
+                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste para dos proporciones independientes</a></li>
+                <li><a href="test-exacto-fisher.html">Test exacto de Fisher</a></li>
+              </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Cuándo se usa el test de McNemar?</strong> Cuando se tiene una variable binaria medida dos veces en los mismos sujetos y se quiere comparar las proporciones marginales.</li>
+                <li><strong>¿Qué son los pares discordantes?</strong> Los pares donde las dos condiciones dan resultados distintos (b y c). Los pares concordantes (a y d) no aportan información sobre la diferencia.</li>
+                <li><strong>¿Por qué se aplica la corrección de continuidad?</strong> Ajusta el estadístico discreto hacia la distribución continua chi-cuadrado, reduciendo el error de tipo I cuando b+c es pequeño.</li>
+                <li><strong>¿Cuál es la alternativa exacta?</strong> El test binomial exacto sobre los pares discordantes, recomendado cuando b+c &lt; 25.</li>
+                <li><strong>¿Puede usarse McNemar con más de dos categorías?</strong> Sí, con el test de simetría de Bowker para tablas k×k.</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Prueba_de_McNemar" target="_blank" rel="noopener noreferrer">Prueba de McNemar</a> — Wikipedia</p>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+      <p>
+        © 2026 problabtools.
+        <a href="aviso-legal.html">Aviso legal</a> ·
+        <a href="privacidad.html">Privacidad</a> ·
+        <a href="cookies.html">Cookies</a> ·
+        <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+      </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let mcnemarChart;
+
+function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+    for (let x = min; x <= max; x += step) {
+        const y = pdfFn(x);
+        curve.push({ x, y });
+        if (isAcceptanceFn(x)) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+    return { curve, acceptance, rejection };
+}
+
+function renderChart(alpha, chiSqObs) {
+    const ctx = document.getElementById('mcnemarChart');
+    if (!ctx) return;
+
+    const df = 1;
+    // Critical value: right-tail rejection
+    const critRight = jStat.chisquare.inv(1 - alpha, df);
+    const maxX = Math.max(critRight * 1.6, chiSqObs * 1.3, 10);
+    const minX = 0.001;
+
+    const { curve, acceptance, rejection } = buildCurvePoints(
+        minX, maxX, maxX / 400,
+        (x) => jStat.chisquare.pdf(x, df),
+        (x) => x < critRight
+    );
+    const maxY = Math.max(...curve.map(p => p.y).filter(Number.isFinite));
+    const statLine = Number.isFinite(chiSqObs)
+        ? [{ x: chiSqObs, y: 0 }, { x: chiSqObs, y: maxY }]
+        : [];
+
+    if (mcnemarChart) mcnemarChart.destroy();
+    mcnemarChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Distribución χ² (gl=1)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'Estadístico χ² observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: 0, max: maxX, title: { display: true, text: 'Estadístico χ²' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const b = parseFloat(document.getElementById('bVal').value);
+    const c = parseFloat(document.getElementById('cVal').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const correction = document.getElementById('correction').value;
+    const resultEl = document.getElementById('result');
+
+    if (![b, c, alpha].every(Number.isFinite) || b < 0 || c < 0 || (b + c) === 0 || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: b ≥ 0, c ≥ 0, b+c > 0 y 0 < α < 1.';
+        if (mcnemarChart) { mcnemarChart.destroy(); mcnemarChart = null; }
+        return;
+    }
+
+    const df = 1;
+    let chiSq;
+    if (correction === 'yes') {
+        chiSq = Math.pow(Math.abs(b - c) - 1, 2) / (b + c);
+    } else {
+        chiSq = Math.pow(b - c, 2) / (b + c);
+    }
+
+    const p = 1 - jStat.chisquare.cdf(chiSq, df);
+    const z = (b - c) / Math.sqrt(b + c);
+    const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
+    const corrLabel = correction === 'yes' ? ' (con corrección)' : ' (sin corrección)';
+    resultEl.innerText = `χ² = ${chiSq.toFixed(4)}${corrLabel} | gl = 1 | p-valor = ${p.toFixed(6)} | z = ${z.toFixed(4)} | ${decision}`;
+    renderChart(alpha, chiSq);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+calculate();
+</script>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraste de hipótesis para la correlación de Pearson | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online: contraste de hipótesis para la correlación de Pearson. Test t (ρ₀=0) o transformación z de Fisher (ρ₀≠0). Calcula p-valor, decisión e intervalo de confianza.">
+    <meta name="keywords" content="contraste correlación Pearson, test hipótesis correlación, transformación Fisher z, p-valor correlación, intervalo confianza correlación, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-correlacion.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contraste de hipótesis para la correlación de Pearson | ProbLab">
+    <meta property="og:description" content="Calculadora online: contraste de hipótesis para la correlación de Pearson. Test t (ρ₀=0) o transformación z de Fisher (ρ₀≠0). Calcula p-valor, decisión e intervalo de confianza.">
+    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-correlacion.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora online de contraste de hipótesis para la correlación de Pearson">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/contraste-hipotesis-correlacion.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contraste de hipótesis para la correlación de Pearson | ProbLab">
+    <meta name="twitter:description" content="Calculadora online: contraste de hipótesis para la correlación de Pearson. Test t (ρ₀=0) o transformación z de Fisher (ρ₀≠0). Calcula p-valor, decisión e intervalo de confianza.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora online de contraste de hipótesis para la correlación de Pearson">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Contrastes de hipótesis", "item": "https://problabtools.es/contrastes-hipotesis/"},
+            {"@type": "ListItem", "position": 3, "name": "Correlación de Pearson", "item": "https://problabtools.es/contraste-hipotesis-correlacion.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Contraste de hipótesis para la correlación de Pearson | ProbLab",
+          "url": "https://problabtools.es/contraste-hipotesis-correlacion.html",
+          "description": "Calculadora online: contraste de hipótesis para la correlación de Pearson. Test t (ρ₀=0) o transformación z de Fisher (ρ₀≠0). Calcula p-valor, decisión e intervalo de confianza.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora online de contraste de hipótesis para la correlación de Pearson",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/contraste-hipotesis-correlacion.html",
+      "description": "Calculadora online: contraste de hipótesis para la correlación de Pearson. Test t (ρ₀=0) o transformación z de Fisher (ρ₀≠0). Calcula p-valor, decisión e intervalo de confianza.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuándo se usa el test t y cuándo la transformación z de Fisher para correlaciones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test t (con gl=n-2) se usa cuando ρ₀=0. Cuando ρ₀≠0, la distribución de r no es simétrica y se aplica la transformación z de Fisher (arctanh) para estabilizar la varianza y obtener una estadística aproximadamente normal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué supuestos requiere el test para la correlación de Pearson?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La pareja (X, Y) debe seguir una distribución normal bivariada, las observaciones deben ser independientes, y la relación debe ser lineal. Con tamaños muestrales grandes el test es robusto a la no normalidad marginal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se interpreta el intervalo de confianza para ρ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El IC para ρ se construye transformando r con arctanh, calculando el IC en escala z y volviendo a la escala original con tanh. Si el IC no incluye 0, hay evidencia de correlación a ese nivel de confianza."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puede r ser significativo aunque la correlación sea pequeña?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Con muestras grandes incluso correlaciones pequeñas (|r| < 0,1) pueden ser estadísticamente significativas. Por eso es importante reportar r y su IC además del p-valor, para valorar la relevancia práctica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué alternativa existe si no se puede asumir normalidad bivariada?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se puede usar la correlación de rangos de Spearman o la tau de Kendall, que son no paramétricas y no requieren normalidad."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><span aria-current="page">Correlación de Pearson</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora online de contraste de hipótesis para la correlación de Pearson</h1>
+        <p class="hero-subtitle">Contrasta si la correlación muestral es compatible con un valor hipotético, usando el test t o la transformación z de Fisher según corresponda.</p>
+        <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Ver todos los contrastes</a></p>
+    </header>
+
+    <main>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la correlación muestral r, el tamaño de muestra, el valor nulo ρ₀ y el nivel de significación para obtener el estadístico, p-valor, decisión e intervalo de confianza para ρ.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="r">Correlación muestral (r)</label>
+                        <input type="number" id="r" value="0.45" step="0.01" min="-0.9999" max="0.9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="n">Tamaño muestral (n)</label>
+                        <input type="number" id="n" value="30" step="1" min="4">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="rho0">Valor nulo (ρ₀)</label>
+                        <input type="number" id="rho0" value="0" step="0.01" min="-0.9999" max="0.9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="tail">Tipo de contraste</label>
+                        <select id="tail">
+                            <option value="two">Bilateral (≠)</option>
+                            <option value="right">Cola derecha (&gt;)</option>
+                            <option value="left">Cola izquierda (&lt;)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular contraste</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="corrChart" aria-label="Gráfico de distribución con zonas de aceptación y rechazo para el contraste de correlación" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El contraste de hipótesis para la correlación de Pearson permite evaluar si la correlación poblacional \(\rho\) es compatible con un valor hipotético \(\rho_0\). El caso más frecuente es contrastar \(H_0\colon \rho = 0\) (ausencia de correlación lineal), pero también es posible contrastar frente a cualquier otro valor.</p>
+            <p>La elección del procedimiento depende del valor nulo: si \(\rho_0 = 0\) se emplea un test t exacto; si \(\rho_0 \neq 0\) se recurre a la transformación z de Fisher (arctanh), que estabiliza la varianza y produce una estadística aproximadamente normal.</p>
+
+            <h3>Hipótesis y estadísticos</h3>
+            <p class="formula-line">\(H_0\colon \rho = \rho_0\)</p>
+            <p><strong>Cuando \(\rho_0 = 0\):</strong></p>
+            <p class="formula-line">\( t = \dfrac{r\,\sqrt{n-2}}{\sqrt{1-r^2}}, \quad gl = n-2 \)</p>
+            <p><strong>Cuando \(\rho_0 \neq 0\) (transformación z de Fisher):</strong></p>
+            <p class="formula-line">\( z = \left(\operatorname{arctanh}(r) - \operatorname{arctanh}(\rho_0)\right)\cdot\sqrt{n-3} \)</p>
+            <p>El intervalo de confianza al \(100(1-\alpha)\%\) para \(\rho\) siempre se construye con Fisher:</p>
+            <p class="formula-line">\( \hat{\rho}_{\text{inf}} = \tanh\!\left(\operatorname{arctanh}(r) - \dfrac{z_{\alpha/2}}{\sqrt{n-3}}\right) \)</p>
+            <p class="formula-line">\( \hat{\rho}_{\text{sup}} = \tanh\!\left(\operatorname{arctanh}(r) + \dfrac{z_{\alpha/2}}{\sqrt{n-3}}\right) \)</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Guía rápida de interpretación</h3>
+            <ul>
+                <li>Si el <strong>p-valor</strong> es menor que \(\alpha\), se rechaza \(H_0\): hay evidencia de que \(\rho \neq \rho_0\).</li>
+                <li>Si el p-valor es mayor o igual que \(\alpha\), la evidencia es insuficiente para rechazar \(H_0\).</li>
+                <li>Con muestras grandes, correlaciones pequeñas pueden ser significativas: reporta siempre el IC y \(r^2\) (coeficiente de determinación).</li>
+                <li>Si el IC para \(\rho\) no incluye \(\rho_0\), coincide con rechazar \(H_0\) al nivel \(\alpha\).</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>¿Por qué la transformación de Fisher?</h3>
+            <p>La distribución muestral de \(r\) es asimétrica cuando \(\rho \neq 0\): los valores de \(r\) están acotados en \([-1,1]\) y la distribución se comprime cerca de los extremos. Fisher demostró en 1915 que \(\operatorname{arctanh}(r)\) tiene una distribución aproximadamente normal con varianza \(1/(n-3)\), independientemente del valor de \(\rho\). Esta propiedad hace la transformación esencial para construir intervalos de confianza y para contrastar \(H_0\colon \rho = \rho_0\) con \(\rho_0 \neq 0\).</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Se dispone de \(n = 30\) observaciones y se obtiene una correlación muestral \(r = 0{,}45\). Se contrasta \(H_0\colon \rho = 0\) frente a \(H_1\colon \rho \neq 0\) con \(\alpha = 0{,}05\).</p>
+            <p>Como \(\rho_0 = 0\), se usa el test t con \(gl = 28\):</p>
+            <p class="formula-line">\( t = \dfrac{0{,}45\,\sqrt{28}}{\sqrt{1 - 0{,}2025}} = \dfrac{0{,}45 \times 5{,}292}{\sqrt{0{,}7975}} \approx \dfrac{2{,}381}{0{,}893} \approx 2{,}667 \)</p>
+            <p>El p-valor bilateral es \(p \approx 0{,}012\). Como \(p = 0{,}012 < \alpha = 0{,}05\), <strong>se rechaza \(H_0\)</strong>.</p>
+            <p>El IC al 95 % para \(\rho\) mediante Fisher es aproximadamente \([0{,}11,\, 0{,}70]\), que no incluye 0, confirmando la decisión del contraste.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora de contraste para la correlación de Pearson calcula automáticamente el estadístico apropiado (t cuando \(\rho_0=0\), z de Fisher cuando \(\rho_0\neq0\)), el p-valor exacto, la decisión estadística y el intervalo de confianza para \(\rho\) usando la transformación de Fisher. Es útil en análisis de correlación bivariada, validación de instrumentos y estudios de asociación lineal.</p>
+            <h3>Fórmula utilizada</h3>
+            <p>Cuando \(\rho_0 = 0\): \(t = r\sqrt{n-2}/\sqrt{1-r^2}\) con \(gl=n-2\). Cuando \(\rho_0 \neq 0\): \(z = (\operatorname{arctanh}(r) - \operatorname{arctanh}(\rho_0))\cdot\sqrt{n-3}\). IC mediante transformación inversa \(\tanh\).</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>Si p-valor &lt; α, rechazas \(H_0\) y concluyes que \(\rho \neq \rho_0\). Complementa con el IC para cuantificar el rango plausible de \(\rho\) y con \(r^2\) para evaluar la relevancia práctica.</p>
+            <section class="related-tools">
+              <h3>Calculadoras relacionadas</h3>
+              <ul>
+                <li><a href="tamano-muestral-correlacion.html">Tamaño muestral para correlación</a></li>
+                <li><a href="contraste-hipotesis-una-media.html">Contraste para una media</a></li>
+              </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Cuándo se usa el test t y cuándo Fisher?</strong> El test t cuando \(\rho_0=0\); la transformación z de Fisher cuando \(\rho_0 \neq 0\) porque la distribución de r no es simétrica.</li>
+                <li><strong>¿Qué supuestos requiere?</strong> Distribución normal bivariada, independencia de observaciones y relación lineal. Robusto con n grande.</li>
+                <li><strong>¿Cómo se interpreta el IC para ρ?</strong> Se construye con la transformación arctanh y se devuelve a escala original con tanh. Si no incluye ρ₀, hay evidencia de diferencia.</li>
+                <li><strong>¿Puede r pequeño ser significativo?</strong> Sí, con n grande. Reporta siempre r, su IC y r² para valorar relevancia práctica.</li>
+                <li><strong>¿Alternativa no paramétrica?</strong> Correlación de rangos de Spearman o tau de Kendall cuando no se puede asumir normalidad bivariada.</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Coeficiente_de_correlaci%C3%B3n_de_Pearson" target="_blank" rel="noopener noreferrer">Coeficiente de correlación de Pearson</a> — Wikipedia</p>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+      <p>
+        © 2026 problabtools.
+        <a href="aviso-legal.html">Aviso legal</a> ·
+        <a href="privacidad.html">Privacidad</a> ·
+        <a href="cookies.html">Cookies</a> ·
+        <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+      </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let corrChart;
+
+function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+    for (let x = min; x <= max; x += step) {
+        const y = pdfFn(x);
+        curve.push({ x, y });
+        if (isAcceptanceFn(x)) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+    return { curve, acceptance, rejection };
+}
+
+function getCriticalValues(alpha, tail, useT, df) {
+    if (useT) {
+        if (tail === 'two') {
+            const c = jStat.studentt.inv(1 - alpha / 2, df);
+            return { left: -c, right: c };
+        }
+        if (tail === 'left') return { left: jStat.studentt.inv(alpha, df), right: Infinity };
+        return { left: -Infinity, right: jStat.studentt.inv(1 - alpha, df) };
+    } else {
+        if (tail === 'two') {
+            const c = jStat.normal.inv(1 - alpha / 2, 0, 1);
+            return { left: -c, right: c };
+        }
+        if (tail === 'left') return { left: jStat.normal.inv(alpha, 0, 1), right: Infinity };
+        return { left: -Infinity, right: jStat.normal.inv(1 - alpha, 0, 1) };
+    }
+}
+
+function renderChart(alpha, tail, statValue, useT, df) {
+    const ctx = document.getElementById('corrChart');
+    if (!ctx) return;
+
+    const critical = getCriticalValues(alpha, tail, useT, df);
+    const bound = Math.max(4, Math.abs(statValue || 0),
+        Number.isFinite(critical.left) ? Math.abs(critical.left) : 0,
+        Number.isFinite(critical.right) ? Math.abs(critical.right) : 0);
+    const minX = -Math.min(bound + 0.8, 8);
+    const maxX = Math.min(bound + 0.8, 8);
+
+    const pdfFn = useT
+        ? (x) => jStat.studentt.pdf(x, df)
+        : (x) => jStat.normal.pdf(x, 0, 1);
+
+    const { curve, acceptance, rejection } = buildCurvePoints(
+        minX, maxX, 0.02,
+        pdfFn,
+        (x) => x > critical.left && x < critical.right
+    );
+    const maxY = Math.max(...curve.map(p => p.y));
+    const statLine = Number.isFinite(statValue)
+        ? [{ x: statValue, y: 0 }, { x: statValue, y: maxY }]
+        : [];
+
+    const distLabel = useT ? `t de Student (gl=${df})` : 'Normal estándar (z de Fisher)';
+    const xLabel = useT ? 'Estadístico t' : 'Estadístico z';
+
+    if (corrChart) corrChart.destroy();
+    corrChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: distLabel, data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'Estadístico observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: xLabel } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const r     = parseFloat(document.getElementById('r').value);
+    const n     = parseFloat(document.getElementById('n').value);
+    const rho0  = parseFloat(document.getElementById('rho0').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const tail  = document.getElementById('tail').value;
+    const resultEl = document.getElementById('result');
+
+    if (![r, n, rho0, alpha].every(Number.isFinite) || Math.abs(r) >= 1 || Math.abs(rho0) >= 1 || n < 4 || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: |r| < 1, |ρ₀| < 1, n ≥ 4 y 0 < α < 1.';
+        if (corrChart) { corrChart.destroy(); corrChart = null; }
+        return;
+    }
+
+    const useT = Math.abs(rho0) < 1e-10; // ρ₀ = 0 → t test
+    let stat, p, statName, dfInfo;
+
+    if (useT) {
+        const df = Math.round(n) - 2;
+        stat = r * Math.sqrt(df) / Math.sqrt(1 - r * r);
+        if (tail === 'two')        p = 2 * (1 - jStat.studentt.cdf(Math.abs(stat), df));
+        else if (tail === 'right') p = 1 - jStat.studentt.cdf(stat, df);
+        else                       p = jStat.studentt.cdf(stat, df);
+        statName = 't';
+        dfInfo = ` | gl = ${df}`;
+        renderChart(alpha, tail, stat, true, df);
+    } else {
+        const zr   = Math.atanh(r);
+        const zrho = Math.atanh(rho0);
+        stat = (zr - zrho) * Math.sqrt(n - 3);
+        if (tail === 'two')        p = 2 * (1 - jStat.normal.cdf(Math.abs(stat), 0, 1));
+        else if (tail === 'right') p = 1 - jStat.normal.cdf(stat, 0, 1);
+        else                       p = jStat.normal.cdf(stat, 0, 1);
+        statName = 'z';
+        dfInfo = '';
+        renderChart(alpha, tail, stat, false, 0);
+    }
+
+    // 95% CI for rho using Fisher (always bilateral regardless of tail)
+    const zr = Math.atanh(r);
+    const zCrit = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const se_zr = 1 / Math.sqrt(n - 3);
+    const lowerZ = zr - zCrit * se_zr;
+    const upperZ = zr + zCrit * se_zr;
+    const lowerRho = Math.tanh(lowerZ);
+    const upperRho = Math.tanh(upperZ);
+
+    const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
+    const confLevel = Math.round((1 - alpha) * 100);
+    resultEl.innerText =
+        `${statName} = ${stat.toFixed(4)}${dfInfo} | p-valor = ${p.toFixed(6)} | ${decision}\n` +
+        `IC ${confLevel}% para ρ: [${lowerRho.toFixed(4)}, ${upperRho.toFixed(4)}]`;
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+calculate();
+</script>
+</body>
+</html>
