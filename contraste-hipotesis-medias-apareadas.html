@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraste de hipótesis para medias apareadas | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online: contraste de hipótesis para medias apareadas (test t de diferencias). Calcula el estadístico t, p-valor y decisión estadística para muestras emparejadas.">
+    <meta name="keywords" content="contraste hipótesis medias apareadas, test t muestras emparejadas, prueba de hipótesis diferencias apareadas, p-valor medias apareadas, estadística online, ProbLab, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-medias-apareadas.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contraste de hipótesis para medias apareadas | ProbLab">
+    <meta property="og:description" content="Calculadora online: contraste de hipótesis para medias apareadas (test t de diferencias). Calcula el estadístico t, p-valor y decisión estadística para muestras emparejadas.">
+    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-medias-apareadas.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora online de contraste de hipótesis para medias apareadas">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/contraste-hipotesis-medias-apareadas.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contraste de hipótesis para medias apareadas | ProbLab">
+    <meta name="twitter:description" content="Calculadora online: contraste de hipótesis para medias apareadas (test t de diferencias). Calcula el estadístico t, p-valor y decisión estadística para muestras emparejadas.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora online de contraste de hipótesis para medias apareadas">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Contrastes de hipótesis", "item": "https://problabtools.es/contrastes-hipotesis/"},
+            {"@type": "ListItem", "position": 3, "name": "Medias apareadas", "item": "https://problabtools.es/contraste-hipotesis-medias-apareadas.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Contraste de hipótesis para medias apareadas | ProbLab",
+          "url": "https://problabtools.es/contraste-hipotesis-medias-apareadas.html",
+          "description": "Calculadora online: contraste de hipótesis para medias apareadas (test t de diferencias). Calcula el estadístico t, p-valor y decisión estadística para muestras emparejadas.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora online de contraste de hipótesis para medias apareadas",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/contraste-hipotesis-medias-apareadas.html",
+      "description": "Calculadora online: contraste de hipótesis para medias apareadas (test t de diferencias). Calcula el estadístico t, p-valor y decisión estadística para muestras emparejadas.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuándo se usa el test t para medias apareadas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se usa cuando cada individuo es medido dos veces (antes y después) o cuando los sujetos están emparejados por alguna característica relevante, de modo que las diferencias entre pares eliminan la variabilidad entre individuos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué supuestos requiere el test t apareado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Las diferencias d_i deben seguir una distribución aproximadamente normal (o n debe ser grande por el teorema central del límite). Las observaciones deben ser independientes entre pares."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿En qué se diferencia del test t de dos muestras independientes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test apareado trabaja directamente con las diferencias dentro de cada par, eliminando la variabilidad entre individuos. Esto lo hace más potente cuando existe correlación positiva entre las mediciones de cada par."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué significa μ_d0 en la hipótesis nula?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es el valor de la diferencia media poblacional bajo la hipótesis nula. Habitualmente se fija en 0 para contrastar si hay efecto, aunque puede ser cualquier valor si se compara con una diferencia de referencia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se calcula el p-valor en este test?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se calcula a partir de la distribución t de Student con n-1 grados de libertad, evaluando la probabilidad de obtener un estadístico tan extremo como el observado bajo la hipótesis nula."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><span aria-current="page">Medias apareadas</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora online de contraste de hipótesis para medias apareadas</h1>
+        <p class="hero-subtitle">Evalúa si la diferencia media entre dos condiciones emparejadas es estadísticamente significativa usando el test t de diferencias.</p>
+        <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Ver todos los contrastes</a></p>
+    </header>
+
+    <main>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los parámetros de las diferencias para obtener el estadístico t, p-valor y decisión del contraste.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="dbar">Media de diferencias (d̄)</label>
+                        <input type="number" id="dbar" value="2.5" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="sd">Desv. típica de diferencias (s_d)</label>
+                        <input type="number" id="sd" value="8" step="0.01" min="0.0001">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="n">Número de pares (n)</label>
+                        <input type="number" id="n" value="25" step="1" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="mud0">Valor nulo (μ_d0)</label>
+                        <input type="number" id="mud0" value="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="tail">Tipo de contraste</label>
+                        <select id="tail">
+                            <option value="two">Bilateral (≠)</option>
+                            <option value="right">Cola derecha (&gt;)</option>
+                            <option value="left">Cola izquierda (&lt;)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular contraste</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="pairedMeansChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste de medias apareadas" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El contraste de hipótesis para medias apareadas se aplica cuando las observaciones están emparejadas: cada individuo aporta dos mediciones (por ejemplo, antes y después de un tratamiento) o cuando los sujetos se han emparejado intencionalmente por variables de confusión. En lugar de comparar dos grupos independientes, se trabaja directamente con las diferencias \(d_i = x_{i1} - x_{i2}\) dentro de cada par.</p>
+            <p>Esta estrategia de diseño elimina la variabilidad entre individuos, lo que se traduce habitualmente en una mayor potencia estadística frente al test t para muestras independientes, especialmente cuando existe correlación positiva entre las mediciones de cada par.</p>
+
+            <h3>Hipótesis y estadístico</h3>
+            <p class="formula-line">\(H_0: \mu_d = \mu_{d0}\)</p>
+            <p class="formula-line">\(H_1: \mu_d \neq \mu_{d0}\), \(\mu_d > \mu_{d0}\) o \(\mu_d &lt; \mu_{d0}\)</p>
+            <p class="formula-line">\( t = \dfrac{\bar{d} - \mu_{d0}}{s_d / \sqrt{n}}, \quad gl = n - 1 \)</p>
+            <ul>
+                <li><strong>\(\bar{d}\)</strong>: media muestral de las diferencias.</li>
+                <li><strong>\(\mu_{d0}\)</strong>: valor de la diferencia media bajo \(H_0\) (normalmente 0).</li>
+                <li><strong>\(s_d\)</strong>: desviación estándar muestral de las diferencias.</li>
+                <li><strong>\(n\)</strong>: número de pares.</li>
+                <li><strong>\(gl = n-1\)</strong>: grados de libertad de la t de Student.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Guía rápida de decisión</h3>
+            <ul>
+                <li>Si el <strong>p-valor</strong> es menor que \(\alpha\), se rechaza \(H_0\): hay evidencia de que la diferencia media no es \(\mu_{d0}\).</li>
+                <li>Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar \(H_0\).</li>
+                <li>Un resultado no significativo no prueba que \(H_0\) sea verdadera; puede deberse a falta de potencia.</li>
+                <li>Complementa siempre con un intervalo de confianza para \(\mu_d\) y el tamaño del efecto (d de Cohen).</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>¿Cuándo usar el diseño apareado?</h3>
+            <p>El diseño apareado es especialmente ventajoso cuando:</p>
+            <ul>
+                <li>Las mismas unidades experimentales son medidas en dos condiciones (diseño de medidas repetidas).</li>
+                <li>Se emparejan sujetos por edad, sexo u otras variables relevantes antes del estudio.</li>
+                <li>Se espera que exista correlación positiva entre las dos mediciones de cada par.</li>
+            </ul>
+            <p>Si las diferencias no son normales y la muestra es pequeña, considere la alternativa no paramétrica: el test de Wilcoxon para datos apareados.</p>
+
+            <h3>Supuestos del test</h3>
+            <ul>
+                <li>Las diferencias \(d_i\) siguen una distribución aproximadamente normal (o \(n\) es suficientemente grande).</li>
+                <li>Las observaciones son independientes entre pares (no dentro de cada par).</li>
+                <li>Los pares son representativos de la población de interés.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Investigadores miden la presión arterial sistólica en 25 pacientes antes y después de un tratamiento. La media de las diferencias (antes − después) es \(\bar{d} = 2{,}5\) mmHg con desviación típica \(s_d = 8\) mmHg. Se contrasta \(H_0\colon \mu_d = 0\) frente a \(H_1\colon \mu_d \neq 0\) con \(\alpha = 0{,}05\).</p>
+            <p>El estadístico t es:</p>
+            <p class="formula-line">\( t = \dfrac{2{,}5 - 0}{8 / \sqrt{25}} = \dfrac{2{,}5}{1{,}6} = 1{,}5625 \)</p>
+            <p>Con \(gl = 24\) grados de libertad y contraste bilateral, el p-valor es \(p \approx 0{,}131\). Como \(p = 0{,}131 > \alpha = 0{,}05\), <strong>no se rechaza \(H_0\)</strong>.</p>
+            <p>Conclusión: con estos datos no hay evidencia estadística suficiente para concluir que el tratamiento produce una reducción significativa de la presión arterial al nivel del 5 %. Sería recomendable ampliar la muestra o revisar la variabilidad de las diferencias.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora de contraste de hipótesis para medias apareadas computa automáticamente el estadístico t de Student, los grados de libertad (\(gl = n-1\)), el p-valor exacto y la decisión estadística (rechazar o no \(H_0\)) para muestras emparejadas. Es especialmente útil en estudios pre-post, ensayos cruzados y diseños de bloques completos.</p>
+            <h3>Fórmula utilizada</h3>
+            <p>Se aplica el <strong>test t de una muestra sobre las diferencias</strong>: \(t = (\bar{d} - \mu_{d0}) / (s_d / \sqrt{n})\), con \(gl = n-1\). El p-valor se obtiene de la distribución t de Student con esos grados de libertad, adaptándose al tipo de contraste (bilateral, cola derecha o cola izquierda).</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>Si p-valor &lt; α, rechazas \(H_0\) y concluyes que la diferencia media es distinta de \(\mu_{d0}\). Si p-valor ≥ α, no rechazas \(H_0\). Informa siempre del intervalo de confianza para \(\mu_d\) y del tamaño del efecto para valorar la relevancia práctica del resultado.</p>
+            <section class="related-tools">
+              <h3>Calculadoras relacionadas</h3>
+              <ul>
+                <li><a href="tamano-muestral-medias-apareadas.html">Tamaño muestral para medias apareadas</a></li>
+                <li><a href="intervalo-confianza-medias-apareadas.html">Intervalo de confianza para medias apareadas</a></li>
+                <li><a href="contraste-hipotesis-dos-medias.html">Contraste para dos medias independientes</a></li>
+              </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Cuándo se usa el test t para medias apareadas?</strong> Cuando cada individuo es medido dos veces o cuando los sujetos están emparejados por alguna característica relevante, de modo que las diferencias eliminan la variabilidad entre individuos.</li>
+                <li><strong>¿Qué supuestos requiere el test t apareado?</strong> Las diferencias \(d_i\) deben seguir una distribución aproximadamente normal (o \(n\) debe ser grande). Las observaciones deben ser independientes entre pares.</li>
+                <li><strong>¿En qué se diferencia del test t de dos muestras independientes?</strong> El test apareado trabaja con las diferencias dentro de cada par, eliminando la variabilidad entre individuos y siendo más potente cuando existe correlación positiva entre pares.</li>
+                <li><strong>¿Qué significa μ_d0 en la hipótesis nula?</strong> Es el valor de la diferencia media poblacional bajo \(H_0\). Habitualmente se fija en 0 para contrastar si hay efecto.</li>
+                <li><strong>¿Cómo se calcula el p-valor en este test?</strong> A partir de la distribución t de Student con \(n-1\) grados de libertad, evaluando la probabilidad de obtener un estadístico tan extremo como el observado bajo \(H_0\).</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Prueba_t_de_Student#Prueba_para_muestras_relacionadas" target="_blank" rel="noopener noreferrer">Test t para muestras relacionadas</a> — Wikipedia</p>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+  <p>
+    © 2026 problabtools.
+    <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="privacidad.html">Privacidad</a> ·
+    <a href="cookies.html">Cookies</a> ·
+    <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+  </p>
+</footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let pairedMeansChart;
+
+function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+    for (let x = min; x <= max; x += step) {
+        const y = pdfFn(x);
+        curve.push({ x, y });
+        if (isAcceptanceFn(x)) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+    return { curve, acceptance, rejection };
+}
+
+function getCriticalValues(alpha, tail, df) {
+    if (tail === 'two') {
+        const c = jStat.studentt.inv(1 - alpha / 2, df);
+        return { left: -c, right: c };
+    }
+    if (tail === 'left') {
+        return { left: jStat.studentt.inv(alpha, df), right: Infinity };
+    }
+    return { left: -Infinity, right: jStat.studentt.inv(1 - alpha, df) };
+}
+
+function renderChart(alpha, tail, statValue, df) {
+    const ctx = document.getElementById('pairedMeansChart');
+    if (!ctx) return;
+
+    const critical = getCriticalValues(alpha, tail, df);
+    const bound = Math.max(4,
+        Math.abs(statValue || 0),
+        Number.isFinite(critical.left) ? Math.abs(critical.left) : 0,
+        Number.isFinite(critical.right) ? Math.abs(critical.right) : 0
+    );
+    const minX = -Math.min(bound + 0.8, 8);
+    const maxX = Math.min(bound + 0.8, 8);
+
+    const { curve, acceptance, rejection } = buildCurvePoints(
+        minX, maxX, 0.02,
+        (x) => jStat.studentt.pdf(x, df),
+        (x) => x > critical.left && x < critical.right
+    );
+    const maxY = Math.max(...curve.map(p => p.y));
+    const statLine = Number.isFinite(statValue)
+        ? [{ x: statValue, y: 0 }, { x: statValue, y: maxY }]
+        : [];
+
+    if (pairedMeansChart) pairedMeansChart.destroy();
+    pairedMeansChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: `Distribución t (gl=${df})`, data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'Estadístico t observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'Estadístico t' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const dbar  = parseFloat(document.getElementById('dbar').value);
+    const sd    = parseFloat(document.getElementById('sd').value);
+    const n     = parseFloat(document.getElementById('n').value);
+    const mud0  = parseFloat(document.getElementById('mud0').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const tail  = document.getElementById('tail').value;
+    const resultEl = document.getElementById('result');
+
+    if (![dbar, sd, n, mud0, alpha].every(Number.isFinite) || sd <= 0 || n < 2 || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: revisa que s_d > 0, n ≥ 2 y 0 < α < 1.';
+        if (pairedMeansChart) { pairedMeansChart.destroy(); pairedMeansChart = null; }
+        return;
+    }
+
+    const df = Math.round(n) - 1;
+    const se = sd / Math.sqrt(n);
+    const t  = (dbar - mud0) / se;
+
+    let p;
+    if (tail === 'two')   p = 2 * (1 - jStat.studentt.cdf(Math.abs(t), df));
+    else if (tail === 'right') p = 1 - jStat.studentt.cdf(t, df);
+    else                       p = jStat.studentt.cdf(t, df);
+
+    const decision = p < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
+    resultEl.innerText = `t = ${t.toFixed(4)} | gl = ${df} | p-valor = ${p.toFixed(6)} | ${decision}`;
+    renderChart(alpha, tail, t, df);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+calculate();
+</script>
+</body>
+</html>
