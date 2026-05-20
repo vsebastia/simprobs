@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para contraste de una varianza | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral para el contraste de hipótesis H0: σ=σ0 con potencia objetivo, nivel de significación y razón de varianzas.">
+    <meta name="keywords" content="tamaño muestral contraste varianza, calcular muestra test varianza, potencia estadística varianza, H0 sigma igual sigma0, contraste chi-cuadrado varianza, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-una-varianza.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para contraste de una varianza | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral para el contraste H0: σ=σ0 con potencia objetivo, alfa y razón R=σ1/σ0.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-una-varianza.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para contraste de una varianza">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-una-varianza.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para contraste de una varianza | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral para el contraste H0: σ=σ0 con potencia objetivo, alfa y razón R=σ1/σ0.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para contraste de una varianza">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Contraste una varianza", "item": "https://problabtools.es/tamano-muestral-una-varianza.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para contraste de una varianza | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-una-varianza.html",
+          "description": "Calcula el tamaño muestral para el contraste de hipótesis sobre una varianza con potencia y nivel de significación definidos.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para contraste de una varianza",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-una-varianza.html",
+      "description": "Calcula el tamaño muestral para el contraste H0: σ=σ0 con potencia objetivo, alfa y razón R=σ1/σ0.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es la razón R en este contraste?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "R = σ1/σ0 es el cociente entre la desviación estándar real bajo H1 y la hipotética bajo H0. Un R>1 indica que la variabilidad real supera la nominal; R<1 indica que es menor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué la potencia no se calcula con la distribución normal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El estadístico del contraste de varianza, (n-1)S²/σ0², sigue una distribución chi-cuadrado bajo H0 y una chi-cuadrado escalada bajo H1. La potencia exacta se obtiene evaluando la CDF de chi-cuadrado, no la normal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo usar alternativa unilateral?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cuando el objetivo es detectar solo un incremento (Ha: σ≥σ0) o solo una reducción (Ha: σ≤σ0) de la varianza. En control de calidad es frecuente el unilateral superior para detectar incrementos de variabilidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué supuestos requiere este contraste?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La variable debe seguir una distribución normal. El test chi-cuadrado de varianza es muy sensible a la no normalidad; con datos no normales la tasa real de error tipo I puede diferir mucho del nominal."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Contraste una varianza</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para contraste de una varianza</h1>
+        <p class="hero-subtitle">Calcula el tamaño de muestra necesario para contrastar \(H_0: \sigma = \sigma_0\) con una potencia objetivo mediante la distribución chi-cuadrado exacta.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la razón R = σ₁/σ₀, el nivel de significación, la potencia deseada y el tipo de alternativa para obtener el tamaño muestral mínimo.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="varR">Razón R = σ₁/σ₀</label>
+                        <input type="number" id="varR" value="1.5" step="0.05" min="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="varAlternative">Hipótesis alternativa</label>
+                        <select id="varAlternative">
+                            <option value="two-sided">Ha: σ ≠ σ0</option>
+                            <option value="greater">Ha: σ ≥ σ0</option>
+                            <option value="less">Ha: σ ≤ σ0</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="varAlpha">Alfa (α)</label>
+                        <input type="number" id="varAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="varPower">Potencia (1-β)</label>
+                        <input type="number" id="varPower" value="0.8" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="varCalculateBtn">Calcular tamaño muestral</button>
+            <div id="varResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El test chi-cuadrado de varianza contrasta \(H_0: \sigma^2 = \sigma_0^2\) mediante el estadístico \(T = (n-1)S^2/\sigma_0^2\), que bajo \(H_0\) sigue una distribución \(\chi^2_{n-1}\).</p>
+            <p>Bajo la alternativa \(\sigma_1 = R\cdot\sigma_0\), el estadístico \(T\) sigue una distribución \(R^2 \cdot \chi^2_{n-1}\), equivalentemente \(T/R^2 \sim \chi^2_{n-1}\). La potencia exacta se evalúa usando la CDF de la distribución chi-cuadrado central, sin aproximaciones normales.</p>
+
+            <h3>Fórmula de potencia exacta</h3>
+            <p>Para alternativa bilateral (\(H_a: \sigma \neq \sigma_0\)):</p>
+            <p class="formula-line">\( \text{Potencia} = F_{\chi^2_{n-1}}\!\left(\frac{\chi^2_{\alpha/2,\,n-1}}{R^2}\right) + 1 - F_{\chi^2_{n-1}}\!\left(\frac{\chi^2_{1-\alpha/2,\,n-1}}{R^2}\right) \)</p>
+            <p>Para alternativa unilateral superior (\(H_a: \sigma \geq \sigma_0\)):</p>
+            <p class="formula-line">\( \text{Potencia} = 1 - F_{\chi^2_{n-1}}\!\left(\frac{\chi^2_{1-\alpha,\,n-1}}{R^2}\right) \)</p>
+            <p>Para alternativa unilateral inferior (\(H_a: \sigma \leq \sigma_0\)):</p>
+            <p class="formula-line">\( \text{Potencia} = F_{\chi^2_{n-1}}\!\left(\frac{\chi^2_{\alpha,\,n-1}}{R^2}\right) \)</p>
+            <p>La calculadora busca el menor \(n\) tal que la potencia exacta alcanza el valor objetivo.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Configuración rápida</h3>
+            <ul>
+                <li><strong>R:</strong> especifica la razón σ₁/σ₀ que quieres detectar. R=1,5 (incremento del 50 %) es un tamaño de efecto moderado. R=2 (varianza cuádruple) se detecta con muestras más pequeñas.</li>
+                <li><strong>α:</strong> 0,05 es el estándar; 0,01 para decisiones con consecuencias críticas.</li>
+                <li><strong>Potencia:</strong> 0,80 como mínimo habitual; 0,90 si los falsos negativos son costosos.</li>
+                <li><strong>Alternativa:</strong> bilateral si no tienes dirección previa; unilateral superior para detectar incrementos de variabilidad (control de calidad).</li>
+                <li><strong>Normalidad:</strong> este test es muy sensible a desviaciones de la normalidad; verifica el supuesto antes de aplicarlo.</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un fabricante de semiconductores quiere detectar un incremento de al menos un 50 % en la desviación estándar del diámetro de los chips (R = σ₁/σ₀ = 1,5). El proceso nominal tiene \(\sigma_0 = 2\) μm. Se quiere un contraste bilateral con \(\alpha = 0{,}05\) y potencia del 80 %.</p>
+            <p>La calculadora busca el menor \(n\) tal que la potencia exacta sea ≥ 0,80 con R = 1,5, y devuelve aproximadamente <strong>n = 54 observaciones</strong>. Con esa muestra, si la varianza real es \((1{,}5 \times 2)^2 = 9\) μm² (en lugar de los 4 μm² nominales), el test detectará el cambio el 80 % de las veces.</p>
+            <p><strong>Análisis de sensibilidad:</strong> con R = 2 (varianza cuádruple), la muestra se reduce a n ≈ 18. Para detectar R = 1,25 (incremento del 25 %) con la misma potencia se necesitan n ≈ 184. Los contrastes de varianza requieren muestras considerablemente mayores que los de media para el mismo nivel de efecto relativo.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Encuentra por búsqueda iterativa el menor \(n\) para que el test chi-cuadrado de varianza alcance la potencia objetivo al detectar una razón \(R = \sigma_1/\sigma_0\) específica.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El valor obtenido es el mínimo teórico de observaciones necesarias. Si prevés pérdidas o rechazos, divide n entre (1 − tasa de pérdida) para obtener el n de reclutamiento.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-varianza-ic.html">Tamaño muestral para la varianza (IC)</a></li>
+                    <li><a href="tamano-muestral-dos-varianzas.html">Contraste de dos varianzas (H0)</a></li>
+                    <li><a href="contraste-hipotesis-varianzas.html">Contraste de hipótesis sobre varianzas</a></li>
+                    <li><a href="intervalo-confianza-varianza.html">IC para la varianza</a></li>
+                    <li><a href="chisquare.html">Distribución chi-cuadrado</a></li>
+                </ul>
+            </section>
+            <h3>Referencias</h3>
+            <ul>
+                <li>Zar, J. H. (2010). <em>Biostatistical Analysis</em> (5.ª ed.). Pearson.</li>
+                <li>Montgomery, D. C. (2019). <em>Introduction to Statistical Quality Control</em> (8.ª ed.). Wiley.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function powerOneVariance(n, R, alpha, alternative) {
+    const df = n - 1;
+    const R2 = R * R;
+    if (alternative === 'two-sided') {
+        const chiLow = jStat.chisquare.inv(alpha / 2, df);
+        const chiHigh = jStat.chisquare.inv(1 - alpha / 2, df);
+        return jStat.chisquare.cdf(chiLow / R2, df) + (1 - jStat.chisquare.cdf(chiHigh / R2, df));
+    } else if (alternative === 'greater') {
+        return 1 - jStat.chisquare.cdf(jStat.chisquare.inv(1 - alpha, df) / R2, df);
+    } else {
+        return jStat.chisquare.cdf(jStat.chisquare.inv(alpha, df) / R2, df);
+    }
+}
+
+function calculateOneVarianceSampleSize() {
+    const R = parseFloat(document.getElementById('varR').value);
+    const alpha = parseFloat(document.getElementById('varAlpha').value);
+    const power = parseFloat(document.getElementById('varPower').value);
+    const alternative = document.getElementById('varAlternative').value;
+    const resultEl = document.getElementById('varResult');
+
+    if (!Number.isFinite(R) || R <= 0 || R === 1) {
+        resultEl.innerText = 'Error: R debe ser un número positivo distinto de 1.';
+        return;
+    }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: α debe estar entre 0 y 1.';
+        return;
+    }
+    if (!Number.isFinite(power) || power <= 0 || power >= 1) {
+        resultEl.innerText = 'Error: la potencia debe estar entre 0 y 1.';
+        return;
+    }
+
+    const altText = { 'two-sided': 'Ha: σ ≠ σ0', 'greater': 'Ha: σ ≥ σ0', 'less': 'Ha: σ ≤ σ0' }[alternative];
+    let n = 2;
+    let actualPower = 0;
+    while (n <= 100000) {
+        actualPower = powerOneVariance(n, R, alpha, alternative);
+        if (actualPower >= power) break;
+        n++;
+    }
+
+    if (actualPower < power) {
+        resultEl.innerText = 'No se encontró solución dentro del límite de búsqueda. Comprueba los parámetros.';
+        return;
+    }
+
+    resultEl.innerText =
+        `n mínimo recomendado: ${n} observaciones\n` +
+        `Potencia alcanzada: ${(actualPower * 100).toFixed(2)} % (objetivo: ${(power * 100).toFixed(0)} %)\n` +
+        `R = ${R}  |  α = ${alpha}  |  ${altText}`;
+}
+
+document.getElementById('varCalculateBtn').addEventListener('click', calculateOneVarianceSampleSize);
+calculateOneVarianceSampleSize();
+</script>
+</body>
+</html>

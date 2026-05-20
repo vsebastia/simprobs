@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para chi-cuadrado de independencia | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral para el test chi-cuadrado de independencia usando la w de Cohen, potencia objetivo y nivel de significación.">
+    <meta name="keywords" content="tamaño muestral chi-cuadrado independencia, calcular muestra test chi cuadrado, potencia estadística chi-cuadrado independencia, w Cohen chi-cuadrado, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-chi-cuadrado-independencia.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para chi-cuadrado de independencia | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral para el test chi-cuadrado de independencia usando la w de Cohen, potencia objetivo y nivel de significación.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-chi-cuadrado-independencia.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para chi-cuadrado de independencia">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-chi-cuadrado-independencia.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para chi-cuadrado de independencia | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral para el test chi-cuadrado de independencia usando la w de Cohen, potencia objetivo y nivel de significación.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para chi-cuadrado de independencia">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Chi-cuadrado independencia", "item": "https://problabtools.es/tamano-muestral-chi-cuadrado-independencia.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para chi-cuadrado de independencia | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-chi-cuadrado-independencia.html",
+          "description": "Calcula el tamaño muestral para el test chi-cuadrado de independencia con potencia y nivel de significación definidos.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para chi-cuadrado de independencia",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-chi-cuadrado-independencia.html",
+      "description": "Calcula el tamaño muestral para el test chi-cuadrado de independencia usando la w de Cohen, potencia objetivo y nivel de significación.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es la w de Cohen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es una medida de tamaño de efecto para tests chi-cuadrado: w = sqrt(χ²/N). Valores orientativos: 0,1 (pequeño), 0,3 (mediano), 0,5 (grande). Para tablas 2×2 puede calcularse a partir de las proporciones de los dos grupos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo elijo los grados de libertad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Para una tabla r×c, los grados de libertad son df=(r-1)(c-1). Para una tabla 2×2 es df=1; para 2×3 es df=2; para 3×3 es df=4, etc."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo calculo w a partir de dos proporciones en una tabla 2×2?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Con p1 y p2 las proporciones en los dos grupos: w = |p1-p2| / (2·sqrt(p_media·(1-p_media))) donde p_media = (p1+p2)/2. La calculadora incluye un asistente para este cálculo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué distribución se usa para calcular la potencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La potencia se calcula usando la distribución chi-cuadrado no central con parámetro de no centralidad λ=N·w². Esta distribución se aproxima mediante la mezcla de Poisson de chi-cuadrados centrales."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Chi-cuadrado independencia</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para chi-cuadrado de independencia</h1>
+        <p class="hero-subtitle">Calcula el tamaño de muestra necesario para el test chi-cuadrado de independencia con una potencia objetivo, usando la \(w\) de Cohen y la distribución chi-cuadrado no central exacta.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la w de Cohen, los grados de libertad de la tabla, el nivel de significación y la potencia deseada.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="chiW">Tamaño de efecto w de Cohen</label>
+                        <input type="number" id="chiW" value="0.3" step="0.01" min="0.001" max="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="chiDf">Grados de libertad df = (r−1)(c−1)</label>
+                        <input type="number" id="chiDf" value="1" step="1" min="1">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="chiAlpha">Alfa (α)</label>
+                        <input type="number" id="chiAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="chiPower">Potencia (1-β)</label>
+                        <input type="number" id="chiPower" value="0.8" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="chiCalculateBtn">Calcular tamaño muestral</button>
+            <div id="chiResult" class="result-box">Resultado pendiente…</div>
+
+            <details style="margin-top:1.5rem;">
+                <summary style="cursor:pointer; font-weight:600; color:var(--primary);">Asistente para tablas 2×2: calcular w desde p₁ y p₂</summary>
+                <div style="margin-top:1rem;">
+                    <p style="font-size:0.9rem; color:var(--text-muted);">Introduce las proporciones de los dos grupos para calcular automáticamente w y actualizarla en el campo superior.</p>
+                    <div class="inline-inputs">
+                        <div class="form-group">
+                            <label for="chiP1">Proporción grupo 1 (p₁)</label>
+                            <input type="number" id="chiP1" value="0.4" step="0.01" min="0.001" max="0.999">
+                        </div>
+                        <div class="form-group">
+                            <label for="chiP2">Proporción grupo 2 (p₂)</label>
+                            <input type="number" id="chiP2" value="0.6" step="0.01" min="0.001" max="0.999">
+                        </div>
+                    </div>
+                    <button class="calculate-btn" id="chiWBtn" style="margin-top:0.5rem;">Calcular w y actualizar</button>
+                    <div id="chiWResult" style="margin-top:0.5rem; font-size:0.9rem;"></div>
+                </div>
+            </details>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El test chi-cuadrado de independencia contrasta si dos variables categóricas son independientes en una tabla de contingencia \(r \times c\). Bajo \(H_0\) el estadístico \(\chi^2\) sigue una distribución chi-cuadrado con \(df = (r-1)(c-1)\) grados de libertad.</p>
+            <p>Bajo la alternativa, \(\chi^2\) sigue una distribución chi-cuadrado <em>no central</em> con parámetro de no centralidad \(\lambda = N \cdot w^2\), donde \(N\) es el tamaño total de la muestra y \(w\) es la \(w\) de Cohen.</p>
+
+            <h3>Parámetro de no centralidad y potencia</h3>
+            <p class="formula-line">\( \lambda = N \cdot w^2 \)</p>
+            <p class="formula-line">\( \text{Potencia} = 1 - F_{\chi^2_{df,\,\lambda}}\!\left(\chi^2_{1-\alpha,\,df}\right) \)</p>
+            <p>La distribución chi-cuadrado no central se evalúa exactamente mediante la mezcla de Poisson de chi-cuadrados centrales:</p>
+            <p class="formula-line">\( F_{\chi^2_{df,\lambda}}(x) = \sum_{k=0}^{\infty} \frac{e^{-\lambda/2}(\lambda/2)^k}{k!} \cdot F_{\chi^2_{df+2k}}(x) \)</p>
+
+            <h3>W de Cohen para tablas 2×2</h3>
+            <p>Con \(p_1\) y \(p_2\) las proporciones en los dos grupos y \(\bar{p} = (p_1+p_2)/2\):</p>
+            <p class="formula-line">\( w = \frac{|p_1 - p_2|}{2\sqrt{\bar{p}(1-\bar{p})}} \)</p>
+            <p>Valores orientativos según Cohen (1988): \(w = 0{,}1\) (efecto pequeño), \(w = 0{,}3\) (mediano), \(w = 0{,}5\) (grande).</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Configuración rápida</h3>
+            <ul>
+                <li><strong>w:</strong> 0,1 para efectos sutiles, 0,3 para efectos moderados (el más habitual), 0,5 para efectos grandes. Para tablas 2×2 usa el asistente.</li>
+                <li><strong>df:</strong> (número de filas − 1) × (número de columnas − 1). Para tablas 2×2, df=1.</li>
+                <li><strong>α:</strong> 0,05 es el estándar.</li>
+                <li><strong>Potencia:</strong> 0,80 como mínimo frecuente; 0,90 para estudios confirmatorios.</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un investigador quiere estudiar si existe asociación entre el género (2 categorías) y la preferencia por tres tipos de producto (3 categorías), es decir, una tabla 2×3. Espera un efecto mediano (\(w = 0{,}3\)) con \(\alpha = 0{,}05\) y potencia del 80 %. Los grados de libertad son \(df = (2-1)(3-1) = 2\).</p>
+            <p>La calculadora devuelve aproximadamente <strong>\(N = 107\) observaciones en total</strong>. Con esa muestra, si la asociación real tiene un tamaño de efecto \(w \geq 0{,}3\), el test la detectará el 80 % de las veces.</p>
+            <p><strong>Tabla 2×2 con asistente:</strong> si p₁ = 0,40 y p₂ = 0,60, la \(\bar{p} = 0{,}50\) y \(w = |0{,}40-0{,}60|/(2\sqrt{0{,}5 \times 0{,}5}) = 0{,}20/1{,}00 = 0{,}20\). Con df=1, α=0,05 y potencia=0,80 se necesitan N ≈ 197 observaciones.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Encuentra por búsqueda iterativa el menor \(N\) total para que el test chi-cuadrado de independencia alcance la potencia objetivo para el efecto \(w\) especificado.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El valor obtenido es el total de observaciones (suma de todas las celdas de la tabla). Si el diseño asigna igual número de individuos a cada fila, divide N entre el número de filas para obtener el tamaño de cada grupo.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="tamano-muestral-chi-cuadrado-bondad.html">Tamaño muestral chi-cuadrado bondad de ajuste (H0)</a></li>
+                    <li><a href="tamano-muestral-dos-proporciones.html">Dos proporciones (IC)</a></li>
+                    <li><a href="tamano-muestral-diferencia-proporciones-ic.html">Diferencia de proporciones (IC)</a></li>
+                    <li><a href="chisquare.html">Distribución chi-cuadrado</a></li>
+                </ul>
+            </section>
+            <h3>Referencias</h3>
+            <ul>
+                <li>Cohen, J. (1988). <em>Statistical Power Analysis for the Behavioral Sciences</em> (2.ª ed.). Lawrence Erlbaum Associates.</li>
+                <li>Agresti, A. (2013). <em>Categorical Data Analysis</em> (3.ª ed.). Wiley.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function ncChiSqCDF(x, df, lambda) {
+    if (x <= 0) return 0;
+    const halfLambda = lambda / 2;
+    let sum = 0;
+    let logPoissonWeight = -halfLambda;
+    for (let k = 0; k <= 500; k++) {
+        if (k > 0) logPoissonWeight += Math.log(halfLambda / k);
+        const weight = Math.exp(logPoissonWeight);
+        sum += weight * jStat.chisquare.cdf(x, df + 2 * k);
+        if (weight < 1e-14 && k > halfLambda + 10) break;
+    }
+    return Math.min(1, sum);
+}
+
+function ncChiSqPower(N, df, w, alpha) {
+    const lambda = N * w * w;
+    const critVal = jStat.chisquare.inv(1 - alpha, df);
+    return 1 - ncChiSqCDF(critVal, df, lambda);
+}
+
+function calculateChiIndSampleSize() {
+    const w = parseFloat(document.getElementById('chiW').value);
+    const df = parseInt(document.getElementById('chiDf').value);
+    const alpha = parseFloat(document.getElementById('chiAlpha').value);
+    const power = parseFloat(document.getElementById('chiPower').value);
+    const resultEl = document.getElementById('chiResult');
+
+    if (!Number.isFinite(w) || w <= 0) { resultEl.innerText = 'Error: w debe ser mayor que 0.'; return; }
+    if (!Number.isFinite(df) || df < 1) { resultEl.innerText = 'Error: df debe ser al menos 1.'; return; }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) { resultEl.innerText = 'Error: α debe estar entre 0 y 1.'; return; }
+    if (!Number.isFinite(power) || power <= 0 || power >= 1) { resultEl.innerText = 'Error: la potencia debe estar entre 0 y 1.'; return; }
+
+    let N = 2;
+    let actualPower = 0;
+    while (N <= 1000000) {
+        actualPower = ncChiSqPower(N, df, w, alpha);
+        if (actualPower >= power) break;
+        N++;
+    }
+
+    if (actualPower < power) {
+        resultEl.innerText = 'No se encontró solución dentro del límite de búsqueda. Comprueba los parámetros.';
+        return;
+    }
+
+    resultEl.innerText =
+        `N total mínimo recomendado: ${N} observaciones\n` +
+        `Potencia alcanzada: ${(actualPower * 100).toFixed(2)} % (objetivo: ${(power * 100).toFixed(0)} %)\n` +
+        `w = ${w}  |  df = ${df}  |  λ = N·w² = ${(N * w * w).toFixed(2)}  |  α = ${alpha}`;
+}
+
+function calculateWFromProportions() {
+    const p1 = parseFloat(document.getElementById('chiP1').value);
+    const p2 = parseFloat(document.getElementById('chiP2').value);
+    const resEl = document.getElementById('chiWResult');
+    if (!Number.isFinite(p1) || p1 <= 0 || p1 >= 1) { resEl.innerText = 'Error: p₁ debe estar entre 0 y 1.'; return; }
+    if (!Number.isFinite(p2) || p2 <= 0 || p2 >= 1) { resEl.innerText = 'Error: p₂ debe estar entre 0 y 1.'; return; }
+    const pBar = (p1 + p2) / 2;
+    const w = Math.abs(p1 - p2) / (2 * Math.sqrt(pBar * (1 - pBar)));
+    document.getElementById('chiW').value = w.toFixed(4);
+    resEl.innerText = `w calculada = ${w.toFixed(4)}  |  p̄ = ${pBar.toFixed(4)}  (df se mantiene en 1 para tablas 2×2)`;
+    document.getElementById('chiDf').value = 1;
+}
+
+document.getElementById('chiCalculateBtn').addEventListener('click', calculateChiIndSampleSize);
+document.getElementById('chiWBtn').addEventListener('click', calculateWFromProportions);
+calculateChiIndSampleSize();
+</script>
+</body>
+</html>
