@@ -73,18 +73,18 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Qué es el margen de error?",
+      "name": "¿Qué representa σd en la fórmula?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Es la precisión máxima tolerada respecto al valor real."
+        "text": "σd es la desviación estándar de las diferencias intraindividuales (d_i = X1_i − X2_i), no la desviación de cada grupo por separado. Debe estimarse de un piloto apareado o de literatura."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Qué significa nivel de confianza?",
+      "name": "¿Qué es Δ en el diseño apareado?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "El porcentaje de veces que el procedimiento capturaría el valor poblacional verdadero."
+        "text": "Es la diferencia media mínima que quieres detectar. Se define con criterio práctico o clínico antes del estudio, no a posteriori."
       }
     },
     {
@@ -92,7 +92,7 @@
       "name": "¿Qué es la potencia estadística?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "La probabilidad de detectar un efecto real cuando existe."
+        "text": "La probabilidad de detectar un efecto real cuando existe. Lo habitual es fijarla en 0,80 o 0,90."
       }
     },
     {
@@ -100,7 +100,7 @@
       "name": "¿El tamaño muestral es exacto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No, depende de supuestos y redondeos prácticos de diseño."
+        "text": "No, es la aproximación normal. Para n pequeño conviene usar iteración con cuantiles t con n−1 grados de libertad."
       }
     }
   ]
