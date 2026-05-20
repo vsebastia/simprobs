@@ -175,7 +175,7 @@
     </section>
 
         <section class="card content-card">
-      <h2>Modelo Beta-Binomial</h2>
+      <h3>Modelo Beta-Binomial</h3>
       <p>En el modelo bayesiano conjugado para proporciones, la prior es una distribución Beta y la likelihood es binomial. La posterior resultante es también una Beta, lo que permite cálculos analíticos exactos.</p>
       <p class="formula-line">\( p_A \sim \text{Beta}(\alpha_0, \beta_0) \xrightarrow{\text{datos}} p_A \mid \text{datos} \sim \text{Beta}(\alpha_0 + x_A,\; \beta_0 + n_A - x_A) \)</p>
       <p class="formula-line">\( p_B \sim \text{Beta}(\alpha_0, \beta_0) \xrightarrow{\text{datos}} p_B \mid \text{datos} \sim \text{Beta}(\alpha_0 + x_B,\; \beta_0 + n_B - x_B) \)</p>
@@ -187,6 +187,18 @@
     </section>
 
 
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Un equipo de producto quiere mejorar la tasa de registro en la página de inicio de una aplicación SaaS. La versión actual (A) tiene una tasa de conversión conocida de aproximadamente el 8 %. La variante B incorpora un nuevo titular y un botón de llamada a la acción más prominente. Se adopta una prior no informativa Beta(1, 1) para ambas variantes, que expresa ignorancia total sobre la tasa real antes de observar datos.</p>
+            <p>Tras 14 días de experimento se recogen los siguientes datos: el grupo A recibe <strong>1 200 visitantes</strong> y registra <strong>94 conversiones</strong>; el grupo B recibe <strong>1 200 visitantes</strong> y registra <strong>113 conversiones</strong>.</p>
+            <p>La actualización bayesiana es inmediata gracias a la conjugación Beta-Binomial. La distribución posterior de cada tasa es:</p>
+            <p class="formula-line">\( p_A \mid \text{datos} \sim \text{Beta}(1 + 94,\; 1 + 1\,200 - 94) = \text{Beta}(95,\; 1\,107) \)</p>
+            <p class="formula-line">\( p_B \mid \text{datos} \sim \text{Beta}(1 + 113,\; 1 + 1\,200 - 113) = \text{Beta}(114,\; 1\,088) \)</p>
+            <p>La media posterior de A es \( \hat{p}_A = 95/(95+1\,107) \approx 7{,}9\,\% \) y la de B es \( \hat{p}_B = 114/(114+1\,088) \approx 9{,}5\,\% \). Mediante Monte Carlo con 30 000 muestras extraídas de ambas distribuciones posteriores se estima la probabilidad de que B supere a A:</p>
+            <p class="formula-line">\( P(p_B > p_A) \approx 0{,}962 \)</p>
+            <p>El lift esperado de B sobre A es aproximadamente \( (9{,}5 - 7{,}9)/7{,}9 \approx +20\,\% \) en términos relativos. Con una probabilidad del 96,2 % de que la variante B sea genuinamente mejor, el equipo supera el umbral de decisión habitual (95 %) y puede desplegar B como nueva versión por defecto, estimando que el cambio generará alrededor de 19 registros adicionales por cada 1 000 visitas.</p>
+        </section>
 
     <section id="seo-support-content" class="card content-card">
       <h3>¿Qué calcula esta herramienta?</h3>

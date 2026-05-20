@@ -152,11 +152,11 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Los ensayos de <strong>no inferioridad</strong> buscan demostrar que el tratamiento nuevo (T) no es peor que el de referencia (C) en más de un margen preestablecido M. Los ensayos de <strong>equivalencia</strong> (TOST, <em>Two One-Sided Tests</em>) exigen que la diferencia esté dentro de ±M en ambas direcciones. En ambos casos, α es <em>unilateral</em>; el valor habitual es 0,025 (equivalente a un intervalo de confianza del 95 % para la diferencia).</p>
             <p>Este tipo de ensayos contrasta con los ensayos de <strong>superioridad</strong>, donde se busca demostrar que T es mejor que C. En no inferioridad la hipótesis nula es "T es inferior a C en más de M", y rechazarla —demostrando que la diferencia cae por encima de −M— basta para concluir no inferioridad. La elección del margen M es la decisión clínica más crítica del diseño: debe ser la pérdida máxima de eficacia que sería clínica y regulatoriamente aceptable.</p>
 
-            <h2>Fórmulas</h2>
+            <h3>Fórmulas</h3>
             <p><strong>No inferioridad</strong> — con \(\delta = \mu_T - \mu_C\) asumido:</p>
             <p class="formula-line">\( n = \left\lceil \frac{2\,\sigma^2\,(Z_\alpha + Z_\beta)^2}{(M + \delta)^2} \right\rceil \)</p>
             <p><strong>Equivalencia (TOST)</strong> — con \(\delta\) asumido:</p>
@@ -169,7 +169,7 @@
                 <li>La fórmula de equivalencia exige \(M > |\delta|\); si δ = 0 ambas fórmulas producen el mismo n.</li>
             </ul>
 
-            <h2>Supuestos del modelo</h2>
+            <h3>Supuestos del modelo</h3>
             <ul>
                 <li><strong>Normalidad:</strong> la variable de resultado sigue una distribución normal (o n suficientemente grande para aplicar el TCL).</li>
                 <li><strong>Varianzas iguales:</strong> la fórmula supone \(\sigma_T = \sigma_C = \sigma\). Si difieren, usa la media cuadrática como aproximación o métodos más elaborados.</li>
@@ -180,7 +180,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Configuración rápida</h2>
+            <h3>Configuración rápida</h3>
             <ul>
                 <li><strong>M:</strong> defínelo clínicamente antes del estudio; refleja la pérdida máxima aceptable de eficacia. Regulatoriamente suele fijarse entre el 50 % y el 80 % del efecto del comparador sobre placebo.</li>
                 <li><strong>δ = 0:</strong> supuesto conservador; significa que T y C tienen exactamente la misma eficacia media. Si esperas que T sea algo peor, δ negativo aumentará n; si crees que T es algo mejor, δ positivo lo reduce.</li>
@@ -188,10 +188,18 @@
                 <li><strong>Potencia:</strong> 0,80 habitualmente; 0,90 en estudios pivotales o con consecuencias regulatorias.</li>
             </ul>
 
-            <h2>Ejemplo sencillo</h2>
-            <p>Un nuevo fármaco frente a estándar: σ = 10, M = 5, δ = 0, α = 0,025 unilateral, potencia 0,80. El denominador es (5+0)² = 25; el resultado es aproximadamente <strong>85 pacientes por grupo</strong> (total ≈ 170).</p>
+            <h3>Ejemplo resuelto</h3>
+            <p>Una empresa farmacéutica desarrolla un nuevo antihipertensivo genérico para sustituir al tratamiento de referencia (innovador). La variable principal es la reducción de la presión arterial diastólica en mmHg tras ocho semanas de tratamiento. Los datos históricos del fármaco de referencia indican una desviación típica de σ = 10 mmHg.</p>
+            <p>El comité clínico fija el margen de no inferioridad en M = 5 mmHg: una diferencia inferior a 5 mmHg entre tratamientos se considera clínicamente irrelevante y no justifica mantener el innovador más caro. Bajo la hipótesis de trabajo más conservadora se asume que ambos fármacos tienen exactamente el mismo efecto medio, es decir δ = 0.</p>
+            <p>Los parámetros de diseño siguen las guías regulatorias EMA/FDA para ensayos de no inferioridad: nivel de significación unilateral α = 0,025 (equivalente a un intervalo de confianza del 95 % para la diferencia) y potencia del 80 % (β = 0,20). Los cuantiles correspondientes son \( z_{\alpha} = 1{,}960 \) y \( z_{\beta} = 0{,}842 \).</p>
+            <p>La fórmula para dos grupos paralelos con varianzas iguales es:</p>
+            <p class="formula-line">\( n = \dfrac{2\,\sigma^{2}\,(z_{\alpha}+z_{\beta})^{2}}{(M-\delta)^{2}} \)</p>
+            <p>Sustituyendo los valores:</p>
+            <p class="formula-line">\( n = \dfrac{2 \times 100 \times (1{,}960+0{,}842)^{2}}{(5-0)^{2}} = \dfrac{200 \times 7{,}851}{25} = \dfrac{1\,570{,}2}{25} \approx 62{,}8 \rightarrow 63 \text{ por grupo} \)</p>
+            <p>Aplicando el ajuste habitual por pérdidas de seguimiento del 15 %, el ensayo precisa reclutar aproximadamente <strong>85 pacientes por grupo</strong> (total ≈ 170). Este margen garantiza que, incluso si un 15 % de los participantes no completa el seguimiento, el análisis por intención de tratar conservará la potencia planificada del 80 %.</p>
+            <p>La conclusión regulatoria es que, si el límite inferior del IC del 95 % para la diferencia (genérico − referencia) queda por encima de −5 mmHg, se declarará no inferioridad y el fármaco podrá comercializarse como alternativa terapéutica equivalente al innovador.</p>
 
-            <h2>Usos frecuentes</h2>
+            <h3>Usos frecuentes</h3>
             <ul>
                 <li>Ensayos de medicamentos genéricos o biosimilares frente al innovador.</li>
                 <li>Comparación de un tratamiento menos tóxico o de administración más cómoda con el estándar de eficacia probada.</li>
@@ -199,7 +207,7 @@
                 <li>Bioequivalencia farmacocinética (aunque para PK se usan modelos ANOVA cruzado con límites específicos del 80–125 %).</li>
             </ul>
 
-            <h2>Referencias externas</h2>
+            <h3>Referencias externas</h3>
             <ul>
                 <li><a href="https://en.wikipedia.org/wiki/Non-inferiority_trial" target="_blank" rel="noopener">Non-inferiority trial (Wikipedia en inglés)</a> — diseño, hipótesis nula y alternativa, margen M</li>
                 <li><a href="https://en.wikipedia.org/wiki/Equivalence_trial" target="_blank" rel="noopener">Equivalence trial (Wikipedia en inglés)</a> — TOST y bioequivalencia</li>

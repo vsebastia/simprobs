@@ -195,7 +195,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
 
             <p>
                 El contraste chi-cuadrado de bondad de ajuste permite evaluar si la distribución
@@ -226,7 +226,7 @@
                 el número de parámetros adicionales estimados con la muestra.
             </p>
 
-            <h2>Hipótesis y estadístico</h2>
+            <h3>Hipótesis y estadístico</h3>
             <p class="formula-line">\(H_0\): la distribución observada coincide con la teórica</p>
             <p class="formula-line">\(H_1\): la distribución observada no coincide con la teórica</p>
             <p class="formula-line">
@@ -238,7 +238,7 @@
 
 
         <section class="card content-card">
-            <h2>Contraste rápido</h2>
+            <h3>Contraste rápido</h3>
 
             <p>
                 El estadístico chi-cuadrado suma, para cada categoría, el cuadrado de la diferencia
@@ -271,6 +271,18 @@
                 esperadas sean mayores o iguales que 5. Si alguna categoría tiene frecuencias
                 esperadas muy bajas, considera agrupar categorías antes de aplicar el contraste.
             </p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Se lanza un dado equilibrado 60 veces y se registran las frecuencias observadas para cada cara: cara 1 → 8 veces; cara 2 → 12; cara 3 → 9; cara 4 → 11; cara 5 → 10; cara 6 → 10. ¿Existe evidencia estadística, a un nivel \(\alpha = 0{,}05\), de que el dado no es equilibrado?</p>
+            <p>Bajo \(H_0\) (dado justo), la probabilidad de cada cara es \(1/6\), por lo que la frecuencia esperada para cada categoría es \(E_i = 60 \times \tfrac{1}{6} = 10\) lanzamientos.</p>
+            <p>El estadístico chi-cuadrado de bondad de ajuste se calcula como:</p>
+            <p class="formula-line">\( \chi^2 = \sum_{i=1}^{k} \frac{(O_i - E_i)^2}{E_i} = \frac{(8-10)^2}{10} + \frac{(12-10)^2}{10} + \frac{(9-10)^2}{10} + \frac{(11-10)^2}{10} + \frac{(10-10)^2}{10} + \frac{(10-10)^2}{10} \)</p>
+            <p class="formula-line">\( \chi^2 = 0{,}4 + 0{,}4 + 0{,}1 + 0{,}1 + 0 + 0 = 1{,}0 \)</p>
+            <p>Los grados de libertad son \(gl = k - 1 = 6 - 1 = 5\). El valor crítico para \(\alpha = 0{,}05\) y \(gl = 5\) es \(\chi^2_{0{,}05;\,5} \approx 11{,}07\), y el p-valor asociado a \(\chi^2 = 1{,}0\) con 5 grados de libertad es \(p \approx 0{,}96\).</p>
+            <p>Dado que \(\chi^2 = 1{,}0 \ll 11{,}07\) (y \(p \gg 0{,}05\)), no se rechaza \(H_0\). Todas las frecuencias esperadas son iguales a 10, bien por encima del mínimo recomendado de 5, por lo que el test es válido en este caso.</p>
+            <p>Conclusión: no hay evidencia estadística de que el dado esté cargado. Las desviaciones observadas respecto a las frecuencias esperadas son perfectamente compatibles con la variabilidad aleatoria de un dado equilibrado en 60 lanzamientos.</p>
         </section>
 
         <section id="seo-support-content" class="card content-card">

@@ -182,11 +182,11 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Este contraste se utiliza para evaluar si dos medias poblacionales son iguales cuando se comparan dos grupos independientes y no se asume varianza común. Por eso se usa habitualmente la versión de Welch, que es más robusta cuando la dispersión de ambos grupos no coincide.</p>
             <p>Además de la decisión estadística, conviene interpretar la magnitud de la diferencia \(\bar{x}_1-\bar{x}_2\), su intervalo de confianza y su relevancia en el contexto aplicado.</p>
 
-            <h2>Hipótesis y estadístico</h2>
+            <h3>Hipótesis y estadístico</h3>
             <p class="formula-line">\(H_0: \mu_1 - \mu_2 = 0\)</p>
             <p class="formula-line">\( t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} \)</p>
         </section>
@@ -196,15 +196,26 @@
 
 
         <section class="card content-card">
-            <h2>Contraste rápido</h2>
+            <h3>Contraste rápido</h3>
             <p>Se utiliza la fórmula de Welch porque no obliga a suponer varianzas iguales entre grupos. En práctica aplicada, es una opción robusta cuando \(s_1\) y \(s_2\), o \(n_1\) y \(n_2\), son distintos.</p>
             <p>Por eso también se usan grados de libertad aproximados (Welch-Satterthwaite), que pueden no ser enteros.</p>
         </section>
 
         <section class="card content-card">
-            <h2>¿También hay versión con desviación poblacional conocida?</h2>
+            <h3>¿También hay versión con desviación poblacional conocida?</h3>
             <p>Sí. Igual que en el contraste de una media, en dos medias existen dos enfoques: <strong>z de dos muestras</strong> cuando se conocen las desviaciones poblacionales \(\sigma_1\) y \(\sigma_2\), y <strong>t</strong> cuando solo se conocen las desviaciones muestrales \(s_1\) y \(s_2\).</p>
             <p>En la práctica real casi nunca se conocen \(\sigma_1\) y \(\sigma_2\), por eso esta calculadora aplica la opción más habitual y robusta: <strong>t de Welch</strong>. Si en tu caso sí conoces desviaciones poblacionales reales, el planteamiento correcto sería un contraste z de dos medias.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Se comparan dos tratamientos para reducir la presión arterial. Grupo 1 (tratamiento A): \(\bar{x}_1 = 82\) mmHg, \(s_1 = 12\) mmHg, \(n_1 = 30\). Grupo 2 (tratamiento B): \(\bar{x}_2 = 76\) mmHg, \(s_2 = 15\) mmHg, \(n_2 = 28\). Se contrasta \(H_0\colon \mu_1 = \mu_2\) frente a \(H_1\colon \mu_1 \neq \mu_2\) con \(\alpha = 0{,}05\) bilateral, usando el método de Welch.</p>
+            <p>El error estándar de la diferencia es:</p>
+            <p class="formula-line">\( SE = \sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}} = \sqrt{\dfrac{144}{30} + \dfrac{225}{28}} = \sqrt{4{,}8 + 8{,}036} \approx 3{,}583 \)</p>
+            <p>El estadístico t de Welch vale:</p>
+            <p class="formula-line">\( t = \dfrac{\bar{x}_1 - \bar{x}_2}{SE} = \dfrac{82 - 76}{3{,}583} \approx 1{,}675 \)</p>
+            <p>Los grados de libertad de Welch son aproximadamente \(\nu \approx 52\). El valor crítico bilateral es \(t_{0{,}025,\,52} \approx 2{,}007\). Como \(|t| = 1{,}675 < 2{,}007\), no se rechaza \(H_0\). El p-valor bilateral es \(p \approx 0{,}100 > 0{,}05\).</p>
+            <p>Conclusión: <strong>no se rechaza \(H_0\)</strong>. Con estos datos no hay evidencia estadística suficiente para afirmar que los dos tratamientos producen reducciones medias distintas al nivel del 5 %. La diferencia observada de 6 mmHg es compatible con la variabilidad muestral.</p>
         </section>
 
                 <section id="seo-support-content" class="card content-card">

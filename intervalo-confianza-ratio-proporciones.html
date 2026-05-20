@@ -173,7 +173,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>El ratio de proporciones compara dos proporciones independientes mediante un cociente. Si las proporciones representan riesgos o incidencias acumuladas, el mismo cálculo se interpreta como riesgo relativo (RR).</p>
             <p>Por ejemplo, si se compara la aparición de un evento entre expuestos y no expuestos, la tabla 2x2 puede escribirse así:</p>
             <div class="content-table-wrap">
@@ -206,7 +206,7 @@
             <p class="formula-line">\( \widehat{RR} = \dfrac{\hat{p}_1}{\hat{p}_2} = \dfrac{x_1/n_1}{x_2/n_2} \)</p>
             <p>Un valor igual a 1 indica igualdad de proporciones. Valores mayores que 1 indican que la proporción del grupo 1 es mayor; valores menores que 1 indican que es menor.</p>
 
-            <h2>Método logarítmico para el ratio de proporciones</h2>
+            <h3>Método logarítmico para el ratio de proporciones</h3>
             <p>Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total fuera del intervalo. Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\) en cada cola.</p>
             <p>El intervalo se construye en escala logarítmica porque el ratio solo puede tomar valores positivos y su distribución suele ser asimétrica. En la escala \(\log(RR)\), la aproximación normal es más estable para muestras moderadas o grandes.</p>
             <p>Primero se calcula \(\widehat{RR} = (x_1/n_1)/(x_2/n_2)\). Después se estima el error estándar de \(\log(\widehat{RR})\) con:</p>
@@ -215,10 +215,10 @@
             <p class="formula-line">\( \log(\widehat{RR}) \pm z_{\alpha/2}\cdot SE\left[\log(\widehat{RR})\right] \)</p>
             <p>Finalmente se aplica la exponencial a los dos límites. El resultado final queda en la escala original del ratio de proporciones y se interpreta comparándolo con el valor nulo 1.</p>
 
-            <h2>Corrección para celdas cero</h2>
+            <h3>Corrección para celdas cero</h3>
             <p>Si alguno de los grupos no tiene eventos, \(\log(\widehat{RR})\) no se puede calcular directamente. La opción de corrección 0,5 suma 0,5 a las cuatro celdas de la tabla 2x2 antes de calcular proporciones, ratio e intervalo.</p>
 
-            <h2>Ejemplo resuelto</h2>
+            <h3>Ejemplo resuelto</h3>
             <p>Con x₁ = 35, n₁ = 100, x₂ = 20 y n₂ = 100:</p>
             <p class="formula-line">\( \widehat{RR} = \dfrac{35/100}{20/100} = 1{,}75 \)</p>
             <p>Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\), \(\alpha/2=0{,}025\) y \(z_{0{,}025} \approx 1{,}960\). El error estándar en escala logarítmica es:</p>
@@ -231,7 +231,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Supuestos para el ratio de proporciones</h2>
+            <h3>Supuestos para el ratio de proporciones</h3>
             <ul>
                 <li>Los dos grupos deben ser independientes y tener denominadores reales de riesgo o proporción.</li>
                 <li>En cada grupo, las observaciones deben ser binarias e independientes.</li>
@@ -241,7 +241,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>¿En qué se diferencia del IC para odds ratio?</h2>
+            <h3>¿En qué se diferencia del IC para odds ratio?</h3>
             <p>Aunque esta calculadora y la de <a href="intervalo-confianza-odds-ratio.html">IC para odds ratio</a> usan una escala logarítmica y comparan el intervalo con el valor nulo 1, estiman medidas distintas.</p>
             <div class="content-table-wrap">
                 <table class="content-table">
@@ -274,7 +274,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Cómo interpretar el intervalo</h2>
+            <h3>Cómo interpretar el intervalo</h3>
             <ul>
                 <li>Si el IC incluye 1, los datos son compatibles con igualdad de proporciones al nivel de confianza seleccionado.</li>
                 <li>Si todo el IC está por encima de 1, la proporción del grupo 1 es mayor que la del grupo 2.</li>

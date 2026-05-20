@@ -235,7 +235,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
 
             <p>
                 El contraste de varianza se utiliza para comprobar si la variabilidad de una población
@@ -265,7 +265,7 @@
                 aproximadamente normales.
             </p>
 
-            <h2>Hipótesis y estadístico</h2>
+            <h3>Hipótesis y estadístico</h3>
             <p class="formula-line">\(H_0: \sigma^2 = \sigma_0^2\)</p>
             <p class="formula-line">\( \chi^2 = \frac{(n-1)s^2}{\sigma_0^2} \)</p>
             <p class="formula-line">\(H_0: \sigma_1^2 = \sigma_2^2\)</p>
@@ -275,7 +275,7 @@
 
 
         <section class="card content-card">
-            <h2>Contraste rápido</h2>
+            <h3>Contraste rápido</h3>
 
             <p>
                 En el contraste de una varianza, el estadístico compara la varianza muestral \(s^2\)
@@ -301,6 +301,16 @@
                 lotes, turnos, instrumentación, cambios de proveedor, condiciones de medición o
                 diferencias entre grupos.
             </p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Se desea comparar la variabilidad de dos procesos de fabricación de tornillos. Proceso A: varianza muestral \(s_1^2 = 25\) mm², \(n_1 = 21\) piezas. Proceso B: varianza muestral \(s_2^2 = 16\) mm², \(n_2 = 16\) piezas. Se contrasta \(H_0\colon \sigma_1^2 = \sigma_2^2\) frente a \(H_1\colon \sigma_1^2 \neq \sigma_2^2\) con \(\alpha = 0{,}05\) bilateral, usando el test F de Snedecor.</p>
+            <p>El estadístico F se calcula como cociente de varianzas (mayor entre menor):</p>
+            <p class="formula-line">\( F = \dfrac{s_1^2}{s_2^2} = \dfrac{25}{16} = 1{,}5625 \)</p>
+            <p>Los grados de libertad son \(gl_1 = n_1 - 1 = 20\) y \(gl_2 = n_2 - 1 = 15\). Para un contraste bilateral con \(\alpha = 0{,}05\), el valor crítico superior es \(F_{0{,}025;\,20,\,15} \approx 2{,}76\). El valor crítico inferior es \(F_{0{,}975;\,20,\,15} \approx 1/F_{0{,}025;\,15,\,20} \approx 0{,}41\).</p>
+            <p>Como \(0{,}41 < F = 1{,}5625 < 2{,}76\), el estadístico no cae en ninguna de las dos colas de rechazo. El p-valor bilateral es \(p \approx 0{,}49 > 0{,}05\).</p>
+            <p>Conclusión: <strong>no se rechaza \(H_0\)</strong>. Los datos no aportan evidencia significativa de que los dos procesos tengan varianzas distintas. Ambos procesos presentan una dispersión comparable al nivel de significación del 5 %.</p>
         </section>
 
         <section id="seo-support-content" class="card content-card">

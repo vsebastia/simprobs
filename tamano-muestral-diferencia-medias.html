@@ -191,12 +191,12 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Esta calculadora determina el número mínimo de observaciones por grupo para detectar una diferencia entre las medias de dos grupos independientes. El contraste subyacente es el test t de Student de dos muestras: \(H_0\!: \mu_1 = \mu_2\) frente a \(H_1\!: |\mu_1 - \mu_2| \geq \Delta\).</p>
             <p>A diferencia de la estimación de una media, aquí el objetivo no es precisión sino potencia: queremos asegurar que, si la diferencia real es al menos \(\Delta\), el contraste la detectará con la probabilidad especificada \(1-\beta\).</p>
             <p>El tamaño del efecto es la <em>d de Cohen</em>: \(d = \Delta / \sigma\). Valores de referencia: d = 0,2 (efecto pequeño), d = 0,5 (mediano), d = 0,8 (grande). Para d = 0,5 con α = 0,05 y potencia 0,80 el resultado es n ≈ 64 por grupo.</p>
 
-            <h2>Fórmula de tamaño muestral</h2>
+            <h3>Fórmula de tamaño muestral</h3>
             <p class="formula-line">\( n_1 = \frac{(Z_{\alpha/2}+Z_\beta)^2(\sigma_1^2+\sigma_2^2/k)}{\Delta^2} \)</p>
             <p class="formula-line">\( n_2 = k\,n_1 \)</p>
             <ul>
@@ -209,7 +209,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Configuración rápida</h2>
+            <h3>Configuración rápida</h3>
             <ul>
                 <li><strong>σ1 y σ2:</strong> usa datos históricos, piloto o referencias de la literatura. Si asumes varianzas iguales, usa la misma σ en ambos campos.</li>
                 <li><strong>Δ:</strong> define la diferencia mínima <em>prácticamente relevante</em> — no la diferencia esperada, sino la mínima que justificaría una acción o decisión.</li>
@@ -218,10 +218,10 @@
                 <li><strong>Asignación 1:1:</strong> siempre es la más eficiente cuando el coste por sujeto es similar en ambos grupos.</li>
             </ul>
 
-            <h2>Ejemplo sencillo</h2>
+            <h3>Ejemplo sencillo</h3>
             <p>Comparas el tiempo de proceso de dos líneas con <strong>σ1 = σ2 = 10</strong>, diferencia mínima detectable <strong>Δ = 5</strong>, <strong>α = 0,05</strong> y potencia <strong>0,80</strong>. Resultado: <strong>≈ 63 sujetos por grupo</strong> (total ≈ 126). La d de Cohen es Δ/σ = 5/10 = 0,5 (efecto mediano).</p>
 
-            <h2>Usos frecuentes</h2>
+            <h3>Usos frecuentes</h3>
             <ul>
                 <li>Ensayos clínicos aleatorizados con variable de resultado continua.</li>
                 <li>Comparación de rendimiento entre dos sistemas, procesos o equipos.</li>
@@ -229,13 +229,23 @@
                 <li>Estudios de intervención educativa o psicológica.</li>
             </ul>
 
-            <h2>Supuestos del modelo</h2>
+            <h3>Supuestos del modelo</h3>
             <ul>
                 <li>Los dos grupos son independientes entre sí.</li>
                 <li>La variable tiene distribución aproximadamente normal en cada grupo (o n es suficientemente grande por el TLC).</li>
                 <li>Las desviaciones estándar σ1 y σ2 son conocidas o se estiman de forma fiable.</li>
                 <li>Contraste bilateral. Para estudios de no inferioridad o equivalencia, usa la <a href="tamano-muestral-no-inferioridad.html">calculadora específica</a>.</li>
             </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Un grupo de investigación quiere comparar la eficacia de dos dietas (dieta A y dieta B) en la pérdida de peso tras 12 semanas. A partir de un estudio piloto, la desviación estándar de la pérdida de peso es \(\sigma \approx 8\) kg en ambos grupos. Los investigadores consideran que una diferencia de al menos \(\Delta = 3\) kg entre dietas es clínicamente relevante. Se fija una potencia del 80 % (\(z_\beta = 0{,}842\)) y un nivel de significación \(\alpha = 0{,}05\) bilateral (\(z_{\alpha/2} = 1{,}960\)), con asignación 1:1.</p>
+            <p>Para grupos de igual tamaño (\(k = 1\)) y \(\sigma_1 = \sigma_2 = \sigma\), la fórmula se simplifica a:</p>
+            <p class="formula-line">\( n = \frac{2\sigma^2\,(z_{\alpha/2}+z_\beta)^2}{\Delta^2} = \frac{2 \times 64 \times (1{,}960 + 0{,}842)^2}{9} = \frac{128 \times (2{,}802)^2}{9} = \frac{128 \times 7{,}851}{9} = \frac{1\,004{,}9}{9} \approx 111{,}7 \rightarrow n = 112 \)</p>
+            <p>Se necesitan <strong>112 participantes por grupo</strong>, lo que supone un total de <strong>224 participantes</strong> en el ensayo. La d de Cohen del efecto es \(d = 3/8 = 0{,}375\), un efecto de tamaño pequeño-mediano que requiere muestras moderadas.</p>
+            <p>Si los investigadores anticipan un 12 % de abandonos, deben reclutar \(112 / 0{,}88 \approx 128\) participantes por grupo (256 en total) para conservar la potencia planificada.</p>
+            <p><strong>Análisis de sensibilidad (potencia al 90 %):</strong> si el equipo decide elevar la potencia al 90 % (\(z_\beta = 1{,}282\)) para reducir el riesgo de falsos negativos, el cálculo resulta en: \( n = 2 \times 64 \times (1{,}960 + 1{,}282)^2 / 9 = 128 \times (3{,}242)^2 / 9 = 128 \times 10{,}510 / 9 \approx 149{,}5 \rightarrow n = 150 \) por grupo (300 en total). El paso de 80 % a 90 % de potencia supone un incremento del 34 % en el tamaño muestral, un coste que los investigadores deben valorar frente a la reducción de riesgo de error tipo II.</p>
         </section>
 
         <section id="seo-support-content" class="card content-card">
