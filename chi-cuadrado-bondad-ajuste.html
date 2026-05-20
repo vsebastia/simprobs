@@ -117,6 +117,14 @@
         "@type": "Answer",
         "text": "Con muestras muy grandes, el contraste puede detectar desviaciones muy\n                    pequeñas respecto al modelo teórico que no son relevantes en la práctica.\n                    En esos casos conviene complementar el p-valor con una medida de tamaño\n                    del efecto."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es el tamaño mínimo detectable (MDE) en bondad de ajuste?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es la desviación mínima respecto al modelo teórico que el test puede detectar con una potencia y α determinados. Cuanto menor sea la muestra, mayor debe ser la discrepancia para que el contraste la detecte; para detectar desviaciones pequeñas se necesita más n."
+      }
     }
   ]
 }
@@ -397,6 +405,12 @@
                     pequeñas respecto al modelo teórico que no son relevantes en la práctica.
                     En esos casos conviene complementar el p-valor con una medida de tamaño
                     del efecto.
+                </li>
+                <li>
+                    <strong>¿Qué es el tamaño mínimo detectable (MDE) en este test?</strong>
+                    Es la desviación mínima respecto al modelo teórico que el contraste puede
+                    detectar con la potencia y \(\alpha\) fijados. Si la discrepancia real es
+                    menor, el test puede no rechazar \(H_0\) aunque exista una diferencia pequeña.
                 </li>
             </ul>
             <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Prueba_%CF%87%C2%B2" target="_blank" rel="noopener noreferrer">Prueba chi-cuadrado de bondad de ajuste</a> — Wikipedia</p>
