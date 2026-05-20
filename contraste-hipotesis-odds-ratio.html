@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraste de hipótesis para el odds ratio | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online: contraste de hipótesis para el odds ratio (método de Woolf). Calcula el estadístico z, p-valor e intervalo de confianza del OR en tablas 2×2.">
+    <meta name="keywords" content="contraste hipótesis odds ratio, test z odds ratio, Woolf, tabla 2x2, p-valor odds ratio, estadística online, ProbLab, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-odds-ratio.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contraste de hipótesis para el odds ratio | ProbLab">
+    <meta property="og:description" content="Calculadora online: contraste de hipótesis para el odds ratio (método de Woolf). Calcula el estadístico z, p-valor e intervalo de confianza del OR en tablas 2×2.">
+    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-odds-ratio.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora online de contraste de hipótesis para el odds ratio">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/contraste-hipotesis-odds-ratio.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contraste de hipótesis para el odds ratio | ProbLab">
+    <meta name="twitter:description" content="Calculadora online: contraste de hipótesis para el odds ratio (método de Woolf). Calcula el estadístico z, p-valor e intervalo de confianza del OR en tablas 2×2.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora online de contraste de hipótesis para el odds ratio">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Contrastes de hipótesis", "item": "https://problabtools.es/contrastes-hipotesis/"},
+            {"@type": "ListItem", "position": 3, "name": "Odds ratio", "item": "https://problabtools.es/contraste-hipotesis-odds-ratio.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Contraste de hipótesis para el odds ratio | ProbLab",
+          "url": "https://problabtools.es/contraste-hipotesis-odds-ratio.html",
+          "description": "Calculadora online: contraste de hipótesis para el odds ratio (método de Woolf). Calcula el estadístico z, p-valor e intervalo de confianza del OR en tablas 2×2.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora online de contraste de hipótesis para el odds ratio",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/contraste-hipotesis-odds-ratio.html",
+      "description": "Calculadora online: contraste de hipótesis para el odds ratio (método de Woolf). Calcula el estadístico z, p-valor e intervalo de confianza del OR en tablas 2×2.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuándo se usa el odds ratio en lugar del riesgo relativo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El odds ratio se usa en estudios de casos y controles, donde la frecuencia de la enfermedad en la muestra no refleja la prevalencia real y el riesgo relativo no puede estimarse directamente. También aparece de forma natural en la regresión logística como medida de asociación."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es el método de Woolf?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El método de Woolf (o método delta) es una aproximación de gran muestra que usa la distribución normal estándar para contrastar hipótesis sobre el odds ratio. Se basa en que ln(OR̂) sigue aproximadamente una distribución normal con error estándar SE = sqrt(1/a + 1/b + 1/c + 1/d). Es válido cuando todas las celdas de la tabla 2×2 tienen valores ≥ 5."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿OR = 1 significa independencia absoluta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. OR = 1 equivale a que las odds del evento son iguales en expuestos y no expuestos, es decir, P(evento | expuesto) = P(evento | no expuesto). Esto implica independencia estadística entre la exposición y el resultado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo difiere este test del test exacto de Fisher?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test exacto de Fisher calcula p-valores exactos usando la distribución hipergeométrica y es adecuado incluso para muestras pequeñas con celdas menores de 5. El método z de Woolf usa la aproximación normal al logaritmo del OR y requiere tamaños muestrales grandes (todas las celdas ≥ 5) para ser válido."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes de hipótesis</a></li>
+            <li><span aria-current="page">Odds ratio</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora de contraste de hipótesis para el odds ratio</h1>
+        <p class="hero-subtitle">Contrasta si el odds ratio observado en una tabla 2×2 es significativamente distinto de un valor de referencia. Muestra el OR estimado, el intervalo de confianza y el estadístico z de Woolf.</p>
+        <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Ver todos los contrastes</a></p>
+    </header>
+
+    <main>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce los datos de la tabla 2×2 para obtener el OR estimado, el estadístico z de Woolf, el p-valor y el intervalo de confianza.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="a">Casos expuestos (a)</label>
+                        <input type="number" id="a" value="40" step="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="b">Casos no expuestos (b)</label>
+                        <input type="number" id="b" value="60" step="1" min="1">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="c">Controles expuestos (c)</label>
+                        <input type="number" id="c" value="20" step="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="d">Controles no expuestos (d)</label>
+                        <input type="number" id="d" value="80" step="1" min="1">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="or0">OR bajo H₀ (OR₀)</label>
+                        <input type="number" id="or0" value="1.0" step="0.01" min="0.001">
+                    </div>
+                    <div class="form-group">
+                        <label for="tail">Tipo de contraste</label>
+                        <select id="tail">
+                            <option value="two">Bilateral (≠)</option>
+                            <option value="right">Cola derecha (&gt;)</option>
+                            <option value="left">Cola izquierda (&lt;)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular contraste</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="oddsRatioChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste del odds ratio" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El odds ratio (OR) mide la asociación entre una exposición y un desenlace en estudios de casos y controles. Se define como la razón entre las odds de enfermedad en expuestos y en no expuestos: \(\widehat{OR} = (a \cdot d) / (b \cdot c)\), donde \(a, b, c, d\) son las frecuencias de la tabla 2×2.</p>
+            <p>Contrastar \(H_0: OR = OR_0\) (habitualmente \(OR_0 = 1\), que equivale a independencia entre exposición y resultado) permite evaluar si la asociación observada es estadísticamente significativa o podría deberse al azar.</p>
+
+            <h3>Hipótesis y estadístico</h3>
+            <p class="formula-line">\(H_0: OR = OR_0\)</p>
+            <p class="formula-line">\(H_1: OR \neq OR_0\) (bilateral), \(OR > OR_0\) (cola derecha), \(OR &lt; OR_0\) (cola izquierda)</p>
+            <p class="formula-line">\(\ln(\widehat{OR}) = \ln(a \cdot d) - \ln(b \cdot c)\)</p>
+            <p class="formula-line">\(SE\!\left(\ln \widehat{OR}\right) = \sqrt{\dfrac{1}{a} + \dfrac{1}{b} + \dfrac{1}{c} + \dfrac{1}{d}}\) (fórmula de Woolf)</p>
+            <p class="formula-line">\(z = \dfrac{\ln \widehat{OR} - \ln OR_0}{SE\!\left(\ln \widehat{OR}\right)} \sim N(0,1)\) bajo \(H_0\)</p>
+            <p class="formula-line">\(IC_{95\%}: \left[\exp\!\left(\ln \widehat{OR} - 1{,}96 \cdot SE\right),\; \exp\!\left(\ln \widehat{OR} + 1{,}96 \cdot SE\right)\right]\)</p>
+            <ul>
+                <li><strong>\(a\)</strong>: casos expuestos.</li>
+                <li><strong>\(b\)</strong>: casos no expuestos.</li>
+                <li><strong>\(c\)</strong>: controles expuestos.</li>
+                <li><strong>\(d\)</strong>: controles no expuestos.</li>
+                <li><strong>\(OR_0\)</strong>: valor del OR bajo \(H_0\) (habitualmente 1).</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Interpretación del odds ratio</h3>
+            <ul>
+                <li><strong>OR = 1</strong>: no hay asociación entre la exposición y el resultado.</li>
+                <li><strong>OR &gt; 1</strong>: la exposición aumenta las odds del evento (factor de riesgo).</li>
+                <li><strong>OR &lt; 1</strong>: la exposición disminuye las odds del evento (factor protector).</li>
+            </ul>
+            <p>Un OR significativamente distinto de 1 (p-valor &lt; α) indica asociación estadística, pero no implica causalidad. Valora siempre el intervalo de confianza y el contexto clínico o epidemiológico.</p>
+
+            <h3>Guía rápida de decisión</h3>
+            <ul>
+                <li>Si el <strong>p-valor</strong> es menor que \(\alpha\), se rechaza \(H_0\): hay evidencia de que el OR no es \(OR_0\).</li>
+                <li>Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar \(H_0\).</li>
+                <li>Complementa siempre con el intervalo de confianza para el OR: si IC no contiene \(OR_0\), el resultado coincide con rechazar \(H_0\) (contraste bilateral).</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Supuestos del método de Woolf</h3>
+            <ul>
+                <li>Todas las celdas de la tabla 2×2 deben tener frecuencias esperadas \(\geq 5\) para que la aproximación normal sea válida.</li>
+                <li>No debe haber celdas con valor cero (el logaritmo del OR no está definido).</li>
+                <li>La muestra debe ser suficientemente grande; para muestras pequeñas usa el <strong>test exacto de Fisher</strong>.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>En un estudio de casos y controles se obtienen los siguientes datos: \(a = 40\), \(b = 60\), \(c = 20\), \(d = 80\). Se contrasta \(H_0: OR = 1\) frente a \(H_1: OR \neq 1\) con \(\alpha = 0{,}05\).</p>
+            <p class="formula-line">\(\widehat{OR} = \dfrac{40 \times 80}{60 \times 20} = \dfrac{3200}{1200} \approx 2{,}667\)</p>
+            <p class="formula-line">\(SE = \sqrt{\dfrac{1}{40} + \dfrac{1}{60} + \dfrac{1}{20} + \dfrac{1}{80}} \approx 0{,}357\)</p>
+            <p class="formula-line">\(z = \dfrac{\ln(2{,}667) - \ln(1)}{0{,}357} = \dfrac{0{,}9808}{0{,}357} \approx 2{,}75\)</p>
+            <p>Con contraste bilateral, el p-valor es \(p \approx 0{,}006\). Como \(p &lt; \alpha = 0{,}05\), <strong>se rechaza \(H_0\)</strong>: hay evidencia de asociación significativa entre la exposición y la enfermedad.</p>
+            <p>El IC 95% para el OR es aproximadamente \([1{,}33;\; 5{,}36]\), que no contiene el valor 1, lo que confirma el rechazo de \(H_0\).</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora de contraste de hipótesis para el odds ratio aplica el método z de Woolf sobre una tabla 2×2. Proporciona el OR estimado, su logaritmo, el error estándar de Woolf, el estadístico z, el p-valor (bilateral, cola derecha o cola izquierda) y el intervalo de confianza al 95% para el OR. Es especialmente útil en epidemiología analítica y estudios de casos y controles.</p>
+            <section class="related-tools">
+              <h3>Calculadoras relacionadas</h3>
+              <ul>
+                <li><a href="test-exacto-fisher.html">Test exacto de Fisher</a></li>
+                <li><a href="tamano-muestral-odds-ratio.html">Tamaño muestral para odds ratio</a></li>
+                <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste para dos proporciones</a></li>
+                <li><a href="intervalo-confianza-odds-ratio.html">Intervalo de confianza para el odds ratio</a></li>
+              </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Cuándo se usa el odds ratio en lugar del riesgo relativo?</strong> El OR se usa en estudios de casos y controles donde no se puede estimar directamente el riesgo relativo, y también aparece de forma natural en la regresión logística.</li>
+                <li><strong>¿Qué es el método de Woolf?</strong> Es una aproximación de gran muestra que usa la distribución normal estándar para contrastar hipótesis sobre el OR a partir del logaritmo del odds ratio. Requiere que todas las celdas sean ≥ 5.</li>
+                <li><strong>¿OR = 1 significa independencia absoluta?</strong> Sí, OR = 1 implica que las odds del evento son iguales en expuestos y no expuestos, es decir, no hay asociación entre exposición y resultado.</li>
+                <li><strong>¿Cómo difiere este test del test exacto de Fisher?</strong> Fisher calcula p-valores exactos usando la distribución hipergeométrica y es válido para muestras pequeñas; el z de Woolf usa la aproximación normal y requiere tamaños muestrales mayores.</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Raz%C3%B3n_de_momios" target="_blank" rel="noopener noreferrer">Odds ratio</a> — Wikipedia</p>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+  <p>
+    © 2026 problabtools.
+    <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="privacidad.html">Privacidad</a> ·
+    <a href="cookies.html">Cookies</a> ·
+    <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+  </p>
+</footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let oddsRatioChart;
+
+function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+    for (let x = min; x <= max; x += step) {
+        const y = pdfFn(x);
+        curve.push({ x, y });
+        if (isAcceptanceFn(x)) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+    return { curve, acceptance, rejection };
+}
+
+function getCriticalValues(alpha, tail) {
+    if (tail === 'two') {
+        const c = jStat.normal.inv(1 - alpha / 2, 0, 1);
+        return { left: -c, right: c };
+    }
+    if (tail === 'left') {
+        return { left: jStat.normal.inv(alpha, 0, 1), right: Infinity };
+    }
+    return { left: -Infinity, right: jStat.normal.inv(1 - alpha, 0, 1) };
+}
+
+function renderChart(alpha, tail, statValue) {
+    const ctx = document.getElementById('oddsRatioChart');
+    if (!ctx) return;
+
+    const critical = getCriticalValues(alpha, tail);
+    const bound = Math.max(4,
+        Math.abs(statValue || 0),
+        Number.isFinite(critical.left) ? Math.abs(critical.left) : 0,
+        Number.isFinite(critical.right) ? Math.abs(critical.right) : 0
+    );
+    const minX = -Math.min(bound + 0.8, 8);
+    const maxX = Math.min(bound + 0.8, 8);
+
+    const { curve, acceptance, rejection } = buildCurvePoints(
+        minX, maxX, 0.02,
+        (x) => jStat.normal.pdf(x, 0, 1),
+        (x) => x > critical.left && x < critical.right
+    );
+    const maxY = Math.max(...curve.map(p => p.y));
+    const statLine = Number.isFinite(statValue)
+        ? [{ x: statValue, y: 0 }, { x: statValue, y: maxY }]
+        : [];
+
+    if (oddsRatioChart) oddsRatioChart.destroy();
+    oddsRatioChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Distribución Normal N(0,1)', data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'Estadístico z observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'Estadístico z' } },
+                y: { beginAtZero: true, title: { display: true, text: 'Densidad' } }
+            },
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: { mode: 'index', intersect: false, callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y !== null ? ctx.parsed.y.toFixed(4) : '—'}` } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const a = parseFloat(document.getElementById('a').value);
+    const b = parseFloat(document.getElementById('b').value);
+    const c = parseFloat(document.getElementById('c').value);
+    const d = parseFloat(document.getElementById('d').value);
+    const OR0 = parseFloat(document.getElementById('or0').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const tail = document.getElementById('tail').value;
+    const result = document.getElementById('result');
+
+    if ([a, b, c, d].some(v => !Number.isFinite(v) || v < 1)) {
+        result.textContent = 'Error: todas las celdas deben ser ≥ 1.';
+        if (oddsRatioChart) { oddsRatioChart.destroy(); oddsRatioChart = null; }
+        return;
+    }
+    if (!Number.isFinite(OR0) || OR0 <= 0) {
+        result.textContent = 'Error: OR₀ debe ser un valor positivo.';
+        if (oddsRatioChart) { oddsRatioChart.destroy(); oddsRatioChart = null; }
+        return;
+    }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        result.textContent = 'Error: α debe estar entre 0 y 1.';
+        if (oddsRatioChart) { oddsRatioChart.destroy(); oddsRatioChart = null; }
+        return;
+    }
+
+    const OR_hat = (a * d) / (b * c);
+    const SE = Math.sqrt(1 / a + 1 / b + 1 / c + 1 / d);
+    const z = (Math.log(OR_hat) - Math.log(OR0)) / SE;
+
+    let pval;
+    if (tail === 'two') pval = 2 * (1 - jStat.normal.cdf(Math.abs(z), 0, 1));
+    else if (tail === 'right') pval = 1 - jStat.normal.cdf(z, 0, 1);
+    else pval = jStat.normal.cdf(z, 0, 1);
+
+    const z95 = jStat.normal.inv(0.975, 0, 1);
+    const ciLow = Math.exp(Math.log(OR_hat) - z95 * SE);
+    const ciHigh = Math.exp(Math.log(OR_hat) + z95 * SE);
+
+    const rejects = pval < alpha;
+    const tailLabel = { two: 'bilateral (OR ≠ OR₀)', right: 'cola derecha (OR > OR₀)', left: 'cola izquierda (OR < OR₀)' }[tail];
+
+    let warnings = '';
+    if ([a, b, c, d].some(v => v < 5)) {
+        warnings = 'Advertencia: hay celdas con valores < 5; el método de Woolf puede ser impreciso. Considera el test exacto de Fisher.\n';
+    }
+    if (ciLow < 0.1) {
+        warnings += 'Nota: el IC es muy amplio, lo que indica estimación imprecisa.\n';
+    }
+
+    result.textContent = warnings +
+        `OR estimado (OR̂): ${OR_hat.toFixed(4)}\n` +
+        `ln(OR̂): ${Math.log(OR_hat).toFixed(4)}\n` +
+        `Error estándar de ln(OR̂): ${SE.toFixed(4)}\n` +
+        `Estadístico z (Woolf): ${z.toFixed(4)}\n` +
+        `p-valor ${tailLabel}: ${pval < 0.0001 ? '< 0.0001' : pval.toFixed(4)}\n` +
+        `IC 95% para OR: [${ciLow.toFixed(4)}, ${ciHigh.toFixed(4)}]\n` +
+        `OR₀ = ${OR0} | α = ${alpha}\n` +
+        `Decisión: ${rejects ? `Se rechaza H₀ (OR ≠ ${OR0}): evidencia de asociación significativa.` : `No se rechaza H₀: no hay evidencia suficiente de asociación.`}`;
+
+    renderChart(alpha, tail, z);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+calculate();
+</script>
+</body>
+</html>

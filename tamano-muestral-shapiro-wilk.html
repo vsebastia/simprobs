@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para el test de Shapiro–Wilk | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula cuántas observaciones se necesitan para detectar una desviación de la normalidad medida por asimetría y curtosis, usando una aproximación basada en el test D'Agostino–Pearson.">
+    <meta name="keywords" content="tamaño muestral Shapiro-Wilk, calcular muestra test normalidad, potencia estadística normalidad, asimetría curtosis, D'Agostino Pearson, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-shapiro-wilk.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para el test de Shapiro–Wilk | ProbLab">
+    <meta property="og:description" content="Calcula cuántas observaciones se necesitan para detectar una desviación de la normalidad medida por asimetría y curtosis, usando una aproximación basada en el test D'Agostino–Pearson.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-shapiro-wilk.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para el test de Shapiro–Wilk">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-shapiro-wilk.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para el test de Shapiro–Wilk | ProbLab">
+    <meta name="twitter:description" content="Calcula cuántas observaciones se necesitan para detectar una desviación de la normalidad medida por asimetría y curtosis, usando una aproximación basada en el test D'Agostino–Pearson.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para el test de Shapiro–Wilk">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Shapiro–Wilk", "item": "https://problabtools.es/tamano-muestral-shapiro-wilk.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para el test de Shapiro–Wilk | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-shapiro-wilk.html",
+          "description": "Calcula cuántas observaciones se necesitan para detectar una desviación de la normalidad medida por asimetría y curtosis, usando una aproximación basada en el test D'Agostino–Pearson.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para el test de Shapiro–Wilk",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-shapiro-wilk.html",
+      "description": "Calcula cuántas observaciones se necesitan para detectar una desviación de la normalidad medida por asimetría y curtosis, usando una aproximación basada en el test D'Agostino–Pearson.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Por qué la potencia del test de Shapiro–Wilk depende de la distribución alternativa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test de Shapiro–Wilk detecta la no normalidad usando toda la información de la muestra ordenada, pero su potencia varía enormemente según el tipo de desviación. Una distribución simétrica con asimetría γ₁=0 y curtosis normal γ₂=0 es indistinguible de la normal en estos momentos, por lo que la potencia es prácticamente igual a α. En cambio, una distribución exponencial (γ₁=2, γ₂=6) se detecta fácilmente con muestras pequeñas. La aproximación D'Agostino–Pearson captura este comportamiento mediante el parámetro de no centralidad λ = n·γ₁²/6 + n·γ₂²/24."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es esta aproximación equivalente al test de Shapiro–Wilk real?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No exactamente. La calculadora usa la aproximación de D'Agostino–Pearson K², que combina los tests de asimetría y curtosis y cuya estadística sigue aproximadamente una chi-cuadrado con 2 grados de libertad. Este test tiene una potencia similar pero no idéntica a la del test de Shapiro–Wilk original para la mayoría de las alternativas. Para calcular la potencia exacta del test de Shapiro–Wilk se necesita simulación de Monte Carlo con la distribución alternativa específica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es el valor recomendado de n para el test de Shapiro–Wilk?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test de Shapiro–Wilk está diseñado para muestras de entre 3 y 5000 observaciones. Para n < 20 la potencia puede ser baja incluso para alternativas moderadas. Para n > 50, el test puede detectar desviaciones triviales de la normalidad que no tienen relevancia práctica; en ese rango se recomienda combinar el resultado numérico con métodos gráficos como el gráfico Q-Q normal. Para n muy grande (> 1000), casi cualquier distribución real será rechazada como no normal."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Shapiro–Wilk</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para el test de Shapiro–Wilk</h1>
+        <p class="hero-subtitle">Calcula cuántas observaciones se necesitan para detectar una desviación de la normalidad medida por asimetría y curtosis, usando una aproximación basada en el test D'Agostino–Pearson.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la asimetría (γ₁) y el exceso de curtosis (γ₂) de la distribución alternativa (no normal) que quieres detectar, el nivel de significación y la potencia deseada. Puedes usar el selector de distribuciones de referencia para rellenar los valores automáticamente.</p>
+            </div>
+
+            <p class="formula-line" style="background:#fffbeb; border-left:4px solid #f59e0b; padding:0.75rem 1rem; margin-bottom:1rem; border-radius:0 0.5rem 0.5rem 0;">
+                <strong>Aviso metodológico:</strong> Esta calculadora usa la aproximación de D'Agostino–Pearson (chi-cuadrado con 2 gl): el parámetro de no centralidad es λ = n·γ₁²/6 + n·γ₂²/24. Es una aproximación educativa; para potencia exacta del test de Shapiro–Wilk se recomienda simulación.
+            </p>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="swPreset">Distribución de referencia (opcional)</label>
+                        <select id="swPreset">
+                            <option value="">— Seleccionar distribución de referencia —</option>
+                            <option value="0,0">Normal (γ₁=0, γ₂=0)</option>
+                            <option value="2,6">Exponencial (γ₁=2, γ₂=6)</option>
+                            <option value="0,-1.2">Uniforme (γ₁=0, γ₂=−1.2)</option>
+                            <option value="1.75,5.9">Lognormal(0, 0.5) (γ₁≈1.75, γ₂≈5.9)</option>
+                            <option value="0,3">Laplace (γ₁=0, γ₂=3)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="swGamma1">Asimetría γ₁ de la distribución alternativa</label>
+                        <input type="number" id="swGamma1" value="1.00" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="swGamma2">Exceso de curtosis γ₂ de la alternativa</label>
+                        <input type="number" id="swGamma2" value="2.00" step="0.01">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="swAlpha">Nivel α</label>
+                        <input type="number" id="swAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="swPower">Potencia (1−β)</label>
+                        <input type="number" id="swPower" value="0.80" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="swCalculateBtn">Calcular tamaño muestral</button>
+            <div id="swResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El test de Shapiro–Wilk es el test de normalidad más potente para muestras pequeñas (n &lt; 50). Su potencia depende de la distribución alternativa específica: la desviación de la normalidad queda caracterizada por los momentos de orden superior, principalmente la asimetría (\(\gamma_1\)) y el exceso de curtosis (\(\gamma_2\)).</p>
+            <p>La aproximación de D'Agostino–Pearson K² combina los tests de asimetría y curtosis en un único estadístico chi-cuadrado con 2 gl, cuya distribución bajo la alternativa es aproximadamente chi-cuadrado no central con parámetro de no centralidad:</p>
+            <p class="formula-line">\( \lambda = \frac{n\,\gamma_1^2}{6} + \frac{n\,\gamma_2^2}{24} \)</p>
+            <p>La potencia es la probabilidad de que el estadístico supere el valor crítico \(\chi^2_{1-\alpha,\,2}\) bajo esta distribución no central.</p>
+
+            <h3>Fórmula de potencia</h3>
+            <p>Sea \(\chi^2_c = \chi^2_{1-\alpha,\,2}\) el valor crítico de la distribución chi-cuadrado central con 2 gl al nivel α. La potencia se obtiene evaluando la CDF de la chi-cuadrado no central con \(df = 2\) y \(\lambda\):</p>
+            <p class="formula-line">\( \text{Potencia} = 1 - F_{\chi^2(2,\,\lambda)}(\chi^2_c) = \sum_{k=0}^{\infty} \frac{e^{-\lambda/2}(\lambda/2)^k}{k!} \left[1 - F_{\chi^2(2+2k)}(\chi^2_c)\right] \)</p>
+            <p>La aproximación es razonable para \(n \geq 20\) y desviaciones moderadas. Para \(n &lt; 20\) puede sobreestimar la potencia ligeramente.</p>
+
+            <h3>Tabla de referencia: distribuciones comunes y sus momentos</h3>
+            <table style="width:100%; border-collapse:collapse; margin-top:0.5rem;">
+                <thead>
+                    <tr style="background:#f1f5f9; text-align:left;">
+                        <th style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">Distribución</th>
+                        <th style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">γ₁ (asimetría)</th>
+                        <th style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">γ₂ (exc. curtosis)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">Normal</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">0</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">0</td>
+                    </tr>
+                    <tr style="background:#f8fafc;">
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">Exponencial</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">2</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">6</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">Uniforme</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">0</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">−1.2</td>
+                    </tr>
+                    <tr style="background:#f8fafc;">
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">Lognormal(0, 0.5)</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">≈1.75</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">≈5.9</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">Laplace</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">0</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">3</td>
+                    </tr>
+                    <tr style="background:#f8fafc;">
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">χ²(5)</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">≈1.26</td>
+                        <td style="padding:0.5rem 0.75rem; border:1px solid #e2e8f0;">≈2.4</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un investigador quiere detectar si sus datos provienen de una distribución exponencial en lugar de normal (\(\gamma_1 = 2\), \(\gamma_2 = 6\)). Con \(\alpha = 0{,}05\) y potencia = 80 %, la calculadora devuelve aproximadamente <strong>n ≈ 10–15 observaciones</strong>. La distribución exponencial se detecta con muestras muy pequeñas porque tiene asimetría y curtosis muy marcadas.</p>
+            <p>En cambio, para detectar una distribución de Laplace (\(\gamma_1 = 0\), \(\gamma_2 = 3\)) se necesitan más observaciones porque la asimetría es cero y solo el exceso de curtosis contribuye a la no centralidad.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Encuentra por búsqueda iterativa el menor \(n\) tal que la potencia de la aproximación D'Agostino–Pearson alcanza el valor objetivo. El parámetro de no centralidad \(\lambda = n\gamma_1^2/6 + n\gamma_2^2/24\) crece linealmente con \(n\), lo que permite una búsqueda eficiente.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El valor devuelto es el mínimo teórico de observaciones para detectar la alternativa especificada con la potencia deseada. Si γ₁ = 0 y γ₂ = 0, el parámetro de no centralidad es cero y la potencia es exactamente α (no hay desviación de la normalidad que detectar).</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="shapiro-wilk-normalidad.html">Test de Shapiro–Wilk de normalidad</a></li>
+                    <li><a href="kolmogorov-smirnov-bondad-ajuste.html">Test de Kolmogorov–Smirnov de bondad de ajuste</a></li>
+                    <li><a href="tamano-muestral-kolmogorov-smirnov.html">Tamaño muestral para el test de Kolmogorov–Smirnov</a></li>
+                    <li><a href="chi-cuadrado-bondad-ajuste.html">Chi-cuadrado de bondad de ajuste</a></li>
+                </ul>
+            </section>
+            <h3>Referencias</h3>
+            <ul>
+                <li>D'Agostino, R. &amp; Pearson, E. S. (1973). Tests for departure from normality. <em>Biometrika</em>, 60(3), 613–622.</li>
+                <li>Razali, N. M. &amp; Yap, B. W. (2011). Power comparisons of Shapiro–Wilk, Kolmogorov–Smirnov, Lilliefors and Anderson–Darling tests. <em>Journal of Statistical Modeling and Analytics</em>, 2(1), 21–33.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+// Preset distribution selector
+document.getElementById('swPreset').addEventListener('change', function() {
+    const val = this.value;
+    if (!val) return;
+    const parts = val.split(',');
+    document.getElementById('swGamma1').value = parts[0];
+    document.getElementById('swGamma2').value = parts[1];
+});
+
+// Noncentral chi-squared CDF via Poisson mixture (df=2 base)
+function ncChiSq2CDF(x, lambda) {
+    if (x <= 0) return 0;
+    const halfL = lambda / 2;
+    let sum = 0, logW = -halfL;
+    for (let k = 0; k <= 300; k++) {
+        if (k > 0) logW += Math.log(halfL / k);
+        const w = Math.exp(logW);
+        sum += w * jStat.chisquare.cdf(x, 2 + 2 * k);
+        if (w < 1e-13 && k > halfL + 10) break;
+    }
+    return Math.min(1, sum);
+}
+
+function powerSW(n, gamma1, gamma2, alpha) {
+    const lambda = n * gamma1 * gamma1 / 6 + n * gamma2 * gamma2 / 24;
+    const chiCrit = jStat.chisquare.inv(1 - alpha, 2);
+    return 1 - ncChiSq2CDF(chiCrit, lambda);
+}
+
+function calculateSWSampleSize() {
+    const gamma1 = parseFloat(document.getElementById('swGamma1').value);
+    const gamma2 = parseFloat(document.getElementById('swGamma2').value);
+    const alpha = parseFloat(document.getElementById('swAlpha').value);
+    const targetPower = parseFloat(document.getElementById('swPower').value);
+    const resultEl = document.getElementById('swResult');
+
+    if (!Number.isFinite(gamma1)) {
+        resultEl.innerText = 'Error: introduce un valor numérico para γ₁.';
+        return;
+    }
+    if (!Number.isFinite(gamma2)) {
+        resultEl.innerText = 'Error: introduce un valor numérico para γ₂.';
+        return;
+    }
+    if (gamma1 === 0 && gamma2 === 0) {
+        resultEl.innerText = 'γ₁=0 y γ₂=0 corresponden a la distribución normal; la potencia es exactamente α.';
+        return;
+    }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: α debe estar entre 0 y 1.';
+        return;
+    }
+    if (!Number.isFinite(targetPower) || targetPower <= 0 || targetPower >= 1) {
+        resultEl.innerText = 'Error: la potencia debe estar entre 0 y 1.';
+        return;
+    }
+
+    let n = 2;
+    let actualPower = 0;
+    while (n <= 100000) {
+        actualPower = powerSW(n, gamma1, gamma2, alpha);
+        if (actualPower >= targetPower) break;
+        n++;
+    }
+
+    if (actualPower < targetPower) {
+        resultEl.innerText = 'No se encontró solución para n ≤ 100 000. La desviación de normalidad es demasiado pequeña para el nivel de potencia solicitado.';
+        return;
+    }
+
+    const lambda = n * gamma1 * gamma1 / 6 + n * gamma2 * gamma2 / 24;
+    resultEl.innerText =
+        `n mínimo recomendado: ${n} observaciones\n` +
+        `Potencia alcanzada: ${(actualPower * 100).toFixed(2)} % (objetivo: ${(targetPower * 100).toFixed(0)} %)\n` +
+        `γ₁ = ${gamma1}  |  γ₂ = ${gamma2}  |  λ = ${lambda.toFixed(3)}  |  α = ${alpha}\n` +
+        `Parámetro de no centralidad: λ = n·γ₁²/6 + n·γ₂²/24 = ${lambda.toFixed(3)}`;
+}
+
+document.getElementById('swCalculateBtn').addEventListener('click', calculateSWSampleSize);
+calculateSWSampleSize();
+</script>
+</body>
+</html>

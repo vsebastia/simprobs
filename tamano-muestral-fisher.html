@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para el test exacto de Fisher | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el número de observaciones necesario para detectar una diferencia entre dos proporciones mediante el test exacto de Fisher con una potencia objetivo.">
+    <meta name="keywords" content="tamaño muestral test exacto Fisher, calcular muestra dos proporciones, potencia estadística Fisher, tabla 2x2, contraste proporciones, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-fisher.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para el test exacto de Fisher | ProbLab">
+    <meta property="og:description" content="Calcula el número de observaciones necesario para detectar una diferencia entre dos proporciones mediante el test exacto de Fisher con una potencia objetivo.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-fisher.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para el test exacto de Fisher">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-fisher.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para el test exacto de Fisher | ProbLab">
+    <meta name="twitter:description" content="Calcula el número de observaciones necesario para detectar una diferencia entre dos proporciones mediante el test exacto de Fisher con una potencia objetivo.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para el test exacto de Fisher">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Test exacto de Fisher", "item": "https://problabtools.es/tamano-muestral-fisher.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para el test exacto de Fisher | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-fisher.html",
+          "description": "Calcula el número de observaciones necesario para detectar una diferencia entre dos proporciones mediante el test exacto de Fisher con una potencia objetivo.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para el test exacto de Fisher",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-fisher.html",
+      "description": "Calcula el número de observaciones necesario para detectar una diferencia entre dos proporciones mediante el test exacto de Fisher con una potencia objetivo.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Por qué el test exacto de Fisher necesita muestras tan grandes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test exacto de Fisher es conservador debido a la naturaleza discreta de las tablas 2×2: la distribución hipergeométrica solo toma valores enteros, por lo que el nivel real de significación suele ser inferior al nominal α. Esta conservadurismo implica que la potencia real es algo inferior a la potencia teórica, y a veces se necesitan muestras ligeramente mayores que las que requeriría el test chi-cuadrado equivalente. Para n moderados (esperados de celda ≥ 5) la potencia de Fisher y chi-cuadrado es similar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo usar esta calculadora para tablas mayores que 2×2?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Esta calculadora es específica para tablas 2×2 con diseño balanceado (n₁ = n₂). Para tablas r×c con más de dos filas o columnas, el test exacto de Fisher se generaliza pero el cálculo de la potencia es mucho más complejo. En ese caso se recomienda usar el test chi-cuadrado de independencia y su correspondiente calculadora de tamaño muestral."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué es la potencia incondicional?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La potencia incondicional es la probabilidad de rechazar H₀ promediada sobre todas las posibles tablas 2×2, ponderadas por su probabilidad bajo H₁. Es decir: Potencia = ΣₐΣ꜀ P(a|p₁) · P(c|p₂) · I(p-valor de Fisher ≤ α), donde la suma recorre todos los recuentos posibles (a, c) de cada grupo. A diferencia de la potencia condicional (que fija los totales marginales), la potencia incondicional es el concepto más natural cuando los tamaños de muestra son fijos por diseño."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Test exacto de Fisher</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para el test exacto de Fisher (2×2)</h1>
+        <p class="hero-subtitle">Calcula el número de observaciones necesario para detectar una diferencia entre dos proporciones mediante el test exacto de Fisher con una potencia objetivo.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce las dos proporciones que quieres comparar, el nivel de significación y la potencia deseada para obtener el tamaño muestral mínimo por grupo (diseño balanceado, \(n_1 = n_2\)).</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="fisherP1">Proporción grupo 1 (p₁)</label>
+                        <input type="number" id="fisherP1" value="0.30" step="0.01" min="0.01" max="0.99">
+                    </div>
+                    <div class="form-group">
+                        <label for="fisherP2">Proporción grupo 2 (p₂)</label>
+                        <input type="number" id="fisherP2" value="0.50" step="0.01" min="0.01" max="0.99">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="fisherAlpha">Nivel α</label>
+                        <input type="number" id="fisherAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="fisherPower">Potencia (1−β)</label>
+                        <input type="number" id="fisherPower" value="0.80" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="fisherCalculateBtn">Calcular tamaño muestral</button>
+            <div id="fisherResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El test exacto de Fisher evalúa si existe asociación entre dos variables binarias en una tabla 2×2. Es especialmente apropiado cuando las frecuencias esperadas en alguna celda son inferiores a 5, situación en la que el test chi-cuadrado de independencia no es fiable.</p>
+            <p>La potencia exacta se calcula como la suma de probabilidades de todos los pares de recuentos \((a, c)\) que producirían un p-valor de Fisher ≤ α, ponderados por su probabilidad bajo \(H_1\):</p>
+            <p class="formula-line">\( \text{Potencia} = \sum_{a=0}^{n}\sum_{c=0}^{n} P(a \mid p_1) \cdot P(c \mid p_2) \cdot \mathbf{1}[\text{p-valor Fisher}(a,n-a,c,n-c) \leq \alpha] \)</p>
+            <p>donde \(P(a \mid p_1) = \binom{n}{a} p_1^a (1-p_1)^{n-a}\) sigue una distribución binomial. Para \(n > 150\) se aplica la aproximación chi-cuadrado de dos proporciones.</p>
+
+            <h3>Fórmula del p-valor exacto de Fisher</h3>
+            <p>Para una tabla 2×2 con recuentos \((a, b, c, d)\) y marginales fijos \((n_1 = a+b,\ n_2 = c+d,\ m = a+c,\ N = n_1+n_2)\), el p-valor exacto bilateral suma las probabilidades hipergeométricas menores o iguales a la observada:</p>
+            <p class="formula-line">\( p = \sum_{x:\, P_{\text{hiper}}(x) \leq P_{\text{hiper}}(a)} P_{\text{hiper}}(x) \quad \text{donde} \quad P_{\text{hiper}}(x) = \frac{\binom{m}{x}\binom{N-m}{n_1-x}}{\binom{N}{n_1}} \)</p>
+
+            <h3>¿Cuándo usar el test exacto de Fisher?</h3>
+            <ul>
+                <li>Muestras pequeñas con frecuencias esperadas &lt; 5 en alguna celda.</li>
+                <li>Tablas dispersas (sparse): datos con muchos ceros.</li>
+                <li>Estudios caso-control con resultados raros (baja prevalencia).</li>
+                <li>Siempre que se quiera garantizar el control exacto del error tipo I.</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un ensayo clínico compara la tasa de respuesta de dos tratamientos: se espera \(p_1 = 0{,}30\) en el grupo control y \(p_2 = 0{,}50\) en el grupo intervención. Con \(\alpha = 0{,}05\) y potencia = 80 %, la calculadora devuelve aproximadamente <strong>n ≈ 83 por grupo</strong> (total 166 observaciones). Para ese tamaño de muestra, si la diferencia real es de 20 puntos porcentuales, el test detectará la diferencia el 80 % de las veces.</p>
+            <p><strong>Nota:</strong> si la diferencia de proporciones es inferior a 0,05 (muy pequeña), se necesitarán muestras muy grandes y la convergencia puede ser lenta.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Encuentra por búsqueda iterativa el menor \(n\) (por grupo) tal que la potencia incondicional del test exacto de Fisher bilateral alcanza el valor objetivo. Para \(n \leq 150\) se usa la potencia exacta basada en la distribución hipergeométrica; para \(n > 150\) se aplica la aproximación chi-cuadrado (test de dos proporciones con varianza agrupada).</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El valor obtenido es el mínimo teórico por grupo asumiendo diseño balanceado. Si prevés pérdidas, divide \(n\) entre \((1 - \text{tasa de pérdida})\) para obtener el tamaño de reclutamiento.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="test-exacto-fisher.html">Test exacto de Fisher</a></li>
+                    <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste de hipótesis de dos proporciones</a></li>
+                    <li><a href="tamano-muestral-contraste-una-proporcion.html">Tamaño muestral para contraste de una proporción</a></li>
+                    <li><a href="tamano-muestral-odds-ratio.html">Tamaño muestral para odds ratio</a></li>
+                </ul>
+            </section>
+            <h3>Referencias</h3>
+            <ul>
+                <li>Agresti, A. (2002). <em>Categorical Data Analysis</em> (2.ª ed.). Wiley.</li>
+                <li>Mehta, C. R. &amp; Patel, N. R. (1983). A network algorithm for performing Fisher's exact test in r×c contingency tables. <em>Journal of the American Statistical Association</em>, 78(382), 427–434.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function fisherPValue(a, b, c, d) {
+    const n1 = a + b, n2 = c + d, m = a + c, N = n1 + n2;
+    const pObs = jStat.hypgeom.pdf(a, N, m, n1);
+    let pv = 0;
+    const lo = Math.max(0, m - n2), hi = Math.min(m, n1);
+    for (let x = lo; x <= hi; x++) {
+        const px = jStat.hypgeom.pdf(x, N, m, n1);
+        if (px <= pObs + 1e-10) pv += px;
+    }
+    return Math.min(1, pv);
+}
+
+function powerFisher(n, p1, p2, alpha) {
+    let power = 0;
+    for (let a = 0; a <= n; a++) {
+        const pa = jStat.binomial.pdf(a, n, p1);
+        if (pa < 1e-15) continue;
+        for (let c = 0; c <= n; c++) {
+            const pc = jStat.binomial.pdf(c, n, p2);
+            if (pc < 1e-15) continue;
+            if (fisherPValue(a, n - a, c, n - c) <= alpha) power += pa * pc;
+        }
+    }
+    return power;
+}
+
+function powerChiSqApprox(n, p1, p2, alpha) {
+    const pBar = (p1 + p2) / 2;
+    const SE = Math.sqrt(2 * pBar * (1 - pBar) / n);
+    const ncp = Math.abs(p1 - p2) / SE;
+    const zAlpha2 = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    return (1 - jStat.normal.cdf(zAlpha2 - ncp, 0, 1)) + jStat.normal.cdf(-zAlpha2 - ncp, 0, 1);
+}
+
+function calculateFisherSampleSize() {
+    const p1 = parseFloat(document.getElementById('fisherP1').value);
+    const p2 = parseFloat(document.getElementById('fisherP2').value);
+    const alpha = parseFloat(document.getElementById('fisherAlpha').value);
+    const targetPower = parseFloat(document.getElementById('fisherPower').value);
+    const resultEl = document.getElementById('fisherResult');
+
+    if (!Number.isFinite(p1) || p1 <= 0 || p1 >= 1) {
+        resultEl.innerText = 'Error: p₁ debe estar entre 0.01 y 0.99.';
+        return;
+    }
+    if (!Number.isFinite(p2) || p2 <= 0 || p2 >= 1) {
+        resultEl.innerText = 'Error: p₂ debe estar entre 0.01 y 0.99.';
+        return;
+    }
+    if (p1 === p2) {
+        resultEl.innerText = 'Error: p₁ y p₂ deben ser distintos.';
+        return;
+    }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: α debe estar entre 0 y 1.';
+        return;
+    }
+    if (!Number.isFinite(targetPower) || targetPower <= 0 || targetPower >= 1) {
+        resultEl.innerText = 'Error: la potencia debe estar entre 0 y 1.';
+        return;
+    }
+
+    const smallDiff = Math.abs(p1 - p2) < 0.05;
+    let n = 2;
+    let actualPower = 0;
+    let usedApprox = false;
+
+    while (n <= 500) {
+        if (n <= 150) {
+            actualPower = powerFisher(n, p1, p2, alpha);
+        } else {
+            actualPower = powerChiSqApprox(n, p1, p2, alpha);
+            usedApprox = true;
+        }
+        if (actualPower >= targetPower) break;
+        n++;
+    }
+
+    if (actualPower < targetPower) {
+        resultEl.innerText = 'No se encontró solución para n ≤ 500. La diferencia de proporciones es demasiado pequeña para el nivel de potencia solicitado. Considera reducir la potencia o aumentar el efecto.';
+        return;
+    }
+
+    let msg =
+        `n por grupo (diseño balanceado): ${n}\n` +
+        `Total de observaciones: ${2 * n}\n` +
+        `Potencia alcanzada: ${(actualPower * 100).toFixed(2)} % (objetivo: ${(targetPower * 100).toFixed(0)} %)\n` +
+        `p₁ = ${p1}  |  p₂ = ${p2}  |  α = ${alpha}\n` +
+        `Nota: para n ≤ 150 se usa potencia exacta por hipergeométrica. Para n > 150 se aplica la aproximación chi-cuadrado.`;
+
+    if (usedApprox) {
+        msg += '\n[Resultado obtenido con aproximación chi-cuadrado (n > 150).]';
+    }
+    if (smallDiff) {
+        msg += '\nAdvertencia: La diferencia de proporciones es muy pequeña; se necesitarán muestras muy grandes.';
+    }
+
+    resultEl.innerText = msg;
+}
+
+document.getElementById('fisherCalculateBtn').addEventListener('click', calculateFisherSampleSize);
+calculateFisherSampleSize();
+</script>
+</body>
+</html>

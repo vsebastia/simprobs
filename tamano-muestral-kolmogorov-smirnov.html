@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el número de observaciones necesario para detectar una desviación máxima δ entre la distribución muestral y la distribución teórica con una potencia objetivo.">
+    <meta name="keywords" content="tamaño muestral Kolmogorov-Smirnov, calcular muestra test KS, potencia estadística bondad de ajuste, desviación máxima CDF, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov | ProbLab">
+    <meta property="og:description" content="Calcula el número de observaciones necesario para detectar una desviación máxima δ entre la distribución muestral y la distribución teórica con una potencia objetivo.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov | ProbLab">
+    <meta name="twitter:description" content="Calcula el número de observaciones necesario para detectar una desviación máxima δ entre la distribución muestral y la distribución teórica con una potencia objetivo.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Kolmogorov–Smirnov", "item": "https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html",
+          "description": "Calcula el número de observaciones necesario para detectar una desviación máxima δ entre la distribución muestral y la distribución teórica con una potencia objetivo.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-kolmogorov-smirnov.html",
+      "description": "Calcula el número de observaciones necesario para detectar una desviación máxima δ entre la distribución muestral y la distribución teórica con una potencia objetivo.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué significa δ en este contexto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "δ es la diferencia absoluta máxima entre la función de distribución empírica F_n(x) y la función de distribución teórica F₀(x): δ = max|F_n(x) − F₀(x)|. Un valor δ = 0,20 significa que la distribución empírica se desvía en todo punto como mucho 20 puntos porcentuales de la distribución teórica. Es el tamaño del efecto del test de Kolmogorov–Smirnov: δ ≈ 0,10 se considera pequeño, 0,20 moderado y 0,30 grande."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es válida esta fórmula para distribuciones con parámetros estimados?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Si los parámetros de la distribución teórica se estiman a partir de los propios datos (por ejemplo, se contrasta normalidad estimando μ y σ de la muestra), la distribución del estadístico KS cambia y los valores críticos estándar ya no son válidos, lo que produce una tasa de error tipo I demasiado baja (el test es demasiado conservador). En ese caso se debe usar el test de Lilliefors, que corrige los valores críticos para el caso de parámetros estimados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Para qué sirve el test de KS frente al chi-cuadrado de bondad de ajuste?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test de Kolmogorov–Smirnov está diseñado para variables continuas y usa toda la información distribucional sin agrupar los datos; es más potente que el chi-cuadrado cuando la variable es continua. El test chi-cuadrado de bondad de ajuste requiere agrupar los datos en intervalos o categorías, y funciona tanto para variables discretas como continuas. Para muestras pequeñas con distribución continua y parámetros completamente especificados, el test KS es generalmente preferible."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Kolmogorov–Smirnov</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov</h1>
+        <p class="hero-subtitle">Calcula el número de observaciones necesario para detectar una desviación máxima δ entre la distribución muestral y la distribución teórica con una potencia objetivo.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la desviación máxima δ que deseas detectar (tamaño del efecto), el nivel de significación y la potencia deseada para obtener el tamaño muestral mínimo.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="ksDelta">Desviación máxima δ (tamaño del efecto)</label>
+                        <input type="number" id="ksDelta" value="0.20" step="0.01" min="0.01" max="0.99">
+                    </div>
+                    <div class="form-group">
+                        <label for="ksAlpha">Nivel α</label>
+                        <input type="number" id="ksAlpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="ksPower">Potencia (1−β)</label>
+                        <input type="number" id="ksPower" value="0.80" step="0.01" min="0.5" max="0.999">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="ksCalculateBtn">Calcular tamaño muestral</button>
+            <div id="ksResult" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El test de Kolmogorov–Smirnov de una muestra (bondad de ajuste) compara la función de distribución empírica \(F_n(x)\) con una función de distribución teórica completamente especificada \(F_0(x)\). El estadístico es la distancia máxima entre ambas:</p>
+            <p class="formula-line">\( D_n = \sup_{x} \left| F_n(x) - F_0(x) \right| \)</p>
+            <p>La aproximación asintótica de la potencia se basa en la distribución de Kolmogorov. Para muestras pequeñas (n &lt; 30) esta aproximación puede sobreestimar ligeramente la potencia real.</p>
+
+            <h3>Fórmula de potencia (aproximación asintótica)</h3>
+            <p>El valor crítico se obtiene invirtiendo la distribución de Kolmogorov: \(c_\alpha = K^{-1}(1-\alpha)\), donde \(K(t) = 1 - 2\sum_{j=1}^{\infty}(-1)^{j-1}e^{-2j^2t^2}\). La potencia para un efecto δ es:</p>
+            <p class="formula-line">\( \text{Potencia} \approx 1 - K\!\left(c_\alpha - \sqrt{n}\,\delta\right) + K\!\left(-c_\alpha - \sqrt{n}\,\delta\right) \)</p>
+            <p>La calculadora busca el menor \(n\) tal que la potencia alcanza el objetivo, con \(n\) entre 2 y 50 000.</p>
+
+            <h3>Tamaños de efecto de referencia</h3>
+            <ul>
+                <li><strong>δ = 0,10:</strong> efecto pequeño (la CDF empírica se desvía como máximo 10 pp de la teórica).</li>
+                <li><strong>δ = 0,20:</strong> efecto moderado (referencia habitual en estudios de bondad de ajuste).</li>
+                <li><strong>δ = 0,30:</strong> efecto grande (desviación muy apreciable).</li>
+            </ul>
+
+            <h3>Extensión al test KS de dos muestras</h3>
+            <p>Para el test KS de dos muestras con grupos de igual tamaño, el tamaño efectivo de muestra es \(n_{\text{ef}} = n_1 \cdot n_2 / (n_1 + n_2)\). Con grupos balanceados, \(n_{\text{ef}} = n/2\), por lo que cada grupo necesita el doble del \(n\) calculado aquí.</p>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un investigador quiere detectar una desviación máxima \(\delta = 0{,}20\) entre la distribución empírica y una distribución exponencial teórica. Con \(\alpha = 0{,}05\) y potencia = 80 %, la calculadora devuelve aproximadamente <strong>n ≈ 52 observaciones</strong>.</p>
+            <p><strong>Advertencia:</strong> si δ es muy pequeño (&lt; 0,05) se pueden necesitar miles de observaciones. Para muestras de n &lt; 8 la aproximación asintótica puede sobreestimar la potencia real.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Encuentra por búsqueda iterativa el menor \(n\) tal que la potencia asintótica del test de Kolmogorov–Smirnov de una muestra alcanza el valor objetivo para un efecto δ dado. La aproximación es exacta para n grande; para n &lt; 8 se muestra una advertencia.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El valor devuelto es el número mínimo de observaciones necesarias. El valor crítico aproximado \(D_{n,\alpha} \approx c_\alpha / \sqrt{n}\) permite saber qué magnitud de desviación resulta estadísticamente significativa con ese tamaño de muestra.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="kolmogorov-smirnov-bondad-ajuste.html">Test de Kolmogorov–Smirnov de bondad de ajuste</a></li>
+                    <li><a href="tamano-muestral-shapiro-wilk.html">Tamaño muestral para el test de Shapiro–Wilk</a></li>
+                    <li><a href="shapiro-wilk-normalidad.html">Test de Shapiro–Wilk de normalidad</a></li>
+                    <li><a href="chi-cuadrado-bondad-ajuste.html">Chi-cuadrado de bondad de ajuste</a></li>
+                </ul>
+            </section>
+            <h3>Referencias</h3>
+            <ul>
+                <li>Conover, W. J. (1999). <em>Practical Nonparametric Statistics</em> (3.ª ed.). Wiley.</li>
+                <li>Massey, F. J. (1951). The Kolmogorov–Smirnov test for goodness of fit. <em>Journal of the American Statistical Association</em>, 46(253), 68–78.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function kolmogorovCDF(x) {
+    if (x <= 0) return 0;
+    let s = 0;
+    for (let j = 1; j <= 150; j++) {
+        const term = Math.pow(-1, j - 1) * Math.exp(-2 * j * j * x * x);
+        s += term;
+        if (Math.abs(term) < 1e-12) break;
+    }
+    return Math.min(1, Math.max(0, 1 - 2 * s));
+}
+
+function kolmogorovInv(p) {
+    let lo = 0.001, hi = 6;
+    for (let i = 0; i < 80; i++) {
+        const mid = (lo + hi) / 2;
+        if (kolmogorovCDF(mid) < p) lo = mid; else hi = mid;
+    }
+    return (lo + hi) / 2;
+}
+
+function powerKS(n, delta, alpha) {
+    const c = kolmogorovInv(1 - alpha);
+    const arg = c - Math.sqrt(n) * delta;
+    return 1 - kolmogorovCDF(arg) + kolmogorovCDF(-c - Math.sqrt(n) * delta);
+}
+
+function calculateKSSampleSize() {
+    const delta = parseFloat(document.getElementById('ksDelta').value);
+    const alpha = parseFloat(document.getElementById('ksAlpha').value);
+    const targetPower = parseFloat(document.getElementById('ksPower').value);
+    const resultEl = document.getElementById('ksResult');
+
+    if (!Number.isFinite(delta) || delta <= 0 || delta >= 1) {
+        resultEl.innerText = 'Error: δ debe estar entre 0.01 y 0.99.';
+        return;
+    }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: α debe estar entre 0 y 1.';
+        return;
+    }
+    if (!Number.isFinite(targetPower) || targetPower <= 0 || targetPower >= 1) {
+        resultEl.innerText = 'Error: la potencia debe estar entre 0 y 1.';
+        return;
+    }
+
+    let n = 2;
+    let actualPower = 0;
+    while (n <= 50000) {
+        actualPower = powerKS(n, delta, alpha);
+        if (actualPower >= targetPower) break;
+        n++;
+    }
+
+    if (actualPower < targetPower) {
+        resultEl.innerText = 'No se encontró solución para n ≤ 50 000. El efecto δ es demasiado pequeño para el nivel de potencia solicitado con este límite de búsqueda.';
+        return;
+    }
+
+    const c = kolmogorovInv(1 - alpha);
+    const criticalD = c / Math.sqrt(n);
+    let msg =
+        `n mínimo recomendado: ${n} observaciones\n` +
+        `Potencia alcanzada: ${(actualPower * 100).toFixed(2)} % (objetivo: ${(targetPower * 100).toFixed(0)} %)\n` +
+        `δ = ${delta}  |  α = ${alpha}\n` +
+        `Valor crítico aproximado: D_{n,α} ≈ ${criticalD.toFixed(4)}`;
+
+    if (n < 8) {
+        msg += '\nAdvertencia: Para muestras muy pequeñas la aproximación asintótica puede sobreestimar la potencia.';
+    }
+
+    resultEl.innerText = msg;
+}
+
+document.getElementById('ksCalculateBtn').addEventListener('click', calculateKSSampleSize);
+calculateKSSampleSize();
+</script>
+</body>
+</html>

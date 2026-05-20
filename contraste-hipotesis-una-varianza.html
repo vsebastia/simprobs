@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contraste de hipótesis para una varianza (test chi-cuadrado) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora online: contraste de hipótesis para una varianza (test chi-cuadrado). Calcula el estadístico χ², el p-valor y el intervalo de confianza para σ² y σ.">
+    <meta name="keywords" content="contraste hipótesis varianza, test chi-cuadrado varianza, prueba chi cuadrado desviación típica, intervalo confianza varianza, estadística online, ProbLab, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-una-varianza.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contraste de hipótesis para una varianza (test chi-cuadrado) | ProbLab">
+    <meta property="og:description" content="Calculadora online: contraste de hipótesis para una varianza (test chi-cuadrado). Calcula el estadístico χ², el p-valor y el intervalo de confianza para σ² y σ.">
+    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-una-varianza.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora online de contraste de hipótesis para una varianza">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/contraste-hipotesis-una-varianza.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contraste de hipótesis para una varianza (test chi-cuadrado) | ProbLab">
+    <meta name="twitter:description" content="Calculadora online: contraste de hipótesis para una varianza (test chi-cuadrado). Calcula el estadístico χ², el p-valor y el intervalo de confianza para σ² y σ.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora online de contraste de hipótesis para una varianza">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Contrastes de hipótesis", "item": "https://problabtools.es/contrastes-hipotesis/"},
+            {"@type": "ListItem", "position": 3, "name": "Una varianza", "item": "https://problabtools.es/contraste-hipotesis-una-varianza.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Contraste de hipótesis para una varianza (test chi-cuadrado) | ProbLab",
+          "url": "https://problabtools.es/contraste-hipotesis-una-varianza.html",
+          "description": "Calculadora online: contraste de hipótesis para una varianza (test chi-cuadrado). Calcula el estadístico χ², el p-valor y el intervalo de confianza para σ² y σ.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora online de contraste de hipótesis para una varianza",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/contraste-hipotesis-una-varianza.html",
+      "description": "Calculadora online: contraste de hipótesis para una varianza (test chi-cuadrado). Calcula el estadístico χ², el p-valor y el intervalo de confianza para σ² y σ.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Por qué el test chi-cuadrado de varianza es sensible a la no normalidad?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Porque la distribución chi-cuadrado con n-1 grados de libertad de (n-1)s²/σ² depende de que los datos provengan de una población normal. Con datos no normales, la varianza muestral s² puede seguir una distribución muy diferente, invalidando el p-valor calculado. Por ello se recomiendan alternativas robustas como el test de Bartlett, Levene o Fligner-Killeen cuando no se puede asumir normalidad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo usar el contraste unilateral derecho para la varianza?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se usa cuando el objetivo es detectar si la variabilidad ha aumentado por encima de un límite de especificación, lo que es habitual en control de calidad industrial y en la evaluación de la precisión de instrumentos de medida."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se interpreta el intervalo de confianza para σ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El intervalo de confianza para σ proporciona el rango de valores de la desviación estándar poblacional compatible con los datos observados al nivel de confianza elegido. Si σ₀ queda fuera del IC bilateral, esto coincide con el rechazo de H₀ en el contraste bilateral al mismo nivel α."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué diferencia hay entre este test y el test F de dos varianzas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Este test compara la varianza de una muestra frente a un valor fijo de referencia σ₀². El test F de Snedecor compara las varianzas de dos muestras independientes entre sí, siendo el cociente de ambas varianzas muestrales el estadístico del contraste."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes de hipótesis</a></li>
+            <li><span aria-current="page">Una varianza</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora de contraste de hipótesis para una varianza</h1>
+        <p class="hero-subtitle">Contrasta si la varianza o desviación estándar de una población normal es igual a un valor de referencia. Calcula el estadístico chi-cuadrado, el p-valor y el intervalo de confianza para σ².</p>
+        <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Ver todos los contrastes</a></p>
+    </header>
+
+    <main>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Introduce la desviación típica muestral, el valor de referencia y el tamaño muestral para obtener el estadístico χ², el p-valor y el intervalo de confianza para σ².</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="s">Desviación típica muestral (s)</label>
+                        <input type="number" id="s" value="12.0" step="0.01" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="sigma0">Desviación típica bajo H₀ (σ₀)</label>
+                        <input type="number" id="sigma0" value="10.0" step="0.01" min="0.0001">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="n">Tamaño muestral (n)</label>
+                        <input type="number" id="n" value="25" step="1" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="tail">Tipo de contraste</label>
+                        <select id="tail">
+                            <option value="two">Bilateral (σ ≠ σ₀)</option>
+                            <option value="right">Cola derecha (σ &gt; σ₀)</option>
+                            <option value="left">Cola izquierda (σ &lt; σ₀)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular contraste</button>
+            <div id="result" class="result-box">Resultado pendiente…</div>
+            <div class="chart-wrap">
+                <canvas id="varianzaChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste de varianza chi-cuadrado" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>El contraste chi-cuadrado para una varianza permite evaluar si la variabilidad de una población normal es compatible con un valor de referencia \(\sigma_0^2\). Es una herramienta habitual en control de calidad (¿ha aumentado la dispersión de un proceso?) y en la validación de especificaciones de precisión de instrumentos de medida.</p>
+            <p>La prueba supone que la población sigue una distribución normal y es especialmente sensible a desviaciones de este supuesto, más que el test t para la media. Para datos no normales existen alternativas más robustas.</p>
+
+            <h3>Hipótesis y estadístico</h3>
+            <p class="formula-line">\(H_0: \sigma^2 = \sigma_0^2\) (equivalentemente \(\sigma = \sigma_0\))</p>
+            <p class="formula-line">\(H_1: \sigma^2 \neq \sigma_0^2\), \(\sigma^2 > \sigma_0^2\) o \(\sigma^2 &lt; \sigma_0^2\)</p>
+            <p class="formula-line">\(\chi^2 = \dfrac{(n-1)\,s^2}{\sigma_0^2} \sim \chi^2_{n-1}\) bajo \(H_0\)</p>
+            <p class="formula-line">\(IC_{(1-\alpha)}\text{ para }\sigma^2: \left[\dfrac{(n-1)\,s^2}{\chi^2_{1-\alpha/2,\,n-1}},\; \dfrac{(n-1)\,s^2}{\chi^2_{\alpha/2,\,n-1}}\right]\)</p>
+            <ul>
+                <li><strong>\(s\)</strong>: desviación típica muestral.</li>
+                <li><strong>\(\sigma_0\)</strong>: desviación típica de referencia bajo \(H_0\).</li>
+                <li><strong>\(n\)</strong>: tamaño muestral.</li>
+                <li><strong>\(gl = n - 1\)</strong>: grados de libertad de la distribución chi-cuadrado.</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Guía práctica de uso</h3>
+            <ul>
+                <li><strong>Contraste bilateral</strong>: se usa cuando no se tiene una hipótesis direccional previa sobre si la varianza ha aumentado o disminuido.</li>
+                <li><strong>Cola derecha (σ &gt; σ₀)</strong>: adecuado en control de calidad para detectar aumentos en la variabilidad de un proceso productivo o instrumento de medición.</li>
+                <li><strong>Cola izquierda (σ &lt; σ₀)</strong>: útil para verificar si se ha conseguido reducir la variabilidad tras una mejora del proceso.</li>
+            </ul>
+            <p>Si el <strong>p-valor</strong> es menor que \(\alpha\), se rechaza \(H_0\): la varianza es significativamente distinta de \(\sigma_0^2\). El intervalo de confianza para \(\sigma^2\) y \(\sigma\) complementa el resultado al mostrar el rango de valores plausibles.</p>
+
+            <h3>Supuestos del test</h3>
+            <ul>
+                <li>La población debe seguir una distribución <strong>normal</strong>. El test chi-cuadrado para la varianza es muy sensible a la no normalidad.</li>
+                <li>Las observaciones deben ser independientes.</li>
+                <li>Para datos no normales considera alternativas robustas: <strong>test de Bartlett</strong> (variante más poderosa pero igualmente sensible a la normalidad), <strong>test de Levene</strong> o <strong>test de Fligner-Killeen</strong> (más robusto ante no normalidad).</li>
+            </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Un proceso industrial tiene una especificación de desviación típica de \(\sigma_0 = 10\) unidades. Se toma una muestra de \(n = 25\) piezas con desviación típica muestral \(s = 12\). Se contrasta \(H_0: \sigma^2 = 100\) frente a \(H_1: \sigma^2 \neq 100\) con \(\alpha = 0{,}05\).</p>
+            <p class="formula-line">\(\chi^2 = \dfrac{(25-1) \times 12^2}{10^2} = \dfrac{24 \times 144}{100} = 34{,}56\)</p>
+            <p>Con \(gl = 24\) grados de libertad y contraste bilateral, el p-valor es \(p \approx 0{,}076\). Como \(p = 0{,}076 > \alpha = 0{,}05\), <strong>no se rechaza \(H_0\)</strong>: no hay evidencia estadística suficiente para concluir que la varianza del proceso es distinta de 100.</p>
+            <p>El IC 95% para \(\sigma^2\) es aproximadamente \([82{,}5;\; 239{,}0]\), que contiene el valor \(\sigma_0^2 = 100\), confirmando la no significación del contraste bilateral.</p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Esta calculadora de contraste de hipótesis para una varianza aplica el test chi-cuadrado de una muestra sobre la varianza poblacional. Proporciona el estadístico \(\chi^2 = (n-1)s^2/\sigma_0^2\), los grados de libertad, el p-valor adaptado al tipo de contraste (bilateral, cola derecha o cola izquierda) y el intervalo de confianza para la varianza \(\sigma^2\) y la desviación típica \(\sigma\) al nivel elegido. Las entradas son la desviación típica muestral \(s\) y el valor de referencia \(\sigma_0\) (no las varianzas directamente).</p>
+            <section class="related-tools">
+              <h3>Calculadoras relacionadas</h3>
+              <ul>
+                <li><a href="tamano-muestral-una-varianza.html">Tamaño muestral para una varianza</a></li>
+                <li><a href="contraste-hipotesis-varianzas.html">Contraste para dos varianzas (test F)</a></li>
+                <li><a href="intervalo-confianza-varianza.html">Intervalo de confianza para la varianza</a></li>
+                <li><a href="tamano-muestral-varianza-ic.html">Tamaño muestral para IC de varianza</a></li>
+              </ul>
+            </section>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Por qué el test chi-cuadrado de varianza es sensible a la no normalidad?</strong> Porque la distribución \(\chi^2(n-1)\) de \((n-1)s^2/\sigma^2\) depende de la normalidad de la población; datos no normales pueden producir distribuciones muy diferentes de \(s^2\), invalidando el p-valor.</li>
+                <li><strong>¿Cuándo usar el contraste unilateral derecho?</strong> Cuando se desea detectar si la variabilidad ha aumentado por encima de un límite de especificación, habitual en control de calidad o evaluación de precisión de instrumentos.</li>
+                <li><strong>¿Cómo se interpreta el IC para σ?</strong> Proporciona el rango de valores de \(\sigma\) compatibles con los datos al nivel de confianza elegido; si \(\sigma_0\) queda fuera del IC bilateral, coincide con el rechazo de \(H_0\) en el contraste bilateral.</li>
+                <li><strong>¿Qué diferencia hay entre este test y el test F de dos varianzas?</strong> Este test compara la varianza de una muestra frente a un valor fijo \(\sigma_0^2\); el test F compara las varianzas de dos muestras independientes entre sí.</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Distribuci%C3%B3n_chi_cuadrado" target="_blank" rel="noopener noreferrer">Distribución chi cuadrado</a> — Wikipedia</p>
+        </section>
+
+    </main>
+
+    <footer class="legal-footer">
+  <p>
+    © 2026 problabtools.
+    <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="privacidad.html">Privacidad</a> ·
+    <a href="cookies.html">Cookies</a> ·
+    <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+  </p>
+</footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let varianzaChart;
+
+function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+    for (let x = min; x <= max; x += step) {
+        const y = pdfFn(x);
+        curve.push({ x, y });
+        if (isAcceptanceFn(x)) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+    return { curve, acceptance, rejection };
+}
+
+function renderChart(alpha, tail, chiSqObs, df) {
+    const ctx = document.getElementById('varianzaChart');
+    if (!ctx) return;
+
+    let critLow = null, critHigh = null;
+    if (tail === 'two') {
+        critLow = jStat.chisquare.inv(alpha / 2, df);
+        critHigh = jStat.chisquare.inv(1 - alpha / 2, df);
+    } else if (tail === 'right') {
+        critHigh = jStat.chisquare.inv(1 - alpha, df);
+    } else {
+        critLow = jStat.chisquare.inv(alpha, df);
+    }
+
+    const maxX = Math.max(chiSqObs * 1.3, (critHigh !== null ? critHigh : df * 2) * 1.3, df * 3);
+    const step = maxX / 300;
+
+    const isAcceptance = (x) => {
+        if (tail === 'two') return x > critLow && x < critHigh;
+        if (tail === 'right') return x < critHigh;
+        return x > critLow;
+    };
+
+    const { curve, acceptance, rejection } = buildCurvePoints(
+        0, maxX, step,
+        (x) => x === 0 ? 0 : jStat.chisquare.pdf(x, df),
+        isAcceptance
+    );
+
+    const maxY = Math.max(...curve.map(p => p.y));
+    const statLine = [{ x: chiSqObs, y: 0 }, { x: chiSqObs, y: maxY }];
+
+    if (varianzaChart) varianzaChart.destroy();
+    varianzaChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                { label: 'Zona de aceptación', data: acceptance, borderColor: 'rgba(34,197,94,0)', backgroundColor: 'rgba(34,197,94,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: 'Zona de rechazo', data: rejection, borderColor: 'rgba(239,68,68,0)', backgroundColor: 'rgba(239,68,68,0.35)', fill: 'origin', pointRadius: 0, parsing: false },
+                { label: `Distribución χ² (gl=${df})`, data: curve, borderColor: '#1d4ed8', borderWidth: 2, pointRadius: 0, fill: false, parsing: false },
+                { label: 'Estadístico χ² observado', data: statLine, borderColor: '#f59e0b', borderWidth: 2, pointRadius: 0, fill: false, parsing: false }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { type: 'linear', min: 0, max: maxX, title: { display: true, text: 'χ²' } },
+                y: { min: 0, title: { display: true, text: 'Densidad' } }
+            },
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: { mode: 'index', intersect: false, callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y !== null ? ctx.parsed.y.toFixed(4) : '—'}` } }
+            }
+        }
+    });
+}
+
+function calculate() {
+    const s = parseFloat(document.getElementById('s').value);
+    const sigma0 = parseFloat(document.getElementById('sigma0').value);
+    const n = parseInt(document.getElementById('n').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const tail = document.getElementById('tail').value;
+    const result = document.getElementById('result');
+
+    if (!Number.isFinite(s) || s <= 0) {
+        result.textContent = 'Error: la desviación típica muestral s debe ser > 0.';
+        if (varianzaChart) { varianzaChart.destroy(); varianzaChart = null; }
+        return;
+    }
+    if (!Number.isFinite(sigma0) || sigma0 <= 0) {
+        result.textContent = 'Error: σ₀ debe ser un valor positivo.';
+        if (varianzaChart) { varianzaChart.destroy(); varianzaChart = null; }
+        return;
+    }
+    if (!Number.isFinite(n) || n < 2) {
+        result.textContent = 'Error: el tamaño muestral n debe ser ≥ 2.';
+        if (varianzaChart) { varianzaChart.destroy(); varianzaChart = null; }
+        return;
+    }
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        result.textContent = 'Error: α debe estar entre 0 y 1.';
+        if (varianzaChart) { varianzaChart.destroy(); varianzaChart = null; }
+        return;
+    }
+
+    const df = n - 1;
+    const chiSq = df * s * s / (sigma0 * sigma0);
+
+    let pval;
+    if (tail === 'two') {
+        const pLeft = jStat.chisquare.cdf(chiSq, df);
+        const pRight = 1 - jStat.chisquare.cdf(chiSq, df);
+        pval = 2 * Math.min(pLeft, pRight);
+    } else if (tail === 'right') {
+        pval = 1 - jStat.chisquare.cdf(chiSq, df);
+    } else {
+        pval = jStat.chisquare.cdf(chiSq, df);
+    }
+
+    const chiLow = jStat.chisquare.inv(alpha / 2, df);
+    const chiHigh = jStat.chisquare.inv(1 - alpha / 2, df);
+    const var_low = df * s * s / chiHigh;
+    const var_high = df * s * s / chiLow;
+    const sigma_low = Math.sqrt(var_low);
+    const sigma_high = Math.sqrt(var_high);
+
+    const rejects = pval < alpha;
+    const tailLabel = { two: 'bilateral (σ ≠ σ₀)', right: 'cola derecha (σ > σ₀)', left: 'cola izquierda (σ < σ₀)' }[tail];
+
+    result.textContent =
+        `Estadístico χ²: ${chiSq.toFixed(4)}\n` +
+        `Grados de libertad: ${df}\n` +
+        `p-valor ${tailLabel}: ${pval < 0.0001 ? '< 0.0001' : pval.toFixed(4)}\n` +
+        `IC ${((1 - alpha) * 100).toFixed(0)}% para σ²: [${var_low.toFixed(4)}, ${var_high.toFixed(4)}]\n` +
+        `IC ${((1 - alpha) * 100).toFixed(0)}% para σ: [${sigma_low.toFixed(4)}, ${sigma_high.toFixed(4)}]\n` +
+        `s = ${s} | σ₀ = ${sigma0} | n = ${n} | α = ${alpha}\n` +
+        `Decisión: ${rejects ? 'Se rechaza H₀: la varianza es significativamente distinta de σ₀².' : 'No se rechaza H₀: no hay evidencia suficiente para rechazar σ² = σ₀².'}`;
+
+    renderChart(alpha, tail, chiSq, df);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculate);
+calculate();
+</script>
+</body>
+</html>
