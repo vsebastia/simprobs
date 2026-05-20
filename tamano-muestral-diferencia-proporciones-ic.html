@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de tamaño muestral para la diferencia de proporciones (IC) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcula el tamaño muestral mínimo por grupo para estimar la diferencia entre dos proporciones independientes con un margen de error y nivel de confianza dados.">
+    <meta name="keywords" content="calculadora tamaño muestral diferencia proporciones, muestra dos proporciones IC, tamaño muestral comparar porcentajes, precisión intervalo confianza diferencia proporciones, ProbLab, estadística online">
+    <link rel="canonical" href="https://problabtools.es/tamano-muestral-diferencia-proporciones-ic.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de tamaño muestral para la diferencia de proporciones (IC) | ProbLab">
+    <meta property="og:description" content="Calcula el tamaño muestral mínimo por grupo para estimar la diferencia entre dos proporciones independientes con un margen de error y nivel de confianza dados.">
+    <meta property="og:url" content="https://problabtools.es/tamano-muestral-diferencia-proporciones-ic.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de tamaño muestral para la diferencia de proporciones">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/tamano-muestral-diferencia-proporciones-ic.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de tamaño muestral para la diferencia de proporciones (IC) | ProbLab">
+    <meta name="twitter:description" content="Calcula el tamaño muestral mínimo por grupo para estimar la diferencia entre dos proporciones independientes con un margen de error y nivel de confianza dados.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de tamaño muestral para la diferencia de proporciones">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Tamaño muestral", "item": "https://problabtools.es/tamano-muestral/"},
+            {"@type": "ListItem", "position": 3, "name": "Diferencia de proporciones (IC)", "item": "https://problabtools.es/tamano-muestral-diferencia-proporciones-ic.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de tamaño muestral para la diferencia de proporciones (IC) | ProbLab",
+          "url": "https://problabtools.es/tamano-muestral-diferencia-proporciones-ic.html",
+          "description": "Calcula el número mínimo de observaciones por grupo para estimar la diferencia entre dos proporciones con un margen de error absoluto y nivel de confianza predefinidos.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de tamaño muestral para la diferencia de proporciones (IC)",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/tamano-muestral-diferencia-proporciones-ic.html",
+      "description": "Calcula el número mínimo de observaciones por grupo para estimar la diferencia entre dos proporciones con un margen de error absoluto y nivel de confianza predefinidos.",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué significa el margen de error E para la diferencia de proporciones?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es la máxima desviación tolerable entre la diferencia estimada p̂₁−p̂₂ y la diferencia poblacional real p₁−p₂. Por ejemplo, E=0,08 significa que la estimación puede diferir del valor real en como mucho 8 puntos porcentuales."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El resultado es por grupo o el total?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La fórmula da el número mínimo de observaciones por grupo (asignación 1:1). El total de sujetos es 2·n."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué valores usar si no conozco p₁ y p₂?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El escenario más conservador es p₁=0,5 y p₂=0,5, que maximiza la varianza de la diferencia y da el mayor tamaño muestral para cualquier margen de error dado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El tamaño muestral es exacto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Depende de los valores supuestos de p₁ y p₂, que deben estimarse de datos piloto o de la literatura. Añade un margen del 10–20 % para compensar pérdidas."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><span aria-current="page">Diferencia de proporciones (IC)</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Tamaño muestral</p>
+        <h1>Calculadora de tamaño muestral para la diferencia de proporciones (IC)</h1>
+        <p class="hero-subtitle">Estima el número mínimo de observaciones por grupo para medir la diferencia entre dos proporciones independientes con una precisión objetivo.</p>
+        <p class="hero-links"><a class="hero-link-button" href="tamano-muestral/">Ver todas las calculadoras de tamaño muestral</a></p>
+    </header>
+
+    <main>
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>Calcula el número mínimo de observaciones por grupo (asignación 1:1) para estimar p₁ − p₂ con precisión objetivo.</p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="dp2p1">Proporción esperada grupo 1 (p₁)</label>
+                        <input type="number" id="dp2p1" value="0.60" step="0.01" min="0.0001" max="0.9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="dp2p2">Proporción esperada grupo 2 (p₂)</label>
+                        <input type="number" id="dp2p2" value="0.40" step="0.01" min="0.0001" max="0.9999">
+                    </div>
+                </div>
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="dp2E">Margen de error (E)</label>
+                        <input type="number" id="dp2E" value="0.10" step="0.01" min="0.0001" max="0.9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="dp2Confidence">Nivel de confianza</label>
+                        <select id="dp2Confidence">
+                            <option value="0.90">90%</option>
+                            <option value="0.95" selected>95%</option>
+                            <option value="0.99">99%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="dp2CalculateBtn">Calcular tamaño muestral</button>
+            <div id="dp2Result" class="result-box">Resultado pendiente…</div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+            <p>Esta calculadora determina el número mínimo de observaciones <em>por grupo</em> para estimar la diferencia \(p_1 - p_2\) entre dos proporciones independientes con un margen de error absoluto máximo \(E\) y un nivel de confianza dado. Es el punto de partida para planificar estudios comparativos entre dos grupos antes de recoger los datos.</p>
+            <p>Los dos parámetros clave son las proporciones esperadas en cada grupo. Si no dispones de estimaciones previas, el escenario conservador es \(p_1 = p_2 = 0{,}5\), que maximiza la suma \(p_1(1-p_1) + p_2(1-p_2)\) y por tanto el tamaño muestral. En la práctica, usar proporciones informadas de datos piloto o literatura reduce considerablemente la muestra necesaria.</p>
+            <p>La fórmula asume asignación equilibrada (mismo número de sujetos en cada grupo) y muestreo aleatorio de dos poblaciones muy grandes. El margen de error \(E\) se aplica a la diferencia \(p_1-p_2\), no a cada proporción por separado.</p>
+
+            <h3>Fórmula de tamaño muestral</h3>
+            <p class="formula-line">\( n = \frac{Z^2 \cdot \left[p_1(1-p_1) + p_2(1-p_2)\right]}{E^2} \)</p>
+            <ul>
+                <li><strong>n</strong>: número mínimo de observaciones por grupo (total N = 2n).</li>
+                <li><strong>Z</strong>: cuantil normal — 1,645 (90 %), 1,960 (95 %), 2,576 (99 %).</li>
+                <li><strong>\(p_1, p_2\)</strong>: proporciones esperadas en cada grupo.</li>
+                <li><strong>E</strong>: margen de error absoluto máximo para la diferencia \(p_1 - p_2\).</li>
+            </ul>
+
+            <h3>Interpretación del margen de error</h3>
+            <p>Un margen \(E = 0{,}10\) significa que la diferencia estimada \(\hat{p}_1 - \hat{p}_2\) puede diferir del valor poblacional real \(p_1 - p_2\) en como mucho ±10 puntos porcentuales con la confianza elegida. Si la diferencia esperada entre grupos es pequeña, el margen de error debe serlo también, lo que requiere muestras más grandes. Compara siempre el margen de error con la diferencia real esperada: un E mayor que esa diferencia hace el estudio inútil para detectarla.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Configuración rápida</h3>
+            <ul>
+                <li><strong>p₁ y p₂:</strong> tómalas de datos piloto o de la literatura. Si no tienes información, usa ambas en 0,5.</li>
+                <li><strong>Margen de error E:</strong> defínelo en puntos porcentuales absolutos. Para diferencias esperadas de 10–20 pp, un margen de ±5–8 pp suele ser razonable.</li>
+                <li><strong>Nivel de confianza:</strong> 95 % es el estándar habitual.</li>
+                <li><strong>Pérdidas esperadas:</strong> divide n por grupo entre (1 − tasa de pérdida). Con 15 % de abandono: n_reclutar = n / 0,85.</li>
+                <li><strong>Desigualdad entre grupos:</strong> si necesitas un número diferente en cada grupo, la fórmula con ratio de asignación k = n₂/n₁ es más adecuada.</li>
+            </ul>
+
+            <h3>Ejemplo resuelto</h3>
+            <p>Un investigador quiere estimar la diferencia en la tasa de adherencia a tratamiento entre dos intervenciones: la intervención A tiene una adherencia esperada de \(p_1 = 0{,}60\) y la B de \(p_2 = 0{,}40\), según datos de estudios similares. Se fija un margen de error de \(E = 0{,}10\) (±10 pp) con nivel de confianza del 95 % (\(Z = 1{,}960\)).</p>
+            <p>Aplicamos la fórmula:</p>
+            <p class="formula-line">\( n = \frac{(1{,}960)^2 \cdot [0{,}60 \cdot 0{,}40 + 0{,}40 \cdot 0{,}60]}{(0{,}10)^2} = \frac{3{,}8416 \times 0{,}48}{0{,}01} = \frac{1{,}844}{0{,}01} = 184{,}4 \rightarrow n = 185 \text{ por grupo} \)</p>
+            <p>Se necesitan <strong>185 participantes por grupo</strong>, es decir <strong>370 en total</strong>. Con una tasa de abandono esperada del 12 %, el número a reclutar por grupo es 185 / 0,88 ≈ 210, y el total a reclutar 420.</p>
+            <p><strong>Análisis de sensibilidad:</strong> si el margen se reduce a ±5 pp (E = 0,05), la muestra sube a n = 3,8416 × 0,48 / 0,0025 = 737 por grupo (1 474 total). Definir bien el margen es crítico para la viabilidad del estudio.</p>
+            <p><strong>Escenario conservador:</strong> sin información previa (\(p_1 = p_2 = 0{,}5\)), con E = 0,10: n = 3,8416 × 0,50 / 0,01 = 192 por grupo.</p>
+
+            <h3>Usos frecuentes</h3>
+            <ul>
+                <li>Comparación de tasas de satisfacción, adherencia o conversión entre dos grupos o segmentos.</li>
+                <li>Estimación de la diferencia en prevalencia entre dos poblaciones (hombres vs. mujeres, regiones, periodos).</li>
+                <li>Diseño de encuestas comparativas antes/después en estudios epidemiológicos transversales.</li>
+                <li>Planificación de experimentos A/B descriptivos donde el objetivo es caracterizar la diferencia, no contrastar hipótesis.</li>
+            </ul>
+
+            <h3>Supuestos del modelo</h3>
+            <ul>
+                <li>Muestreo aleatorio simple e independiente en dos poblaciones muy grandes.</li>
+                <li>Las dos muestras son independientes entre sí (no hay emparejamiento unidad a unidad).</li>
+                <li>La aproximación normal es adecuada cuando \(n_i \hat{p}_i \geq 5\) y \(n_i(1-\hat{p}_i) \geq 5\) en ambos grupos.</li>
+                <li>Asignación equilibrada 1:1. Si se necesitan grupos de distinto tamaño, ajusta la fórmula con el ratio de asignación.</li>
+            </ul>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+            <p>Calcula el número mínimo de observaciones por grupo para estimar \(p_1 - p_2\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado, usando el cuantil normal \(Z\) y las proporciones esperadas en cada grupo.</p>
+            <h3>Fórmula utilizada</h3>
+            <p>\( n = Z^2 \cdot [p_1(1-p_1) + p_2(1-p_2)] / E^2 \). El resultado se redondea al entero superior. La fórmula asume asignación 1:1; el número total de sujetos es 2·n.</p>
+            <h3>Ejemplo de uso</h3>
+            <p>p₁=0,6, p₂=0,4, E=0,10, 95 % → n=185 por grupo (370 total). Con E=0,05 → n=737 por grupo. Reducir el margen a la mitad cuadruplica la muestra.</p>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El n es el mínimo de observaciones válidas por grupo. Haz un análisis de sensibilidad variando p₁ y p₂ ±0,1 para evaluar cuánto cambia el resultado ante incertidumbre en los supuestos.</p>
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="intervalo-confianza-diferencia-proporciones.html">IC para la diferencia de proporciones</a></li>
+                    <li><a href="tamano-muestral-una-proporcion.html">Tamaño muestral para una proporción (IC)</a></li>
+                    <li><a href="tamano-muestral-dos-proporciones.html">Tamaño muestral para dos proporciones (contraste H0)</a></li>
+                    <li><a href="contraste-hipotesis-dos-proporciones.html">Contraste de hipótesis para dos proporciones</a></li>
+                    <li><a href="ab-testing-potencia.html">MDE, potencia y tamaño muestral para A/B</a></li>
+                </ul>
+            </section>
+            <h3>Referencias y lecturas adicionales</h3>
+            <ul>
+                <li>Fleiss, J. L., Levin, B., &amp; Paik, M. C. (2003). <em>Statistical Methods for Rates and Proportions</em> (3.ª ed.). Wiley.</li>
+                <li>Newcombe, R. G. (1998). Interval estimation for the difference between independent proportions, <em>Statistics in Medicine</em>, 17, 873–890.</li>
+                <li>Wikipedia (en): <a href="https://en.wikipedia.org/wiki/Sample_size_determination" target="_blank" rel="noopener">Sample size determination</a> — derivación para diferencia de proporciones.</li>
+            </ul>
+            <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Cuándo es conservador usar p₁=p₂=0,5?</strong> Siempre que no tengas información previa. Maximiza la varianza de cada grupo y por tanto el tamaño muestral necesario.</li>
+                <li><strong>¿Qué pasa si los grupos son muy distintos en tamaño?</strong> Si no puedes tener el mismo n en cada grupo, la eficiencia disminuye. Con ratio k=n₂/n₁, el n por grupo mayor crece en proporción.</li>
+                <li><strong>¿Este cálculo sirve para contrastar hipótesis?</strong> No directamente. Para detectar una diferencia con potencia y nivel de significación dados, usa la <a href="tamano-muestral-dos-proporciones.html">calculadora de dos proporciones para contraste H0</a>.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script>
+function calculateDiffPropSampleSize() {
+    const p1 = parseFloat(document.getElementById('dp2p1').value);
+    const p2 = parseFloat(document.getElementById('dp2p2').value);
+    const e  = parseFloat(document.getElementById('dp2E').value);
+    const confidence = parseFloat(document.getElementById('dp2Confidence').value);
+    const resultEl = document.getElementById('dp2Result');
+
+    if (!Number.isFinite(p1) || p1 <= 0 || p1 >= 1) {
+        resultEl.innerText = 'Error: p₁ debe estar entre 0 y 1 (sin incluir extremos).';
+        return;
+    }
+    if (!Number.isFinite(p2) || p2 <= 0 || p2 >= 1) {
+        resultEl.innerText = 'Error: p₂ debe estar entre 0 y 1 (sin incluir extremos).';
+        return;
+    }
+    if (!Number.isFinite(e) || e <= 0 || e >= 1) {
+        resultEl.innerText = 'Error: E debe estar entre 0 y 1 (sin incluir extremos).';
+        return;
+    }
+    if (!Number.isFinite(confidence) || confidence <= 0 || confidence >= 1) {
+        resultEl.innerText = 'Error: el nivel de confianza debe estar entre 0 y 1.';
+        return;
+    }
+
+    const alpha = 1 - confidence;
+    const z = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    const variance = p1 * (1 - p1) + p2 * (1 - p2);
+    const n = Math.ceil(z * z * variance / (e * e));
+    const confPct = Math.round(confidence * 100);
+
+    resultEl.innerText =
+        `n mínimo por grupo: ${n}  |  Total: ${2 * n} observaciones (${confPct} % de confianza)\n` +
+        `Z = ${z.toFixed(4)}  |  p₁(1−p₁) + p₂(1−p₂) = ${variance.toFixed(6)}  |  E = ${e}`;
+}
+
+document.getElementById('dp2CalculateBtn').addEventListener('click', calculateDiffPropSampleSize);
+calculateDiffPropSampleSize();
+</script>
+</body>
+</html>
