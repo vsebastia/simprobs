@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de contraste de dos varianzas (test F) | ProbLab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contrasta si dos poblaciones presentan la misma varianza mediante el test F de Snedecor. Calcula el estadístico F, el p-valor, los valores críticos y la decisión al nivel de significación elegido.">
+    <meta name="keywords" content="contraste dos varianzas, test F Snedecor, igualdad de varianzas, prueba F varianzas, comparar varianzas, estadístico F, p-valor varianzas, ProbLab, estadística online, calculadora estadística">
+    <link rel="canonical" href="https://problabtools.es/contraste-hipotesis-dos-varianzas.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Calculadora de contraste de dos varianzas (test F) | ProbLab">
+    <meta property="og:description" content="Contrasta si dos poblaciones presentan la misma varianza mediante el test F de Snedecor. Calcula el estadístico F, el p-valor, los valores críticos y la decisión al nivel de significación elegido.">
+    <meta property="og:url" content="https://problabtools.es/contraste-hipotesis-dos-varianzas.html">
+    <meta property="og:site_name" content="ProbLab">
+    <meta property="og:image" content="https://problabtools.es/og-image.png">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:image:alt" content="Calculadora de contraste de dos varianzas (test F)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Vicente Castellar">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="alternate" hreflang="es" href="https://problabtools.es/contraste-hipotesis-dos-varianzas.html">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Calculadora de contraste de dos varianzas (test F) | ProbLab">
+    <meta name="twitter:description" content="Contrasta si dos poblaciones presentan la misma varianza mediante el test F de Snedecor. Calcula el estadístico F, el p-valor, los valores críticos y la decisión al nivel de significación elegido.">
+    <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+    <meta name="twitter:image:alt" content="Calculadora de contraste de dos varianzas (test F)">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+            {"@type": "ListItem", "position": 2, "name": "Contrastes", "item": "https://problabtools.es/contrastes-hipotesis/"},
+            {"@type": "ListItem", "position": 3, "name": "Dos varianzas (test F)", "item": "https://problabtools.es/contraste-hipotesis-dos-varianzas.html"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Calculadora de contraste de dos varianzas (test F) | ProbLab",
+          "url": "https://problabtools.es/contraste-hipotesis-dos-varianzas.html",
+          "description": "Contrasta si dos poblaciones presentan la misma varianza mediante el test F de Snedecor. Calcula el estadístico F, el p-valor, los valores críticos y la decisión al nivel de significación elegido.",
+          "inLanguage": "es",
+          "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Calculadora de contraste de dos varianzas (test F)",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "url": "https://problabtools.es/contraste-hipotesis-dos-varianzas.html",
+      "description": "Contrasta si dos poblaciones presentan la misma varianza mediante el test F de Snedecor. Calcula el estadístico F, el p-valor, los valores críticos y la decisión al nivel de significación elegido.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué supuesto fundamental requiere el test F?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test F de igualdad de varianzas asume que los datos de ambos grupos proceden de poblaciones con distribución normal. Es sensible a desviaciones de la normalidad, por lo que ante dudas sobre este supuesto conviene considerar alternativas robustas como el test de Levene o el de Bartlett."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Importa cuál varianza va en el numerador?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En un contraste bilateral no importa, ya que el p-valor se calcula teniendo en cuenta ambas colas. En contrastes unilaterales sí importa: si quieres contrastar que σ₁² > σ₂², debes colocar la varianza del grupo 1 en el numerador (F = s₁²/s₂²) y usar la cola derecha."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo usar el test F en lugar de la prueba de Levene?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El test F es adecuado cuando los datos pueden asumirse normales. La prueba de Levene es más robusta ante desviaciones de la normalidad y se recomienda cuando esta condición no puede verificarse. En la práctica, para muestras pequeñas con normalidad confirmada, el test F es la elección clásica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puede el test F aplicarse a más de dos grupos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No directamente. El test F de igualdad de varianzas compara exactamente dos grupos. Para comparar la homogeneidad de varianzas en más de dos grupos se utilizan pruebas como el test de Bartlett o el test de Levene generalizado, que están diseñados para el caso de k grupos."
+          }
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="style_new.css?v=20260517">
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="distribuciones/">Distribuciones</a></li>
+            <li><a href="tablas-estadisticas/">Tablas</a></li>
+            <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="ab-testing/">Test A/B</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+            <li><span aria-current="page">Dos varianzas (test F)</span></li>
+        </ol>
+    </nav>
+    <header class="hero">
+        <p class="eyebrow">Contrastes de hipótesis</p>
+        <h1>Calculadora de contraste de dos varianzas (test F de Snedecor)</h1>
+        <p class="hero-subtitle">Contrasta H₀: σ₁² = σ₂² comparando las varianzas muestrales de dos grupos independientes mediante la distribución F de Snedecor.</p>
+        <p class="hero-links">
+            <a class="hero-link-button" href="contrastes-hipotesis/">Ver todos los contrastes</a>
+        </p>
+    </header>
+
+    <main>
+
+        <section class="card sample-size-panel">
+            <div class="panel-heading">
+                <h2>Calculadora</h2>
+                <p>
+                    Introduce las varianzas muestrales y los tamaños de muestra de los dos grupos.
+                    La calculadora obtiene el estadístico F, el p-valor, los valores críticos y la
+                    decisión al nivel de significación elegido.
+                </p>
+            </div>
+
+            <div class="form-grid sample-grid">
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="n1">Tamaño muestral grupo 1 (n₁)</label>
+                        <input type="number" id="n1" value="20" step="1" min="2">
+                    </div>
+                    <div class="form-group">
+                        <label for="n2">Tamaño muestral grupo 2 (n₂)</label>
+                        <input type="number" id="n2" value="18" step="1" min="2">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="s1sq">Varianza muestral grupo 1 (s₁²)</label>
+                        <input type="number" id="s1sq" value="16" step="0.01" min="0.0001">
+                    </div>
+                    <div class="form-group">
+                        <label for="s2sq">Varianza muestral grupo 2 (s₂²)</label>
+                        <input type="number" id="s2sq" value="9" step="0.01" min="0.0001">
+                    </div>
+                </div>
+
+                <div class="inline-inputs">
+                    <div class="form-group">
+                        <label for="alpha">Nivel de significación (α)</label>
+                        <input type="number" id="alpha" value="0.05" step="0.001" min="0.0001" max="0.2">
+                    </div>
+                    <div class="form-group">
+                        <label for="tail">Tipo de contraste</label>
+                        <select id="tail">
+                            <option value="two">Bilateral (σ₁² ≠ σ₂²)</option>
+                            <option value="right">Cola derecha (σ₁² &gt; σ₂²)</option>
+                            <option value="left">Cola izquierda (σ₁² &lt; σ₂²)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" id="calcBtn">Calcular contraste</button>
+            <div id="dosVarianzasResult" class="result-box">Resultado pendiente…</div>
+
+            <div class="chart-wrap">
+                <canvas id="dosVarianzasChart" aria-label="Gráfico de zonas de aceptación y rechazo para el contraste F de dos varianzas" role="img"></canvas>
+            </div>
+        </section>
+
+        <section class="card content-card">
+            <h3>Explicación breve</h3>
+
+            <p>
+                El test F de Snedecor es el procedimiento clásico para contrastar si dos poblaciones
+                independientes presentan la misma variabilidad. En lugar de comparar promedios, este
+                contraste evalúa si la dispersión de un grupo es significativamente mayor o menor que
+                la del otro.
+            </p>
+
+            <p>
+                El método es habitual en control de calidad, estudios comparativos y como paso previo
+                a otras pruebas: por ejemplo, la elección entre la t de Student con varianzas iguales
+                o con varianzas distintas depende de si se puede asumir homocedasticidad, algo que
+                precisamente evalúa este test.
+            </p>
+
+            <p>
+                El estadístico F se construye como el cociente entre las dos varianzas muestrales.
+                Bajo la hipótesis nula de igualdad de varianzas, este cociente sigue una distribución
+                F de Snedecor con \(n_1 - 1\) y \(n_2 - 1\) grados de libertad. Si las varianzas
+                son muy distintas, el cociente se alejará de 1 y el test resultará significativo.
+            </p>
+
+            <p>
+                El supuesto fundamental es la normalidad de los datos en ambos grupos. El test F es
+                sensible a esta condición; ante dudas sobre la normalidad conviene considerar
+                alternativas como el test de Levene, más robusto.
+            </p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Hipótesis y estadístico</h3>
+
+            <p>El contraste plantea como hipótesis nula la igualdad de varianzas poblacionales:</p>
+
+            <p class="formula-line">\(H_0\colon \sigma_1^2 = \sigma_2^2\)</p>
+
+            <p>La hipótesis alternativa depende del tipo de contraste elegido:</p>
+
+            <ul>
+                <li>Bilateral: \(H_1\colon \sigma_1^2 \neq \sigma_2^2\)</li>
+                <li>Cola derecha: \(H_1\colon \sigma_1^2 > \sigma_2^2\)</li>
+                <li>Cola izquierda: \(H_1\colon \sigma_1^2 < \sigma_2^2\)</li>
+            </ul>
+
+            <p>El estadístico de contraste es el cociente de las varianzas muestrales:</p>
+
+            <p class="formula-line">
+                \( F = \dfrac{s_1^2}{s_2^2} \)
+            </p>
+
+            <p>
+                Bajo \(H_0\), este estadístico sigue una distribución F de Snedecor con grados de
+                libertad \(gl_1 = n_1 - 1\) y \(gl_2 = n_2 - 1\):
+            </p>
+
+            <p class="formula-line">
+                \( F = \dfrac{s_1^2}{s_2^2} \sim F_{n_1-1,\; n_2-1} \)
+            </p>
+
+            <p>
+                Se rechaza \(H_0\) cuando el estadístico F cae en la región crítica determinada
+                por el nivel de significación \(\alpha\) y el tipo de contraste seleccionado.
+            </p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Contraste rápido</h3>
+
+            <p>
+                Una primera lectura del estadístico F orienta sobre el resultado antes de mirar el p-valor:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>F próximo a 1:</strong> las varianzas muestrales son similares. Salvo que
+                    las muestras sean muy grandes, es probable que no haya evidencia para rechazar \(H_0\).
+                </li>
+                <li>
+                    <strong>F claramente mayor que 1:</strong> el grupo 1 presenta mayor variabilidad
+                    que el grupo 2. Cuanto más se aleje de 1, más evidencia a favor de \(\sigma_1^2 > \sigma_2^2\).
+                </li>
+                <li>
+                    <strong>F claramente menor que 1:</strong> el grupo 2 presenta mayor variabilidad
+                    que el grupo 1. Un valor muy cercano a 0 indica fuerte evidencia de \(\sigma_1^2 < \sigma_2^2\).
+                </li>
+            </ul>
+
+            <p>
+                En cualquier caso, la decisión formal debe basarse en el p-valor y en el nivel de
+                significación \(\alpha\), no solo en la magnitud de F.
+            </p>
+
+            <p>
+                Si el resultado es significativo, conviene investigar el origen de la diferencia de
+                variabilidades: distintos procesos, instrumentos, condiciones de medición, lotes o
+                grupos humanos pueden explicar la disparidad observada.
+            </p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+
+            <p>
+                Se desea comparar la variabilidad de dos líneas de producción de piezas metálicas.
+                Línea 1: varianza muestral \(s_1^2 = 16\) mm², tamaño muestral \(n_1 = 20\) piezas.
+                Línea 2: varianza muestral \(s_2^2 = 9\) mm², tamaño muestral \(n_2 = 18\) piezas.
+                Se contrasta \(H_0\colon \sigma_1^2 = \sigma_2^2\) frente a
+                \(H_1\colon \sigma_1^2 \neq \sigma_2^2\) con \(\alpha = 0{,}05\) bilateral.
+            </p>
+
+            <p><strong>Paso 1 — Estadístico F</strong></p>
+            <p class="formula-line">
+                \( F = \dfrac{s_1^2}{s_2^2} = \dfrac{16}{9} \approx 1{,}7778 \)
+            </p>
+
+            <p><strong>Paso 2 — Grados de libertad</strong></p>
+            <p class="formula-line">
+                \( gl_1 = n_1 - 1 = 19, \quad gl_2 = n_2 - 1 = 17 \)
+            </p>
+
+            <p><strong>Paso 3 — Valores críticos (α = 0,05 bilateral)</strong></p>
+            <p>
+                El valor crítico superior es \(F_{0{,}025;\,19,\,17} \approx 2{,}72\).
+                El valor crítico inferior es \(F_{0{,}975;\,19,\,17} = 1 / F_{0{,}025;\,17,\,19} \approx 0{,}38\).
+            </p>
+
+            <p><strong>Paso 4 — Decisión</strong></p>
+            <p>
+                Como \(0{,}38 < F = 1{,}7778 < 2{,}72\), el estadístico no cae en ninguna región de
+                rechazo. El p-valor bilateral es \(p \approx 0{,}29 > 0{,}05\).
+            </p>
+
+            <p>
+                Conclusión: <strong>no se rechaza \(H_0\)</strong>. Los datos no aportan evidencia
+                significativa de que las dos líneas tengan varianzas distintas al nivel de significación
+                del 5 %. Las variabilidades observadas son compatibles con la hipótesis de igualdad.
+            </p>
+        </section>
+
+        <section id="seo-support-content" class="card content-card">
+            <h3>¿Qué calcula esta herramienta?</h3>
+
+            <p>
+                Esta calculadora aplica el test F de Snedecor para contrastar la igualdad de varianzas
+                de dos poblaciones independientes. A partir de los tamaños muestrales y las varianzas
+                muestrales de ambos grupos, calcula:
+            </p>
+
+            <ul>
+                <li>El estadístico F = s₁² / s₂²</li>
+                <li>Los grados de libertad del numerador (gl₁ = n₁ − 1) y del denominador (gl₂ = n₂ − 1)</li>
+                <li>El p-valor para el tipo de contraste seleccionado (bilateral, cola derecha o cola izquierda)</li>
+                <li>Los valores críticos que delimitan las regiones de aceptación y rechazo</li>
+                <li>La decisión estadística al nivel de significación elegido</li>
+                <li>Un gráfico de la distribución F con las zonas de aceptación y rechazo sombreadas</li>
+            </ul>
+
+            <h3>Cómo interpretar el resultado</h3>
+
+            <p>
+                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay
+                evidencia estadística de que las varianzas poblacionales son distintas. Si el
+                p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar
+                la hipótesis de igualdad de varianzas.
+            </p>
+
+            <p>
+                Un resultado significativo no implica necesariamente que la diferencia sea prácticamente
+                relevante. Con muestras muy grandes, diferencias pequeñas pueden resultar significativas.
+                Siempre conviene acompañar el test con una inspección visual de los datos y un juicio
+                sobre la relevancia práctica de la diferencia.
+            </p>
+
+            <section class="related-tools">
+                <h3>Calculadoras relacionadas</h3>
+                <ul>
+                    <li><a href="contraste-hipotesis-varianzas.html">Contrastes sobre varianzas — una o dos varianzas</a></li>
+                    <li><a href="tamano-muestral-dos-varianzas.html">Tamaño muestral para comparar dos varianzas</a></li>
+                    <li><a href="centralf.html">Distribución F de Snedecor</a></li>
+                    <li><a href="contrastes-hipotesis/">Todos los contrastes de hipótesis</a></li>
+                </ul>
+            </section>
+
+            <h3>Preguntas frecuentes</h3>
+
+            <ul>
+                <li>
+                    <strong>¿Qué supuesto fundamental requiere el test F?</strong>
+                    El test F asume que los datos de ambos grupos proceden de poblaciones con distribución
+                    normal. Es sensible a desviaciones de la normalidad, por lo que ante dudas sobre este
+                    supuesto conviene considerar alternativas robustas como el test de Levene o el de Bartlett.
+                </li>
+                <li>
+                    <strong>¿Importa cuál varianza va en el numerador?</strong>
+                    En un contraste bilateral no importa, ya que el p-valor se calcula teniendo en cuenta
+                    ambas colas. En contrastes unilaterales sí importa: si quieres contrastar que
+                    \(\sigma_1^2 > \sigma_2^2\), debes colocar la varianza del grupo 1 en el numerador
+                    y usar la cola derecha.
+                </li>
+                <li>
+                    <strong>¿Cuándo usar el test F en lugar de la prueba de Levene?</strong>
+                    El test F es adecuado cuando los datos pueden asumirse normales. La prueba de Levene
+                    es más robusta ante desviaciones de la normalidad y se recomienda cuando esta condición
+                    no puede verificarse. Para muestras pequeñas con normalidad confirmada, el test F es
+                    la elección clásica.
+                </li>
+                <li>
+                    <strong>¿Puede el test F aplicarse a más de dos grupos?</strong>
+                    No directamente. El test F de igualdad de varianzas compara exactamente dos grupos.
+                    Para comparar la homogeneidad de varianzas en más de dos grupos se utilizan pruebas
+                    como el test de Bartlett o el test de Levene generalizado, diseñados para el caso
+                    de k grupos.
+                </li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Prueba_F_de_igualdad_de_varianzas" target="_blank" rel="noopener noreferrer">Prueba F de igualdad de varianzas</a> — Wikipedia</p>
+        </section>
+    </main>
+
+    <footer class="legal-footer">
+        <p>
+            © 2026 problabtools.
+            <a href="aviso-legal.html">Aviso legal</a> ·
+            <a href="privacidad.html">Privacidad</a> ·
+            <a href="cookies.html">Cookies</a> ·
+            <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+        </p>
+    </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+let dosVarianzasChart;
+
+function getFCriticalValues(alpha, tail, df1, df2) {
+    if (tail === 'two') {
+        return {
+            left: jStat.centralF.inv(alpha / 2, df1, df2),
+            right: jStat.centralF.inv(1 - alpha / 2, df1, df2)
+        };
+    }
+    if (tail === 'left') {
+        return {
+            left: jStat.centralF.inv(alpha, df1, df2),
+            right: Infinity
+        };
+    }
+    return {
+        left: 0,
+        right: jStat.centralF.inv(1 - alpha, df1, df2)
+    };
+}
+
+function calculatePValueF(statistic, df1, df2, tail) {
+    const cdf = jStat.centralF.cdf(statistic, df1, df2);
+    if (tail === 'two') {
+        return 2 * Math.min(cdf, 1 - cdf);
+    }
+    if (tail === 'right') {
+        return 1 - cdf;
+    }
+    return cdf;
+}
+
+function buildCurvePoints(min, max, step, pdfFn, isAcceptanceFn) {
+    const curve = [];
+    const acceptance = [];
+    const rejection = [];
+
+    for (let x = min; x <= max; x += step) {
+        const y = pdfFn(x);
+        curve.push({ x, y });
+
+        if (isAcceptanceFn(x)) {
+            acceptance.push({ x, y });
+            rejection.push({ x, y: null });
+        } else {
+            acceptance.push({ x, y: null });
+            rejection.push({ x, y });
+        }
+    }
+
+    return { curve, acceptance, rejection };
+}
+
+function renderDosVarianzasChart(statistic, alpha, tail, df1, df2) {
+    const ctx = document.getElementById('dosVarianzasChart');
+    if (!ctx) return;
+
+    const critical = getFCriticalValues(alpha, tail, df1, df2);
+    const pdfFn = (x) => jStat.centralF.pdf(x, df1, df2);
+
+    let maxX = Math.max(
+        jStat.centralF.inv(0.995, df1, df2),
+        statistic * 1.25,
+        critical.right === Infinity ? 0 : critical.right * 1.1
+    );
+    maxX = Math.min(Math.max(maxX, 4), 50);
+
+    const step = maxX / 500;
+    const isAcceptanceFn = (x) => x > critical.left && x < critical.right;
+
+    const { curve, acceptance, rejection } = buildCurvePoints(
+        0.0001,
+        maxX,
+        step,
+        pdfFn,
+        isAcceptanceFn
+    );
+
+    const maxY = Math.max(...curve.map((point) => Number.isFinite(point.y) ? point.y : 0));
+
+    const statLine = Number.isFinite(statistic)
+        ? [{ x: statistic, y: 0 }, { x: statistic, y: maxY }]
+        : [];
+
+    if (dosVarianzasChart) dosVarianzasChart.destroy();
+
+    dosVarianzasChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            datasets: [
+                {
+                    label: 'Zona de aceptación',
+                    data: acceptance,
+                    borderColor: 'rgba(34,197,94,0)',
+                    backgroundColor: 'rgba(34,197,94,0.35)',
+                    fill: 'origin',
+                    pointRadius: 0,
+                    parsing: false
+                },
+                {
+                    label: 'Zona de rechazo',
+                    data: rejection,
+                    borderColor: 'rgba(239,68,68,0)',
+                    backgroundColor: 'rgba(239,68,68,0.35)',
+                    fill: 'origin',
+                    pointRadius: 0,
+                    parsing: false
+                },
+                {
+                    label: 'Función de densidad F',
+                    data: curve,
+                    borderColor: '#1d4ed8',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false,
+                    parsing: false
+                },
+                {
+                    label: 'Estadístico observado',
+                    data: statLine,
+                    borderColor: '#f59e0b',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    fill: false,
+                    parsing: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'linear',
+                    min: 0,
+                    max: maxX,
+                    title: {
+                        display: true,
+                        text: 'Estadístico F'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Densidad'
+                    }
+                }
+            }
+        }
+    });
+}
+
+function calculateDosVarianzas() {
+    const n1 = parseFloat(document.getElementById('n1').value);
+    const n2 = parseFloat(document.getElementById('n2').value);
+    const s1sq = parseFloat(document.getElementById('s1sq').value);
+    const s2sq = parseFloat(document.getElementById('s2sq').value);
+    const alpha = parseFloat(document.getElementById('alpha').value);
+    const tail = document.getElementById('tail').value;
+    const resultEl = document.getElementById('dosVarianzasResult');
+
+    if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) {
+        resultEl.innerText = 'Error: revisa que 0 < α < 1.';
+        if (dosVarianzasChart) { dosVarianzasChart.destroy(); dosVarianzasChart = null; }
+        return;
+    }
+
+    if (![n1, n2, s1sq, s2sq].every(Number.isFinite) || n1 < 2 || n2 < 2 || s1sq <= 0 || s2sq <= 0) {
+        resultEl.innerText = 'Error: revisa que n₁ ≥ 2, n₂ ≥ 2, s₁² > 0 y s₂² > 0.';
+        if (dosVarianzasChart) { dosVarianzasChart.destroy(); dosVarianzasChart = null; }
+        return;
+    }
+
+    const df1 = n1 - 1;
+    const df2 = n2 - 1;
+    const statistic = s1sq / s2sq;
+    let pValue = calculatePValueF(statistic, df1, df2, tail);
+    pValue = Math.min(Math.max(pValue, 0), 1);
+
+    const critical = getFCriticalValues(alpha, tail, df1, df2);
+    const decision = pValue < alpha ? 'Se rechaza H₀.' : 'No se rechaza H₀.';
+
+    let criticalStr;
+    if (tail === 'two') {
+        criticalStr = `F_izq = ${critical.left.toFixed(4)}, F_der = ${critical.right.toFixed(4)}`;
+    } else if (tail === 'right') {
+        criticalStr = `F_crit = ${critical.right.toFixed(4)}`;
+    } else {
+        criticalStr = `F_crit = ${critical.left.toFixed(4)}`;
+    }
+
+    resultEl.innerText =
+        `F = ${statistic.toFixed(4)} | gl₁ = ${df1}, gl₂ = ${df2} | ${criticalStr} | p-valor = ${pValue.toFixed(6)} | ${decision}`;
+
+    renderDosVarianzasChart(statistic, alpha, tail, df1, df2);
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculateDosVarianzas);
+
+calculateDosVarianzas();
+</script>
+</body>
+</html>
