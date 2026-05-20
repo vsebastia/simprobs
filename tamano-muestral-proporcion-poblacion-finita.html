@@ -174,11 +174,11 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Cuando el tamaño de la población N es conocido y finito, la fórmula estándar de Cochran sobreestima el tamaño muestral necesario. El <strong>factor de corrección por población finita</strong> (FPC) corrige esto: cuanto mayor sea la fracción de muestreo n₀/N, mayor es la reducción obtenida.</p>
             <p>La corrección es significativa cuando la muestra sin corregir representa más del 5 % de la población total (n₀/N &gt; 0,05). Si N es muy grande (por ejemplo, &gt; 100 000) y n₀/N &lt; 5 %, la corrección prácticamente no cambia el resultado y puedes usar la <a href="tamano-muestral-una-proporcion.html">fórmula estándar para una proporción</a>.</p>
 
-            <h2>Fórmula de tamaño muestral</h2>
+            <h3>Fórmula de tamaño muestral</h3>
             <p class="formula-line">\( n_0 = \frac{Z^2\,p(1-p)}{E^2} \)</p>
             <p class="formula-line">\( n = \frac{n_0}{1 + \dfrac{n_0-1}{N}} \)</p>
             <ul>
@@ -189,12 +189,12 @@
                 <li><strong>N</strong>: tamaño total conocido de la población.</li>
             </ul>
 
-            <h2>Efecto del factor de corrección</h2>
+            <h3>Efecto del factor de corrección</h3>
             <p>El FPC es \(\sqrt{(N-n)/(N-1)}\). Para N = 500 y n₀ = 217, la corrección reduce la muestra a 145 (una reducción del 33 %). Para N = 10 000 y n₀ = 385, baja a 369 (menos del 5 % de reducción). La ganancia es mayor cuanto más pequeño es N y mayor es n₀/N.</p>
         </section>
 
         <section class="card content-card">
-            <h2>Configuración rápida</h2>
+            <h3>Configuración rápida</h3>
             <ul>
                 <li><strong>p:</strong> si no conoces la proporción, usa 0,5 (escenario conservador).</li>
                 <li><strong>N:</strong> debe ser el recuento real y conocido de la población. Si N no está bien definido, usa la calculadora sin corrección.</li>
@@ -202,10 +202,17 @@
                 <li><strong>Nivel de confianza:</strong> 95 % es el estándar.</li>
             </ul>
 
-            <h2>Ejemplo sencillo</h2>
-            <p>Encuesta a una plantilla de <strong>N = 2 000</strong> empleados, <strong>p = 0,5</strong>, <strong>E = 0,05</strong>, confianza 95 %: sin corrección n₀ = 385, con corrección <strong>n = 323</strong> (ahorro de 62 entrevistas).</p>
+            <h3>Ejemplo resuelto</h3>
+            <p>El área de Personas de una empresa de servicios quiere medir la proporción de empleados satisfechos con el plan de formación interno. La empresa tiene <strong>N = 2 000 empleados</strong> en nómina, un censo exactamente conocido y cerrado, lo que hace posible —y conveniente— aplicar la corrección por población finita.</p>
+            <p>No existen datos históricos de satisfacción, por lo que se adopta la estimación más conservadora: <strong>p = 0,5</strong> (máxima varianza, que sobredimensiona el tamaño muestral). El margen de error admisible es <strong>E = 0,05</strong> (±5 puntos porcentuales) con un nivel de confianza del <strong>95 %</strong> (z = 1,96).</p>
+            <p>Primero se calcula el tamaño muestral sin corrección mediante la fórmula de Cochran:</p>
+            <p class="formula-line">\( n_0 = \dfrac{z^2 \cdot p\,(1-p)}{E^2} = \dfrac{(1{,}96)^2 \times 0{,}5 \times 0{,}5}{(0{,}05)^2} = \dfrac{3{,}8416 \times 0{,}25}{0{,}0025} = \dfrac{0{,}9604}{0{,}0025} = 384{,}2 \rightarrow 385 \)</p>
+            <p>A continuación se aplica el factor de corrección por población finita:</p>
+            <p class="formula-line">\( n = \dfrac{n_0}{1 + \dfrac{n_0 - 1}{N}} = \dfrac{385}{1 + \dfrac{384}{2\,000}} = \dfrac{385}{1{,}192} \approx 322{,}9 \rightarrow \mathbf{323} \)</p>
+            <p>La corrección permite reducir la muestra de 385 a <strong>323 encuestas</strong>, un ahorro de 62 entrevistas (≈ 16 %). La fracción de muestreo es \( f = 323/2\,000 \approx 16{,}2\,\% \), claramente superior al umbral del 5 % a partir del cual la corrección es recomendable.</p>
+            <p>Con las 323 encuestas realizadas a empleados elegidos de forma aleatoria se puede afirmar, con un 95 % de confianza, que la proporción real de empleados satisfechos no se aleja en más de ±5 puntos porcentuales del valor muestral observado. Si se desea mayor precisión —por ejemplo, ±3 pp—, la muestra corregida ascendería a aproximadamente 638 empleados.</p>
 
-            <h2>Usos frecuentes</h2>
+            <h3>Usos frecuentes</h3>
             <ul>
                 <li>Encuestas a plantillas de empresas o instituciones.</li>
                 <li>Estudios en alumnos o pacientes de un centro concreto.</li>
@@ -213,7 +220,7 @@
                 <li>Control de calidad sobre lotes o inventarios de tamaño conocido.</li>
             </ul>
 
-            <h2>Supuestos del modelo</h2>
+            <h3>Supuestos del modelo</h3>
             <ul>
                 <li>Muestreo aleatorio simple sin reemplazamiento de una población de tamaño N conocido.</li>
                 <li>N es un número fijo y bien definido antes del muestreo.</li>

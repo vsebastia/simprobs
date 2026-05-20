@@ -220,7 +220,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
 
             <p>
                 El test de Kolmogorov-Smirnov de bondad de ajuste (test KS) permite evaluar si una
@@ -251,7 +251,7 @@
                 modelo teórico, en cualquier región de la distribución.
             </p>
 
-            <h2>Hipótesis y estadístico</h2>
+            <h3>Hipótesis y estadístico</h3>
             <p class="formula-line">\(H_0\): la muestra proviene de la distribución teórica \(F_0\)</p>
             <p class="formula-line">\(H_1\): la muestra no proviene de \(F_0\)</p>
             <p class="formula-line">
@@ -262,7 +262,7 @@
 
 
         <section class="card content-card">
-            <h2>Contraste rápido</h2>
+            <h3>Contraste rápido</h3>
 
             <p>
                 Se ordenan los datos de menor a mayor: \(x_{(1)} \leq x_{(2)} \leq \cdots \leq x_{(n)}\).
@@ -294,6 +294,17 @@
                 se recomienda el test de Lilliefors; para otras distribuciones, existen
                 variantes análogas con correcciones específicas.
             </p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Se miden los tiempos de espera (en minutos) de 8 clientes en una oficina: 1,2; 2,1; 2,8; 3,4; 4,1; 5,0; 5,8; 6,5. Se desea comprobar, con \(\alpha = 0{,}05\), si estos datos provienen de una distribución Uniforme en el intervalo \([0,\, 8]\).</p>
+            <p>Las hipótesis son \(H_0\): la muestra sigue una distribución \(\text{Uniforme}(0,8)\) frente a \(H_1\): la muestra no sigue esa distribución. La función de distribución teórica es \(F_0(x) = x/8\) para \(x \in [0,8]\).</p>
+            <p>Con los datos ya ordenados se construye la función de distribución empírica \(F_n(x_i) = i/n\) y se calcula la diferencia máxima \(D = \max_i |F_n(x_i) - F_0(x_i)|\):</p>
+            <p class="formula-line">\( D = \max\!\left\{\left|\tfrac{i}{8} - \tfrac{x_i}{8}\right|,\; \left|\tfrac{i-1}{8} - \tfrac{x_i}{8}\right|\right\} \)</p>
+            <p>Evaluando cada punto: para \(x_1 = 1{,}2\), \(F_n = 0{,}125\), \(F_0 = 0{,}150\), diferencia \(= 0{,}025\); para \(x_4 = 3{,}4\), \(F_n = 0{,}500\), \(F_0 = 0{,}425\), diferencia \(= 0{,}075\); para \(x_7 = 5{,}8\), \(F_n = 0{,}875\), \(F_0 = 0{,}725\), diferencia \(= 0{,}150\). El máximo global resulta \(D = 0{,}150\), alcanzado en \(x_7\).</p>
+            <p>El valor crítico tabulado para \(n = 8\) y \(\alpha = 0{,}05\) es \(D_{0{,}05;\,8} \approx 0{,}457\). Dado que \(D = 0{,}150 < 0{,}457\), no se rechaza \(H_0\).</p>
+            <p>Conclusión: con un nivel de significación del 5 %, no hay evidencia suficiente para afirmar que los tiempos de espera difieren de una distribución Uniforme en \([0, 8]\). La discrepancia máxima observada entre la distribución empírica y la teórica es pequeña en relación con la variabilidad esperada para muestras de ese tamaño.</p>
         </section>
 
         <section id="seo-support-content" class="card content-card">

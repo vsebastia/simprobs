@@ -149,12 +149,12 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>El ANOVA de un factor (<em>one-way ANOVA</em>) contrasta la hipótesis nula de que las medias de <strong>k ≥ 2</strong> grupos independientes son iguales frente a la alternativa de que al menos dos difieren. Cuando k = 2 es equivalente al test t de dos muestras, pero para k ≥ 3 ofrece control del error global de tipo I sin necesidad de múltiples comparaciones bilaterales.</p>
             <p>El parámetro que resume el tamaño del efecto es la <strong>f de Cohen</strong>, definida como \(f = \sigma_{\text{medias}} / \sigma_{\text{residual}}\), donde \(\sigma_{\text{medias}}\) es la desviación estándar de las medias grupales y \(\sigma_{\text{residual}}\) la variabilidad dentro de los grupos. La f está relacionada con el \(\eta^2\) (eta cuadrado) mediante \(f = \sqrt{\eta^2/(1-\eta^2)}\).</p>
             <p>El cálculo de potencia se basa en la <strong>distribución F no central</strong>: bajo H₁, el estadístico F sigue una F no central con parámetro de no centralidad \(\lambda = n \cdot k \cdot f^2\). Esta calculadora busca el mínimo n entero para el que la potencia supera el objetivo mediante búsqueda iterativa.</p>
 
-            <h2>Fórmula y método de cálculo</h2>
+            <h3>Fórmula y método de cálculo</h3>
             <p>Con <em>n</em> observaciones por grupo (diseño balanceado):</p>
             <p class="formula-line">\( \lambda = n \cdot k \cdot f^2 \)</p>
             <p class="formula-line">\( 1-\beta = P\!\left(F'(k-1,\;k(n-1),\;\lambda) > F_{\alpha,\,k-1,\,k(n-1)}\right) \)</p>
@@ -165,14 +165,14 @@
                 <li><strong>k−1 y k(n−1)</strong>: grados de libertad del numerador y del denominador del estadístico F.</li>
             </ul>
 
-            <h2>Cómo calcular f a partir de datos previos</h2>
+            <h3>Cómo calcular f a partir de datos previos</h3>
             <p>Si conoces las medias esperadas de cada grupo \(\mu_1, \ldots, \mu_k\) y la desviación estándar residual común \(\sigma\):</p>
             <p class="formula-line">\( \sigma_{\text{medias}} = \sqrt{\frac{1}{k}\sum_{i=1}^{k}(\mu_i - \bar{\mu})^2}, \quad f = \frac{\sigma_{\text{medias}}}{\sigma} \)</p>
             <p>Alternativamente, si tienes \(\eta^2\) de un estudio previo: \(f = \sqrt{\eta^2/(1-\eta^2)}\).</p>
         </section>
 
         <section class="card content-card">
-            <h2>Configuración rápida</h2>
+            <h3>Configuración rápida</h3>
             <ul>
                 <li><strong>f desconocido:</strong> usa f = 0,25 (mediano) como punto de partida conservador.</li>
                 <li><strong>f desde medias y σ:</strong> calcula \(\sigma_{\text{medias}}\) a partir de las medias esperadas de cada grupo y divídela entre σ residual.</li>
@@ -181,10 +181,10 @@
                 <li><strong>Potencia:</strong> 0,80 mínimo; 0,90 en estudios donde las comparaciones post-hoc son el objetivo principal.</li>
             </ul>
 
-            <h2>Ejemplo sencillo</h2>
+            <h3>Ejemplo sencillo</h3>
             <p>Ensayo comparando 3 dietas (k = 3) con efecto mediano (f = 0,25), α = 0,05 y potencia 0,80: <strong>n ≈ 52 por grupo</strong> (total ≈ 156). Con 4 grupos y mismo f: n ≈ 45 por grupo (total ≈ 180) — la muestra total crece al añadir grupos aunque el n por grupo baje.</p>
 
-            <h2>Usos frecuentes</h2>
+            <h3>Usos frecuentes</h3>
             <ul>
                 <li>Comparación de 3 o más tratamientos, dosis o condiciones experimentales.</li>
                 <li>Diseños factoriales de un factor con varios niveles.</li>
@@ -192,13 +192,23 @@
                 <li>Psicología experimental, agronomía, farmacología, educación.</li>
             </ul>
 
-            <h2>Supuestos del modelo</h2>
+            <h3>Supuestos del modelo</h3>
             <ul>
                 <li>Los k grupos son independientes entre sí.</li>
                 <li>La variable sigue una distribución normal en cada grupo (o n es suficientemente grande).</li>
                 <li>Las varianzas de los grupos son iguales (homocedasticidad). Si no, considera Welch ANOVA.</li>
                 <li>Diseño balanceado (mismo n por grupo). Para grupos desiguales, usa el n armónico como aproximación.</li>
             </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Un investigador en ciencias de la educación desea comparar el rendimiento académico obtenido con tres métodos de enseñanza distintos (\(k = 3\) grupos): clase magistral, aprendizaje basado en proyectos y aula invertida. De estudios previos se estima que la desviación estándar dentro de cada grupo es \(\sigma = 10\) puntos sobre 100. Se espera que las medias grupales sean aproximadamente 75, 80 y 85 puntos, con una media global de 80.</p>
+            <p>Para calcular el tamaño del efecto \(f\) de Cohen se obtiene primero la desviación estándar entre grupos:</p>
+            <p class="formula-line">\( \sigma_{\text{entre}} = \sqrt{\frac{(75-80)^2 + (80-80)^2 + (85-80)^2}{3}} = \sqrt{\frac{25 + 0 + 25}{3}} = \sqrt{\frac{50}{3}} \approx 4{,}08 \)</p>
+            <p>El tamaño del efecto es \(f = \sigma_{\text{entre}} / \sigma = 4{,}08 / 10 \approx 0{,}408\), considerado grande según los criterios de Cohen (\(f \geq 0{,}40\)). Con \(\alpha = 0{,}05\) y potencia del 80 %, la aproximación da un tamaño muestral de aproximadamente <strong>21 participantes por grupo</strong>, es decir, <strong>63 participantes en total</strong>.</p>
+            <p>Si las diferencias entre métodos fuesen más modestas —por ejemplo medias de 76, 80 y 84— la desviación estándar entre grupos sería \(\sqrt{(16+0+16)/3} \approx 3{,}27\), con \(f \approx 0{,}327\) (efecto mediano-grande). En ese caso serían necesarios aproximadamente <strong>33 participantes por grupo</strong> (99 en total).</p>
+            <p>Nótese que el número de grupos \(k\) también influye en el cálculo: a igualdad de \(f\), añadir un cuarto grupo aumenta los grados de libertad del numerador en el ANOVA y modifica el tamaño muestral requerido. Por ello es recomendable utilizar la herramienta para explorar distintos escenarios antes de planificar la recogida de datos.</p>
         </section>
 
         <section id="seo-support-content" class="card content-card">

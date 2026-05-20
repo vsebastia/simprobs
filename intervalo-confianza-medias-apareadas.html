@@ -169,12 +169,12 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Las medias apareadas aparecen cuando cada dato de un grupo está relacionado con un dato concreto del otro: medición antes/después en la misma persona, dos instrumentos aplicados a la misma muestra, o gemelos/parejas emparejadas. La unidad de análisis no son dos grupos separados, sino pares de observaciones.</p>
             <p>Se usan muestras apareadas cuando hay una correspondencia natural unidad a unidad y esa correspondencia aporta información: el mismo paciente antes y después de un tratamiento, el mismo lote medido por dos métodos, o sujetos emparejados por edad, sexo u otra característica. En cambio, el <a href="intervalo-confianza-diferencia-medias.html">IC para diferencia de medias independientes</a> se usa cuando los grupos son distintos y no existe emparejamiento observación a observación.</p>
             <p>La clave es no tratar los grupos como independientes. Primero se calcula una diferencia individual para cada par, por ejemplo \(d_i = \text{después}_i - \text{antes}_i\). Después se construye un intervalo t para la media poblacional de esas diferencias, \(\mu_d\). Así se aprovecha la correlación dentro de cada par y se elimina parte de la variabilidad entre individuos.</p>
 
-            <h2>Fórmula</h2>
+            <h3>Fórmula</h3>
             <p>Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total fuera del intervalo. Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\) en cada cola.</p>
             <p class="formula-line">\( \bar{d} \pm t_{\alpha/2,\, n-1}\cdot \dfrac{s_d}{\sqrt{n}} \)</p>
             <ul>
@@ -185,7 +185,7 @@
             </ul>
             <p>El margen de error es \(E=t_{\alpha/2,\,n-1}s_d/\sqrt{n}\), y el intervalo es \([\bar{d}-E,\;\bar{d}+E]\).</p>
 
-            <h2>Ejemplo resuelto</h2>
+            <h3>Ejemplo resuelto</h3>
             <p>En 18 pacientes se mide una variable antes y después de una intervención, definiendo \(d=\text{después}-\text{antes}\). La media de las diferencias es \(\bar{d}=4{,}2\) y su desviación típica es \(s_d=6{,}1\). Es importante que \(s_d\) sea la desviación típica de las diferencias individuales, no la desviación típica de las mediciones antes ni de las mediciones después por separado.</p>
             <p>Para un 95 % de confianza se toma \(C=0{,}95\), por tanto \(\alpha=1-C=0{,}05\) y \(\alpha/2=0{,}025\). Con \(n=18\), los grados de libertad son \(gl=n-1=17\), y el valor crítico bilateral es aproximadamente \(t_{0{,}025,17}=2{,}110\).</p>
             <p>El error estándar de la media de las diferencias es:</p>
@@ -198,7 +198,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Supuestos para medias apareadas</h2>
+            <h3>Supuestos para medias apareadas</h3>
             <ul>
                 <li>Los pares son independientes entre sí.</li>
                 <li>La distribución de las diferencias es aproximadamente normal, especialmente importante con pocos pares.</li>
@@ -208,7 +208,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>¿En qué se diferencia del IC para diferencia de medias independientes?</h2>
+            <h3>¿En qué se diferencia del IC para diferencia de medias independientes?</h3>
             <p>En muestras independientes se comparan dos grupos distintos y la variabilidad depende de \(s_1\), \(s_2\), \(n_1\) y \(n_2\). En medias apareadas, cada par se resume en una sola diferencia \(d_i\), y la variabilidad relevante es \(s_d\).</p>
             <div class="content-table-wrap">
                 <table class="content-table">

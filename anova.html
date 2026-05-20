@@ -138,7 +138,7 @@
 
     <main>
         <section class="card content-card">
-            <h2>¿Qué contrasta el ANOVA?</h2>
+            <h3>¿Qué contrasta el ANOVA?</h3>
             <p>El <strong>ANOVA de un factor</strong> contrasta si varias poblaciones tienen la misma media. Es la extensión natural del contraste de dos medias cuando existen tres o más grupos independientes.</p>
             <p>La hipótesis nula es \(H_0: \mu_1=\mu_2=\cdots=\mu_k\). La alternativa indica que al menos una media difiere, pero el ANOVA no especifica por sí solo qué par de grupos es diferente.</p>
         </section>
@@ -168,13 +168,13 @@
         </section>
 
         <section class="card content-card">
-            <h2>Visualización del contraste F</h2>
+            <h3>Visualización del contraste F</h3>
             <p>La zona roja representa la región de rechazo de cola derecha para el nivel α elegido. La línea naranja marca el estadístico F observado.</p>
             <div class="chart-wrap"><canvas id="anovaChart" aria-label="Distribución F del ANOVA" role="img"></canvas></div>
         </section>
 
         <section class="card content-card">
-            <h2>Fórmulas del ANOVA de un factor</h2>
+            <h3>Fórmulas del ANOVA de un factor</h3>
             <p>El ANOVA descompone la variabilidad total en variabilidad <strong>entre grupos</strong> y variabilidad <strong>dentro de los grupos</strong>:</p>
             <div class="formula-box">
                 <p class="formula-line">\(SC_T = SC_{entre} + SC_{dentro}\)</p>
@@ -182,6 +182,20 @@
                 <p class="formula-line">\(\eta^2 = SC_{entre}/SC_T\)</p>
             </div>
             <p>Bajo \(H_0\), el estadístico F sigue aproximadamente una distribución F de Snedecor con \(k-1\) y \(N-k\) grados de libertad.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Un agrónomo evalúa el efecto de tres tipos de fertilizante sobre el rendimiento (kg) de parcelas agrícolas. Se asignan aleatoriamente 5 parcelas a cada fertilizante, obteniéndose los siguientes datos: Fertilizante A: 32, 34, 31, 33, 35 (media \(\bar{x}_1 = 33\)); Fertilizante B: 28, 30, 27, 29, 31 (media \(\bar{x}_2 = 29\)); Fertilizante C: 36, 38, 35, 37, 39 (media \(\bar{x}_3 = 37\)).</p>
+            <p>La hipótesis nula es \(H_0: \mu_1 = \mu_2 = \mu_3\) (los tres fertilizantes producen el mismo rendimiento medio) frente a \(H_1\): al menos dos medias difieren. Se usa \(\alpha = 0{,}05\).</p>
+            <p>La media global es \(\bar{x} = (33 + 29 + 37)/3 = 33\) kg. La suma de cuadrados entre grupos (variación debida al fertilizante) es:</p>
+            <p class="formula-line">\( SC_{\text{entre}} = n \sum_{j=1}^{k}(\bar{x}_j - \bar{x})^2 = 5\left[(33-33)^2 + (29-33)^2 + (37-33)^2\right] = 5(0 + 16 + 16) = 160 \)</p>
+            <p>La varianza intragrupo de cada grupo es \(s^2 = 2{,}5\). La suma de cuadrados dentro de grupos es:</p>
+            <p class="formula-line">\( SC_{\text{dentro}} = \sum_{j=1}^{k}(n_j - 1)\,s_j^2 = 3 \times 4 \times 2{,}5 = 30 \)</p>
+            <p>Los grados de libertad son \(gl_{\text{entre}} = k - 1 = 2\) y \(gl_{\text{dentro}} = N - k = 15 - 3 = 12\). Las medias cuadráticas son \(CM_{\text{entre}} = 160/2 = 80\) y \(CM_{\text{dentro}} = 30/12 = 2{,}5\). El estadístico F resulta:</p>
+            <p class="formula-line">\( F = \frac{CM_{\text{entre}}}{CM_{\text{dentro}}} = \frac{80}{2{,}5} = 32 \)</p>
+            <p>El valor crítico para \(\alpha = 0{,}05\) con \((2,\, 12)\) grados de libertad es \(F_{0{,}05;\,2,\,12} \approx 3{,}89\), y el p-valor correspondiente a \(F = 32\) es \(p < 0{,}001\). Dado que \(F = 32 \gg 3{,}89\), se rechaza \(H_0\).</p>
+            <p>Conclusión: hay diferencias estadísticamente muy significativas entre los rendimientos medios producidos por los tres fertilizantes (\(p < 0{,}001\)). El tamaño del efecto es grande (\(\eta^2 = 160/190 \approx 0{,}84\)). Para determinar qué pares de fertilizantes difieren significativamente, se recomienda una prueba post hoc (Tukey HSD o Bonferroni).</p>
         </section>
 
         <section id="seo-support-content" class="card content-card">

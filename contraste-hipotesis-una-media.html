@@ -210,11 +210,11 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Este contraste se usa cuando quieres comprobar si la media poblacional es igual a un valor de referencia \(\mu_0\). Es uno de los procedimientos más utilizados en control de procesos, investigación biomédica, educación y analítica de negocio, porque permite contrastar una afirmación concreta con evidencia cuantitativa.</p>
             <p>En la práctica hay dos escenarios: si conoces la desviación típica poblacional \(\sigma\), empleas un contraste z; si \(\sigma\) es desconocida y se estima con la desviación muestral \(s\), empleas un contraste t de Student. Esta distinción es importante porque refleja la incertidumbre adicional al estimar la variabilidad con la propia muestra.</p>
 
-            <h2>Hipótesis y estadístico</h2>
+            <h3>Hipótesis y estadístico</h3>
             <p class="formula-line">\(H_0: \mu = \mu_0\)</p>
             <p class="formula-line">\(H_1: \mu \neq \mu_0\), \(\mu > \mu_0\) o \(\mu < \mu_0\)</p>
             <p class="formula-line">Si \(\sigma\) es conocida: \( z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}} \)</p>
@@ -233,7 +233,7 @@
 
 
         <section class="card content-card">
-            <h2>Contraste rápido</h2>
+            <h3>Contraste rápido</h3>
             <ul>
                 <li>Si el <strong>p-valor</strong> es menor que \(\alpha\), se rechaza \(H_0\).</li>
                 <li>Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar \(H_0\).</li>
@@ -244,10 +244,20 @@
 
 
         <section class="card content-card">
-            <h2>¿Por qué hay dos fórmulas en este contraste?</h2>
+            <h3>¿Por qué hay dos fórmulas en este contraste?</h3>
             <p><strong>Contraste z</strong>: se usa cuando \(\sigma\) poblacional es conocida. El estadístico sigue una normal estándar bajo \(H_0\).</p>
             <p><strong>Contraste t</strong>: se usa cuando \(\sigma\) es desconocida y se sustituye por \(s\). Esa incertidumbre extra se modela con la t de Student con \(n-1\) grados de libertad.</p>
             <p>Cuando \(n\) crece, la t se parece mucho a la normal, por eso ambos métodos convergen con muestras grandes.</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Una fábrica afirma que su máquina produce piezas con un peso medio de \(\mu_0 = 500\) g. Para verificarlo, un inspector toma una muestra de \(n = 25\) piezas y obtiene \(\bar{x} = 497\) g y desviación típica muestral \(s = 8\) g. Se quiere contrastar si el peso medio difiere significativamente de 500 g con \(\alpha = 0{,}05\) (bilateral).</p>
+            <p>Las hipótesis son \(H_0\colon \mu = 500\) frente a \(H_1\colon \mu \neq 500\). Como \(\sigma\) es desconocida, se usa el estadístico t de Student con \(gl = n - 1 = 24\) grados de libertad:</p>
+            <p class="formula-line">\( t = \dfrac{\bar{x} - \mu_0}{s/\sqrt{n}} = \dfrac{497 - 500}{8/\sqrt{25}} = \dfrac{-3}{1{,}6} = -1{,}875 \)</p>
+            <p>Para un contraste bilateral con \(\alpha = 0{,}05\) y 24 grados de libertad, el valor crítico es \(t_{0{,}025,\,24} \approx 2{,}064\). Como \(|t| = 1{,}875 < 2{,}064\), el estadístico no cae en la región de rechazo.</p>
+            <p>El p-valor asociado al contraste bilateral es \(p \approx 0{,}073\). Dado que \(p = 0{,}073 > \alpha = 0{,}05\), <strong>no se rechaza \(H_0\)</strong>.</p>
+            <p>Conclusión: con los datos disponibles no existe evidencia suficiente para afirmar que el peso medio se aleja de 500 g al nivel de significación del 5 %. La máquina podría estar calibrada correctamente.</p>
         </section>
 
                 <section id="seo-support-content" class="card content-card">

@@ -176,11 +176,11 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Cuando estimas una media poblacional y el tamaño total de la población N es conocido y finito, la fórmula estándar sobreestima la muestra necesaria. El <strong>factor de corrección por población finita</strong> (FPC) aprovecha el hecho de que muestrear una fracción grande de la población aporta más información de la que predice la fórmula infinita.</p>
             <p>La corrección es relevante cuando n₀/N &gt; 5 %. Por ejemplo, para N = 1 000 y n₀ = 139, la fracción de muestreo es 13,9 %, lo que justifica la corrección. Si N &gt; 10 000 y n₀ es pequeño, el ahorro es mínimo y puedes usar la <a href="tamano-muestral-una-media.html">fórmula estándar para una media</a>.</p>
 
-            <h2>Fórmula de tamaño muestral</h2>
+            <h3>Fórmula de tamaño muestral</h3>
             <p class="formula-line">\( n_0 = \left(\frac{Z\,\sigma}{E}\right)^2 \)</p>
             <p class="formula-line">\( n = \frac{n_0}{1 + \dfrac{n_0-1}{N}} \)</p>
             <ul>
@@ -193,7 +193,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Configuración rápida</h2>
+            <h3>Configuración rápida</h3>
             <ul>
                 <li><strong>σ:</strong> obtén de datos históricos, un piloto o la literatura. Si no la tienes, usa rango/4 como estimación conservadora.</li>
                 <li><strong>N:</strong> debe ser el recuento exacto y conocido de la población objetivo antes del muestreo.</li>
@@ -201,10 +201,17 @@
                 <li><strong>Nivel de confianza:</strong> 95 % es el estándar; 99 % para decisiones críticas.</li>
             </ul>
 
-            <h2>Ejemplo sencillo</h2>
-            <p>Planta industrial con <strong>N = 1 200</strong> trabajadores, <strong>σ = 12 min</strong> en tiempo de tarea, margen <strong>E = 2 min</strong>, confianza 95 %: sin corrección n₀ = 139, con corrección <strong>n = 127</strong>. El ahorro es modesto porque la fracción de muestreo es ~11 %.</p>
+            <h3>Ejemplo resuelto</h3>
+            <p>El departamento de recursos humanos de una planta industrial quiere estimar el tiempo medio que los operarios dedican a una tarea de ensamblaje concreta. La planta cuenta con <strong>N = 1 200 trabajadores</strong> en plantilla, un número exactamente conocido, lo que hace obligatoria la corrección por población finita.</p>
+            <p>Estudios ergonómicos anteriores indican que la desviación típica del tiempo de tarea es <strong>σ = 12 minutos</strong>. El ingeniero de métodos fija un margen de error admisible de <strong>E = 2 minutos</strong> y trabaja con un nivel de confianza del <strong>95 %</strong> (z = 1,96).</p>
+            <p>El primer paso es calcular el tamaño muestral sin corrección, como si la población fuera infinita:</p>
+            <p class="formula-line">\( n_0 = \left(\dfrac{z \cdot \sigma}{E}\right)^2 = \left(\dfrac{1{,}96 \times 12}{2}\right)^2 = (11{,}76)^2 \approx 138{,}3 \rightarrow 139 \)</p>
+            <p>A continuación se aplica la corrección por población finita, que reduce el tamaño muestral cuando la fracción de muestreo \( f = n_0/N \) no es despreciable:</p>
+            <p class="formula-line">\( n = \dfrac{n_0}{1 + \dfrac{n_0 - 1}{N}} = \dfrac{139}{1 + \dfrac{138}{1\,200}} = \dfrac{139}{1{,}115} \approx 124{,}7 \rightarrow \mathbf{127} \)</p>
+            <p>El ahorro es de 12 entrevistas respecto al diseño sin corrección. La fracción de muestreo es \( f \approx 127/1\,200 \approx 10{,}6\,\% \), suficientemente grande para que la corrección sea relevante (regla práctica: corregir siempre que f &gt; 5 %).</p>
+            <p>Con una muestra de 127 operarios elegidos al azar se puede afirmar, con un 95 % de confianza, que el tiempo medio estimado no se aleja más de ±2 minutos del verdadero tiempo medio de toda la plantilla. Este resultado permite dimensionar los tiempos de ciclo y detectar cuellos de botella con una precisión suficiente para la toma de decisiones.</p>
 
-            <h2>Usos frecuentes</h2>
+            <h3>Usos frecuentes</h3>
             <ul>
                 <li>Tiempo medio de tarea en una planta o departamento concreto.</li>
                 <li>Gasto medio de clientes activos en un programa de fidelización.</li>
@@ -212,7 +219,7 @@
                 <li>Inventario: peso o valor medio de artículos en un almacén conocido.</li>
             </ul>
 
-            <h2>Supuestos del modelo</h2>
+            <h3>Supuestos del modelo</h3>
             <ul>
                 <li>Muestreo aleatorio simple sin reemplazamiento de una población de tamaño N exactamente conocido.</li>
                 <li>La variable sigue aproximadamente una distribución normal, o n es suficientemente grande (TLC).</li>

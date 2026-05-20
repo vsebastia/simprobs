@@ -170,12 +170,12 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Esta calculadora aplica la fórmula de Cochran para determinar el número mínimo de observaciones necesarias para estimar una proporción poblacional \(p\) con una precisión preestablecida. El objetivo es que el intervalo de confianza resultante tenga un semiancho máximo igual al margen de error \(E\).</p>
             <p>El parámetro más influyente es la proporción esperada \(p\): la varianza de una proporción es \(p(1-p)\), que alcanza su máximo en \(p = 0{,}5\). Por eso, si no tienes información previa, usar \(p = 0{,}5\) garantiza que la muestra será suficiente cualquiera que sea el valor real.</p>
             <p>Esta fórmula asume muestreo aleatorio simple en una población muy grande. Si la muestra representará más del 5 % del total, usa la <a href="tamano-muestral-proporcion-poblacion-finita.html">calculadora con corrección por población finita</a>.</p>
 
-            <h2>Fórmula de tamaño muestral</h2>
+            <h3>Fórmula de tamaño muestral</h3>
             <p class="formula-line">\( n = \frac{Z^2 \cdot p \cdot (1-p)}{E^2} \)</p>
             <ul>
                 <li><strong>n</strong>: tamaño muestral mínimo (siempre se redondea al entero superior).</li>
@@ -184,12 +184,12 @@
                 <li><strong>E</strong>: margen de error absoluto (semiancho del intervalo de confianza deseado).</li>
             </ul>
 
-            <h2>Interpretación del margen de error</h2>
+            <h3>Interpretación del margen de error</h3>
             <p>Un margen E = 0,05 significa que tu estimación muestral \(\hat{p}\) puede diferir del valor poblacional real en ±5 puntos porcentuales, con la probabilidad marcada por el nivel de confianza. Por ejemplo, si obtienes \(\hat{p} = 0{,}62\) con E = 0,05 al 95 %, puedes afirmar con 95 % de confianza que la proporción verdadera está entre el 57 % y el 67 %. Reducir E a la mitad cuadruplica la muestra necesaria, ya que n es proporcional a 1/E².</p>
         </section>
 
         <section class="card content-card">
-            <h2>Configuración rápida</h2>
+            <h3>Configuración rápida</h3>
             <ul>
                 <li><strong>Si no conoces p:</strong> usa <strong>0,5</strong> — es el escenario conservador que maximiza la varianza y, por tanto, el tamaño muestral.</li>
                 <li><strong>Si tienes datos piloto:</strong> usa la proporción observada; la muestra resultante será menor si \(p\) se aleja de 0,5.</li>
@@ -198,10 +198,10 @@
                 <li><strong>Pérdidas esperadas:</strong> divide n entre (1 − tasa de no respuesta esperada). Con 15 % de abandono: n_reclutado = n / 0,85.</li>
             </ul>
 
-            <h2>Ejemplo sencillo</h2>
+            <h3>Ejemplo sencillo</h3>
             <p>Quieres estimar el porcentaje de clientes satisfechos. Con <strong>p = 0,5</strong>, <strong>95 %</strong> de confianza y error máximo <strong>±5 %</strong> (E = 0,05) el resultado es <strong>n ≈ 385</strong>. Si reduces el margen a ±3 % (E = 0,03), la muestra sube a <strong>1 068</strong>.</p>
 
-            <h2>Usos frecuentes</h2>
+            <h3>Usos frecuentes</h3>
             <ul>
                 <li>Encuestas de satisfacción, opinión y preferencias del consumidor.</li>
                 <li>Estimación de tasas de prevalencia o incidencia en salud pública.</li>
@@ -209,12 +209,23 @@
                 <li>Sondeos electorales e intención de voto.</li>
             </ul>
 
-            <h2>Supuestos del modelo</h2>
+            <h3>Supuestos del modelo</h3>
             <ul>
                 <li>Muestreo aleatorio simple (cada unidad tiene la misma probabilidad de selección).</li>
                 <li>Población muy grande respecto a la muestra (n/N &lt; 5 %). Si no se cumple, aplica la <a href="tamano-muestral-proporcion-poblacion-finita.html">corrección por población finita</a>.</li>
                 <li>La aproximación normal es válida cuando n·p ≥ 5 y n·(1−p) ≥ 5.</li>
             </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Una tienda de comercio electrónico quiere estimar la proporción de visitantes que completan una compra (tasa de conversión). Datos de sesiones anteriores sugieren que esta proporción es de aproximadamente \(p = 0{,}08\) (8 %). El equipo de analítica quiere una estimación con un margen de error de \(E = 0{,}02\) (±2 puntos porcentuales) y un nivel de confianza del 95 % (\(Z = 1{,}960\)).</p>
+            <p>Aplicamos la fórmula de Cochran con los valores conocidos:</p>
+            <p class="formula-line">\( n = \frac{Z^2 \cdot p \cdot (1-p)}{E^2} = \frac{(1{,}960)^2 \times 0{,}08 \times 0{,}92}{(0{,}02)^2} = \frac{3{,}8416 \times 0{,}0736}{0{,}0004} = \frac{0{,}2828}{0{,}0004} = 707 \)</p>
+            <p>Se necesitan al menos <strong>707 visitantes observados</strong>. Dado que no todos los visitantes tendrán un seguimiento completo de la sesión (abandonos, fallos de tracking), se anticipa una tasa de no respuesta o datos incompletos del 10 %. Por tanto, el número de sesiones a registrar es:</p>
+            <p class="formula-line">\( n_{\text{ajustado}} = \frac{707}{1 - 0{,}10} = \frac{707}{0{,}90} \approx 786 \text{ sesiones} \)</p>
+            <p>El equipo configurará el sistema de analítica para recoger datos de <strong>786 sesiones consecutivas</strong>, con lo que espera poder estimar la tasa de conversión con una precisión de ±2 puntos porcentuales al 95 % de confianza.</p>
+            <p><strong>Escenario conservador (p desconocida):</strong> si no se dispusiese de datos previos sobre la tasa de conversión, la práctica habitual es usar \(p = 0{,}5\), que maximiza la varianza \(p(1-p)\) y por tanto el tamaño muestral necesario: \( n = (1{,}960)^2 \times 0{,}5 \times 0{,}5 / (0{,}02)^2 = 3{,}8416 \times 0{,}25 / 0{,}0004 = 2\,401 \). Esta muestra conservadora garantiza precisión de ±2 pp independientemente del valor real de la proporción, a costa de requerir más de tres veces más sesiones que la estimación informada.</p>
         </section>
 
         <section id="seo-support-content" class="card content-card">

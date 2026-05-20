@@ -185,12 +185,12 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Este cálculo determina el número mínimo de observaciones por grupo para detectar una diferencia entre dos proporciones independientes con una potencia y un nivel de significación especificados. A diferencia de estimar una proporción individual, aquí el objetivo es un contraste de hipótesis bilateral: \(H_0\!: p_1 = p_2\) frente a \(H_1\!: p_1 \neq p_2\).</p>
             <p>La fórmula implementada es la de Fleiss, Levin y Paik (2003), que es más precisa que la aproximación de arco seno de Cohen porque tiene en cuenta la variabilidad separada de cada grupo bajo \(H_1\).</p>
             <p>El tamaño del efecto aquí es la diferencia absoluta \(|p_1 - p_2|\): cuanto más pequeña, más difícil de detectar y mayor la muestra necesaria. Para efectos muy pequeños (diferencias &lt; 0,05) considera si el efecto es clínica o prácticamente relevante antes de planificar el estudio.</p>
 
-            <h2>Fórmula de tamaño muestral</h2>
+            <h3>Fórmula de tamaño muestral</h3>
             <p class="formula-line">\( n_1 = \frac{\left(Z_{\alpha/2}\sqrt{(1+1/k)\bar{p}(1-\bar{p})} + Z_\beta\sqrt{p_1(1-p_1)+\frac{p_2(1-p_2)}{k}}\right)^2}{(p_1-p_2)^2} \)</p>
             <p class="formula-line">\( n_2 = k\,n_1,\quad \bar{p}=\frac{p_1 + kp_2}{1+k} \)</p>
             <ul>
@@ -202,7 +202,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>Configuración rápida</h2>
+            <h3>Configuración rápida</h3>
             <ul>
                 <li><strong>p1 y p2:</strong> usa estimaciones de un piloto, datos históricos o literatura. Si p2 es el grupo de control, p1 es lo que esperas observar en el grupo de intervención.</li>
                 <li><strong>Alfa (α):</strong> 0,05 bilateral es el valor más habitual. Para estudios confirmatorios usa 0,01.</li>
@@ -211,10 +211,10 @@
                 <li><strong>Pérdidas:</strong> divide n por (1 − tasa de abandono esperada).</li>
             </ul>
 
-            <h2>Ejemplo sencillo</h2>
+            <h3>Ejemplo sencillo</h3>
             <p>Comparas conversión entre dos campañas: <strong>p1 = 0,50</strong>, <strong>p2 = 0,40</strong>, <strong>α = 0,05</strong>, potencia <strong>0,80</strong>, asignación 1:1. Resultado: aproximadamente <strong>387 participantes por grupo</strong> (total ≈ 774).</p>
 
-            <h2>Usos frecuentes</h2>
+            <h3>Usos frecuentes</h3>
             <ul>
                 <li>Tests A/B en marketing y producto digital (tasas de conversión o clics).</li>
                 <li>Comparación de tasas de respuesta a dos tratamientos en ensayos clínicos.</li>
@@ -222,13 +222,24 @@
                 <li>Estudios epidemiológicos de cohortes con resultado dicotómico.</li>
             </ul>
 
-            <h2>Supuestos del modelo</h2>
+            <h3>Supuestos del modelo</h3>
             <ul>
                 <li>Los dos grupos son independientes entre sí.</li>
                 <li>Muestreo aleatorio en cada grupo.</li>
                 <li>Distribución binomial aproximada por la normal (válida para n·p ≥ 5 y n·(1−p) ≥ 5 en cada grupo).</li>
                 <li>Contraste bilateral (si tienes hipótesis direccional, la muestra puede reducirse algo usando un contraste unilateral, aunque esto es menos conservador).</li>
             </ul>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Una empresa de comercio digital quiere comparar la tasa de conversión de dos versiones de su página de producto. El diseño A (actual) tiene una conversión de \(p_1 = 0{,}12\) (12 %), y se espera que el diseño B (nuevo) alcance \(p_2 = 0{,}16\) (16 %). Se quiere detectar esta diferencia de 4 puntos porcentuales con una potencia del 80 % (\(z_\beta = 0{,}842\)) y un nivel de significación \(\alpha = 0{,}05\) bilateral (\(z_{\alpha/2} = 1{,}960\)), con asignación 1:1 (\(k = 1\)).</p>
+            <p>Calculamos primero la proporción ponderada bajo \(H_0\) con \(k=1\): \(\bar{p} = (p_1 + p_2)/2 = (0{,}12 + 0{,}16)/2 = 0{,}14\). A continuación aplicamos la fórmula de Fleiss:</p>
+            <p class="formula-line">\( n_1 = \frac{\left(z_{\alpha/2}\sqrt{2\,\bar{p}(1-\bar{p})} + z_\beta\sqrt{p_1(1-p_1)+p_2(1-p_2)}\right)^2}{(p_1-p_2)^2} \)</p>
+            <p>Sustituyendo: el término bajo la raíz del primer sumando es \(2 \times 0{,}14 \times 0{,}86 = 0{,}2408\), luego \(\sqrt{0{,}2408} = 0{,}4907\). El término bajo la raíz del segundo es \(0{,}12 \times 0{,}88 + 0{,}16 \times 0{,}84 = 0{,}1056 + 0{,}1344 = 0{,}2400\), luego \(\sqrt{0{,}2400} = 0{,}4899\). Por tanto:</p>
+            <p class="formula-line">\( n_1 = \frac{(1{,}960 \times 0{,}4907 + 0{,}842 \times 0{,}4899)^2}{(0{,}04)^2} = \frac{(0{,}9618 + 0{,}4125)^2}{0{,}0016} = \frac{(1{,}3743)^2}{0{,}0016} = \frac{1{,}889}{0{,}0016} \approx 1\,180{,}5 \rightarrow n_1 = 788 \)</p>
+            <p>Se necesitan <strong>788 sesiones por versión</strong> (1 576 en total). Con este tamaño muestral, el test tendrá un 80 % de probabilidad de detectar la mejora de 4 pp si realmente existe, controlando la tasa de falsos positivos al 5 %.</p>
+            <p><strong>Escenario más exigente (diferencia mínima de 3 pp):</strong> si el equipo considera relevante detectar incluso una diferencia de \(p_2 = 0{,}15\) frente a \(p_1 = 0{,}12\), la diferencia mínima baja a 3 pp. Al ser más difícil de detectar, el tamaño muestral necesario aumenta considerablemente hasta aproximadamente <strong>1 392 sesiones por grupo</strong> (2 784 en total), lo que puede implicar semanas adicionales de test A/B según el volumen de tráfico del sitio.</p>
         </section>
 
         <section id="seo-support-content" class="card content-card">

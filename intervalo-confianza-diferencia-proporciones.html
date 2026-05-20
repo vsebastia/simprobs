@@ -173,24 +173,24 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>Cuando se comparan dos grupos independientes (por ejemplo, conversión en A/B testing, prevalencia en dos poblaciones o porcentaje de satisfacción por segmento), el intervalo de confianza para la diferencia de proporciones cuantifica el tamaño de la diferencia y su incertidumbre.</p>
             <p>La calculadora estima \(p_1 - p_2\) a partir de \(\hat{p}_1 = x_1/n_1\) y \(\hat{p}_2 = x_2/n_2\). Si el intervalo contiene el 0, la diferencia observada puede ser compatible con ausencia de diferencia al nivel de confianza elegido.</p>
 
             <p>Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total fuera del intervalo. Para un 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\) en cada cola.</p>
 
-            <h2>Método de Wald (aproximación normal)</h2>
+            <h3>Método de Wald (aproximación normal)</h3>
             <p class="formula-line">\( (\hat{p}_1 - \hat{p}_2) \pm z_{\alpha/2} \cdot \sqrt{\dfrac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \dfrac{\hat{p}_2(1-\hat{p}_2)}{n_2}} \)</p>
             <p>Es el método clásico y resulta adecuado cuando en ambos grupos hay suficientes éxitos y fracasos: \(n_i\hat{p}_i \geq 5\) y \(n_i(1-\hat{p}_i) \geq 5\).</p>
 
-            <h2>Método de Newcombe-Wilson (recomendado)</h2>
+            <h3>Método de Newcombe-Wilson (recomendado)</h3>
             <p>El método de Newcombe-Wilson no aplica directamente la normal a la diferencia \(\hat{p}_1-\hat{p}_2\). Primero calcula, por separado, un intervalo score de Wilson para cada proporción: \([L_1, U_1]\) para \(p_1\) y \([L_2, U_2]\) para \(p_2\). La idea viene del trabajo de Newcombe (1998), que comparó varios métodos para la diferencia de proporciones y destacó el buen comportamiento de los métodos basados en Wilson.</p>
             <p>Después combina las distancias desde cada proporción observada hasta sus límites Wilson, conservando el signo de la diferencia estimada \(d = \hat{p}_1 - \hat{p}_2\). La combinación no es simplemente \([L_1-U_2, U_1-L_2]\): se suman cuadráticamente las incertidumbres de ambos grupos para construir cada extremo del intervalo:</p>
             <p class="formula-line">\( L = d - \sqrt{(\hat{p}_1-L_1)^2 + (U_2-\hat{p}_2)^2} \)</p>
             <p class="formula-line">\( U = d + \sqrt{(U_1-\hat{p}_1)^2 + (\hat{p}_2-L_2)^2} \)</p>
             <p>Esta combinación suele mantener mejor la cobertura real del intervalo que Wald, especialmente con muestras pequeñas o proporciones cercanas a 0 o 1. Por eso es una buena opción por defecto para comparar dos porcentajes independientes. En esta página se usa la versión sin corrección de continuidad, que es la forma habitual para una calculadora rápida y reproducible.</p>
 
-            <h2>Ejemplo resuelto</h2>
+            <h3>Ejemplo resuelto</h3>
             <p>En el grupo 1 hay 84 éxitos de 120 observaciones y en el grupo 2 hay 57 éxitos de 110 observaciones. \(\hat{p}_1 = 0{,}70\), \(\hat{p}_2 \approx 0{,}518\) y la diferencia estimada es \(0{,}182\). Con 95 % de confianza (\(C=0{,}95\), \(\alpha=0{,}05\), método Wald):</p>
             <p class="formula-line">\( 0{,}182 \pm 1{,}960 \cdot \sqrt{\frac{0{,}70\cdot0{,}30}{120} + \frac{0{,}518\cdot0{,}482}{110}} \approx [0{,}058,\; 0{,}306] \)</p>
         </section>
@@ -198,7 +198,7 @@
 
 
         <section class="card content-card">
-            <h2>Supuestos para comparar dos proporciones</h2>
+            <h3>Supuestos para comparar dos proporciones</h3>
             <ul>
                 <li>Los dos grupos deben ser independientes entre sí; no debe haber emparejamiento unidad a unidad.</li>
                 <li>En cada grupo, cada observación debe clasificarse como éxito o fracaso y tener la misma probabilidad de éxito dentro de ese grupo.</li>
@@ -208,7 +208,7 @@
         </section>
 
         <section class="card content-card">
-            <h2>¿Wald o Newcombe-Wilson?</h2>
+            <h3>¿Wald o Newcombe-Wilson?</h3>
             <p>Wald es fácil de interpretar y suele funcionar bien con muestras grandes y proporciones no extremas. Newcombe-Wilson suele ser preferible por defecto si algún grupo tiene pocos éxitos o pocos fracasos, porque usa intervalos Wilson individuales y combina sus incertidumbres de forma cuadrática, no mediante una resta directa de límites. Así reduce los problemas de cobertura del intervalo normal clásico.</p>
         </section>
 

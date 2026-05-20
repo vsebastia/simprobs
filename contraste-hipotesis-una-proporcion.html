@@ -195,11 +195,11 @@
         </section>
 
         <section class="card content-card">
-            <h2>Explicación breve</h2>
+            <h3>Explicación breve</h3>
             <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\). Es una prueba habitual en validación de campañas, calidad de producción, ensayos clínicos y estudios de opinión.</p>
             <p>El método se apoya en la aproximación normal de la proporción muestral bajo \(H_0\), por lo que la calidad de la aproximación mejora con tamaños muestrales adecuados.</p>
 
-            <h2>Hipótesis y estadístico</h2>
+            <h3>Hipótesis y estadístico</h3>
             <p class="formula-line">\(H_0: p = p_0\)</p>
             <p class="formula-line">\( z = \frac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \)</p>
         </section>
@@ -209,9 +209,20 @@
 
 
         <section class="card content-card">
-            <h2>Contraste rápido</h2>
+            <h3>Contraste rápido</h3>
             <p>Bajo \(H_0\), la variabilidad de \(\hat{p}\) viene dada por \(p_0(1-p_0)/n\). Por eso el denominador usa \(p_0\): estamos evaluando compatibilidad con la hipótesis nula concreta.</p>
             <p>La aproximación normal es razonable cuando \(n p_0\) y \(n(1-p_0)\) son suficientemente grandes (regla práctica: al menos 5 o 10).</p>
+        </section>
+
+        <section class="card content-card">
+            <h3>Ejemplo resuelto</h3>
+            <p>Según estudios anteriores, el 65 % de los clientes de una empresa están satisfechos con el servicio (\(p_0 = 0{,}65\)). Tras una campaña de mejora, se encuesta a \(n = 120\) clientes y se obtiene que 85 manifiestan satisfacción, es decir, \(\hat{p} = 85/120 \approx 0{,}708\). ¿Ha cambiado significativamente la proporción? Se contrasta con \(\alpha = 0{,}05\) bilateral.</p>
+            <p>Las hipótesis son \(H_0\colon p = 0{,}65\) frente a \(H_1\colon p \neq 0{,}65\). El error estándar bajo la hipótesis nula es:</p>
+            <p class="formula-line">\( SE = \sqrt{\dfrac{p_0(1-p_0)}{n}} = \sqrt{\dfrac{0{,}65 \cdot 0{,}35}{120}} = \sqrt{0{,}001896} \approx 0{,}04354 \)</p>
+            <p>El estadístico z vale:</p>
+            <p class="formula-line">\( z = \dfrac{\hat{p} - p_0}{SE} = \dfrac{0{,}708 - 0{,}65}{0{,}04354} \approx 1{,}38 \)</p>
+            <p>Para un contraste bilateral con \(\alpha = 0{,}05\), el valor crítico es \(z_{0{,}025} \approx 1{,}96\). Como \(|z| = 1{,}38 < 1{,}96\), no se alcanza la región de rechazo. El p-valor bilateral es \(p \approx 0{,}168 > 0{,}05\).</p>
+            <p>Conclusión: <strong>no se rechaza \(H_0\)</strong>. Con estos datos, la diferencia entre la proporción observada (70{,}8 %) y la de referencia (65 %) no es estadísticamente significativa al 5 %. La mejora podría deberse al azar muestral.</p>
         </section>
 
                 <section id="seo-support-content" class="card content-card">
