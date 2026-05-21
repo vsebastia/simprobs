@@ -185,7 +185,8 @@
                 <li><strong>Potencia:</strong> 0,80 es el mínimo habitual; 0,90 para estudios confirmatorios o validación psicométrica.</li>
             </ul>
 
-            <h3>Ejemplo sencillo</h3>
+            <h3>Ejemplo resuelto</h3>
+
             <p>Quieres detectar una correlación de al menos ρ = 0,30 con α = 0,05 bilateral y potencia 0,80. La transformación da z<sub>ρ</sub> = arctanh(0,30) ≈ 0,3095. Necesitas aproximadamente <strong>84 pares de observaciones</strong>.</p>
 
             <h3>Usos frecuentes</h3>
@@ -207,8 +208,8 @@
         </section>
 
         <section class="card content-card">
-            <h3>Ejemplo resuelto</h3>
-            <p>Un equipo de investigación educativa quiere estudiar si existe una correlación entre las horas semanales de estudio autónomo y la calificación obtenida en el examen final. Basándose en la literatura previa, estiman que la correlación de Pearson poblacional es \(\rho \approx 0{,}40\) (correlación moderada). El contraste es bilateral con \(\alpha = 0{,}05\) y se desea una potencia del 80 % para detectar correlaciones de magnitud \(\rho \geq 0{,}40\).</p>
+
+<p>Un equipo de investigación educativa quiere estudiar si existe una correlación entre las horas semanales de estudio autónomo y la calificación obtenida en el examen final. Basándose en la literatura previa, estiman que la correlación de Pearson poblacional es \(\rho \approx 0{,}40\) (correlación moderada). El contraste es bilateral con \(\alpha = 0{,}05\) y se desea una potencia del 80 % para detectar correlaciones de magnitud \(\rho \geq 0{,}40\).</p>
             <p>El primer paso es aplicar la transformación de Fisher \(z_r\) para estabilizar la varianza:</p>
             <p class="formula-line">\( z_r = \frac{1}{2} \ln\!\left(\frac{1 + \rho}{1 - \rho}\right) = \frac{1}{2} \ln\!\left(\frac{1{,}40}{0{,}60}\right) = \frac{1}{2} \ln(2{,}333) = \frac{1}{2} \times 0{,}8473 \approx 0{,}424 \)</p>
             <p>Con \(z_{\alpha/2} = 1{,}960\) y \(z_{\beta} = 0{,}842\), el tamaño muestral se obtiene como:</p>
@@ -224,9 +225,9 @@
             <p>Esta calculadora estima el número mínimo de pares de observaciones para detectar una correlación de Pearson de magnitud ρ con el nivel de significación y la potencia indicados.</p>
             <h3>Fórmula utilizada</h3>
             <p>Se aplica la transformación z de Fisher (arctanh) para obtener una estadística con varianza aproximadamente 1/(n-3), lo que permite derivar directamente n.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce ρ = 0,30, α = 0,05 bilateral y potencia = 0,80, y pulsa Calcular. Si aumentas la potencia a 0,90 obtendrás una muestra mayor.</p>
-            <h3>Cómo interpretar el resultado</h3>
+
+<p>Introduce ρ = 0,30, α = 0,05 bilateral y potencia = 0,80, y pulsa Calcular. Si aumentas la potencia a 0,90 obtendrás una muestra mayor.</p>
+<h3>Cómo interpretar el resultado</h3>
             <p>El n calculado es el número de pares (individuos con las dos medidas). Si la correlación real es mayor de la esperada, el contraste tendrá más potencia de la planificada.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>

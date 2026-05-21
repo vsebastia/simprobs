@@ -198,7 +198,8 @@
                 <li><strong>Pérdidas esperadas:</strong> divide n entre (1 − tasa de no respuesta esperada). Con 15 % de abandono: n_reclutado = n / 0,85.</li>
             </ul>
 
-            <h3>Ejemplo sencillo</h3>
+            <h3>Ejemplo resuelto</h3>
+
             <p>Quieres estimar el porcentaje de clientes satisfechos. Con <strong>p = 0,5</strong>, <strong>95 %</strong> de confianza y error máximo <strong>±5 %</strong> (E = 0,05) el resultado es <strong>n ≈ 385</strong>. Si reduces el margen a ±3 % (E = 0,03), la muestra sube a <strong>1 068</strong>.</p>
 
             <h3>Usos frecuentes</h3>
@@ -218,8 +219,8 @@
         </section>
 
         <section class="card content-card">
-            <h3>Ejemplo resuelto</h3>
-            <p>Una tienda de comercio electrónico quiere estimar la proporción de visitantes que completan una compra (tasa de conversión). Datos de sesiones anteriores sugieren que esta proporción es de aproximadamente \(p = 0{,}08\) (8 %). El equipo de analítica quiere una estimación con un margen de error de \(E = 0{,}02\) (±2 puntos porcentuales) y un nivel de confianza del 95 % (\(Z = 1{,}960\)).</p>
+
+<p>Una tienda de comercio electrónico quiere estimar la proporción de visitantes que completan una compra (tasa de conversión). Datos de sesiones anteriores sugieren que esta proporción es de aproximadamente \(p = 0{,}08\) (8 %). El equipo de analítica quiere una estimación con un margen de error de \(E = 0{,}02\) (±2 puntos porcentuales) y un nivel de confianza del 95 % (\(Z = 1{,}960\)).</p>
             <p>Aplicamos la fórmula de Cochran con los valores conocidos:</p>
             <p class="formula-line">\( n = \frac{Z^2 \cdot p \cdot (1-p)}{E^2} = \frac{(1{,}960)^2 \times 0{,}08 \times 0{,}92}{(0{,}02)^2} = \frac{3{,}8416 \times 0{,}0736}{0{,}0004} = \frac{0{,}2828}{0{,}0004} = 707 \)</p>
             <p>Se necesitan al menos <strong>707 visitantes observados</strong>. Dado que no todos los visitantes tendrán un seguimiento completo de la sesión (abandonos, fallos de tracking), se anticipa una tasa de no respuesta o datos incompletos del 10 %. Por tanto, el número de sesiones a registrar es:</p>
@@ -233,9 +234,9 @@
             <p>Calcula el número mínimo de observaciones para estimar una proporción poblacional con un margen de error absoluto máximo E y un nivel de confianza especificado, aplicando la fórmula de Cochran con cuantil normal.</p>
             <h3>Fórmula utilizada</h3>
             <p>\( n = Z^2 \cdot p(1-p) / E^2 \). El resultado se redondea siempre al entero superior para garantizar la cobertura del intervalo de confianza.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Encuesta de satisfacción (p = 0,5, E = 0,05, 95 % confianza) → n = 385. Con E = 0,03 → n = 1 068. Duplicar la precisión cuadruplica la muestra.</p>
-            <h3>Cómo interpretar el resultado</h3>
+
+<p>Encuesta de satisfacción (p = 0,5, E = 0,05, 95 % confianza) → n = 385. Con E = 0,03 → n = 1 068. Duplicar la precisión cuadruplica la muestra.</p>
+<h3>Cómo interpretar el resultado</h3>
             <p>El n calculado es el mínimo de respuestas <em>válidas</em>. Planifica recoger más para compensar no respuestas o exclusiones. Revisa la sensibilidad variando p entre 0,3 y 0,7 para ver cuánto varía n.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>

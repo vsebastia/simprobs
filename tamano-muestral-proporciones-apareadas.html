@@ -195,7 +195,8 @@
                 <li><strong>Alfa y potencia:</strong> 0,05 y 0,80 son la base estándar.</li>
             </ul>
 
-            <h3>Ejemplo sencillo</h3>
+            <h3>Ejemplo resuelto</h3>
+
             <p>Evaluación de una campaña de vacunación: <strong>p₀₁ = 0,18</strong> (se vacunan tras la campaña quienes no lo habían hecho), <strong>p₁₀ = 0,08</strong> (dejan de estar vacunados — muy improbable en la práctica). Con <strong>α = 0,05</strong> y potencia <strong>0,80</strong>, el resultado es <strong>≈ 205 pares</strong>.</p>
 
             <h3>Usos frecuentes</h3>
@@ -215,8 +216,8 @@
         </section>
 
         <section class="card content-card">
-            <h3>Ejemplo resuelto</h3>
-            <p>Un equipo de diagnóstico clínico quiere comparar un nuevo método de detección de una enfermedad infecciosa frente al método estándar actual. En cada paciente se aplican ambas pruebas, formando así pares. De un estudio piloto con 100 pacientes se observa que el 15 % de los pares son discordantes de tipo «nuevo+/estándar−» (\(p_{12} = 0{,}15\)) y el 8 % son discordantes de tipo «nuevo−/estándar+» (\(p_{21} = 0{,}08\)). El objetivo es detectar esta diferencia con \(\alpha = 0{,}05\) bilateral y potencia del 80 %.</p>
+
+<p>Un equipo de diagnóstico clínico quiere comparar un nuevo método de detección de una enfermedad infecciosa frente al método estándar actual. En cada paciente se aplican ambas pruebas, formando así pares. De un estudio piloto con 100 pacientes se observa que el 15 % de los pares son discordantes de tipo «nuevo+/estándar−» (\(p_{12} = 0{,}15\)) y el 8 % son discordantes de tipo «nuevo−/estándar+» (\(p_{21} = 0{,}08\)). El objetivo es detectar esta diferencia con \(\alpha = 0{,}05\) bilateral y potencia del 80 %.</p>
             <p>En el test de McNemar solo los pares discordantes aportan información. La proporción total de pares discordantes es \(p_d = p_{12} + p_{21} = 0{,}23\) y la diferencia entre proporciones discordantes es \(\Delta = |p_{12} - p_{21}| = 0{,}07\). Con \(z_{\alpha/2} = 1{,}960\) y \(z_{\beta} = 0{,}842\):</p>
             <p class="formula-line">\( n = \frac{\left(z_{\alpha/2}\sqrt{p_d} + z_{\beta}\sqrt{p_d - \Delta^2}\right)^2}{\Delta^2} \)</p>
             <p>Sustituyendo los valores: \(\sqrt{p_d} = \sqrt{0{,}23} \approx 0{,}4796\) y \(\sqrt{p_d - \Delta^2} = \sqrt{0{,}23 - 0{,}0049} = \sqrt{0{,}2251} \approx 0{,}4745\). Por tanto:</p>
@@ -230,9 +231,9 @@
             <p>Calcula el número mínimo de pares para detectar una diferencia entre dos proporciones relacionadas (medidas en la misma unidad), dado p₀₁, p₁₀, α y potencia. Usa la fórmula basada en el test de McNemar.</p>
             <h3>Fórmula utilizada</h3>
             <p>n = ⌈(Z_{α/2}+Z_β)²·(p₀₁+p₁₀)/(p₁₀−p₀₁)²⌉. El denominador depende solo de los pares discordantes; los concordantes contribuyen a n pero no al poder discriminatorio del test.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>p₀₁ = 0,18, p₁₀ = 0,08, α = 0,05, potencia = 0,80 → n = 205 pares. Si la diferencia fuera p₁₀−p₀₁ = 0,05 (en lugar de 0,10), la muestra se cuadruplicaría.</p>
-            <h3>Cómo interpretar el resultado</h3>
+
+<p>p₀₁ = 0,18, p₁₀ = 0,08, α = 0,05, potencia = 0,80 → n = 205 pares. Si la diferencia fuera p₁₀−p₀₁ = 0,05 (en lugar de 0,10), la muestra se cuadruplicaría.</p>
+<h3>Cómo interpretar el resultado</h3>
             <p>El n es el número de pares totales (incluyendo concordantes). Si la proporción esperada de pares discordantes es baja, habrá que reclutar muchos más sujetos para que el análisis disponga de suficientes pares útiles.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>

@@ -185,7 +185,8 @@
                 <li><strong>OR protector (OR &lt; 1):</strong> introdúcelo directamente; la calculadora lo maneja correctamente (p₁ &lt; p₀ en ese caso).</li>
             </ul>
 
-            <h3>Ejemplo sencillo</h3>
+            <h3>Ejemplo resuelto</h3>
+
             <p>Estudio sobre tabaquismo y cáncer de pulmón: exposición (fumadores) en controles p₀ = 0,30, OR = 2,0, α = 0,05 bilateral, potencia 0,80, relación 1:1. Esto implica p₁ = 0,462. Necesitas aproximadamente <strong>113 casos y 113 controles</strong> (total ≈ 226).</p>
 
             <h3>Usos frecuentes</h3>
@@ -207,8 +208,8 @@
         </section>
 
         <section class="card content-card">
-            <h3>Ejemplo resuelto</h3>
-            <p>Un equipo epidemiológico diseña un estudio caso-control para investigar la asociación entre el tabaquismo y el cáncer de pulmón. La proporción de fumadores entre los controles (personas sanas de características similares) se estima en \(p_2 = 0{,}30\). Se quiere detectar un odds ratio de al menos \(\text{OR} = 2{,}5\) con \(\alpha = 0{,}05\) bilateral y potencia del 80 %.</p>
+
+<p>Un equipo epidemiológico diseña un estudio caso-control para investigar la asociación entre el tabaquismo y el cáncer de pulmón. La proporción de fumadores entre los controles (personas sanas de características similares) se estima en \(p_2 = 0{,}30\). Se quiere detectar un odds ratio de al menos \(\text{OR} = 2{,}5\) con \(\alpha = 0{,}05\) bilateral y potencia del 80 %.</p>
             <p>El primer paso es convertir el OR en la proporción de expuestos esperada entre los casos:</p>
             <p class="formula-line">\( p_1 = \frac{\text{OR} \times p_2}{1 + p_2 \times (\text{OR} - 1)} = \frac{2{,}5 \times 0{,}30}{1 + 0{,}30 \times 1{,}5} = \frac{0{,}75}{1{,}45} \approx 0{,}517 \)</p>
             <p>Con \(z_{\alpha/2} = 1{,}960\) y \(z_{\beta} = 0{,}842\), se aplica la fórmula de comparación de dos proporciones independientes:</p>
@@ -224,9 +225,9 @@
             <p>Esta calculadora estima el número mínimo de casos (y controles) para detectar un odds ratio de magnitud OR en un estudio caso-control no emparejado, dados p₀, r, α y potencia.</p>
             <h3>Fórmula utilizada</h3>
             <p>Se convierte el OR en proporciones de exposición (p₀ y p₁) y se aplica la fórmula exacta de dos proporciones independientes de Fleiss (versión sin corrección de continuidad).</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce p₀ = 0,30, OR = 2, α = 0,05 y potencia = 0,80 con r = 1. El resultado muestra el número de casos y controles necesarios.</p>
-            <h3>Cómo interpretar el resultado</h3>
+
+<p>Introduce p₀ = 0,30, OR = 2, α = 0,05 y potencia = 0,80 con r = 1. El resultado muestra el número de casos y controles necesarios.</p>
+<h3>Cómo interpretar el resultado</h3>
             <p>El n calculado es el mínimo para detectar el OR especificado. Añade un margen por pérdidas esperadas dividiendo entre (1 − tasa de no respuesta).</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>

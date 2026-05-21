@@ -195,7 +195,8 @@
                 <li><strong>Alfa y potencia:</strong> 0,05 y 0,80 como base; 0,90 si los falsos negativos son costosos.</li>
             </ul>
 
-            <h3>Ejemplo sencillo</h3>
+            <h3>Ejemplo resuelto</h3>
+
             <p>Intervención de entrenamiento: <strong>σd = 8</strong>, cambio mínimo a detectar <strong>Δ = 3</strong>, <strong>α = 0,05</strong>, potencia <strong>0,80</strong>. Resultado: <strong>≈ 56 pares</strong>. Para la misma situación con dos grupos independientes (σ = 8) necesitarías ~113 por grupo si ρ = 0, pero solo ~56 pares si ρ = 0,5 gracias al diseño apareado.</p>
 
             <h3>Usos frecuentes</h3>
@@ -216,8 +217,8 @@
         </section>
 
         <section class="card content-card">
-            <h3>Ejemplo resuelto</h3>
-            <p>Un centro de fisioterapia quiere evaluar la eficacia de un nuevo protocolo de tratamiento midiendo el nivel de dolor (escala 0–10) antes y después de la intervención en cada paciente. De un estudio piloto previo se estima que la desviación estándar de las diferencias individuales es \(\sigma_d = 2{,}1\) puntos. El equipo clínico considera relevante detectar una mejoría media mínima de \(\delta = 1{,}0\) punto. Se fija un nivel de significación bilateral \(\alpha = 0{,}05\) y una potencia del 80 %.</p>
+
+<p>Un centro de fisioterapia quiere evaluar la eficacia de un nuevo protocolo de tratamiento midiendo el nivel de dolor (escala 0–10) antes y después de la intervención en cada paciente. De un estudio piloto previo se estima que la desviación estándar de las diferencias individuales es \(\sigma_d = 2{,}1\) puntos. El equipo clínico considera relevante detectar una mejoría media mínima de \(\delta = 1{,}0\) punto. Se fija un nivel de significación bilateral \(\alpha = 0{,}05\) y una potencia del 80 %.</p>
             <p>Los valores críticos correspondientes son \(z_{\alpha/2} = 1{,}960\) (percentil 97,5 de la normal estándar) y \(z_{\beta} = 0{,}842\) (percentil 80). Sustituyendo en la fórmula:</p>
             <p class="formula-line">\( n = \frac{(z_{\alpha/2} + z_{\beta})^2 \cdot \sigma_d^2}{\delta^2} = \frac{(1{,}960 + 0{,}842)^2 \times 2{,}1^2}{1{,}0^2} = \frac{(2{,}802)^2 \times 4{,}41}{1} = \frac{7{,}851 \times 4{,}41}{1} \approx 34{,}6 \)</p>
             <p>Redondeando al entero superior, se necesitan <strong>35 pares</strong> (es decir, 35 pacientes medidos antes y después) para alcanzar el 80 % de potencia.</p>
@@ -232,9 +233,9 @@
             <p>Calcula el número mínimo de pares para detectar un cambio medio Δ en un diseño de medidas repetidas o apareado, dado σd (desviación estándar de las diferencias), α y potencia.</p>
             <h3>Fórmula utilizada</h3>
             <p>\( n = \lceil((Z_{α/2}+Z_β)·σ_d/Δ)^2\rceil \). El resultado es el número de <em>pares</em>, no de observaciones totales.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>σd = 8, Δ = 3, α = 0,05, potencia = 0,80 → n = 56 pares. Si σd fuese 12, n subiría a 126 pares.</p>
-            <h3>Cómo interpretar el resultado</h3>
+
+<p>σd = 8, Δ = 3, α = 0,05, potencia = 0,80 → n = 56 pares. Si σd fuese 12, n subiría a 126 pares.</p>
+<h3>Cómo interpretar el resultado</h3>
             <p>El n es el número de individuos (cada uno medido dos veces). El número total de observaciones es 2·n. Comprueba siempre si tu σd proviene de diferencias, no de mediciones individuales.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>

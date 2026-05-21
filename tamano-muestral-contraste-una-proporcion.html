@@ -201,7 +201,7 @@
                 <li><strong>Potencia:</strong> 0,80 o 0,90 según exigencia del estudio.</li>
                 <li><strong>Sentido de Ha:</strong> elige bilateral o unilateral según hipótesis previa.</li>
             </ul>
-            <h3>Ejemplo sencillo</h3>
+            <h3>Ejemplo resuelto</h3>
             <p>Si \(p_0=0{,}20\), \(\Delta=0{,}05\), \(\alpha=0{,}05\) y potencia 0,80, el tamaño muestral requerido es del orden de cientos de observaciones.</p>
             <h3>Supuestos del modelo</h3>
             <ul>
@@ -211,8 +211,8 @@
         </section>
 
         <section class="card content-card">
-            <h3>Ejemplo resuelto</h3>
-            <p>Una empresa de servicios quiere evaluar si su tasa de satisfacción de clientes ha cambiado respecto al valor histórico de referencia del 30 %. El departamento de calidad plantea el contraste bilateral \(H_0: p = 0{,}30\) frente a \(H_a: p \neq 0{,}30\), y considera que detectar un cambio de al menos 10 puntos porcentuales (hasta \(p_1 = 0{,}40\)) es relevante para la toma de decisiones. Se fija una potencia del 80 % (\(z_\beta = 0{,}842\)) y \(\alpha = 0{,}05\) bilateral (\(z_{\alpha/2} = 1{,}960\)).</p>
+
+<p>Una empresa de servicios quiere evaluar si su tasa de satisfacción de clientes ha cambiado respecto al valor histórico de referencia del 30 %. El departamento de calidad plantea el contraste bilateral \(H_0: p = 0{,}30\) frente a \(H_a: p \neq 0{,}30\), y considera que detectar un cambio de al menos 10 puntos porcentuales (hasta \(p_1 = 0{,}40\)) es relevante para la toma de decisiones. Se fija una potencia del 80 % (\(z_\beta = 0{,}842\)) y \(\alpha = 0{,}05\) bilateral (\(z_{\alpha/2} = 1{,}960\)).</p>
             <p>La fórmula para el contraste de una proporción utiliza las varianzas bajo \(H_0\) y bajo \(H_1\) por separado. Calculamos los términos paso a paso:</p>
             <p class="formula-line">\( n = \left(\frac{z_{\alpha/2}\sqrt{p_0(1-p_0)} + z_\beta\sqrt{p_1(1-p_1)}}{\Delta}\right)^2 \)</p>
             <p>Con \(p_0 = 0{,}30\), \(p_1 = 0{,}40\) y \(\Delta = |p_1 - p_0| = 0{,}10\): el primer término bajo raíz es \(p_0(1-p_0) = 0{,}30 \times 0{,}70 = 0{,}21\), luego \(\sqrt{0{,}21} = 0{,}4583\); el segundo es \(p_1(1-p_1) = 0{,}40 \times 0{,}60 = 0{,}24\), luego \(\sqrt{0{,}24} = 0{,}4899\). Sustituyendo:</p>

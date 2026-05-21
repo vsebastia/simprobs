@@ -181,7 +181,8 @@
                 <li><strong>Potencia:</strong> 0,80 mínimo; 0,90 en estudios donde las comparaciones post-hoc son el objetivo principal.</li>
             </ul>
 
-            <h3>Ejemplo sencillo</h3>
+            <h3>Ejemplo resuelto</h3>
+
             <p>Ensayo comparando 3 dietas (k = 3) con efecto mediano (f = 0,25), α = 0,05 y potencia 0,80: <strong>n ≈ 52 por grupo</strong> (total ≈ 156). Con 4 grupos y mismo f: n ≈ 45 por grupo (total ≈ 180) — la muestra total crece al añadir grupos aunque el n por grupo baje.</p>
 
             <h3>Usos frecuentes</h3>
@@ -202,8 +203,8 @@
         </section>
 
         <section class="card content-card">
-            <h3>Ejemplo resuelto</h3>
-            <p>Un investigador en ciencias de la educación desea comparar el rendimiento académico obtenido con tres métodos de enseñanza distintos (\(k = 3\) grupos): clase magistral, aprendizaje basado en proyectos y aula invertida. De estudios previos se estima que la desviación estándar dentro de cada grupo es \(\sigma = 10\) puntos sobre 100. Se espera que las medias grupales sean aproximadamente 75, 80 y 85 puntos, con una media global de 80.</p>
+
+<p>Un investigador en ciencias de la educación desea comparar el rendimiento académico obtenido con tres métodos de enseñanza distintos (\(k = 3\) grupos): clase magistral, aprendizaje basado en proyectos y aula invertida. De estudios previos se estima que la desviación estándar dentro de cada grupo es \(\sigma = 10\) puntos sobre 100. Se espera que las medias grupales sean aproximadamente 75, 80 y 85 puntos, con una media global de 80.</p>
             <p>Para calcular el tamaño del efecto \(f\) de Cohen se obtiene primero la desviación estándar entre grupos:</p>
             <p class="formula-line">\( \sigma_{\text{entre}} = \sqrt{\frac{(75-80)^2 + (80-80)^2 + (85-80)^2}{3}} = \sqrt{\frac{25 + 0 + 25}{3}} = \sqrt{\frac{50}{3}} \approx 4{,}08 \)</p>
             <p>El tamaño del efecto es \(f = \sigma_{\text{entre}} / \sigma = 4{,}08 / 10 \approx 0{,}408\), considerado grande según los criterios de Cohen (\(f \geq 0{,}40\)). Con \(\alpha = 0{,}05\) y potencia del 80 %, la aproximación da un tamaño muestral de aproximadamente <strong>21 participantes por grupo</strong>, es decir, <strong>63 participantes en total</strong>.</p>
@@ -216,9 +217,9 @@
             <p>Calcula el n mínimo por grupo para un ANOVA de un factor balanceado con k grupos, dado f de Cohen, α y potencia. Usa la distribución F no central con λ = n·k·f² mediante búsqueda iterativa.</p>
             <h3>Fórmula utilizada</h3>
             <p>Potencia = P(F'(k−1, k(n−1), λ) &gt; F_crit). La F no central se calcula mediante la suma de Poisson sobre funciones beta incompletas reguladas (serie exacta).</p>
-            <h3>Ejemplo de uso</h3>
-            <p>k = 3, f = 0,25, α = 0,05, potencia = 0,80 → n = 52 por grupo (total 156). Con f = 0,40 → n = 21 por grupo (total 63).</p>
-            <h3>Cómo interpretar el resultado</h3>
+
+<p>k = 3, f = 0,25, α = 0,05, potencia = 0,80 → n = 52 por grupo (total 156). Con f = 0,40 → n = 21 por grupo (total 63).</p>
+<h3>Cómo interpretar el resultado</h3>
             <p>El n es por grupo (diseño balanceado). Multiplica por k para el total. Para comparaciones post-hoc, el n calculado con α global = 0,05 puede ser insuficiente; considera α corregida (p.ej. Bonferroni).</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>

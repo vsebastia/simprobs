@@ -1,0 +1,891 @@
+archivo,orden,nivel,seccion
+ab-testing-bayesiano.html,1,H1,Test A/B bayesiano — Beta-Binomial
+ab-testing-bayesiano.html,2,H2,Calculadora
+ab-testing-bayesiano.html,3,H3,Modelo Beta-Binomial
+ab-testing-bayesiano.html,4,H3,Elección de la prior
+ab-testing-bayesiano.html,5,H3,P(B > A) mediante Monte Carlo
+ab-testing-bayesiano.html,6,H3,Ejemplo resuelto
+ab-testing-bayesiano.html,7,H3,¿Qué calcula esta herramienta?
+ab-testing-bayesiano.html,8,H3,Interpretación de los resultados
+ab-testing-bayesiano.html,9,H3,Ventajas del enfoque bayesiano
+ab-testing-bayesiano.html,10,H3,Calculadoras relacionadas
+ab-testing-bayesiano.html,11,H3,Preguntas frecuentes
+ab-testing-potencia.html,1,H1,"MDE, potencia y tamaño muestral — A/B testing"
+ab-testing-potencia.html,2,H2,Calculadora
+ab-testing-potencia.html,3,H3,Cómo leer el gráfico
+ab-testing-potencia.html,4,H3,Conceptos clave antes de empezar
+ab-testing-potencia.html,5,H3,Nivel de significación α — riesgo de falso positivo
+ab-testing-potencia.html,6,H3,Potencia estadística 1−β — capacidad de detectar un efecto real
+ab-testing-potencia.html,7,H3,MDE — efecto mínimo detectable
+ab-testing-potencia.html,8,H3,Tasa base p_A y tasa esperada p_B
+ab-testing-potencia.html,9,H3,Fórmulas utilizadas
+ab-testing-potencia.html,10,H3,Ejemplo resuelto
+ab-testing-potencia.html,11,H3,Cómo interpretar cada resultado
+ab-testing-potencia.html,12,H3,Modo: Tamaño muestral
+ab-testing-potencia.html,13,H3,Modo: Potencia
+ab-testing-potencia.html,14,H3,Modo: MDE
+ab-testing-potencia.html,15,H3,Recomendaciones prácticas
+ab-testing-potencia.html,16,H3,Calculadoras relacionadas
+ab-testing-potencia.html,17,H3,Preguntas frecuentes
+ab-testing-simulacion.html,1,H1,Simulación de experimentos A/B
+ab-testing-simulacion.html,2,H2,Parámetros de simulación
+ab-testing-simulacion.html,3,H3,Qué simula esta herramienta
+ab-testing-simulacion.html,4,H3,Ejemplo resuelto
+ab-testing-simulacion.html,5,H3,¿Para qué sirve simular un test A/B?
+ab-testing-simulacion.html,6,H3,Cómo leer el histograma de z
+ab-testing-simulacion.html,7,H3,Cómo leer la distribución de p-valores
+ab-testing-simulacion.html,8,H3,Calculadoras relacionadas
+ab-testing-simulacion.html,9,H3,Preguntas frecuentes
+ab-testing-z-test.html,1,H1,Test Z de conversión — A/B testing
+ab-testing-z-test.html,2,H2,Calculadora
+ab-testing-z-test.html,3,H3,Hipótesis y estadístico
+ab-testing-z-test.html,4,H3,Corrección por continuidad de Yates
+ab-testing-z-test.html,5,H3,Intervalo de confianza para la diferencia
+ab-testing-z-test.html,6,H3,¿Qué calcula esta herramienta?
+ab-testing-z-test.html,7,H3,Cuándo usar la corrección de Yates
+ab-testing-z-test.html,8,H3,Cómo interpretar el resultado
+ab-testing-z-test.html,9,H3,Ejemplo resuelto: test Z en A/B testing
+ab-testing-z-test.html,10,H3,Calculadoras relacionadas
+ab-testing-z-test.html,11,H3,Preguntas frecuentes
+anova.html,1,H1,Calculadora online de ANOVA de un factor
+anova.html,2,H3,¿Qué contrasta el ANOVA?
+anova.html,3,H2,Calculadora
+anova.html,4,H3,Visualización del contraste F
+anova.html,5,H3,Fórmulas del ANOVA de un factor
+anova.html,6,H3,Ejemplo resuelto
+anova.html,7,H3,Cómo interpretar el resultado
+anova.html,8,H3,Supuestos importantes
+anova.html,9,H3,Después de un ANOVA significativo
+anova.html,10,H3,Calculadoras relacionadas
+anova.html,11,H3,Preguntas frecuentes
+bernoulli.html,1,H1,Distribución Bernoulli
+bernoulli.html,2,H2,Configuración
+bernoulli.html,3,H2,Resultado y visualización
+bernoulli.html,4,H3,Distribución Bernoulli
+bernoulli.html,5,H3,Explicación breve
+bernoulli.html,6,H3,Fórmula
+bernoulli.html,7,H3,Parámetros
+bernoulli.html,8,H3,Ejemplo resuelto
+bernoulli.html,9,H3,¿Qué calcula esta herramienta?
+bernoulli.html,10,H3,Cómo interpretar el resultado
+bernoulli.html,11,H3,Calculadoras relacionadas
+bernoulli.html,12,H3,Preguntas frecuentes
+beta.html,1,H1,Distribución Beta
+beta.html,2,H2,Configuración
+beta.html,3,H2,Resultado y visualización
+beta.html,4,H3,Distribución beta
+beta.html,5,H3,Explicación breve
+beta.html,6,H3,Fórmula
+beta.html,7,H3,Parámetros
+beta.html,8,H3,Ejemplo resuelto
+beta.html,9,H3,¿Qué calcula esta herramienta?
+beta.html,10,H3,Cómo interpretar el resultado
+beta.html,11,H3,Calculadoras relacionadas
+beta.html,12,H3,Preguntas frecuentes
+binomial.html,1,H1,Calculadora binomial online
+binomial.html,2,H2,Configuración
+binomial.html,3,H2,Resultado y visualización
+binomial.html,4,H3,Distribución binomial
+binomial.html,5,H3,Explicación breve
+binomial.html,6,H3,Fórmula
+binomial.html,7,H3,Parámetros
+binomial.html,8,H3,Ejemplo resuelto
+binomial.html,9,H3,¿Qué calcula esta herramienta?
+binomial.html,10,H3,Cómo interpretar el resultado
+binomial.html,11,H3,Ejemplo resuelto: éxitos en ensayos independientes
+binomial.html,12,H3,Calculadoras relacionadas
+binomial.html,13,H3,Preguntas frecuentes
+centralf.html,1,H1,Calculadora F de Snedecor online
+centralf.html,2,H2,Configuración
+centralf.html,3,H2,Resultado y visualización
+centralf.html,4,H3,Distribución F de Snedecor
+centralf.html,5,H3,Explicación breve
+centralf.html,6,H3,Fórmula
+centralf.html,7,H3,Parámetros
+centralf.html,8,H3,Ejemplo resuelto
+centralf.html,9,H3,¿Qué calcula esta herramienta?
+centralf.html,10,H3,Cómo interpretar el resultado
+centralf.html,11,H3,Calculadoras relacionadas
+centralf.html,12,H3,Preguntas frecuentes
+chi-cuadrado-bondad-ajuste.html,1,H1,Calculadora de chi-cuadrado de bondad de ajuste
+chi-cuadrado-bondad-ajuste.html,2,H2,Calculadora
+chi-cuadrado-bondad-ajuste.html,3,H3,Explicación breve
+chi-cuadrado-bondad-ajuste.html,4,H3,Hipótesis y estadístico
+chi-cuadrado-bondad-ajuste.html,5,H3,Contraste rápido
+chi-cuadrado-bondad-ajuste.html,6,H3,Ejemplo resuelto
+chi-cuadrado-bondad-ajuste.html,7,H3,¿Qué calcula esta herramienta?
+chi-cuadrado-bondad-ajuste.html,8,H3,Fórmula
+chi-cuadrado-bondad-ajuste.html,9,H3,Cómo interpretar el resultado
+chi-cuadrado-bondad-ajuste.html,10,H3,Calculadoras relacionadas
+chi-cuadrado-bondad-ajuste.html,11,H3,Preguntas frecuentes
+chisquare.html,1,H1,Calculadora chi cuadrado online
+chisquare.html,2,H2,Configuración
+chisquare.html,3,H2,Resultado y visualización
+chisquare.html,4,H3,Distribución chi-cuadrado
+chisquare.html,5,H3,Explicación breve
+chisquare.html,6,H3,Fórmula
+chisquare.html,7,H3,Parámetros
+chisquare.html,8,H3,Ejemplo resuelto
+chisquare.html,9,H3,¿Qué calcula esta herramienta?
+chisquare.html,10,H3,Cómo interpretar el resultado
+chisquare.html,11,H3,Calculadoras relacionadas
+chisquare.html,12,H3,Preguntas frecuentes
+contraste-hipotesis-correlacion.html,1,H1,Calculadora online de contraste de hipótesis para la correlación de Pearson
+contraste-hipotesis-correlacion.html,2,H2,Calculadora
+contraste-hipotesis-correlacion.html,3,H3,Explicación breve
+contraste-hipotesis-correlacion.html,4,H3,Hipótesis y estadísticos
+contraste-hipotesis-correlacion.html,5,H3,Guía rápida de interpretación
+contraste-hipotesis-correlacion.html,6,H3,¿Por qué la transformación de Fisher?
+contraste-hipotesis-correlacion.html,7,H3,Ejemplo resuelto
+contraste-hipotesis-correlacion.html,8,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-correlacion.html,9,H3,Fórmula
+contraste-hipotesis-correlacion.html,10,H3,Cómo interpretar el resultado
+contraste-hipotesis-correlacion.html,11,H3,Calculadoras relacionadas
+contraste-hipotesis-correlacion.html,12,H3,Preguntas frecuentes
+contraste-hipotesis-dos-medias.html,1,H1,Calculadora online de contraste de hipótesis para dos medias
+contraste-hipotesis-dos-medias.html,2,H2,Calculadora
+contraste-hipotesis-dos-medias.html,3,H3,Explicación breve
+contraste-hipotesis-dos-medias.html,4,H3,Hipótesis y estadístico
+contraste-hipotesis-dos-medias.html,5,H3,Contraste rápido
+contraste-hipotesis-dos-medias.html,6,H3,¿También hay versión con desviación poblacional conocida?
+contraste-hipotesis-dos-medias.html,7,H3,Ejemplo resuelto
+contraste-hipotesis-dos-medias.html,8,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-dos-medias.html,9,H3,Fórmula
+contraste-hipotesis-dos-medias.html,10,H3,Cómo interpretar el resultado
+contraste-hipotesis-dos-medias.html,11,H3,Calculadoras relacionadas
+contraste-hipotesis-dos-medias.html,12,H3,Preguntas frecuentes
+contraste-hipotesis-dos-proporciones.html,1,H1,Calculadora online de contraste de hipótesis para dos proporciones
+contraste-hipotesis-dos-proporciones.html,2,H2,Calculadora
+contraste-hipotesis-dos-proporciones.html,3,H3,Explicación breve
+contraste-hipotesis-dos-proporciones.html,4,H3,Hipótesis y estadístico
+contraste-hipotesis-dos-proporciones.html,5,H3,Contraste rápido
+contraste-hipotesis-dos-proporciones.html,6,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-dos-proporciones.html,7,H3,Fórmula
+contraste-hipotesis-dos-proporciones.html,8,H3,Ejemplo resuelto
+contraste-hipotesis-dos-proporciones.html,9,H3,Cómo interpretar el resultado
+contraste-hipotesis-dos-proporciones.html,10,H3,Ejemplo resuelto: comparación de conversiones
+contraste-hipotesis-dos-proporciones.html,11,H3,Calculadoras relacionadas
+contraste-hipotesis-dos-proporciones.html,12,H3,Preguntas frecuentes
+contraste-hipotesis-dos-varianzas.html,1,H1,Calculadora de contraste de dos varianzas (test F de Snedecor)
+contraste-hipotesis-dos-varianzas.html,2,H2,Calculadora
+contraste-hipotesis-dos-varianzas.html,3,H3,Explicación breve
+contraste-hipotesis-dos-varianzas.html,4,H3,Hipótesis y estadístico
+contraste-hipotesis-dos-varianzas.html,5,H3,Contraste rápido
+contraste-hipotesis-dos-varianzas.html,6,H3,Ejemplo resuelto
+contraste-hipotesis-dos-varianzas.html,7,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-dos-varianzas.html,8,H3,Cómo interpretar el resultado
+contraste-hipotesis-dos-varianzas.html,9,H3,Calculadoras relacionadas
+contraste-hipotesis-dos-varianzas.html,10,H3,Preguntas frecuentes
+contraste-hipotesis-medias-apareadas.html,1,H1,Calculadora online de contraste de hipótesis para medias apareadas
+contraste-hipotesis-medias-apareadas.html,2,H2,Calculadora
+contraste-hipotesis-medias-apareadas.html,3,H3,Explicación breve
+contraste-hipotesis-medias-apareadas.html,4,H3,Hipótesis y estadístico
+contraste-hipotesis-medias-apareadas.html,5,H3,Guía rápida de decisión
+contraste-hipotesis-medias-apareadas.html,6,H3,¿Cuándo usar el diseño apareado?
+contraste-hipotesis-medias-apareadas.html,7,H3,Supuestos del test
+contraste-hipotesis-medias-apareadas.html,8,H3,Ejemplo resuelto
+contraste-hipotesis-medias-apareadas.html,9,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-medias-apareadas.html,10,H3,Fórmula
+contraste-hipotesis-medias-apareadas.html,11,H3,Cómo interpretar el resultado
+contraste-hipotesis-medias-apareadas.html,12,H3,Calculadoras relacionadas
+contraste-hipotesis-medias-apareadas.html,13,H3,Preguntas frecuentes
+contraste-hipotesis-no-inferioridad.html,1,H1,Calculadora online de contraste de no inferioridad y equivalencia
+contraste-hipotesis-no-inferioridad.html,2,H2,Calculadora
+contraste-hipotesis-no-inferioridad.html,3,H3,Explicación breve
+contraste-hipotesis-no-inferioridad.html,4,H3,Hipótesis y estadísticos
+contraste-hipotesis-no-inferioridad.html,5,H3,Guía rápida de interpretación
+contraste-hipotesis-no-inferioridad.html,6,H3,Ejemplo resuelto: no inferioridad de proporciones
+contraste-hipotesis-no-inferioridad.html,7,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-no-inferioridad.html,8,H3,Fórmula
+contraste-hipotesis-no-inferioridad.html,9,H3,Cómo interpretar el resultado
+contraste-hipotesis-no-inferioridad.html,10,H3,Calculadoras relacionadas
+contraste-hipotesis-no-inferioridad.html,11,H3,Preguntas frecuentes
+contraste-hipotesis-odds-ratio.html,1,H1,Calculadora de contraste de hipótesis para odds ratio
+contraste-hipotesis-odds-ratio.html,2,H2,Calculadora
+contraste-hipotesis-odds-ratio.html,3,H3,Explicación breve
+contraste-hipotesis-odds-ratio.html,4,H3,Hipótesis y estadístico
+contraste-hipotesis-odds-ratio.html,5,H3,Contraste rápido
+contraste-hipotesis-odds-ratio.html,6,H3,Ejemplo resuelto
+contraste-hipotesis-odds-ratio.html,7,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-odds-ratio.html,8,H3,Fórmula
+contraste-hipotesis-odds-ratio.html,9,H3,Cómo interpretar el resultado
+contraste-hipotesis-odds-ratio.html,10,H3,Calculadoras relacionadas
+contraste-hipotesis-odds-ratio.html,11,H3,Preguntas frecuentes
+contraste-hipotesis-proporciones-apareadas.html,1,H1,Calculadora online del test de McNemar para proporciones apareadas
+contraste-hipotesis-proporciones-apareadas.html,2,H2,Calculadora
+contraste-hipotesis-proporciones-apareadas.html,3,H3,Explicación breve
+contraste-hipotesis-proporciones-apareadas.html,4,H3,Tabla 2×2 para datos apareados
+contraste-hipotesis-proporciones-apareadas.html,5,H3,Hipótesis y estadístico
+contraste-hipotesis-proporciones-apareadas.html,6,H3,Guía rápida de interpretación
+contraste-hipotesis-proporciones-apareadas.html,7,H3,¿Por qué solo importan los pares discordantes?
+contraste-hipotesis-proporciones-apareadas.html,8,H3,Ejemplo resuelto
+contraste-hipotesis-proporciones-apareadas.html,9,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-proporciones-apareadas.html,10,H3,Fórmula
+contraste-hipotesis-proporciones-apareadas.html,11,H3,Cómo interpretar el resultado
+contraste-hipotesis-proporciones-apareadas.html,12,H3,Calculadoras relacionadas
+contraste-hipotesis-proporciones-apareadas.html,13,H3,Preguntas frecuentes
+contraste-hipotesis-una-media.html,1,H1,Calculadora online de contraste de hipótesis para una media
+contraste-hipotesis-una-media.html,2,H2,Calculadora
+contraste-hipotesis-una-media.html,3,H3,Explicación breve
+contraste-hipotesis-una-media.html,4,H3,Hipótesis y estadístico
+contraste-hipotesis-una-media.html,5,H3,Contraste rápido
+contraste-hipotesis-una-media.html,6,H3,¿Por qué hay dos fórmulas en este contraste?
+contraste-hipotesis-una-media.html,7,H3,Ejemplo resuelto
+contraste-hipotesis-una-media.html,8,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-una-media.html,9,H3,Fórmula
+contraste-hipotesis-una-media.html,10,H3,Cómo interpretar el resultado
+contraste-hipotesis-una-media.html,11,H3,Calculadoras relacionadas
+contraste-hipotesis-una-media.html,12,H3,Preguntas frecuentes
+contraste-hipotesis-una-proporcion.html,1,H1,Calculadora online de contraste de hipótesis para una proporción
+contraste-hipotesis-una-proporcion.html,2,H2,Calculadora
+contraste-hipotesis-una-proporcion.html,3,H3,Explicación breve
+contraste-hipotesis-una-proporcion.html,4,H3,Hipótesis y estadístico
+contraste-hipotesis-una-proporcion.html,5,H3,Contraste rápido
+contraste-hipotesis-una-proporcion.html,6,H3,Ejemplo resuelto
+contraste-hipotesis-una-proporcion.html,7,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-una-proporcion.html,8,H3,Fórmula
+contraste-hipotesis-una-proporcion.html,9,H3,Cómo interpretar el resultado
+contraste-hipotesis-una-proporcion.html,10,H3,Calculadoras relacionadas
+contraste-hipotesis-una-proporcion.html,11,H3,Preguntas frecuentes
+contraste-hipotesis-varianzas.html,1,H1,Calculadora de contrastes sobre varianzas
+contraste-hipotesis-varianzas.html,2,H2,Calculadora
+contraste-hipotesis-varianzas.html,3,H3,Explicación breve
+contraste-hipotesis-varianzas.html,4,H3,Hipótesis y estadístico
+contraste-hipotesis-varianzas.html,5,H3,Contraste rápido
+contraste-hipotesis-varianzas.html,6,H3,Ejemplo resuelto
+contraste-hipotesis-varianzas.html,7,H3,¿Qué calcula esta herramienta?
+contraste-hipotesis-varianzas.html,8,H3,Fórmula
+contraste-hipotesis-varianzas.html,9,H3,Cómo interpretar el resultado
+contraste-hipotesis-varianzas.html,10,H3,Calculadoras relacionadas
+contraste-hipotesis-varianzas.html,11,H3,Preguntas frecuentes
+contraste-independencia-chi-cuadrado.html,1,H1,Calculadora de chi-cuadrado de independencia
+contraste-independencia-chi-cuadrado.html,2,H2,Calculadora
+contraste-independencia-chi-cuadrado.html,3,H3,Explicación breve
+contraste-independencia-chi-cuadrado.html,4,H3,Hipótesis y estadístico
+contraste-independencia-chi-cuadrado.html,5,H3,Contraste rápido
+contraste-independencia-chi-cuadrado.html,6,H3,Ejemplo resuelto
+contraste-independencia-chi-cuadrado.html,7,H3,¿Qué calcula esta herramienta?
+contraste-independencia-chi-cuadrado.html,8,H3,Fórmula
+contraste-independencia-chi-cuadrado.html,9,H3,Cómo interpretar el resultado
+contraste-independencia-chi-cuadrado.html,10,H3,Calculadoras relacionadas
+contraste-independencia-chi-cuadrado.html,11,H3,Preguntas frecuentes
+exponential.html,1,H1,Calculadora de distribución exponencial
+exponential.html,2,H2,Configuración
+exponential.html,3,H2,Resultado y visualización
+exponential.html,4,H3,Distribución exponencial
+exponential.html,5,H3,Explicación breve
+exponential.html,6,H3,Fórmula
+exponential.html,7,H3,Parámetros
+exponential.html,8,H3,Ejemplo resuelto
+exponential.html,9,H3,¿Qué calcula esta herramienta?
+exponential.html,10,H3,Cómo interpretar el resultado
+exponential.html,11,H3,Calculadoras relacionadas
+exponential.html,12,H3,Preguntas frecuentes
+gamma.html,1,H1,Distribución Gamma
+gamma.html,2,H2,Configuración
+gamma.html,3,H2,Resultado y visualización
+gamma.html,4,H3,Distribución gamma
+gamma.html,5,H3,Explicación breve
+gamma.html,6,H3,Fórmula
+gamma.html,7,H3,Parámetros
+gamma.html,8,H3,Ejemplo resuelto
+gamma.html,9,H3,¿Qué calcula esta herramienta?
+gamma.html,10,H3,Cómo interpretar el resultado
+gamma.html,11,H3,Calculadoras relacionadas
+gamma.html,12,H3,Preguntas frecuentes
+geometric.html,1,H1,Distribución Geométrica
+geometric.html,2,H2,Configuración
+geometric.html,3,H2,Resultado y visualización
+geometric.html,4,H3,Distribución geométrica
+geometric.html,5,H3,Explicación breve
+geometric.html,6,H3,Fórmula
+geometric.html,7,H3,Parámetros
+geometric.html,8,H3,Ejemplo resuelto
+geometric.html,9,H3,¿Qué calcula esta herramienta?
+geometric.html,10,H3,Cómo interpretar el resultado
+geometric.html,11,H3,Calculadoras relacionadas
+geometric.html,12,H3,Preguntas frecuentes
+hypergeometric.html,1,H1,Distribución Hipergeométrica
+hypergeometric.html,2,H2,Configuración
+hypergeometric.html,3,H2,Resultado y visualización
+hypergeometric.html,4,H3,Distribución hipergeométrica
+hypergeometric.html,5,H3,Explicación breve
+hypergeometric.html,6,H3,Fórmula
+hypergeometric.html,7,H3,Parámetros
+hypergeometric.html,8,H3,Ejemplo resuelto
+hypergeometric.html,9,H3,¿Qué calcula esta herramienta?
+hypergeometric.html,10,H3,Cómo interpretar el resultado
+hypergeometric.html,11,H3,Calculadoras relacionadas
+hypergeometric.html,12,H3,Preguntas frecuentes
+intervalo-confianza-diferencia-medias.html,1,H1,Intervalo de confianza para la diferencia de medias
+intervalo-confianza-diferencia-medias.html,2,H2,Calculadora
+intervalo-confianza-diferencia-medias.html,3,H3,Explicación breve
+intervalo-confianza-diferencia-medias.html,4,H3,Varianzas iguales (pooled)
+intervalo-confianza-diferencia-medias.html,5,H3,Varianzas distintas (Welch)
+intervalo-confianza-diferencia-medias.html,6,H3,Ejemplo resuelto
+intervalo-confianza-diferencia-medias.html,7,H3,Supuestos para la diferencia de medias independientes
+intervalo-confianza-diferencia-medias.html,8,H3,¿Varianzas iguales o distintas?
+intervalo-confianza-diferencia-medias.html,9,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-diferencia-medias.html,10,H3,Calculadoras relacionadas
+intervalo-confianza-diferencia-medias.html,11,H3,Preguntas frecuentes
+intervalo-confianza-diferencia-proporciones.html,1,H1,Intervalo de confianza para la diferencia de proporciones
+intervalo-confianza-diferencia-proporciones.html,2,H2,Calculadora
+intervalo-confianza-diferencia-proporciones.html,3,H3,Explicación breve
+intervalo-confianza-diferencia-proporciones.html,4,H3,Método de Wald (aproximación normal)
+intervalo-confianza-diferencia-proporciones.html,5,H3,Método de Newcombe-Wilson (recomendado)
+intervalo-confianza-diferencia-proporciones.html,6,H3,Ejemplo resuelto
+intervalo-confianza-diferencia-proporciones.html,7,H3,Supuestos para comparar dos proporciones
+intervalo-confianza-diferencia-proporciones.html,8,H3,¿Wald o Newcombe-Wilson?
+intervalo-confianza-diferencia-proporciones.html,9,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-diferencia-proporciones.html,10,H3,Calculadoras relacionadas
+intervalo-confianza-diferencia-proporciones.html,11,H3,Preguntas frecuentes
+intervalo-confianza-diferencia-proporciones.html,12,H3,Referencias usadas
+intervalo-confianza-media-poblacion-finita.html,1,H1,Intervalo de confianza para una media (población finita)
+intervalo-confianza-media-poblacion-finita.html,2,H2,Calculadora
+intervalo-confianza-media-poblacion-finita.html,3,H3,Explicación breve
+intervalo-confianza-media-poblacion-finita.html,4,H3,Fórmula del IC con FPC
+intervalo-confianza-media-poblacion-finita.html,5,H3,Cuándo el FPC es importante
+intervalo-confianza-media-poblacion-finita.html,6,H3,Ejemplo resuelto
+intervalo-confianza-media-poblacion-finita.html,7,H3,Supuestos del modelo
+intervalo-confianza-media-poblacion-finita.html,8,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-media-poblacion-finita.html,9,H3,Cómo interpretar el resultado
+intervalo-confianza-media-poblacion-finita.html,10,H3,Calculadoras relacionadas
+intervalo-confianza-media-poblacion-finita.html,11,H3,Referencias
+intervalo-confianza-media-sigma-conocida.html,1,H1,Intervalo de confianza para una media (σ conocida)
+intervalo-confianza-media-sigma-conocida.html,2,H2,Calculadora
+intervalo-confianza-media-sigma-conocida.html,3,H3,Explicación breve
+intervalo-confianza-media-sigma-conocida.html,4,H3,Fórmula
+intervalo-confianza-media-sigma-conocida.html,5,H3,Valores críticos z habituales
+intervalo-confianza-media-sigma-conocida.html,6,H3,Ejemplo resuelto
+intervalo-confianza-media-sigma-conocida.html,7,H3,Supuestos del intervalo z
+intervalo-confianza-media-sigma-conocida.html,8,H3,Cómo interpretar el resultado
+intervalo-confianza-media-sigma-conocida.html,9,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-media-sigma-conocida.html,10,H3,Cuándo usar este intervalo
+intervalo-confianza-media-sigma-conocida.html,11,H3,Calculadoras relacionadas
+intervalo-confianza-media-sigma-conocida.html,12,H3,Preguntas frecuentes
+intervalo-confianza-media.html,1,H1,Intervalo de confianza para una media (σ desconocida)
+intervalo-confianza-media.html,2,H2,Calculadora
+intervalo-confianza-media.html,3,H3,Explicación breve
+intervalo-confianza-media.html,4,H3,Fórmula
+intervalo-confianza-media.html,5,H3,Ejemplo resuelto
+intervalo-confianza-media.html,6,H3,Supuestos del intervalo t
+intervalo-confianza-media.html,7,H3,Cómo interpretar el resultado
+intervalo-confianza-media.html,8,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-media.html,9,H3,Ejemplo resuelto: intervalo para una media
+intervalo-confianza-media.html,10,H3,Calculadoras relacionadas
+intervalo-confianza-media.html,11,H3,Preguntas frecuentes
+intervalo-confianza-medias-apareadas.html,1,H1,Intervalo de confianza para medias apareadas
+intervalo-confianza-medias-apareadas.html,2,H2,Calculadora
+intervalo-confianza-medias-apareadas.html,3,H3,Explicación breve
+intervalo-confianza-medias-apareadas.html,4,H3,Fórmula
+intervalo-confianza-medias-apareadas.html,5,H3,Ejemplo resuelto
+intervalo-confianza-medias-apareadas.html,6,H3,Supuestos para medias apareadas
+intervalo-confianza-medias-apareadas.html,7,H3,¿En qué se diferencia del IC para diferencia de medias independientes?
+intervalo-confianza-medias-apareadas.html,8,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-medias-apareadas.html,9,H3,Calculadoras relacionadas
+intervalo-confianza-medias-apareadas.html,10,H3,Preguntas frecuentes
+intervalo-confianza-medias-apareadas.html,11,H3,Referencias usadas
+intervalo-confianza-odds-ratio.html,1,H1,Intervalo de confianza para odds ratio
+intervalo-confianza-odds-ratio.html,2,H2,Calculadora
+intervalo-confianza-odds-ratio.html,3,H3,Explicación breve
+intervalo-confianza-odds-ratio.html,4,H3,Método logarítmico de Woolf
+intervalo-confianza-odds-ratio.html,5,H3,Corrección de Haldane-Anscombe
+intervalo-confianza-odds-ratio.html,6,H3,Ejemplo resuelto
+intervalo-confianza-odds-ratio.html,7,H3,Supuestos para el IC de odds ratio
+intervalo-confianza-odds-ratio.html,8,H3,¿En qué se diferencia del IC para ratio de proporciones?
+intervalo-confianza-odds-ratio.html,9,H3,Cómo interpretar el intervalo
+intervalo-confianza-odds-ratio.html,10,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-odds-ratio.html,11,H3,Calculadoras relacionadas
+intervalo-confianza-odds-ratio.html,12,H3,Preguntas frecuentes
+intervalo-confianza-odds-ratio.html,13,H3,Referencias usadas
+intervalo-confianza-proporcion-poblacion-finita.html,1,H1,Intervalo de confianza para una proporción (población finita)
+intervalo-confianza-proporcion-poblacion-finita.html,2,H2,Calculadora
+intervalo-confianza-proporcion-poblacion-finita.html,3,H3,Explicación breve
+intervalo-confianza-proporcion-poblacion-finita.html,4,H3,Fórmula del IC con FPC
+intervalo-confianza-proporcion-poblacion-finita.html,5,H3,Cuándo el FPC es importante
+intervalo-confianza-proporcion-poblacion-finita.html,6,H3,Ejemplo resuelto
+intervalo-confianza-proporcion-poblacion-finita.html,7,H3,Supuestos del modelo
+intervalo-confianza-proporcion-poblacion-finita.html,8,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-proporcion-poblacion-finita.html,9,H3,Cómo interpretar el resultado
+intervalo-confianza-proporcion-poblacion-finita.html,10,H3,Calculadoras relacionadas
+intervalo-confianza-proporcion-poblacion-finita.html,11,H3,Referencias
+intervalo-confianza-proporcion.html,1,H1,Intervalo de confianza para una proporción
+intervalo-confianza-proporcion.html,2,H2,Calculadora
+intervalo-confianza-proporcion.html,3,H3,Explicación breve
+intervalo-confianza-proporcion.html,4,H3,Método de Wald (aproximación normal)
+intervalo-confianza-proporcion.html,5,H3,"Método de Wilson (score, recomendado)"
+intervalo-confianza-proporcion.html,6,H3,Ejemplo resuelto
+intervalo-confianza-proporcion.html,7,H3,Supuestos para el IC de una proporción
+intervalo-confianza-proporcion.html,8,H3,Diferencias entre Wald y Wilson
+intervalo-confianza-proporcion.html,9,H3,¿Cuándo usar cada método?
+intervalo-confianza-proporcion.html,10,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-proporcion.html,11,H3,Calculadoras relacionadas
+intervalo-confianza-proporcion.html,12,H3,Preguntas frecuentes
+intervalo-confianza-ratio-proporciones.html,1,H1,Intervalo de confianza para ratio de proporciones
+intervalo-confianza-ratio-proporciones.html,2,H2,Calculadora
+intervalo-confianza-ratio-proporciones.html,3,H3,Explicación breve
+intervalo-confianza-ratio-proporciones.html,4,H3,Método logarítmico para el ratio de proporciones
+intervalo-confianza-ratio-proporciones.html,5,H3,Corrección para celdas cero
+intervalo-confianza-ratio-proporciones.html,6,H3,Ejemplo resuelto
+intervalo-confianza-ratio-proporciones.html,7,H3,Supuestos para el ratio de proporciones
+intervalo-confianza-ratio-proporciones.html,8,H3,¿En qué se diferencia del IC para odds ratio?
+intervalo-confianza-ratio-proporciones.html,9,H3,Cómo interpretar el intervalo
+intervalo-confianza-ratio-proporciones.html,10,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-ratio-proporciones.html,11,H3,Calculadoras relacionadas
+intervalo-confianza-ratio-proporciones.html,12,H3,Preguntas frecuentes
+intervalo-confianza-ratio-proporciones.html,13,H3,Referencias usadas
+intervalo-confianza-varianza.html,1,H1,Intervalo de confianza para una varianza
+intervalo-confianza-varianza.html,2,H2,Calculadora
+intervalo-confianza-varianza.html,3,H3,Explicación breve
+intervalo-confianza-varianza.html,4,H3,Fórmula para la varianza
+intervalo-confianza-varianza.html,5,H3,Fórmula para la desviación típica
+intervalo-confianza-varianza.html,6,H3,Ejemplo resuelto
+intervalo-confianza-varianza.html,7,H3,Supuestos del intervalo chi-cuadrado
+intervalo-confianza-varianza.html,8,H3,Cómo interpretar el resultado
+intervalo-confianza-varianza.html,9,H3,¿Qué calcula esta herramienta?
+intervalo-confianza-varianza.html,10,H3,Calculadoras relacionadas
+intervalo-confianza-varianza.html,11,H3,Preguntas frecuentes
+kolmogorov-smirnov-bondad-ajuste.html,1,H1,Calculadora de Kolmogorov-Smirnov de bondad de ajuste
+kolmogorov-smirnov-bondad-ajuste.html,2,H2,Calculadora
+kolmogorov-smirnov-bondad-ajuste.html,3,H3,Explicación breve
+kolmogorov-smirnov-bondad-ajuste.html,4,H3,Hipótesis y estadístico
+kolmogorov-smirnov-bondad-ajuste.html,5,H3,Contraste rápido
+kolmogorov-smirnov-bondad-ajuste.html,6,H3,Ejemplo resuelto
+kolmogorov-smirnov-bondad-ajuste.html,7,H3,¿Qué calcula esta herramienta?
+kolmogorov-smirnov-bondad-ajuste.html,8,H3,Fórmula
+kolmogorov-smirnov-bondad-ajuste.html,9,H3,Cómo interpretar el resultado
+kolmogorov-smirnov-bondad-ajuste.html,10,H3,Calculadoras relacionadas
+kolmogorov-smirnov-bondad-ajuste.html,11,H3,Preguntas frecuentes
+lognormal.html,1,H1,Distribución Log-normal
+lognormal.html,2,H2,Configuración
+lognormal.html,3,H2,Resultado y visualización
+lognormal.html,4,H3,Distribución log-normal
+lognormal.html,5,H3,Explicación breve
+lognormal.html,6,H3,Fórmula
+lognormal.html,7,H3,Parámetros
+lognormal.html,8,H3,Ejemplo resuelto
+lognormal.html,9,H3,¿Qué calcula esta herramienta?
+lognormal.html,10,H3,Cómo interpretar el resultado
+lognormal.html,11,H3,Calculadoras relacionadas
+lognormal.html,12,H3,Preguntas frecuentes
+negbin.html,1,H1,Calculadora binomial negativa online
+negbin.html,2,H2,Configuración
+negbin.html,3,H2,Resultado y visualización
+negbin.html,4,H3,Distribución binomial negativa
+negbin.html,5,H3,Explicación breve
+negbin.html,6,H3,Fórmula
+negbin.html,7,H3,Parámetros
+negbin.html,8,H3,Ejemplo resuelto
+negbin.html,9,H3,¿Qué calcula esta herramienta?
+negbin.html,10,H3,Cómo interpretar el resultado
+negbin.html,11,H3,Calculadoras relacionadas
+negbin.html,12,H3,Preguntas frecuentes
+normal.html,1,H1,Calculadora normal online
+normal.html,2,H2,Configuración
+normal.html,3,H2,Resultado y visualización
+normal.html,4,H3,Distribución normal
+normal.html,5,H3,Explicación breve
+normal.html,6,H3,Fórmula
+normal.html,7,H3,Parámetros
+normal.html,8,H3,Ejemplo resuelto
+normal.html,9,H3,¿Qué calcula esta herramienta?
+normal.html,10,H3,Cómo interpretar el resultado
+normal.html,11,H3,Ejemplo resuelto: probabilidad bajo una normal
+normal.html,12,H3,Calculadoras relacionadas
+normal.html,13,H3,Preguntas frecuentes
+poisson.html,1,H1,Calculadora de Poisson online
+poisson.html,2,H2,Configuración
+poisson.html,3,H2,Resultado y visualización
+poisson.html,4,H3,Distribución de Poisson
+poisson.html,5,H3,Explicación breve
+poisson.html,6,H3,Fórmula
+poisson.html,7,H3,Parámetros
+poisson.html,8,H3,Ejemplo resuelto
+poisson.html,9,H3,¿Qué calcula esta herramienta?
+poisson.html,10,H3,Cómo interpretar el resultado
+poisson.html,11,H3,Ejemplo resuelto: conteos por intervalo
+poisson.html,12,H3,Calculadoras relacionadas
+poisson.html,13,H3,Preguntas frecuentes
+shapiro-wilk-normalidad.html,1,H1,Calculadora de Shapiro–Wilk (normalidad)
+shapiro-wilk-normalidad.html,2,H2,Calculadora
+shapiro-wilk-normalidad.html,3,H3,Explicación breve
+shapiro-wilk-normalidad.html,4,H3,Hipótesis y estadístico
+shapiro-wilk-normalidad.html,5,H3,Contraste rápido
+shapiro-wilk-normalidad.html,6,H3,Ejemplo resuelto
+shapiro-wilk-normalidad.html,7,H3,¿Qué calcula esta herramienta?
+shapiro-wilk-normalidad.html,8,H3,Fórmula
+shapiro-wilk-normalidad.html,9,H3,Cómo interpretar el resultado
+shapiro-wilk-normalidad.html,10,H3,Calculadoras relacionadas
+shapiro-wilk-normalidad.html,11,H3,Preguntas frecuentes
+studentt.html,1,H1,Calculadora t de Student online
+studentt.html,2,H2,Configuración
+studentt.html,3,H2,Resultado y visualización
+studentt.html,4,H3,Distribución t de Student
+studentt.html,5,H3,Explicación breve
+studentt.html,6,H3,Fórmula
+studentt.html,7,H3,Parámetros
+studentt.html,8,H3,Ejemplo resuelto
+studentt.html,9,H3,¿Qué calcula esta herramienta?
+studentt.html,10,H3,Cómo interpretar el resultado
+studentt.html,11,H3,Calculadoras relacionadas
+studentt.html,12,H3,Preguntas frecuentes
+tamano-muestral-anova.html,1,H1,Calculadora de tamaño muestral para ANOVA
+tamano-muestral-anova.html,2,H2,Calculadora
+tamano-muestral-anova.html,3,H3,Explicación breve
+tamano-muestral-anova.html,4,H3,Fórmula y método de cálculo
+tamano-muestral-anova.html,5,H3,Cómo calcular f a partir de datos previos
+tamano-muestral-anova.html,6,H3,Configuración rápida
+tamano-muestral-anova.html,7,H3,Ejemplo resuelto
+tamano-muestral-anova.html,8,H3,Usos frecuentes
+tamano-muestral-anova.html,9,H3,Supuestos del modelo
+tamano-muestral-anova.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-anova.html,11,H3,Fórmula
+tamano-muestral-anova.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-anova.html,13,H3,Calculadoras relacionadas
+tamano-muestral-anova.html,14,H3,Referencias y lecturas adicionales
+tamano-muestral-anova.html,15,H3,Preguntas frecuentes
+tamano-muestral-chi-cuadrado-bondad.html,1,H1,Calculadora de tamaño muestral para chi-cuadrado de bondad de ajuste
+tamano-muestral-chi-cuadrado-bondad.html,2,H2,Calculadora
+tamano-muestral-chi-cuadrado-bondad.html,3,H3,Explicación breve
+tamano-muestral-chi-cuadrado-bondad.html,4,H3,Parámetro de no centralidad y potencia
+tamano-muestral-chi-cuadrado-bondad.html,5,H3,Configuración rápida
+tamano-muestral-chi-cuadrado-bondad.html,6,H3,Ejemplo resuelto
+tamano-muestral-chi-cuadrado-bondad.html,7,H3,¿Qué calcula esta herramienta?
+tamano-muestral-chi-cuadrado-bondad.html,8,H3,Cómo interpretar el resultado
+tamano-muestral-chi-cuadrado-bondad.html,9,H3,Calculadoras relacionadas
+tamano-muestral-chi-cuadrado-bondad.html,10,H3,Referencias
+tamano-muestral-chi-cuadrado-independencia.html,1,H1,Calculadora de tamaño muestral para chi-cuadrado de independencia
+tamano-muestral-chi-cuadrado-independencia.html,2,H2,Calculadora
+tamano-muestral-chi-cuadrado-independencia.html,3,H3,Explicación breve
+tamano-muestral-chi-cuadrado-independencia.html,4,H3,Parámetro de no centralidad y potencia
+tamano-muestral-chi-cuadrado-independencia.html,5,H3,W de Cohen para tablas 2×2
+tamano-muestral-chi-cuadrado-independencia.html,6,H3,Configuración rápida
+tamano-muestral-chi-cuadrado-independencia.html,7,H3,Ejemplo resuelto
+tamano-muestral-chi-cuadrado-independencia.html,8,H3,¿Qué calcula esta herramienta?
+tamano-muestral-chi-cuadrado-independencia.html,9,H3,Cómo interpretar el resultado
+tamano-muestral-chi-cuadrado-independencia.html,10,H3,Calculadoras relacionadas
+tamano-muestral-chi-cuadrado-independencia.html,11,H3,Referencias
+tamano-muestral-contraste-una-media.html,1,H1,Calculadora de tamaño muestral para contraste de una media
+tamano-muestral-contraste-una-media.html,2,H2,Calculadora
+tamano-muestral-contraste-una-media.html,3,H3,Explicación breve
+tamano-muestral-contraste-una-media.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-contraste-una-media.html,5,H3,Configuración rápida
+tamano-muestral-contraste-una-media.html,6,H3,Ejemplo resuelto
+tamano-muestral-contraste-una-media.html,7,H3,Supuestos del modelo
+tamano-muestral-contraste-una-media.html,8,H3,¿Qué calcula esta herramienta?
+tamano-muestral-contraste-una-media.html,9,H3,Cómo interpretar el resultado
+tamano-muestral-contraste-una-media.html,10,H3,Calculadoras relacionadas
+tamano-muestral-contraste-una-proporcion.html,1,H1,Calculadora de tamaño muestral para contraste de una proporción
+tamano-muestral-contraste-una-proporcion.html,2,H2,Calculadora
+tamano-muestral-contraste-una-proporcion.html,3,H3,Explicación breve
+tamano-muestral-contraste-una-proporcion.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-contraste-una-proporcion.html,5,H3,Configuración rápida
+tamano-muestral-contraste-una-proporcion.html,6,H3,Ejemplo resuelto
+tamano-muestral-contraste-una-proporcion.html,7,H3,Supuestos del modelo
+tamano-muestral-contraste-una-proporcion.html,8,H3,¿Qué calcula esta herramienta?
+tamano-muestral-contraste-una-proporcion.html,9,H3,Calculadoras relacionadas
+tamano-muestral-correlacion.html,1,H1,Calculadora de tamaño muestral para correlación de Pearson
+tamano-muestral-correlacion.html,2,H2,Calculadora
+tamano-muestral-correlacion.html,3,H3,Explicación breve
+tamano-muestral-correlacion.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-correlacion.html,5,H3,Supuestos del modelo
+tamano-muestral-correlacion.html,6,H3,Configuración rápida
+tamano-muestral-correlacion.html,7,H3,Ejemplo resuelto
+tamano-muestral-correlacion.html,8,H3,Usos frecuentes
+tamano-muestral-correlacion.html,9,H3,Referencias externas
+tamano-muestral-correlacion.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-correlacion.html,11,H3,Fórmula
+tamano-muestral-correlacion.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-correlacion.html,13,H3,Calculadoras relacionadas
+tamano-muestral-correlacion.html,14,H3,Preguntas frecuentes
+tamano-muestral-diferencia-medias.html,1,H1,Calculadora de tamaño muestral para dos medias
+tamano-muestral-diferencia-medias.html,2,H2,Calculadora
+tamano-muestral-diferencia-medias.html,3,H3,Explicación breve
+tamano-muestral-diferencia-medias.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-diferencia-medias.html,5,H3,Configuración rápida
+tamano-muestral-diferencia-medias.html,6,H3,Ejemplo resuelto
+tamano-muestral-diferencia-medias.html,7,H3,Usos frecuentes
+tamano-muestral-diferencia-medias.html,8,H3,Supuestos del modelo
+tamano-muestral-diferencia-medias.html,9,H3,¿Qué calcula esta herramienta?
+tamano-muestral-diferencia-medias.html,10,H3,Fórmula
+tamano-muestral-diferencia-medias.html,11,H3,Cómo interpretar el resultado
+tamano-muestral-diferencia-medias.html,12,H3,Calculadoras relacionadas
+tamano-muestral-diferencia-medias.html,13,H3,Referencias y lecturas adicionales
+tamano-muestral-diferencia-medias.html,14,H3,Preguntas frecuentes
+tamano-muestral-diferencia-proporciones-ic.html,1,H1,Calculadora de tamaño muestral para la diferencia de proporciones (IC)
+tamano-muestral-diferencia-proporciones-ic.html,2,H2,Calculadora
+tamano-muestral-diferencia-proporciones-ic.html,3,H3,Explicación breve
+tamano-muestral-diferencia-proporciones-ic.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-diferencia-proporciones-ic.html,5,H3,Interpretación del margen de error
+tamano-muestral-diferencia-proporciones-ic.html,6,H3,Configuración rápida
+tamano-muestral-diferencia-proporciones-ic.html,7,H3,Ejemplo resuelto
+tamano-muestral-diferencia-proporciones-ic.html,8,H3,Usos frecuentes
+tamano-muestral-diferencia-proporciones-ic.html,9,H3,Supuestos del modelo
+tamano-muestral-diferencia-proporciones-ic.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-diferencia-proporciones-ic.html,11,H3,Fórmula
+tamano-muestral-diferencia-proporciones-ic.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-diferencia-proporciones-ic.html,13,H3,Calculadoras relacionadas
+tamano-muestral-diferencia-proporciones-ic.html,14,H3,Referencias y lecturas adicionales
+tamano-muestral-diferencia-proporciones-ic.html,15,H3,Preguntas frecuentes
+tamano-muestral-dos-proporciones.html,1,H1,Calculadora de tamaño muestral para dos proporciones
+tamano-muestral-dos-proporciones.html,2,H2,Calculadora
+tamano-muestral-dos-proporciones.html,3,H3,Explicación breve
+tamano-muestral-dos-proporciones.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-dos-proporciones.html,5,H3,Configuración rápida
+tamano-muestral-dos-proporciones.html,6,H3,Ejemplo resuelto
+tamano-muestral-dos-proporciones.html,7,H3,Usos frecuentes
+tamano-muestral-dos-proporciones.html,8,H3,Supuestos del modelo
+tamano-muestral-dos-proporciones.html,9,H3,¿Qué calcula esta herramienta?
+tamano-muestral-dos-proporciones.html,10,H3,Fórmula
+tamano-muestral-dos-proporciones.html,11,H3,Cómo interpretar el resultado
+tamano-muestral-dos-proporciones.html,12,H3,Calculadoras relacionadas
+tamano-muestral-dos-proporciones.html,13,H3,Referencias y lecturas adicionales
+tamano-muestral-dos-proporciones.html,14,H3,Preguntas frecuentes
+tamano-muestral-dos-varianzas.html,1,H1,Calculadora de tamaño muestral para contraste de dos varianzas
+tamano-muestral-dos-varianzas.html,2,H2,Calculadora
+tamano-muestral-dos-varianzas.html,3,H3,Explicación breve
+tamano-muestral-dos-varianzas.html,4,H3,Fórmula de potencia exacta
+tamano-muestral-dos-varianzas.html,5,H3,Configuración rápida
+tamano-muestral-dos-varianzas.html,6,H3,Ejemplo resuelto
+tamano-muestral-dos-varianzas.html,7,H3,¿Qué calcula esta herramienta?
+tamano-muestral-dos-varianzas.html,8,H3,Cómo interpretar el resultado
+tamano-muestral-dos-varianzas.html,9,H3,Calculadoras relacionadas
+tamano-muestral-dos-varianzas.html,10,H3,Referencias
+tamano-muestral-fisher.html,1,H1,Calculadora de tamaño muestral para test exacto de Fisher (2×2)
+tamano-muestral-fisher.html,2,H2,Calculadora
+tamano-muestral-fisher.html,3,H3,Explicación breve
+tamano-muestral-fisher.html,4,H3,Fórmula
+tamano-muestral-fisher.html,5,H3,Configuración rápida
+tamano-muestral-fisher.html,6,H3,Ejemplo resuelto
+tamano-muestral-fisher.html,7,H3,¿Qué calcula esta herramienta?
+tamano-muestral-fisher.html,8,H3,Cómo interpretar el resultado
+tamano-muestral-fisher.html,9,H3,Calculadoras relacionadas
+tamano-muestral-fisher.html,10,H3,Referencias
+tamano-muestral-fisher.html,11,H3,Preguntas frecuentes
+tamano-muestral-kolmogorov-smirnov.html,1,H1,Calculadora de tamaño muestral para el test de Kolmogorov–Smirnov
+tamano-muestral-kolmogorov-smirnov.html,2,H2,Calculadora
+tamano-muestral-kolmogorov-smirnov.html,3,H3,Explicación breve
+tamano-muestral-kolmogorov-smirnov.html,4,H3,Fórmula de potencia
+tamano-muestral-kolmogorov-smirnov.html,5,H3,Configuración rápida
+tamano-muestral-kolmogorov-smirnov.html,6,H3,Ejemplo resuelto
+tamano-muestral-kolmogorov-smirnov.html,7,H3,¿Qué calcula esta herramienta?
+tamano-muestral-kolmogorov-smirnov.html,8,H3,Cómo interpretar el resultado
+tamano-muestral-kolmogorov-smirnov.html,9,H3,Calculadoras relacionadas
+tamano-muestral-kolmogorov-smirnov.html,10,H3,Referencias
+tamano-muestral-media-poblacion-finita.html,1,H1,Calculadora de tamaño muestral para media en población finita
+tamano-muestral-media-poblacion-finita.html,2,H2,Calculadora
+tamano-muestral-media-poblacion-finita.html,3,H3,Explicación breve
+tamano-muestral-media-poblacion-finita.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-media-poblacion-finita.html,5,H3,Configuración rápida
+tamano-muestral-media-poblacion-finita.html,6,H3,Ejemplo resuelto
+tamano-muestral-media-poblacion-finita.html,7,H3,Usos frecuentes
+tamano-muestral-media-poblacion-finita.html,8,H3,Supuestos del modelo
+tamano-muestral-media-poblacion-finita.html,9,H3,¿Qué calcula esta herramienta?
+tamano-muestral-media-poblacion-finita.html,10,H3,Fórmula
+tamano-muestral-media-poblacion-finita.html,11,H3,Cómo interpretar el resultado
+tamano-muestral-media-poblacion-finita.html,12,H3,Calculadoras relacionadas
+tamano-muestral-media-poblacion-finita.html,13,H3,Referencias y lecturas adicionales
+tamano-muestral-media-poblacion-finita.html,14,H3,Preguntas frecuentes
+tamano-muestral-medias-apareadas-ic.html,1,H1,Calculadora de tamaño muestral para medias apareadas (IC)
+tamano-muestral-medias-apareadas-ic.html,2,H2,Calculadora
+tamano-muestral-medias-apareadas-ic.html,3,H3,Explicación breve
+tamano-muestral-medias-apareadas-ic.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-medias-apareadas-ic.html,5,H3,"Relación entre σ_d, E y n"
+tamano-muestral-medias-apareadas-ic.html,6,H3,Configuración rápida
+tamano-muestral-medias-apareadas-ic.html,7,H3,Ejemplo resuelto
+tamano-muestral-medias-apareadas-ic.html,8,H3,Usos frecuentes
+tamano-muestral-medias-apareadas-ic.html,9,H3,Supuestos del modelo
+tamano-muestral-medias-apareadas-ic.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-medias-apareadas-ic.html,11,H3,Fórmula
+tamano-muestral-medias-apareadas-ic.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-medias-apareadas-ic.html,13,H3,Calculadoras relacionadas
+tamano-muestral-medias-apareadas-ic.html,14,H3,Referencias y lecturas adicionales
+tamano-muestral-medias-apareadas-ic.html,15,H3,Preguntas frecuentes
+tamano-muestral-medias-apareadas.html,1,H1,Calculadora de tamaño muestral para medias apareadas
+tamano-muestral-medias-apareadas.html,2,H2,Calculadora
+tamano-muestral-medias-apareadas.html,3,H3,Explicación breve
+tamano-muestral-medias-apareadas.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-medias-apareadas.html,5,H3,Configuración rápida
+tamano-muestral-medias-apareadas.html,6,H3,Ejemplo resuelto
+tamano-muestral-medias-apareadas.html,7,H3,Usos frecuentes
+tamano-muestral-medias-apareadas.html,8,H3,Supuestos del modelo
+tamano-muestral-medias-apareadas.html,9,H3,¿Qué calcula esta herramienta?
+tamano-muestral-medias-apareadas.html,10,H3,Fórmula
+tamano-muestral-medias-apareadas.html,11,H3,Cómo interpretar el resultado
+tamano-muestral-medias-apareadas.html,12,H3,Calculadoras relacionadas
+tamano-muestral-medias-apareadas.html,13,H3,Referencias y lecturas adicionales
+tamano-muestral-medias-apareadas.html,14,H3,Preguntas frecuentes
+tamano-muestral-no-inferioridad.html,1,H1,Calculadora de tamaño muestral para no inferioridad y equivalencia
+tamano-muestral-no-inferioridad.html,2,H2,Calculadora
+tamano-muestral-no-inferioridad.html,3,H3,Explicación breve
+tamano-muestral-no-inferioridad.html,4,H3,Fórmulas
+tamano-muestral-no-inferioridad.html,5,H3,Supuestos del modelo
+tamano-muestral-no-inferioridad.html,6,H3,Configuración rápida
+tamano-muestral-no-inferioridad.html,7,H3,Ejemplo resuelto
+tamano-muestral-no-inferioridad.html,8,H3,Usos frecuentes
+tamano-muestral-no-inferioridad.html,9,H3,Referencias externas
+tamano-muestral-no-inferioridad.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-no-inferioridad.html,11,H3,Fórmula
+tamano-muestral-no-inferioridad.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-no-inferioridad.html,13,H3,Calculadoras relacionadas
+tamano-muestral-no-inferioridad.html,14,H3,Preguntas frecuentes
+tamano-muestral-odds-ratio-ic.html,1,H1,Calculadora de tamaño muestral para odds ratio (IC)
+tamano-muestral-odds-ratio-ic.html,2,H2,Calculadora
+tamano-muestral-odds-ratio-ic.html,3,H3,Explicación breve
+tamano-muestral-odds-ratio-ic.html,4,H3,Fórmulas
+tamano-muestral-odds-ratio-ic.html,5,H3,Cómo interpretar E_log
+tamano-muestral-odds-ratio-ic.html,6,H3,Configuración rápida
+tamano-muestral-odds-ratio-ic.html,7,H3,Ejemplo resuelto
+tamano-muestral-odds-ratio-ic.html,8,H3,Usos frecuentes
+tamano-muestral-odds-ratio-ic.html,9,H3,Supuestos del modelo
+tamano-muestral-odds-ratio-ic.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-odds-ratio-ic.html,11,H3,Fórmula
+tamano-muestral-odds-ratio-ic.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-odds-ratio-ic.html,13,H3,Calculadoras relacionadas
+tamano-muestral-odds-ratio-ic.html,14,H3,Referencias y lecturas adicionales
+tamano-muestral-odds-ratio-ic.html,15,H3,Preguntas frecuentes
+tamano-muestral-odds-ratio.html,1,H1,Calculadora de tamaño muestral para odds ratio (caso-control)
+tamano-muestral-odds-ratio.html,2,H2,Calculadora
+tamano-muestral-odds-ratio.html,3,H3,Explicación breve
+tamano-muestral-odds-ratio.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-odds-ratio.html,5,H3,Supuestos del modelo
+tamano-muestral-odds-ratio.html,6,H3,Configuración rápida
+tamano-muestral-odds-ratio.html,7,H3,Ejemplo resuelto
+tamano-muestral-odds-ratio.html,8,H3,Usos frecuentes
+tamano-muestral-odds-ratio.html,9,H3,Referencias externas
+tamano-muestral-odds-ratio.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-odds-ratio.html,11,H3,Fórmula
+tamano-muestral-odds-ratio.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-odds-ratio.html,13,H3,Calculadoras relacionadas
+tamano-muestral-odds-ratio.html,14,H3,Preguntas frecuentes
+tamano-muestral-proporcion-poblacion-finita.html,1,H1,Calculadora de tamaño muestral para proporción en población finita
+tamano-muestral-proporcion-poblacion-finita.html,2,H2,Calculadora
+tamano-muestral-proporcion-poblacion-finita.html,3,H3,Explicación breve
+tamano-muestral-proporcion-poblacion-finita.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-proporcion-poblacion-finita.html,5,H3,Efecto del factor de corrección
+tamano-muestral-proporcion-poblacion-finita.html,6,H3,Configuración rápida
+tamano-muestral-proporcion-poblacion-finita.html,7,H3,Ejemplo resuelto
+tamano-muestral-proporcion-poblacion-finita.html,8,H3,Usos frecuentes
+tamano-muestral-proporcion-poblacion-finita.html,9,H3,Supuestos del modelo
+tamano-muestral-proporcion-poblacion-finita.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-proporcion-poblacion-finita.html,11,H3,Fórmula
+tamano-muestral-proporcion-poblacion-finita.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-proporcion-poblacion-finita.html,13,H3,Calculadoras relacionadas
+tamano-muestral-proporcion-poblacion-finita.html,14,H3,Referencias y lecturas adicionales
+tamano-muestral-proporcion-poblacion-finita.html,15,H3,Preguntas frecuentes
+tamano-muestral-proporciones-apareadas.html,1,H1,Calculadora de tamaño muestral para proporciones apareadas
+tamano-muestral-proporciones-apareadas.html,2,H2,Calculadora
+tamano-muestral-proporciones-apareadas.html,3,H3,Explicación breve
+tamano-muestral-proporciones-apareadas.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-proporciones-apareadas.html,5,H3,Configuración rápida
+tamano-muestral-proporciones-apareadas.html,6,H3,Ejemplo resuelto
+tamano-muestral-proporciones-apareadas.html,7,H3,Usos frecuentes
+tamano-muestral-proporciones-apareadas.html,8,H3,Supuestos del modelo
+tamano-muestral-proporciones-apareadas.html,9,H3,¿Qué calcula esta herramienta?
+tamano-muestral-proporciones-apareadas.html,10,H3,Fórmula
+tamano-muestral-proporciones-apareadas.html,11,H3,Cómo interpretar el resultado
+tamano-muestral-proporciones-apareadas.html,12,H3,Calculadoras relacionadas
+tamano-muestral-proporciones-apareadas.html,13,H3,Referencias y lecturas adicionales
+tamano-muestral-proporciones-apareadas.html,14,H3,Preguntas frecuentes
+tamano-muestral-shapiro-wilk.html,1,H1,Calculadora de tamaño muestral para el test de Shapiro–Wilk
+tamano-muestral-shapiro-wilk.html,2,H2,Calculadora
+tamano-muestral-shapiro-wilk.html,3,H3,Explicación breve
+tamano-muestral-shapiro-wilk.html,4,H3,Fórmula de potencia (aproximación Jarque–Bera)
+tamano-muestral-shapiro-wilk.html,5,H3,Distribuciones de referencia
+tamano-muestral-shapiro-wilk.html,6,H3,Configuración rápida
+tamano-muestral-shapiro-wilk.html,7,H3,Ejemplo resuelto
+tamano-muestral-shapiro-wilk.html,8,H3,¿Qué calcula esta herramienta?
+tamano-muestral-shapiro-wilk.html,9,H3,Cómo interpretar el resultado
+tamano-muestral-shapiro-wilk.html,10,H3,Calculadoras relacionadas
+tamano-muestral-shapiro-wilk.html,11,H3,Referencias
+tamano-muestral-shapiro-wilk.html,12,H3,Preguntas frecuentes
+tamano-muestral-una-media.html,1,H1,Calculadora de tamaño muestral para una media
+tamano-muestral-una-media.html,2,H2,Calculadora
+tamano-muestral-una-media.html,3,H3,Explicación breve
+tamano-muestral-una-media.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-una-media.html,5,H3,"Relación entre σ, E y n"
+tamano-muestral-una-media.html,6,H3,Configuración rápida
+tamano-muestral-una-media.html,7,H3,Ejemplo resuelto
+tamano-muestral-una-media.html,8,H3,Usos frecuentes
+tamano-muestral-una-media.html,9,H3,Supuestos del modelo
+tamano-muestral-una-media.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-una-media.html,11,H3,Fórmula
+tamano-muestral-una-media.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-una-media.html,13,H3,Calculadoras relacionadas
+tamano-muestral-una-media.html,14,H3,Referencias y lecturas adicionales
+tamano-muestral-una-media.html,15,H3,Preguntas frecuentes
+tamano-muestral-una-proporcion.html,1,H1,Calculadora de tamaño muestral para una proporción
+tamano-muestral-una-proporcion.html,2,H2,Calculadora
+tamano-muestral-una-proporcion.html,3,H3,Explicación breve
+tamano-muestral-una-proporcion.html,4,H3,Fórmula de tamaño muestral
+tamano-muestral-una-proporcion.html,5,H3,Interpretación del margen de error
+tamano-muestral-una-proporcion.html,6,H3,Configuración rápida
+tamano-muestral-una-proporcion.html,7,H3,Ejemplo resuelto
+tamano-muestral-una-proporcion.html,8,H3,Usos frecuentes
+tamano-muestral-una-proporcion.html,9,H3,Supuestos del modelo
+tamano-muestral-una-proporcion.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-una-proporcion.html,11,H3,Fórmula
+tamano-muestral-una-proporcion.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-una-proporcion.html,13,H3,Calculadoras relacionadas
+tamano-muestral-una-proporcion.html,14,H3,Referencias y lecturas adicionales
+tamano-muestral-una-proporcion.html,15,H3,Preguntas frecuentes
+tamano-muestral-una-varianza.html,1,H1,Calculadora de tamaño muestral para contraste de una varianza
+tamano-muestral-una-varianza.html,2,H2,Calculadora
+tamano-muestral-una-varianza.html,3,H3,Explicación breve
+tamano-muestral-una-varianza.html,4,H3,Fórmula de potencia exacta
+tamano-muestral-una-varianza.html,5,H3,Configuración rápida
+tamano-muestral-una-varianza.html,6,H3,Ejemplo resuelto
+tamano-muestral-una-varianza.html,7,H3,¿Qué calcula esta herramienta?
+tamano-muestral-una-varianza.html,8,H3,Cómo interpretar el resultado
+tamano-muestral-una-varianza.html,9,H3,Calculadoras relacionadas
+tamano-muestral-una-varianza.html,10,H3,Referencias
+tamano-muestral-varianza-ic.html,1,H1,Calculadora de tamaño muestral para la varianza (IC)
+tamano-muestral-varianza-ic.html,2,H2,Calculadora
+tamano-muestral-varianza-ic.html,3,H3,Explicación breve
+tamano-muestral-varianza-ic.html,4,H3,Fórmula del cociente U/L
+tamano-muestral-varianza-ic.html,5,H3,Interpretación del cociente U/L
+tamano-muestral-varianza-ic.html,6,H3,Configuración rápida
+tamano-muestral-varianza-ic.html,7,H3,Ejemplo resuelto
+tamano-muestral-varianza-ic.html,8,H3,Usos frecuentes
+tamano-muestral-varianza-ic.html,9,H3,Supuestos del modelo
+tamano-muestral-varianza-ic.html,10,H3,¿Qué calcula esta herramienta?
+tamano-muestral-varianza-ic.html,11,H3,Fórmula
+tamano-muestral-varianza-ic.html,12,H3,Cómo interpretar el resultado
+tamano-muestral-varianza-ic.html,13,H3,Calculadoras relacionadas
+tamano-muestral-varianza-ic.html,14,H3,Referencias y lecturas adicionales
+tamano-muestral-varianza-ic.html,15,H3,Preguntas frecuentes
+test-exacto-fisher.html,1,H1,Calculadora del test exacto de Fisher (2×2)
+test-exacto-fisher.html,2,H2,Calculadora
+test-exacto-fisher.html,3,H3,Explicación breve
+test-exacto-fisher.html,4,H3,Hipótesis y estadístico
+test-exacto-fisher.html,5,H3,Contraste rápido
+test-exacto-fisher.html,6,H3,Ejemplo resuelto
+test-exacto-fisher.html,7,H3,¿Qué calcula esta herramienta?
+test-exacto-fisher.html,8,H3,Fórmula
+test-exacto-fisher.html,9,H3,Cómo interpretar el resultado
+test-exacto-fisher.html,10,H3,Calculadoras relacionadas
+test-exacto-fisher.html,11,H3,Preguntas frecuentes
+uniform.html,1,H1,Distribución Uniforme
+uniform.html,2,H2,Configuración
+uniform.html,3,H2,Resultado y visualización
+uniform.html,4,H3,Distribución uniforme
+uniform.html,5,H3,Explicación breve
+uniform.html,6,H3,Fórmula
+uniform.html,7,H3,Parámetros
+uniform.html,8,H3,Ejemplo resuelto
+uniform.html,9,H3,¿Qué calcula esta herramienta?
+uniform.html,10,H3,Cómo interpretar el resultado
+uniform.html,11,H3,Calculadoras relacionadas
+uniform.html,12,H3,Preguntas frecuentes
+weibull.html,1,H1,Distribución Weibull
+weibull.html,2,H2,Configuración
+weibull.html,3,H2,Resultado y visualización
+weibull.html,4,H3,Distribución Weibull
+weibull.html,5,H3,Explicación breve
+weibull.html,6,H3,Fórmula
+weibull.html,7,H3,Parámetros
+weibull.html,8,H3,Ejemplo resuelto
+weibull.html,9,H3,¿Qué calcula esta herramienta?
+weibull.html,10,H3,Cómo interpretar el resultado
+weibull.html,11,H3,Calculadoras relacionadas
+weibull.html,12,H3,Preguntas frecuentes

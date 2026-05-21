@@ -211,7 +211,8 @@
                 <li><strong>Pérdidas:</strong> divide n por (1 − tasa de abandono esperada).</li>
             </ul>
 
-            <h3>Ejemplo sencillo</h3>
+            <h3>Ejemplo resuelto</h3>
+
             <p>Comparas conversión entre dos campañas: <strong>p1 = 0,50</strong>, <strong>p2 = 0,40</strong>, <strong>α = 0,05</strong>, potencia <strong>0,80</strong>, asignación 1:1. Resultado: aproximadamente <strong>387 participantes por grupo</strong> (total ≈ 774).</p>
 
             <h3>Usos frecuentes</h3>
@@ -232,8 +233,8 @@
         </section>
 
         <section class="card content-card">
-            <h3>Ejemplo resuelto</h3>
-            <p>Una empresa de comercio digital quiere comparar la tasa de conversión de dos versiones de su página de producto. El diseño A (actual) tiene una conversión de \(p_1 = 0{,}12\) (12 %), y se espera que el diseño B (nuevo) alcance \(p_2 = 0{,}16\) (16 %). Se quiere detectar esta diferencia de 4 puntos porcentuales con una potencia del 80 % (\(z_\beta = 0{,}842\)) y un nivel de significación \(\alpha = 0{,}05\) bilateral (\(z_{\alpha/2} = 1{,}960\)), con asignación 1:1 (\(k = 1\)).</p>
+
+<p>Una empresa de comercio digital quiere comparar la tasa de conversión de dos versiones de su página de producto. El diseño A (actual) tiene una conversión de \(p_1 = 0{,}12\) (12 %), y se espera que el diseño B (nuevo) alcance \(p_2 = 0{,}16\) (16 %). Se quiere detectar esta diferencia de 4 puntos porcentuales con una potencia del 80 % (\(z_\beta = 0{,}842\)) y un nivel de significación \(\alpha = 0{,}05\) bilateral (\(z_{\alpha/2} = 1{,}960\)), con asignación 1:1 (\(k = 1\)).</p>
             <p>Calculamos primero la proporción ponderada bajo \(H_0\) con \(k=1\): \(\bar{p} = (p_1 + p_2)/2 = (0{,}12 + 0{,}16)/2 = 0{,}14\). A continuación aplicamos la fórmula de Fleiss:</p>
             <p class="formula-line">\( n_1 = \frac{\left(z_{\alpha/2}\sqrt{2\,\bar{p}(1-\bar{p})} + z_\beta\sqrt{p_1(1-p_1)+p_2(1-p_2)}\right)^2}{(p_1-p_2)^2} \)</p>
             <p>Sustituyendo: el término bajo la raíz del primer sumando es \(2 \times 0{,}14 \times 0{,}86 = 0{,}2408\), luego \(\sqrt{0{,}2408} = 0{,}4907\). El término bajo la raíz del segundo es \(0{,}12 \times 0{,}88 + 0{,}16 \times 0{,}84 = 0{,}1056 + 0{,}1344 = 0{,}2400\), luego \(\sqrt{0{,}2400} = 0{,}4899\). Por tanto:</p>
@@ -247,9 +248,9 @@
             <p>Calcula el tamaño muestral por grupo para detectar una diferencia entre dos proporciones independientes con potencia y nivel de significación especificados, usando la fórmula de Fleiss, Levin y Paik (2003).</p>
             <h3>Fórmula utilizada</h3>
             <p>La fórmula de Fleiss es más precisa que la aproximación de Cohen porque modela la varianza bajo H1 de cada grupo por separado. El denominador es (p1−p2)² y el numerador combina los cuantiles normales con la variabilidad ponderada.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>p1 = 0,50, p2 = 0,40, α = 0,05, potencia = 0,80, k = 1 → n por grupo ≈ 387. Subir la potencia a 0,90 eleva el n a ≈ 519 por grupo.</p>
-            <h3>Cómo interpretar el resultado</h3>
+
+<p>p1 = 0,50, p2 = 0,40, α = 0,05, potencia = 0,80, k = 1 → n por grupo ≈ 387. Subir la potencia a 0,90 eleva el n a ≈ 519 por grupo.</p>
+<h3>Cómo interpretar el resultado</h3>
             <p>El n calculado es por grupo. Multiplica por (1 + k) para el total. Si p1 y p2 son muy similares (diferencia &lt; 0,05), el n puede ser muy grande — revisa si la diferencia es prácticamente relevante.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
