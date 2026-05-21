@@ -183,7 +183,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>El test chi-cuadrado de bondad de ajuste contrasta si la distribución observada de una variable categórica se ajusta a una distribución teórica especificada \(H_0\). Con \(k\) categorías, el estadístico tiene \(df = k-1\) grados de libertad bajo \(H_0\) (asumiendo que los parámetros de la distribución teórica son conocidos).</p>
             <p>Bajo la alternativa, el estadístico sigue una distribución chi-cuadrado no central con parámetro \(\lambda = N \cdot w^2\), donde \(N\) es el tamaño muestral y \(w\) es la \(w\) de Cohen.</p>
 
@@ -211,11 +211,13 @@
             <p><strong>Verificación:</strong> N/k = 69/5 = 13,8 ≥ 5. La aproximación chi-cuadrado es adecuada.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Encuentra por búsqueda iterativa el menor \(N\) total para que el test chi-cuadrado de bondad de ajuste alcance la potencia objetivo para el efecto \(w\) y el número de categorías \(k\) especificados.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El valor obtenido es el total de observaciones necesarias. Comprueba que N/k ≥ 5 para que la aproximación sea válida; si no es así, necesitarás fusionar categorías o buscar métodos exactos.</p>
+                <p>El valor \(N\) es el <strong>total de observaciones necesarias</strong> (suma de todas las categorías) para que el test chi-cuadrado de bondad de ajuste tenga la potencia y el nivel de significación especificados. Redondea siempre hacia arriba. Si prevés que algunos registros serán descartados por errores o valores faltantes, divide \(N\) entre \((1 - \text{tasa de pérdida})\) para obtener el número de recogida real. El número de observaciones esperadas en cada categoría \(i\) bajo \(H_0\) es \(N \times p_{0i}\); verifica que todas estas frecuencias esperadas sean \(\geq 5\) para que la aproximación chi-cuadrado sea válida.</p>
+                <p>El tamaño del efecto \(w\) de Cohen cuantifica cuánto se aleja la distribución real (\(p_{1i}\)) de la distribución teórica (\(p_{0i}\)): \(w = \sqrt{\sum_i (p_{1i} - p_{0i})^2 / p_{0i}}\). Un valor \(w = 0{,}10\) es pequeño, \(w = 0{,}30\) mediano y \(w = 0{,}50\) grande. La sensibilidad del \(N\) a \(w\) es cuadrática: si el efecto real es un 30 % menor de lo especificado, \(N\) aumenta aproximadamente un 100 \% \((1/0{,}7^2 \approx 2{,}04)\). Si alguna de las proporciones teóricas \(p_{0i}\) es muy pequeña, la categoría correspondiente puede tener muy pocas observaciones esperadas; en ese caso, fusiona categorías con sentido teórico hasta alcanzar frecuencias esperadas \(\geq 5\) y recalcula los grados de libertad del test.</p>
+                <p>Cuando el \(N\) calculado resulte inviable, las palancas son: (1) aceptar un \(w\) mayor (detectar solo efectos más grandes), (2) reducir la potencia, o (3) reducir el número de categorías fusionando las más pequeñas. Si alguna frecuencia esperada cae por debajo de 5 incluso con el \(N\) calculado, recurre a pruebas exactas multinomiales. Con los datos recogidos, realiza el contraste con la <a href="chi-cuadrado-bondad-ajuste.html">calculadora de chi-cuadrado de bondad de ajuste</a> y compara los residuos estandarizados por categoría para identificar dónde se concentran las diferencias respecto a la distribución teórica.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

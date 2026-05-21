@@ -160,7 +160,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>El intervalo de confianza para la varianza \(\sigma^2\) utiliza la distribución chi-cuadrado y tiene la forma:</p>
             <p class="formula-line">\( \left[\frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}},\;\; \frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}}\right] \)</p>
             <p>A diferencia de los ICs para medias o proporciones, el ancho <em>absoluto</em> del IC para la varianza depende del valor desconocido de \(\sigma^2\), lo que impide expresar la precisión en unidades absolutas sin conocerla de antemano. La solución natural es especificar la precisión en términos relativos: el <strong>cociente \(U/L\)</strong> entre el límite superior e inferior del IC.</p>
@@ -210,15 +210,13 @@
             </ul>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Encuentra por búsqueda iterativa el menor \(n\) tal que el cociente \(\chi^2_{1-\alpha/2,n-1}/\chi^2_{\alpha/2,n-1}\) sea menor o igual al cociente U/L máximo especificado. No requiere conocer \(\sigma^2\).</p>
-            <h3>Fórmula utilizada</h3>
-            <p>Búsqueda de mínimo \(n\) tal que \(U/L = \chi^2_{1-\alpha/2,n-1}/\chi^2_{\alpha/2,n-1} \leq R\). No hay fórmula cerrada; el cálculo es iterativo con cuantiles exactos de la chi-cuadrado.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>R=2,5, 95 % → n≈39. R=2, 95 % → n≈65. R=3, 95 % → n≈28. Reducir R a la mitad aproximadamente cuadruplica la muestra necesaria.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n garantiza que el IC chi-cuadrado tendrá un cociente U/L ≤ R independientemente del valor real de σ². Comprueba que los datos son compatibles con normalidad antes de aplicar este resultado.</p>
+                <p>El valor \(n\) <strong>garantiza que el intervalo de confianza</strong> para \(\sigma^2\) basado en la distribución chi-cuadrado tendrá un cociente entre el límite superior e inferior no mayor que el valor \(R\) especificado, con el nivel de confianza elegido. Esto asegura una precisión relativa: el límite superior del IC no superará \(R\) veces el límite inferior. Redondea siempre hacia arriba. Si prevés pérdidas o exclusiones durante la recogida, divide \(n\) entre \((1 - \text{tasa de pérdida})\); con un 10 % de pérdida, recluta \(\lceil n / 0{,}90 \rceil\) unidades.</p>
+                <p>El supuesto más crítico y delicado de este método es la <strong>normalidad de los datos</strong>: el IC chi-cuadrado para \(\sigma^2\) es muy sensible a desviaciones de la normalidad, mucho más que el IC para la media. Con distribuciones asimétricas o de colas pesadas, el IC real puede tener una cobertura muy inferior al nivel nominal (p. ej., un IC del 95 % puede cubrir el verdadero \(\sigma^2\) solo el 85 % de las veces). Antes de aplicar este resultado, verifica la normalidad con el <a href="shapiro-wilk-normalidad.html">test de Shapiro-Wilk</a> o mediante Q-Q plots. La sensibilidad a \(R\): exigir un cociente \(R = 2\) (IC estrecho) requiere muchos más sujetos que \(R = 4\) (IC amplio); incrementar \(R\) en un 50 % puede reducir \(n\) a la mitad.</p>
+                <p>Si el \(n\) calculado es inviable, las alternativas son: (1) aceptar un cociente \(R\) mayor (IC más amplio), (2) reducir el nivel de confianza (p. ej., de 99 % a 95 %), o (3) si los datos no son normales, utilizar métodos de bootstrap para construir el IC de \(\sigma^2\) sin depender de la distribución chi-cuadrado. Una vez recogidos los datos, construye el IC real con la <a href="intervalo-confianza-varianza.html">calculadora de IC para la varianza</a>; si también quieres contrastar \(\sigma^2\) frente a un valor de referencia, usa la <a href="tamano-muestral-una-varianza.html">calculadora de tamaño muestral para contraste de una varianza</a>.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

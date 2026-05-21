@@ -149,7 +149,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>En un estudio <strong>caso-control</strong> el parámetro de interés no es la diferencia de medias sino el <strong>odds ratio</strong> (OR): el cociente entre las odds de exposición en casos y en controles. El OR es una medida de asociación fundamental en epidemiología, especialmente útil cuando la enfermedad es rara, porque estima el riesgo relativo con buena aproximación en ese escenario.</p>
             <p>Para calcular el tamaño muestral se convierte el OR en proporciones de exposición y se aplica la fórmula de Fleiss para dos proporciones independientes. La clave es que el OR define implícitamente la proporción de expuestos en los casos (\(p_1\)) a partir de la proporción en controles (\(p_0\)) y del OR deseado. Permite además ajustar la razón de controles por caso (r), lo que resulta útil cuando los casos son escasos y los controles abundantes.</p>
 
@@ -168,7 +168,7 @@
 
             <h3>Supuestos del modelo</h3>
             <ul>
-                <li><strong>Muestreo independiente:</strong> casos y controles se seleccionan de forma independiente, sin emparejamiento (para diseños emparejados, usar el método de McNemar).</li>
+                <li><strong>Muestreo independiente:</strong> casos y controles se seleccionan de forma independiente, sin emparejamiento (para diseños emparejados, usar el <a href="contraste-hipotesis-proporciones-apareadas.html">método de McNemar</a>).</li>
                 <li><strong>Exposición binaria:</strong> el factor de riesgo se considera expuesto/no expuesto. Para exposiciones politómicas o continuas se necesitan otros enfoques.</li>
                 <li><strong>p₀ estable:</strong> la prevalencia de exposición en controles debe ser representativa de la población fuente de los casos.</li>
                 <li><strong>OR constante:</strong> la fórmula supone un OR homogéneo; no considera interacción ni confusión residual.</li>
@@ -219,15 +219,13 @@
             <p>Si el OR a detectar fuese más pequeño, por ejemplo \(\text{OR} = 1{,}8\), la proporción en casos sería \(p_1 \approx 0{,}435\), la diferencia se reduciría y el tamaño muestral aumentaría notablemente. Esta sensibilidad al OR hace especialmente importante definir con precisión el efecto mínimo clínicamente relevante antes de calcular el tamaño de muestra.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora estima el número mínimo de casos (y controles) para detectar un odds ratio de magnitud OR en un estudio caso-control no emparejado, dados p₀, r, α y potencia.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>Se convierte el OR en proporciones de exposición (p₀ y p₁) y se aplica la fórmula exacta de dos proporciones independientes de Fleiss (versión sin corrección de continuidad).</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce p₀ = 0,30, OR = 2, α = 0,05 y potencia = 0,80 con r = 1. El resultado muestra el número de casos y controles necesarios.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n calculado es el mínimo para detectar el OR especificado. Añade un margen por pérdidas esperadas dividiendo entre (1 − tasa de no respuesta).</p>
+                <p>El valor \(n\) es el <strong>tamaño mínimo por grupo</strong> (casos y controles, o expuestos y no expuestos) para detectar el odds ratio especificado con la potencia y el nivel \(\alpha\) indicados. El total de participantes a reclutar es \(2n\) en un diseño balanceado. Redondea siempre hacia arriba y añade el margen por pérdidas: divide \(n\) entre \((1 - \text{tasa de pérdida})\) por grupo. Si el diseño es no balanceado (diferente número de casos y controles en ratio \(k\!:\!1\)), el grupo de casos necesita \(n\) y el de controles \(k \cdot n\); aumentar \(k\) más allá de 4:1 rara vez reduce sustancialmente el \(n\) total.</p>
+                <p>El OR es el parámetro de interés, pero la sensibilidad del \(n\) depende también de la probabilidad basal \(p_0\) (proporción de eventos en el grupo de referencia). Un OR dado requiere más sujetos cuando \(p_0\) es extrema (cercana a 0 o a 1) que cuando es cercana a 0,5. Realiza un <em>análisis de sensibilidad</em> variando \(p_0\) en ±0,05 y el OR en un rango razonable (\(\pm 0{,}2\) en escala natural) para evaluar la robustez del plan. Ten en cuenta que el OR es una medida de asociación relativa; para que tenga interpretación clínica, es útil traducirlo al riesgo relativo (RR) o a la diferencia de riesgos (DR) cuando la prevalencia de base es conocida.</p>
+                <p>Si el \(n\) calculado es inviable, considera si el OR mínimo detectable puede aumentarse o si la potencia puede reducirse al 80 %. En estudios de casos y controles, también puede aumentarse el ratio de controles por caso (p. ej., 2:1 o 3:1) para reducir el número de casos necesarios cuando estos son escasos. Con los datos recogidos, estima el OR y su IC con la <a href="odds-ratio.html">calculadora de odds ratio</a>; si el objetivo era estimar el OR con una precisión dada en lugar de contrastarlo, usa la <a href="tamano-muestral-odds-ratio-ic.html">calculadora de tamaño muestral para el IC del OR</a>.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

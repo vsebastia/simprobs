@@ -196,7 +196,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
 
             <p>
                 El odds ratio (OR) es la medida de asociación característica de los estudios caso-control.
@@ -218,7 +218,7 @@
                 \(\mathrm{SE} = \sqrt{1/a + 1/b + 1/c + 1/d}\), bajo \(H_0\) el estadístico
                 \(Z = \ln(\hat{\mathrm{OR}}) / \mathrm{SE}\) sigue una distribución \(N(0,1)\).
                 Esta aproximación es fiable cuando todas las frecuencias de la tabla son al menos 5;
-                con frecuencias menores se recomienda el test exacto de Fisher.
+                con frecuencias menores se recomienda el <a href="test-exacto-fisher.html">test exacto de Fisher</a>.
             </p>
 
             <h3>Hipótesis y estadístico</h3>
@@ -312,61 +312,39 @@
             </p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-
-            <p>
-                Esta calculadora de contraste de hipótesis para el odds ratio permite evaluar si la
-                asociación observada en una tabla de contingencia 2×2 de un estudio caso-control es
-                estadísticamente significativa. A partir de las cuatro frecuencias de la tabla, calcula
-                el OR, el estadístico Z sobre el logaritmo del OR, el p-valor, el intervalo de confianza
-                para el OR y el chi-cuadrado de Pearson como comprobación cruzada.
-            </p>
-
-            <h3>Fórmula utilizada</h3>
-
-            <p>
-                El estadístico de contraste se construye sobre la escala logarítmica del OR, cuya
-                distribución asintótica es normal estándar bajo \(H_0\):
-            </p>
-
-            <p class="formula-line">
-                \( Z = \frac{\ln(ad/bc)}{\sqrt{1/a + 1/b + 1/c + 1/d}} \sim N(0,1) \)
-            </p>
-
-            <p>
-                El intervalo de confianza al \((1-\alpha) \cdot 100\%\) para el OR se obtiene exponenciando
-                el intervalo sobre \(\ln(\mathrm{OR})\):
-            </p>
-
-            <p class="formula-line">
-                \( \mathrm{IC}_{1-\alpha}(\mathrm{OR}) = \Bigl(e^{\ln\widehat{\mathrm{OR}} - z_{\alpha/2}\cdot\mathrm{SE}},\; e^{\ln\widehat{\mathrm{OR}} + z_{\alpha/2}\cdot\mathrm{SE}}\Bigr) \)
-            </p>
-
-            <h3>Ejemplo de uso</h3>
-
-            <p>
-                En un estudio caso-control sobre tabaquismo y cáncer de pulmón puedes introducir el
-                número de fumadores y no fumadores entre casos y controles para comprobar si la exposición
-                al tabaco se asocia significativamente con la enfermedad, cuantificar la magnitud de esa
-                asociación con el OR y obtener su intervalo de confianza para la comunicación científica.
-            </p>
-
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
 
-            <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay evidencia
-                estadística de asociación entre la exposición y la enfermedad. Si el p-valor es mayor o
-                igual que \(\alpha\), los datos no aportan evidencia suficiente para rechazar la hipótesis
-                de ausencia de asociación.
-            </p>
+                <p>
+                <strong>Rechazar \(H_0\)</strong> (p-valor &lt; \(\alpha\)) indica que hay evidencia
+                estadística de que el odds ratio poblacional \(\text{OR}\) es distinto de 1, es decir,
+                que la exposición y el resultado están asociados. Un \(\widehat{\text{OR}} &gt; 1\)
+                sugiere que la exposición aumenta las probabilidades del evento; un
+                \(\widehat{\text{OR}} &lt; 1\) sugiere un efecto protector. La magnitud del OR es tan
+                importante como la significación: un OR de 1,05 puede ser estadísticamente significativo
+                con muestras grandes pero representar una asociación trivial en la práctica.
+                </p>
 
-            <p>
-                Siempre conviene interpretar el OR junto al intervalo de confianza: un OR alejado de 1
-                con un intervalo estrecho indica una asociación fuerte y precisa, mientras que un intervalo
-                amplio refleja incertidumbre, generalmente por tamaño muestral reducido.
-            </p>
+                <p>
+                <strong>No rechazar \(H_0\)</strong> (p-valor ≥ \(\alpha\)) no prueba que no exista
+                asociación; solo indica que los datos son compatibles con \(\text{OR} = 1\) al nivel
+                elegido. Estudios pequeños tienen poca potencia para detectar asociaciones moderadas.
+                Un intervalo de confianza para el OR que se extiende ampliamente por encima y debajo de 1
+                señala que la estimación es muy imprecisa. En epidemiología es habitual interpretar el IC al
+                95%: si excluye el valor 1, la asociación es significativa al 5%; si lo incluye, no lo es.
+                </p>
 
+                <p>
+                El <strong>estadístico z</strong> se obtiene de la transformación logarítmica del OR
+                (\(\ln\widehat{\text{OR}}\)), cuya distribución asintótica es normal bajo \(H_0\).
+                En la visualización, la zona verde es la región de no rechazo, las zonas rojas son las
+                regiones críticas y la línea ámbar señala el estadístico observado. Recuerda que el OR
+                estima la razón de odds, no la razón de riesgos (RR): cuando la prevalencia del evento
+                es alta (&gt;10%), OR y RR pueden diferir considerablemente, y el RR puede ser más
+                intuitivo para comunicar los resultados.
+                </p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>
@@ -398,7 +376,7 @@
                     <strong>¿Cuál es el supuesto de este contraste?</strong>
                     El contraste se basa en la aproximación normal del logaritmo del OR. Se recomienda que
                     todas las frecuencias esperadas de la tabla 2×2 sean al menos 5. Con frecuencias pequeñas
-                    es preferible usar el test exacto de Fisher.
+                    es preferible usar el <a href="test-exacto-fisher.html">test exacto de Fisher</a>.
                 </li>
                 <li>
                     <strong>¿Qué diferencia hay entre odds ratio y riesgo relativo?</strong>

@@ -216,13 +216,10 @@
         </section>
 
         <article class="card content-card">
-<h3>Distribución F de Snedecor</h3>
 
-<h3>Explicación breve</h3>
-<p>La distribución F de Snedecor surge como el cociente entre dos variables chi-cuadrado independientes
-normalizadas por sus grados de libertad. Solo toma valores positivos y es asimétrica hacia la derecha.
-Se utiliza principalmente en estadística inferencial para comparar varianzas y en el análisis de varianza
-(ANOVA), donde permite evaluar si varios grupos tienen medias significativamente diferentes.</p>
+<h3>Explicación</h3>
+<p>La distribución F de Snedecor surge como el cociente \( F = (\chi^2_{d_1}/d_1) / (\chi^2_{d_2}/d_2) \) entre dos variables chi-cuadrado independientes normalizadas por sus respectivos grados de libertad \( d_1 \) y \( d_2 \). Solo toma valores positivos y es asimétrica hacia la derecha; con grados de libertad grandes tiende a aproximarse a una distribución normal. Su media (cuando \( d_2 > 2 \)) es \( d_2/(d_2-2) \), que se acerca a 1 conforme \( d_2 \) crece.</p>
+<p>Se utiliza principalmente en tres contextos: (1) <a href="anova.html"><strong>ANOVA</strong></a>, para contrastar si las medias de varios grupos son iguales comparando la varianza entre grupos con la varianza dentro de los grupos; (2) <strong>contraste de igualdad de varianzas</strong> (prueba de Levene o test F clásico), donde \( F = S_1^2/S_2^2 \) sigue una distribución F bajo la hipótesis nula de varianzas iguales; y (3) <strong>regresión lineal</strong>, para evaluar si el modelo en conjunto es significativamente mejor que el modelo nulo. Usa esta calculadora para obtener p-valores de cola derecha o valores críticos necesarios para tomar decisiones en estos contrastes.</p>
 
 <h3>Fórmula</h3>
 <p class="formula-line">
@@ -243,22 +240,24 @@ $$
 </ul>
 
 <h3>Ejemplo resuelto</h3>
-<p>Supón que quieres comparar la variabilidad de dos procesos de fabricación o evaluar si varios
-tratamientos producen diferencias significativas en un experimento. En análisis de varianza (ANOVA),
-la estadística F compara la variación entre grupos con la variación dentro de los grupos.
-En la calculadora, selecciona <em>F de Snedecor</em>, introduce los grados de libertad
-\(d_1\) y \(d_2\), y usa la CDF para obtener probabilidades acumuladas o los cuantiles para
-calcular valores críticos en contrastes estadísticos.</p>
+<p><strong>Situación:</strong> Un ensayo agronómico compara el rendimiento de cultivos bajo 4 tratamientos distintos (\(\nu_1 = 4 - 1 = 3\) grados de libertad del numerador). Cada tratamiento se aplica a parcelas replicadas, con un total de 24 observaciones (\(\nu_2 = 24 - 4 = 20\) grados de libertad del denominador). El estadístico F del ANOVA mide si la variación entre tratamientos supera a la variación dentro de los grupos.</p>
+<p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad acumulada \(P(F \leq 3{,}10)\) con \(\nu_1 = 3\) y \(\nu_2 = 20\)?</p>
+<p><strong>Solución:</strong> Consultando la CDF de la \(F_{3,20}\) en \(x = 3{,}10\):
+\[ P(F \leq 3{,}10) \approx 0{,}95 \]
+La cola derecha es \(P(F > 3{,}10) = 0{,}05\). Si el estadístico F observado fuera exactamente 3,10, el p-valor del contraste sería <strong>exactamente del 5 %</strong>.</p>
+<p><strong>Pregunta 2:</strong> ¿Cuál es el valor crítico \(F^*\) para el contraste ANOVA al nivel \(\alpha = 0{,}05\)?</p>
+<p><strong>Solución:</strong> Buscamos el cuantil 0,95 de la \(F_{3,20}\):
+\[ F^*_{0{,}05;\,3,\,20} = 3{,}10 \]
+Si el estadístico \(F_{\text{obs}} > 3{,}10\), rechazamos la hipótesis nula de igualdad de medias al 5 % de significación.</p>
+<p><strong>Interpretación:</strong> Un estadístico \(F_{\text{obs}} = 3{,}10\) significa que la variabilidad entre tratamientos es 3,10 veces mayor que la variabilidad dentro de los grupos. Con \(\nu_1 = 3\) y \(\nu_2 = 20\), este valor cae justo en el umbral del 5 %, señalando diferencias estadísticamente significativas entre tratamientos.</p>
 </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong>, \( f(F) \), es la densidad de probabilidad en el punto indicado. La distribución F es siempre positiva y asimétrica hacia la derecha; con pocos grados de libertad la cola derecha es muy larga, mientras que con muchos grados de libertad la distribución se concentra alrededor de 1 (el cociente de dos varianzas iguales tiende a 1). En la gráfica, el área verde representa la probabilidad acumulada para el rango seleccionado; el eje horizontal parte de cero.</p>
+                <p>La <strong>CDF</strong>, \( P(F \leq x) \), acumula la probabilidad hasta el valor \( x \). En ANOVA y en pruebas de igualdad de varianzas, el estadístico F observado se compara con la distribución bajo la hipótesis nula; la cola derecha \( P(F > x) = 1 - P(F \leq x) \) es el p-valor del contraste. Un F elevado (cola derecha pequeña) indica que la variación entre grupos es desproporcionadamente mayor que la variación dentro de los grupos, lo que apunta a diferencias reales entre medias o varianzas.</p>
+                <p>El resultado de <strong>cuantil</strong> devuelve el valor crítico \( F^* \) tal que \( P(F \leq F^*) = p \). Por ejemplo, el cuantil 0,95 con \( d_1 = 3 \) y \( d_2 = 20 \) grados de libertad es aproximadamente 3,10: si el estadístico F de tu ANOVA supera ese valor, rechazas la hipótesis de igualdad de medias al 5 % de significación. Este cuantil también se usa para construir intervalos de confianza para el cociente de varianzas.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

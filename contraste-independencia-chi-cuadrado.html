@@ -157,7 +157,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
 
             <p>
                 El contraste chi-cuadrado de independencia permite evaluar si existe asociación
@@ -248,93 +248,40 @@
             <p>Conclusión: <strong>se rechaza la independencia</strong>. Existe una asociación estadísticamente significativa entre el hábito tabáquico y la presencia de enfermedad pulmonar: los fumadores presentan una proporción de enfermos claramente superior a la esperada bajo independencia.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-
-            <p>
-                Esta calculadora de chi-cuadrado de independencia toma una tabla de contingencia
-                con frecuencias observadas, calcula las frecuencias esperadas bajo independencia,
-                obtiene el estadístico \(\chi^2\), los grados de libertad y el p-valor, y emite
-                una decisión automática al nivel de significación indicado.
-            </p>
-
-            <p>
-                La herramienta también muestra la tabla de frecuencias esperadas y un gráfico con
-                la distribución de referencia, la zona de rechazo y la posición del estadístico
-                observado, lo que facilita la interpretación visual del resultado.
-            </p>
-
-            <h3>Fórmula utilizada</h3>
-
-            <p>
-                Las frecuencias esperadas bajo la hipótesis de independencia se calculan para
-                cada celda \((i, j)\) como:
-            </p>
-
-            <p class="formula-line">
-                \(E_{ij} = \frac{n_{i\cdot} \cdot n_{\cdot j}}{n}\)
-            </p>
-
-            <p>
-                El estadístico de contraste es:
-            </p>
-
-            <p class="formula-line">
-                \(\chi^2 = \sum_{i=1}^{r}\sum_{j=1}^{c} \frac{(O_{ij} - E_{ij})^2}{E_{ij}}\)
-            </p>
-
-            <p>
-                Bajo \(H_0\), este estadístico sigue una distribución \(\chi^2\) con
-                \((r-1)(c-1)\) grados de libertad. El p-valor es la probabilidad de obtener
-                un estadístico tan grande o mayor si la hipótesis nula fuera cierta:
-            </p>
-
-            <p class="formula-line">
-                \(p = P\!\left(\chi^2_{(r-1)(c-1)} \geq \chi^2_{\text{obs}}\right)\)
-            </p>
-
-            <h3>Ejemplo de uso</h3>
-
-            <p>
-                Supón que quieres analizar si el género (masculino/femenino) está asociado al
-                tipo de producto comprado (A/B/C). Encuestas a 200 clientes y obtienes los
-                recuentos para cada combinación de categorías. Introduces esos recuentos como
-                una tabla de 2 filas y 3 columnas, fijas α = 0,05 y pulsas calcular. La
-                herramienta computa las frecuencias esperadas, el estadístico \(\chi^2\) y el
-                p-valor. Si el p-valor es menor que 0,05, concluyes que hay asociación entre
-                género y tipo de producto.
-            </p>
-
-            <p>
-                En ciencias sociales, epidemiología y control de calidad es frecuente comparar
-                la distribución de una variable categórica entre grupos: tasas de respuesta por
-                tratamiento, proporción de defectos por turno, distribución de opiniones por
-                región. En todos estos casos, el contraste chi-cuadrado de independencia es la
-                herramienta adecuada.
-            </p>
-
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
 
-            <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay
-                evidencia estadística de asociación entre las dos variables. Si el p-valor es
-                mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar la
-                independencia con ese nivel de significación.
-            </p>
+                <p>
+                <strong>Rechazar \(H_0\)</strong> (p-valor &lt; \(\alpha\)) significa que hay
+                evidencia estadística de que las dos variables categóricas no son independientes,
+                es decir, que la distribución de una cambia en función de la categoría de la otra.
+                Sin embargo, el test chi-cuadrado no informa ni de la <em>dirección</em> ni de la
+                <em>magnitud</em> de la asociación: solo detecta su existencia. Para cuantificar
+                la fuerza, calcula la <strong>V de Cramér</strong>
+                \(V = \sqrt{\chi^2 / (n \cdot \min(r-1, c-1))}\), que varía entre 0 (independencia)
+                y 1 (asociación perfecta). Valores de \(V\) alrededor de 0,1, 0,3 y 0,5 se
+                interpretan habitualmente como asociación débil, moderada y fuerte, respectivamente.
+                </p>
 
-            <p>
-                Un resultado significativo indica asociación, pero no indica ni la dirección ni
-                la magnitud de la relación. Para cuantificar la fuerza de la asociación puedes
-                calcular métricas como la V de Cramér, que normaliza el estadístico chi-cuadrado
-                en función del tamaño de la tabla y del tamaño muestral.
-            </p>
+                <p>
+                <strong>No rechazar \(H_0\)</strong> (p-valor ≥ \(\alpha\)) no demuestra independencia;
+                solo indica que los datos son compatibles con ella al nivel elegido. Con tablas grandes
+                o celdas con frecuencias esperadas pequeñas la potencia puede ser insuficiente.
+                Verifica que ninguna frecuencia esperada \(E_{ij} = n \cdot p_{i\cdot} \cdot p_{\cdot j}\)
+                sea inferior a 5; si alguna lo es, considera fusionar categorías o usar el test exacto
+                de Fisher (para tablas 2×2).
+                </p>
 
-            <p>
-                También es útil revisar la tabla de frecuencias esperadas: las celdas con mayor
-                discrepancia entre \(O_{ij}\) y \(E_{ij}\) son las que más contribuyen al
-                estadístico y revelan dónde se concentra la asociación.
-            </p>
-
+                <p>
+                El <strong>estadístico chi-cuadrado</strong> se calcula sumando las discrepancias
+                cuadráticas ponderadas de todas las celdas: \(\chi^2 = \sum_{ij}(O_{ij}-E_{ij})^2/E_{ij}\).
+                Las celdas con residuos estandarizados \((O_{ij}-E_{ij})/\sqrt{E_{ij}}\) en valor
+                absoluto superiores a 2 son las que más contribuyen y señalan dónde se concentra la
+                asociación. En la visualización, la zona verde es la región de no rechazo y la zona
+                roja es la cola crítica derecha; la línea ámbar muestra el estadístico observado.
+                </p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>
@@ -362,7 +309,7 @@
                     <strong>¿Qué condición deben cumplir las frecuencias esperadas?</strong>
                     La aproximación es adecuada cuando la mayoría de las frecuencias esperadas
                     son ≥ 5. Si hay celdas con frecuencias esperadas muy bajas, conviene usar
-                    el test exacto de Fisher o agrupar categorías.
+                    el <a href="test-exacto-fisher.html">test exacto de Fisher</a> o agrupar categorías.
                 </li>
                 <li>
                     <strong>¿Qué diferencia hay con el chi-cuadrado de bondad de ajuste?</strong>

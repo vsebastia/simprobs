@@ -179,7 +179,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Esta calculadora estima el tamaño muestral para contrastar una proporción con hipótesis nula \(H_0: p=p_0\), nivel de significación \(\alpha\), potencia \(1-\beta\) y diferencia mínima detectable \(\Delta=|p_1-p_0|\).</p>
             <p>Permite alternativas bilateral (\(H_a: p\neq p_0\)) o unilateral (\(H_a: p\geq p_0\), \(H_a: p\leq p_0\)).</p>
             <h3>Fórmula de tamaño muestral</h3>
@@ -222,9 +222,14 @@
             <p><strong>Escenario con mayor exigencia estadística (\(\alpha = 0{,}01\)):</strong> si la empresa decide ser más conservadora frente a falsos positivos y usa \(\alpha = 0{,}01\) (\(z_{\alpha/2} = 2{,}576\)), manteniendo la misma potencia del 80 %: \( n = ((2{,}576 \times 0{,}4583 + 0{,}842 \times 0{,}4899) / 0{,}10)^2 = (1{,}1806 + 0{,}4125)^2 / 0{,}01 = (15{,}931)^2 = 253{,}8 \rightarrow n = 254 \). El paso de \(\alpha = 0{,}05\) a \(\alpha = 0{,}01\) requiere un 48 % más de respuestas para mantener la misma potencia.</p>
         </section>
 
+        <section class="card content-card">
+            <h3>Cómo interpretar el resultado</h3>
+                <p>El valor \(n\) es el <strong>número mínimo de observaciones válidas</strong> para que el contraste \(H_0\!: p = p_0\) frente a la alternativa especificada tenga la potencia \((1-\beta)\) al nivel \(\alpha\). Redondea siempre hacia arriba. Si prevés que algunos encuestados no completarán el cuestionario o serán excluidos por criterios de inclusión, divide \(n\) entre \((1 - \text{tasa de no respuesta})\) para obtener el número de individuos a contactar; con un 20 % de no respuesta esperada, planifica \(\lceil n / 0{,}80 \rceil\) contactos.</p>
+                <p>Los parámetros que más influyen en \(n\) son la diferencia \(\Delta = |p_1 - p_0|\) y la proporción bajo la alternativa \(p_1\). La función de varianza \(p(1-p)\) es máxima en \(p = 0{,}5\), así que cuando tanto \(p_0\) como \(p_1\) se alejan de 0,5, el \(n\) disminuye. Reducir \(\Delta\) a la mitad incrementa \(n\) aproximadamente cuatro veces; aumentar la potencia del 80 % al 90 % lo incrementa en torno a un 30 %. La elección entre contraste bilateral y unilateral también importa: un contraste unilateral requiere menor \(n\) para la misma potencia, pero solo está justificado si el efecto puede producirse únicamente en una dirección. Realiza un <em>análisis de sensibilidad</em> variando \(p_0\) y \(p_1\) en ±0,05 para evaluar la robustez del diseño.</p>
+                <p>Si el \(n\) obtenido es inasumible, considera: (1) aumentar \(\Delta\) si el contexto lo permite, (2) reducir la potencia a un 80 % si se había especificado el 90 %, o (3) cambiar a un contraste unilateral si el planteamiento científico lo justifica. Cuando \(n\) sea pequeño (&lt; 30) y \(p_0\) o \(p_1\) sean extremas (&lt; 0,10 o &gt; 0,90), considera la corrección de continuidad o el test exacto binomial en lugar de la aproximación normal. Con los datos recogidos, realiza el contraste con la <a href="contraste-hipotesis-una-proporcion.html">calculadora de contraste de hipótesis para una proporción</a>; si el objetivo es estimar \(p\) con precisión, usa la <a href="tamano-muestral-una-proporcion.html">calculadora de tamaño muestral para una proporción (estimación)</a>.</p>
+        </section>
+
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Calcula n mínimo para contraste de una proporción con potencia, alfa y tamaño de efecto absoluto fijado.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

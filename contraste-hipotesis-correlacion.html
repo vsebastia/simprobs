@@ -194,7 +194,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>El contraste de hipótesis para la correlación de Pearson permite evaluar si la correlación poblacional \(\rho\) es compatible con un valor hipotético \(\rho_0\). El caso más frecuente es contrastar \(H_0\colon \rho = 0\) (ausencia de correlación lineal), pero también es posible contrastar frente a cualquier otro valor.</p>
             <p>La elección del procedimiento depende del valor nulo: si \(\rho_0 = 0\) se emplea un test t exacto; si \(\rho_0 \neq 0\) se recurre a la transformación z de Fisher (arctanh), que estabiliza la varianza y produce una estadística aproximadamente normal.</p>
 
@@ -233,13 +233,13 @@
             <p>El IC al 95 % para \(\rho\) mediante Fisher es aproximadamente \([0{,}11,\, 0{,}70]\), que no incluye 0, confirmando la decisión del contraste.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora de contraste para la correlación de Pearson calcula automáticamente el estadístico apropiado (t cuando \(\rho_0=0\), z de Fisher cuando \(\rho_0\neq0\)), el p-valor exacto, la decisión estadística y el intervalo de confianza para \(\rho\) usando la transformación de Fisher. Es útil en análisis de correlación bivariada, validación de instrumentos y estudios de asociación lineal.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>Cuando \(\rho_0 = 0\): \(t = r\sqrt{n-2}/\sqrt{1-r^2}\) con \(gl=n-2\). Cuando \(\rho_0 \neq 0\): \(z = (\operatorname{arctanh}(r) - \operatorname{arctanh}(\rho_0))\cdot\sqrt{n-3}\). IC mediante transformación inversa \(\tanh\).</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Si p-valor &lt; α, rechazas \(H_0\) y concluyes que \(\rho \neq \rho_0\). Complementa con el IC para cuantificar el rango plausible de \(\rho\) y con \(r^2\) para evaluar la relevancia práctica.</p>
+                <p><strong>Rechazar \(H_0\)</strong> (p-valor &lt; α) indica que el coeficiente de correlación muestral \(r\) es estadísticamente incompatible con el valor hipotético \(\rho_0\). El caso más común es \(\rho_0 = 0\): rechazar \(H_0\) significa que hay evidencia de asociación lineal entre las dos variables. Sin embargo, con muestras grandes incluso correlaciones muy débiles (por ejemplo, \(r = 0{,}10\)) pueden ser altamente significativas. El coeficiente de determinación \(r^2\) —que indica qué fracción de la variabilidad de una variable explica la otra— es la métrica clave para valorar la relevancia práctica: un \(r^2 = 0{,}01\) significa que solo el 1% de la varianza está compartido, lo cual puede carecer de importancia sustantiva.</p>
+                <p><strong>No rechazar \(H_0\)</strong> (p-valor ≥ α) no implica que \(\rho = \rho_0\); solo que los datos son compatibles con ese valor. Con muestras pequeñas la potencia es limitada: correlaciones moderadas (\(r \approx 0{,}3\)) pueden no resultar significativas con menos de 30–40 observaciones. Examina el intervalo de confianza para \(\rho\): si es amplio, la incertidumbre sobre la correlación real es grande.</p>
+                <p>El <strong>estadístico t</strong> (para \(\rho_0=0\)) o el <strong>estadístico z de Fisher</strong> (para \(\rho_0 \neq 0\)) aparecen en la herramienta. En la visualización, la zona verde es la región de no rechazo, las zonas rojas son las regiones críticas y la línea ámbar señala el estadístico observado. Recuerda que el test asume distribución normal bivariada e independencia de pares; ante alejamientos de la normalidad con \(n\) grande el test sigue siendo robusto, pero en muestras pequeñas considera métodos de remuestreo.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

@@ -182,7 +182,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Cuando se comparan dos grupos independientes (tratamiento A vs. B, planta 1 vs. planta 2, antes vs. después con muestras diferentes), el intervalo de confianza para la diferencia de medias \(\mu_1 - \mu_2\) permite cuantificar la magnitud de la diferencia y su incertidumbre.</p>
             <p>Este intervalo es para muestras independientes: las observaciones del grupo 1 no están emparejadas con observaciones concretas del grupo 2. Si son las mismas personas antes/después, o las mismas unidades medidas dos veces, conviene usar el <a href="intervalo-confianza-medias-apareadas.html">IC para medias apareadas</a>, que trabaja sobre las diferencias individuales.</p>
             <p>Existen dos variantes según si las varianzas poblacionales son iguales o distintas. Denotamos por \(C\) el nivel de confianza y por \(\alpha=1-C\) el área total de las colas; por ejemplo, para 95 % de confianza, \(C=0{,}95\), \(\alpha=0{,}05\) y \(\alpha/2=0{,}025\). Si 0 queda fuera del intervalo, hay evidencia de que las medias difieren.</p>
@@ -227,9 +227,18 @@
             <p>En la práctica se recomienda usar Welch por defecto: es robusto tanto si las varianzas son iguales como si no, y su pérdida de potencia con varianzas iguales es mínima. El supuesto de varianzas iguales solo debería adoptarse si hay fuerte evidencia previa de que \(\sigma_1 = \sigma_2\).</p>
         </section>
 
+        <section class="card content-card">
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El intervalo \([L, U]\) es el rango de valores plausibles para la diferencia de medias poblacionales \(\mu_1 - \mu_2\) dado el nivel de confianza elegido. Si el intervalo se repitiera muchas veces con muestras del mismo tamaño, una proporción \(C\) de esos intervalos contendría la verdadera diferencia \(\mu_1 - \mu_2\). La amplitud depende de la variabilidad de cada grupo (\(s_1\), \(s_2\)), de los tamaños muestrales (\(n_1\), \(n_2\)) y del nivel de confianza: cuantas más observaciones o menor variabilidad, más estrecho y preciso será el intervalo.</p>
+            <p>La clave para la toma de decisiones está en si el valor 0 pertenece al intervalo o no. Si \(0 \in [L, U]\), los datos son compatibles con la hipótesis de que ambas medias son iguales (\(\mu_1 = \mu_2\)) al nivel de confianza elegido; equivalentemente, el contraste bilateral \(H_0\!: \mu_1 = \mu_2\) no se rechazaría al nivel \(\alpha = 1 - C\). Si \(0 \notin [L, U]\), hay evidencia de que las medias difieren: si \(L > 0\), la media del grupo 1 es significativamente mayor; si \(U < 0\), la media del grupo 2 es significativamente mayor. La calculadora indica esto explícitamente en el resultado.</p>
+            <ul>
+                <li><strong>Dirección del efecto:</strong> el signo y la magnitud de la diferencia \(\bar{x}_1 - \bar{x}_2\) indican cuánto y en qué sentido difieren los grupos. El intervalo traduce esa estimación puntual en un rango de incertidumbre.</li>
+                <li><strong>Welch vs. pooled:</strong> con Welch los grados de libertad son fraccionarios; eso acorta ligeramente el IC respecto a forzar varianzas iguales cuando las varianzas son muy distintas. En el gráfico se muestra la distribución t con los grados de libertad efectivos del método elegido.</li>
+                <li><strong>Relevancia práctica:</strong> un IC significativo pero muy cercano a 0 puede indicar una diferencia estadística real pero de escasa importancia práctica. Valora siempre la magnitud del efecto junto con la significación.</li>
+            </ul>
+        </section>
+
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora obtiene el intervalo de confianza para \(\mu_1 - \mu_2\) con dos muestras independientes. Ofrece el método de Welch (varianzas desiguales) y el método pooled (varianzas iguales), calculando automáticamente los grados de libertad y el valor crítico t.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

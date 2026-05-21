@@ -149,7 +149,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>El ANOVA de un factor (<em>one-way ANOVA</em>) contrasta la hipótesis nula de que las medias de <strong>k ≥ 2</strong> grupos independientes son iguales frente a la alternativa de que al menos dos difieren. Cuando k = 2 es equivalente al test t de dos muestras, pero para k ≥ 3 ofrece control del error global de tipo I sin necesidad de múltiples comparaciones bilaterales.</p>
             <p>El parámetro que resume el tamaño del efecto es la <strong>f de Cohen</strong>, definida como \(f = \sigma_{\text{medias}} / \sigma_{\text{residual}}\), donde \(\sigma_{\text{medias}}\) es la desviación estándar de las medias grupales y \(\sigma_{\text{residual}}\) la variabilidad dentro de los grupos. La f está relacionada con el \(\eta^2\) (eta cuadrado) mediante \(f = \sqrt{\eta^2/(1-\eta^2)}\).</p>
             <p>El cálculo de potencia se basa en la <strong>distribución F no central</strong>: bajo H₁, el estadístico F sigue una F no central con parámetro de no centralidad \(\lambda = n \cdot k \cdot f^2\). Esta calculadora busca el mínimo n entero para el que la potencia supera el objetivo mediante búsqueda iterativa.</p>
@@ -211,15 +211,13 @@
             <p>Nótese que el número de grupos \(k\) también influye en el cálculo: a igualdad de \(f\), añadir un cuarto grupo aumenta los grados de libertad del numerador en el ANOVA y modifica el tamaño muestral requerido. Por ello es recomendable utilizar la herramienta para explorar distintos escenarios antes de planificar la recogida de datos.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Calcula el n mínimo por grupo para un ANOVA de un factor balanceado con k grupos, dado f de Cohen, α y potencia. Usa la distribución F no central con λ = n·k·f² mediante búsqueda iterativa.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>Potencia = P(F'(k−1, k(n−1), λ) &gt; F_crit). La F no central se calcula mediante la suma de Poisson sobre funciones beta incompletas reguladas (serie exacta).</p>
-            <h3>Ejemplo de uso</h3>
-            <p>k = 3, f = 0,25, α = 0,05, potencia = 0,80 → n = 52 por grupo (total 156). Con f = 0,40 → n = 21 por grupo (total 63).</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n es por grupo (diseño balanceado). Multiplica por k para el total. Para comparaciones post-hoc, el n calculado con α global = 0,05 puede ser insuficiente; considera α corregida (p.ej. Bonferroni).</p>
+                <p>El valor \(n\) es el <strong>tamaño mínimo por grupo</strong> en un diseño balanceado de ANOVA de un factor con \(k\) grupos. El número total de participantes a reclutar es \(k \times n\). Redondea siempre hacia arriba. Si prevés pérdidas o abandonos, calcula el número de reclutamiento por grupo como \(\lceil n / (1 - \text{tasa de pérdida}) \rceil\). Un aspecto clave del diseño ANOVA es que el desequilibrio entre grupos (diferente \(n\) por grupo) no invalida el análisis, pero sí reduce la potencia y complica la interpretación; si anticipas grupos desiguales, usa la fórmula para diseño no balanceado o aumenta el \(n\) del grupo más pequeño.</p>
+                <p>El tamaño del efecto \(f\) de Cohen (o la varianza entre medias \(\sigma_\mu^2\)) es el parámetro más difícil de especificar. Un valor \(f = 0{,}10\) se considera pequeño, \(f = 0{,}25\) mediano y \(f = 0{,}40\) grande. Pequeños errores en \(f\) tienen un impacto cuadrático en \(n\): si el efecto real es un 20 % menor de lo esperado, el \(n\) necesario aumenta aproximadamente un 56 \% \((1/0{,}8^2 \approx 1{,}56)\). Realiza un <em>análisis de sensibilidad</em> evaluando \(n\) para distintos valores de \(f\) o de la varianza intragrupo \(\sigma^2\). Tener en cuenta que el \(n\) calculado protege el nivel de significación global del contraste F del ANOVA, pero <strong>no las comparaciones post-hoc</strong>: si planeas hacer todas las comparaciones pareadas entre grupos con corrección de Bonferroni (\(\alpha/\binom{k}{2}\)), el \(n\) necesario para cada comparación individual es considerablemente mayor.</p>
+                <p>Cuando \(n\) sea muy pequeño por grupo (&lt; 15), verifica que la normalidad de los residuos y la homocedasticidad son razonables, o utiliza el equivalente no paramétrico (test de Kruskal-Wallis) con su propio \(n\) ajustado. Si el \(n\) total \(kn\) resulta inviable, considera si el número de grupos \(k\) puede reducirse (consolidando grupos similares) o si el diseño puede ser más eficiente con un ANOVA de medidas repetidas. Con los datos recogidos, usa la <a href="anova.html">calculadora de ANOVA</a> para el análisis de varianza y los tests post-hoc pertinentes.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

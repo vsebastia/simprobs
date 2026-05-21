@@ -159,7 +159,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>En la práctica, la desviación típica poblacional \(\sigma\) raramente se conoce con exactitud. Cuando se estima a partir de los propios datos muestrales usando \(s\), aparece una incertidumbre adicional que modela la distribución t de Student con \(n-1\) grados de libertad.</p>
             <p>Con muestras grandes (n ≥ 30), la t de Student converge a la normal estándar y ambos intervalos dan resultados muy similares. Para muestras pequeñas, la t produce intervalos más anchos, reflejando correctamente la mayor incertidumbre.</p>
 
@@ -192,18 +192,16 @@
 
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El intervalo \([L, U]\) es el rango de medias poblacionales compatibles con los datos y el nivel de confianza elegido. Si repitiéramos el muestreo muchas veces y construyéramos un IC del mismo modo, aproximadamente una proporción \(C\) de esos intervalos contendría la media real \(\mu\).</p>
+            <p>El intervalo \([L, U]\) es el rango de valores de la media poblacional \(\mu\) compatibles con los datos observados y el nivel de confianza elegido. El significado frecuentista es el siguiente: si repitieras el experimento muchas veces —tomando cada vez una muestra del mismo tamaño y construyendo el IC con el mismo procedimiento— aproximadamente un \(C \times 100\,\%\) de esos intervalos contendría el verdadero valor de \(\mu\). No es una afirmación probabilística sobre el parámetro concreto, sino sobre la fiabilidad del método a largo plazo.</p>
+            <p>La amplitud del intervalo comunica directamente la precisión de la estimación. Un intervalo estrecho indica mayor precisión: se obtiene con muestras más grandes, con menor variabilidad en los datos o aceptando un nivel de confianza algo menor. Un intervalo ancho no es un error en sí mismo; refleja honestamente que con esa muestra hay mucha incertidumbre sobre \(\mu\). En el gráfico, la región verde es la zona de confianza bajo la curva t y las colas rojas representan cada una \(\alpha/2\) del área total; los valores críticos \(\pm t_{\alpha/2,\,n-1}\) delimitan esas regiones.</p>
             <ul>
-                <li>Un intervalo más estrecho indica mayor precisión, normalmente por mayor \(n\) o menor variabilidad \(s\).</li>
-                <li>Si un valor de referencia queda fuera del intervalo, sería incompatible con los datos al nivel de confianza elegido en un contraste bilateral equivalente.</li>
+                <li><strong>Conexión con el contraste:</strong> si un valor de referencia \(\mu_0\) queda fuera del intervalo, los datos rechazarían \(H_0\!: \mu = \mu_0\) al nivel de significación \(\alpha = 1 - C\) en el contraste bilateral equivalente. Si \(\mu_0\) queda dentro, no hay evidencia para rechazarlo.</li>
+                <li><strong>Efecto del tamaño muestral:</strong> duplicar \(n\) reduce el margen de error en un factor \(\sqrt{2} \approx 1{,}41\); para reducirlo a la mitad hace falta cuadruplicar \(n\).</li>
+                <li><strong>Efecto de la confianza:</strong> aumentar la confianza del 95 % al 99 % ensancha el intervalo porque el valor crítico \(t\) crece; exigir mayor certeza tiene el coste de ser menos preciso.</li>
             </ul>
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora construye el intervalo de confianza bilateral para la media poblacional \(\mu\) usando la distribución t de Student cuando \(\sigma\) es desconocida. Calcula automáticamente los grados de libertad, el valor crítico t, el error estándar y los límites del intervalo.</p>
-            <h3>Ejemplo resuelto: intervalo para una media</h3>
-            <p>Una muestra de 25 entregas tiene media 38 minutos y desviación típica 12 minutos. Con 95% de confianza (\(\alpha=0{,}05\)) y σ desconocida, usa n = 25, media = 38 y s = 12; el intervalo se basa en t con 24 grados de libertad y cuantifica el rango plausible para el tiempo medio real.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

@@ -195,7 +195,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>El contraste para una proporción se aplica cuando cada observación tiene dos resultados posibles (éxito/fracaso) y quieres evaluar si la proporción poblacional es \(p_0\). Es una prueba habitual en validación de campañas, calidad de producción, ensayos clínicos y estudios de opinión.</p>
             <p>El método se apoya en la aproximación normal de la proporción muestral bajo \(H_0\), por lo que la calidad de la aproximación mejora con tamaños muestrales adecuados.</p>
 
@@ -230,15 +230,13 @@
             <p>Conclusión: <strong>no se rechaza \(H_0\)</strong>. Con estos datos, la diferencia entre la proporción observada (70{,}8 %) y la de referencia (65 %) no es estadísticamente significativa al 5 %. La mejora podría deberse al azar muestral.</p>
         </section>
 
+                <section class="card content-card">
+                    <h3>Cómo interpretar el resultado</h3>
+                        <p><strong>Rechazar \(H_0\)</strong> (p-valor &lt; α) significa que la proporción muestral \(\hat{p}\) se aleja de \(p_0\) más de lo esperable por azar. Se concluye que hay evidencia estadística de que la proporción poblacional es distinta de \(p_0\) (o mayor/menor, si el contraste es unilateral). Sin embargo, la significación no equivale a importancia: una diferencia de 1 punto porcentual puede ser muy significativa con \(n\) grande aunque sea irrelevante en la práctica. Accompaña siempre el resultado con el intervalo de confianza para \(p\) y una valoración del tamaño del cambio en el contexto del problema.</p>
+                        <p><strong>No rechazar \(H_0\)</strong> (p-valor ≥ α) no demuestra que \(p = p_0\); solo indica que los datos son compatibles con ese valor al nivel de significación elegido. Si la muestra es pequeña, la potencia puede ser insuficiente para detectar desviaciones reales. Un intervalo de confianza amplio que incluya valores alejados de \(p_0\) es señal de que el estudio no permite conclusiones definitivas.</p>
+                        <p>El <strong>estadístico z</strong> que muestra la herramienta mide cuántos errores estándar se aleja \(\hat{p}\) de \(p_0\). En la visualización, la zona verde es la región de no rechazo, las zonas rojas son las regiones críticas y la línea ámbar representa el estadístico observado. Valores de \(|z|\) superiores al valor crítico (p. ej., 1,96 para α = 0,05 bilateral) llevan a rechazar \(H_0\). Verifica siempre que se cumplen las condiciones de validez de la aproximación normal: \(np_0 \geq 5\) y \(n(1-p_0) \geq 5\).</p>
+                </section>
                 <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora de contraste de hipótesis para una proporción estima el estadístico z, el p-valor y la decisión estadística al comparar una proporción observada con una proporción teórica \(p_0\). Es frecuente en encuestas, tasas de conversión y control de defectos.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>Se contrasta \(H_0: p=p_0\) usando aproximación normal para proporciones, con error estándar calculado bajo la hipótesis nula. El p-valor se obtiene según el tipo de cola seleccionado: bilateral, izquierda o derecha.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Si una web espera una conversión del 12%, puedes introducir éxitos y tamaño muestral para evaluar si el porcentaje real observado difiere significativamente de ese objetivo.</p>
-            <h3>Cómo interpretar el resultado</h3>
-            <p>Si p-valor &lt; α, hay evidencia de que la proporción poblacional no coincide con \(p_0\) (o es mayor/menor, según el contraste). Si p-valor ≥ α, no hay evidencia suficiente con la muestra analizada.</p>
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

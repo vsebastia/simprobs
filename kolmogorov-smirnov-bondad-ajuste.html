@@ -220,7 +220,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
 
             <p>
                 El test de Kolmogorov-Smirnov de bondad de ajuste (test KS) permite evaluar si una
@@ -307,91 +307,42 @@
             <p>Conclusión: con un nivel de significación del 5 %, no hay evidencia suficiente para afirmar que los tiempos de espera difieren de una distribución Uniforme en \([0, 8]\). La discrepancia máxima observada entre la distribución empírica y la teórica es pequeña en relación con la variabilidad esperada para muestras de ese tamaño.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-
-            <p>
-                Esta calculadora recibe los valores individuales de la muestra, la distribución
-                teórica elegida (Normal, Uniforme o Exponencial) con sus parámetros conocidos, y
-                el nivel de significación. Ordena los datos, calcula la función de distribución
-                empírica y la teórica en cada punto muestral, obtiene el estadístico \(D_n\) y el
-                p-valor aproximado mediante la distribución de Kolmogorov, y emite una decisión
-                de contraste automática.
-            </p>
-
-            <p>
-                También muestra una tabla con los valores ordenados, las probabilidades acumuladas
-                empíricas y teóricas en cada punto, y la discrepancia \(|F_n - F_0|\). El gráfico
-                superpone la función escalonada empírica y la curva teórica, con una línea roja que
-                marca la máxima separación \(D_n\).
-            </p>
-
-            <h3>Fórmula utilizada</h3>
-
-            <p>
-                Para la distribución <strong>Normal(\(\mu, \sigma\))</strong>:
-            </p>
-            <p class="formula-line">
-                \(F_0(x) = \Phi\!\left(\frac{x-\mu}{\sigma}\right) = \frac{1}{2}\!\left[1 + \mathrm{erf}\!\left(\frac{x-\mu}{\sigma\sqrt{2}}\right)\right]\)
-            </p>
-
-            <p>
-                Para la distribución <strong>Uniforme(\(a, b\))</strong>:
-            </p>
-            <p class="formula-line">
-                \(F_0(x) = \frac{x - a}{b - a}, \quad a \leq x \leq b\)
-            </p>
-
-            <p>
-                Para la distribución <strong>Exponencial(\(\lambda\))</strong>:
-            </p>
-            <p class="formula-line">
-                \(F_0(x) = 1 - e^{-\lambda x}, \quad x \geq 0\)
-            </p>
-
-            <h3>Ejemplo de uso</h3>
-
-            <p>
-                Un investigador mide la presión arterial sistólica (en mmHg) de 12 pacientes:
-                118, 122, 130, 115, 128, 125, 119, 135, 121, 127, 124, 131. Quiere contrastar
-                si estos valores son compatibles con una distribución Normal con media 125 y
-                desviación típica 6 (parámetros de referencia conocidos de estudios previos).
-                Introduce los datos, selecciona «Normal», indica μ = 125 y σ = 6, fija α = 0,05
-                y pulsa calcular. El test indicará si hay evidencia para rechazar el modelo
-                Normal propuesto.
-            </p>
-
-            <p>
-                En ingeniería de fiabilidad, el test KS se usa frecuentemente para contrastar si
-                los tiempos de fallo siguen una distribución Exponencial o Weibull con parámetros
-                de diseño. En ciencias naturales y sociales se emplea para verificar el supuesto
-                de normalidad cuando los parámetros son conocidos de antemano, o para comparar
-                distribuciones de tiempos de espera con un modelo Exponencial teórico.
-            </p>
-
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
 
-            <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay
-                evidencia estadística de que los datos no provienen de la distribución teórica
-                especificada. Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia
-                suficiente para rechazar el modelo con ese nivel de significación.
-            </p>
+                <p>
+                <strong>Rechazar \(H_0\)</strong> (p-valor &lt; \(\alpha\)) significa que la función
+                de distribución empírica \(F_n(x)\) se aleja de la función teórica \(F_0(x)\) más de
+                lo que el azar puede explicar. Los datos no son compatibles con el modelo distribucional
+                propuesto al nivel de significación elegido. La <strong>localización</strong> de la
+                máxima discrepancia —indicada por la línea ámbar vertical en la visualización— revela
+                en qué zona de la distribución se concentra el desajuste: una discrepancia en la cola
+                izquierda señala que los datos tienen menos masa de la esperada en valores bajos; en la
+                cola derecha, lo contrario; en el centro, desajuste en la mediana o la moda.
+                </p>
 
-            <p>
-                El gráfico de las funciones de distribución permite identificar en qué zona de
-                valores se produce la mayor discrepancia. La línea roja vertical marca el punto de
-                máxima separación \(D_n\): si se sitúa en la cola izquierda, los datos tienen menos
-                masa de la esperada en valores bajos; si aparece en la cola derecha, lo contrario.
-            </p>
+                <p>
+                <strong>No rechazar \(H_0\)</strong> (p-valor ≥ \(\alpha\)) no demuestra que los datos
+                «siguen» la distribución teórica; solo indica que son compatibles con ella al nivel
+                elegido. Con muestras pequeñas la potencia es baja y desviaciones moderadas pueden
+                pasar desapercibidas. Con muestras muy grandes, el test puede rechazar modelos que se
+                ajustan razonablemente bien en la práctica. Por eso es recomendable complementar el
+                p-valor con la inspección visual de las curvas FDE empírica y teórica: si se solapan
+                casi perfectamente, el modelo es adecuado aunque \(D_n\) sea no nulo.
+                </p>
 
-            <p>
-                Un no rechazo de \(H_0\) no significa que los datos «sean» de la distribución
-                elegida: solo indica que son compatibles con ese modelo al nivel de significación
-                elegido. Con muestras pequeñas, el test tiene poca potencia para detectar
-                desviaciones moderadas.
-            </p>
-
+                <p>
+                El <strong>estadístico \(D_n\)</strong> es la máxima distancia vertical entre la FDE
+                empírica y la teórica. La zona verde en la visualización representa la banda de
+                tolerancia alrededor de \(F_0(x)\) compatible con \(H_0\); si la FDE empírica supera
+                esa banda, \(D_n\) cae en la región crítica (zona roja). Una ventaja del test KS
+                frente al chi-cuadrado de bondad de ajuste es que no requiere agrupar datos en
+                categorías, siendo especialmente útil para distribuciones continuas. Sin embargo, si
+                los parámetros de la distribución teórica se han estimado de los propios datos, los
+                valores críticos deben corregirse (test de Lilliefors para normalidad, por ejemplo).
+                </p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

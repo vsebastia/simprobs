@@ -216,8 +216,7 @@
         </section>
 
         <article class="card content-card">
-        <h3>Distribución Bernoulli</h3>
-        <h3>Explicación breve</h3>
+        <h3>Explicación</h3>
         <p>La distribución Bernoulli modela el resultado de un único experimento aleatorio con exactamente dos posibles resultados:
         éxito (X = 1) con probabilidad p, y fracaso (X = 0) con probabilidad 1 − p.
         Es la distribución discreta más elemental y sirve de bloque fundamental para construir otras distribuciones:
@@ -232,22 +231,25 @@
             <li><strong>x:</strong> solo toma los valores 0 (fracaso) o 1 (éxito).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Una tienda online registra que el 8 % de los visitantes añaden un artículo al carrito.
-        Modelamos cada visita como un ensayo Bernoulli con p = 0,08.
-        La probabilidad de éxito (añadir al carrito) es P(X = 1) = 0,08 y la de fracaso es P(X = 0) = 0,92.
-        La varianza del proceso es p(1 − p) = 0,08 × 0,92 = 0,0736, lo que nos da una desviación estándar de ≈ 0,27.
-        Si repetimos el experimento para n = 500 visitas diarias, el número esperado de conversiones es 500 × 0,08 = 40,
-        y podemos modelar ese total con una distribución binomial de parámetros n = 500 y p = 0,08.</p>
+        <p><strong>Situación:</strong> Un sistema de detección de intrusiones analiza cada paquete de red de forma independiente. La probabilidad de que un paquete sea malicioso es \(p = 0{,}7\) en una red bajo ataque. Modelamos la clasificación de un único paquete como un ensayo Bernoulli con \(p = 0{,}7\).</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que el paquete sea malicioso, \(P(X = 1)\), y cuál es la probabilidad de que sea benigno, \(P(X = 0)\)?</p>
+        <p><strong>Solución:</strong> Directamente de la definición de la distribución de Bernoulli:
+        \[ P(X = 1) = p = 0{,}7 \qquad P(X = 0) = 1 - p = 0{,}3 \]
+        Hay un <strong>70 %</strong> de probabilidad de que el paquete sea malicioso y un <strong>30 %</strong> de que sea benigno.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuáles son la esperanza y la varianza de este ensayo individual?</p>
+        <p><strong>Solución:</strong> Para la distribución de Bernoulli con parámetro \(p\):
+        \[ E[X] = p = 0{,}7 \]
+        \[ \text{Var}(X) = p(1-p) = 0{,}7 \times 0{,}3 = 0{,}21 \]
+        La esperanza \(E[X] = 0{,}7\) se interpreta como que, en promedio, el 70 % de los paquetes son maliciosos. La varianza \(\text{Var}(X) = 0{,}21\) mide la incertidumbre de un único ensayo; se maximiza cuando \(p = 0{,}5\).</p>
+        <p><strong>Interpretación:</strong> La Bernoulli es el bloque fundamental de toda la estadística discreta: al repetir \(n\) ensayos independientes idénticos, la suma de los resultados sigue una distribución Binomial(\(n, p\)). En este caso, si se analizan 100 paquetes, el número total de maliciosos seguiría una Binomial(100, 0,7) con media \(100 \times 0{,}7 = 70\) paquetes.</p>
     </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La distribución de Bernoulli es la más simple posible, con solo dos resultados: 0 y 1. La <strong>PMF</strong> solo tiene dos valores posibles: \( P(X = 1) = p \) y \( P(X = 0) = 1 - p \). En la gráfica, solo se muestran dos barras en 0 y en 1; sus alturas representan directamente las probabilidades de fracaso y éxito. No hay ambigüedad en la interpretación: si \( p = 0{,}08 \), hay un 8 % de probabilidad de éxito y un 92 % de fracaso en cada observación individual.</p>
+                <p>La <strong>CDF</strong> toma tres posibles valores según el punto evaluado: \( P(X \leq x) = 0 \) para \( x < 0 \), \( P(X \leq x) = 1 - p \) para \( 0 \leq x < 1 \), y \( P(X \leq x) = 1 \) para \( x \geq 1 \). En términos prácticos, \( P(X \leq 0) = 1 - p \) es la probabilidad de fracaso y \( P(X \leq 1) = 1 \) es la certeza de que el resultado estará en \{0, 1\}. La cola derecha \( P(X > 0) = p \) es simplemente la probabilidad de éxito. El área verde en la gráfica refleja la probabilidad acumulada del valor o rango indicado.</p>
+                <p>Dado que la distribución Bernoulli solo tiene dos puntos de masa, los <strong>percentiles</strong> son escalonados: cualquier valor de \( p \) entre 0 y \( 1-p \) devuelve el cuantil 0; cualquier valor entre \( 1-p \) y 1 devuelve el cuantil 1. La utilidad principal de esta calculadora es confirmar las probabilidades básicas de un experimento binario individual y, a partir de esas probabilidades, razonar sobre cuántas repeticiones se necesitarían antes de modelar el proceso con una binomial o una geométrica.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

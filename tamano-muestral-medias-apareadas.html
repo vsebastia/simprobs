@@ -171,7 +171,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>En un diseño apareado se mide la misma unidad experimental en dos condiciones (antes/después, tratamiento/control cruzado, ojo derecho/izquierdo). El contraste de interés no es la diferencia de medias de dos grupos independientes, sino la <strong>media de las diferencias individuales</strong> \(\bar{d} = \bar{X}_1 - \bar{X}_2\).</p>
             <p>La ventaja clave del diseño apareado es que elimina la variabilidad entre individuos, que suele ser la mayor fuente de ruido. Por eso, el parámetro relevante es \(\sigma_d\) (desviación estándar de las diferencias intraindividuales), que generalmente es mucho menor que \(\sigma\) de cada grupo por separado. Esto se traduce en muestras significativamente más pequeñas comparado con el diseño de dos grupos independientes.</p>
             <p>La relación entre \(\sigma_d\) y las desviaciones estándar de cada medición es: \(\sigma_d^2 = \sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2\), donde \(\rho\) es la correlación entre ambas mediciones. Cuanto mayor sea \(\rho\), menor será \(\sigma_d\) y más eficiente el diseño apareado.</p>
@@ -227,15 +227,13 @@
             <p>Si la variabilidad real fuese mayor —por ejemplo \(\sigma_d = 3{,}0\)— con potencia del 80 % el tamaño muestral ascendería a \(n = 7{,}851 \times 9{,}0 / 1{,}0 \approx 71\) pares, lo que pone de manifiesto la importancia de disponer de un estudio piloto fiable para estimar \(\sigma_d\) con precisión.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Calcula el número mínimo de pares para detectar un cambio medio Δ en un diseño de medidas repetidas o apareado, dado σd (desviación estándar de las diferencias), α y potencia.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>\( n = \lceil((Z_{α/2}+Z_β)·σ_d/Δ)^2\rceil \). El resultado es el número de <em>pares</em>, no de observaciones totales.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>σd = 8, Δ = 3, α = 0,05, potencia = 0,80 → n = 56 pares. Si σd fuese 12, n subiría a 126 pares.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n es el número de individuos (cada uno medido dos veces). El número total de observaciones es 2·n. Comprueba siempre si tu σd proviene de diferencias, no de mediciones individuales.</p>
+                <p>El valor \(n\) es el <strong>número mínimo de sujetos</strong>, cada uno de los cuales aporta dos mediciones (antes/después, o condición A/condición B). El número total de observaciones es \(2n\), pero el número de unidades estadísticas independientes sigue siendo \(n\). Redondea siempre hacia arriba y aplica el ajuste por pérdidas: si esperas un 15 % de abandono entre la primera y la segunda medición, recluta \(\lceil n / 0{,}85 \rceil\) sujetos en la primera fase.</p>
+                <p>El parámetro clave y más delicado es \(\sigma_d\), la <strong>desviación estándar de las diferencias</strong> intraindividuales, que no debe confundirse con las desviaciones estándar de cada medición por separado. Si se usa \(\sigma\) de una sola medición en lugar de \(\sigma_d\), el \(n\) calculado puede estar sobreestimado o subestimado dependiendo de la correlación entre ambas medidas: cuando la correlación intraindividual \(\rho\) es alta, \(\sigma_d \approx \sigma\sqrt{2(1-\rho)}\) es considerablemente menor que \(\sigma\) y el diseño apareado exige muchos menos sujetos que el diseño independiente. Haz un <em>análisis de sensibilidad</em> con \(\sigma_d \pm 25\,\%\) y usa el \(n\) mayor.</p>
+                <p>Si el \(n\) calculado resulta muy pequeño (&lt; 15 pares), verifica que la distribución de las diferencias sea aproximadamente normal, ya que el test t para medidas repetidas se basa en ese supuesto. Con muy pocos pares, considera el test de Wilcoxon para muestras relacionadas. Cuando \(n\) sea inasumiblemente grande, revisa si la diferencia mínima detectable \(\delta\) es prácticamente relevante o si puede relajarse. Con los datos recogidos, usa la <a href="contraste-hipotesis-medias-apareadas.html">calculadora de contraste para medias apareadas</a> para el análisis principal.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

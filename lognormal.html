@@ -216,8 +216,7 @@
         </section>
 
         <article class="card content-card">
-        <h3>Distribución log-normal</h3>
-        <h3>Explicación breve</h3>
+        <h3>Explicación</h3>
         <p>Una variable aleatoria X sigue una distribución log-normal si su logaritmo natural ln(X) sigue una distribución normal.
         Esto ocurre de forma natural en procesos donde el resultado es el producto de muchos factores aleatorios independientes,
         igual que la suma de factores lleva a la normal por el teorema central del límite.
@@ -234,21 +233,25 @@
             <li><strong>x:</strong> valor positivo de la variable original (x &gt; 0).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Los salarios anuales de una empresa se modelan con una log-normal con μ = 10,8 y σ = 0,4
-        (en logaritmo natural de euros). La media salarial es exp(10,8 + 0,4²/2) = exp(10,88) ≈ 53 300 €.
-        Con la calculadora, introduce μ = 10,8 y σ = 0,4 y usa la CDF con x = 40 000 para conocer la proporción
-        de empleados que gana menos de 40 000 €, o usa cuantiles para encontrar el salario mediano (percentil 50)
-        que coincide con exp(μ) = exp(10,8) ≈ 49 000 €.</p>
+        <p><strong>Situación:</strong> El tiempo de resolución de incidencias en un sistema informático (en minutos) sigue una distribución log-normal con parámetros \(\mu = 2\) y \(\sigma = 0{,}5\) (en logaritmo natural). Estos parámetros describen el comportamiento del logaritmo del tiempo, no del tiempo directamente.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que una incidencia se resuelva en 10 minutos o menos, \(P(X \leq 10)\)?</p>
+        <p><strong>Solución:</strong> Estandarizamos usando la relación \(\ln(X) \sim \mathcal{N}(\mu, \sigma^2)\):
+        \[ P(X \leq 10) = P\!\left(Z \leq \frac{\ln 10 - 2}{0{,}5}\right) = P\!\left(Z \leq \frac{2{,}3026 - 2}{0{,}5}\right) = P(Z \leq 0{,}605) \approx 0{,}727 \]
+        Hay aproximadamente un <strong>72,7 %</strong> de probabilidad de resolver la incidencia en 10 minutos o menos.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es la mediana del tiempo de resolución?</p>
+        <p><strong>Solución:</strong> La mediana de la log-normal es:
+        \[ \text{mediana} = e^\mu = e^2 \approx 7{,}389 \text{ minutos} \]
+        La mediana es <strong>7,39 minutos</strong>. La media aritmética, en cambio, es mayor:
+        \[ E[X] = e^{\mu + \sigma^2/2} = e^{2 + 0{,}125} = e^{2{,}125} \approx 8{,}37 \text{ minutos} \]</p>
+        <p><strong>Interpretación:</strong> La mediana (7,39 min) es inferior a la media (8,37 min), lo que refleja la asimetría derecha típica de la log-normal: la mayoría de las incidencias se resuelven relativamente rápido, pero algunas se prolongan mucho y elevan la media. Para dimensionar el soporte técnico, es preferible usar percentiles altos (p. ej., percentil 90) como objetivo de nivel de servicio.</p>
     </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong>, \( f(x) \), da la densidad de probabilidad en el punto \( x > 0 \). La distribución log-normal es siempre positiva y presenta una cola derecha larga: la mayoría de los valores se concentran relativamente cerca del origen, pero hay probabilidades no despreciables de valores muy grandes. El pico de la curva (la moda) está en \( e^{\mu - \sigma^2} \), que es menor que la mediana \( e^\mu \) y que la media \( e^{\mu + \sigma^2/2} \); esta desigualdad es típica de distribuciones con sesgo positivo. En la gráfica, el área verde representa la probabilidad del rango seleccionado; el eje horizontal parte de cero.</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq x) \), acumula la probabilidad hasta el valor \( x \) y es equivalente a la CDF de la normal estándar evaluada en \( (\ln x - \mu)/\sigma \). Por ejemplo, si los ingresos siguen una log-normal con \( \mu = 10{,}8 \) y \( \sigma = 0{,}4 \), entonces \( P(X \leq 40\,000) \) da la proporción de la población que gana 40 000 € o menos. La cola derecha \( P(X > x) \) mide la fracción de la distribución con valores extremadamente altos, lo que es relevante en análisis de riesgo y finanzas donde los eventos de cola son los más costosos.</p>
+                <p>El resultado de <strong>percentil o cuantil</strong> devuelve \( x = e^{\mu + z_p \sigma} \), donde \( z_p \) es el cuantil de la normal estándar para la probabilidad \( p \). La mediana (percentil 50) es exactamente \( e^\mu \), siempre inferior a la media aritmética. El percentil 90 o 95 es especialmente útil en análisis de valor en riesgo (VaR), tamaños de buffer y dimensionamiento de sistemas donde los valores extremos son los que determinan el diseño.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

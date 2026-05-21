@@ -216,12 +216,9 @@
         </section>
 
         <article class="card content-card">
-    <h3>Distribución binomial</h3>
-    <h3>Explicación breve</h3>
-        <p>La distribución binomial describe cuántos éxitos ocurren en un número fijo de ensayos independientes de tipo sí/no.
-            Cada ensayo tiene la misma probabilidad de éxito y el conteo solo puede ser un entero entre 0 y <em>n</em>.
-            Es ideal cuando conoces el número de intentos de antemano y quieres probabilidades de conteos,
-            como “exactamente 7 éxitos” o “a lo sumo 3 fallos”.</p>
+    <h3>Explicación</h3>
+        <p>La distribución binomial describe cuántos éxitos ocurren en un número fijo \( n \) de ensayos independientes de tipo sí/no, donde cada ensayo tiene la misma probabilidad de éxito \( p \). El conteo \( X \) solo puede tomar valores enteros entre 0 y \( n \). Su media es \( np \) y su varianza \( np(1-p) \); cuando \( np \geq 5 \) y \( n(1-p) \geq 5 \), la distribución binomial se aproxima bien a la normal con esos mismos parámetros. Para \( n \) grande y \( p \) muy pequeño (tal que \( np \) sea moderado), se aproxima a una <a href="poisson.html">Poisson</a> con \( \lambda = np \).</p>
+        <p>Úsala cuando el número de ensayos sea fijo de antemano, los ensayos sean independientes, cada uno tenga solo dos resultados posibles y la probabilidad de éxito sea la misma en todos. Ejemplos típicos: unidades defectuosas en una muestra de control de calidad, conversiones en una campaña de marketing, pacientes que responden a un tratamiento en un ensayo clínico, o lanzamientos de una moneda. Si los ensayos no son independientes (muestreo sin reemplazo de una población pequeña), usa la <a href="hypergeometric.html">distribución hipergeométrica</a> en su lugar.</p>
     <h3>Fórmula</h3>
     <p class="formula-line">\( P(X=k)=\binom{n}{k}p^k(1-p)^{n-k} \)</p>
     <h3>Parámetros</h3>
@@ -231,19 +228,26 @@
         <li><strong>k:</strong> número de éxitos observados.</li>
     </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Imagina una campaña de correo enviada a 20 contactos, donde cada contacto tiene una probabilidad 0.15 de convertir. El modelo binomial permite estimar la probabilidad de obtener exactamente 4 conversiones, al menos 5 o un rango de conversiones. En control de calidad también sirve para estimar unidades defectuosas en una muestra.</p>
+        <p><strong>Situación:</strong> En una línea de fabricación, cada pieza tiene una probabilidad de \(p = 0{,}3\) de presentar algún defecto menor. Se inspecciona un lote de \(n = 20\) piezas de forma independiente. Sea \(X\) el número de piezas defectuosas en el lote.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que exactamente 4 piezas sean defectuosas, \(P(X = 4)\)?</p>
+        <p><strong>Solución:</strong> Aplicamos la función de masa de probabilidad de la binomial:
+        \[ P(X = 4) = \binom{20}{4}(0{,}3)^4(0{,}7)^{16} \]
+        Calculamos cada factor: \(\binom{20}{4} = 4845\), \((0{,}3)^4 = 0{,}0081\), \((0{,}7)^{16} \approx 0{,}003323\):
+        \[ P(X = 4) = 4845 \times 0{,}0081 \times 0{,}003323 \approx 0{,}1304 \]
+        Hay aproximadamente un <strong>13,04 %</strong> de probabilidad de encontrar exactamente 4 defectuosas.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es la probabilidad de encontrar 6 o menos piezas defectuosas, \(P(X \leq 6)\)?</p>
+        <p><strong>Solución:</strong> Sumamos las probabilidades individuales \(P(X = 0) + P(X = 1) + \cdots + P(X = 6)\). La CDF de la binomial con \(n = 20\), \(p = 0{,}3\) en \(k = 6\) da:
+        \[ P(X \leq 6) \approx 0{,}6080 \]
+        Hay un <strong>60,80 %</strong> de probabilidad de que el lote tenga a lo sumo 6 piezas defectuosas.</p>
+        <p><strong>Interpretación:</strong> La media esperada de defectos es \(np = 20 \times 0{,}3 = 6\) piezas. Que \(P(X \leq 6) \approx 0{,}608\) confirma que el valor medio queda cerca del percentil 60, como es propio de una binomial con estos parámetros. Si el criterio de rechazo del lote fuera encontrar más de 6 defectos, habría aproximadamente un 39 % de probabilidad de rechazar el lote.</p>
     </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
-            <h3>Ejemplo resuelto: éxitos en ensayos independientes</h3>
-            <p>Si envías 20 invitaciones y cada una tiene probabilidad p = 0,30 de respuesta, puedes calcular la probabilidad de recibir exactamente 8 respuestas con n = 20, p = 0,30 y k = 8. Para estimar “8 o menos”, cambia a probabilidad acumulada P(X ≤ 8).</p>
+                <p>La calculadora devuelve tres tipos de salida. La <strong>función de masa PMF</strong>, \( P(X = k) \), da la probabilidad exacta de obtener exactamente \( k \) éxitos en los \( n \) ensayos. Por ejemplo, si \( P(X = 3) = 0{,}18 \), significa que el 18 % de las veces se esperarían exactamente 3 éxitos bajo ese modelo. En la gráfica, cada barra vertical representa la probabilidad de un valor concreto; la barra resaltada corresponde al \( k \) seleccionado.</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq k) \), acumula todas las probabilidades desde 0 hasta \( k \) inclusive. Si \( P(X \leq 4) = 0{,}82 \), significa que el 82 % de los experimentos de \( n \) ensayos producen 4 o menos éxitos. La cola derecha \( P(X > k) = 1 - P(X \leq k) \) mide cuán inusual es obtener más de \( k \) éxitos. El área verde en la gráfica visualiza la probabilidad acumulada para el rango seleccionado; el eje horizontal muestra los posibles conteos de 0 a \( n \).</p>
+                <p>El resultado de <strong>percentil o cuantil</strong> devuelve el menor entero \( k \) tal que \( P(X \leq k) \geq p \). Si el percentil 90 es \( k = 7 \), hay al menos un 90 % de probabilidad de obtener 7 o menos éxitos. Esto es útil para definir umbrales de aceptación en muestreo de calidad, niveles críticos en pruebas estadísticas o metas de conversión en marketing.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

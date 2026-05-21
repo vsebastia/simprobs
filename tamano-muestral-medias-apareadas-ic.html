@@ -169,7 +169,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Esta calculadora determina el número mínimo de pares de observaciones para estimar la diferencia media poblacional \(\mu_d\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado. Se usa cuando el diseño empareja cada observación de un grupo con una observación concreta del otro: medición antes/después en los mismos sujetos, dos métodos aplicados a las mismas muestras, o pares emparejados por características relevantes.</p>
             <p>La fórmula es matemáticamente idéntica a la del tamaño muestral para una media, pero aplicada a las diferencias. El parámetro clave que debes conocer de antemano es \(\sigma_d\), la desviación estándar de las diferencias individuales \(d_i = x_{i,\text{después}} - x_{i,\text{antes}}\). Este valor no es la desviación estándar de cada grupo por separado, sino la dispersión de los cambios individuales.</p>
             <p>La fórmula usa el cuantil normal Z, lo que supone que \(\sigma_d\) es conocida o que la muestra es suficientemente grande. Para muestras pequeñas (&lt; 30 pares) con \(\sigma_d\) desconocida, el n real puede ser algo mayor; puedes iterar reemplazando Z por el cuantil t con n−1 grados de libertad.</p>
@@ -222,15 +222,13 @@
             </ul>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Calcula el número mínimo de pares de observaciones para estimar la diferencia media poblacional \(\mu_d\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado, usando el cuantil normal \(Z\) y la desviación estándar de las diferencias \(\sigma_d\).</p>
-            <h3>Fórmula utilizada</h3>
-            <p>\( n = (Z \cdot \sigma_d / E)^2 \). El resultado se redondea al entero superior. La fórmula asume \(\sigma_d\) conocida; para \(\sigma_d\) desconocida con n pequeño, sustituye \(Z\) por el cuantil \(t(n-1)\) de forma iterativa.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>σ_d = 8, E = 2, 95 % confianza → n = 62 pares. Con E = 3 → n = 28 pares. La relación es inversa al cuadrado del error.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n es el número mínimo de pares válidos. Si tienes incertidumbre sobre el valor de \(\sigma_d\), calcula n para \(\sigma_d \pm 25\,\%\) y usa el mayor como margen de seguridad.</p>
+                <p>El valor \(n\) es el <strong>número mínimo de pares válidos</strong> (sujetos con ambas mediciones completas) para que el intervalo de confianza de la diferencia media intraindividual tenga una semiancho máximo de \(E\) con el nivel de confianza especificado. Redondea siempre hacia arriba. Si prevés que algunos pares quedarán incompletos (pérdida de una de las dos mediciones), añade un margen: divide \(n\) entre \((1 - \text{tasa de pérdida})\) para obtener los pares que debes iniciar.</p>
+                <p>El parámetro más influyente y más difícil de conocer de antemano es \(\sigma_d\), la <strong>desviación estándar de las diferencias</strong> pareadas. Esta cantidad no es la desviación estándar de cada medición individual, sino la variabilidad de la diferencia \(d_i = x_{i,\text{post}} - x_{i,\text{pre}}\) para cada sujeto. Si dispones de datos piloto, estímala directamente a partir de las diferencias observadas. En ausencia de datos previos, usa la relación \(\sigma_d \approx \sigma\sqrt{2(1-\rho)}\) donde \(\sigma\) es la desviación estándar de una medición y \(\rho\) es la correlación test-retest esperada. Realiza un análisis de sensibilidad con \(\sigma_d - 25\,\%\), \(\sigma_d\) y \(\sigma_d + 25\,\%\) y planifica con el valor mayor.</p>
+                <p>La ventaja del diseño apareado frente al de grupos independientes es que elimina la variabilidad entre sujetos, lo que puede reducir sustancialmente \(n\) cuando la correlación intraindividual es alta (\(\rho > 0{,}5\)). Si el IC resultante va a usarse para tomar una decisión clínica, comprueba que el valor de \(E\) tiene una interpretación práctica clara (p. ej., diferencia mínima clínicamente relevante). Con los pares recogidos, usa la <a href="tamano-muestral-medias-apareadas.html">calculadora de contraste para medias apareadas</a> si quieres realizar un test de hipótesis, o construye directamente el IC con la <a href="intervalo-confianza-diferencia-medias.html">calculadora de intervalo de confianza para diferencia de medias</a>.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

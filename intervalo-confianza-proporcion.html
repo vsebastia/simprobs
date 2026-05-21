@@ -163,7 +163,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Cuando queremos estimar la proporción real de una característica en una población (tasa de defectos, porcentaje de usuarios satisfechos, prevalencia de una enfermedad…), el intervalo de confianza para una proporción nos da el rango plausible para ese valor.</p>
             <p>La proporción muestral \(\hat{p} = x/n\) (éxitos entre observaciones) es el estimador. Existen varios métodos para construir el intervalo; los más habituales son Wald (aproximación normal) y Wilson (más preciso para proporciones extremas o muestras pequeñas).</p>
 
@@ -249,9 +249,18 @@
             </ul>
         </section>
 
+        <section class="card content-card">
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El intervalo \([L, U]\) es el rango de valores de la proporción poblacional \(p\) compatibles con los datos observados al nivel de confianza elegido. En términos frecuentistas: si repitieras el muestreo muchas veces y construyeras el IC con el mismo método, una proporción \(C\) de esos intervalos contendría el verdadero valor de \(p\). La amplitud depende del tamaño muestral \(n\) y de la propia proporción estimada \(\hat{p}\): la variabilidad es máxima cuando \(\hat{p} = 0{,}5\) y decrece al alejarse de ese valor. En el gráfico, la región verde bajo la curva normal estándar es la zona de confianza y las colas rojas (área \(\alpha/2\) cada una) delimitan los valores críticos \(\pm z_{\alpha/2}\).</p>
+            <p>Para reducir la amplitud del intervalo a la mitad manteniendo el mismo nivel de confianza, necesitas cuadruplicar el tamaño muestral, ya que el margen de error es proporcional a \(1/\sqrt{n}\). Aumentar la confianza del 95 % al 99 % amplía el intervalo porque \(z_{0{,}005} = 2{,}576 > z_{0{,}025} = 1{,}960\); es decir, exigir más certeza tiene el coste de una estimación menos precisa.</p>
+            <ul>
+                <li><strong>Wald vs. Wilson:</strong> cuando la condición \(n\hat{p} \geq 5\) y \(n(1-\hat{p}) \geq 5\) se cumple en ambos extremos, los dos métodos suelen dar resultados muy parecidos. Si la proporción es extrema o la muestra es pequeña, Wilson es más fiable porque el centro del intervalo se desplaza ligeramente hacia valores menos extremos y los límites siempre permanecen en \([0, 1]\).</li>
+                <li><strong>Conexión con el contraste:</strong> si un valor de referencia \(p_0\) queda fuera del intervalo, los datos rechazarían \(H_0\!: p = p_0\) al nivel \(\alpha = 1 - C\) en el contraste bilateral equivalente. Si \(p_0\) queda dentro, no hay evidencia suficiente para rechazarlo.</li>
+                <li><strong>Relevancia práctica:</strong> un IC muy estrecho indica alta precisión, pero recuerda que la precisión estadística y la relevancia práctica son conceptos distintos. Un intervalo del 67 % al 68 % es muy preciso pero podría ser irrelevante en contextos donde solo importa superar el 70 %.</li>
+            </ul>
+        </section>
+
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora obtiene el intervalo de confianza para la proporción poblacional p usando los métodos de Wald (aproximación normal clásica) y Wilson (score interval), mostrando ambos para comparación y una representación gráfica de la distribución normal estándar con la región de confianza.</p>
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

@@ -216,9 +216,9 @@
         </section>
 
         <article class="card content-card">
-    <h3>Distribución geométrica</h3>
-    <h3>Explicación breve</h3>
-    <p>La distribución geométrica describe cuántos intentos independientes se necesitan hasta obtener el primer éxito, cuando cada intento tiene la misma probabilidad de éxito. Es una distribución discreta, apropiada para procesos de repetición tipo “probar hasta lograr”. Al igual que la exponencial, también presenta una versión discreta de la propiedad de falta de memoria.</p>
+    <h3>Explicación</h3>
+    <p>La distribución geométrica describe cuántos intentos independientes se necesitan hasta obtener el <em>primer</em> éxito, cuando cada intento tiene la misma probabilidad de éxito \( p \). Es una distribución discreta con soporte en los enteros positivos \( k = 1, 2, 3, \ldots \) y es el caso particular de la binomial negativa con \( r = 1 \). Su media es \( 1/p \) y su varianza \( (1-p)/p^2 \); con una probabilidad de éxito pequeña, la media es alta y la distribución tiene una cola derecha muy larga.</p>
+    <p>La propiedad de falta de memoria es su característica más importante: dado que ya se han realizado \( m \) intentos fallidos, la distribución del número de intentos adicionales hasta el primer éxito es exactamente la misma que al principio. Úsala cuando tengas procesos de tipo “repetir hasta lograrlo”: prospección comercial, ensayos de calidad hasta el primer defecto, intentos de conexión en redes, o cualquier situación donde los intentos sean independientes entre sí y tengan una probabilidad de éxito constante.</p>
     <h3>Fórmula</h3>
     <p class="formula-line">\( P(X=k)=(1-p)^{k-1}p,\quad k=1,2,3,\dots \)</p>
     <h3>Parámetros</h3>
@@ -227,17 +227,24 @@
         <li><strong>k:</strong> número de intento en el que ocurre el primer éxito.</li>
     </ul>
     <h3>Ejemplo resuelto</h3>
-    <p>Si un comercial tiene una probabilidad del 20% de cerrar una venta en cada llamada, la geométrica permite calcular la probabilidad de cerrar en la primera, tercera o décima llamada, así como la probabilidad acumulada de cerrar antes de cierto número de contactos. En la calculadora, selecciona <em>Geométrica</em> para trabajar con estos escenarios de “primer éxito”.</p>
+    <p><strong>Situación:</strong> Un técnico de soporte técnico resuelve cada incidencia con una probabilidad de \(p = 0{,}2\) en el primer intento. Los intentos son independientes. Sea \(X\) el número del intento en que se resuelve por primera vez la incidencia.</p>
+    <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que la incidencia se resuelva exactamente en el tercer intento, \(P(X = 3)\)?</p>
+    <p><strong>Solución:</strong> Aplicamos la PMF de la geométrica, donde los dos primeros intentos fallan y el tercero tiene éxito:
+    \[ P(X = 3) = (1 - p)^{3-1} \cdot p = (0{,}8)^2 \times 0{,}2 = 0{,}64 \times 0{,}2 = 0{,}128 \]
+    Hay un <strong>12,8 %</strong> de probabilidad de resolver la incidencia exactamente en el tercer intento.</p>
+    <p><strong>Pregunta 2:</strong> ¿Cuántos intentos se necesitan en promedio, \(E[X]\)?</p>
+    <p><strong>Solución:</strong> La media de la distribución geométrica es:
+    \[ E[X] = \frac{1}{p} = \frac{1}{0{,}2} = 5 \text{ intentos} \]
+    Sin embargo, la mediana (percentil 50) es menor: \(P(X \leq k) \geq 0{,}5 \Rightarrow 1 - 0{,}8^k \geq 0{,}5 \Rightarrow k \geq \lceil\ln(0{,}5)/\ln(0{,}8)\rceil = 4\). La mediana es <strong>4 intentos</strong>.</p>
+    <p><strong>Interpretación:</strong> Con una tasa de resolución del 20 %, la mitad de las incidencias se resuelven en 4 intentos o menos, pero la media se eleva a 5 por la cola derecha larga. Gracias a la propiedad de falta de memoria, si ya han fallado 3 intentos, la distribución del número de intentos adicionales necesarios es idéntica a la distribución original.</p>
     </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PMF</strong>, \( P(X = k) = (1-p)^{k-1} p \), da la probabilidad de que el primer éxito ocurra exactamente en el intento \( k \). Esta probabilidad decrece geométricamente: el intento 1 siempre tiene la probabilidad más alta (\( p \)), el intento 2 tiene \( (1-p)p \), y así sucesivamente. En la gráfica, las barras van decreciendo de izquierda a derecha; la barra del intento 1 es siempre la más alta independientemente de \( p \).</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq k) = 1 - (1-p)^k \), da la probabilidad de conseguir el primer éxito en \( k \) o menos intentos. Si \( p = 0{,}2 \) y \( k = 5 \), entonces \( P(X \leq 5) = 1 - 0{,}8^5 \approx 0{,}672 \): el 67,2 % de los procesos logran el primer éxito en cinco o menos intentos. La cola derecha \( P(X > k) = (1-p)^k \) mide la probabilidad de no haber tenido éxito aún tras \( k \) intentos, y gracias a la propiedad de falta de memoria, esta probabilidad no depende de cuántos intentos fallidos ya se hayan acumulado.</p>
+                <p>El resultado de <strong>percentil</strong> devuelve el menor entero \( k \) tal que \( P(X \leq k) \geq p \). El percentil 50 (mediana) es el número de intentos que separa la mitad más rápida de la mitad más lenta en conseguir el éxito; el percentil 90 indica el número de intentos que solo el 10 % de los procesos supera sin haber tenido éxito, lo que puede usarse para dimensionar recursos en escenarios de prospección o pruebas repetidas.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

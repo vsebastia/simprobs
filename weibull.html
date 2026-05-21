@@ -216,8 +216,7 @@
         </section>
 
         <article class="card content-card">
-        <h3>Distribución Weibull</h3>
-        <h3>Explicación breve</h3>
+        <h3>Explicación</h3>
         <p>La distribución Weibull es una distribución continua positiva ampliamente utilizada en análisis de fiabilidad,
         ingeniería de mantenimiento y modelado de vida útil de componentes. Su versatilidad radica en el parámetro de forma k:
         si k &lt; 1 la tasa de fallo decrece con el tiempo (fallos tempranos, típicos de defectos de fabricación);
@@ -234,21 +233,24 @@
             <li><strong>x:</strong> tiempo de vida o tiempo hasta el fallo (x ≥ 0).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Los rodamientos de una máquina industrial presentan un patrón de desgaste modelado con Weibull(k = 2,5, λ = 8000 h).
-        La probabilidad de que un rodamiento falle antes de las 5000 horas es P(X ≤ 5000) = 1 − exp(−(5000/8000)²·⁵) ≈ 22 %.
-        Con la calculadora, introduce k = 2,5 y λ = 8000 y usa la CDF con x = 5000 para obtener este resultado directamente.
-        También puedes usar cuantiles para encontrar la vida B10 (tiempo que garantiza que solo el 10 % de los rodamientos fallen),
-        lo que permite planificar el intervalo óptimo de mantenimiento preventivo.</p>
+        <p><strong>Situación:</strong> La vida útil de unas bombillas LED se modela con una distribución Weibull con parámetro de forma \(k = 2\) (desgaste creciente con el tiempo) y parámetro de escala \(\lambda = 5\) (en miles de horas). Se desea evaluar la fiabilidad de las bombillas.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que una bombilla falle antes de las 4000 horas, \(P(X \leq 4)\)?</p>
+        <p><strong>Solución:</strong> Aplicamos la CDF de la Weibull:
+        \[ P(X \leq 4) = 1 - e^{-(x/\lambda)^k} = 1 - e^{-(4/5)^2} = 1 - e^{-0{,}64} \approx 1 - 0{,}5273 \approx 0{,}4727 \]
+        Hay aproximadamente un <strong>47,27 %</strong> de probabilidad de que la bombilla falle antes de las 4000 horas.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es la vida media esperada de las bombillas?</p>
+        <p><strong>Solución:</strong> La media de la Weibull(\(k, \lambda\)) es:
+        \[ E[X] = \lambda \cdot \Gamma\!\left(1 + \frac{1}{k}\right) = 5 \cdot \Gamma(1{,}5) = 5 \times 0{,}8862 \approx 4{,}431 \text{ miles de horas} \]
+        La vida media esperada es aproximadamente <strong>4431 horas</strong>.</p>
+        <p><strong>Interpretación:</strong> Con \(k = 2 > 1\), la tasa de fallo es creciente, lo que indica desgaste progresivo. El percentil 63,2 coincide exactamente con \(\lambda = 5\) miles de horas: el 63,2 % de las bombillas habrán fallado antes de las 5000 horas. Esto permite planificar sustituciones preventivas antes de esa vida característica para maximizar la disponibilidad del sistema.</p>
     </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong>, \( f(x) \), da la densidad de probabilidad en el punto \( x > 0 \): indica la concentración relativa de fallos o eventos en ese instante. Con \( k < 1 \) la curva decrece desde el inicio (mayor densidad al principio, fallos tempranos); con \( k = 1 \) es la exponencial; con \( k > 1 \) aparece un máximo (la moda aumenta con \( k \)) y la curva tiende a ser más simétrica. En la gráfica, el área verde representa la probabilidad acumulada para el rango de tiempo seleccionado; el eje horizontal muestra el tiempo o duración.</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq x) = 1 - e^{-(x/\lambda)^k} \), también llamada <em>función de distribución de fallos acumulados</em> en fiabilidad, da la probabilidad de que el componente haya fallado antes del tiempo \( x \). Su complemento, \( R(x) = e^{-(x/\lambda)^k} \), es la <em>función de fiabilidad</em>: la probabilidad de que el componente siga funcionando en el instante \( x \). Un valor \( P(X \leq 5000) = 0{,}23 \) significa que el 23 % de los componentes habrán fallado antes de las 5000 horas de funcionamiento.</p>
+                <p>El resultado de <strong>percentil o cuantil</strong> devuelve el tiempo \( x = \lambda \cdot (-\ln(1-p))^{1/k} \). El percentil 10 (denominado vida B10) es el tiempo antes del cual falla el 10 % de los componentes: es el estándar más habitual en ingeniería mecánica para garantías y planificación de mantenimiento preventivo. El percentil 63,2 coincide siempre con el parámetro de escala \( \lambda \), independientemente de \( k \), porque \( P(X \leq \lambda) = 1 - e^{-1} \approx 0{,}632 \).</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

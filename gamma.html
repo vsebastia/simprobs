@@ -216,8 +216,7 @@
         </section>
 
         <article class="card content-card">
-        <h3>Distribución gamma</h3>
-        <h3>Explicación breve</h3>
+        <h3>Explicación</h3>
         <p>La distribución gamma es una distribución continua definida para valores positivos que generaliza la distribución exponencial.
         Mientras que la exponencial modela el tiempo hasta el primer evento de un proceso de Poisson, la gamma con parámetro de forma
         k modela el tiempo hasta que ocurren k eventos consecutivos. Esto la hace ideal para tiempos de espera acumulados,
@@ -234,21 +233,26 @@
             <li><strong>x:</strong> valor positivo donde se evalúa la distribución (x &gt; 0).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Un centro de atención al cliente recibe llamadas a razón de 4 por hora (tasa λ = 4 h⁻¹, θ = 0,25 h por llamada).
-        El tiempo hasta atender las 3 primeras llamadas sigue una Gamma(k = 3, θ = 0,25).
-        Su media es 3 × 0,25 = 0,75 h = 45 minutos.
-        Con la calculadora, introduce k = 3 y θ = 0,25 y usa la CDF con x = 1 para obtener la probabilidad de que las
-        3 llamadas lleguen en menos de una hora, o usa cuantiles para encontrar el tiempo que no se supera el 90 % de las veces.</p>
+        <p><strong>Situación:</strong> El tiempo de reparación de un equipo industrial se modela con una distribución Gamma con parámetro de forma \(\alpha = 3\) y parámetro de escala \(\beta = 2\) horas. Esto equivale a suponer que la reparación requiere completar 3 etapas independientes, cada una con duración media de 2 horas.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es el tiempo medio de reparación y cuál es la probabilidad de terminar en 8 horas o menos, \(P(X \leq 8)\)?</p>
+        <p><strong>Solución:</strong> La media de la Gamma(\(\alpha, \beta\)) es:
+        \[ E[X] = \alpha \cdot \beta = 3 \times 2 = 6 \text{ horas} \]
+        Para calcular \(P(X \leq 8)\) usamos la función gamma incompleta regularizada \(P(X \leq 8) = \Gamma_{\text{reg}}(3;\, 8/2) = \Gamma_{\text{reg}}(3;\, 4)\). Evaluando numéricamente:
+        \[ P(X \leq 8) \approx 0{,}714 \]
+        Hay aproximadamente un <strong>71,4 %</strong> de probabilidad de completar la reparación en 8 horas o menos.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es la varianza y qué significa respecto a la incertidumbre del tiempo de reparación?</p>
+        <p><strong>Solución:</strong> La varianza de la Gamma es:
+        \[ \text{Var}(X) = \alpha \cdot \beta^2 = 3 \times 4 = 12 \text{ h}^2 \implies \sigma = \sqrt{12} \approx 3{,}46 \text{ h} \]
+        La desviación típica de 3,46 horas representa más del 57 % de la media, lo que refleja una variabilidad considerable en los tiempos de reparación.</p>
+        <p><strong>Interpretación:</strong> Con media de 6 horas y \(P(X \leq 8) \approx 0{,}714\), el 28,6 % de las reparaciones se prolongan más de 8 horas. Si el objetivo de nivel de servicio es completar el 90 % de las reparaciones a tiempo, se puede usar el percentil 90 de la Gamma(3, 2) como plazo máximo garantizado.</p>
     </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong>, \( f(x) \), da la densidad de probabilidad en el punto \( x \): indica cuán concentrada está la distribución en esa zona. Con \( k = 1 \) la curva es decreciente (idéntica a la exponencial); con \( k > 1 \) aparece un máximo (la moda es \( (k-1)\theta \)) y la curva adopta forma de campana asimétrica que se desplaza a la derecha conforme aumenta \( k \). En la gráfica, el área verde representa la probabilidad acumulada del rango seleccionado; el eje horizontal parte de cero (la distribución gamma solo toma valores positivos).</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq x) \), acumula la probabilidad desde cero hasta \( x \): representa la probabilidad de que la variable (por ejemplo, un tiempo de espera acumulado) sea menor o igual que \( x \). Si \( P(X \leq 1) = 0{,}78 \) con \( k = 3 \) y \( \theta = 0{,}25 \) horas, significa que el 78 % de los procesos completan sus 3 etapas en menos de 1 hora. La cola derecha \( P(X > x) \) mide la probabilidad de que el proceso dure más de \( x \) unidades, útil para dimensionar buffers y tiempos de atención.</p>
+                <p>El resultado de <strong>percentil o cuantil</strong> devuelve el valor \( x \) tal que \( P(X \leq x) = p \). El percentil 90 indica el tiempo que solo el 10 % de los procesos superan, lo que permite fijar umbrales de servicio con una cobertura determinada. En fiabilidad e ingeniería, el percentil 10 (B10) es el tiempo antes del cual falla el 10 % de los componentes, un estándar habitual para evaluar la durabilidad de sistemas.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

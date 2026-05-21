@@ -195,7 +195,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
 
             <p>
                 El contraste chi-cuadrado de bondad de ajuste permite evaluar si la distribución
@@ -285,92 +285,40 @@
             <p>Conclusión: no hay evidencia estadística de que el dado esté cargado. Las desviaciones observadas respecto a las frecuencias esperadas son perfectamente compatibles con la variabilidad aleatoria de un dado equilibrado en 60 lanzamientos.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-
-            <p>
-                Esta calculadora de chi-cuadrado de bondad de ajuste toma las frecuencias observadas
-                en cada categoría y las probabilidades teóricas del modelo a contrastar, calcula las
-                frecuencias esperadas, obtiene el estadístico \(\chi^2\), los grados de libertad y
-                el p-valor, y emite una decisión automática al nivel de significación indicado.
-            </p>
-
-            <p>
-                La herramienta también muestra la tabla de frecuencias esperadas y un gráfico con
-                la distribución de referencia, la zona de rechazo y la posición del estadístico
-                observado, lo que facilita la interpretación visual del resultado.
-            </p>
-
-            <h3>Fórmula utilizada</h3>
-
-            <p>
-                Las frecuencias esperadas bajo la hipótesis nula se calculan para cada categoría
-                \(i\) como:
-            </p>
-
-            <p class="formula-line">
-                \(E_i = n \cdot p_i\)
-            </p>
-
-            <p>
-                El estadístico de contraste es:
-            </p>
-
-            <p class="formula-line">
-                \(\chi^2 = \sum_{i=1}^{k} \frac{(O_i - E_i)^2}{E_i}\)
-            </p>
-
-            <p>
-                Bajo \(H_0\), este estadístico sigue una distribución \(\chi^2\) con \(k - 1\)
-                grados de libertad (menos el número de parámetros estimados con la muestra, si los
-                hay). El p-valor es la probabilidad de obtener un estadístico tan grande o mayor
-                si la hipótesis nula fuera cierta:
-            </p>
-
-            <p class="formula-line">
-                \(p = P\!\left(\chi^2_{k-1} \geq \chi^2_{\text{obs}}\right)\)
-            </p>
-
-            <h3>Ejemplo de uso</h3>
-
-            <p>
-                Supón que lanzas un dado 120 veces y obtienes los siguientes recuentos por cara:
-                25, 18, 22, 20, 17 y 18. Quieres saber si el dado es equilibrado. Las probabilidades
-                teóricas son 1/6 para cada cara, lo que implica una frecuencia esperada de 20 para
-                cada una. Introduces los recuentos, dejas las probabilidades en blanco (distribución
-                uniforme), fijas α = 0,05 y pulsas calcular. Si el p-valor supera 0,05, los datos
-                son compatibles con un dado equilibrado.
-            </p>
-
-            <p>
-                En genética mendeliana, epidemiología y control de calidad es habitual contrastar si
-                la proporción observada de cada categoría se ajusta a un patrón teórico: ratios de
-                segregación genética, distribución esperada de grupos sanguíneos o proporción de
-                defectos por tipo según histórico de producción.
-            </p>
-
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
 
-            <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay
-                evidencia estadística de que la distribución real difiere de la teórica especificada.
-                Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para
-                rechazar el modelo con ese nivel de significación.
-            </p>
+                <p>
+                <strong>Rechazar \(H_0\)</strong> (p-valor &lt; \(\alpha\)) significa que las
+                frecuencias observadas difieren de las esperadas bajo el modelo teórico más de lo
+                que el azar puede explicar. En la práctica, el modelo distribucional propuesto
+                (uniforme, binomial, Poisson, etc.) no describe adecuadamente los datos. Sin embargo,
+                la significación global no revela <em>dónde</em> está la discrepancia: para localizarla,
+                revisa los <strong>residuos estandarizados</strong> \((O_i - E_i)/\sqrt{E_i}\) de cada
+                categoría. Valores en valor absoluto superiores a 2 señalan las categorías que más
+                alejan el estadístico del valor esperado bajo \(H_0\).
+                </p>
 
-            <p>
-                Un resultado significativo indica que el modelo no ajusta bien globalmente, pero no
-                identifica directamente cuáles categorías son responsables. Para localizarlo,
-                revisa los residuos estandarizados \((O_i - E_i)/\sqrt{E_i}\): valores por encima
-                de 2 en valor absoluto señalan las categorías que más contribuyen a la discrepancia.
-            </p>
+                <p>
+                <strong>No rechazar \(H_0\)</strong> (p-valor ≥ \(\alpha\)) no demuestra que los datos
+                «siguen» el modelo teórico; solo indica que son compatibles con él al nivel de
+                significación elegido. Con muestras pequeñas la potencia del test es limitada, y
+                desviaciones moderadas pueden pasar desapercibidas. Con muestras muy grandes, en
+                cambio, pequeñas desviaciones sistemáticas de poca relevancia práctica pueden resultar
+                significativas.
+                </p>
 
-            <p>
-                También es importante verificar que todas las frecuencias esperadas sean ≥ 5 antes
-                de interpretar el p-valor. La tabla de frecuencias esperadas que muestra la
-                herramienta facilita esta comprobación.
-            </p>
-
+                <p>
+                El <strong>estadístico chi-cuadrado</strong> \(\chi^2 = \sum_i (O_i - E_i)^2 / E_i\)
+                agrega las discrepancias cuadráticas de todas las categorías, ponderadas por la
+                frecuencia esperada. En la visualización, la zona verde es la región de no rechazo
+                y la zona roja es la región crítica unilateral derecha (el test de bondad de ajuste
+                siempre es unilateral derecho, ya que \(\chi^2 \geq 0\)); la línea ámbar señala el
+                estadístico observado. Comprueba antes de interpretar que todas las frecuencias
+                esperadas son ≥ 5; si no, agrupa categorías o usa una prueba exacta.
+                </p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>
