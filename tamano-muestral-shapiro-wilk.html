@@ -184,7 +184,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>El test de Shapiro–Wilk contrasta la hipótesis nula de que una muestra proviene de una distribución normal. Su potencia depende de cuánto difiere la distribución real (alternativa) de la normal, y esa diferencia se cuantifica principalmente mediante la <strong>asimetría</strong> (\(\gamma_1\)) y la <strong>curtosis en exceso</strong> (\(\gamma_2\)) de la distribución alternativa. Para la distribución normal, \(\gamma_1 = 0\) y \(\gamma_2 = 0\).</p>
             <p>Dado que el test de Shapiro–Wilk no dispone de una fórmula analítica de potencia en función de \(n\), esta calculadora utiliza la <strong>aproximación de Jarque–Bera</strong>, que combina asimetría y curtosis en un estadístico ómnibus cuya distribución bajo \(H_0\) es asintóticamente \(\chi^2(2)\). Esta aproximación proporciona una estimación del n necesario que es <em>conservadora</em>: el n real requerido con Shapiro–Wilk suele ser menor, ya que SW aprovecha más información de la muestra que el test JB.</p>
 
@@ -199,7 +199,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Distribuciones de referencia</h3>
+            <h3>Fundamento estadístico</h3>
             <p>La siguiente tabla muestra los momentos y el tamaño muestral aproximado para detectar no-normalidad con potencia del 80 % y \(\alpha = 0{,}05\) (aproximación JB).</p>
             <div class="content-table-wrap">
                 <table class="content-table">
@@ -253,7 +253,7 @@
             </div>
             <p style="font-size:0.875rem; color:var(--text-muted);">Los valores de n son estimaciones basadas en la aproximación JB. El test de Shapiro–Wilk suele requerir muestras menores en la práctica.</p>
 
-            <h3>Configuración rápida</h3>
+            <h3>Interpretación del resultado</h3>
             <ul>
                 <li><strong>Distribución alternativa desconocida:</strong> si no tienes información sobre γ₁ y γ₂, usa los valores de la distribución más parecida en la tabla anterior o aplica uno de los presets.</li>
                 <li><strong>Solo curtosis (distribuciones simétricas):</strong> fija γ₁ = 0 e introduce el γ₂ esperado. Ten en cuenta que detectar curtosis sin asimetría requiere muestras considerablemente mayores.</li>
@@ -276,7 +276,7 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Busca el mínimo entero \(n\) para el que la potencia del test Jarque–Bera (usado como aproximación al test de Shapiro–Wilk) supera el objetivo introducido, dados \(\gamma_1\), \(\gamma_2\), \(\alpha\) y la potencia deseada. El parámetro de no centralidad es \(\lambda(n) = n(\gamma_1^2/6 + \gamma_2^2/24)\) y la distribución de referencia es la \(\chi^2\) no central con 2 grados de libertad.</p>
             <h3>Cómo interpretar el resultado</h3>
             <p>El n obtenido es una cota inferior conservadora: el test de Shapiro–Wilk es generalmente más potente que JB y puede detectar no-normalidad con muestras algo menores. Si el n calculado supera 5000, considera otros tests de normalidad (Kolmogorov–Smirnov, Anderson–Darling) o métodos gráficos (Q-Q plot). Recuerda que para n ≥ 8 es donde SW muestra una potencia razonable.</p>

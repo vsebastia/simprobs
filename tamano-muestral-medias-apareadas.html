@@ -171,7 +171,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>En un diseño apareado se mide la misma unidad experimental en dos condiciones (antes/después, tratamiento/control cruzado, ojo derecho/izquierdo). El contraste de interés no es la diferencia de medias de dos grupos independientes, sino la <strong>media de las diferencias individuales</strong> \(\bar{d} = \bar{X}_1 - \bar{X}_2\).</p>
             <p>La ventaja clave del diseño apareado es que elimina la variabilidad entre individuos, que suele ser la mayor fuente de ruido. Por eso, el parámetro relevante es \(\sigma_d\) (desviación estándar de las diferencias intraindividuales), que generalmente es mucho menor que \(\sigma\) de cada grupo por separado. Esto se traduce en muestras significativamente más pequeñas comparado con el diseño de dos grupos independientes.</p>
             <p>La relación entre \(\sigma_d\) y las desviaciones estándar de cada medición es: \(\sigma_d^2 = \sigma_1^2 + \sigma_2^2 - 2\rho\sigma_1\sigma_2\), donde \(\rho\) es la correlación entre ambas mediciones. Cuanto mayor sea \(\rho\), menor será \(\sigma_d\) y más eficiente el diseño apareado.</p>
@@ -187,7 +187,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Configuración rápida</h3>
+            <h3>Interpretación del resultado</h3>
             <ul>
                 <li><strong>σd:</strong> estímala de un piloto apareado (mide diferencias en cada par) o de la literatura. <em>No</em> uses las σ individuales de cada grupo por separado.</li>
                 <li><strong>Si solo tienes σ individual y ρ estimada:</strong> calcula σd = σ·√(2(1−ρ)) asumiendo varianzas iguales.</li>
@@ -228,9 +228,9 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Calcula el número mínimo de pares para detectar un cambio medio Δ en un diseño de medidas repetidas o apareado, dado σd (desviación estándar de las diferencias), α y potencia.</p>
-            <h3>Fórmula utilizada</h3>
+            <h3>Fundamento estadístico</h3>
             <p>\( n = \lceil((Z_{α/2}+Z_β)·σ_d/Δ)^2\rceil \). El resultado es el número de <em>pares</em>, no de observaciones totales.</p>
             <h3>Ejemplo de uso</h3>
             <p>σd = 8, Δ = 3, α = 0,05, potencia = 0,80 → n = 56 pares. Si σd fuese 12, n subiría a 126 pares.</p>

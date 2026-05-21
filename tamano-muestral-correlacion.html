@@ -152,7 +152,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>Este cálculo determina cuántos pares de observaciones (n) se necesitan para detectar una correlación poblacional \(\rho\) diferente de cero con una potencia y un nivel de significación dados. La lógica es diferente a la de las calculadoras de medias o proporciones: aquí se utiliza la <strong>transformación z de Fisher</strong>, que estabiliza la varianza de \(\hat{\rho}\).</p>
             <p>El estimador muestral \(\hat{\rho}\) (correlación de Pearson) tiene una distribución sesgada y asimétrica cuando \(\rho \neq 0\), con varianza que depende del propio \(\rho\). La transformación \(z = \operatorname{arctanh}(\hat{\rho})\) convierte esta distribución en aproximadamente normal con varianza \(1/(n-3)\), independiente de \(\rho\). Esto permite derivar n de forma directa a partir del cociente señal-ruido.</p>
 
@@ -177,7 +177,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Configuración rápida</h3>
+            <h3>Interpretación del resultado</h3>
             <ul>
                 <li><strong>ρ desconocido:</strong> usa ρ = 0,30 como referencia conservadora de efecto moderado.</li>
                 <li><strong>Contraste bilateral:</strong> usa cuando no tienes hipótesis direccional previa.</li>
@@ -220,9 +220,9 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Esta calculadora estima el número mínimo de pares de observaciones para detectar una correlación de Pearson de magnitud ρ con el nivel de significación y la potencia indicados.</p>
-            <h3>Fórmula utilizada</h3>
+            <h3>Fundamento estadístico</h3>
             <p>Se aplica la transformación z de Fisher (arctanh) para obtener una estadística con varianza aproximadamente 1/(n-3), lo que permite derivar directamente n.</p>
             <h3>Ejemplo de uso</h3>
             <p>Introduce ρ = 0,30, α = 0,05 bilateral y potencia = 0,80, y pulsa Calcular. Si aumentas la potencia a 0,90 obtendrás una muestra mayor.</p>

@@ -186,14 +186,14 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>El <strong>test exacto de Fisher</strong> se usa para contrastar la independencia entre dos variables binarias en una tabla de contingencia 2×2. Es el método preferido cuando las frecuencias esperadas en alguna celda son inferiores a 5, o cuando el tamaño muestral total es pequeño, situaciones en las que la aproximación asintótica chi-cuadrado puede no ser válida.</p>
             <p>Al ser un test exacto basado en la distribución hipergeométrica, calcular su potencia de forma analítica requeriría enumerar toda la distribución de tablas posibles, lo cual es computacionalmente costoso para uso general. La solución práctica estándar es utilizar la <strong>aproximación de Fleiss (1981)</strong> para dos proporciones independientes, seguida de la <strong>corrección de continuidad de Casagrande y Pike (1978)</strong>, que ajusta el tamaño muestral para compensar la naturaleza discreta del test exacto.</p>
             <p>Esta aproximación produce resultados muy similares a los obtenidos por simulación y es la recomendación habitual en textos de referencia como Fleiss, Levin y Paik (2003).</p>
         </section>
 
         <section class="card content-card">
-            <h3>Fórmula utilizada</h3>
+            <h3>Fundamento estadístico</h3>
             <p>Sea \(p_1\) la proporción en el grupo 1, \(p_2\) la proporción en el grupo 2, \(r = n_2/n_1\) la razón de tamaños, y \(\bar{p} = (p_1 + r\,p_2)/(1+r)\) la proporción conjunta ponderada.</p>
 
             <p><strong>Paso 1 — Aproximación de Fleiss (sin corrección):</strong></p>
@@ -212,7 +212,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Configuración rápida</h3>
+            <h3>Interpretación del resultado</h3>
             <ul>
                 <li><strong>p₁ y p₂:</strong> introduce las proporciones que esperas observar en cada grupo. La diferencia \(|p_1 - p_2|\) es el efecto a detectar. Diferencias mayores requieren menos muestra.</li>
                 <li><strong>α:</strong> nivel de significación. 0,05 es el estándar habitual; usa 0,01 si quieres controlar más el error tipo I.</li>
@@ -233,7 +233,7 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Esta calculadora estima el número mínimo de observaciones por grupo (\(n_1\) y \(n_2\)) para que el test exacto de Fisher en una tabla 2×2 alcance la potencia objetivo, dadas las proporciones \(p_1\) y \(p_2\), el nivel de significación \(\alpha\), la razón de tamaños \(r\) y el tipo de contraste (bilateral o unilateral).</p>
             <p>Se usa la aproximación de Fleiss (1981) con la corrección de continuidad de Casagrande y Pike (1978), que es la metodología estándar para este problema cuando no se dispone de simulación.</p>
             <h3>Cómo interpretar el resultado</h3>

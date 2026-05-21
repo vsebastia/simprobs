@@ -186,7 +186,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>El test de McNemar es el procedimiento estándar para contrastar hipótesis sobre proporciones apareadas cuando la variable respuesta es binaria (éxito/fracaso). Se aplica típicamente en diseños antes/después, estudios de casos y controles apareados, y ensayos cruzados donde se compara la respuesta de los mismos individuos a dos condiciones.</p>
             <p>La clave del test es que <strong>solo los pares discordantes</strong> aportan información sobre la diferencia entre proporciones. Los pares concordantes (ambos éxito o ambos fracaso) no informan si una condición es mejor que la otra. Esto lleva a una formulación elegante: bajo \(H_0\) se esperaría que los pares discordantes se repartiesen en partes iguales entre b y c.</p>
 
@@ -199,7 +199,7 @@
                 <li><strong>d</strong>: fracaso en ambas condiciones (concordante −/−)</li>
             </ul>
 
-            <h3>Hipótesis y estadístico</h3>
+            <h3>Fundamento estadístico</h3>
             <p class="formula-line">\(H_0\colon p_{\text{discordante},12} = p_{\text{discordante},21}\) (i.e., \(\pi_b = \pi_c\))</p>
             <p class="formula-line">Sin corrección: \( \chi^2 = \dfrac{(b - c)^2}{b + c} \)</p>
             <p class="formula-line">Con corrección de continuidad: \( \chi^2 = \dfrac{(|b - c| - 1)^2}{b + c} \)</p>
@@ -232,9 +232,9 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Esta calculadora del test de McNemar computa automáticamente el estadístico chi-cuadrado (con o sin corrección de continuidad de Edwards), el p-valor exacto a partir de la distribución chi-cuadrado con 1 grado de libertad, y la decisión estadística. Es útil en ensayos cruzados, estudios de casos y controles apareados, y análisis antes/después de variables binarias.</p>
-            <h3>Fórmula utilizada</h3>
+            <h3>Fundamento estadístico</h3>
             <p>Se aplica el <strong>test de McNemar</strong>: \(\chi^2 = (|b-c|-1)^2/(b+c)\) con corrección, o \(\chi^2 = (b-c)^2/(b+c)\) sin corrección. El p-valor proviene de la distribución chi-cuadrado con \(gl=1\) (cola derecha).</p>
             <h3>Cómo interpretar el resultado</h3>
             <p>Si p-valor &lt; α, rechazas \(H_0\) y concluyes que las proporciones marginales de las dos condiciones difieren significativamente. Si p-valor ≥ α, la evidencia es insuficiente para concluir diferencia.</p>

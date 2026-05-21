@@ -170,7 +170,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>Esta calculadora aplica la fórmula de Cochran para determinar el número mínimo de observaciones necesarias para estimar una proporción poblacional \(p\) con una precisión preestablecida. El objetivo es que el intervalo de confianza resultante tenga un semiancho máximo igual al margen de error \(E\).</p>
             <p>El parámetro más influyente es la proporción esperada \(p\): la varianza de una proporción es \(p(1-p)\), que alcanza su máximo en \(p = 0{,}5\). Por eso, si no tienes información previa, usar \(p = 0{,}5\) garantiza que la muestra será suficiente cualquiera que sea el valor real.</p>
             <p>Esta fórmula asume muestreo aleatorio simple en una población muy grande. Si la muestra representará más del 5 % del total, usa la <a href="tamano-muestral-proporcion-poblacion-finita.html">calculadora con corrección por población finita</a>.</p>
@@ -189,7 +189,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Configuración rápida</h3>
+            <h3>Interpretación del resultado</h3>
             <ul>
                 <li><strong>Si no conoces p:</strong> usa <strong>0,5</strong> — es el escenario conservador que maximiza la varianza y, por tanto, el tamaño muestral.</li>
                 <li><strong>Si tienes datos piloto:</strong> usa la proporción observada; la muestra resultante será menor si \(p\) se aleja de 0,5.</li>
@@ -229,9 +229,9 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Calcula el número mínimo de observaciones para estimar una proporción poblacional con un margen de error absoluto máximo E y un nivel de confianza especificado, aplicando la fórmula de Cochran con cuantil normal.</p>
-            <h3>Fórmula utilizada</h3>
+            <h3>Fundamento estadístico</h3>
             <p>\( n = Z^2 \cdot p(1-p) / E^2 \). El resultado se redondea siempre al entero superior para garantizar la cobertura del intervalo de confianza.</p>
             <h3>Ejemplo de uso</h3>
             <p>Encuesta de satisfacción (p = 0,5, E = 0,05, 95 % confianza) → n = 385. Con E = 0,03 → n = 1 068. Duplicar la precisión cuadruplica la muestra.</p>

@@ -171,7 +171,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>Para datos binarios apareados (sí/no medido dos veces en la misma unidad), el contraste adecuado es el <strong>test de McNemar</strong>. Su lógica central es que los <em>pares concordantes</em> (0→0 y 1→1) no aportan información sobre el cambio: solo los <strong>pares discordantes</strong> determinan si la intervención tiene efecto.</p>
             <p>Los pares discordantes son de dos tipos: \(p_{01}\) (la respuesta cambió de negativa a positiva, 0→1) y \(p_{10}\) (cambió de positiva a negativa, 1→0). El efecto de interés es la diferencia \(p_{10} - p_{01}\): si la intervención es efectiva, \(p_{10}\) será mayor que \(p_{01}\) (más sujetos pasan a respuesta negativa bajo el tratamiento, o viceversa según el diseño).</p>
             <p>La eficiencia del diseño apareado frente al de dos grupos independientes depende de la concordancia: cuantos más pares concordantes (sujetos que no cambian), el apareo ayuda menos porque esos pares quedan excluidos del análisis efectivo.</p>
@@ -187,7 +187,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Configuración rápida</h3>
+            <h3>Interpretación del resultado</h3>
             <ul>
                 <li><strong>p₀₁ y p₁₀:</strong> deben estimarse de un piloto o de datos históricos. Si solo tienes la prevalencia antes (p_antes) y el efecto esperado, necesitas hacer suposiciones sobre la estructura de pares.</li>
                 <li><strong>Si p₀₁ ≈ p₁₀:</strong> la diferencia es pequeña y la muestra necesaria será muy grande — revisa si el efecto es clínicamente relevante.</li>
@@ -226,9 +226,9 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Calcula el número mínimo de pares para detectar una diferencia entre dos proporciones relacionadas (medidas en la misma unidad), dado p₀₁, p₁₀, α y potencia. Usa la fórmula basada en el test de McNemar.</p>
-            <h3>Fórmula utilizada</h3>
+            <h3>Fundamento estadístico</h3>
             <p>n = ⌈(Z_{α/2}+Z_β)²·(p₀₁+p₁₀)/(p₁₀−p₀₁)²⌉. El denominador depende solo de los pares discordantes; los concordantes contribuyen a n pero no al poder discriminatorio del test.</p>
             <h3>Ejemplo de uso</h3>
             <p>p₀₁ = 0,18, p₁₀ = 0,08, α = 0,05, potencia = 0,80 → n = 205 pares. Si la diferencia fuera p₁₀−p₀₁ = 0,05 (en lugar de 0,10), la muestra se cuadruplicaría.</p>

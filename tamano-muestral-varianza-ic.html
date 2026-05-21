@@ -160,7 +160,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>El intervalo de confianza para la varianza \(\sigma^2\) utiliza la distribución chi-cuadrado y tiene la forma:</p>
             <p class="formula-line">\( \left[\frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\,n-1}},\;\; \frac{(n-1)s^2}{\chi^2_{\alpha/2,\,n-1}}\right] \)</p>
             <p>A diferencia de los ICs para medias o proporciones, el ancho <em>absoluto</em> del IC para la varianza depende del valor desconocido de \(\sigma^2\), lo que impide expresar la precisión en unidades absolutas sin conocerla de antemano. La solución natural es especificar la precisión en términos relativos: el <strong>cociente \(U/L\)</strong> entre el límite superior e inferior del IC.</p>
@@ -180,7 +180,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Configuración rápida</h3>
+            <h3>Interpretación del resultado</h3>
             <ul>
                 <li><strong>Cociente R:</strong> R entre 2 y 4 es habitual en estudios de control de calidad y procesos. R muy cercano a 1 requiere muestras prohibitivamente grandes.</li>
                 <li><strong>Nivel de confianza:</strong> 95 % es el estándar. Con 99 % el n necesario es significativamente mayor para el mismo R.</li>
@@ -211,9 +211,9 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Encuentra por búsqueda iterativa el menor \(n\) tal que el cociente \(\chi^2_{1-\alpha/2,n-1}/\chi^2_{\alpha/2,n-1}\) sea menor o igual al cociente U/L máximo especificado. No requiere conocer \(\sigma^2\).</p>
-            <h3>Fórmula utilizada</h3>
+            <h3>Fundamento estadístico</h3>
             <p>Búsqueda de mínimo \(n\) tal que \(U/L = \chi^2_{1-\alpha/2,n-1}/\chi^2_{\alpha/2,n-1} \leq R\). No hay fórmula cerrada; el cálculo es iterativo con cuantiles exactos de la chi-cuadrado.</p>
             <h3>Ejemplo de uso</h3>
             <p>R=2,5, 95 % → n≈39. R=2, 95 % → n≈65. R=3, 95 % → n≈28. Reducir R a la mitad aproximadamente cuadruplica la muestra necesaria.</p>

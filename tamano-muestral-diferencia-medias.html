@@ -191,7 +191,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Fundamento estadístico</h3>
             <p>Esta calculadora determina el número mínimo de observaciones por grupo para detectar una diferencia entre las medias de dos grupos independientes. El contraste subyacente es el test t de Student de dos muestras: \(H_0\!: \mu_1 = \mu_2\) frente a \(H_1\!: |\mu_1 - \mu_2| \geq \Delta\).</p>
             <p>A diferencia de la estimación de una media, aquí el objetivo no es precisión sino potencia: queremos asegurar que, si la diferencia real es al menos \(\Delta\), el contraste la detectará con la probabilidad especificada \(1-\beta\).</p>
             <p>El tamaño del efecto es la <em>d de Cohen</em>: \(d = \Delta / \sigma\). Valores de referencia: d = 0,2 (efecto pequeño), d = 0,5 (mediano), d = 0,8 (grande). Para d = 0,5 con α = 0,05 y potencia 0,80 el resultado es n ≈ 64 por grupo.</p>
@@ -209,7 +209,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Configuración rápida</h3>
+            <h3>Interpretación del resultado</h3>
             <ul>
                 <li><strong>σ1 y σ2:</strong> usa datos históricos, piloto o referencias de la literatura. Si asumes varianzas iguales, usa la misma σ en ambos campos.</li>
                 <li><strong>Δ:</strong> define la diferencia mínima <em>prácticamente relevante</em> — no la diferencia esperada, sino la mínima que justificaría una acción o decisión.</li>
@@ -249,9 +249,9 @@
         </section>
 
         <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
+            <h3>Guía y calculadoras relacionadas</h3>
             <p>Calcula el número mínimo de observaciones por grupo para detectar una diferencia \(\Delta\) entre dos medias independientes con la potencia y el nivel de significación especificados.</p>
-            <h3>Fórmula utilizada</h3>
+            <h3>Fundamento estadístico</h3>
             <p>La fórmula estándar basada en cuantiles normales. Para σ1 = σ2 = σ y k = 1 se simplifica a n = 2σ²(Z_{α/2}+Z_β)²/Δ².</p>
             <h3>Ejemplo de uso</h3>
             <p>σ1 = σ2 = 10, Δ = 5, α = 0,05, potencia = 0,80 → n = 63 por grupo. Subir la potencia a 0,90 → n ≈ 85 por grupo.</p>
