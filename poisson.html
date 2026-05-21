@@ -215,31 +215,29 @@
             </section>
         </section>
 
+        <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué significa P(X ≤ x)?</strong> Es la probabilidad acumulada hasta el valor x.</li>
+                <li><strong>¿Qué diferencia hay entre cola izquierda y derecha?</strong> La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores.</li>
+                <li><strong>¿Qué es un percentil?</strong> Es el valor de la variable que deja por debajo una probabilidad acumulada concreta.</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Distribuci%C3%B3n_de_Poisson" target="_blank" rel="noopener noreferrer">Distribución de Poisson</a> — Wikipedia</p>
+        </section>
+
         <article class="card content-card">
-    <h3>Distribución de Poisson</h3>
-    <h3>Explicación breve</h3>
-    <p>La distribución de Poisson sirve para modelar cuántas veces ocurre un evento en un intervalo fijo de tiempo, espacio o cualquier otra unidad cuando esos eventos suceden de forma independiente y con una tasa media estable. Por ejemplo, puede usarse para estimar cuántas llamadas llegan en una hora, cuántos clientes entran en una tienda en diez minutos o cuántos errores aparecen en una página. Es una distribución discreta, así que solo toma valores enteros no negativos: 0, 1, 2, 3, ...</p>
-    <h3>Fórmula</h3>
-    <p class="formula-line">\( P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!} \)</p>
-    <h3>Parámetros</h3>
-        <ul>
-            <li><strong>λ (lambda):</strong> número esperado de eventos en el intervalo.</li>
-            <li><strong>k:</strong> conteo de eventos observado.</li>
-        </ul>
-    <h3>Ejemplo resuelto</h3>
-    <p>Un centro de soporte puede recibir en promedio 6 tickets por hora. Poisson permite estimar probabilidades de recibir exactamente 10 tickets, como máximo 4 o al menos 8 en la próxima hora. En la calculadora, selecciona <em>Poisson</em>, introduce λ y evalúa PMF para conteos exactos o CDF para límites acumulados.</p>
-    </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+            <h3>Distribución de Poisson</h3>
+            <h3>Explicación breve</h3>
+            <p>Poisson modela el número de eventos en un intervalo cuando ocurren de forma independiente y con tasa media constante. Se usa para llegadas por minuto, fallos por día o incidencias por tramo.</p>
+            <h3>Fórmula</h3>
+            <p class="formula-line">\( P(X=k)=e^{-\lambda}\frac{\lambda^k}{k!} \)</p>
+            <h3>Parámetros</h3>
+            <ul><li><strong>λ:</strong> número medio esperado de eventos por intervalo.</li><li><strong>k:</strong> conteo observado (entero no negativo).</li></ul>
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
-            <h3>Ejemplo resuelto: conteos por intervalo</h3>
-            <p>Si un soporte técnico recibe de media λ = 6 tickets por hora, la distribución de Poisson permite calcular la probabilidad de recibir 10 o más en una hora. Introduce λ = 6 y usa cola derecha desde x = 10 para estimar el riesgo de saturación.</p>
+            <p>En PDF/PMF obtienes densidad o probabilidad exacta en un punto; en CDF, probabilidad acumulada hasta un valor; y en cuantil, el valor de la variable asociado a una probabilidad dada. Resultados cercanos a 0 indican eventos raros; cercanos a 1, eventos muy probables bajo el modelo.</p>
+            <h3>Ejemplo resuelto</h3>
+            <p>Con λ = 3 llamadas por minuto, calcula P(X=5). P(X=5)=e^-3·3^5/5!≈0.1008. Hay cerca de un 10.1% de probabilidad de recibir exactamente 5 llamadas en un minuto.</p>
+            <h3>Ejemplo de uso (cómo se usa la calculadora)</h3>
+            <p>1) Introduce los parámetros de la distribución. 2) Elige tipo de cálculo (PDF/PMF, CDF o cuantil). 3) Introduce x (y b si es intervalo). 4) Pulsa <em>Calcular</em>. 5) Revisa el resultado numérico y la gráfica para validar si el escenario es plausible.</p>
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>
@@ -252,13 +250,16 @@
             </section>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué significa P(X ≤ x)?</strong> Es la probabilidad acumulada hasta el valor x.</li>
-                <li><strong>¿Qué diferencia hay entre cola izquierda y derecha?</strong> La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores.</li>
-                <li><strong>¿Qué es un percentil?</strong> Es el valor de la variable que deja por debajo una probabilidad acumulada concreta.</li>
+                <li><strong>¿Cuándo usar PDF/PMF y cuándo CDF?</strong> PDF/PMF para punto exacto; CDF para “hasta”, “desde” o “entre”.</li>
+                <li><strong>¿Qué pasa si el parámetro está fuera de rango?</strong> La calculadora requiere parámetros válidos (por ejemplo, probabilidades entre 0 y 1 y desviaciones positivas).</li>
+                <li><strong>¿El gráfico cambia con los parámetros?</strong> Sí. La forma y dispersión se actualizan automáticamente al recalcular.</li>
             </ul>
-            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Distribuci%C3%B3n_de_Poisson" target="_blank" rel="noopener noreferrer">Distribución de Poisson</a> — Wikipedia</p>
-        </section>
-
+            <h3>Referencias</h3>
+            <ul>
+                <li>Casella, G., & Berger, R. L. (2002). <em>Statistical Inference</em> (2nd ed.). Duxbury.</li>
+                <li>DeGroot, M. H., & Schervish, M. J. (2012). <em>Probability and Statistics</em> (4th ed.). Pearson.</li>
+            </ul>
+        </article>
     </main>
 
     <footer class="legal-footer">

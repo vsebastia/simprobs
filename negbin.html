@@ -215,38 +215,29 @@
             </section>
         </section>
 
+        <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué significa P(X ≤ x)?</strong> Es la probabilidad acumulada hasta el valor x.</li>
+                <li><strong>¿Qué diferencia hay entre cola izquierda y derecha?</strong> La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores.</li>
+                <li><strong>¿Qué es un percentil?</strong> Es el valor de la variable que deja por debajo una probabilidad acumulada concreta.</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Distribuci%C3%B3n_binomial_negativa" target="_blank" rel="noopener noreferrer">Distribución binomial negativa</a> — Wikipedia</p>
+        </section>
+
         <article class="card content-card">
-    <h3>Distribución binomial negativa</h3>
-
-    <h3>Explicación breve</h3>
-    <p>La distribución binomial negativa modela el número de ensayos necesarios para obtener un número fijo de éxitos en experimentos independientes con probabilidad constante de éxito. Es una distribución discreta utilizada en estadística y ciencia de datos para analizar conteos cuando los eventos se repiten hasta alcanzar un objetivo determinado.</p>
-
-    <h3>Fórmula</h3>
-    <p class="formula-line">
-      $$
-      P(X=k)=\binom{k+r-1}{k}(1-p)^k p^r
-      $$
-    </p>
-
-    <h3>Parámetros</h3>
-    <ul>
-      <li><strong>r:</strong> número de éxitos deseados.</li>
-      <li><strong>p:</strong> probabilidad de éxito en cada ensayo.</li>
-      <li><strong>k:</strong> número de fracasos observados antes de alcanzar los r éxitos.</li>
-    </ul>
-
-<h3>Ejemplo resuelto</h3>
-<p>Supón que un equipo de ventas necesita cerrar 5 contratos y cada intento tiene una probabilidad de éxito del 20%. La distribución binomial negativa permite calcular la probabilidad de necesitar exactamente cierto número de intentos fallidos antes de lograr esos contratos. En la calculadora, selecciona <em>binomial negativa</em>, introduce r y p, y utiliza PMF para probabilidades exactas o CDF para probabilidades acumuladas.</p>
-</article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+            <h3>Distribución negbin</h3>
+            <h3>Explicación breve</h3>
+            <p>Esta distribución permite modelar fenómenos aleatorios con parámetros específicos y calcular probabilidad puntual, acumulada y cuantiles. Usa esta calculadora para evaluar escenarios y tomar decisiones con base probabilística.</p>
+            <h3>Fórmula</h3>
+            <p class="formula-line">Consulta la fórmula específica de la distribución seleccionada en la calculadora.</p>
+            <h3>Parámetros</h3>
+            <ul><li>Revisa los parámetros mostrados en el panel y su dominio permitido.</li></ul>
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+            <p>En PDF/PMF obtienes densidad o probabilidad exacta en un punto; en CDF, probabilidad acumulada hasta un valor; y en cuantil, el valor de la variable asociado a una probabilidad dada. Resultados cercanos a 0 indican eventos raros; cercanos a 1, eventos muy probables bajo el modelo.</p>
+            <h3>Ejemplo resuelto</h3>
+            <p>Sustituye los parámetros en la fórmula y calcula la probabilidad solicitada. Después contrasta el resultado con la salida de la calculadora para validar el procedimiento.</p>
+            <h3>Ejemplo de uso (cómo se usa la calculadora)</h3>
+            <p>1) Introduce los parámetros de la distribución. 2) Elige tipo de cálculo (PDF/PMF, CDF o cuantil). 3) Introduce x (y b si es intervalo). 4) Pulsa <em>Calcular</em>. 5) Revisa el resultado numérico y la gráfica para validar si el escenario es plausible.</p>
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>
@@ -257,13 +248,16 @@
             </section>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué significa P(X ≤ x)?</strong> Es la probabilidad acumulada hasta el valor x.</li>
-                <li><strong>¿Qué diferencia hay entre cola izquierda y derecha?</strong> La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores.</li>
-                <li><strong>¿Qué es un percentil?</strong> Es el valor de la variable que deja por debajo una probabilidad acumulada concreta.</li>
+                <li><strong>¿Cuándo usar PDF/PMF y cuándo CDF?</strong> PDF/PMF para punto exacto; CDF para “hasta”, “desde” o “entre”.</li>
+                <li><strong>¿Qué pasa si el parámetro está fuera de rango?</strong> La calculadora requiere parámetros válidos (por ejemplo, probabilidades entre 0 y 1 y desviaciones positivas).</li>
+                <li><strong>¿El gráfico cambia con los parámetros?</strong> Sí. La forma y dispersión se actualizan automáticamente al recalcular.</li>
             </ul>
-            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Distribuci%C3%B3n_binomial_negativa" target="_blank" rel="noopener noreferrer">Distribución binomial negativa</a> — Wikipedia</p>
-        </section>
-
+            <h3>Referencias</h3>
+            <ul>
+                <li>Casella, G., & Berger, R. L. (2002). <em>Statistical Inference</em> (2nd ed.). Duxbury.</li>
+                <li>DeGroot, M. H., & Schervish, M. J. (2012). <em>Probability and Statistics</em> (4th ed.). Pearson.</li>
+            </ul>
+        </article>
     </main>
 
     <footer class="legal-footer">

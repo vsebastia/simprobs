@@ -215,35 +215,29 @@
             </section>
         </section>
 
+        <h3>Preguntas frecuentes</h3>
+            <ul>
+                <li><strong>¿Qué significa P(X ≤ x)?</strong> Es la probabilidad acumulada hasta el valor x.</li>
+                <li><strong>¿Qué diferencia hay entre cola izquierda y derecha?</strong> La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores.</li>
+                <li><strong>¿Qué es un percentil?</strong> Es el valor de la variable que deja por debajo una probabilidad acumulada concreta.</li>
+            </ul>
+            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Distribuci%C3%B3n_binomial" target="_blank" rel="noopener noreferrer">Distribución binomial</a> — Wikipedia</p>
+        </section>
+
         <article class="card content-card">
-    <h3>Distribución binomial</h3>
-    <h3>Explicación breve</h3>
-        <p>La distribución binomial describe cuántos éxitos ocurren en un número fijo de ensayos independientes de tipo sí/no.
-            Cada ensayo tiene la misma probabilidad de éxito y el conteo solo puede ser un entero entre 0 y <em>n</em>.
-            Es ideal cuando conoces el número de intentos de antemano y quieres probabilidades de conteos,
-            como “exactamente 7 éxitos” o “a lo sumo 3 fallos”.</p>
-    <h3>Fórmula</h3>
-    <p class="formula-line">\( P(X=k)=\binom{n}{k}p^k(1-p)^{n-k} \)</p>
-    <h3>Parámetros</h3>
-    <ul>
-        <li><strong>n:</strong> número total de ensayos.</li>
-        <li><strong>p:</strong> probabilidad de éxito en cada ensayo.</li>
-        <li><strong>k:</strong> número de éxitos observados.</li>
-    </ul>
-        <h3>Ejemplo resuelto</h3>
-        <p>Imagina una campaña de correo enviada a 20 contactos, donde cada contacto tiene una probabilidad 0.15 de convertir. El modelo binomial permite estimar la probabilidad de obtener exactamente 4 conversiones, al menos 5 o un rango de conversiones. En control de calidad también sirve para estimar unidades defectuosas en una muestra.</p>
-    </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+            <h3>Distribución binomial</h3>
+            <h3>Explicación breve</h3>
+            <p>La binomial describe el número de éxitos en n ensayos independientes, con probabilidad de éxito constante p. Es apropiada para procesos de sí/no: compra/no compra, pasa/no pasa, defectuoso/no defectuoso.</p>
+            <h3>Fórmula</h3>
+            <p class="formula-line">\( P(X=k)=\binom{n}{k}p^k(1-p)^{n-k} \)</p>
+            <h3>Parámetros</h3>
+            <ul><li><strong>n:</strong> número de ensayos.</li><li><strong>p:</strong> probabilidad de éxito en cada ensayo.</li><li><strong>k:</strong> éxitos observados (0 a n).</li></ul>
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
-            <h3>Ejemplo resuelto: éxitos en ensayos independientes</h3>
-            <p>Si envías 20 invitaciones y cada una tiene probabilidad p = 0,30 de respuesta, puedes calcular la probabilidad de recibir exactamente 8 respuestas con n = 20, p = 0,30 y k = 8. Para estimar “8 o menos”, cambia a probabilidad acumulada P(X ≤ 8).</p>
+            <p>En PDF/PMF obtienes densidad o probabilidad exacta en un punto; en CDF, probabilidad acumulada hasta un valor; y en cuantil, el valor de la variable asociado a una probabilidad dada. Resultados cercanos a 0 indican eventos raros; cercanos a 1, eventos muy probables bajo el modelo.</p>
+            <h3>Ejemplo resuelto</h3>
+            <p>Si n = 20 y p = 0.15, calcula P(X=4). P(X=4)=C(20,4)·0.15^4·0.85^16≈0.187. Aproximadamente un 18.7% de campañas de 20 contactos darán exactamente 4 conversiones.</p>
+            <h3>Ejemplo de uso (cómo se usa la calculadora)</h3>
+            <p>1) Introduce los parámetros de la distribución. 2) Elige tipo de cálculo (PDF/PMF, CDF o cuantil). 3) Introduce x (y b si es intervalo). 4) Pulsa <em>Calcular</em>. 5) Revisa el resultado numérico y la gráfica para validar si el escenario es plausible.</p>
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>
@@ -256,13 +250,16 @@
             </section>
             <h3>Preguntas frecuentes</h3>
             <ul>
-                <li><strong>¿Qué significa P(X ≤ x)?</strong> Es la probabilidad acumulada hasta el valor x.</li>
-                <li><strong>¿Qué diferencia hay entre cola izquierda y derecha?</strong> La cola izquierda acumula hasta x, la derecha mide desde x hacia valores mayores.</li>
-                <li><strong>¿Qué es un percentil?</strong> Es el valor de la variable que deja por debajo una probabilidad acumulada concreta.</li>
+                <li><strong>¿Cuándo usar PDF/PMF y cuándo CDF?</strong> PDF/PMF para punto exacto; CDF para “hasta”, “desde” o “entre”.</li>
+                <li><strong>¿Qué pasa si el parámetro está fuera de rango?</strong> La calculadora requiere parámetros válidos (por ejemplo, probabilidades entre 0 y 1 y desviaciones positivas).</li>
+                <li><strong>¿El gráfico cambia con los parámetros?</strong> Sí. La forma y dispersión se actualizan automáticamente al recalcular.</li>
             </ul>
-            <p class="external-ref">Referencia: <a href="https://es.wikipedia.org/wiki/Distribuci%C3%B3n_binomial" target="_blank" rel="noopener noreferrer">Distribución binomial</a> — Wikipedia</p>
-        </section>
-
+            <h3>Referencias</h3>
+            <ul>
+                <li>Casella, G., & Berger, R. L. (2002). <em>Statistical Inference</em> (2nd ed.). Duxbury.</li>
+                <li>DeGroot, M. H., & Schervish, M. J. (2012). <em>Probability and Statistics</em> (4th ed.). Pearson.</li>
+            </ul>
+        </article>
     </main>
 
     <footer class="legal-footer">
