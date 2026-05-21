@@ -587,9 +587,9 @@ function ciWilson(phat, n, conf) {
 
 /** Sample one observation from N(mu, sigma) via Box-Muller */
 function sampleNormal(mu, sigma) {
-  let u1, u2;
+  let u1;
   do { u1 = Math.random(); } while (u1 === 0);
-  u2 = Math.random();
+  const u2 = Math.random();
   return mu + sigma * Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
 }
 
@@ -617,7 +617,6 @@ function runSimulation(mode, params) {
   if (mode === 'media') {
     const { mu, sigma, n } = params;
     for (let i = 0; i < numIntervals; i++) {
-      // Generate sample and compute mean
       let sum = 0;
       for (let j = 0; j < n; j++) sum += sampleNormal(mu, sigma);
       const xbar = sum / n;
@@ -640,55 +639,59 @@ function runSimulation(mode, params) {
    CANVAS DRAWING
 ================================================================ */
 
+/** Last simulation state — used for responsive redraw on resize */
+let _lastDrawState = null;
+
 /**
  * Draw confidence intervals on canvas.
  * @param {HTMLCanvasElement} canvas
- * @param {Array} intervals - array of {lo, hi, estimate, covers}
- * @param {number} trueParam - true parameter value
- * @param {string} paramLabel - label for the true parameter line
+ * @param {Array}  intervals  - array of {lo, hi, estimate, covers}
+ * @param {number} trueParam  - true parameter value
+ * @param {string} paramLabel - label shown on the dashed line
  */
 function drawIntervals(canvas, intervals, trueParam, paramLabel) {
-  const ctx = canvas.getContext('2d');
-  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Cache state for resize redraws
+  _lastDrawState = { canvas, intervals, trueParam, paramLabel };
 
-  // Layout constants
-  const marginLeft = 50;
-  const marginRight = 24;
-  const marginTop = 8;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+
+  // Layout
+  const marginLeft   = 50;
+  const marginRight  = 24;
+  const marginTop    = 8;
   const marginBottom = 28;
-  const numIntervals = intervals.length;
+  const numIv = intervals.length;
 
   // Row height: tighter for more intervals
-  const rowH = numIntervals <= 20 ? 18
-    : numIntervals <= 50  ? 10
-    : numIntervals <= 100 ? 6
-    : 4;
+  const rowH = numIv <= 20 ? 18
+             : numIv <= 50 ? 10
+             : numIv <= 100 ? 6
+             : 4;
 
-  const plotHeight = numIntervals * rowH;
+  const plotHeight  = numIv * rowH;
   const totalHeight = plotHeight + marginTop + marginBottom;
 
-  // Set canvas logical size
-  const logicalW = canvas.parentElement.clientWidth || 700;
+  // Resize canvas to container width
+  const logicalW = (canvas.parentElement.clientWidth || 700);
   canvas.style.width  = logicalW + 'px';
   canvas.style.height = totalHeight + 'px';
-  canvas.width  = logicalW * devicePixelRatio;
-  canvas.height = totalHeight * devicePixelRatio;
-  ctx.scale(devicePixelRatio, devicePixelRatio);
+  canvas.width  = logicalW * dpr;
+  canvas.height = totalHeight * dpr;
+  ctx.scale(dpr, dpr);
 
-  const W = logicalW;
-  const plotW = W - marginLeft - marginRight;
+  const plotW = logicalW - marginLeft - marginRight;
+  ctx.clearRect(0, 0, logicalW, totalHeight);
 
-  ctx.clearRect(0, 0, W, totalHeight);
-
-  // Compute display range: extend beyond all intervals
+  // Compute display range
   let paramMin = trueParam;
   let paramMax = trueParam;
   intervals.forEach(iv => {
     if (iv.lo < paramMin) paramMin = iv.lo;
     if (iv.hi > paramMax) paramMax = iv.hi;
   });
-  const span = paramMax - paramMin || 1;
-  const pad = span * 0.1;
+  const span = (paramMax - paramMin) || 1;
+  const pad  = span * 0.1;
   paramMin -= pad;
   paramMax += pad;
 
@@ -696,7 +699,7 @@ function drawIntervals(canvas, intervals, trueParam, paramLabel) {
     return marginLeft + (v - paramMin) / (paramMax - paramMin) * plotW;
   }
 
-  // Draw axis line
+  // Axis baseline
   ctx.strokeStyle = '#e2e8f0';
   ctx.lineWidth = 1;
   ctx.beginPath();
@@ -704,21 +707,21 @@ function drawIntervals(canvas, intervals, trueParam, paramLabel) {
   ctx.lineTo(marginLeft + plotW, marginTop + plotHeight);
   ctx.stroke();
 
-  // Draw intervals
+  // Draw interval segments
   intervals.forEach((iv, i) => {
-    const y = marginTop + i * rowH + rowH / 2;
+    const y  = marginTop + i * rowH + rowH / 2;
     const x1 = toX(iv.lo);
     const x2 = toX(iv.hi);
 
     ctx.strokeStyle = iv.covers ? '#3b82f6' : '#dc2626';
-    ctx.lineWidth = Math.max(1.5, rowH - 1.5);
-    ctx.lineCap = 'round';
+    ctx.lineWidth   = Math.max(1.5, rowH - 1.5);
+    ctx.lineCap     = 'round';
     ctx.beginPath();
     ctx.moveTo(x1, y);
     ctx.lineTo(x2, y);
     ctx.stroke();
 
-    // Draw point estimate dot (only when row is tall enough)
+    // Point-estimate dot when rows are tall enough
     if (rowH >= 5) {
       const xe = toX(iv.estimate);
       ctx.fillStyle = iv.covers ? '#1d4ed8' : '#991b1b';
@@ -728,11 +731,11 @@ function drawIntervals(canvas, intervals, trueParam, paramLabel) {
     }
   });
 
-  // Draw vertical dashed line for true parameter
+  // Dashed vertical line at true parameter
   const tx = toX(trueParam);
   ctx.save();
   ctx.strokeStyle = '#111827';
-  ctx.lineWidth = 1.5;
+  ctx.lineWidth   = 1.5;
   ctx.setLineDash([5, 4]);
   ctx.lineCap = 'butt';
   ctx.beginPath();
@@ -742,22 +745,24 @@ function drawIntervals(canvas, intervals, trueParam, paramLabel) {
   ctx.setLineDash([]);
   ctx.restore();
 
-  // Label for true parameter
-  ctx.fillStyle = '#111827';
-  ctx.font = `11px system-ui, -apple-system, sans-serif`;
-  ctx.textAlign = 'center';
+  // True-parameter label (drawn first so axis ticks overwrite if they overlap)
+  ctx.fillStyle   = '#111827';
+  ctx.font        = '11px system-ui, -apple-system, sans-serif';
+  ctx.textAlign   = 'center';
   ctx.fillText(paramLabel, tx, marginTop + plotHeight + marginBottom - 4);
 
-  // Axis ticks
+  // X-axis ticks (5 evenly spaced values)
   const numTicks = 5;
   ctx.fillStyle = '#94a3b8';
-  ctx.font = `10px system-ui, -apple-system, sans-serif`;
+  ctx.font      = '10px system-ui, -apple-system, sans-serif';
   ctx.textAlign = 'center';
   for (let t = 0; t <= numTicks; t++) {
-    const v = paramMin + (t / numTicks) * (paramMax - paramMin);
-    const tx2 = toX(v);
-    const label = Math.abs(v) < 0.001 ? '0' : (Math.abs(v) >= 10 ? v.toFixed(1) : v.toFixed(3));
-    ctx.fillText(label, tx2, marginTop + plotHeight + marginBottom - 4);
+    const v    = paramMin + (t / numTicks) * (paramMax - paramMin);
+    const tx2  = toX(v);
+    const lbl  = Math.abs(v) < 0.0005 ? '0'
+               : Math.abs(v) >= 10    ? v.toFixed(1)
+               :                        v.toFixed(3);
+    ctx.fillText(lbl, tx2, marginTop + plotHeight + marginBottom - 4);
   }
 
   // Y-axis label (rotated)
@@ -765,7 +770,7 @@ function drawIntervals(canvas, intervals, trueParam, paramLabel) {
   ctx.translate(12, marginTop + plotHeight / 2);
   ctx.rotate(-Math.PI / 2);
   ctx.fillStyle = '#94a3b8';
-  ctx.font = `10px system-ui, -apple-system, sans-serif`;
+  ctx.font      = '10px system-ui, -apple-system, sans-serif';
   ctx.textAlign = 'center';
   ctx.fillText('Intervalo #', 0, 0);
   ctx.restore();
@@ -776,18 +781,14 @@ function drawIntervals(canvas, intervals, trueParam, paramLabel) {
 ================================================================ */
 
 function computeStats(intervals) {
-  const n = intervals.length;
+  const n       = intervals.length;
   const covered = intervals.filter(iv => iv.covers).length;
   const meanWidth = intervals.reduce((s, iv) => s + (iv.hi - iv.lo), 0) / n;
   return { n, covered, meanWidth };
 }
 
-function formatPct(x) {
-  return (x * 100).toFixed(1) + '%';
-}
-
 function interpretCoverage(empiricalPct, nominalPct, mode, method) {
-  const diff = empiricalPct - nominalPct;
+  const diff    = empiricalPct - nominalPct;
   const absDiff = Math.abs(diff);
 
   if (absDiff <= 3) {
@@ -795,7 +796,8 @@ function interpretCoverage(empiricalPct, nominalPct, mode, method) {
       cls: '',
       text: `La cobertura empírica (${empiricalPct.toFixed(1)}%) está muy cerca del nivel nominal (${nominalPct}%). El procedimiento funciona según lo esperado: la variabilidad residual se debe al número finito de intervalos simulados.`
     };
-  } else if (diff < -5) {
+  }
+  if (diff < -5) {
     let extra = '';
     if (mode === 'proporcion' && method === 'wald') {
       extra = ' Esto es típico del intervalo de Wald con tamaños muestrales pequeños o proporciones cercanas a 0 o 1: la aproximación normal no es suficientemente precisa. Prueba el método Wilson para obtener mejor cobertura.';
@@ -804,17 +806,17 @@ function interpretCoverage(empiricalPct, nominalPct, mode, method) {
       cls: 'warn',
       text: `La cobertura empírica (${empiricalPct.toFixed(1)}%) es notablemente inferior al nivel nominal (${nominalPct}%). El procedimiento está subestimando la incertidumbre.${extra}`
     };
-  } else if (diff > 5) {
+  }
+  if (diff > 5) {
     return {
       cls: 'info',
-      text: `La cobertura empírica (${empiricalPct.toFixed(1)}%) es superior al nivel nominal (${nominalPct}%). El procedimiento es conservador: produce intervalos más anchos de lo necesario. Esto puede deberse a propiedades del método de intervalo o al tamaño muestral.`
-    };
-  } else {
-    return {
-      cls: 'info',
-      text: `La cobertura empírica (${empiricalPct.toFixed(1)}%) se aproxima al nivel nominal (${nominalPct}%), con una diferencia de ${absDiff.toFixed(1)} puntos porcentuales. Con más intervalos la estimación mejorará.`
+      text: `La cobertura empírica (${empiricalPct.toFixed(1)}%) es superior al nivel nominal (${nominalPct}%). El procedimiento es conservador: produce intervalos más anchos de lo necesario.`
     };
   }
+  return {
+    cls: 'info',
+    text: `La cobertura empírica (${empiricalPct.toFixed(1)}%) se aproxima al nivel nominal (${nominalPct}%), con una diferencia de ${absDiff.toFixed(1)} puntos porcentuales. Con más intervalos la estimación mejorará.`
+  };
 }
 
 /* ================================================================
@@ -823,7 +825,7 @@ function interpretCoverage(empiricalPct, nominalPct, mode, method) {
 
 let currentMode = 'media';
 
-// Tab switching
+// Mode tab switching
 document.querySelectorAll('.mode-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.mode-tab').forEach(t => {
@@ -834,21 +836,20 @@ document.querySelectorAll('.mode-tab').forEach(tab => {
     tab.classList.add('active');
     tab.setAttribute('aria-selected', 'true');
     currentMode = tab.dataset.mode;
-    const panelId = tab.getAttribute('aria-controls');
-    document.getElementById(panelId).classList.add('active');
+    document.getElementById(tab.getAttribute('aria-controls')).classList.add('active');
   });
 });
 
-// Simulate button
-document.getElementById('simBtn').addEventListener('click', () => {
+// Simulate button handler
+function runAndDisplay() {
   let params, mode;
 
   if (currentMode === 'media') {
     mode = 'media';
-    const mu      = parseFloat(document.getElementById('trueMu').value);
-    const sigma   = parseFloat(document.getElementById('trueSigma').value);
-    const n       = parseInt(document.getElementById('nMedia').value, 10);
-    const conf    = parseFloat(document.getElementById('confMedia').value);
+    const mu           = parseFloat(document.getElementById('trueMu').value);
+    const sigma        = parseFloat(document.getElementById('trueSigma').value);
+    const n            = parseInt(document.getElementById('nMedia').value, 10);
+    const conf         = parseFloat(document.getElementById('confMedia').value);
     const numIntervals = parseInt(document.getElementById('numIntMedia').value, 10);
 
     if (isNaN(mu) || isNaN(sigma) || sigma <= 0) {
@@ -858,11 +859,11 @@ document.getElementById('simBtn').addEventListener('click', () => {
     params = { mu, sigma, n, conf, numIntervals };
   } else {
     mode = 'proporcion';
-    const p       = parseFloat(document.getElementById('trueP').value);
-    const n       = parseInt(document.getElementById('nProp').value, 10);
-    const conf    = parseFloat(document.getElementById('confProp').value);
+    const p            = parseFloat(document.getElementById('trueP').value);
+    const n            = parseInt(document.getElementById('nProp').value, 10);
+    const conf         = parseFloat(document.getElementById('confProp').value);
     const numIntervals = parseInt(document.getElementById('numIntProp').value, 10);
-    const method  = document.getElementById('methodProp').value;
+    const method       = document.getElementById('methodProp').value;
 
     if (isNaN(p) || p <= 0 || p >= 1) {
       alert('La proporción p debe estar entre 0.01 y 0.99.');
@@ -871,45 +872,37 @@ document.getElementById('simBtn').addEventListener('click', () => {
     params = { p, n, conf, numIntervals, method };
   }
 
-  // Run
   const intervals = runSimulation(mode, params);
   const { n: total, covered, meanWidth } = computeStats(intervals);
-  const conf = params.conf;
-  const nominalPct = conf * 100;
+  const nominalPct  = params.conf * 100;
   const empiricalPct = (covered / total) * 100;
 
-  // Draw
+  // Show canvas
   const canvas = document.getElementById('ciCanvas');
-  const placeholder = document.getElementById('canvasPlaceholder');
-  placeholder.style.display = 'none';
+  document.getElementById('canvasPlaceholder').style.display = 'none';
   canvas.style.display = 'block';
 
-  const trueParam = mode === 'media' ? params.mu : params.p;
-  const paramLabel = mode === 'media'
-    ? `μ = ${trueParam}`
-    : `p = ${trueParam}`;
-
+  const trueParam  = mode === 'media' ? params.mu : params.p;
+  const paramLabel = mode === 'media' ? `μ = ${trueParam}` : `p = ${trueParam}`;
   drawIntervals(canvas, intervals, trueParam, paramLabel);
 
   // Legend
   document.getElementById('ciLegend').style.display = 'flex';
 
-  // Stats grid
-  const statsGrid = document.getElementById('ciStatsGrid');
-  statsGrid.style.display = 'grid';
-  document.getElementById('scNominal').textContent = nominalPct.toFixed(0) + '%';
-  document.getElementById('scEmpiricalPct').textContent = empiricalPct.toFixed(1) + '%';
+  // Stats cards
+  document.getElementById('ciStatsGrid').style.display = 'grid';
+  document.getElementById('scNominal').textContent        = nominalPct.toFixed(0) + '%';
+  document.getElementById('scEmpiricalPct').textContent   = empiricalPct.toFixed(1) + '%';
   document.getElementById('scCoveredFraction').textContent = `${covered} / ${total}`;
-  document.getElementById('scMeanWidth').textContent = '± ' + (meanWidth / 2).toFixed(4);
+  document.getElementById('scMeanWidth').textContent      = '± ' + (meanWidth / 2).toFixed(4);
 
-  // Color the empirical coverage card
-  const empCard = document.getElementById('scEmpiricalPct').closest('.ci-stat-card');
-  const absDiff = Math.abs(empiricalPct - nominalPct);
+  const empCard  = document.getElementById('scEmpiricalPct').closest('.ci-stat-card');
+  const absDiff  = Math.abs(empiricalPct - nominalPct);
   empCard.classList.toggle('miss', absDiff > 5 && empiricalPct < nominalPct);
 
   // Interpretation
-  const method = mode === 'proporcion' ? params.method : null;
-  const interp = interpretCoverage(empiricalPct, nominalPct, mode, method);
+  const methodUsed = mode === 'proporcion' ? params.method : null;
+  const interp = interpretCoverage(empiricalPct, nominalPct, mode, methodUsed);
   const box = document.getElementById('ciResultBox');
   box.style.display = 'block';
   box.className = 'result-box interpretation-box' + (interp.cls ? ' ' + interp.cls : '');
@@ -920,128 +913,21 @@ document.getElementById('simBtn').addEventListener('click', () => {
   axisNote.style.display = 'block';
   axisNote.textContent = mode === 'media'
     ? `Eje horizontal: escala de la media. Línea discontinua: μ = ${trueParam}. Cada fila = un IC calculado a partir de n = ${params.n} observaciones.`
-    : `Eje horizontal: escala de la proporción [0, 1]. Línea discontinua: p = ${trueParam}. Cada fila = un IC ${method === 'wilson' ? 'Wilson' : 'Wald'} calculado a partir de n = ${params.n} observaciones.`;
-});
+    : `Eje horizontal: escala de la proporción [0, 1]. Línea discontinua: p = ${trueParam}. Cada fila = un IC ${methodUsed === 'wilson' ? 'Wilson' : 'Wald'} calculado a partir de n = ${params.n} observaciones.`;
+}
 
-// Redraw on resize (debounced)
+document.getElementById('simBtn').addEventListener('click', runAndDisplay);
+
+// Responsive redraw on window resize (debounced)
 let resizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
-    const canvas = document.getElementById('ciCanvas');
-    if (canvas.style.display !== 'none' && canvas._lastIntervals) {
-      drawIntervals(canvas, canvas._lastIntervals, canvas._lastParam, canvas._lastLabel);
-    }
-  }, 150);
-});
-
-// Patch drawIntervals to cache data for resize
-const _origDraw = drawIntervals;
-window.drawIntervals = function(canvas, intervals, trueParam, paramLabel) {
-  canvas._lastIntervals = intervals;
-  canvas._lastParam = trueParam;
-  canvas._lastLabel = paramLabel;
-  _origDraw(canvas, intervals, trueParam, paramLabel);
-};
-
-// Override the button click to use the patched version
-document.getElementById('simBtn').addEventListener('click', function noop() {}, false);
-
-// Re-patch: replace the whole simulate handler to use window.drawIntervals
-(function() {
-  const btn = document.getElementById('simBtn');
-  // Remove old listener by cloning
-  const newBtn = btn.cloneNode(true);
-  btn.parentNode.replaceChild(newBtn, btn);
-
-  newBtn.addEventListener('click', () => {
-    let params, mode;
-
-    if (currentMode === 'media') {
-      mode = 'media';
-      const mu      = parseFloat(document.getElementById('trueMu').value);
-      const sigma   = parseFloat(document.getElementById('trueSigma').value);
-      const n       = parseInt(document.getElementById('nMedia').value, 10);
-      const conf    = parseFloat(document.getElementById('confMedia').value);
-      const numIntervals = parseInt(document.getElementById('numIntMedia').value, 10);
-
-      if (isNaN(mu) || isNaN(sigma) || sigma <= 0) {
-        alert('Por favor introduce valores válidos para μ y σ (σ debe ser > 0).');
-        return;
+    if (_lastDrawState) {
+      const { canvas, intervals, trueParam, paramLabel } = _lastDrawState;
+      if (canvas.style.display !== 'none') {
+        drawIntervals(canvas, intervals, trueParam, paramLabel);
       }
-      params = { mu, sigma, n, conf, numIntervals };
-    } else {
-      mode = 'proporcion';
-      const p       = parseFloat(document.getElementById('trueP').value);
-      const n       = parseInt(document.getElementById('nProp').value, 10);
-      const conf    = parseFloat(document.getElementById('confProp').value);
-      const numIntervals = parseInt(document.getElementById('numIntProp').value, 10);
-      const method  = document.getElementById('methodProp').value;
-
-      if (isNaN(p) || p <= 0 || p >= 1) {
-        alert('La proporción p debe estar entre 0.01 y 0.99.');
-        return;
-      }
-      params = { p, n, conf, numIntervals, method };
-    }
-
-    const intervals = runSimulation(mode, params);
-    const { n: total, covered, meanWidth } = computeStats(intervals);
-    const conf = params.conf;
-    const nominalPct = conf * 100;
-    const empiricalPct = (covered / total) * 100;
-
-    const canvas = document.getElementById('ciCanvas');
-    const placeholder = document.getElementById('canvasPlaceholder');
-    placeholder.style.display = 'none';
-    canvas.style.display = 'block';
-
-    const trueParam = mode === 'media' ? params.mu : params.p;
-    const paramLabel = mode === 'media'
-      ? `μ = ${trueParam}`
-      : `p = ${trueParam}`;
-
-    // Cache for resize and draw
-    canvas._lastIntervals = intervals;
-    canvas._lastParam = trueParam;
-    canvas._lastLabel = paramLabel;
-    drawIntervals(canvas, intervals, trueParam, paramLabel);
-
-    document.getElementById('ciLegend').style.display = 'flex';
-
-    const statsGrid = document.getElementById('ciStatsGrid');
-    statsGrid.style.display = 'grid';
-    document.getElementById('scNominal').textContent = nominalPct.toFixed(0) + '%';
-    document.getElementById('scEmpiricalPct').textContent = empiricalPct.toFixed(1) + '%';
-    document.getElementById('scCoveredFraction').textContent = `${covered} / ${total}`;
-    document.getElementById('scMeanWidth').textContent = '± ' + (meanWidth / 2).toFixed(4);
-
-    const empCard = document.getElementById('scEmpiricalPct').closest('.ci-stat-card');
-    const absDiff = Math.abs(empiricalPct - nominalPct);
-    empCard.classList.toggle('miss', absDiff > 5 && empiricalPct < nominalPct);
-
-    const method = mode === 'proporcion' ? params.method : null;
-    const interp = interpretCoverage(empiricalPct, nominalPct, mode, method);
-    const box = document.getElementById('ciResultBox');
-    box.style.display = 'block';
-    box.className = 'result-box interpretation-box' + (interp.cls ? ' ' + interp.cls : '');
-    document.getElementById('ciInterpretation').textContent = interp.text;
-
-    const axisNote = document.getElementById('axisNote');
-    axisNote.style.display = 'block';
-    axisNote.textContent = mode === 'media'
-      ? `Eje horizontal: escala de la media. Línea discontinua: μ = ${trueParam}. Cada fila = un IC calculado a partir de n = ${params.n} observaciones.`
-      : `Eje horizontal: escala de la proporción [0, 1]. Línea discontinua: p = ${trueParam}. Cada fila = un IC ${method === 'wilson' ? 'Wilson' : 'Wald'} calculado a partir de n = ${params.n} observaciones.`;
-  });
-})();
-
-// Resize handler using cached data
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    const canvas = document.getElementById('ciCanvas');
-    if (canvas.style.display !== 'none' && canvas._lastIntervals) {
-      drawIntervals(canvas, canvas._lastIntervals, canvas._lastParam, canvas._lastLabel);
     }
   }, 150);
 });
