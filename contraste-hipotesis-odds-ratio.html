@@ -316,16 +316,32 @@
             <h3>Cómo interpretar el resultado</h3>
 
                 <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay evidencia
-                estadística de asociación entre la exposición y la enfermedad. Si el p-valor es mayor o
-                igual que \(\alpha\), los datos no aportan evidencia suficiente para rechazar la hipótesis
-                de ausencia de asociación.
+                <strong>Rechazar \(H_0\)</strong> (p-valor &lt; \(\alpha\)) indica que hay evidencia
+                estadística de que el odds ratio poblacional \(\text{OR}\) es distinto de 1, es decir,
+                que la exposición y el resultado están asociados. Un \(\widehat{\text{OR}} &gt; 1\)
+                sugiere que la exposición aumenta las probabilidades del evento; un
+                \(\widehat{\text{OR}} &lt; 1\) sugiere un efecto protector. La magnitud del OR es tan
+                importante como la significación: un OR de 1,05 puede ser estadísticamente significativo
+                con muestras grandes pero representar una asociación trivial en la práctica.
                 </p>
 
                 <p>
-                Siempre conviene interpretar el OR junto al intervalo de confianza: un OR alejado de 1
-                con un intervalo estrecho indica una asociación fuerte y precisa, mientras que un intervalo
-                amplio refleja incertidumbre, generalmente por tamaño muestral reducido.
+                <strong>No rechazar \(H_0\)</strong> (p-valor ≥ \(\alpha\)) no prueba que no exista
+                asociación; solo indica que los datos son compatibles con \(\text{OR} = 1\) al nivel
+                elegido. Estudios pequeños tienen poca potencia para detectar asociaciones moderadas.
+                Un intervalo de confianza para el OR que se extiende ampliamente por encima y debajo de 1
+                señala que la estimación es muy imprecisa. En epidemiología es habitual interpretar el IC al
+                95%: si excluye el valor 1, la asociación es significativa al 5%; si lo incluye, no lo es.
+                </p>
+
+                <p>
+                El <strong>estadístico z</strong> se obtiene de la transformación logarítmica del OR
+                (\(\ln\widehat{\text{OR}}\)), cuya distribución asintótica es normal bajo \(H_0\).
+                En la visualización, la zona verde es la región de no rechazo, las zonas rojas son las
+                regiones críticas y la línea ámbar señala el estadístico observado. Recuerda que el OR
+                estima la razón de odds, no la razón de riesgos (RR): cuando la prevalencia del evento
+                es alta (&gt;10%), OR y RR pueden diferir considerablemente, y el RR puede ser más
+                intuitivo para comunicar los resultados.
                 </p>
         </section>
         <section id="seo-support-content" class="card content-card">

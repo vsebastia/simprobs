@@ -322,15 +322,32 @@
             <h3>Cómo interpretar el resultado</h3>
 
                 <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\): hay evidencia estadística
-                de asociación entre las filas y las columnas. Si el p-valor es mayor o igual que
-                \(\alpha\), no hay evidencia suficiente para rechazar la independencia.
+                Si el p-valor exacto es menor que \(\alpha\), se rechaza \(H_0\): hay evidencia estadística
+                de asociación entre las filas y las columnas de la tabla 2×2. Si el p-valor es mayor o igual que
+                \(\alpha\), no hay evidencia suficiente para rechazar la independencia con los datos disponibles.
+                A diferencia del chi-cuadrado, este p-valor es <em>exacto</em>: no depende de ninguna aproximación
+                asintótica y es fiable incluso cuando las frecuencias esperadas son muy pequeñas o alguna celda
+                contiene pocos casos.
                 </p>
 
                 <p>
-                Una OR &gt; 1 indica que el evento es más frecuente en la fila 1; OR &lt; 1 indica
-                que es menos frecuente. La dirección de la asociación debe interpretarse siempre en
-                el contexto del diseño del estudio.
+                La <strong>odds ratio (OR)</strong> cuantifica la magnitud y la dirección de la asociación.
+                Una OR = 1 indica independencia perfecta entre las dos variables. Una OR &gt; 1 indica que
+                el evento de la fila 1 es más probable en la columna A que en la columna B; OR &lt; 1 indica
+                lo contrario. Por ejemplo, OR = 3.5 significa que la probabilidad del evento es 3.5 veces
+                mayor en el grupo de la fila 1. La dirección e interpretación exacta siempre dependen de cómo
+                se hayan etiquetado filas y columnas: conviene describir el resultado en términos sustantivos
+                del problema, no solo en términos numéricos.
+                </p>
+
+                <p>
+                Sobre la elección entre <strong>Fisher y chi-cuadrado</strong>: el test exacto de Fisher es
+                preferible cuando alguna frecuencia <em>esperada</em> (no observada) es inferior a 5, o cuando
+                el tamaño muestral total es menor de 20. Con muestras grandes, ambos tests convergen y el
+                chi-cuadrado de Pearson es computacionalmente más directo. Una limitación del test de Fisher
+                es que condiciona en los márgenes fijos de la tabla, supuesto que no siempre es realista en
+                estudios prospectivos; en esos casos se discute el uso de alternativas como el test de Barnard,
+                aunque Fisher sigue siendo el estándar en la mayoría de contextos biomédicos y experimentales.
                 </p>
         </section>
         <section id="seo-support-content" class="card content-card">

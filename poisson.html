@@ -217,7 +217,8 @@
 
         <article class="card content-card">
     <h3>Explicación</h3>
-    <p>La distribución de Poisson sirve para modelar cuántas veces ocurre un evento en un intervalo fijo de tiempo, espacio o cualquier otra unidad cuando esos eventos suceden de forma independiente y con una tasa media estable. Por ejemplo, puede usarse para estimar cuántas llamadas llegan en una hora, cuántos clientes entran en una tienda en diez minutos o cuántos errores aparecen en una página. Es una distribución discreta, así que solo toma valores enteros no negativos: 0, 1, 2, 3, ...</p>
+    <p>La distribución de Poisson modela cuántas veces ocurre un evento en un intervalo fijo de tiempo, espacio o cualquier otra unidad cuando los eventos son independientes entre sí y ocurren con una tasa media \( \lambda \) estable. Es una distribución discreta con soporte en los enteros no negativos \( \{0, 1, 2, \ldots\} \). Su propiedad más distintiva es que la media y la varianza son iguales: ambas valen \( \lambda \). Si en tus datos la varianza supera claramente a la media (sobredispersión), la binomial negativa puede ser un modelo más adecuado.</p>
+    <p>Úsala cuando los eventos puedan ocurrir cualquier número de veces en el intervalo, no haya un límite superior fijo de ocurrencias (a diferencia de la binomial, que tiene \( n \) ensayos), los eventos sean raros en relación con las oportunidades potenciales y la tasa sea estable a lo largo del intervalo. Ejemplos típicos: llamadas telefónicas en un call center, clientes en una tienda, errores en una página impresa, emisiones radiactivas o fallos de un servidor en producción. La distribución de Poisson también es el límite de la binomial cuando \( n \) es grande, \( p \) es pequeño y \( \lambda = np \) es moderado.</p>
     <h3>Fórmula</h3>
     <p class="formula-line">\( P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!} \)</p>
     <h3>Parámetros</h3>

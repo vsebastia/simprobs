@@ -212,6 +212,17 @@
             <p>Wald es fácil de interpretar y suele funcionar bien con muestras grandes y proporciones no extremas. Newcombe-Wilson suele ser preferible por defecto si algún grupo tiene pocos éxitos o pocos fracasos, porque usa intervalos Wilson individuales y combina sus incertidumbres de forma cuadrática, no mediante una resta directa de límites. Así reduce los problemas de cobertura del intervalo normal clásico.</p>
         </section>
 
+        <section class="card content-card">
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El intervalo \([L, U]\) es el rango plausible de la diferencia de proporciones poblacionales \(p_1 - p_2\) dado el nivel de confianza elegido. Si el experimento se repitiera muchas veces con muestras del mismo tamaño, una proporción \(C\) de los intervalos construidos con el mismo método contendría el verdadero valor de \(p_1 - p_2\). La amplitud del intervalo refleja la precisión: muestras más grandes o proporciones más alejadas de 0,5 producen intervalos más estrechos; menor variabilidad y mayor \(n\) llevan a estimaciones más precisas.</p>
+            <p>La decisión clave reside en si el 0 pertenece al intervalo. Si \(0 \in [L, U]\), los datos no descartan que \(p_1 = p_2\) al nivel de confianza elegido; equivalentemente, el contraste bilateral \(H_0\!: p_1 = p_2\) no se rechazaría al nivel \(\alpha = 1 - C\). Si \(0 \notin [L, U]\), hay evidencia de diferencia: si \(L > 0\) la proporción del grupo 1 es significativamente mayor; si \(U < 0\) la del grupo 2 es significativamente mayor. La calculadora indica automáticamente cuál de los dos casos se da, para ambos métodos cuando se muestran juntos.</p>
+            <ul>
+                <li><strong>Magnitud del efecto:</strong> más allá de la significación, la posición central del intervalo (\(\hat{p}_1 - \hat{p}_2\)) indica la diferencia estimada en puntos porcentuales. Un IC significativo pero centrado cerca de 0 puede tener escasa relevancia práctica.</li>
+                <li><strong>Wald vs. Newcombe-Wilson:</strong> cuando la condición de normalidad de Wald se cumple en ambos grupos, ambos métodos suelen coincidir en la conclusión. Si algún grupo tiene pocos éxitos o fracasos, Newcombe-Wilson suele ser más fiable porque usa intervalos Wilson individuales y combina sus incertidumbres cuadráticamente.</li>
+                <li><strong>Lectura del gráfico:</strong> la región verde bajo la curva normal estándar es la zona de confianza y las colas rojas (área \(\alpha/2\) cada una) marcan los valores críticos \(\pm z_{\alpha/2}\). El gráfico visualiza los valores de z compatibles con los datos; el IC en la escala original se obtiene desmapeando esos valores a la diferencia de proporciones.</li>
+            </ul>
+        </section>
+
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>

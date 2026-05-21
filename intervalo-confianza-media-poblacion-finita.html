@@ -211,7 +211,12 @@
 
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>El IC corregido es siempre igual o más estrecho que el estándar. La diferencia es mayor cuanto más grande sea la fracción de muestreo \(n/N\). Si n/N &lt; 5 %, ambos ICs son prácticamente iguales.</p>
+            <p>El intervalo \([L, U]\) es el rango plausible de la media poblacional \(\mu\) dado el nivel de confianza elegido. La interpretación frecuentista es la misma que en cualquier IC: si repitieras el muestreo y construyeras el IC con el mismo procedimiento muchas veces, aproximadamente un \(C \times 100\,\%\) de esos intervalos contendría el verdadero valor de \(\mu\). El IC corregido por FPC es siempre igual o más estrecho que el estándar: esto no es un sesgo, sino el reflejo correcto de que muestrear el \(n/N\,\%\) de la población sin reemplazamiento proporciona más información que muestrear con reemplazamiento.</p>
+            <p>La diferencia entre ambos ICs depende directamente de la fracción de muestreo. Si \(n/N &lt; 5\,\%\), el FPC es cercano a 1 y ambos intervalos coinciden prácticamente. Si \(n/N\) supera el 20 %, la reducción de amplitud puede ser sustancial, como muestra la calculadora al comparar los dos ICs simultáneamente en el gráfico. Cuando se muestrea la totalidad de la población (\(n = N\)), el IC se colapsa a un punto: la incertidumbre desaparece porque se conocen todos los elementos.</p>
+            <ul>
+                <li><strong>Conexión con el contraste:</strong> si un valor de referencia \(\mu_0\) queda fuera del IC con FPC, los datos lo rechazan al nivel \(\alpha = 1 - C\) en el contraste bilateral equivalente para poblaciones finitas.</li>
+                <li><strong>Qué intervalo usar:</strong> usa siempre el IC con FPC cuando \(n/N &gt; 5\,\%\) y el diseño sea muestreo aleatorio simple sin reemplazamiento. Informar solo el IC estándar cuando la fracción es grande sobreestima la incertidumbre real.</li>
+            </ul>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

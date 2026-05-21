@@ -241,7 +241,9 @@
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong> vale exactamente \( f(x) = \frac{1}{b-a} \) para cualquier \( x \in [a, b] \) y cero fuera. Esto significa que la densidad es constante: ningún subintervalo de la misma longitud es más probable que otro. Un valor de PDF de, por ejemplo, 0,05 con \( a = 0 \) y \( b = 20 \) no implica que la probabilidad en ese punto sea 0,05, sino que cualquier intervalo de longitud 1 dentro de \([0, 20]\) tiene exactamente el 5 % de probabilidad. En la gráfica, la curva es una línea horizontal sobre el intervalo \([a, b]\); el área verde representa la fracción del intervalo que cae en el rango seleccionado.</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq x) = \frac{x - a}{b - a} \), crece linealmente desde 0 hasta 1. Esto la hace especialmente intuitiva: \( P(X \leq x) \) es directamente la fracción del intervalo total que queda a la izquierda de \( x \). Si \( a = 0 \), \( b = 20 \) y \( x = 5 \), entonces \( P(X \leq 5) = 0{,}25 \): el 25 % de los valores posibles caen por debajo de 5. La cola derecha \( P(X > x) = \frac{b - x}{b - a} \) es la fracción restante del intervalo.</p>
+                <p>El resultado de <strong>percentil o cuantil</strong> tiene una fórmula cerrada sencilla: \( x = a + p \cdot (b - a) \). El percentil 75 es el punto que se encuentra al 75 % del recorrido del intervalo desde \( a \) hasta \( b \). En generación de números aleatorios y en simulación Monte Carlo, el cuantil de la uniforme se usa como punto de partida para generar variables de otras distribuciones mediante la transformada inversa.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

@@ -274,12 +274,13 @@
         </section>
 
         <section class="card content-card">
-            <h3>Cómo interpretar el intervalo</h3>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El intervalo \([L, U]\) es el rango plausible del ratio de proporciones poblacional \(RR = p_1/p_2\) dado el nivel de confianza elegido. El valor nulo es 1, que indica igualdad de proporciones (\(p_1 = p_2\)). En términos frecuentistas: si repitieras el estudio muchas veces con los mismos tamaños muestrales y construyeras el IC con el mismo procedimiento, una proporción \(C\) de esos intervalos contendría el verdadero ratio. Al igual que con la odds ratio, el intervalo se construye simétricamente en escala logarítmica y luego se transforma con la exponencial; esto produce un IC asimétrico en la escala original (la distancia de \(\widehat{RR}\) a \(L\) no es igual a la distancia de \(\widehat{RR}\) a \(U\)).</p>
+            <p>La interpretación sigue tres casos. Si \(1 \in [L, U]\), los datos son compatibles con igualdad de proporciones al nivel de confianza elegido; el contraste \(H_0\!: p_1 = p_2\) no se rechazaría al nivel \(\alpha = 1 - C\). Si \(L > 1\), la proporción del grupo 1 es significativamente mayor. Si \(U < 1\), la proporción del grupo 1 es significativamente menor. En el gráfico se representa la distribución normal aproximada de \(\log(RR)\): la región verde es la zona de confianza y las colas rojas (área \(\alpha/2\) cada una) delimitan los valores críticos \(\pm z_{\alpha/2}\) en escala logarítmica.</p>
             <ul>
-                <li>Si el IC incluye 1, los datos son compatibles con igualdad de proporciones al nivel de confianza seleccionado.</li>
-                <li>Si todo el IC está por encima de 1, la proporción del grupo 1 es mayor que la del grupo 2.</li>
-                <li>Si todo el IC está por debajo de 1, la proporción del grupo 1 es menor que la del grupo 2.</li>
-                <li>La escala del ratio es multiplicativa: un RR = 1,75 significa una proporción 75 % mayor en el grupo 1.</li>
+                <li><strong>Escala multiplicativa:</strong> un \(RR = 1{,}75\) significa que la proporción del grupo 1 es un 75 % mayor que la del grupo 2, no 75 puntos porcentuales mayor. La diferencia entre escala aditiva (diferencia de proporciones) y multiplicativa (ratio) es importante para la comunicación de resultados.</li>
+                <li><strong>Diferencia con la odds ratio:</strong> el RR compara proporciones directamente. La OR compara odds. Con el mismo ejemplo (35/100 frente a 20/100), \(RR = 1{,}75\) pero \(OR \approx 2{,}15\). Si el evento es raro, ambos se aproximan; si el evento es frecuente, la OR puede ser mucho más extrema que el RR y no debe usarse para estimar riesgos relativos.</li>
+                <li><strong>Amplitud y recuentos:</strong> el error estándar de \(\log(RR)\) crece cuando los recuentos de eventos (\(x_1\), \(x_2\)) son pequeños. Con pocos eventos en algún grupo, el intervalo será muy ancho e impreciso; si algún grupo tiene 0 eventos, es obligatorio aplicar la corrección 0,5.</li>
             </ul>
         </section>
 

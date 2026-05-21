@@ -241,7 +241,9 @@
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong>, \( f(x) \), da la densidad de probabilidad en el punto \( x \): indica cuán concentrada está la distribución en esa zona. Con \( k = 1 \) la curva es decreciente (idéntica a la exponencial); con \( k > 1 \) aparece un máximo (la moda es \( (k-1)\theta \)) y la curva adopta forma de campana asimétrica que se desplaza a la derecha conforme aumenta \( k \). En la gráfica, el área verde representa la probabilidad acumulada del rango seleccionado; el eje horizontal parte de cero (la distribución gamma solo toma valores positivos).</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq x) \), acumula la probabilidad desde cero hasta \( x \): representa la probabilidad de que la variable (por ejemplo, un tiempo de espera acumulado) sea menor o igual que \( x \). Si \( P(X \leq 1) = 0{,}78 \) con \( k = 3 \) y \( \theta = 0{,}25 \) horas, significa que el 78 % de los procesos completan sus 3 etapas en menos de 1 hora. La cola derecha \( P(X > x) \) mide la probabilidad de que el proceso dure más de \( x \) unidades, útil para dimensionar buffers y tiempos de atención.</p>
+                <p>El resultado de <strong>percentil o cuantil</strong> devuelve el valor \( x \) tal que \( P(X \leq x) = p \). El percentil 90 indica el tiempo que solo el 10 % de los procesos superan, lo que permite fijar umbrales de servicio con una cobertura determinada. En fiabilidad e ingeniería, el percentil 10 (B10) es el tiempo antes del cual falla el 10 % de los componentes, un estándar habitual para evaluar la durabilidad de sistemas.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

@@ -275,12 +275,13 @@
         </section>
 
         <section class="card content-card">
-            <h3>Cómo interpretar el intervalo</h3>
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El intervalo \([L, U]\) es el rango plausible de la odds ratio poblacional \(OR\) dado el nivel de confianza elegido. El valor nulo para una OR es 1, que indica ausencia de asociación entre la exposición y el evento. En términos frecuentistas: si repitieras el estudio muchas veces y construyeras el IC con el mismo procedimiento, una proporción \(C\) de esos intervalos contendría la verdadera OR. El intervalo se construye y se presenta simétricamente en escala logarítmica pero, al transformar de vuelta con la exponencial, los límites no están equidistantes de la estimación puntual en la escala original: la OR siempre es positiva y su distribución muestral es asimétrica.</p>
+            <p>La lectura del resultado sigue tres casos directos. Si \(1 \in [L, U]\), los datos son compatibles con ausencia de asociación al nivel de confianza elegido; equivalentemente, el contraste bilateral \(H_0\!: OR = 1\) no se rechazaría al nivel \(\alpha = 1 - C\). Si \(L > 1\) (el intervalo completo está por encima de 1), las odds del evento son significativamente mayores en el grupo expuesto. Si \(U < 1\) (el intervalo completo está por debajo de 1), las odds son significativamente menores. En el gráfico se representa la distribución normal aproximada de \(\log(OR)\): la región verde es la zona de confianza y las colas rojas delimitan los valores críticos \(\pm z_{\alpha/2}\) en escala logarítmica.</p>
             <ul>
-                <li>Si el IC incluye 1, los datos son compatibles con ausencia de asociación al nivel de confianza seleccionado.</li>
-                <li>Si todo el IC está por encima de 1, las odds del evento son mayores en el grupo expuesto.</li>
-                <li>Si todo el IC está por debajo de 1, las odds del evento son menores en el grupo expuesto.</li>
-                <li>La amplitud del intervalo refleja la precisión: recuentos pequeños generan intervalos más anchos.</li>
+                <li><strong>Magnitud del efecto:</strong> una OR = 2,15 significa que las odds observadas del evento en expuestos son 2,15 veces las odds en no expuestos. Cuanto más se aleja la OR de 1, mayor es la asociación estimada; el IC comunica la incertidumbre alrededor de esa estimación.</li>
+                <li><strong>No confundir OR con riesgo relativo:</strong> la OR no es un riesgo relativo. Solo cuando el evento es raro (\(p &lt; 0{,}1\)) se aproximan. Con eventos frecuentes, la OR puede ser bastante más extrema que el RR y no debe interpretarse como si fuera un cociente de probabilidades.</li>
+                <li><strong>Amplitud y recuentos:</strong> celdas con recuentos pequeños producen intervalos muy anchos porque el error estándar de \(\log(OR)\) crece al sumar los recíprocos \(1/a + 1/b + 1/c + 1/d\). Si alguna celda es menor que 5, interpreta el resultado con cautela.</li>
             </ul>
         </section>
 

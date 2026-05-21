@@ -217,7 +217,8 @@
 
         <article class="card content-card">
     <h3>Explicación</h3>
-    <p>La distribución geométrica describe cuántos intentos independientes se necesitan hasta obtener el primer éxito, cuando cada intento tiene la misma probabilidad de éxito. Es una distribución discreta, apropiada para procesos de repetición tipo “probar hasta lograr”. Al igual que la exponencial, también presenta una versión discreta de la propiedad de falta de memoria.</p>
+    <p>La distribución geométrica describe cuántos intentos independientes se necesitan hasta obtener el <em>primer</em> éxito, cuando cada intento tiene la misma probabilidad de éxito \( p \). Es una distribución discreta con soporte en los enteros positivos \( k = 1, 2, 3, \ldots \) y es el caso particular de la binomial negativa con \( r = 1 \). Su media es \( 1/p \) y su varianza \( (1-p)/p^2 \); con una probabilidad de éxito pequeña, la media es alta y la distribución tiene una cola derecha muy larga.</p>
+    <p>La propiedad de falta de memoria es su característica más importante: dado que ya se han realizado \( m \) intentos fallidos, la distribución del número de intentos adicionales hasta el primer éxito es exactamente la misma que al principio. Úsala cuando tengas procesos de tipo “repetir hasta lograrlo”: prospección comercial, ensayos de calidad hasta el primer defecto, intentos de conexión en redes, o cualquier situación donde los intentos sean independientes entre sí y tengan una probabilidad de éxito constante.</p>
     <h3>Fórmula</h3>
     <p class="formula-line">\( P(X=k)=(1-p)^{k-1}p,\quad k=1,2,3,\dots \)</p>
     <h3>Parámetros</h3>
@@ -230,7 +231,9 @@
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PMF</strong>, \( P(X = k) = (1-p)^{k-1} p \), da la probabilidad de que el primer éxito ocurra exactamente en el intento \( k \). Esta probabilidad decrece geométricamente: el intento 1 siempre tiene la probabilidad más alta (\( p \)), el intento 2 tiene \( (1-p)p \), y así sucesivamente. En la gráfica, las barras van decreciendo de izquierda a derecha; la barra del intento 1 es siempre la más alta independientemente de \( p \).</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq k) = 1 - (1-p)^k \), da la probabilidad de conseguir el primer éxito en \( k \) o menos intentos. Si \( p = 0{,}2 \) y \( k = 5 \), entonces \( P(X \leq 5) = 1 - 0{,}8^5 \approx 0{,}672 \): el 67,2 % de los procesos logran el primer éxito en cinco o menos intentos. La cola derecha \( P(X > k) = (1-p)^k \) mide la probabilidad de no haber tenido éxito aún tras \( k \) intentos, y gracias a la propiedad de falta de memoria, esta probabilidad no depende de cuántos intentos fallidos ya se hayan acumulado.</p>
+                <p>El resultado de <strong>percentil</strong> devuelve el menor entero \( k \) tal que \( P(X \leq k) \geq p \). El percentil 50 (mediana) es el número de intentos que separa la mitad más rápida de la mitad más lenta en conseguir el éxito; el percentil 90 indica el número de intentos que solo el 10 % de los procesos supera sin haber tenido éxito, lo que puede usarse para dimensionar recursos en escenarios de prospección o pruebas repetidas.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

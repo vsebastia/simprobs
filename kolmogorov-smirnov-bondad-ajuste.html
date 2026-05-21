@@ -311,24 +311,35 @@
             <h3>Cómo interpretar el resultado</h3>
 
                 <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay
-                evidencia estadística de que los datos no provienen de la distribución teórica
-                especificada. Si el p-valor es mayor o igual que \(\alpha\), no hay evidencia
-                suficiente para rechazar el modelo con ese nivel de significación.
+                <strong>Rechazar \(H_0\)</strong> (p-valor &lt; \(\alpha\)) significa que la función
+                de distribución empírica \(F_n(x)\) se aleja de la función teórica \(F_0(x)\) más de
+                lo que el azar puede explicar. Los datos no son compatibles con el modelo distribucional
+                propuesto al nivel de significación elegido. La <strong>localización</strong> de la
+                máxima discrepancia —indicada por la línea ámbar vertical en la visualización— revela
+                en qué zona de la distribución se concentra el desajuste: una discrepancia en la cola
+                izquierda señala que los datos tienen menos masa de la esperada en valores bajos; en la
+                cola derecha, lo contrario; en el centro, desajuste en la mediana o la moda.
                 </p>
 
                 <p>
-                El gráfico de las funciones de distribución permite identificar en qué zona de
-                valores se produce la mayor discrepancia. La línea roja vertical marca el punto de
-                máxima separación \(D_n\): si se sitúa en la cola izquierda, los datos tienen menos
-                masa de la esperada en valores bajos; si aparece en la cola derecha, lo contrario.
+                <strong>No rechazar \(H_0\)</strong> (p-valor ≥ \(\alpha\)) no demuestra que los datos
+                «siguen» la distribución teórica; solo indica que son compatibles con ella al nivel
+                elegido. Con muestras pequeñas la potencia es baja y desviaciones moderadas pueden
+                pasar desapercibidas. Con muestras muy grandes, el test puede rechazar modelos que se
+                ajustan razonablemente bien en la práctica. Por eso es recomendable complementar el
+                p-valor con la inspección visual de las curvas FDE empírica y teórica: si se solapan
+                casi perfectamente, el modelo es adecuado aunque \(D_n\) sea no nulo.
                 </p>
 
                 <p>
-                Un no rechazo de \(H_0\) no significa que los datos «sean» de la distribución
-                elegida: solo indica que son compatibles con ese modelo al nivel de significación
-                elegido. Con muestras pequeñas, el test tiene poca potencia para detectar
-                desviaciones moderadas.
+                El <strong>estadístico \(D_n\)</strong> es la máxima distancia vertical entre la FDE
+                empírica y la teórica. La zona verde en la visualización representa la banda de
+                tolerancia alrededor de \(F_0(x)\) compatible con \(H_0\); si la FDE empírica supera
+                esa banda, \(D_n\) cae en la región crítica (zona roja). Una ventaja del test KS
+                frente al chi-cuadrado de bondad de ajuste es que no requiere agrupar datos en
+                categorías, siendo especialmente útil para distribuciones continuas. Sin embargo, si
+                los parámetros de la distribución teórica se han estimado de los propios datos, los
+                valores críticos deben corregirse (test de Lilliefors para normalidad, por ejemplo).
                 </p>
         </section>
         <section id="seo-support-content" class="card content-card">

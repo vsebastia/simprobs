@@ -217,7 +217,8 @@
 
         <article class="card content-card">
         <h3>Explicación</h3>
-        <p>La distribución exponencial modela tiempos de espera entre eventos cuando estos ocurren a tasa constante e independiente (un escenario típico de procesos de Poisson). Es una distribución continua definida para valores no negativos y tiene la propiedad de “falta de memoria”: la probabilidad de esperar un tiempo adicional no depende de cuánto ya se haya esperado.</p>
+        <p>La distribución exponencial modela el tiempo de espera hasta el próximo evento cuando esos eventos ocurren de forma independiente y a tasa constante \( \lambda \). Es la contraparte continua de la distribución geométrica y el complemento directo de la distribución de Poisson: si el número de eventos por unidad de tiempo sigue una Poisson(\( \lambda \)), el tiempo entre eventos consecutivos sigue una Exponencial(\( \lambda \)). Su media es \( 1/\lambda \) y su mediana \( \ln(2)/\lambda \), siempre menor que la media por la asimetría positiva de la distribución.</p>
+        <p>La propiedad de falta de memoria es la característica que la define matemáticamente: \( P(X > s + t \mid X > s) = P(X > t) \). Esto significa que un componente que ya lleva funcionando \( s \) horas tiene la misma probabilidad de fallar en las próximas \( t \) horas que uno nuevo. Úsala cuando el proceso sea genuinamente sin memoria: intervalos entre llamadas telefónicas, tiempo hasta el siguiente accidente en un tramo de carretera, tiempo de vida de componentes electrónicos con tasa de fallo constante o tiempos de servicio en colas.</p>
         <h3>Fórmula</h3>
         <p class="formula-line">\( f(x;\lambda)=\lambda e^{-\lambda x},\quad x\geq 0 \)</p>
         <h3>Parámetros</h3>
@@ -230,7 +231,9 @@
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong>, \( f(x) = \lambda e^{-\lambda x} \), da la densidad de probabilidad en el punto \( x \): es máxima en \( x = 0 \) y decrece exponencialmente. Un valor alto de PDF en un punto indica que los tiempos de espera cerca de ese valor son relativamente frecuentes. En la gráfica, la curva arranca desde \( \lambda \) en el origen y cae hacia cero; el área verde representa la probabilidad acumulada para el rango que hayas seleccionado en el eje horizontal (tiempo o duración).</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq x) = 1 - e^{-\lambda x} \), da la probabilidad de que el tiempo de espera sea menor o igual a \( x \). Por ejemplo, si \( \lambda = 0{,}2 \) eventos por minuto (equivale a un tiempo medio de 5 minutos), entonces \( P(X \leq 3) = 1 - e^{-0{,}6} \approx 0{,}451 \): hay un 45,1 % de probabilidad de que el tiempo de espera no supere 3 minutos. La cola derecha \( P(X > x) = e^{-\lambda x} \) es la probabilidad de supervivencia, muy usada en análisis de fiabilidad y teoría de colas.</p>
+                <p>El resultado de <strong>cuantil</strong> invierte la CDF: dado un nivel de probabilidad \( p \), devuelve el tiempo \( x = -\ln(1-p)/\lambda \) tal que \( P(X \leq x) = p \). El percentil 90 indica el tiempo que solo el 10 % de los eventos superan; el percentil 50 (mediana) es \( \ln(2)/\lambda \approx 0{,}693/\lambda \), siempre menor que la media \( 1/\lambda \), lo que refleja la asimetría de la distribución.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

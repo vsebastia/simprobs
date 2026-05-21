@@ -243,7 +243,9 @@
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong>, \( f(x) \), da la densidad de probabilidad en un punto \( x \in [0, 1] \): refleja cuán verosímil es ese valor de la proporción o probabilidad bajo el modelo beta con los parámetros \( \alpha \) y \( \beta \) elegidos. Un pico estrecho y alto indica mucha concentración (alta certeza), mientras que una curva plana (como con \( \alpha = \beta = 1 \)) representa incertidumbre total. En la gráfica, el área verde corresponde a la probabilidad de que la variable se encuentre en el rango seleccionado del intervalo \([0, 1]\).</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq x) \), da la probabilidad de que la proporción o tasa desconocida sea menor o igual que \( x \). En el contexto bayesiano, si \( X \) es la tasa de conversión real de una campaña, \( P(X \leq 0{,}10) = 0{,}03 \) significa que solo hay un 3 % de probabilidad de que la tasa real sea inferior al 10 %, dado lo observado. La cola derecha \( P(X > x) \) mide la probabilidad de que la proporción supere el umbral \( x \), y la diferencia entre dos CDF da la probabilidad de un rango específico.</p>
+                <p>El resultado de <strong>percentil o cuantil</strong> devuelve el valor \( x \) tal que \( P(X \leq x) = p \). Los percentiles 2,5 y 97,5 forman el intervalo de credibilidad bayesiano del 95 %: hay un 95 % de probabilidad de que el parámetro real esté dentro de ese rango. En pruebas A/B y análisis bayesiano, este intervalo es el análogo bayesiano del intervalo de confianza frecuentista y es directamente interpretable como una declaración probabilística sobre el valor desconocido.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

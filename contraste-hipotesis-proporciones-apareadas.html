@@ -233,7 +233,9 @@
 
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Si p-valor &lt; α, rechazas \(H_0\) y concluyes que las proporciones marginales de las dos condiciones difieren significativamente. Si p-valor ≥ α, la evidencia es insuficiente para concluir diferencia.</p>
+                <p><strong>Rechazar \(H_0\)</strong> (p-valor &lt; α) significa que hay evidencia estadística de que las proporciones marginales de las dos condiciones son distintas. En términos de la tabla 2×2, los pares discordantes (\(b\) y \(c\)) muestran una asimetría que no puede explicarse por el azar. El test de McNemar es especialmente sensible a este tipo de cambios en los mismos sujetos, lo que lo hace más potente que comparar dos proporciones independientes cuando el diseño es apareado.</p>
+                <p><strong>No rechazar \(H_0\)</strong> (p-valor ≥ α) no implica que las proporciones sean iguales, sino que la asimetría entre \(b\) y \(c\) es compatible con la variación aleatoria esperada. Con un número pequeño de pares discordantes (\(b+c &lt; 25\)), la aproximación chi-cuadrado pierde fiabilidad: en ese caso se recomienda el test binomial exacto sobre los pares discordantes en lugar del estadístico aproximado.</p>
+                <p>El <strong>estadístico chi-cuadrado de McNemar</strong> se calcula solo a partir de \(b\) y \(c\) (los pares donde las dos condiciones discrepan); los pares concordantes (\(a\) y \(d\)) no aportan información sobre la diferencia. Un valor grande del estadístico indica fuerte asimetría entre \(b\) y \(c\). Para valorar la relevancia práctica, complementa con el cociente \(b/c\) (odds ratio marginal) o con la diferencia de proporciones marginales \((b-c)/n\) y su intervalo de confianza.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

@@ -188,10 +188,12 @@
 
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El intervalo para \(\sigma^2\) describe valores plausibles de la variabilidad poblacional; el intervalo para \(\sigma\) expresa la misma incertidumbre en las unidades originales de la variable. Al basarse en la chi-cuadrado, los límites no son simétricos alrededor de \(s^2\).</p>
+            <p>El intervalo para \(\sigma^2\) es el rango de valores de la varianza poblacional compatibles con los datos al nivel de confianza elegido. El intervalo para \(\sigma\) expresa la misma incertidumbre en las unidades originales de la variable: se obtiene simplemente aplicando la raíz cuadrada a cada límite. En términos frecuentistas, si repitieras el experimento muchas veces y construyeras el IC con el mismo método, una proporción \(C\) de esos intervalos contendría la verdadera varianza \(\sigma^2\). La distribución chi-cuadrado es asimétrica y solo toma valores positivos, por eso el intervalo no es simétrico: el límite superior está más alejado de \(s^2\) que el límite inferior.</p>
+            <p>En el gráfico, la región verde bajo la curva chi-cuadrado es la zona de confianza y las colas rojas (cada una con área \(\alpha/2\)) indican los percentiles inferior \(\chi^2_{\alpha/2,\,n-1}\) y superior \(\chi^2_{1-\alpha/2,\,n-1}\). Cuanto mayor sea \(n\), más simétrica y concentrada será la distribución chi-cuadrado y, en consecuencia, el intervalo será más estrecho y más próximo a la simetría.</p>
             <ul>
-                <li>Un intervalo amplio indica mucha incertidumbre sobre la variabilidad real, normalmente por tamaño muestral pequeño.</li>
-                <li>Si el objetivo es controlar dispersión de un proceso, presta atención especialmente al límite superior.</li>
+                <li><strong>Amplitud e incertidumbre:</strong> un intervalo muy ancho refleja alta incertidumbre sobre la variabilidad real del proceso, habitualmente debida a un tamaño muestral pequeño. Con muestras grandes, el IC se estrecha considerablemente.</li>
+                <li><strong>Límite superior en control de calidad:</strong> si el objetivo es controlar la dispersión de un proceso, el límite superior \(U(\sigma^2)\) es el valor más relevante; superar un valor de especificación con ese límite indica que la variabilidad puede exceder lo tolerado incluso con los datos actuales.</li>
+                <li><strong>Conexión con el contraste:</strong> si un valor de referencia \(\sigma_0^2\) queda fuera del intervalo, los datos rechazarían \(H_0\!: \sigma^2 = \sigma_0^2\) al nivel \(\alpha = 1 - C\) en el contraste chi-cuadrado bilateral equivalente. Si \(\sigma_0^2\) está dentro del intervalo, no hay evidencia para rechazarlo.</li>
             </ul>
         </section>
 

@@ -341,17 +341,32 @@
             <h3>Cómo interpretar el resultado</h3>
 
                 <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay
-                evidencia estadística de que las varianzas poblacionales son distintas. Si el
-                p-valor es mayor o igual que \(\alpha\), no hay evidencia suficiente para rechazar
-                la hipótesis de igualdad de varianzas.
+                <strong>Rechazar \(H_0\)</strong> (p-valor &lt; \(\alpha\)) indica que el cociente
+                de varianzas muestrales \(F = s^2_1 / s^2_2\) es estadísticamente incompatible con
+                la igualdad poblacional \(\sigma^2_1 = \sigma^2_2\). En la práctica esto es relevante,
+                por ejemplo, cuando se quiere decidir qué variante del test t usar (varianzas iguales
+                o desiguales) o cuando la homogeneidad de varianzas es un supuesto del ANOVA.
+                No obstante, el test F de Snedecor es muy sensible a desviaciones de la normalidad:
+                un resultado significativo puede deberse a colas asimétricas más que a varianzas
+                genuinamente distintas. Antes de actuar, inspecciona los datos visualmente.
                 </p>
 
                 <p>
-                Un resultado significativo no implica necesariamente que la diferencia sea prácticamente
-                relevante. Con muestras muy grandes, diferencias pequeñas pueden resultar significativas.
-                Siempre conviene acompañar el test con una inspección visual de los datos y un juicio
-                sobre la relevancia práctica de la diferencia.
+                <strong>No rechazar \(H_0\)</strong> (p-valor ≥ \(\alpha\)) no demuestra homocedasticidad;
+                solo indica que los datos son compatibles con \(\sigma^2_1 = \sigma^2_2\) al nivel
+                elegido. El test F tiene baja potencia con muestras pequeñas, por lo que puede no
+                detectar diferencias reales de varianza. El cociente \(F\) observado y su intervalo
+                de confianza aportan información sobre la magnitud relativa de las variabilidades.
+                </p>
+
+                <p>
+                El <strong>estadístico F</strong> sigue bajo \(H_0\) una distribución F de Snedecor
+                con \((n_1-1, n_2-1)\) grados de libertad. En la visualización, la zona verde es la
+                región de no rechazo y las zonas rojas son las colas críticas; la línea ámbar señala
+                el estadístico observado. Dado que \(F \geq 0\), la distribución es asimétrica a la
+                derecha: un \(F \gg 1\) sugiere mayor varianza en el grupo 1, mientras que \(F \ll 1\)
+                sugiere mayor varianza en el grupo 2. Con muestras muy grandes, diferencias moderadas
+                en varianzas pueden resultar significativas aunque tengan escaso impacto práctico.
                 </p>
         </section>
         <section id="seo-support-content" class="card content-card">

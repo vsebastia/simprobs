@@ -218,10 +218,8 @@
         <article class="card content-card">
 
         <h3>Explicación</h3>
-        <p>La distribución t de Student es una distribución continua similar a la normal, pero con colas más pesadas.
-        Se utiliza cuando el tamaño de muestra es pequeño y la desviación estándar de la población es desconocida.
-        A medida que aumentan los grados de libertad, la distribución t se aproxima cada vez más a la distribución normal.
-        Es muy utilizada en inferencia estadística, especialmente en pruebas de hipótesis y en intervalos de confianza para medias.</p>
+        <p>La distribución t de Student es una distribución continua, simétrica alrededor de cero, similar a la normal estándar pero con colas más pesadas. Esto refleja la incertidumbre adicional que existe cuando la varianza poblacional es desconocida y se estima a partir de la muestra. El parámetro que la gobierna son los <em>grados de libertad</em> \( \nu \), que en el caso más habitual (una muestra de tamaño \( n \)) equivalen a \( n - 1 \). Cuantos más grados de libertad, más se aproxima la t a la normal estándar: a partir de \( \nu \approx 30 \) la diferencia práctica es mínima.</p>
+        <p>Se utiliza principalmente en tres contextos: (1) <strong>intervalos de confianza para una media</strong> cuando \( \sigma \) es desconocida; (2) <strong>pruebas de hipótesis sobre medias</strong> (prueba t de una muestra, de dos muestras independientes o de muestras pareadas); y (3) <strong>inferencia sobre coeficientes de regresión</strong>. Las colas pesadas hacen que los valores críticos de la t sean mayores que los de la normal para un mismo nivel de significación, lo que produce intervalos de confianza más anchos y decisiones más conservadoras cuando la muestra es pequeña.</p>
 
         <h3>Fórmula</h3>
         <p class="formula-line">

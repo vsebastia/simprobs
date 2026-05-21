@@ -240,7 +240,9 @@
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La distribución de Bernoulli es la más simple posible, con solo dos resultados: 0 y 1. La <strong>PMF</strong> solo tiene dos valores posibles: \( P(X = 1) = p \) y \( P(X = 0) = 1 - p \). En la gráfica, solo se muestran dos barras en 0 y en 1; sus alturas representan directamente las probabilidades de fracaso y éxito. No hay ambigüedad en la interpretación: si \( p = 0{,}08 \), hay un 8 % de probabilidad de éxito y un 92 % de fracaso en cada observación individual.</p>
+                <p>La <strong>CDF</strong> toma tres posibles valores según el punto evaluado: \( P(X \leq x) = 0 \) para \( x < 0 \), \( P(X \leq x) = 1 - p \) para \( 0 \leq x < 1 \), y \( P(X \leq x) = 1 \) para \( x \geq 1 \). En términos prácticos, \( P(X \leq 0) = 1 - p \) es la probabilidad de fracaso y \( P(X \leq 1) = 1 \) es la certeza de que el resultado estará en \{0, 1\}. La cola derecha \( P(X > 0) = p \) es simplemente la probabilidad de éxito. El área verde en la gráfica refleja la probabilidad acumulada del valor o rango indicado.</p>
+                <p>Dado que la distribución Bernoulli solo tiene dos puntos de masa, los <strong>percentiles</strong> son escalonados: cualquier valor de \( p \) entre 0 y \( 1-p \) devuelve el cuantil 0; cualquier valor entre \( 1-p \) y 1 devuelve el cuantil 1. La utilidad principal de esta calculadora es confirmar las probabilidades básicas de un experimento binario individual y, a partir de esas probabilidades, razonar sobre cuántas repeticiones se necesitarían antes de modelar el proceso con una binomial o una geométrica.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

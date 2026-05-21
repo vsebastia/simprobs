@@ -218,7 +218,8 @@
         <article class="card content-card">
 
     <h3>Explicación</h3>
-    <p>La distribución binomial negativa modela el número de ensayos necesarios para obtener un número fijo de éxitos en experimentos independientes con probabilidad constante de éxito. Es una distribución discreta utilizada en estadística y ciencia de datos para analizar conteos cuando los eventos se repiten hasta alcanzar un objetivo determinado.</p>
+    <p>La distribución binomial negativa modela el número de fracasos que se acumulan antes de alcanzar un número fijo de éxitos \( r \) en una secuencia de ensayos independientes, cada uno con la misma probabilidad de éxito \( p \). Es una distribución discreta que generaliza la distribución geométrica: cuando \( r = 1 \) ambas son equivalentes. Su media es \( r(1-p)/p \) y su varianza \( r(1-p)/p^2 \), siempre mayor que la media, lo que la hace útil también para modelar conteos sobredispersos donde la varianza supera a la media.</p>
+    <p>Úsala cuando quieras responder preguntas del tipo "¿cuántos intentos fallidos habrá antes de conseguir \( r \) éxitos?" o, en su parametrización alternativa, "¿cuántos ensayos en total hacen falta?". Es habitual en gestión de proyectos (intentos hasta cerrar contratos), ensayos clínicos (reclutar \( r \) pacientes que respondan), ciencia de datos (modelado de conteos con sobredispersión) y análisis de fiabilidad. Si los datos de conteo muestran varianza mayor que la media (sobredispersión respecto a Poisson), la binomial negativa suele ajustar mejor.</p>
 
     <h3>Fórmula</h3>
     <p class="formula-line">
@@ -239,7 +240,9 @@
 </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PMF</strong>, \( P(X = k) \), da la probabilidad de que se necesiten exactamente \( k \) fracasos (o ensayos, según la parametrización elegida) antes de obtener el r-ésimo éxito. Por ejemplo, si \( P(X = 8) = 0{,}09 \) con \( r = 3 \) y \( p = 0{,}25 \), significa que aproximadamente el 9 % de los procesos de este tipo requieren exactamente 8 fracasos antes de lograr 3 éxitos. En la gráfica, las barras verticales muestran la probabilidad de cada conteo posible; la distribución suele ser asimétrica hacia la derecha.</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq k) \), acumula la probabilidad de que el número de fracasos sea como mucho \( k \). Si \( P(X \leq 12) = 0{,}82 \), el 82 % de los experimentos de este tipo concluyen con 12 o menos fracasos antes del r-ésimo éxito. La cola derecha \( P(X > k) \) indica cuán raro es necesitar más de \( k \) intentos adicionales. El área verde en la gráfica representa la probabilidad acumulada del rango seleccionado; el eje horizontal muestra los posibles conteos de fracasos.</p>
+                <p>El resultado de <strong>percentil</strong> devuelve el menor entero \( k \) tal que \( P(X \leq k) \geq p \). El percentil 90 establece un umbral de planificación: si el percentil 90 es \( k = 15 \), el 90 % de los procesos habrán concluido con 15 o menos fracasos. En contextos de gestión de proyectos o comercial, esto permite dimensionar recursos (tiempo, intentos, presupuesto) con un margen de confianza definido.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

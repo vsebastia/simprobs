@@ -239,6 +239,17 @@
             <p>Ignorar el apareamiento suele perder información: si las mediciones dentro de cada par están correlacionadas, analizar las diferencias puede reducir mucho el error estándar.</p>
         </section>
 
+        <section class="card content-card">
+            <h3>Cómo interpretar el resultado</h3>
+            <p>El intervalo \([L, U]\) es el rango plausible para la media poblacional de las diferencias individuales \(\mu_d\) al nivel de confianza elegido. Recuerda que \(\mu_d\) no es la diferencia de dos medias independientes, sino la media del cambio dentro de cada par: el mismo parámetro que mediría, de promediarse, todos los cambios individuales posibles de la población. Si el experimento se repitiera muchas veces con \(n\) pares, una proporción \(C\) de los ICs construidos con el mismo método contendría el verdadero valor de \(\mu_d\).</p>
+            <p>El valor de referencia en este tipo de intervalo es el 0, que representa ausencia de cambio medio. Si \(0 \in [L, U]\), los datos son compatibles con que no hay cambio sistemático al nivel de confianza elegido; equivalentemente, el contraste bilateral \(H_0\!: \mu_d = 0\) no se rechazaría al nivel \(\alpha = 1 - C\). Si \(L > 0\), el cambio medio es positivo según la definición de diferencia elegida; si \(U < 0\), el cambio medio es negativo. La dirección del intervalo depende directamente de cómo se define \(d_i\): cambiar de "después − antes" a "antes − después" invierte los signos de todos los límites.</p>
+            <ul>
+                <li><strong>Ventaja del apareamiento:</strong> al trabajar con diferencias individuales \(d_i\), se elimina la variabilidad entre individuos que no es relevante para estimar el cambio. El error estándar \(s_d/\sqrt{n}\) suele ser más pequeño que el que se obtendría tratando los grupos como independientes, por lo que el IC apareado es típicamente más estrecho y preciso.</li>
+                <li><strong>Amplitud e incertidumbre:</strong> la amplitud del intervalo depende de \(s_d\) (la variabilidad del cambio entre individuos), de \(n\) (el número de pares) y del nivel de confianza. Aumentar \(n\) o reducir \(s_d\) (por ejemplo, mejorando la homogeneidad del apareamiento) reduce el margen de error.</li>
+                <li><strong>Lectura del gráfico:</strong> la región verde bajo la curva t es la zona de confianza y las colas rojas (área \(\alpha/2\) cada una) delimitan los valores críticos \(\pm t_{\alpha/2,\,n-1}\). El intervalo en la escala original \([\bar{d} - E, \bar{d} + E]\) corresponde a los valores de \(\mu_d\) cuyo estadístico t caería dentro de la región verde.</li>
+            </ul>
+        </section>
+
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>

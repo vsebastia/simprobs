@@ -241,7 +241,9 @@
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. La <strong>PDF</strong>, \( f(x) \), da la densidad de probabilidad en el punto \( x > 0 \): indica la concentración relativa de fallos o eventos en ese instante. Con \( k < 1 \) la curva decrece desde el inicio (mayor densidad al principio, fallos tempranos); con \( k = 1 \) es la exponencial; con \( k > 1 \) aparece un máximo (la moda aumenta con \( k \)) y la curva tiende a ser más simétrica. En la gráfica, el área verde representa la probabilidad acumulada para el rango de tiempo seleccionado; el eje horizontal muestra el tiempo o duración.</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq x) = 1 - e^{-(x/\lambda)^k} \), también llamada <em>función de distribución de fallos acumulados</em> en fiabilidad, da la probabilidad de que el componente haya fallado antes del tiempo \( x \). Su complemento, \( R(x) = e^{-(x/\lambda)^k} \), es la <em>función de fiabilidad</em>: la probabilidad de que el componente siga funcionando en el instante \( x \). Un valor \( P(X \leq 5000) = 0{,}23 \) significa que el 23 % de los componentes habrán fallado antes de las 5000 horas de funcionamiento.</p>
+                <p>El resultado de <strong>percentil o cuantil</strong> devuelve el tiempo \( x = \lambda \cdot (-\ln(1-p))^{1/k} \). El percentil 10 (denominado vida B10) es el tiempo antes del cual falla el 10 % de los componentes: es el estándar más habitual en ingeniería mecánica para garantías y planificación de mantenimiento preventivo. El percentil 63,2 coincide siempre con el parámetro de escala \( \lambda \), independientemente de \( k \), porque \( P(X \leq \lambda) = 1 - e^{-1} \approx 0{,}632 \).</p>
         </section>
         <section id="seo-support-content" class="card content-card">
             <section class="related-tools">

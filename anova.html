@@ -197,20 +197,27 @@
             <p>El valor crítico para \(\alpha = 0{,}05\) con \((2,\, 12)\) grados de libertad es \(F_{0{,}05;\,2,\,12} \approx 3{,}89\), y el p-valor correspondiente a \(F = 32\) es \(p < 0{,}001\). Dado que \(F = 32 \gg 3{,}89\), se rechaza \(H_0\).</p>
             <p>Conclusión: hay diferencias estadísticamente muy significativas entre los rendimientos medios producidos por los tres fertilizantes (\(p < 0{,}001\)). El tamaño del efecto es grande (\(\eta^2 = 160/190 \approx 0{,}84\)). Para determinar qué pares de fertilizantes difieren significativamente, se recomienda una prueba post hoc (Tukey HSD o Bonferroni).</p>
         </section>
+<section class="card content-card">
+            <h3>Supuestos importantes</h3>
+            <ul>
+            <li><strong>Independencia:</strong> las observaciones deben ser independientes dentro y entre grupos.</li>
+            <li><strong>Normalidad aproximada:</strong> los residuos de cada grupo deberían ser razonablemente normales, especialmente con muestras pequeñas.</li>
+            <li><strong>Homogeneidad de varianzas:</strong> las varianzas poblacionales deberían ser similares. Si no se cumple, considera alternativas como Welch ANOVA.</li>
+            </ul>
+        </section>
+<section class="card content-card">
+            <h3>Después de un ANOVA significativo</h3>
+            <p>Un ANOVA significativo indica que existe alguna diferencia, pero no cuál. Para identificar pares concretos se suelen aplicar comparaciones post hoc, como Tukey HSD, ajustando por comparaciones múltiples.</p>
+        </section>
+
 
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-                <p>Si el p-valor es menor que α, se rechaza \(H_0\): hay evidencia de que no todas las medias son iguales. Si el p-valor es mayor o igual que α, no hay evidencia suficiente para afirmar diferencias entre medias con ese nivel de significación.</p>
+                <p><strong>Rechazar \(H_0\)</strong> (p-valor &lt; α) indica que al menos una media grupal es distinta de las demás, pero el ANOVA no revela cuáles pares difieren ni en qué dirección. Para eso es necesario aplicar comparaciones post hoc (Tukey HSD, Bonferroni, Scheffé, etc.) que controlan el error de tipo I acumulado por comparaciones múltiples. La significación estadística no equivale a relevancia práctica: con muestras grandes, diferencias pequeñas entre medias pueden producir un F significativo. Reporta el tamaño del efecto \(\eta^2 = SS_\text{entre}/SS_\text{total}\) para cuantificar qué proporción de la variabilidad total explica el factor.</p>
+                <p><strong>No rechazar \(H_0\)</strong> (p-valor ≥ α) no demuestra que todas las medias sean iguales; solo indica que los datos son compatibles con la igualdad al nivel elegido. Una potencia insuficiente —causada por pocos sujetos por grupo, alta variabilidad intragrupo o diferencias reales pequeñas— puede impedir detectar efectos reales. Examina los intervalos de confianza por grupo y el tamaño muestral para valorar si el estudio tenía potencia adecuada.</p>
+                <p>El <strong>estadístico F</strong> es el cociente entre la varianza explicada por el factor (media cuadrática entre grupos, \(MS_\text{entre}\)) y la varianza residual no explicada (media cuadrática dentro de grupos, \(MS_\text{dentro}\)). Un \(F\) próximo a 1 indica que la variabilidad entre medias es similar a la variabilidad aleatoria dentro de los grupos. En la visualización, la zona verde es la región de no rechazo, la zona roja es la cola crítica derecha y la línea ámbar señala el F observado. El ANOVA asume independencia, normalidad aproximada de los residuos y homogeneidad de varianzas (homocedasticidad); si esta última no se cumple, considera el ANOVA de Welch.</p>
         </section>
         <section id="seo-support-content" class="card content-card">
-            <h3>Supuestos importantes</h3>
-            <ul>
-                <li><strong>Independencia:</strong> las observaciones deben ser independientes dentro y entre grupos.</li>
-                <li><strong>Normalidad aproximada:</strong> los residuos de cada grupo deberían ser razonablemente normales, especialmente con muestras pequeñas.</li>
-                <li><strong>Homogeneidad de varianzas:</strong> las varianzas poblacionales deberían ser similares. Si no se cumple, considera alternativas como Welch ANOVA.</li>
-            </ul>
-            <h3>Después de un ANOVA significativo</h3>
-            <p>Un ANOVA significativo indica que existe alguna diferencia, pero no cuál. Para identificar pares concretos se suelen aplicar comparaciones post hoc, como Tukey HSD, ajustando por comparaciones múltiples.</p>
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

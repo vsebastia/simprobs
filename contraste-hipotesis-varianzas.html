@@ -324,14 +324,33 @@
             <h3>Cómo interpretar el resultado</h3>
 
                 <p>
-                Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\). Si el p-valor es mayor
-                o igual que \(\alpha\), no hay evidencia suficiente para rechazar \(H_0\).
+                <strong>Rechazar \(H_0\)</strong> (p-valor &lt; \(\alpha\)) significa que la varianza
+                muestral \(s^2\) es estadísticamente incompatible con el valor hipotético \(\sigma^2_0\).
+                En términos prácticos, hay evidencia de que la variabilidad del proceso o población
+                es distinta de la de referencia. Sin embargo, el test chi-cuadrado para una varianza
+                es notablemente sensible a desviaciones de la normalidad: un rechazo puede reflejar
+                una distribución asimétrica o con colas pesadas en lugar de una varianza genuinamente
+                distinta. Complementa siempre con un gráfico de los datos (histograma, Q-Q plot) y
+                considera el contexto del problema.
                 </p>
 
                 <p>
-                Un resultado significativo indica evidencia estadística de que la varianza difiere
-                del valor de referencia o de que las dos varianzas comparadas no son iguales,
-                según el contraste seleccionado.
+                <strong>No rechazar \(H_0\)</strong> (p-valor ≥ \(\alpha\)) no prueba que
+                \(\sigma^2 = \sigma^2_0\); solo indica que los datos son compatibles con ese valor
+                al nivel elegido. Con muestras pequeñas la potencia para detectar cambios en varianza
+                es generalmente baja. El intervalo de confianza para \(\sigma^2\) —basado en
+                percentiles de la distribución chi-cuadrado con \(n-1\) grados de libertad— ofrece
+                una perspectiva más completa del rango de valores plausibles.
+                </p>
+
+                <p>
+                El <strong>estadístico chi-cuadrado</strong> \(\chi^2 = (n-1)s^2/\sigma^2_0\) mide
+                cuánto se aleja la varianza muestral de la hipotética. En la visualización, la zona
+                verde representa la región de no rechazo y las zonas rojas las regiones críticas
+                (unilateral o bilateral según la alternativa elegida); la línea ámbar marca el
+                estadístico observado. A diferencia de los tests de media, la distribución
+                chi-cuadrado no es simétrica, por lo que los valores críticos difieren en las dos
+                colas incluso para el mismo \(\alpha\).
                 </p>
         </section>
         <section id="seo-support-content" class="card content-card">

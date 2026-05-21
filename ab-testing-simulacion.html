@@ -282,13 +282,18 @@
             <p>La conclusión práctica es doble: el tamaño de muestra calculado analíticamente es correcto (la potencia empírica coincide con la teórica), y el test mantiene un buen control del error de tipo I. El equipo puede lanzar el experimento con confianza, sabiendo que si la mejora real es de 4 pp tendrá una probabilidad del 80 % de detectarla con resultados estadísticamente significativos.</p>
         </section>
 
-    <section id="seo-support-content" class="card content-card">
-      <h3>¿Para qué sirve simular un test A/B?</h3>
-      <p>La simulación Monte Carlo permite verificar empíricamente las propiedades del test: si el error de tipo I es realmente α cuando p_A = p_B, si la potencia coincide con la teórica, y cómo se comporta la distribución del estadístico z en la práctica. Es especialmente útil cuando quieres entender el comportamiento del test bajo condiciones concretas o cuando los supuestos del modelo no se cumplen exactamente.</p>
+    <section class="card content-card">
+      <h3>Cómo interpretar el resultado</h3>
+      <p>La simulación Monte Carlo permite verificar empíricamente las propiedades del test: si el error de tipo I es realmente α cuando p_A = p_B, si la potencia coincide con la teórica, y cómo se comporta la distribución del estadístico z en la práctica. Es especialmente útil cuando quieres entender el comportamiento del test bajo condiciones concretas o cuando los supuestos del modelo no se cumplen exactamente. La tasa de rechazo empírica que devuelve la simulación es la estimación directa de la potencia: cuántas veces en 100 experimentos idénticos concluirías correctamente que B es diferente de A.</p>
+
       <h3>Cómo leer el histograma de z</h3>
-      <p>Bajo H₀ (p_A = p_B), el estadístico z sigue aproximadamente una N(0,1): el histograma debería ser simétrico centrado en 0. La región coloreada en rojo marca los valores fuera de la zona de aceptación según α. Bajo H₁ (p_A ≠ p_B), el histograma se desplaza hacia la dirección del efecto.</p>
+      <p>Bajo H₀ (p_A = p_B), el estadístico z sigue aproximadamente una N(0,1): el histograma debería ser simétrico centrado en 0, y la proporción de barras rojas (zona de rechazo) debería aproximarse a α. Bajo H₁ (p_A ≠ p_B), el histograma se desplaza hacia la dirección del efecto: cuanto mayor es la diferencia real entre tasas o mayor el tamaño muestral, más pronunciado es ese desplazamiento y mayor la proporción de réplicas que caen en la zona de rechazo.</p>
+
       <h3>Cómo leer la distribución de p-valores</h3>
-      <p>Bajo H₀ perfecta, los p-valores siguen una distribución Uniforme(0,1): la barra de 0 a 0.05 debería contener el 5% de las réplicas. Bajo H₁, los p-valores se concentran cerca de 0: la proporción de réplicas con p &lt; α es la potencia empírica.</p>
+      <p>Bajo H₀ perfecta, los p-valores siguen una distribución Uniforme(0,1): la barra de 0 a 0.05 debería contener aproximadamente el 5 % de las réplicas, y todas las barras deberían tener alturas similares. Bajo H₁, los p-valores se concentran cerca de 0: la proporción de réplicas con p &lt; α es la potencia empírica. Una distribución de p-valores con marcada concentración en la primera barra y descenso rápido indica que el test tiene buena capacidad para detectar el efecto configurado.</p>
+    </section>
+
+    <section id="seo-support-content" class="card content-card">
       <section class="related-tools">
         <h3>Calculadoras relacionadas</h3>
         <ul>
