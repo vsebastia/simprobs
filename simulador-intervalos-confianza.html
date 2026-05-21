@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulador de intervalos de confianza online | ProbLab</title>
+    <meta
+      name="keywords"
+      content="simulador estadístico online, probabilidad, inferencia, aprendizaje estadística, ProbLab"
+    />
+    <meta
+      name="description"
+      content="Simula intervalos de confianza online y observa cuántos contienen el verdadero valor del parámetro."
+    />
+    <link rel="stylesheet" href="style_new.css?v=20260517" />
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+          <li><a href="distribuciones/">Distribuciones</a></li>
+          <li><a href="tablas-estadisticas/">Tablas</a></li>
+          <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+          <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+          <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+          <li><a href="ab-testing/">Test A/B</a></li>
+          <li><a href="simulaciones/">Simulaciones</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="page-wrap">
+      <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="simulaciones/">Simulaciones</a></li>
+          <li>
+            <span aria-current="page"
+              >Simulador de intervalos de confianza</span
+            >
+          </li>
+        </ol>
+      </nav>
+
+      <header class="hero">
+        <p class="eyebrow">Simulaciones</p>
+        <h1>Simulador de intervalos de confianza</h1>
+        <p class="hero-subtitle">
+          Simulador interactivo para aprender el concepto paso a paso con
+          resultados empíricos y visualización.
+        </p>
+        <p class="hero-links">
+          <a class="hero-link-button" href="simulaciones/"
+            >Ver todas las simulaciones</a
+          >
+        </p>
+      </header>
+      <main>
+        <section class="card content-card">
+          <h2>Cómo usar esta herramienta</h2>
+          <ol>
+            <li>Configura los parámetros del modelo.</li>
+            <li>Ejecuta la simulación y revisa métricas empíricas.</li>
+            <li>Compara con resultados teóricos para interpretar.</li>
+          </ol>
+        </section>
+        <section class="card sample-size-panel">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Modo</label
+              ><select id="mode">
+                <option value="mean">Media (σ conocida)</option>
+                <option value="prop">Proporción</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Parámetro real</label
+              ><input id="truth" type="number" value="0" step="0.01" />
+            </div>
+            <div class="form-group">
+              <label>Desviación σ (solo media)</label
+              ><input id="sigma" type="number" value="1" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label>n</label><input id="n" type="number" value="30" />
+            </div>
+            <div class="form-group">
+              <label>Confianza</label
+              ><select id="conf">
+                <option value="1.645">90%</option>
+                <option value="1.96" selected>95%</option>
+                <option value="2.576">99%</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nº intervalos</label
+              ><select id="k">
+                <option>20</option>
+                <option>50</option>
+                <option selected>100</option>
+                <option>500</option>
+              </select>
+            </div>
+          </div>
+          <button class="calculate-btn" id="run">Simular</button>
+          <div id="res" class="result-box"></div>
+          <canvas id="cv" width="920" height="420"></canvas>
+        </section>
+
+        <section class="card content-card">
+          <h2>¿Qué es y cómo funciona?</h2>
+          <p>
+            Esta herramienta es un simulador didáctico: genera datos aleatorios
+            bajo un modelo estadístico y muestra resultados numéricos y gráficos
+            para ayudarte a entender el concepto de forma visual.
+          </p>
+          <p>
+            Modifica los parámetros de entrada, ejecuta la simulación y compara
+            la salida empírica con los valores teóricos. Cuantas más
+            simulaciones ejecutes, más estables serán los resultados observados.
+          </p>
+        </section>
+
+        <section class="card content-card faq-card" aria-labelledby="faq-title">
+          <h2 id="faq-title">Preguntas frecuentes</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>¿Los resultados cambian cada vez?</h3>
+              <p>
+                Sí. La simulación usa aleatoriedad, por lo que cada ejecución
+                puede producir valores ligeramente distintos, especialmente con
+                pocas repeticiones.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>¿Cómo mejoro la estabilidad de la simulación?</h3>
+              <p>
+                Aumenta el número de simulaciones. En general, con más
+                repeticiones la media empírica y otras métricas se aproximan
+                mejor a sus valores teóricos.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>
+                ¿Puedo usar esta herramienta para tomar decisiones reales?
+              </h3>
+              <p>
+                Está orientada a aprendizaje y exploración. Para decisiones
+                críticas conviene complementar con análisis estadístico formal y
+                validación de supuestos.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="card content-card">
+          <h2>Conceptos clave y relación con otras herramientas</h2>
+          <p>
+            Este simulador se relaciona con las calculadoras de distribuciones,
+            intervalos de confianza, contrastes de hipótesis y tamaño muestral
+            disponibles en ProbLab.
+          </p>
+          <p>
+            Úsalo para reforzar la intuición estadística antes de aplicar
+            fórmulas en casos reales.
+          </p>
+        </section>
+      </main>
+    </div>
+    <script>
+      const $ = (id) => document.getElementById(id);
+      function randn() {
+        let u = Math.random(),
+          v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      }
+      $("run").onclick = () => {
+        const mode = $("mode").value,
+          t = +$("truth").value,
+          s = +$("sigma").value,
+          n = +$("n").value,
+          z = +$("conf").value,
+          k = +$("k").value;
+        let ok = 0,
+          ints = [];
+        for (let i = 0; i < k; i++) {
+          let lo, hi;
+          if (mode === "mean") {
+            let m = 0;
+            for (let j = 0; j < n; j++) m += t + s * randn();
+            m /= n;
+            const e = (z * s) / Math.sqrt(n);
+            lo = m - e;
+            hi = m + e;
+          } else {
+            let x = 0;
+            for (let j = 0; j < n; j++) if (Math.random() < t) x++;
+            const p = x / n,
+              e = z * Math.sqrt(Math.max(1e-9, (p * (1 - p)) / n));
+            lo = p - e;
+            hi = p + e;
+          }
+          if (lo <= t && t <= hi) ok++;
+          ints.push([lo, hi, lo <= t && t <= hi]);
+        }
+        $("res").innerHTML =
+          `Intervalos simulados: <strong>${k}</strong><br>Intervalos que contienen el valor real: <strong>${ok}</strong><br>Cobertura empírica: <strong>${((100 * ok) / k).toFixed(1)}%</strong><br>No contienen: <strong>${k - ok}</strong>`;
+        const c = $("cv").getContext("2d");
+        c.clearRect(0, 0, 920, 420);
+        const mn = Math.min(...ints.map((x) => x[0]), t),
+          mx = Math.max(...ints.map((x) => x[1]), t);
+        c.strokeStyle = "#111827";
+        const xt = (x) => 40 + ((x - mn) / (mx - mn || 1)) * 840;
+        c.beginPath();
+        c.moveTo(xt(t), 20);
+        c.lineTo(xt(t), 400);
+        c.stroke();
+        ints.slice(0, 180).forEach((it, i) => {
+          const y = 25 + i * 2;
+          c.strokeStyle = it[2] ? "#64748b" : "#dc2626";
+          c.beginPath();
+          c.moveTo(xt(it[0]), y);
+          c.lineTo(xt(it[1]), y);
+          c.stroke();
+        });
+      };
+    </script>
+  </body>
+</html>

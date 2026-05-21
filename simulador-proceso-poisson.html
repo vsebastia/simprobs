@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulador de proceso de Poisson online | ProbLab</title>
+    <meta
+      name="keywords"
+      content="simulador estadístico online, probabilidad, inferencia, aprendizaje estadística, ProbLab"
+    />
+    <meta
+      name="description"
+      content="Simula un proceso de Poisson online: tasa, horizonte temporal y número de simulaciones."
+    />
+    <link rel="stylesheet" href="style_new.css?v=20260517" />
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+          <li><a href="distribuciones/">Distribuciones</a></li>
+          <li><a href="tablas-estadisticas/">Tablas</a></li>
+          <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+          <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+          <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+          <li><a href="ab-testing/">Test A/B</a></li>
+          <li><a href="simulaciones/">Simulaciones</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="page-wrap">
+      <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="simulaciones/">Simulaciones</a></li>
+          <li>
+            <span aria-current="page">Simulador de proceso de Poisson</span>
+          </li>
+        </ol>
+      </nav>
+
+      <header class="hero">
+        <p class="eyebrow">Simulaciones</p>
+        <h1>Simulador de proceso de Poisson</h1>
+        <p class="hero-subtitle">
+          Simulador interactivo para aprender el concepto paso a paso con
+          resultados empíricos y visualización.
+        </p>
+        <p class="hero-links">
+          <a class="hero-link-button" href="simulaciones/"
+            >Ver todas las simulaciones</a
+          >
+        </p>
+      </header>
+      <main>
+        <section class="card content-card">
+          <h2>Cómo usar esta herramienta</h2>
+          <ol>
+            <li>Configura los parámetros del modelo.</li>
+            <li>Ejecuta la simulación y revisa métricas empíricas.</li>
+            <li>Compara con resultados teóricos para interpretar.</li>
+          </ol>
+        </section>
+        <section class="card sample-size-panel">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>λ (eventos/unidad)</label
+              ><input id="lam" type="number" value="2" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label>Horizonte T</label
+              ><input id="T" type="number" value="8" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label>Simulaciones</label
+              ><select id="m">
+                <option>1</option>
+                <option>10</option>
+                <option>100</option>
+                <option selected>1000</option>
+              </select>
+            </div>
+          </div>
+          <button class="calculate-btn" id="run">Simular</button>
+          <div id="res" class="result-box"></div>
+          <canvas id="cv" width="920" height="320"></canvas>
+        </section>
+
+        <section class="card content-card">
+          <h2>¿Qué es y cómo funciona?</h2>
+          <p>
+            Esta herramienta es un simulador didáctico: genera datos aleatorios
+            bajo un modelo estadístico y muestra resultados numéricos y gráficos
+            para ayudarte a entender el concepto de forma visual.
+          </p>
+          <p>
+            Modifica los parámetros de entrada, ejecuta la simulación y compara
+            la salida empírica con los valores teóricos. Cuantas más
+            simulaciones ejecutes, más estables serán los resultados observados.
+          </p>
+        </section>
+
+        <section class="card content-card faq-card" aria-labelledby="faq-title">
+          <h2 id="faq-title">Preguntas frecuentes</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>¿Los resultados cambian cada vez?</h3>
+              <p>
+                Sí. La simulación usa aleatoriedad, por lo que cada ejecución
+                puede producir valores ligeramente distintos, especialmente con
+                pocas repeticiones.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>¿Cómo mejoro la estabilidad de la simulación?</h3>
+              <p>
+                Aumenta el número de simulaciones. En general, con más
+                repeticiones la media empírica y otras métricas se aproximan
+                mejor a sus valores teóricos.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>
+                ¿Puedo usar esta herramienta para tomar decisiones reales?
+              </h3>
+              <p>
+                Está orientada a aprendizaje y exploración. Para decisiones
+                críticas conviene complementar con análisis estadístico formal y
+                validación de supuestos.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="card content-card">
+          <h2>Conceptos clave y relación con otras herramientas</h2>
+          <p>
+            Este simulador se relaciona con las calculadoras de distribuciones,
+            intervalos de confianza, contrastes de hipótesis y tamaño muestral
+            disponibles en ProbLab.
+          </p>
+          <p>
+            Úsalo para reforzar la intuición estadística antes de aplicar
+            fórmulas en casos reales.
+          </p>
+        </section>
+      </main>
+    </div>
+    <script>
+      const $ = (id) => document.getElementById(id);
+      function onePath(l, T) {
+        let t = 0,
+          a = [];
+        while (true) {
+          t += -Math.log(1 - Math.random()) / l;
+          if (t > T) break;
+          a.push(t);
+        }
+        return a;
+      }
+      $("run").onclick = () => {
+        const l = +$("lam").value,
+          T = +$("T").value,
+          m = +$("m").value;
+        let counts = [],
+          all = [];
+        for (let i = 0; i < m; i++) {
+          const p = onePath(l, T);
+          counts.push(p.length);
+          if (i === 0) all = p;
+        }
+        const mean = counts.reduce((a, b) => a + b, 0) / m,
+          varr = counts.reduce((a, b) => a + (b - mean) ** 2, 0) / m;
+        $("res").innerHTML =
+          `Media empírica N(T): <strong>${mean.toFixed(3)}</strong><br>Varianza empírica N(T): <strong>${varr.toFixed(3)}</strong><br>Media teórica λT: <strong>${(l * T).toFixed(3)}</strong><br>Varianza teórica λT: <strong>${(l * T).toFixed(3)}</strong>`;
+        const c = $("cv").getContext("2d");
+        c.clearRect(0, 0, 920, 320);
+        if (m === 1) {
+          c.beginPath();
+          c.moveTo(40, 280);
+          let y = 280,
+            n = 0;
+          all.forEach((t) => {
+            const x = 40 + (t / T) * 840;
+            c.lineTo(x, y);
+            n++;
+            y = 280 - n * 12;
+            c.lineTo(x, y);
+          });
+          c.lineTo(880, y);
+          c.strokeStyle = "#4f46e5";
+          c.stroke();
+        } else {
+          const mx = Math.max(...counts),
+            bins = Array(mx + 1).fill(0);
+          counts.forEach((v) => bins[v]++);
+          const mb = Math.max(...bins);
+          bins.forEach((v, i) => {
+            const x = 40 + i * (840 / bins.length),
+              h = (v / mb) * 250;
+            c.fillStyle = "#4f46e5";
+            c.fillRect(x, 280 - h, 840 / bins.length - 1, h);
+          });
+        }
+      };
+    </script>
+  </body>
+</html>

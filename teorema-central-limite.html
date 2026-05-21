@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador online del teorema central del límite | ProbLab</title>
+    <meta
+      name="keywords"
+      content="simulador estadístico online, probabilidad, inferencia, aprendizaje estadística, ProbLab"
+    />
+    <meta
+      name="description"
+      content="Simula el teorema central del límite online: elige distribución, tamaño muestral y número de simulaciones para ver cómo las medias muestrales se aproximan a una normal."
+    />
+    <link
+      rel="canonical"
+      href="https://problabtools.es/teorema-central-limite.html"
+    />
+    <link rel="stylesheet" href="style_new.css?v=20260517" />
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <div class="site-nav-inner">
+        <a class="site-brand" href="index.html">ProbLab</a>
+        <ul class="site-nav-links">
+          <li><a href="distribuciones/">Distribuciones</a></li>
+          <li><a href="tablas-estadisticas/">Tablas</a></li>
+          <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+          <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+          <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+          <li><a href="ab-testing/">Test A/B</a></li>
+          <li><a href="simulaciones/">Simulaciones</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="page-wrap">
+      <nav class="breadcrumbs" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="simulaciones/">Simulaciones</a></li>
+          <li><span aria-current="page">Teorema central del límite</span></li>
+        </ol>
+      </nav>
+
+      <header class="hero">
+        <p class="eyebrow">Simulaciones</p>
+        <h1>Simulador del teorema central del límite</h1>
+        <p class="hero-subtitle">
+          Simulador interactivo para aprender el concepto paso a paso con
+          resultados empíricos y visualización.
+        </p>
+        <p class="hero-links">
+          <a class="hero-link-button" href="simulaciones/"
+            >Ver todas las simulaciones</a
+          >
+        </p>
+      </header>
+      <main>
+        <section class="card content-card">
+          <h2>Cómo usar esta herramienta</h2>
+          <ol>
+            <li>Configura los parámetros del modelo.</li>
+            <li>Ejecuta la simulación y revisa métricas empíricas.</li>
+            <li>Compara con resultados teóricos para interpretar.</li>
+          </ol>
+        </section>
+        <section class="card sample-size-panel">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Distribución</label
+              ><select id="dist">
+                <option>Normal</option>
+                <option>Uniforme</option>
+                <option>Exponencial</option>
+                <option>Bernoulli</option>
+                <option>Poisson</option>
+                <option>Chi-cuadrado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Parámetro 1</label
+              ><input id="p1" type="number" value="0" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label>Parámetro 2</label
+              ><input id="p2" type="number" value="1" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label>n</label
+              ><select id="n">
+                <option>1</option>
+                <option>2</option>
+                <option>5</option>
+                <option>10</option>
+                <option selected>30</option>
+                <option>50</option>
+                <option>100</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Simulaciones</label
+              ><select id="m">
+                <option>100</option>
+                <option>500</option>
+                <option>1000</option>
+                <option selected>5000</option>
+                <option>10000</option>
+              </select>
+            </div>
+          </div>
+          <button class="calculate-btn" id="run">Simular</button>
+          <button class="calculate-btn" id="reset">Restablecer valores</button>
+          <div id="res" class="result-box">Resultado pendiente…</div>
+          <canvas id="orig" width="900" height="250"></canvas
+          ><canvas id="means" width="900" height="250"></canvas>
+          <p id="txt"></p>
+        </section>
+
+        <section class="card content-card">
+          <h2>¿Qué es y cómo funciona?</h2>
+          <p>
+            Esta herramienta es un simulador didáctico: genera datos aleatorios
+            bajo un modelo estadístico y muestra resultados numéricos y gráficos
+            para ayudarte a entender el concepto de forma visual.
+          </p>
+          <p>
+            Modifica los parámetros de entrada, ejecuta la simulación y compara
+            la salida empírica con los valores teóricos. Cuantas más
+            simulaciones ejecutes, más estables serán los resultados observados.
+          </p>
+        </section>
+
+        <section class="card content-card faq-card" aria-labelledby="faq-title">
+          <h2 id="faq-title">Preguntas frecuentes</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>¿Los resultados cambian cada vez?</h3>
+              <p>
+                Sí. La simulación usa aleatoriedad, por lo que cada ejecución
+                puede producir valores ligeramente distintos, especialmente con
+                pocas repeticiones.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>¿Cómo mejoro la estabilidad de la simulación?</h3>
+              <p>
+                Aumenta el número de simulaciones. En general, con más
+                repeticiones la media empírica y otras métricas se aproximan
+                mejor a sus valores teóricos.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>
+                ¿Puedo usar esta herramienta para tomar decisiones reales?
+              </h3>
+              <p>
+                Está orientada a aprendizaje y exploración. Para decisiones
+                críticas conviene complementar con análisis estadístico formal y
+                validación de supuestos.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="card content-card">
+          <h2>Conceptos clave y relación con otras herramientas</h2>
+          <p>
+            Este simulador se relaciona con las calculadoras de distribuciones,
+            intervalos de confianza, contrastes de hipótesis y tamaño muestral
+            disponibles en ProbLab.
+          </p>
+          <p>
+            Úsalo para reforzar la intuición estadística antes de aplicar
+            fórmulas en casos reales.
+          </p>
+        </section>
+      </main>
+    </div>
+    <script>
+      const $ = (id) => document.getElementById(id);
+      function randn() {
+        let u = Math.random(),
+          v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      }
+      function sample(dist, p1, p2) {
+        switch (dist) {
+          case "Normal":
+            return p1 + p2 * randn();
+          case "Uniforme":
+            return p1 + (p2 - p1) * Math.random();
+          case "Exponencial":
+            return -Math.log(1 - Math.random()) / p1;
+          case "Bernoulli":
+            return Math.random() < p1 ? 1 : 0;
+          case "Poisson":
+            let L = Math.exp(-p1),
+              k = 0,
+              pr = 1;
+            while (pr > L) {
+              k++;
+              pr *= Math.random();
+            }
+            return k - 1;
+          case "Chi-cuadrado":
+            let s = 0;
+            for (let i = 0; i < p1; i++) s += randn() ** 2;
+            return s;
+        }
+      }
+      function theo(dist, p1, p2) {
+        if (dist === "Normal") return [p1, p2 * p2];
+        if (dist === "Uniforme") return [(p1 + p2) / 2, (p2 - p1) ** 2 / 12];
+        if (dist === "Exponencial") return [1 / p1, 1 / (p1 * p1)];
+        if (dist === "Bernoulli") return [p1, p1 * (1 - p1)];
+        if (dist === "Poisson") return [p1, p1];
+        if (dist === "Chi-cuadrado") return [p1, 2 * p1];
+      }
+      function hist(canvas, data) {
+        const c = canvas.getContext("2d");
+        c.clearRect(0, 0, canvas.width, canvas.height);
+        const bins = 40,
+          min = Math.min(...data),
+          max = Math.max(...data),
+          w = max - min || 1,
+          h = Array(bins).fill(0);
+        data.forEach(
+          (x) => h[Math.min(bins - 1, Math.floor(((x - min) / w) * bins))]++,
+        );
+        const mx = Math.max(...h);
+        h.forEach((v, i) => {
+          const x = (i * canvas.width) / bins,
+            bh = (v / mx) * (canvas.height - 20);
+          c.fillStyle = "#4f46e5";
+          c.fillRect(x, canvas.height - bh, canvas.width / bins - 1, bh);
+        });
+      }
+      $("run").onclick = () => {
+        const d = $("dist").value,
+          p1 = +$("p1").value,
+          p2 = +$("p2").value,
+          n = +$("n").value,
+          m = +$("m").value;
+        const means = [],
+          orig = [];
+        for (let i = 0; i < m; i++) {
+          let s = 0;
+          for (let j = 0; j < n; j++) {
+            const x = sample(d, p1, p2);
+            s += x;
+            if (i < 2000) orig.push(x);
+          }
+          means.push(s / n);
+        }
+        const [mu, varr] = theo(d, p1, p2),
+          emp = means.reduce((a, b) => a + b, 0) / m,
+          sd = Math.sqrt(means.reduce((a, b) => a + (b - emp) ** 2, 0) / m),
+          th = Math.sqrt(varr / n);
+        $("res").innerHTML =
+          `Media teórica: <strong>${mu.toFixed(4)}</strong><br>Varianza teórica: <strong>${varr.toFixed(4)}</strong><br>Media empírica medias: <strong>${emp.toFixed(4)}</strong><br>Desviación típica empírica medias: <strong>${sd.toFixed(4)}</strong><br>Desviación típica teórica de la media muestral: <strong>${th.toFixed(4)}</strong>`;
+        $("txt").textContent =
+          `Has generado ${m} muestras de tamaño n=${n} desde ${d}. La media empírica de las medias (${emp.toFixed(3)}) y su dispersión (${sd.toFixed(3)}) son cercanas a los valores teóricos (${mu.toFixed(3)} y ${th.toFixed(3)}).`;
+        hist($("orig"), orig);
+        hist($("means"), means);
+      };
+      $("reset").onclick = () => {
+        location.reload();
+      };
+    </script>
+  </body>
+</html>
