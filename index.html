@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="description" content="Suite de herramientas estadísticas online: calculadoras, tablas y guías para distribuciones, contrastes, intervalos de confianza, tamaños muestrales y test A/B. Gratis y sin registro.">
+    <meta name="description" content="Suite de herramientas estadísticas online: calculadoras, tablas y simulaciones para distribuciones, contrastes, intervalos de confianza, tamaños muestrales, test A/B y procesos estocásticos. Gratis y sin registro.">
     <meta name="keywords" content="calculadora estadística online, estadística online gratis, herramientas estadísticas, calculadora probabilidad, distribuciones de probabilidad online, tamaño muestral calculadora, contraste de hipótesis online, prueba de hipótesis calculadora, intervalo de confianza calculadora, tablas estadísticas online, estadística para estudiantes, ProbLab, estadística online, calculadora estadística">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Vicente Castellar">
@@ -77,7 +77,7 @@
           "name": "¿Qué calculadoras estadísticas incluye ProbLab?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "ProbLab reúne más de 60 calculadoras estadísticas: 16 distribuciones de probabilidad, 8 tablas estadísticas, 15 calculadoras de tamaño muestral para contrastes, 5 de intervalos de confianza, 17 contrastes de hipótesis y 4 herramientas para test A/B."
+            "text": "ProbLab reúne más de 60 calculadoras y simulaciones estadísticas: 16 distribuciones de probabilidad, 8 tablas estadísticas, 15 calculadoras de tamaño muestral para contrastes, 5 de intervalos de confianza, 17 contrastes de hipótesis, 4 herramientas para test A/B y 5 simulaciones interactivas (TCL, intervalos de confianza, cadenas de Markov, proceso de Poisson y paseo aleatorio)."
           }
         },
         {
@@ -385,6 +385,15 @@
             color: #0f766e;
         }
 
+        .section-sim {
+            border-top: 3px solid #d97706;
+        }
+
+        .section-icon-sim {
+            background: rgba(217, 119, 6, 0.1);
+            color: #d97706;
+        }
+
         .ab-tools-grid a {
             display: flex;
             align-items: center;
@@ -629,6 +638,12 @@
                     <p>Significación, bayesiano Beta-Binomial, potencia, MDE, tamaño muestral y simulación.</p>
                     <span class="intent-link">Analizar test A/B →</span>
                 </a>
+                <a class="intent-card" href="simulaciones/">
+                    <span class="intent-icon" aria-hidden="true">∿</span>
+                    <h3>Simulaciones estadísticas</h3>
+                    <p>TCL, intervalos de confianza, cadenas de Markov, proceso de Poisson y paseo aleatorio interactivos.</p>
+                    <span class="intent-link">Explorar simulaciones →</span>
+                </a>
             </div>
         </section>
 
@@ -826,6 +841,26 @@
             </ul>
         </section>
 
+        <section id="simulaciones" class="card content-card section-sim" aria-labelledby="sim-title">
+            <div class="section-heading">
+                <span class="section-icon section-icon-sim" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12 Q5 6 7 12 Q9 18 11 12 Q13 6 15 12 Q17 18 19 12 Q20 9 21 12"/>
+                    </svg>
+                </span>
+                <h2 id="sim-title">Simulaciones estadísticas</h2>
+            </div>
+            <p>Experimentos interactivos que generan datos aleatorios en tiempo real para construir intuición estadística. Ajusta parámetros y observa cómo cambia el comportamiento de distribuciones, estimadores y procesos estocásticos. Cada simulación incluye visualizaciones dinámicas, comparación entre resultados empíricos y teóricos, e interpretaciones paso a paso de los resultados.</p>
+            <p><a class="hero-link-button" href="simulaciones/">Explorar simulaciones</a></p>
+            <ul class="tools-grid" aria-label="Listado de simulaciones estadísticas">
+                <li><a href="simulaciones/teorema-central-limite.html">Teorema central del límite</a></li>
+                <li><a href="simulaciones/simulador-intervalos-confianza.html">Intervalos de confianza</a></li>
+                <li><a href="simulaciones/simulador-cadenas-markov.html">Cadenas de Markov</a></li>
+                <li><a href="simulaciones/simulador-proceso-poisson.html">Proceso de Poisson</a></li>
+                <li><a href="simulaciones/simulador-paseo-aleatorio.html">Paseo aleatorio 1D y 2D</a></li>
+            </ul>
+        </section>
+
         <section class="card content-card intro-seo-card" aria-labelledby="intro-title">
             <h2 id="intro-title">Herramientas estadísticas online para calcular, interpretar y aprender</h3>
             <p>ProbLab es una suite gratuita de más de 50 calculadoras estadísticas online para resolver cálculos de probabilidad e inferencia directamente desde el navegador, sin instalar software ni crear una cuenta. Encontrarás calculadoras de 16 distribuciones de probabilidad —normal, binomial, Poisson, t de Student, chi-cuadrado, F de Snedecor, exponencial, gamma, beta, lognormal, Weibull y más—, tablas estadísticas clásicas, tamaños muestrales, intervalos de confianza, contrastes de hipótesis y herramientas completas para test A/B.</p>
@@ -838,7 +873,7 @@
             <div class="faq-list">
                 <article class="faq-item">
                     <h3>¿Qué calculadoras estadísticas incluye ProbLab?</h3>
-                    <p>ProbLab reúne más de 60 calculadoras estadísticas: 16 distribuciones de probabilidad, 8 tablas estadísticas, 15 calculadoras de tamaño muestral para contrastes, 5 de intervalos de confianza, 17 contrastes de hipótesis y 4 herramientas para test A/B.</p>
+                    <p>ProbLab reúne más de 60 calculadoras y simulaciones estadísticas: 16 distribuciones de probabilidad, 8 tablas estadísticas, 15 calculadoras de tamaño muestral para contrastes, 11 de intervalos de confianza, 17 contrastes de hipótesis, 4 herramientas para test A/B y 5 simulaciones interactivas (TCL, intervalos de confianza, cadenas de Markov, proceso de Poisson y paseo aleatorio).</p>
                 </article>
                 <article class="faq-item">
                     <h3>¿Puedo calcular probabilidades de una normal, binomial o Poisson?</h3>
