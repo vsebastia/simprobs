@@ -87,6 +87,7 @@
         <li><a href="../simulaciones/simulador-intervalos-confianza.html">Simulador de intervalos de confianza</a></li>
         <li><a href="../simulaciones/simulador-cadenas-markov.html">Simulador de cadenas de Markov</a></li>
         <li><a href="../simulaciones/simulador-proceso-poisson.html">Simulador de proceso de Poisson</a></li>
+        <li><a href="../simulaciones/simulador-paseo-aleatorio.html">Simulador de paseo aleatorio 1D y 2D</a></li>
       </ul>
     </section>
 
@@ -140,6 +141,14 @@
       <p>Ejemplos de procesos que se modelan frecuentemente con un proceso de Poisson: llegadas a una cola de servicio (clientes a una ventanilla, paquetes de red), incidentes de seguridad en un sistema informático, mutaciones genéticas, colisiones de partículas en física nuclear.</p>
       <p>El simulador permite visualizar trayectorias individuales como función escalonada, estudiar la distribución del número de eventos en distintos horizontes temporales y comparar los tiempos entre eventos con la distribución exponencial teórica.</p>
       <p><a href="simulador-proceso-poisson.html" class="hero-link-button" style="display:inline-block; margin-top: 0.5rem;">Abrir simulador de proceso de Poisson →</a></p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Simulador de paseo aleatorio 1D y 2D</h2>
+      <p>Un <strong>paseo aleatorio</strong> es una sucesión de pasos en los que la dirección de cada movimiento se elige al azar. En 1D, una partícula avanza +1 o retrocede −1 en cada instante. En 2D, se mueve en cualquiera de las cuatro direcciones cardinales con igual probabilidad.</p>
+      <p>La propiedad más característica es que la dispersión crece como <strong>√n</strong> y no como n: después de n pasos, las posiciones se distribuyen como N(μ, σ²n) con σ proporcional a √n. Las bandas teóricas ±2σ del simulador muestran este ensanchamiento en abanico.</p>
+      <p>La simulación incluye derive (p ≠ 0,5), recurrencia 2D (la trayectoria regresa al origen infinitas veces) y la conexión con el movimiento browniano, la ruina del jugador y la ley de difusión.</p>
+      <p><a href="simulador-paseo-aleatorio.html" class="hero-link-button" style="display:inline-block; margin-top: 0.5rem;">Abrir simulador de paseo aleatorio →</a></p>
     </section>
 
     <section class="card content-card">
