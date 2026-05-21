@@ -169,7 +169,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
 
             <p>
                 El test de Shapiro–Wilk es una prueba estadística diseñada para evaluar
@@ -267,60 +267,21 @@
             <p>Conclusión: con un nivel de significación del 5 %, no hay evidencia estadística de que las dimensiones de las piezas no sigan una distribución normal. Este resultado permite aplicar con confianza herramientas paramétricas como gráficos de control \(\bar{x}\)-R o cartas de control basadas en la distribución normal en etapas posteriores del análisis de calidad.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-
-            <p>
-                Esta calculadora del test de Shapiro–Wilk toma \(W\), el tamaño muestral \(n\), el
-                p-valor y el nivel \(\alpha\), y devuelve una decisión automática sobre la hipótesis
-                de normalidad.
-            </p>
-
-            <p>
-                También muestra un gráfico con barras de p-valor y \(\alpha\), para facilitar una
-                lectura visual rápida del criterio de rechazo.
-            </p>
-
-            <h3>Fórmula utilizada</h3>
-
-            <p>
-                El estadístico de Shapiro–Wilk se construye combinando los datos ordenados
-                \(x_{(i)}\) con coeficientes \(a_i\) que dependen de \(n\):
-            </p>
-
-            <p class="formula-line">
-                \(W = \dfrac{\left(\sum_{i=1}^{m} a_i(x_{(n+1-i)}-x_{(i)})\right)^2}{\sum_{i=1}^{n}(x_i-\bar{x})^2}\)
-            </p>
-
-            <p>
-                La decisión práctica se obtiene comparando p-valor con \(\alpha\):
-            </p>
-
-            <p class="formula-line">
-                \(p &lt; \alpha \Rightarrow\) evidencia contra normalidad
-            </p>
-
-            <h3>Ejemplo de uso</h3>
-
-            <p>
-                Imagina una muestra de \(n=30\) observaciones con resultado \(W=0.94\) y p-valor
-                0.028. Con \(\alpha = 0.05\), se cumple \(0.028 &lt; 0.05\), por lo que se rechaza
-                \(H_0\): hay evidencia de desviación de la normalidad.
-            </p>
-
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
 
-            <p>
+                <p>
                 Si el p-valor es menor que \(\alpha\), la muestra muestra una desviación
                 estadísticamente significativa respecto a una normal. Si es mayor o igual, no hay
                 evidencia suficiente para rechazar normalidad al nivel elegido.
-            </p>
+                </p>
 
-            <p>
+                <p>
                 En muestras grandes, desviaciones pequeñas pueden resultar significativas. Por eso
                 es recomendable evaluar también relevancia práctica y diagnóstico gráfico.
-            </p>
-
+                </p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

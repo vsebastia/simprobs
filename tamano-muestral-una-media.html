@@ -170,7 +170,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Esta calculadora determina el número mínimo de observaciones para estimar una media poblacional \(\mu\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado. Es el cálculo análogo al de una proporción, pero para variables cuantitativas continuas.</p>
             <p>El parámetro clave que debes conocer de antemano es la desviación estándar \(\sigma\). Si no la tienes, puedes estimarla de datos históricos, de la literatura o de un estudio piloto. Una regla práctica conservadora cuando la distribución es aproximadamente normal: \(\sigma \approx \text{rango} / 4\) (un cuarto del rango probable de los datos).</p>
             <p>Esta fórmula usa el cuantil normal Z, lo que supone que \(\sigma\) es conocida o que la muestra es suficientemente grande para que el cuantil t converja a Z. Para muestras pequeñas (&lt; 30) con \(\sigma\) desconocida, el n real puede ser algo mayor (usa el cuantil t con n−1 grados de libertad de forma iterativa).</p>
@@ -224,15 +224,11 @@
             </ul>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Calcula el número mínimo de observaciones para estimar una media poblacional con un margen de error absoluto máximo E y un nivel de confianza dado, usando el cuantil normal Z y la desviación estándar σ.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>\( n = (Z \cdot \sigma / E)^2 \). El resultado se redondea al entero superior. La fórmula asume σ conocida; para σ desconocida con n pequeño, usa cuantiles t iterativamente.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>σ = 10, E = 2, 95 % confianza → n = 97. Con E = 1 → n = 385. La relación es inversa al cuadrado del error.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n es el mínimo de observaciones válidas. Si dudas del valor de σ, calcula n para σ±25 % y usa el mayor como margen de seguridad.</p>
+                <p>El n es el mínimo de observaciones válidas. Si dudas del valor de σ, calcula n para σ±25 % y usa el mayor como margen de seguridad.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

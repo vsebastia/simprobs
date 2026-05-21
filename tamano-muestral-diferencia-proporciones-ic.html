@@ -170,7 +170,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Esta calculadora determina el número mínimo de observaciones <em>por grupo</em> para estimar la diferencia \(p_1 - p_2\) entre dos proporciones independientes con un margen de error absoluto máximo \(E\) y un nivel de confianza dado. Es el punto de partida para planificar estudios comparativos entre dos grupos antes de recoger los datos.</p>
             <p>Los dos parámetros clave son las proporciones esperadas en cada grupo. Si no dispones de estimaciones previas, el escenario conservador es \(p_1 = p_2 = 0{,}5\), que maximiza la suma \(p_1(1-p_1) + p_2(1-p_2)\) y por tanto el tamaño muestral. En la práctica, usar proporciones informadas de datos piloto o literatura reduce considerablemente la muestra necesaria.</p>
             <p>La fórmula asume asignación equilibrada (mismo número de sujetos en cada grupo) y muestreo aleatorio de dos poblaciones muy grandes. El margen de error \(E\) se aplica a la diferencia \(p_1-p_2\), no a cada proporción por separado.</p>
@@ -223,15 +223,11 @@
             </ul>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Calcula el número mínimo de observaciones por grupo para estimar \(p_1 - p_2\) con un margen de error absoluto máximo \(E\) y un nivel de confianza dado, usando el cuantil normal \(Z\) y las proporciones esperadas en cada grupo.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>\( n = Z^2 \cdot [p_1(1-p_1) + p_2(1-p_2)] / E^2 \). El resultado se redondea al entero superior. La fórmula asume asignación 1:1; el número total de sujetos es 2·n.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>p₁=0,6, p₂=0,4, E=0,10, 95 % → n=185 por grupo (370 total). Con E=0,05 → n=737 por grupo. Reducir el margen a la mitad cuadruplica la muestra.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n es el mínimo de observaciones válidas por grupo. Haz un análisis de sensibilidad variando p₁ y p₂ ±0,1 para evaluar cuánto cambia el resultado ante incertidumbre en los supuestos.</p>
+                <p>El n es el mínimo de observaciones válidas por grupo. Haz un análisis de sensibilidad variando p₁ y p₂ ±0,1 para evaluar cuánto cambia el resultado ante incertidumbre en los supuestos.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

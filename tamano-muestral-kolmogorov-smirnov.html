@@ -162,7 +162,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>El test de Kolmogorov–Smirnov de una muestra contrasta si los datos provienen de una distribución teórica completamente especificada \(F_0\). El estadístico de contraste es la desviación máxima absoluta entre la función de distribución empírica \(\hat{F}_n\) y la teórica:</p>
             <p class="formula-line">\( D_n = \sup_x \left| \hat{F}_n(x) - F_0(x) \right| \)</p>
             <p>El tamaño del efecto es \(d = \max_x |F_{\text{verdadera}}(x) - F_0(x)|\), es decir, la máxima distancia vertical entre la CDF real y la hipotética. Bajo \(H_0\), la distribución asintótica de \(\sqrt{n}\,D_n\) es la distribución de Kolmogorov.</p>
@@ -201,11 +201,11 @@
             <p><strong>Análisis de sensibilidad:</strong> con \(d = 0{,}10\) (efecto pequeño) se necesitan n ≈ 142 observaciones; con \(d = 0{,}30\) (efecto grande) bastan n ≈ 29. La muestra necesaria crece aproximadamente como \(1/d^2\).</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Encuentra por búsqueda iterativa el menor \(n\) para que el test KS de una muestra alcance la potencia objetivo al detectar una desviación máxima de CDF igual a \(d\). El cálculo usa la distribución de Kolmogorov exacta y la aproximación por desplazamiento, sin depender de tablas tabuladas.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El valor obtenido es el mínimo teórico de observaciones necesarias. Si prevés pérdidas o rechazos, divide \(n\) entre \((1 - \text{tasa de pérdida})\) para obtener el \(n\) de reclutamiento. Recuerda que este test requiere que la distribución teórica esté completamente especificada (sin parámetros estimados de los datos).</p>
+                <p>El valor obtenido es el mínimo teórico de observaciones necesarias. Si prevés pérdidas o rechazos, divide \(n\) entre \((1 - \text{tasa de pérdida})\) para obtener el \(n\) de reclutamiento. Recuerda que este test requiere que la distribución teórica esté completamente especificada (sin parámetros estimados de los datos).</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

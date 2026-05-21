@@ -216,8 +216,7 @@
         </section>
 
         <article class="card content-card">
-    <h3>Distribución de Poisson</h3>
-    <h3>Explicación breve</h3>
+    <h3>Explicación</h3>
     <p>La distribución de Poisson sirve para modelar cuántas veces ocurre un evento en un intervalo fijo de tiempo, espacio o cualquier otra unidad cuando esos eventos suceden de forma independiente y con una tasa media estable. Por ejemplo, puede usarse para estimar cuántas llamadas llegan en una hora, cuántos clientes entran en una tienda en diez minutos o cuántos errores aparecen en una página. Es una distribución discreta, así que solo toma valores enteros no negativos: 0, 1, 2, 3, ...</p>
     <h3>Fórmula</h3>
     <p class="formula-line">\( P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!} \)</p>
@@ -229,17 +228,13 @@
     <h3>Ejemplo resuelto</h3>
     <p>Un centro de soporte puede recibir en promedio 6 tickets por hora. Poisson permite estimar probabilidades de recibir exactamente 10 tickets, como máximo 4 o al menos 8 en la próxima hora. En la calculadora, selecciona <em>Poisson</em>, introduce λ y evalúa PMF para conteos exactos o CDF para límites acumulados.</p>
     </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
-            <h3>Ejemplo resuelto: conteos por intervalo</h3>
-            <p>Si un soporte técnico recibe de media λ = 6 tickets por hora, la distribución de Poisson permite calcular la probabilidad de recibir 10 o más en una hora. Introduce λ = 6 y usa cola derecha desde x = 10 para estimar el riesgo de saturación.</p>
+                <p>La calculadora ofrece tres salidas distintas. La <strong>PMF</strong>, \( P(X = k) \), da la probabilidad de que ocurran exactamente \( k \) eventos en el intervalo analizado. Si \( P(X = 8) = 0{,}103 \) con \( \lambda = 6 \), significa que aproximadamente el 10 % de los intervalos equivalentes tendrían exactamente 8 eventos. En la gráfica, cada barra representa la probabilidad de un conteo concreto; las barras del centro (cerca de \( \lambda \)) son las más altas porque son los valores más típicos.</p>
+                <p>La <strong>CDF</strong>, \( P(X \leq k) \), acumula la probabilidad de observar \( k \) o menos eventos. Un valor \( P(X \leq 10) = 0{,}957 \) indica que el 95,7 % de los intervalos producen 10 eventos o menos; la cola derecha \( P(X > 10) = 0{,}043 \) cuantifica la rareza de recibir más de 10. El área verde sombreada en la gráfica visualiza esa probabilidad acumulada para el rango seleccionado; el eje horizontal muestra los posibles conteos enteros no negativos.</p>
+                <p>El resultado de <strong>percentil</strong> devuelve el menor entero \( k \) tal que \( P(X \leq k) \geq p \). Por ejemplo, si el percentil 99 es \( k = 13 \) para \( \lambda = 6 \), solo el 1 % de los intervalos superan 13 eventos; ese valor puede usarse como umbral de alerta en sistemas de monitorización o como dimensionamiento de capacidad en colas de atención.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

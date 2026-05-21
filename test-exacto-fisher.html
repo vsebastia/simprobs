@@ -244,7 +244,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
 
             <p>
                 El test exacto de Fisher permite contrastar si existe asociación entre dos variables
@@ -318,56 +318,22 @@
             <p>Conclusión: con un nivel de significación del 5 %, no se puede concluir que exista una asociación estadísticamente significativa entre el tratamiento y la recuperación. Se recomienda replicar el estudio con mayor tamaño muestral para detectar diferencias clínicamente relevantes con potencia adecuada.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-
-            <p>
-                Esta calculadora del test exacto de Fisher calcula el p-valor exacto para tablas 2×2
-                mediante la distribución hipergeométrica, sin aproximaciones asintóticas. Además reporta
-                la odds ratio observada y la decisión del contraste al nivel de significación elegido.
-                El gráfico muestra la distribución de probabilidades de todas las tablas posibles con
-                los mismos márgenes, destacando cuáles contribuyen al p-valor.
-            </p>
-
-            <h3>Fórmula utilizada</h3>
-
-            <p>
-                Para cada tabla posible con márgenes fijos, la probabilidad exacta es:
-            </p>
-
-            <p class="formula-line">
-                \[ P(X = k) = \frac{\dbinom{a+b}{k}\dbinom{c+d}{a+c-k}}{\dbinom{n}{a+c}} \]
-            </p>
-
-            <p>
-                donde \(k\) varía entre \(k_{\min} = \max(0,\,(a+c)+(a+b)-n)\) y
-                \(k_{\max} = \min(a+b,\,a+c)\).
-            </p>
-
-            <h3>Ejemplo de uso</h3>
-
-            <p>
-                Imagina un ensayo clínico con 10 pacientes tratados y 10 controles. De los tratados,
-                8 mejoran; de los controles, solo 1. Con estas frecuencias pequeñas, el chi-cuadrado
-                puede no ser fiable porque las frecuencias esperadas son bajas. El test exacto de
-                Fisher calcula directamente la probabilidad de observar esta tabla, o una más extrema,
-                bajo la hipótesis de independencia.
-            </p>
-
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
 
-            <p>
+                <p>
                 Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\): hay evidencia estadística
                 de asociación entre las filas y las columnas. Si el p-valor es mayor o igual que
                 \(\alpha\), no hay evidencia suficiente para rechazar la independencia.
-            </p>
+                </p>
 
-            <p>
+                <p>
                 Una OR &gt; 1 indica que el evento es más frecuente en la fila 1; OR &lt; 1 indica
                 que es menos frecuente. La dirección de la asociación debe interpretarse siempre en
                 el contexto del diseño del estudio.
-            </p>
-
+                </p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

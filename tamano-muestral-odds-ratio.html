@@ -149,7 +149,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>En un estudio <strong>caso-control</strong> el parámetro de interés no es la diferencia de medias sino el <strong>odds ratio</strong> (OR): el cociente entre las odds de exposición en casos y en controles. El OR es una medida de asociación fundamental en epidemiología, especialmente útil cuando la enfermedad es rara, porque estima el riesgo relativo con buena aproximación en ese escenario.</p>
             <p>Para calcular el tamaño muestral se convierte el OR en proporciones de exposición y se aplica la fórmula de Fleiss para dos proporciones independientes. La clave es que el OR define implícitamente la proporción de expuestos en los casos (\(p_1\)) a partir de la proporción en controles (\(p_0\)) y del OR deseado. Permite además ajustar la razón de controles por caso (r), lo que resulta útil cuando los casos son escasos y los controles abundantes.</p>
 
@@ -219,15 +219,11 @@
             <p>Si el OR a detectar fuese más pequeño, por ejemplo \(\text{OR} = 1{,}8\), la proporción en casos sería \(p_1 \approx 0{,}435\), la diferencia se reduciría y el tamaño muestral aumentaría notablemente. Esta sensibilidad al OR hace especialmente importante definir con precisión el efecto mínimo clínicamente relevante antes de calcular el tamaño de muestra.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora estima el número mínimo de casos (y controles) para detectar un odds ratio de magnitud OR en un estudio caso-control no emparejado, dados p₀, r, α y potencia.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>Se convierte el OR en proporciones de exposición (p₀ y p₁) y se aplica la fórmula exacta de dos proporciones independientes de Fleiss (versión sin corrección de continuidad).</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce p₀ = 0,30, OR = 2, α = 0,05 y potencia = 0,80 con r = 1. El resultado muestra el número de casos y controles necesarios.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n calculado es el mínimo para detectar el OR especificado. Añade un margen por pérdidas esperadas dividiendo entre (1 − tasa de no respuesta).</p>
+                <p>El n calculado es el mínimo para detectar el OR especificado. Añade un margen por pérdidas esperadas dividiendo entre (1 − tasa de no respuesta).</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

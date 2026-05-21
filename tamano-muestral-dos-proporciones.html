@@ -185,7 +185,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Este cálculo determina el número mínimo de observaciones por grupo para detectar una diferencia entre dos proporciones independientes con una potencia y un nivel de significación especificados. A diferencia de estimar una proporción individual, aquí el objetivo es un contraste de hipótesis bilateral: \(H_0\!: p_1 = p_2\) frente a \(H_1\!: p_1 \neq p_2\).</p>
             <p>La fórmula implementada es la de Fleiss, Levin y Paik (2003), que es más precisa que la aproximación de arco seno de Cohen porque tiene en cuenta la variabilidad separada de cada grupo bajo \(H_1\).</p>
             <p>El tamaño del efecto aquí es la diferencia absoluta \(|p_1 - p_2|\): cuanto más pequeña, más difícil de detectar y mayor la muestra necesaria. Para efectos muy pequeños (diferencias &lt; 0,05) considera si el efecto es clínica o prácticamente relevante antes de planificar el estudio.</p>
@@ -242,15 +242,11 @@
             <p><strong>Escenario más exigente (diferencia mínima de 3 pp):</strong> si el equipo considera relevante detectar incluso una diferencia de \(p_2 = 0{,}15\) frente a \(p_1 = 0{,}12\), la diferencia mínima baja a 3 pp. Al ser más difícil de detectar, el tamaño muestral necesario aumenta considerablemente hasta aproximadamente <strong>1 392 sesiones por grupo</strong> (2 784 en total), lo que puede implicar semanas adicionales de test A/B según el volumen de tráfico del sitio.</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Calcula el tamaño muestral por grupo para detectar una diferencia entre dos proporciones independientes con potencia y nivel de significación especificados, usando la fórmula de Fleiss, Levin y Paik (2003).</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La fórmula de Fleiss es más precisa que la aproximación de Cohen porque modela la varianza bajo H1 de cada grupo por separado. El denominador es (p1−p2)² y el numerador combina los cuantiles normales con la variabilidad ponderada.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>p1 = 0,50, p2 = 0,40, α = 0,05, potencia = 0,80, k = 1 → n por grupo ≈ 387. Subir la potencia a 0,90 eleva el n a ≈ 519 por grupo.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>El n calculado es por grupo. Multiplica por (1 + k) para el total. Si p1 y p2 son muy similares (diferencia &lt; 0,05), el n puede ser muy grande — revisa si la diferencia es prácticamente relevante.</p>
+                <p>El n calculado es por grupo. Multiplica por (1 + k) para el total. Si p1 y p2 son muy similares (diferencia &lt; 0,05), el n puede ser muy grande — revisa si la diferencia es prácticamente relevante.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

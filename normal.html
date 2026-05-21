@@ -216,8 +216,7 @@
         </section>
 
         <article class="card content-card">
-        <h3>Distribución normal</h3>
-        <h3>Explicación breve</h3>
+        <h3>Explicación</h3>
         La distribución normal modela mediciones que se concentran alrededor de un valor medio y se vuelven
         menos frecuentes al alejarse del centro. Alturas, notas de exámenes y muchas variables de fabricación
         suelen seguir esta forma cuando intervienen muchos factores pequeños. Su curva de campana es simétrica:
@@ -235,17 +234,13 @@
                 los volúmenes suelen aproximarse a una normal. Puedes usar PDF para inspeccionar la densidad cerca de un objetivo,
                 CDF para calcular la probabilidad de quedar por debajo de un umbral y cuantiles para fijar puntos de corte.</p>
         </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
-            <h3>Ejemplo resuelto: probabilidad bajo una normal</h3>
-            <p>Una línea de envasado llena botellas con media μ = 500 ml y desviación estándar σ = 8 ml. Para estimar la probabilidad de que una botella quede por debajo de 490 ml, introduce μ = 500, σ = 8, selecciona probabilidad acumulada y x = 490. El resultado representa P(X ≤ 490), útil para medir riesgo de subllenado.</p>
+                <p>La calculadora ofrece tres tipos de resultado. El valor de la <strong>función de densidad PDF</strong>, \( f(x) \), no es una probabilidad directa sino una densidad: indica cuán concentrada está la distribución en torno a un punto concreto. Valores de PDF más altos significan que esa zona es más probable que regiones con PDF menor, pero hay que integrar la curva sobre un intervalo para obtener una probabilidad real.</p>
+                <p>El valor de la <strong>CDF</strong>, \( P(X \leq x) \), sí es una probabilidad: representa la fracción de veces que la variable toma un valor menor o igual a \( x \) bajo el modelo normal con los parámetros elegidos. Por ejemplo, \( P(X \leq 1{,}96) \approx 0{,}975 \) en una normal estándar significa que el 97,5 % de las observaciones caen por debajo de 1,96. La cola derecha \( P(X > x) = 1 - P(X \leq x) \) mide cuán extremo es el valor en ese sentido. En la gráfica, el área verde sombreada representa exactamente esa probabilidad acumulada para el rango que has seleccionado; el eje horizontal muestra el dominio de la distribución centrado en la media.</p>
+                <p>Un resultado de <strong>percentil o cuantil</strong> invierte la pregunta: dado un nivel de probabilidad \( p \), la calculadora devuelve el valor \( x \) tal que \( P(X \leq x) = p \). El percentil 90 (p = 0,90) separa el 90 % inferior del 10 % superior. Esto es útil para establecer umbrales de control, valores críticos en pruebas de hipótesis o límites de especificación en procesos industriales.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

@@ -216,9 +216,8 @@
         </section>
 
         <article class="card content-card">
-        <h3>Distribución t de Student</h3>
 
-        <h3>Explicación breve</h3>
+        <h3>Explicación</h3>
         <p>La distribución t de Student es una distribución continua similar a la normal, pero con colas más pesadas.
         Se utiliza cuando el tamaño de muestra es pequeño y la desviación estándar de la población es desconocida.
         A medida que aumentan los grados de libertad, la distribución t se aproxima cada vez más a la distribución normal.
@@ -245,15 +244,13 @@
         En la calculadora, selecciona <em>t de Student</em>, introduce los grados de libertad y utiliza PDF para densidad,
             CDF para probabilidades acumuladas o cuantiles para obtener valores críticos en contrastes estadísticos.</p>
   </article>
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora te permite trabajar con probabilidad puntual, probabilidad acumulada, cola izquierda, cola derecha, probabilidad entre dos valores y percentiles de la distribución seleccionada.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>La herramienta aplica la función de probabilidad o densidad y su función de distribución acumulada para devolver resultados numéricos consistentes con los parámetros que introduces.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Introduce los parámetros de la distribución, elige el tipo de cálculo y especifica el valor de x o el intervalo. Pulsa en calcular para obtener la probabilidad o el percentil al instante.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Un valor acumulado alto indica mayor probabilidad en la cola izquierda hasta x, mientras que una cola derecha pequeña señala que el valor observado es poco frecuente bajo ese modelo.</p>
+                <p>La calculadora ofrece tres tipos de salida. El valor de la <strong>PDF</strong>, \( f(t) \), es una densidad de probabilidad: indica cuán concentrada está la distribución t en torno a un valor concreto. Al tener colas más pesadas que la normal, la densidad cerca de cero es algo menor que en la normal estándar, pero los valores extremos tienen mayor densidad que bajo la normal. La gráfica muestra la curva completa; la región verde corresponde al rango seleccionado.</p>
+                <p>La <strong>CDF</strong>, \( P(T \leq t) \), da la probabilidad de que el estadístico t sea menor o igual a \( t \). En inferencia estadística, este valor se usa directamente para obtener el p-valor de una prueba unilateral izquierda. La cola derecha \( P(T > t) = 1 - P(T \leq t) \) es el p-valor para una prueba unilateral derecha, y \( 2 \cdot P(T > |t|) \) es el p-valor bilateral. Con pocos grados de libertad las colas son sustancialmente más pesadas que en la normal estándar, por lo que un mismo valor de \( t \) produce un p-valor mayor (resultado menos significativo).</p>
+                <p>El resultado de <strong>cuantil</strong> es el más frecuente en la práctica: dado un nivel de confianza \( 1-\alpha \), la calculadora devuelve el valor crítico \( t^* \) tal que \( P(T \leq t^*) = p \). Por ejemplo, para una prueba bilateral al 95 % con 10 grados de libertad, el valor crítico es \( t^* \approx 2{,}228 \). Si el estadístico de tu prueba supera ese valor en valor absoluto, rechazas la hipótesis nula al nivel del 5 %.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

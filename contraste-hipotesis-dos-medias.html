@@ -182,7 +182,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Este contraste se utiliza para evaluar si dos medias poblacionales son iguales cuando se comparan dos grupos independientes y no se asume varianza común. Por eso se usa habitualmente la versión de Welch, que es más robusta cuando la dispersión de ambos grupos no coincide.</p>
             <p>Además de la decisión estadística, conviene interpretar la magnitud de la diferencia \(\bar{x}_1-\bar{x}_2\), su intervalo de confianza y su relevancia en el contexto aplicado.</p>
 
@@ -224,15 +224,13 @@
             <p>Conclusión: <strong>no se rechaza \(H_0\)</strong>. Con estos datos no hay evidencia estadística suficiente para afirmar que los dos tratamientos producen reducciones medias distintas al nivel del 5 %. La diferencia observada de 6 mmHg es compatible con la variabilidad muestral.</p>
         </section>
 
+                <section class="card content-card">
+                    <h3>Cómo interpretar el resultado</h3>
+                        <p><strong>Rechazar \(H_0\)</strong> (p-valor &lt; α) significa que la diferencia observada entre \(\bar{x}_1\) y \(\bar{x}_2\) es demasiado grande para atribuirla al azar si ambas poblaciones tuviesen la misma media. Sin embargo, la significación estadística no implica relevancia práctica: con muestras grandes, diferencias de escasa magnitud pueden ser altamente significativas. Reporta siempre la diferencia estimada \(\hat{\Delta} = \bar{x}_1 - \bar{x}_2\) y su intervalo de confianza para cuantificar el tamaño del efecto.</p>
+                        <p><strong>No rechazar \(H_0\)</strong> (p-valor ≥ α) no equivale a demostrar que las medias son iguales: solo indica que con la muestra disponible no hay evidencia suficiente para rechazar la igualdad. Una potencia baja —causada por muestras pequeñas, alta variabilidad o una diferencia real pequeña— puede impedir la detección. Calcula el intervalo de confianza para \(\Delta\) y evalúa si el rango plausible de diferencias excluye valores de relevancia práctica.</p>
+                        <p>El <strong>estadístico t</strong> (o z cuando \(\sigma\) es conocida) cuantifica cuántos errores estándar se aleja la diferencia muestral de cero. En la visualización, la zona verde representa la región de no rechazo, las zonas rojas son las regiones críticas y la línea ámbar marca el estadístico observado: si cae en rojo, p-valor &lt; α. Si el test usa varianzas iguales (Pooled) o desiguales (Welch), el cálculo del error estándar varía, pero la lógica interpretativa es la misma.</p>
+                </section>
                 <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora de contraste de hipótesis para dos medias compara dos grupos independientes y devuelve estadístico de prueba, p-valor y decisión final. Resulta útil para A/B testing, comparación de tratamientos y estudios de rendimiento entre poblaciones.</p>
-            <h3>Fórmula utilizada</h3>
-            <p>El estadístico se basa en la diferencia \(\bar{x}_1-\bar{x}_2\) y su error estándar. Según la información disponible, puede utilizarse versión z (desviaciones poblacionales conocidas) o t (desviaciones desconocidas), ajustando la distribución de referencia para obtener el p-valor.</p>
-            <h3>Ejemplo de uso</h3>
-            <p>Puedes contrastar si el salario medio de dos departamentos es distinto, o si una nueva metodología reduce el tiempo promedio frente a la metodología anterior, introduciendo medias, desviaciones y tamaños muestrales de ambos grupos.</p>
-            <h3>Cómo interpretar el resultado</h3>
-            <p>Un p-valor pequeño indica evidencia contra la hipótesis de igualdad de medias. Si el resultado no es significativo, conviene revisar potencia estadística y tamaño muestral antes de concluir que no existen diferencias reales.</p>
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>

@@ -196,7 +196,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
 
             <p>
                 El odds ratio (OR) es la medida de asociación característica de los estudios caso-control.
@@ -312,61 +312,23 @@
             </p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-
-            <p>
-                Esta calculadora de contraste de hipótesis para el odds ratio permite evaluar si la
-                asociación observada en una tabla de contingencia 2×2 de un estudio caso-control es
-                estadísticamente significativa. A partir de las cuatro frecuencias de la tabla, calcula
-                el OR, el estadístico Z sobre el logaritmo del OR, el p-valor, el intervalo de confianza
-                para el OR y el chi-cuadrado de Pearson como comprobación cruzada.
-            </p>
-
-            <h3>Fórmula utilizada</h3>
-
-            <p>
-                El estadístico de contraste se construye sobre la escala logarítmica del OR, cuya
-                distribución asintótica es normal estándar bajo \(H_0\):
-            </p>
-
-            <p class="formula-line">
-                \( Z = \frac{\ln(ad/bc)}{\sqrt{1/a + 1/b + 1/c + 1/d}} \sim N(0,1) \)
-            </p>
-
-            <p>
-                El intervalo de confianza al \((1-\alpha) \cdot 100\%\) para el OR se obtiene exponenciando
-                el intervalo sobre \(\ln(\mathrm{OR})\):
-            </p>
-
-            <p class="formula-line">
-                \( \mathrm{IC}_{1-\alpha}(\mathrm{OR}) = \Bigl(e^{\ln\widehat{\mathrm{OR}} - z_{\alpha/2}\cdot\mathrm{SE}},\; e^{\ln\widehat{\mathrm{OR}} + z_{\alpha/2}\cdot\mathrm{SE}}\Bigr) \)
-            </p>
-
-            <h3>Ejemplo de uso</h3>
-
-            <p>
-                En un estudio caso-control sobre tabaquismo y cáncer de pulmón puedes introducir el
-                número de fumadores y no fumadores entre casos y controles para comprobar si la exposición
-                al tabaco se asocia significativamente con la enfermedad, cuantificar la magnitud de esa
-                asociación con el OR y obtener su intervalo de confianza para la comunicación científica.
-            </p>
-
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
 
-            <p>
+                <p>
                 Si el p-valor es menor que \(\alpha\), se rechaza \(H_0\) y se concluye que hay evidencia
                 estadística de asociación entre la exposición y la enfermedad. Si el p-valor es mayor o
                 igual que \(\alpha\), los datos no aportan evidencia suficiente para rechazar la hipótesis
                 de ausencia de asociación.
-            </p>
+                </p>
 
-            <p>
+                <p>
                 Siempre conviene interpretar el OR junto al intervalo de confianza: un OR alejado de 1
                 con un intervalo estrecho indica una asociación fuerte y precisa, mientras que un intervalo
                 amplio refleja incertidumbre, generalmente por tamaño muestral reducido.
-            </p>
-
+                </p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
                 <h3>Calculadoras relacionadas</h3>
                 <ul>

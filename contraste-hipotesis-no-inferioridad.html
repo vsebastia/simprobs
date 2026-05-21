@@ -258,7 +258,7 @@
         </section>
 
         <section class="card content-card">
-            <h3>Explicación breve</h3>
+            <h3>Explicación</h3>
             <p>Los contrastes de no inferioridad y equivalencia invierten la lógica habitual del contraste de hipótesis. En lugar de intentar demostrar que dos tratamientos difieren, buscan demostrar que son suficientemente similares dentro de un margen clínico o práctico predefinido \(\delta\).</p>
             <p><strong>No inferioridad</strong>: se quiere demostrar que el nuevo tratamiento (más barato, menos invasivo, etc.) no es inaceptablemente peor que el control. La hipótesis nula es que el tratamiento sí es inferior de forma relevante: \(H_0\colon \Delta \leq -\delta\).</p>
             <p><strong>Equivalencia (TOST)</strong>: se quiere demostrar que el nuevo tratamiento no es ni mejor ni peor de forma relevante. Requiere dos tests unilaterales simultáneos (Two One-Sided Tests), uno de no inferioridad y uno de no superioridad. Se declara equivalencia cuando ambos se rechazan.</p>
@@ -294,13 +294,11 @@
             <p>Como \(p = 0{,}057 > \alpha = 0{,}05\), <strong>no se declara no inferioridad</strong> al nivel del 5 % (resultado limítrofe). El IC al 90 % de \(\hat{\Delta}\) no cabe completamente por encima de \(-0{,}10\).</p>
         </section>
 
-        <section id="seo-support-content" class="card content-card">
-            <h3>¿Qué calcula esta herramienta?</h3>
-            <p>Esta calculadora de no inferioridad y equivalencia computa automáticamente la diferencia estimada \(\hat{\Delta}\), el error estándar, los estadísticos z (uno o dos, según el tipo), los p-valores y la decisión estadística. Para TOST muestra ambos estadísticos y el p-valor conservador. También presenta el intervalo de confianza al \(100(1-2\alpha)\%\) para compararlo con el margen \(\delta\).</p>
-            <h3>Fórmula utilizada</h3>
-            <p>Para <strong>medias</strong>: SE = √(s₁²/n₁ + s₂²/n₂). Para <strong>proporciones</strong>: SE = √(p̂₁(1−p̂₁)/n₁ + p̂₂(1−p̂₂)/n₂). Los estadísticos z se evalúan en la distribución normal estándar. TOST combina dos tests unilaterales y toma el p-valor máximo.</p>
+        <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
-            <p>Para no inferioridad: si p &lt; α, se declara no inferioridad (el tratamiento no es peor que el control más allá del margen δ). Para TOST: si p_TOST &lt; α y el IC al 90% está dentro de [−δ, +δ], se declara equivalencia.</p>
+                <p>Para no inferioridad: si p &lt; α, se declara no inferioridad (el tratamiento no es peor que el control más allá del margen δ). Para TOST: si p_TOST &lt; α y el IC al 90% está dentro de [−δ, +δ], se declara equivalencia.</p>
+        </section>
+        <section id="seo-support-content" class="card content-card">
             <section class="related-tools">
               <h3>Calculadoras relacionadas</h3>
               <ul>
