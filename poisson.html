@@ -227,7 +227,17 @@
             <li><strong>k:</strong> conteo de eventos observado.</li>
         </ul>
     <h3>Ejemplo resuelto</h3>
-    <p>Un centro de soporte puede recibir en promedio 6 tickets por hora. Poisson permite estimar probabilidades de recibir exactamente 10 tickets, como máximo 4 o al menos 8 en la próxima hora. En la calculadora, selecciona <em>Poisson</em>, introduce λ y evalúa PMF para conteos exactos o CDF para límites acumulados.</p>
+    <p><strong>Situación:</strong> Una centralita telefónica recibe en promedio \(\lambda = 3\) llamadas por minuto. El número de llamadas en un minuto cualquiera sigue una distribución de Poisson con \(\lambda = 3\).</p>
+    <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que en un minuto no llegue ninguna llamada, \(P(X = 0)\)?</p>
+    <p><strong>Solución:</strong> Aplicamos la función de masa de Poisson con \(k = 0\):
+    \[ P(X = 0) = \frac{e^{-3} \cdot 3^0}{0!} = e^{-3} \approx 0{,}0498 \]
+    Hay aproximadamente un <strong>4,98 %</strong> de probabilidad de que un minuto transcurra sin ninguna llamada.</p>
+    <p><strong>Pregunta 2:</strong> ¿Cuál es la probabilidad de recibir como máximo 2 llamadas en un minuto, \(P(X \leq 2)\)?</p>
+    <p><strong>Solución:</strong> Sumamos \(P(X = 0) + P(X = 1) + P(X = 2)\):
+    \[ P(X=1) = e^{-3}\cdot 3 \approx 0{,}1494, \quad P(X=2) = e^{-3}\cdot\frac{9}{2} \approx 0{,}2240 \]
+    \[ P(X \leq 2) = 0{,}0498 + 0{,}1494 + 0{,}2240 \approx 0{,}4232 \]
+    Hay aproximadamente un <strong>42,32 %</strong> de probabilidad de recibir 2 o menos llamadas en un minuto.</p>
+    <p><strong>Interpretación:</strong> Con una media de 3 llamadas por minuto, hay más de un 57 % de probabilidad de recibir 3 o más llamadas, lo que refleja que el valor medio no es el más probable para una Poisson con \(\lambda\) no entero. Estos cálculos permiten dimensionar la capacidad de atención necesaria para distintos niveles de servicio.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

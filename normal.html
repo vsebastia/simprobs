@@ -227,9 +227,18 @@
             <li><strong>σ (sigma):</strong> desviación estándar, que controla la dispersión.</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-            <p>Supón que una fábrica llena botellas con objetivo de 500 ml. Si la variación del proceso es mayoritariamente aleatoria,
-                los volúmenes suelen aproximarse a una normal. Puedes usar PDF para inspeccionar la densidad cerca de un objetivo,
-                CDF para calcular la probabilidad de quedar por debajo de un umbral y cuantiles para fijar puntos de corte.</p>
+        <p><strong>Situación:</strong> La estatura de adultos en una población sigue una distribución normal con media \(\mu = 170\) cm y desviación estándar \(\sigma = 8\) cm. Se selecciona una persona al azar.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que mida 178 cm o menos, es decir, \(P(X \leq 178)\)?</p>
+        <p><strong>Solución:</strong> Estandarizamos restando la media y dividiendo por la desviación típica:
+        \[ Z = \frac{178 - 170}{8} = \frac{8}{8} = 1{,}00 \]
+        Consultando la tabla de la normal estándar (o la CDF):
+        \[ P(X \leq 178) = P(Z \leq 1{,}00) \approx 0{,}8413 \]
+        Es decir, aproximadamente el <strong>84,13 %</strong> de las personas miden 178 cm o menos.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es el percentil 95? Es decir, ¿qué estatura \(x\) cumple \(P(X \leq x) = 0{,}95\)?</p>
+        <p><strong>Solución:</strong> El cuantil 95 de la normal estándar es \(z_{0{,}95} \approx 1{,}6449\). Deshacemos la estandarización:
+        \[ x = \mu + z_{0{,}95} \cdot \sigma = 170 + 1{,}6449 \times 8 \approx 183{,}16 \text{ cm} \]
+        Solo el 5 % de la población supera los <strong>183,16 cm</strong>.</p>
+        <p><strong>Interpretación:</strong> La media de 170 cm es el punto de máxima densidad; la regla empírica indica que el 68 % de personas mide entre 162 y 178 cm (\(\mu \pm \sigma\)). El percentil 95 sirve, por ejemplo, para dimensionar puertas o equipamiento ergonómico que cubra al 95 % de la población.</p>
         </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

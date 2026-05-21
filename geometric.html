@@ -227,7 +227,16 @@
         <li><strong>k:</strong> número de intento en el que ocurre el primer éxito.</li>
     </ul>
     <h3>Ejemplo resuelto</h3>
-    <p>Si un comercial tiene una probabilidad del 20% de cerrar una venta en cada llamada, la geométrica permite calcular la probabilidad de cerrar en la primera, tercera o décima llamada, así como la probabilidad acumulada de cerrar antes de cierto número de contactos. En la calculadora, selecciona <em>Geométrica</em> para trabajar con estos escenarios de “primer éxito”.</p>
+    <p><strong>Situación:</strong> Un técnico de soporte técnico resuelve cada incidencia con una probabilidad de \(p = 0{,}2\) en el primer intento. Los intentos son independientes. Sea \(X\) el número del intento en que se resuelve por primera vez la incidencia.</p>
+    <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que la incidencia se resuelva exactamente en el tercer intento, \(P(X = 3)\)?</p>
+    <p><strong>Solución:</strong> Aplicamos la PMF de la geométrica, donde los dos primeros intentos fallan y el tercero tiene éxito:
+    \[ P(X = 3) = (1 - p)^{3-1} \cdot p = (0{,}8)^2 \times 0{,}2 = 0{,}64 \times 0{,}2 = 0{,}128 \]
+    Hay un <strong>12,8 %</strong> de probabilidad de resolver la incidencia exactamente en el tercer intento.</p>
+    <p><strong>Pregunta 2:</strong> ¿Cuántos intentos se necesitan en promedio, \(E[X]\)?</p>
+    <p><strong>Solución:</strong> La media de la distribución geométrica es:
+    \[ E[X] = \frac{1}{p} = \frac{1}{0{,}2} = 5 \text{ intentos} \]
+    Sin embargo, la mediana (percentil 50) es menor: \(P(X \leq k) \geq 0{,}5 \Rightarrow 1 - 0{,}8^k \geq 0{,}5 \Rightarrow k \geq \lceil\ln(0{,}5)/\ln(0{,}8)\rceil = 4\). La mediana es <strong>4 intentos</strong>.</p>
+    <p><strong>Interpretación:</strong> Con una tasa de resolución del 20 %, la mitad de las incidencias se resuelven en 4 intentos o menos, pero la media se eleva a 5 por la cola derecha larga. Gracias a la propiedad de falta de memoria, si ya han fallado 3 intentos, la distribución del número de intentos adicionales necesarios es idéntica a la distribución original.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

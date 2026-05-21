@@ -228,7 +228,18 @@
         <li><strong>k:</strong> número de éxitos observados.</li>
     </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Imagina una campaña de correo enviada a 20 contactos, donde cada contacto tiene una probabilidad 0.15 de convertir. El modelo binomial permite estimar la probabilidad de obtener exactamente 4 conversiones, al menos 5 o un rango de conversiones. En control de calidad también sirve para estimar unidades defectuosas en una muestra.</p>
+        <p><strong>Situación:</strong> En una línea de fabricación, cada pieza tiene una probabilidad de \(p = 0{,}3\) de presentar algún defecto menor. Se inspecciona un lote de \(n = 20\) piezas de forma independiente. Sea \(X\) el número de piezas defectuosas en el lote.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que exactamente 4 piezas sean defectuosas, \(P(X = 4)\)?</p>
+        <p><strong>Solución:</strong> Aplicamos la función de masa de probabilidad de la binomial:
+        \[ P(X = 4) = \binom{20}{4}(0{,}3)^4(0{,}7)^{16} \]
+        Calculamos cada factor: \(\binom{20}{4} = 4845\), \((0{,}3)^4 = 0{,}0081\), \((0{,}7)^{16} \approx 0{,}003323\):
+        \[ P(X = 4) = 4845 \times 0{,}0081 \times 0{,}003323 \approx 0{,}1304 \]
+        Hay aproximadamente un <strong>13,04 %</strong> de probabilidad de encontrar exactamente 4 defectuosas.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es la probabilidad de encontrar 6 o menos piezas defectuosas, \(P(X \leq 6)\)?</p>
+        <p><strong>Solución:</strong> Sumamos las probabilidades individuales \(P(X = 0) + P(X = 1) + \cdots + P(X = 6)\). La CDF de la binomial con \(n = 20\), \(p = 0{,}3\) en \(k = 6\) da:
+        \[ P(X \leq 6) \approx 0{,}6080 \]
+        Hay un <strong>60,80 %</strong> de probabilidad de que el lote tenga a lo sumo 6 piezas defectuosas.</p>
+        <p><strong>Interpretación:</strong> La media esperada de defectos es \(np = 20 \times 0{,}3 = 6\) piezas. Que \(P(X \leq 6) \approx 0{,}608\) confirma que el valor medio queda cerca del percentil 60, como es propio de una binomial con estos parámetros. Si el criterio de rechazo del lote fuera encontrar más de 6 defectos, habría aproximadamente un 39 % de probabilidad de rechazar el lote.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

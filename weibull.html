@@ -233,11 +233,16 @@
             <li><strong>x:</strong> tiempo de vida o tiempo hasta el fallo (x ≥ 0).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Los rodamientos de una máquina industrial presentan un patrón de desgaste modelado con Weibull(k = 2,5, λ = 8000 h).
-        La probabilidad de que un rodamiento falle antes de las 5000 horas es P(X ≤ 5000) = 1 − exp(−(5000/8000)²·⁵) ≈ 22 %.
-        Con la calculadora, introduce k = 2,5 y λ = 8000 y usa la CDF con x = 5000 para obtener este resultado directamente.
-        También puedes usar cuantiles para encontrar la vida B10 (tiempo que garantiza que solo el 10 % de los rodamientos fallen),
-        lo que permite planificar el intervalo óptimo de mantenimiento preventivo.</p>
+        <p><strong>Situación:</strong> La vida útil de unas bombillas LED se modela con una distribución Weibull con parámetro de forma \(k = 2\) (desgaste creciente con el tiempo) y parámetro de escala \(\lambda = 5\) (en miles de horas). Se desea evaluar la fiabilidad de las bombillas.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que una bombilla falle antes de las 4000 horas, \(P(X \leq 4)\)?</p>
+        <p><strong>Solución:</strong> Aplicamos la CDF de la Weibull:
+        \[ P(X \leq 4) = 1 - e^{-(x/\lambda)^k} = 1 - e^{-(4/5)^2} = 1 - e^{-0{,}64} \approx 1 - 0{,}5273 \approx 0{,}4727 \]
+        Hay aproximadamente un <strong>47,27 %</strong> de probabilidad de que la bombilla falle antes de las 4000 horas.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es la vida media esperada de las bombillas?</p>
+        <p><strong>Solución:</strong> La media de la Weibull(\(k, \lambda\)) es:
+        \[ E[X] = \lambda \cdot \Gamma\!\left(1 + \frac{1}{k}\right) = 5 \cdot \Gamma(1{,}5) = 5 \times 0{,}8862 \approx 4{,}431 \text{ miles de horas} \]
+        La vida media esperada es aproximadamente <strong>4431 horas</strong>.</p>
+        <p><strong>Interpretación:</strong> Con \(k = 2 > 1\), la tasa de fallo es creciente, lo que indica desgaste progresivo. El percentil 63,2 coincide exactamente con \(\lambda = 5\) miles de horas: el 63,2 % de las bombillas habrán fallado antes de las 5000 horas. Esto permite planificar sustituciones preventivas antes de esa vida característica para maximizar la disponibilidad del sistema.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

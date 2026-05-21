@@ -231,12 +231,17 @@
             <li><strong>x:</strong> solo toma los valores 0 (fracaso) o 1 (éxito).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Una tienda online registra que el 8 % de los visitantes añaden un artículo al carrito.
-        Modelamos cada visita como un ensayo Bernoulli con p = 0,08.
-        La probabilidad de éxito (añadir al carrito) es P(X = 1) = 0,08 y la de fracaso es P(X = 0) = 0,92.
-        La varianza del proceso es p(1 − p) = 0,08 × 0,92 = 0,0736, lo que nos da una desviación estándar de ≈ 0,27.
-        Si repetimos el experimento para n = 500 visitas diarias, el número esperado de conversiones es 500 × 0,08 = 40,
-        y podemos modelar ese total con una distribución binomial de parámetros n = 500 y p = 0,08.</p>
+        <p><strong>Situación:</strong> Un sistema de detección de intrusiones analiza cada paquete de red de forma independiente. La probabilidad de que un paquete sea malicioso es \(p = 0{,}7\) en una red bajo ataque. Modelamos la clasificación de un único paquete como un ensayo Bernoulli con \(p = 0{,}7\).</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que el paquete sea malicioso, \(P(X = 1)\), y cuál es la probabilidad de que sea benigno, \(P(X = 0)\)?</p>
+        <p><strong>Solución:</strong> Directamente de la definición de la distribución de Bernoulli:
+        \[ P(X = 1) = p = 0{,}7 \qquad P(X = 0) = 1 - p = 0{,}3 \]
+        Hay un <strong>70 %</strong> de probabilidad de que el paquete sea malicioso y un <strong>30 %</strong> de que sea benigno.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuáles son la esperanza y la varianza de este ensayo individual?</p>
+        <p><strong>Solución:</strong> Para la distribución de Bernoulli con parámetro \(p\):
+        \[ E[X] = p = 0{,}7 \]
+        \[ \text{Var}(X) = p(1-p) = 0{,}7 \times 0{,}3 = 0{,}21 \]
+        La esperanza \(E[X] = 0{,}7\) se interpreta como que, en promedio, el 70 % de los paquetes son maliciosos. La varianza \(\text{Var}(X) = 0{,}21\) mide la incertidumbre de un único ensayo; se maximiza cuando \(p = 0{,}5\).</p>
+        <p><strong>Interpretación:</strong> La Bernoulli es el bloque fundamental de toda la estadística discreta: al repetir \(n\) ensayos independientes idénticos, la suma de los resultados sigue una distribución Binomial(\(n, p\)). En este caso, si se analizan 100 paquetes, el número total de maliciosos seguiría una Binomial(100, 0,7) con media \(100 \times 0{,}7 = 70\) paquetes.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

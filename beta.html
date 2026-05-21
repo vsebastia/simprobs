@@ -234,12 +234,16 @@
             <li><strong>x:</strong> valor de la proporción o probabilidad, en el intervalo [0, 1].</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Un equipo de marketing estima que la tasa de conversión de su campaña es de alrededor del 10 %.
-        Modelan su incertidumbre inicial con una Beta(2, 18), que tiene media 2/20 = 0,10.
-        Tras lanzar la campaña y observar 15 conversiones en 120 visitas, actualizan la distribución a
-        Beta(2 + 15, 18 + 105) = Beta(17, 123), cuya nueva media es 17/140 ≈ 0,121.
-        Con la calculadora, introduce α = 17 y β = 123 y usa la CDF para calcular la probabilidad de que la tasa
-        real esté por debajo del 10 %, o usa cuantiles para encontrar el intervalo de credibilidad del 95 %.</p>
+        <p><strong>Situación:</strong> En un ensayo de control de calidad, la proporción de unidades conformes \(X\) se modela con una distribución Beta con parámetros \(\alpha = 2\) y \(\beta = 5\). Esta elección refleja una creencia inicial moderada: la mayor densidad está en valores bajos de \(X\), con media \(\alpha/(\alpha+\beta) = 2/7 \approx 0{,}286\).</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que la tasa de conformidad sea 0,3 o menor, \(P(X \leq 0{,}3)\)?</p>
+        <p><strong>Solución:</strong> Evaluamos la CDF de la Beta(2, 5) en \(x = 0{,}3\) mediante la función beta incompleta regularizada \(I_{0{,}3}(2,5)\):
+        \[ P(X \leq 0{,}3) = I_{0{,}3}(2,\,5) \approx 0{,}580 \]
+        Hay aproximadamente un <strong>58 %</strong> de probabilidad de que la tasa de conformidad no supere el 30 %.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es la moda de la distribución, es decir, el valor más probable?</p>
+        <p><strong>Solución:</strong> Para \(\alpha > 1\) y \(\beta > 1\), la moda de la Beta(\(\alpha, \beta\)) es:
+        \[ \text{moda} = \frac{\alpha - 1}{\alpha + \beta - 2} = \frac{2 - 1}{2 + 5 - 2} = \frac{1}{5} = 0{,}2 \]
+        El valor más probable de la proporción de conformidad bajo este modelo es <strong>0,2</strong> (20 %).</p>
+        <p><strong>Interpretación:</strong> La moda de 0,2 está por debajo de la media de 0,286, lo que refleja la asimetría derecha de esta distribución beta. Si se observan más datos, los parámetros \(\alpha\) y \(\beta\) se actualizan (análisis bayesiano) y la distribución se estrecha hacia el verdadero valor de la tasa.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

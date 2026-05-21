@@ -233,11 +233,16 @@
             <li><strong>x:</strong> valor donde se evalúa la PDF o la CDF, dentro del intervalo [a, b].</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Un autobús pasa con una frecuencia exacta de 20 minutos, pero un viajero llega en un momento aleatorio.
-        El tiempo de espera hasta el próximo autobús sigue una Uniforme(0, 20).
-        La espera media es (0 + 20) / 2 = 10 minutos y la varianza es 20² / 12 ≈ 33,3 min².
-        Con la calculadora, introduce a = 0 y b = 20 y usa la CDF con x = 5 para calcular la probabilidad de esperar
-        menos de 5 minutos (resultado: 25 %), o usa cuantiles para encontrar el tiempo que no se supera el 75 % de las veces (15 minutos).</p>
+        <p><strong>Situación:</strong> La temperatura de una sala de servidores se controla de forma que oscila de manera uniforme entre \(a = 2\) °C y \(b = 10\) °C. Cualquier temperatura dentro de ese rango es igualmente probable. Sea \(X \sim \text{Uniforme}(2, 10)\).</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que la temperatura esté entre 4 °C y 7 °C, es decir, \(P(4 \leq X \leq 7)\)?</p>
+        <p><strong>Solución:</strong> Para la uniforme, la probabilidad de un intervalo es proporcional a su longitud relativa:
+        \[ P(4 \leq X \leq 7) = \frac{7 - 4}{10 - 2} = \frac{3}{8} = 0{,}375 \]
+        Hay un <strong>37,5 %</strong> de probabilidad de que la temperatura se encuentre en ese rango.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es el percentil 75? Es decir, ¿qué temperatura \(x\) cumple \(P(X \leq x) = 0{,}75\)?</p>
+        <p><strong>Solución:</strong> Usamos la fórmula cerrada del cuantil de la uniforme:
+        \[ x = a + p \cdot (b - a) = 2 + 0{,}75 \times (10 - 2) = 2 + 0{,}75 \times 8 = 2 + 6 = 8 \text{ °C} \]
+        El percentil 75 es <strong>8 °C</strong>: el 75 % del tiempo la temperatura no supera los 8 °C.</p>
+        <p><strong>Interpretación:</strong> La media de la distribución es \((a + b)/2 = 6\) °C. La uniforme es la distribución de máxima incertidumbre dentro de un intervalo fijo: todos los valores son igualmente plausibles, sin ningún sesgo hacia el centro ni hacia los extremos.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

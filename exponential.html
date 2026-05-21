@@ -227,7 +227,16 @@
             <li><strong>x:</strong> tiempo de espera hasta que ocurre el evento.</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>En un sistema donde llegan llamadas con una tasa media de 12 por hora, el tiempo entre llamadas puede modelarse con una exponencial. Con la calculadora puedes estimar la probabilidad de que el tiempo de espera sea menor que 3 minutos, mayor que 10 minutos o encontrar el cuantil correspondiente a un nivel de servicio concreto.</p>
+        <p><strong>Situación:</strong> Un componente electrónico falla a una tasa media de \(\lambda = 0{,}5\) fallos por hora. El tiempo hasta el primer fallo sigue una distribución exponencial con parámetro \(\lambda = 0{,}5\), es decir, con un tiempo medio de vida de \(1/\lambda = 2\) horas.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de que el componente falle antes de 3 horas, \(P(X \leq 3)\)?</p>
+        <p><strong>Solución:</strong> Aplicamos la CDF de la exponencial:
+        \[ P(X \leq 3) = 1 - e^{-\lambda \cdot 3} = 1 - e^{-0{,}5 \times 3} = 1 - e^{-1{,}5} \approx 1 - 0{,}2231 \approx 0{,}7769 \]
+        Hay aproximadamente un <strong>77,69 %</strong> de probabilidad de que el componente falle dentro de las primeras 3 horas.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es el tiempo mediano de vida, es decir, el tiempo \(t\) tal que \(P(X \leq t) = 0{,}5\)?</p>
+        <p><strong>Solución:</strong> Invertimos la CDF igualando a 0,5:
+        \[ 1 - e^{-0{,}5\,t} = 0{,}5 \implies e^{-0{,}5\,t} = 0{,}5 \implies t = \frac{\ln 2}{0{,}5} = 2\ln 2 \approx 1{,}386 \text{ h} \]
+        La <strong>mediana</strong> de vida es aproximadamente <strong>1,386 horas</strong>, inferior a la media de 2 horas, lo que refleja la asimetría derecha de la distribución exponencial.</p>
+        <p><strong>Interpretación:</strong> La mitad de los componentes fallan antes de 1,386 horas, pero la media se eleva a 2 horas debido a la cola larga de la distribución. En mantenimiento preventivo, esto indica que planificar sustituciones en torno a la mediana, y no a la media, garantiza cubrir al 50 % de los fallos más tempranos.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

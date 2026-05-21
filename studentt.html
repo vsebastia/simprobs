@@ -237,10 +237,16 @@
         </ul>
 
         <h3>Ejemplo resuelto</h3>
-        <p>Supón que quieres estimar la media de una población a partir de una muestra pequeña, por ejemplo el peso medio de un producto medido en 10 unidades.
-        La distribución t de Student permite calcular probabilidades, valores críticos y intervalos de confianza cuando la varianza poblacional es desconocida.
-        En la calculadora, selecciona <em>t de Student</em>, introduce los grados de libertad y utiliza PDF para densidad,
-            CDF para probabilidades acumuladas o cuantiles para obtener valores críticos en contrastes estadísticos.</p>
+        <p><strong>Situación:</strong> Se mide el tiempo de reacción (en ms) de una muestra de \(n = 10\) conductores. Suponiendo que la varianza poblacional es desconocida, el estadístico de contraste sigue una \(t\) de Student con \(\nu = n - 1 = 9\) grados de libertad.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad acumulada \(P(T \leq 2{,}262)\) con \(\nu = 9\)?</p>
+        <p><strong>Solución:</strong> Consultando la CDF de la \(t_{9}\) en \(t = 2{,}262\):
+        \[ P(T \leq 2{,}262) \approx 0{,}975 \]
+        Es decir, el <strong>97,5 %</strong> de los valores de la distribución \(t_9\) se encuentran por debajo de 2,262. Equivalentemente, la cola derecha es \(P(T > 2{,}262) = 0{,}025\).</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es el valor crítico \(t^*\) para un contraste bilateral al nivel \(\alpha = 0{,}05\) con \(\nu = 9\)?</p>
+        <p><strong>Solución:</strong> En un contraste bilateral al 5 % necesitamos el cuantil que deja \(\alpha/2 = 0{,}025\) en cada cola, es decir \(P(T \leq t^*) = 0{,}975\):
+        \[ t^*_{0{,}025,\,9} = 2{,}262 \]
+        Si el estadístico \(|t_{\text{obs}}| > 2{,}262\), rechazamos \(H_0\) al nivel del 5 %.</p>
+        <p><strong>Interpretación:</strong> Con solo 9 grados de libertad las colas de la \(t\) son más pesadas que las de la normal estándar (donde el valor crítico bilateral al 5 % sería 1,96). A medida que \(\nu\) crece, la \(t_\nu\) converge a la normal estándar y los valores críticos se aproximan a \(\pm 1{,}96\).</p>
   </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

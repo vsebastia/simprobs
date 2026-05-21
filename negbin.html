@@ -236,7 +236,17 @@
     </ul>
 
 <h3>Ejemplo resuelto</h3>
-<p>Supón que un equipo de ventas necesita cerrar 5 contratos y cada intento tiene una probabilidad de éxito del 20%. La distribución binomial negativa permite calcular la probabilidad de necesitar exactamente cierto número de intentos fallidos antes de lograr esos contratos. En la calculadora, selecciona <em>binomial negativa</em>, introduce r y p, y utiliza PMF para probabilidades exactas o CDF para probabilidades acumuladas.</p>
+<p><strong>Situación:</strong> Un investigador realiza ensayos clínicos independientes, cada uno con una probabilidad de éxito de \(p = 0{,}4\). Quiere saber cuántos fracasos acumula antes de conseguir exactamente \(r = 3\) éxitos. Sea \(X\) el número de fracasos antes del tercer éxito.</p>
+<p><strong>Pregunta 1:</strong> ¿Cuál es la probabilidad de obtener exactamente 5 fracasos antes del tercer éxito, \(P(X = 5)\)?</p>
+<p><strong>Solución:</strong> Usamos la PMF de la binomial negativa. El tercer éxito ocurre en el ensayo \(r + k = 3 + 5 = 8\), con los 2 éxitos restantes distribuidos en los 7 primeros ensayos:
+\[ P(X = 5) = \binom{r + k - 1}{k}\,p^r\,(1-p)^k = \binom{7}{5}(0{,}4)^3(0{,}6)^5 \]
+\[ = 21 \times 0{,}064 \times 0{,}07776 \approx 0{,}1045 \]
+Hay aproximadamente un <strong>10,45 %</strong> de probabilidad de acumular exactamente 5 fracasos antes del tercer éxito.</p>
+<p><strong>Pregunta 2:</strong> ¿Cuál es el número esperado de fracasos antes del tercer éxito, \(E[X]\)?</p>
+<p><strong>Solución:</strong> La media de la binomial negativa es:
+\[ E[X] = \frac{r(1-p)}{p} = \frac{3 \times 0{,}6}{0{,}4} = \frac{1{,}8}{0{,}4} = 4{,}5 \]
+En promedio se esperan <strong>4,5 fracasos</strong> antes de completar 3 éxitos, lo que implica un total esperado de \(3 + 4{,}5 = 7{,}5\) ensayos.</p>
+<p><strong>Interpretación:</strong> Con una tasa de éxito del 40 %, conseguir 3 éxitos requiere en promedio 7,5 intentos. Conocer esta distribución permite planificar recursos y establecer intervalos de confianza para el número total de ensayos necesarios.</p>
 </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>

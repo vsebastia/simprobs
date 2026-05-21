@@ -233,11 +233,18 @@
             <li><strong>x:</strong> valor positivo donde se evalúa la distribución (x &gt; 0).</li>
         </ul>
         <h3>Ejemplo resuelto</h3>
-        <p>Un centro de atención al cliente recibe llamadas a razón de 4 por hora (tasa λ = 4 h⁻¹, θ = 0,25 h por llamada).
-        El tiempo hasta atender las 3 primeras llamadas sigue una Gamma(k = 3, θ = 0,25).
-        Su media es 3 × 0,25 = 0,75 h = 45 minutos.
-        Con la calculadora, introduce k = 3 y θ = 0,25 y usa la CDF con x = 1 para obtener la probabilidad de que las
-        3 llamadas lleguen en menos de una hora, o usa cuantiles para encontrar el tiempo que no se supera el 90 % de las veces.</p>
+        <p><strong>Situación:</strong> El tiempo de reparación de un equipo industrial se modela con una distribución Gamma con parámetro de forma \(\alpha = 3\) y parámetro de escala \(\beta = 2\) horas. Esto equivale a suponer que la reparación requiere completar 3 etapas independientes, cada una con duración media de 2 horas.</p>
+        <p><strong>Pregunta 1:</strong> ¿Cuál es el tiempo medio de reparación y cuál es la probabilidad de terminar en 8 horas o menos, \(P(X \leq 8)\)?</p>
+        <p><strong>Solución:</strong> La media de la Gamma(\(\alpha, \beta\)) es:
+        \[ E[X] = \alpha \cdot \beta = 3 \times 2 = 6 \text{ horas} \]
+        Para calcular \(P(X \leq 8)\) usamos la función gamma incompleta regularizada \(P(X \leq 8) = \Gamma_{\text{reg}}(3;\, 8/2) = \Gamma_{\text{reg}}(3;\, 4)\). Evaluando numéricamente:
+        \[ P(X \leq 8) \approx 0{,}714 \]
+        Hay aproximadamente un <strong>71,4 %</strong> de probabilidad de completar la reparación en 8 horas o menos.</p>
+        <p><strong>Pregunta 2:</strong> ¿Cuál es la varianza y qué significa respecto a la incertidumbre del tiempo de reparación?</p>
+        <p><strong>Solución:</strong> La varianza de la Gamma es:
+        \[ \text{Var}(X) = \alpha \cdot \beta^2 = 3 \times 4 = 12 \text{ h}^2 \implies \sigma = \sqrt{12} \approx 3{,}46 \text{ h} \]
+        La desviación típica de 3,46 horas representa más del 57 % de la media, lo que refleja una variabilidad considerable en los tiempos de reparación.</p>
+        <p><strong>Interpretación:</strong> Con media de 6 horas y \(P(X \leq 8) \approx 0{,}714\), el 28,6 % de las reparaciones se prolongan más de 8 horas. Si el objetivo de nivel de servicio es completar el 90 % de las reparaciones a tiempo, se puede usar el percentil 90 de la Gamma(3, 2) como plazo máximo garantizado.</p>
     </article>
         <section class="card content-card">
             <h3>Cómo interpretar el resultado</h3>
