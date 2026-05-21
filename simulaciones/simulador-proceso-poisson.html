@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Simulador de proceso de Poisson | ProbLab</title>
+  <meta name="description" content="Simulador interactivo del proceso de Poisson. Visualiza trayectorias, la distribución del número de eventos y los tiempos entre llegadas con curvas teóricas superpuestas.">
+  <link rel="canonical" href="https://problabtools.es/simulaciones/simulador-proceso-poisson.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Simulador de proceso de Poisson | ProbLab">
+  <meta property="og:description" content="Simulador interactivo del proceso de Poisson. Visualiza trayectorias, la distribución del número de eventos y los tiempos entre llegadas con curvas teóricas superpuestas.">
+  <meta property="og:url" content="https://problabtools.es/simulaciones/simulador-proceso-poisson.html">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/simulaciones/simulador-proceso-poisson.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simulador de proceso de Poisson | ProbLab">
+  <meta name="twitter:description" content="Simulador interactivo del proceso de Poisson. Visualiza trayectorias, la distribución del número de eventos y los tiempos entre llegadas con curvas teóricas superpuestas.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <link rel="stylesheet" href="../style_new.css?v=20260521">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Simulaciones", "item": "https://problabtools.es/simulaciones/"},
+          {"@type": "ListItem", "position": 3, "name": "Proceso de Poisson", "item": "https://problabtools.es/simulaciones/simulador-proceso-poisson.html"}
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "Simulador de proceso de Poisson | ProbLab",
+        "url": "https://problabtools.es/simulaciones/simulador-proceso-poisson.html",
+        "description": "Simulador interactivo del proceso de Poisson. Visualiza trayectorias, la distribución del número de eventos y los tiempos entre llegadas con curvas teóricas superpuestas.",
+        "inLanguage": "es",
+        "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Simulador de proceso de Poisson",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "url": "https://problabtools.es/simulaciones/simulador-proceso-poisson.html",
+        "description": "Simulador interactivo del proceso de Poisson. Visualiza trayectorias, la distribución del número de eventos y los tiempos entre llegadas con curvas teóricas superpuestas.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        }
+      }
+    ]
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+  <style>
+    /* Mode tabs */
+    .mode-tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 2px solid rgba(79, 70, 229, 0.15);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .mode-tab {
+      padding: 9px 18px;
+      border-radius: 10px 10px 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+      transition: background 0.15s, color 0.15s;
+      position: relative;
+      bottom: -2px;
+    }
+    .mode-tab:hover {
+      background: rgba(79, 70, 229, 0.07);
+      color: #312e81;
+    }
+    .mode-tab.active {
+      background: #ffffff;
+      color: #4f46e5;
+      border-color: rgba(79, 70, 229, 0.2);
+      border-bottom-color: #ffffff;
+    }
+    .mode-section {
+      display: none;
+    }
+    .mode-section.active {
+      display: block;
+    }
+    /* Conditional controls */
+    .ctrl-trayectoria,
+    .ctrl-distribucion,
+    .ctrl-tiempos {
+      display: none;
+    }
+    /* Results grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .stat-card {
+      background: rgba(79, 70, 229, 0.06);
+      border: 1px solid rgba(79, 70, 229, 0.15);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .stat-card .stat-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .stat-card .stat-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #312e81;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-card .stat-sublabel {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+    /* Chart placeholder */
+    .chart-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 340px;
+      background: rgba(15, 23, 42, 0.02);
+      border: 2px dashed rgba(79, 70, 229, 0.18);
+      border-radius: 14px;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 24px;
+    }
+    /* Interpretation box */
+    .interp-box {
+      margin-top: 14px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(16, 163, 74, 0.08), rgba(16, 163, 74, 0.03));
+      border: 1px solid rgba(16, 163, 74, 0.22);
+      color: #14532d;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    /* Related tools */
+    .related-tools p {
+      margin: 0 0 8px;
+    }
+    .related-tools p:last-child {
+      margin-bottom: 0;
+    }
+    .related-tools a {
+      color: #2563eb;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .related-tools a:hover {
+      text-decoration: underline;
+    }
+    /* Sim layout: side panel + chart area */
+    .sim-layout {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .sim-panel {
+      position: sticky;
+      top: 18px;
+    }
+    @media (max-width: 860px) {
+      .sim-layout {
+        grid-template-columns: 1fr;
+      }
+      .sim-panel {
+        position: static;
+      }
+      .results-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+      .mode-tab {
+        font-size: 0.82rem;
+        padding: 7px 12px;
+      }
+    }
+    /* Trajectory list */
+    .traj-list {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.87rem;
+      color: #334155;
+    }
+    .traj-list li {
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      display: flex;
+      justify-content: space-between;
+    }
+    .traj-list li:last-child {
+      border-bottom: none;
+    }
+    .traj-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="../index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="../distribuciones/">Distribuciones</a></li>
+            <li><a href="../tablas-estadisticas/">Tablas</a></li>
+            <li><a href="../intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="../tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="../contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="../ab-testing/">Test A/B</a></li>
+            <li><a href="../simulaciones/">Simulaciones</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+  <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <ol>
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../simulaciones/">Simulaciones</a></li>
+      <li><span aria-current="page">Proceso de Poisson</span></li>
+    </ol>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Simulación estadística</p>
+    <h1>Simulador de proceso de Poisson</h1>
+    <p class="hero-subtitle">Simula un proceso de Poisson con tasa λ y horizonte T. Visualiza las trayectorias, la distribución del número de eventos y los tiempos entre llegadas.</p>
+  </header>
+
+  <main>
+
+    <!-- Tabs -->
+    <div class="mode-tabs" role="tablist" aria-label="Modos de simulación">
+      <button class="mode-tab active" role="tab" aria-selected="true" aria-controls="panel-trayectoria" id="tab-trayectoria" data-mode="trayectoria">Trayectoria</button>
+      <button class="mode-tab" role="tab" aria-selected="false" aria-controls="panel-distribucion" id="tab-distribucion" data-mode="distribucion">Distribución N(T)</button>
+      <button class="mode-tab" role="tab" aria-selected="false" aria-controls="panel-tiempos" id="tab-tiempos" data-mode="tiempos">Tiempos entre llegadas</button>
+    </div>
+
+    <!-- MODE 1: Trayectoria -->
+    <div id="panel-trayectoria" class="mode-section active" role="tabpanel" aria-labelledby="tab-trayectoria">
+      <div class="sim-layout">
+        <!-- Panel de control -->
+        <aside class="card sim-panel sample-size-panel" aria-label="Parámetros de simulación">
+          <h2 style="margin:0 0 4px; font-size:1.1rem;">Panel de control</h2>
+          <p style="margin:0 0 16px; color:var(--text-muted); font-size:0.87rem;">Parámetros del proceso de Poisson</p>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="lambda-t">λ (tasa de eventos por unidad de tiempo)</label>
+              <input type="number" id="lambda-t" value="3" min="0.1" max="50" step="0.1" aria-label="Tasa lambda">
+            </div>
+            <div class="form-group">
+              <label for="horizon-t">T (horizonte temporal)</label>
+              <input type="number" id="horizon-t" value="5" min="0.5" max="100" step="0.5" aria-label="Horizonte temporal T">
+            </div>
+            <div class="form-group ctrl-trayectoria" style="display:block;">
+              <label for="num-traj">Número de trayectorias a mostrar</label>
+              <select id="num-traj" aria-label="Número de trayectorias">
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="calculate-btn" id="btn-simular-t" type="button">Simular</button>
+        </aside>
+
+        <!-- Results area -->
+        <div>
+          <div id="chart-wrap-t" class="chart-wrap">
+            <div class="chart-placeholder" id="placeholder-t">
+              <div>
+                <div style="font-size:2rem; margin-bottom:8px;">📈</div>
+                Haz clic en <strong>'Simular'</strong> para comenzar.<br>
+                <span style="font-size:0.85rem;">Se mostrarán las trayectorias N(t) como funciones escalonadas.</span>
+              </div>
+            </div>
+            <canvas id="chart-trayectoria" style="display:none;"></canvas>
+          </div>
+
+          <div id="results-t" style="display:none;">
+            <div class="results-grid" id="stats-t"></div>
+            <ul class="traj-list" id="traj-detail"></ul>
+            <div class="interp-box" id="interp-t"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODE 2: Distribución N(T) -->
+    <div id="panel-distribucion" class="mode-section" role="tabpanel" aria-labelledby="tab-distribucion">
+      <div class="sim-layout">
+        <aside class="card sim-panel sample-size-panel" aria-label="Parámetros de simulación">
+          <h2 style="margin:0 0 4px; font-size:1.1rem;">Panel de control</h2>
+          <p style="margin:0 0 16px; color:var(--text-muted); font-size:0.87rem;">Parámetros del proceso de Poisson</p>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="lambda-d">λ (tasa de eventos por unidad de tiempo)</label>
+              <input type="number" id="lambda-d" value="3" min="0.1" max="50" step="0.1" aria-label="Tasa lambda">
+            </div>
+            <div class="form-group">
+              <label for="horizon-d">T (horizonte temporal)</label>
+              <input type="number" id="horizon-d" value="5" min="0.5" max="100" step="0.5" aria-label="Horizonte temporal T">
+            </div>
+            <div class="form-group ctrl-distribucion" style="display:block;">
+              <label for="num-sims-d">Número de simulaciones</label>
+              <select id="num-sims-d" aria-label="Número de simulaciones">
+                <option value="100">100</option>
+                <option value="500">500</option>
+                <option value="1000" selected>1000</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="calculate-btn" id="btn-simular-d" type="button">Simular</button>
+        </aside>
+
+        <div>
+          <div id="chart-wrap-d" class="chart-wrap">
+            <div class="chart-placeholder" id="placeholder-d">
+              <div>
+                <div style="font-size:2rem; margin-bottom:8px;">📊</div>
+                Haz clic en <strong>'Simular'</strong> para comenzar.<br>
+                <span style="font-size:0.85rem;">Se mostrará el histograma de N(T) vs la PMF teórica de Poisson(λT).</span>
+              </div>
+            </div>
+            <canvas id="chart-distribucion" style="display:none;"></canvas>
+          </div>
+
+          <div id="results-d" style="display:none;">
+            <div class="results-grid" id="stats-d"></div>
+            <div class="interp-box" id="interp-d"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODE 3: Tiempos entre llegadas -->
+    <div id="panel-tiempos" class="mode-section" role="tabpanel" aria-labelledby="tab-tiempos">
+      <div class="sim-layout">
+        <aside class="card sim-panel sample-size-panel" aria-label="Parámetros de simulación">
+          <h2 style="margin:0 0 4px; font-size:1.1rem;">Panel de control</h2>
+          <p style="margin:0 0 16px; color:var(--text-muted); font-size:0.87rem;">Parámetros del proceso de Poisson</p>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="lambda-e">λ (tasa de eventos por unidad de tiempo)</label>
+              <input type="number" id="lambda-e" value="3" min="0.1" max="50" step="0.1" aria-label="Tasa lambda">
+            </div>
+            <div class="form-group">
+              <label for="horizon-e">T (horizonte temporal)</label>
+              <input type="number" id="horizon-e" value="5" min="0.5" max="100" step="0.5" aria-label="Horizonte temporal T">
+            </div>
+            <div class="form-group ctrl-tiempos" style="display:block;">
+              <label for="num-sims-e">Número de simulaciones</label>
+              <select id="num-sims-e" aria-label="Número de simulaciones">
+                <option value="100">100</option>
+                <option value="500">500</option>
+                <option value="1000" selected>1000</option>
+                <option value="5000">5000</option>
+                <option value="10000">10000</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="calculate-btn" id="btn-simular-e" type="button">Simular</button>
+        </aside>
+
+        <div>
+          <div id="chart-wrap-e" class="chart-wrap">
+            <div class="chart-placeholder" id="placeholder-e">
+              <div>
+                <div style="font-size:2rem; margin-bottom:8px;">⏱️</div>
+                Haz clic en <strong>'Simular'</strong> para comenzar.<br>
+                <span style="font-size:0.85rem;">Se mostrará el histograma de tiempos entre llegadas vs la PDF exponencial teórica.</span>
+              </div>
+            </div>
+            <canvas id="chart-tiempos" style="display:none;"></canvas>
+          </div>
+
+          <div id="results-e" style="display:none;">
+            <div class="results-grid" id="stats-e"></div>
+            <div class="interp-box" id="interp-e"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Educational content -->
+    <section class="card content-card">
+      <h2>¿Qué es un proceso de Poisson?</h2>
+      <p>Un <strong>proceso de Poisson</strong> con tasa λ es un proceso estocástico en tiempo continuo \(N(t)\) que cuenta el número de eventos ocurridos hasta el tiempo \(t\). Se caracteriza por tres propiedades fundamentales:</p>
+      <ol>
+        <li><strong>Incrementos independientes:</strong> el número de eventos en intervalos de tiempo disjuntos son variables aleatorias independientes. Lo que ocurre en \([0,s]\) no afecta a lo que ocurre en \([s,s+t]\).</li>
+        <li><strong>Incrementos estacionarios:</strong> \(N(s+t) - N(s)\) tiene la misma distribución que \(N(t)\) para todo \(s \geq 0\). La distribución de los eventos depende solo de la longitud del intervalo, no de su posición en el tiempo.</li>
+        <li><strong>Orderliness (ausencia de eventos simultáneos):</strong> la probabilidad de que ocurran dos o más eventos en un intervalo muy pequeño \([t, t+\Delta t]\) es \(o(\Delta t)\), es decir, despreciable respecto a \(\Delta t\).</li>
+      </ol>
+      <p>Como consecuencia de estas propiedades, el número de eventos en cualquier intervalo de longitud \(t\) sigue una distribución de <strong>Poisson con media \(\lambda t\)</strong>:</p>
+      <div class="formula-box">
+        \[ P(N(t) = k) = \frac{e^{-\lambda t} (\lambda t)^k}{k!}, \quad k = 0, 1, 2, \ldots \]
+      </div>
+      <p>La varianza también es \(\lambda t\), lo que implica que la variabilidad relativa \(\sqrt{\lambda t}/(\lambda t) = 1/\sqrt{\lambda t}\) decrece con el tiempo: cuanto más largo el horizonte, más predecible (en términos relativos) el número de eventos.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>La distribución exponencial como tiempo entre eventos</h2>
+      <p>Sea \(T_1\) el tiempo hasta el primer evento. Calcular su distribución es sencillo aprovechando la conexión con el proceso de Poisson:</p>
+      <div class="formula-box">
+        \[ P(T_1 > t) = P(N(t) = 0) = e^{-\lambda t} \]
+      </div>
+      <p>Por tanto, \(T_1 \sim \text{Exponencial}(\lambda)\) con función de densidad \(f(t) = \lambda e^{-\lambda t}\), media \(1/\lambda\) y mediana \(\ln(2)/\lambda\).</p>
+      <p>Por la propiedad de incrementos independientes y estacionarios, todos los tiempos entre eventos consecutivos \(T_1, T_2, T_3, \ldots\) son independientes e idénticamente distribuidos como \(\text{Exponencial}(\lambda)\). Esta propiedad es <em>equivalente</em> a que el proceso sea de Poisson.</p>
+      <p>La distribución exponencial satisface la famosa <strong>propiedad de falta de memoria</strong>:</p>
+      <div class="formula-box">
+        \[ P(T > s + t \mid T > s) = P(T > t) \]
+      </div>
+      <p>Es decir, el tiempo restante hasta el próximo evento no depende del tiempo que ya lleva esperando. Esta es la única distribución continua con esta propiedad — el análogo continuo de la distribución geométrica (la única discreta con falta de memoria).</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Aplicaciones del proceso de Poisson</h2>
+      <p>El proceso de Poisson es el modelo de referencia para eventos raros o eventos que llegan de forma aleatoria a tasa constante. Algunas aplicaciones clásicas:</p>
+      <ul>
+        <li><strong>Teoría de colas (M/M/1):</strong> las llegadas de clientes a un servicio (banco, ventanilla, servidor web) se modelan frecuentemente con un proceso de Poisson con tasa λ. Las colas M/M/1 suponen además que el tiempo de servicio es exponencial con tasa μ. La estabilidad del sistema requiere ρ = λ/μ &lt; 1.</li>
+        <li><strong>Desintegración radiactiva:</strong> las emisiones de partículas alfa o beta de una muestra radiactiva siguen (con gran precisión) un proceso de Poisson, ya que cada núcleo se desintegra de forma independiente con probabilidad constante por unidad de tiempo.</li>
+        <li><strong>Tráfico de red:</strong> los paquetes de datos en redes de telecomunicaciones, las solicitudes a un servidor web o las llamadas telefónicas entrantes se modelan con procesos de Poisson como primera aproximación.</li>
+        <li><strong>Reclamaciones de seguros:</strong> en actuaría, el número de siniestros en un período se modela con una Poisson (proceso de Poisson compuesto cuando cada siniestro tiene un monto aleatorio).</li>
+        <li><strong>Epidemiología de enfermedades raras:</strong> la incidencia de enfermedades raras en una población de tamaño n, con probabilidad p pequeña de padecerla, puede aproximarse por Poisson(np).</li>
+        <li><strong>Astronomía y física de partículas:</strong> los fotones que llegan a un detector, los cósmicos que impactan en un área, o las colisiones en un acelerador de partículas.</li>
+      </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>Generalizaciones del proceso de Poisson</h2>
+      <p>El proceso de Poisson homogéneo (tasa λ constante) tiene varias generalizaciones importantes:</p>
+      <ul>
+        <li><strong>Proceso de Poisson no homogéneo:</strong> la tasa varía con el tiempo, \(\lambda(t)\). El número esperado de eventos en \([0, T]\) es \(\int_0^T \lambda(t)\,dt\). Útil cuando la intensidad del proceso cambia a lo largo del día (p. ej., llamadas telefónicas: más frecuentes a mediodía que a las 3 de la madrugada).</li>
+        <li><strong>Proceso de Poisson compuesto:</strong> cada evento lleva asociado un "tamaño" o "severidad" aleatoria \(Y_i\). El proceso \(S(t) = \sum_{i=1}^{N(t)} Y_i\) es un proceso de Poisson compuesto. Es el modelo básico en riesgo de seguros para el total de reclamaciones.</li>
+        <li><strong>Proceso de Cox (Poisson doblemente estocástico):</strong> la tasa \(\lambda\) es en sí misma un proceso estocástico. Captura la sobredispersión observada cuando la varianza empírica supera a la media (algo que el Poisson puro no puede modelar).</li>
+        <li><strong>Proceso de Hawkes:</strong> proceso de Poisson autoexcitante en el que cada evento aumenta temporalmente la intensidad futura. Modela fenómenos de contagio (p. ej., terremotos réplica, propagación de noticias en redes sociales, órdenes en mercados financieros).</li>
+        <li><strong>Proceso de Poisson marcado:</strong> generalización en la que cada evento lleva una "marca" que puede contener información adicional (tipo de evento, ubicación espacial, magnitud, etc.).</li>
+      </ul>
+    </section>
+
+    <section class="card content-card faq-section">
+      <h2>Preguntas frecuentes</h2>
+
+      <article>
+        <h3>¿Por qué la tasa λ aparece tanto en la distribución de Poisson como en la exponencial?</h3>
+        <p>Son dos caras de la misma moneda. λ es la tasa de ocurrencia del proceso: cuántos eventos esperamos por unidad de tiempo. En la distribución de Poisson, λt es el número esperado de eventos en el intervalo \([0,t]\). En la distribución exponencial, \(1/\lambda\) es el tiempo esperado hasta el próximo evento. Si λ es grande (muchos eventos por unidad de tiempo), la media \(1/\lambda\) del tiempo entre eventos es pequeña — las llegadas son frecuentes y los esperas cortas. Ambas formulaciones son equivalentes: especificar uno determina completamente el otro.</p>
+      </article>
+
+      <article>
+        <h3>¿Puede usarse el proceso de Poisson cuando los eventos no son completamente independientes?</h3>
+        <p>No directamente. La independencia de los incrementos es una propiedad esencial del proceso de Poisson: si el conocimiento de lo que ha ocurrido en el pasado cambia nuestra expectativa de lo que ocurrirá en el futuro (más allá del tiempo transcurrido), el proceso no es Poisson. Para eventos con correlación temporal — p. ej., terremotos (una réplica aumenta la probabilidad de otra), actividad en redes sociales (un tuit viral genera más respuestas), o datos de crédito (la morosidad de un cliente influye en la de vecinos) — se utilizan modelos más ricos como los procesos de Hawkes, los procesos de Poisson con frailty o los procesos de renovación generalizados.</p>
+      </article>
+
+      <article>
+        <h3>¿Cómo se relaciona el proceso de Poisson con la distribución binomial?</h3>
+        <p>Cuando \(n \to \infty\) y \(p \to 0\) con \(np = \lambda\) fijo, la distribución \(\text{Binomial}(n, p)\) converge a la distribución \(\text{Poisson}(\lambda)\). Esta es la <em>ley de los sucesos raros</em> (o de Poisson). Intuitivamente: dividamos el intervalo \([0,T]\) en \(n\) subintervalos pequeños de longitud \(T/n\). En cada uno puede ocurrir un evento con probabilidad \(p \approx \lambda T/n\). El número total de eventos es aproximadamente \(\text{Binomial}(n, p)\) que converge a \(\text{Poisson}(\lambda T)\) cuando \(n \to \infty\). Esta derivación también justifica las propiedades del proceso de Poisson de forma constructiva.</p>
+      </article>
+
+      <article>
+        <h3>¿Cómo interpreto la varianza empírica si coincide con la media?</h3>
+        <p>En la distribución de Poisson, la varianza teórica es igual a la media: \(\text{Var}(N(T)) = \mathbb{E}[N(T)] = \lambda T\). Si en tus simulaciones la media y la varianza empíricas son similares, es una confirmación de que el proceso simulado es efectivamente de Poisson. Si la varianza empírica supera mucho a la media (sobredispersión), podría indicar que el modelo subyacente real no es Poisson puro, y valdría la pena considerar una distribución binomial negativa o un proceso de Cox.</p>
+      </article>
+    </section>
+
+    <section class="card content-card">
+      <h2>Herramientas relacionadas</h2>
+      <div class="related-tools">
+        <p><a href="../distribuciones/">Calculadoras de distribuciones</a> — calcula probabilidades de la distribución de Poisson y la exponencial.</p>
+        <p><a href="../simulaciones/">Otras simulaciones estadísticas</a> — TCL, intervalos de confianza, cadenas de Markov.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="../sobre.html">Sobre ProbLab</a> ·
+      <a href="../metodologia.html">Metodología</a> ·
+      <a href="../aviso-legal.html">Aviso legal</a> ·
+      <a href="../privacidad.html">Privacidad</a> ·
+      <a href="../cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+// ─── Utility functions ──────────────────────────────────────────────────────
+
+/**
+ * Generate a single Poisson process trajectory up to time T.
+ * Returns sorted array of event times.
+ */
+function generatePoissonProcess(lambda, T) {
+  const events = [];
+  let t = 0;
+  while (true) {
+    const interarrival = -Math.log(Math.random()) / lambda;
+    t += interarrival;
+    if (t > T) break;
+    events.push(t);
+  }
+  return events;
+}
+
+/** Count events in [0, T] for one simulation. */
+function countEvents(lambda, T) {
+  return generatePoissonProcess(lambda, T).length;
+}
+
+/** Poisson PMF: P(X=k) = e^{-mu} * mu^k / k! */
+function poissonPMF(k, mu) {
+  if (k < 0) return 0;
+  if (mu === 0) return k === 0 ? 1 : 0;
+  let logP = -mu + k * Math.log(mu);
+  for (let i = 1; i <= k; i++) logP -= Math.log(i);
+  return Math.exp(logP);
+}
+
+/** Exponential PDF: f(x) = lambda * exp(-lambda * x) */
+function exponentialPDF(x, lambda) {
+  if (x < 0) return 0;
+  return lambda * Math.exp(-lambda * x);
+}
+
+/** Clamp and validate numeric inputs. */
+function getParam(id, defaultVal, minVal, maxVal) {
+  const el = document.getElementById(id);
+  let v = parseFloat(el.value);
+  if (isNaN(v)) v = defaultVal;
+  v = Math.max(minVal, Math.min(maxVal, v));
+  el.value = v;
+  return v;
+}
+
+function fmt(x, d = 3) {
+  return Number(x).toFixed(d);
+}
+
+// ─── Chart instances ─────────────────────────────────────────────────────────
+let chartT = null;
+let chartD = null;
+let chartE = null;
+
+const PALETTE = [
+  '#4f46e5','#0891b2','#16a34a','#dc2626','#d97706',
+  '#7c3aed','#db2777','#059669','#b45309','#374151'
+];
+
+// ─── TAB SWITCHING ────────────────────────────────────────────────────────────
+document.querySelectorAll('.mode-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.mode-tab').forEach(function(t) {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.mode-section').forEach(function(s) {
+      s.classList.remove('active');
+    });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    const panelId = tab.getAttribute('aria-controls');
+    document.getElementById(panelId).classList.add('active');
+  });
+});
+
+// ─── MODE 1: TRAYECTORIA ─────────────────────────────────────────────────────
+
+document.getElementById('btn-simular-t').addEventListener('click', function() {
+  simulateTrayectoria();
+});
+
+function simulateTrayectoria() {
+  const lambda = getParam('lambda-t', 3, 0.1, 50);
+  const T = getParam('horizon-t', 5, 0.5, 100);
+  const numTraj = parseInt(document.getElementById('num-traj').value, 10);
+
+  // Generate trajectories
+  const trajectories = [];
+  for (let i = 0; i < numTraj; i++) {
+    trajectories.push(generatePoissonProcess(lambda, T));
+  }
+
+  // Build chart datasets
+  const datasets = trajectories.map(function(events, idx) {
+    // Build step-function data
+    const data = [{x: 0, y: 0}];
+    for (let k = 0; k < events.length; k++) {
+      // Just before the jump: add a point at the same y (step before)
+      data.push({x: events[k], y: k});
+      // At the jump
+      data.push({x: events[k], y: k + 1});
+    }
+    // End point
+    data.push({x: T, y: events.length});
+
+    const color = PALETTE[idx % PALETTE.length];
+    return {
+      label: 'Trayectoria ' + (idx + 1),
+      data: data,
+      borderColor: color,
+      backgroundColor: 'transparent',
+      borderWidth: idx === 0 ? 2.5 : 1.8,
+      pointRadius: 0,
+      tension: 0,
+      stepped: false,
+      showLine: true,
+      parsing: false
+    };
+  });
+
+  // Destroy old chart
+  if (chartT) { chartT.destroy(); chartT = null; }
+
+  // Hide placeholder, show canvas
+  document.getElementById('placeholder-t').style.display = 'none';
+  const canvas = document.getElementById('chart-trayectoria');
+  canvas.style.display = 'block';
+
+  // Max count for y-axis
+  const maxCount = Math.max.apply(null, trajectories.map(function(e){ return e.length; }));
+
+  chartT = new Chart(canvas, {
+    type: 'scatter',
+    data: { datasets: datasets },
+    options: {
+      animation: { duration: 300 },
+      responsive: true,
+      maintainAspectRatio: false,
+      parsing: false,
+      scales: {
+        x: {
+          type: 'linear',
+          title: { display: true, text: 'Tiempo t', font: { weight: '600' } },
+          min: 0,
+          max: T,
+          grid: { color: 'rgba(148,163,184,0.2)' }
+        },
+        y: {
+          type: 'linear',
+          title: { display: true, text: 'N(t) — número de eventos', font: { weight: '600' } },
+          min: 0,
+          max: Math.max(maxCount + 1, Math.ceil(lambda * T * 1.5)),
+          ticks: { stepSize: 1 },
+          grid: { color: 'rgba(148,163,184,0.2)' }
+        }
+      },
+      plugins: {
+        legend: {
+          display: numTraj > 1,
+          position: 'top',
+          labels: { font: { size: 11 }, boxWidth: 18, padding: 10 }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              return 'N(' + fmt(ctx.parsed.x, 2) + ') = ' + ctx.parsed.y;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Stats
+  const counts = trajectories.map(function(e){ return e.length; });
+  const empiricalMean = counts.reduce(function(a,b){ return a+b; }, 0) / counts.length;
+  const theoryMean = lambda * T;
+
+  const statsEl = document.getElementById('stats-t');
+  statsEl.innerHTML =
+    '<div class="stat-card">' +
+      '<div class="stat-label">Valor esperado teórico</div>' +
+      '<div class="stat-value">λT = ' + fmt(theoryMean, 2) + '</div>' +
+      '<div class="stat-sublabel">λ = ' + lambda + ', T = ' + T + '</div>' +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-label">Media empírica</div>' +
+      '<div class="stat-value">' + fmt(empiricalMean, 2) + '</div>' +
+      '<div class="stat-sublabel">Promedio de ' + numTraj + ' trayectorias</div>' +
+    '</div>';
+
+  // Per-trajectory detail
+  const listEl = document.getElementById('traj-detail');
+  listEl.innerHTML = '';
+  trajectories.forEach(function(events, idx) {
+    const color = PALETTE[idx % PALETTE.length];
+    const li = document.createElement('li');
+    li.innerHTML =
+      '<span><span class="traj-dot" style="background:' + color + '"></span>Trayectoria ' + (idx+1) + '</span>' +
+      '<span><strong>' + events.length + '</strong> eventos</span>';
+    listEl.appendChild(li);
+  });
+
+  document.getElementById('interp-t').innerHTML =
+    'Las trayectorias muestran N(t) como función escalonada creciente. ' +
+    'Cada salto de altura 1 corresponde a la llegada de un evento. El valor teórico esperado en T = ' + T + ' es ' +
+    '<strong>λT = ' + fmt(theoryMean, 2) + '</strong>. La media empírica con ' + numTraj +
+    ' trayectoria' + (numTraj > 1 ? 's' : '') + ' es <strong>' + fmt(empiricalMean, 2) + '</strong>.';
+
+  document.getElementById('results-t').style.display = 'block';
+}
+
+// ─── MODE 2: DISTRIBUCIÓN N(T) ───────────────────────────────────────────────
+
+document.getElementById('btn-simular-d').addEventListener('click', function() {
+  simulateDistribucion();
+});
+
+function simulateDistribucion() {
+  const lambda = getParam('lambda-d', 3, 0.1, 50);
+  const T = getParam('horizon-d', 5, 0.5, 100);
+  const numSims = parseInt(document.getElementById('num-sims-d').value, 10);
+  const mu = lambda * T;  // Poisson mean
+
+  // Simulate counts
+  const counts = [];
+  for (let i = 0; i < numSims; i++) {
+    counts.push(countEvents(lambda, T));
+  }
+
+  // Frequency table
+  const maxK = Math.max.apply(null, counts) + 1;
+  const freq = new Array(maxK + 1).fill(0);
+  counts.forEach(function(c){ if (c <= maxK) freq[c]++; });
+
+  // X-axis labels
+  const labels = [];
+  for (let k = 0; k <= maxK; k++) labels.push(k);
+
+  // Theoretical PMF scaled to numSims
+  const pmfScaled = labels.map(function(k){ return poissonPMF(k, mu) * numSims; });
+
+  // Destroy old chart
+  if (chartD) { chartD.destroy(); chartD = null; }
+
+  document.getElementById('placeholder-d').style.display = 'none';
+  const canvas = document.getElementById('chart-distribucion');
+  canvas.style.display = 'block';
+
+  chartD = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Frecuencia empírica',
+          data: freq.slice(0, maxK + 1),
+          backgroundColor: 'rgba(79,70,229,0.6)',
+          borderColor: 'rgba(79,70,229,1)',
+          borderWidth: 1,
+          order: 2
+        },
+        {
+          label: 'PMF Poisson(' + fmt(mu, 2) + ') × ' + numSims,
+          data: pmfScaled,
+          type: 'line',
+          backgroundColor: 'transparent',
+          borderColor: '#f97316',
+          borderWidth: 2.5,
+          pointRadius: 4,
+          pointBackgroundColor: '#f97316',
+          tension: 0,
+          order: 1
+        }
+      ]
+    },
+    options: {
+      animation: { duration: 300 },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          title: { display: true, text: 'k — número de eventos en [0, T]', font: { weight: '600' } },
+          grid: { color: 'rgba(148,163,184,0.2)' }
+        },
+        y: {
+          title: { display: true, text: 'Frecuencia', font: { weight: '600' } },
+          min: 0,
+          grid: { color: 'rgba(148,163,184,0.2)' }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { font: { size: 11 }, boxWidth: 18, padding: 10 }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              if (ctx.datasetIndex === 0) {
+                return 'Observado: ' + ctx.parsed.y + ' veces (' + fmt(100 * ctx.parsed.y / numSims, 1) + '%)';
+              }
+              return 'Teórico: ' + fmt(ctx.parsed.y / numSims * 100, 1) + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Statistics
+  const empiricalMean = counts.reduce(function(a,b){ return a+b; }, 0) / numSims;
+  const empiricalVar = counts.reduce(function(s, c){ return s + (c - empiricalMean) * (c - empiricalMean); }, 0) / (numSims - 1);
+
+  const statsEl = document.getElementById('stats-d');
+  statsEl.innerHTML =
+    '<div class="stat-card">' +
+      '<div class="stat-label">Valor esperado teórico</div>' +
+      '<div class="stat-value">λT = ' + fmt(mu, 3) + '</div>' +
+      '<div class="stat-sublabel">Poisson(' + fmt(mu, 3) + ')</div>' +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-label">Media empírica</div>' +
+      '<div class="stat-value">' + fmt(empiricalMean, 3) + '</div>' +
+      '<div class="stat-sublabel">n = ' + numSims.toLocaleString('es-ES') + ' simulaciones</div>' +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-label">Varianza teórica</div>' +
+      '<div class="stat-value">λT = ' + fmt(mu, 3) + '</div>' +
+      '<div class="stat-sublabel">Igual a la media (Poisson)</div>' +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-label">Varianza empírica</div>' +
+      '<div class="stat-value">' + fmt(empiricalVar, 3) + '</div>' +
+      '<div class="stat-sublabel">Muestral (divisor n−1)</div>' +
+    '</div>';
+
+  document.getElementById('interp-d').innerHTML =
+    'La distribución empírica (barras azules) se superpone con la PMF de <strong>Poisson(λT) = Poisson(' + fmt(mu, 2) + ')</strong> teórica (línea naranja). ' +
+    'Cuantas más simulaciones uses, mejor será el ajuste. Con ' + numSims.toLocaleString('es-ES') + ' simulaciones, ' +
+    'la media empírica es <strong>' + fmt(empiricalMean, 3) + '</strong> y la varianza empírica es <strong>' + fmt(empiricalVar, 3) + '</strong> ' +
+    '(teóricas: ' + fmt(mu, 3) + ' ambas).';
+
+  document.getElementById('results-d').style.display = 'block';
+}
+
+// ─── MODE 3: TIEMPOS ENTRE LLEGADAS ─────────────────────────────────────────
+
+document.getElementById('btn-simular-e').addEventListener('click', function() {
+  simulateTiempos();
+});
+
+function simulateTiempos() {
+  const lambda = getParam('lambda-e', 3, 0.1, 50);
+  const T = getParam('horizon-e', 5, 0.5, 100);
+  const numSims = parseInt(document.getElementById('num-sims-e').value, 10);
+
+  // Collect all interarrival times from all trajectories
+  const interarrivals = [];
+  for (let i = 0; i < numSims; i++) {
+    const events = generatePoissonProcess(lambda, T);
+    // Compute interarrival times
+    let prev = 0;
+    for (let j = 0; j < events.length; j++) {
+      interarrivals.push(events[j] - prev);
+      prev = events[j];
+    }
+  }
+
+  if (interarrivals.length === 0) {
+    alert('No se generaron tiempos entre llegadas. Prueba con un λ o T mayor.');
+    return;
+  }
+
+  // Build histogram
+  const maxDisplay = 4 / lambda;  // show up to ~4 mean-lengths
+  const numBins = 30;
+  const binWidth = maxDisplay / numBins;
+
+  const binCounts = new Array(numBins).fill(0);
+  let outsideCount = 0;
+  interarrivals.forEach(function(x) {
+    const idx = Math.floor(x / binWidth);
+    if (idx < numBins) {
+      binCounts[idx]++;
+    } else {
+      outsideCount++;
+    }
+  });
+
+  // Convert to density: count / (n * binWidth)
+  const n = interarrivals.length;
+  const densities = binCounts.map(function(c){ return c / (n * binWidth); });
+
+  // Labels: midpoint of each bin
+  const barLabels = [];
+  for (let b = 0; b < numBins; b++) {
+    barLabels.push(fmt((b + 0.5) * binWidth, 3));
+  }
+
+  // Theoretical exponential PDF at bin midpoints
+  const pdfValues = barLabels.map(function(x){ return exponentialPDF(parseFloat(x), lambda); });
+
+  // Smooth PDF curve: more points
+  const pdfPoints = [];
+  const nPdfPts = 200;
+  for (let i = 0; i <= nPdfPts; i++) {
+    const x = (i / nPdfPts) * maxDisplay;
+    pdfPoints.push({ x: x, y: exponentialPDF(x, lambda) });
+  }
+
+  // Destroy old chart
+  if (chartE) { chartE.destroy(); chartE = null; }
+
+  document.getElementById('placeholder-e').style.display = 'none';
+  const canvas = document.getElementById('chart-tiempos');
+  canvas.style.display = 'block';
+
+  chartE = new Chart(canvas, {
+    type: 'bar',
+    data: {
+      labels: barLabels,
+      datasets: [
+        {
+          label: 'Densidad empírica',
+          data: densities,
+          backgroundColor: 'rgba(8,145,178,0.6)',
+          borderColor: 'rgba(8,145,178,1)',
+          borderWidth: 1,
+          order: 2,
+          barPercentage: 1.0,
+          categoryPercentage: 1.0
+        },
+        {
+          label: 'PDF Exponencial(λ=' + lambda + ')',
+          data: barLabels.map(function(x){ return exponentialPDF(parseFloat(x), lambda); }),
+          type: 'line',
+          backgroundColor: 'transparent',
+          borderColor: '#16a34a',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          tension: 0.3,
+          order: 1
+        }
+      ]
+    },
+    options: {
+      animation: { duration: 300 },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          title: { display: true, text: 'Tiempo entre eventos', font: { weight: '600' } },
+          ticks: {
+            maxTicksLimit: 10,
+            callback: function(val, idx) {
+              // Show every 3rd label for readability
+              return idx % 3 === 0 ? barLabels[idx] : '';
+            }
+          },
+          grid: { color: 'rgba(148,163,184,0.2)' }
+        },
+        y: {
+          title: { display: true, text: 'Densidad', font: { weight: '600' } },
+          min: 0,
+          grid: { color: 'rgba(148,163,184,0.2)' }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { font: { size: 11 }, boxWidth: 18, padding: 10 }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(ctx) {
+              if (ctx.datasetIndex === 0) {
+                return 'Densidad empírica: ' + fmt(ctx.parsed.y, 4);
+              }
+              return 'PDF teórica: ' + fmt(ctx.parsed.y, 4);
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Statistics
+  const meanTheory = 1 / lambda;
+  const medianTheory = Math.log(2) / lambda;
+  const empiricalMeanE = interarrivals.reduce(function(a,b){ return a+b; }, 0) / n;
+
+  // Empirical median
+  const sorted = interarrivals.slice().sort(function(a,b){ return a-b; });
+  const mid = Math.floor(sorted.length / 2);
+  const empiricalMedian = sorted.length % 2 !== 0
+    ? sorted[mid]
+    : (sorted[mid - 1] + sorted[mid]) / 2;
+
+  const statsEl = document.getElementById('stats-e');
+  statsEl.innerHTML =
+    '<div class="stat-card">' +
+      '<div class="stat-label">Tiempo medio teórico</div>' +
+      '<div class="stat-value">1/λ = ' + fmt(meanTheory, 4) + '</div>' +
+      '<div class="stat-sublabel">Media de la exponencial</div>' +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-label">Tiempo medio empírico</div>' +
+      '<div class="stat-value">' + fmt(empiricalMeanE, 4) + '</div>' +
+      '<div class="stat-sublabel">n = ' + n.toLocaleString('es-ES') + ' tiempos</div>' +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-label">Mediana teórica</div>' +
+      '<div class="stat-value">ln(2)/λ = ' + fmt(medianTheory, 4) + '</div>' +
+      '<div class="stat-sublabel">Percentil 50 teórico</div>' +
+    '</div>' +
+    '<div class="stat-card">' +
+      '<div class="stat-label">Mediana empírica</div>' +
+      '<div class="stat-value">' + fmt(empiricalMedian, 4) + '</div>' +
+      '<div class="stat-sublabel">Percentil 50 empírico</div>' +
+    '</div>';
+
+  document.getElementById('interp-e').innerHTML =
+    'Los tiempos entre eventos consecutivos siguen una distribución exponencial con media ' +
+    '<strong>1/λ = ' + fmt(meanTheory, 3) + '</strong>. Esta es la propiedad de "falta de memoria" del proceso de Poisson: ' +
+    'el tiempo restante hasta el próximo evento no depende del tiempo ya transcurrido desde el último. ' +
+    'Con ' + n.toLocaleString('es-ES') + ' tiempos recogidos de ' + numSims.toLocaleString('es-ES') +
+    ' trayectorias, la media empírica es <strong>' + fmt(empiricalMeanE, 3) + '</strong> ' +
+    '(teórica: ' + fmt(meanTheory, 3) + ') y la mediana empírica es <strong>' + fmt(empiricalMedian, 3) + '</strong> ' +
+    '(teórica: ' + fmt(medianTheory, 3) + ').';
+
+  document.getElementById('results-e').style.display = 'block';
+}
+</script>
+</body>
+</html>

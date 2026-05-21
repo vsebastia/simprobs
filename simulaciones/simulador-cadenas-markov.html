@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Simulador de cadenas de Markov | ProbLab</title>
+  <meta name="description" content="Simulador interactivo de cadenas de Markov. Define la matriz de transición, ejecuta la cadena y observa cómo la distribución de estados converge a la distribución estacionaria.">
+  <link rel="canonical" href="https://problabtools.es/simulaciones/simulador-cadenas-markov.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Simulador de cadenas de Markov | ProbLab">
+  <meta property="og:description" content="Simulador interactivo de cadenas de Markov. Define la matriz de transición, ejecuta la cadena y observa cómo la distribución de estados converge a la distribución estacionaria.">
+  <meta property="og:url" content="https://problabtools.es/simulaciones/simulador-cadenas-markov.html">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/simulaciones/simulador-cadenas-markov.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simulador de cadenas de Markov | ProbLab">
+  <meta name="twitter:description" content="Simulador interactivo de cadenas de Markov. Define la matriz de transición, ejecuta la cadena y observa cómo la distribución de estados converge a la distribución estacionaria.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <link rel="stylesheet" href="../style_new.css?v=20260521">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Simulaciones", "item": "https://problabtools.es/simulaciones/"},
+          {"@type": "ListItem", "position": 3, "name": "Cadenas de Markov", "item": "https://problabtools.es/simulaciones/simulador-cadenas-markov.html"}
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "Simulador de cadenas de Markov | ProbLab",
+        "url": "https://problabtools.es/simulaciones/simulador-cadenas-markov.html",
+        "description": "Simulador interactivo de cadenas de Markov. Define la matriz de transición, ejecuta la cadena y observa cómo la distribución de estados converge a la distribución estacionaria.",
+        "inLanguage": "es",
+        "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Simulador de cadenas de Markov",
+        "url": "https://problabtools.es/simulaciones/simulador-cadenas-markov.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "description": "Simulador interactivo de cadenas de Markov. Define la matriz de transición, ejecuta la cadena y observa cómo la distribución de estados converge a la distribución estacionaria.",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+        "inLanguage": "es"
+      }
+    ]
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+  <style>
+    /* Preset tabs */
+    .preset-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .preset-tab {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(79,70,229,0.3);
+      background: #fff;
+      color: #312e81;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    .preset-tab:hover {
+      background: rgba(79,70,229,0.08);
+      transform: translateY(-1px);
+    }
+    .preset-tab.active {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(79,70,229,0.28);
+    }
+
+    /* Matrix grid */
+    .matrix-section {
+      margin-top: 18px;
+    }
+    .matrix-section h3 {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .matrix-table-wrap {
+      overflow-x: auto;
+    }
+    .matrix-table {
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .matrix-table th {
+      padding: 6px 10px;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      background: rgba(79,70,229,0.07);
+      border: 1px solid rgba(79,70,229,0.14);
+    }
+    .matrix-table td {
+      padding: 4px 6px;
+      border: 1px solid rgba(79,70,229,0.1);
+      text-align: center;
+      vertical-align: middle;
+    }
+    .matrix-table input[type="number"] {
+      width: 72px;
+      padding: 7px 8px;
+      border-radius: 8px;
+      border: 1px solid #dbe3f1;
+      font-size: 0.875rem;
+      text-align: center;
+      color: var(--text-main);
+    }
+    .matrix-table input[type="number"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+    .row-sum-cell {
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: 1px solid rgba(79,70,229,0.1);
+    }
+    .row-sum-ok { color: #16a34a; }
+    .row-sum-err { color: #dc2626; }
+
+    /* Row label inputs */
+    .matrix-table input[type="text"] {
+      width: 80px;
+      padding: 7px 8px;
+      border-radius: 8px;
+      border: 1px solid #dbe3f1;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e293b;
+      background: #f8fafc;
+    }
+    .matrix-table input[type="text"]:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+
+    /* Validation message */
+    .matrix-error {
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(220,38,38,0.08);
+      border: 1px solid rgba(220,38,38,0.25);
+      color: #b91c1c;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+    .matrix-error.visible { display: block; }
+
+    /* Charts layout */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 22px;
+    }
+    @media (max-width: 900px) {
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .chart-card {
+      background: #fff;
+      border: 1px solid rgba(15,23,42,0.08);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.05);
+    }
+    .chart-card h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .chart-wrap {
+      min-height: 340px;
+      contain: layout;
+    }
+    .chart-wrap canvas {
+      height: 340px !important;
+    }
+
+    /* Initial state placeholder */
+    .sim-placeholder {
+      text-align: center;
+      padding: 36px 24px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      background: rgba(79,70,229,0.04);
+      border: 1px dashed rgba(79,70,229,0.22);
+      border-radius: 14px;
+      margin-top: 22px;
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(148,163,184,0.26);
+    }
+    .faq-item:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .faq-item h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      color: #1e293b;
+    }
+    .faq-item p {
+      margin: 0;
+      color: #334155;
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+
+    /* Number of states selector row */
+    .states-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .states-row label {
+      margin: 0;
+      white-space: nowrap;
+    }
+    .states-row select {
+      width: auto;
+      flex: 0 0 80px;
+    }
+    .states-row .states-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Results area */
+    #simResults {
+      display: none;
+    }
+    #simResults.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="../index.html">ProbLab</a>
+    <ul class="site-nav-links">
+      <li><a href="../distribuciones/">Distribuciones</a></li>
+      <li><a href="../tablas-estadisticas/">Tablas</a></li>
+      <li><a href="../intervalos-confianza/">Intervalos de confianza</a></li>
+      <li><a href="../tamano-muestral/">Tamaño muestral</a></li>
+      <li><a href="../contrastes-hipotesis/">Contrastes</a></li>
+      <li><a href="../ab-testing/">Test A/B</a></li>
+      <li><a href="../simulaciones/">Simulaciones</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <ol>
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../simulaciones/">Simulaciones</a></li>
+      <li><span aria-current="page">Cadenas de Markov</span></li>
+    </ol>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Simulación estadística</p>
+    <h1>Simulador de cadenas de Markov</h1>
+    <p class="hero-subtitle">Define una cadena de Markov mediante su matriz de transición, elige un estado inicial y observa cómo la distribución de estados converge a la distribución estacionaria.</p>
+  </header>
+
+  <main>
+    <!-- SIMULATOR CARD -->
+    <section class="card" id="simulator">
+      <!-- Preset tabs -->
+      <div>
+        <p style="margin:0 0 10px; font-size:0.82rem; font-weight:700; color:#334155; text-transform:uppercase; letter-spacing:0.08em;">Preset</p>
+        <div class="preset-tabs" role="group" aria-label="Seleccionar preset">
+          <button class="preset-tab active" data-preset="clima" type="button">Clima</button>
+          <button class="preset-tab" data-preset="cliente" type="button">Cliente / Churn</button>
+          <button class="preset-tab" data-preset="custom" type="button">Personalizado</button>
+        </div>
+      </div>
+
+      <!-- Control panel -->
+      <div class="sample-size-panel">
+        <div class="sample-grid">
+
+          <!-- Number of states (only custom) -->
+          <div id="statesRow" class="states-row" style="display:none;">
+            <label for="numStates">Número de estados:</label>
+            <select id="numStates">
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <span class="states-note">(Cambia el tamaño de la matriz)</span>
+          </div>
+
+          <!-- Matrix section -->
+          <div class="matrix-section">
+            <h3>Matriz de transición P</h3>
+            <p style="margin:0 0 10px; font-size:0.875rem; color:var(--text-muted);">Cada fila representa el estado actual; cada columna, el estado siguiente. La suma de cada fila debe ser 1.</p>
+            <div class="matrix-table-wrap">
+              <table class="matrix-table" id="matrixTable" aria-label="Matriz de transición">
+                <!-- Built dynamically by JS -->
+              </table>
+            </div>
+            <div class="matrix-error" id="matrixError" role="alert"></div>
+          </div>
+
+          <!-- Initial state + steps -->
+          <div class="inline-inputs" style="margin-top:18px;">
+            <div class="form-group">
+              <label for="initState">Estado inicial</label>
+              <select id="initState">
+                <!-- Built dynamically -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="numSteps">Número de pasos</label>
+              <select id="numSteps">
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="200" selected>200</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="calculate-btn" id="simBtn" type="button">Simular</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLACEHOLDER (shown before first run) -->
+    <div class="sim-placeholder" id="simPlaceholder">
+      Selecciona un preset o configura la matriz y haz clic en &ldquo;Simular&rdquo;
+    </div>
+
+    <!-- RESULTS (hidden until first run) -->
+    <div id="simResults">
+      <!-- Charts -->
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Evolución del estado (proporción acumulada)</h3>
+          <div class="chart-wrap"><canvas id="chartEvolution" aria-label="Gráfico de evolución del estado"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Distribución final vs distribución estacionaria</h3>
+          <div class="chart-wrap"><canvas id="chartFinal" aria-label="Gráfico de distribución final versus estacionaria"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Result box -->
+      <div class="result-box" id="resultBox" role="status" aria-live="polite">
+        <p><strong>Distribución estacionaria:</strong> <span id="rStationary"></span></p>
+        <p><strong>Distribución empírica (proporción de tiempo):</strong> <span id="rEmpirical"></span></p>
+        <p><strong>Diferencia máxima |π − empírica|:</strong> <span id="rMaxDiff"></span></p>
+        <p><strong>Interpretación:</strong> <span id="rInterpretation"></span></p>
+      </div>
+    </div>
+
+    <!-- EDUCATIONAL CONTENT -->
+    <section class="card content-card">
+      <h2>¿Qué es una cadena de Markov?</h2>
+      <p>Una <strong>cadena de Markov</strong> es un proceso estocástico de tiempo discreto \(\{X_0, X_1, X_2, \ldots\}\) que toma valores en un conjunto finito de estados y satisface la <strong>propiedad de Markov</strong> o "falta de memoria":</p>
+      <div class="formula-box" style="margin:14px 0;">
+        $$P(X_{n+1} = j \mid X_0, X_1, \ldots, X_n) = P(X_{n+1} = j \mid X_n) = p_{ij}$$
+      </div>
+      <p>La probabilidad de pasar al estado siguiente depende <em>únicamente</em> del estado presente, no de cómo se llegó a él. Esto simplifica enormemente el análisis matemático sin sacrificar realismo en muchas aplicaciones.</p>
+      <p>El comportamiento completo de la cadena queda especificado por la <strong>matriz de transición</strong> \(P\), donde el elemento \(p_{ij}\) es la probabilidad de pasar del estado \(i\) al estado \(j\) en un paso:</p>
+      <div class="formula-box" style="margin:14px 0;">
+        $$P = \begin{pmatrix} p_{11} & p_{12} & \cdots & p_{1n} \\ p_{21} & p_{22} & \cdots & p_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ p_{n1} & p_{n2} & \cdots & p_{nn} \end{pmatrix}, \quad \sum_{j=1}^{n} p_{ij} = 1 \text{ para todo } i$$
+      </div>
+      <p>Cada fila de la matriz de transición es una distribución de probabilidad: los valores son no negativos y suman 1. Esto hace que \(P\) sea una <strong>matriz estocástica</strong> (o de Markov).</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Distribución estacionaria</h2>
+      <p>Una <strong>distribución estacionaria</strong> (o de equilibrio) es un vector de probabilidades \(\pi = (\pi_1, \pi_2, \ldots, \pi_n)\) tal que:</p>
+      <div class="formula-box" style="margin:14px 0;">
+        $$\pi P = \pi \quad \text{con} \quad \sum_{i=1}^{n} \pi_i = 1, \quad \pi_i \geq 0$$
+      </div>
+      <p>Intuitivamente, si la cadena se encuentra en la distribución estacionaria en el instante \(n\), permanecerá en esa distribución para siempre. En la práctica, representa la <strong>fracción de tiempo a largo plazo</strong> que la cadena pasa en cada estado.</p>
+      <h3>Condiciones de existencia y unicidad</h3>
+      <ul>
+        <li><strong>Irreducibilidad:</strong> todos los estados son accesibles desde cualquier otro estado (la cadena es un grafo fuertemente conexo). Esto garantiza que existe una única distribución estacionaria.</li>
+        <li><strong>Aperiodicidad:</strong> ningún estado tiene periodicidad mayor que 1. Junto con la irreducibilidad, garantiza la <strong>convergencia</strong> de la distribución de estado hacia \(\pi\) independientemente del estado inicial.</li>
+        <li>Una cadena que es a la vez irreducible y aperiódica se denomina <strong>ergódica</strong>. Para cadenas ergódicas, \(\pi\) es la única distribución estacionaria y la cadena converge a ella.</li>
+      </ul>
+      <h3>Estado absorbente: preset Cliente / Churn</h3>
+      <p>En el preset de Cliente, el estado "Churn" es un <strong>estado absorbente</strong>: \(p_{\text{churn}, \text{churn}} = 1\). Una vez que un cliente abandona, no regresa. Esto hace que la cadena sea <em>no ergódica</em>: eventualmente todos los clientes terminan en Churn. La distribución estacionaria asigna probabilidad 1 a ese estado y 0 al resto.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Aplicaciones reales</h2>
+      <ul>
+        <li><strong>PageRank (Google):</strong> la web se modela como una cadena de Markov donde los estados son páginas y las transiciones son hipervínculos. La distribución estacionaria determina la relevancia de cada página.</li>
+        <li><strong>Modelos meteorológicos:</strong> estados como Soleado, Nublado y Lluvia con probabilidades de transición ajustadas a datos históricos.</li>
+        <li><strong>Ciclo de vida del cliente:</strong> Activo → Dormido → Churn. Permite calcular el valor esperado de un cliente y diseñar estrategias de retención.</li>
+        <li><strong>Generación de texto:</strong> los modelos de n-gramas son cadenas de Markov donde el estado es la secuencia de las últimas \(n\) palabras y la transición elige la siguiente.</li>
+        <li><strong>MCMC en estadística bayesiana:</strong> los algoritmos Metropolis-Hastings y Gibbs sampling construyen cadenas de Markov cuya distribución estacionaria es la posterior de interés.</li>
+        <li><strong>Genética de poblaciones:</strong> el modelo de Wright-Fisher describe cómo cambia la frecuencia de alelos en una población finita mediante una cadena de Markov.</li>
+        <li><strong>Teoría de colas:</strong> las cadenas de Markov modelan el número de clientes en una cola M/M/1 o M/M/k, permitiendo calcular tiempos de espera y tasas de servicio.</li>
+      </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-section">
+        <article class="faq-item">
+          <h3>¿Cuántos pasos se necesitan para llegar al equilibrio?</h3>
+          <p>Depende del <strong>tiempo de mezcla</strong> de la cadena, que está relacionado con el segundo valor propio más grande (en módulo) de la matriz de transición, \(|\lambda_2|\). Cuanto más cerca de 1 esté \(|\lambda_2|\), más lenta es la convergencia: la cadena "recuerda" durante mucho tiempo su estado inicial. Formalmente, la distancia entre la distribución al paso \(t\) y la estacionaria decrece aproximadamente como \(|\lambda_2|^t\). Para el preset de Clima, la mezcla es relativamente rápida; para cadenas con estados casi absorbentes o con baja conectividad, puede requerir miles de pasos.</p>
+        </article>
+        <article class="faq-item">
+          <h3>¿La cadena siempre converge a la misma distribución independientemente del estado inicial?</h3>
+          <p>Sí, siempre que la cadena sea <strong>ergódica</strong> (irreducible y aperiódica). En ese caso, el <em>Teorema Ergódico de Markov</em> garantiza que la distribución en el paso \(n\) converge a la única distribución estacionaria \(\pi\) para cualquier estado inicial. El preset de Clima es ergódico. En cambio, si la cadena tiene varios estados absorbentes o no es irreducible, la distribución límite puede depender del estado de inicio.</p>
+        </article>
+        <article class="faq-item">
+          <h3>¿Qué pasa con el preset de Cliente / Churn?</h3>
+          <p>El estado "Churn" es <strong>absorbente</strong>: \(p_{\text{Churn},\text{Churn}} = 1\) y los demás \(p_{\text{Churn},j} = 0\). Una vez en Churn, no hay salida. Esto hace que la cadena no sea irreducible, y la única distribución estacionaria es \(\pi_{\text{Churn}} = 1\), \(\pi_{\text{Activo}} = \pi_{\text{Dormido}} = 0\). Si ejecutas la simulación con muchos pasos, observarás que la proporción de tiempo en Churn crece continuamente hacia 1. Esta es la base del análisis de <em>tiempo hasta la absorción</em>, una métrica clave en gestión de clientes.</p>
+        </article>
+        <article class="faq-item">
+          <h3>¿Cómo se calcula la distribución estacionaria computacionalmente?</h3>
+          <p>El simulador usa <strong>iteración de potencias</strong>: se toma un vector de probabilidades inicial (distribución uniforme) y se multiplica repetidamente por la matriz \(P\) hasta que el cambio entre iteraciones es menor que \(10^{-9}\). Este proceso converge a la distribución estacionaria (si existe y es única) en pocas miles de iteraciones. Analíticamente, \(\pi\) es el vector propio izquierdo de \(P\) asociado al valor propio 1.</p>
+        </article>
+        <article class="faq-item">
+          <h3>¿Por qué el simulador muestra líneas de referencia horizontales en el gráfico de evolución?</h3>
+          <p>Las líneas discontinuas horizontales indican el valor teórico de la distribución estacionaria \(\pi_i\) para cada estado \(i\). A medida que la simulación avanza, las líneas sólidas (proporción acumulada de tiempo en cada estado) convergen hacia esos valores de referencia. Esta convergencia es la manifestación empírica del teorema ergódico.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card content-card">
+      <h2>Herramientas relacionadas</h2>
+      <div class="related-tools">
+        <h3>Distribuciones de probabilidad</h3>
+        <p>Las cadenas de Markov en tiempo continuo están relacionadas con la <a href="../distribuciones/">distribución exponencial</a> (tiempos de permanencia en cada estado). Explora también la distribución de Poisson y otras distribuciones discretas.</p>
+        <h3>Otras simulaciones</h3>
+        <p>Complementa con el <a href="teorema-central-limite.html">simulador del teorema central del límite</a>, el <a href="simulador-intervalos-confianza.html">simulador de intervalos de confianza</a> y el <a href="simulador-proceso-poisson.html">simulador de proceso de Poisson</a>.</p>
+        <h3>Contrastes de hipótesis</h3>
+        <p>Una vez familiarizado con los modelos probabilísticos, aplícalos en los <a href="../contrastes-hipotesis/">contrastes de hipótesis</a> disponibles en ProbLab.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="../sobre.html">Sobre ProbLab</a> ·
+      <a href="../metodologia.html">Metodología</a> ·
+      <a href="../aviso-legal.html">Aviso legal</a> ·
+      <a href="../privacidad.html">Privacidad</a> ·
+      <a href="../cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+// ──────────────────────────────────────────────
+// PRESETS
+// ──────────────────────────────────────────────
+const PRESETS = {
+  clima: {
+    names: ['Soleado', 'Nublado', 'Lluvia'],
+    matrix: [
+      [0.7, 0.2, 0.1],
+      [0.3, 0.4, 0.3],
+      [0.2, 0.3, 0.5]
+    ]
+  },
+  cliente: {
+    names: ['Activo', 'Dormido', 'Churn'],
+    matrix: [
+      [0.80, 0.15, 0.05],
+      [0.20, 0.60, 0.20],
+      [0.00, 0.00, 1.00]
+    ]
+  }
+};
+
+const COLORS = ['#4f46e5', '#0891b2', '#16a34a', '#dc2626', '#d97706'];
+
+// ──────────────────────────────────────────────
+// STATE
+// ──────────────────────────────────────────────
+let currentPreset = 'clima';
+let chartEvolution = null;
+let chartFinal = null;
+
+// ──────────────────────────────────────────────
+// MARKOV LOGIC
+// ──────────────────────────────────────────────
+function runChain(transMatrix, initState, nSteps) {
+  const n = transMatrix.length;
+  let current = initState;
+  const history = [current];
+  const counts = new Array(n).fill(0);
+  counts[current]++;
+
+  for (let t = 1; t <= nSteps; t++) {
+    const row = transMatrix[current];
+    const r = Math.random();
+    let cumsum = 0;
+    for (let j = 0; j < n; j++) {
+      cumsum += row[j];
+      if (r < cumsum) { current = j; break; }
+    }
+    history.push(current);
+    counts[current]++;
+  }
+  return { history, counts };
+}
+
+function stationaryDist(transMatrix) {
+  const n = transMatrix.length;
+  let pi = new Array(n).fill(1 / n);
+  for (let iter = 0; iter < 10000; iter++) {
+    const newPi = new Array(n).fill(0);
+    for (let j = 0; j < n; j++) {
+      for (let i = 0; i < n; i++) {
+        newPi[j] += pi[i] * transMatrix[i][j];
+      }
+    }
+    const diff = newPi.reduce((s, v, i) => s + Math.abs(v - pi[i]), 0);
+    pi = newPi;
+    if (diff < 1e-9) break;
+  }
+  return pi;
+}
+
+function runningProportions(history, nStates) {
+  const n = history.length;
+  const props = Array.from({ length: nStates }, () => []);
+  const counts = new Array(nStates).fill(0);
+  for (let t = 0; t < n; t++) {
+    counts[history[t]]++;
+    for (let s = 0; s < nStates; s++) {
+      props[s].push(counts[s] / (t + 1));
+    }
+  }
+  return props;
+}
+
+// ──────────────────────────────────────────────
+// MATRIX UI
+// ──────────────────────────────────────────────
+function getStateNames() {
+  const n = getCurrentN();
+  const names = [];
+  for (let i = 0; i < n; i++) {
+    const el = document.getElementById(`stateName_${i}`);
+    names.push(el ? el.value.trim() || `Estado ${i + 1}` : `Estado ${i + 1}`);
+  }
+  return names;
+}
+
+function getCurrentN() {
+  if (currentPreset === 'custom') {
+    return parseInt(document.getElementById('numStates').value, 10);
+  }
+  return PRESETS[currentPreset].names.length;
+}
+
+function buildMatrixUI(names, matrixValues) {
+  const n = names.length;
+  const table = document.getElementById('matrixTable');
+  table.innerHTML = '';
+
+  // Header row
+  const thead = table.createTHead();
+  const headRow = thead.insertRow();
+  // Corner cell (empty)
+  const cornerTh = document.createElement('th');
+  cornerTh.style.background = 'transparent';
+  cornerTh.style.border = 'none';
+  headRow.appendChild(cornerTh);
+  // "Desde / Hacia" label
+  const fromTh = document.createElement('th');
+  fromTh.textContent = 'Nombre';
+  fromTh.style.textAlign = 'left';
+  headRow.appendChild(fromTh);
+  // Column headers
+  for (let j = 0; j < n; j++) {
+    const th = document.createElement('th');
+    th.id = `colHeader_${j}`;
+    th.textContent = names[j];
+    headRow.appendChild(th);
+  }
+  // Sum header
+  const sumTh = document.createElement('th');
+  sumTh.textContent = 'Σ fila';
+  headRow.appendChild(sumTh);
+
+  // Body rows
+  const tbody = table.createTBody();
+  for (let i = 0; i < n; i++) {
+    const tr = tbody.insertRow();
+
+    // Row-state label cell
+    const rowLabelTd = document.createElement('td');
+    rowLabelTd.style.paddingRight = '6px';
+    rowLabelTd.style.color = '#475569';
+    rowLabelTd.style.fontSize = '0.8rem';
+    rowLabelTd.style.fontWeight = '700';
+    rowLabelTd.style.whiteSpace = 'nowrap';
+    rowLabelTd.textContent = `Estado ${i + 1}`;
+    tr.appendChild(rowLabelTd);
+
+    // Name input cell
+    const nameTd = document.createElement('td');
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.id = `stateName_${i}`;
+    nameInput.value = names[i];
+    nameInput.maxLength = 20;
+    nameInput.setAttribute('aria-label', `Nombre del estado ${i + 1}`);
+    nameInput.addEventListener('input', () => syncColumnHeaders());
+    if (currentPreset !== 'custom') {
+      nameInput.readOnly = true;
+      nameInput.style.cursor = 'default';
+      nameInput.style.background = '#f1f5f9';
+    }
+    nameTd.appendChild(nameInput);
+    tr.appendChild(nameTd);
+
+    // Matrix cell inputs
+    for (let j = 0; j < n; j++) {
+      const td = document.createElement('td');
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.id = `cell_${i}_${j}`;
+      input.min = '0';
+      input.max = '1';
+      input.step = '0.01';
+      input.value = (matrixValues[i][j]).toFixed(2);
+      input.setAttribute('aria-label', `p(${names[i]} → ${names[j]})`);
+      if (currentPreset !== 'custom') {
+        input.readOnly = true;
+        input.style.background = '#f8fafc';
+        input.style.cursor = 'default';
+      }
+      input.addEventListener('input', () => updateRowSum(i));
+      td.appendChild(input);
+      tr.appendChild(td);
+    }
+
+    // Row sum cell
+    const sumTd = document.createElement('td');
+    sumTd.className = 'row-sum-cell';
+    sumTd.id = `rowSum_${i}`;
+    tr.appendChild(sumTd);
+
+    updateRowSum(i);
+  }
+
+  updateInitStateSelector();
+}
+
+function syncColumnHeaders() {
+  const n = getCurrentN();
+  for (let j = 0; j < n; j++) {
+    const th = document.getElementById(`colHeader_${j}`);
+    const input = document.getElementById(`stateName_${j}`);
+    if (th && input) th.textContent = input.value.trim() || `Estado ${j + 1}`;
+  }
+}
+
+function updateRowSum(i) {
+  const n = getCurrentN();
+  let sum = 0;
+  for (let j = 0; j < n; j++) {
+    const val = parseFloat(document.getElementById(`cell_${i}_${j}`)?.value || 0);
+    if (!isNaN(val)) sum += val;
+  }
+  const cell = document.getElementById(`rowSum_${i}`);
+  if (cell) {
+    cell.textContent = sum.toFixed(3);
+    const ok = Math.abs(sum - 1) < 0.001;
+    cell.className = 'row-sum-cell ' + (ok ? 'row-sum-ok' : 'row-sum-err');
+  }
+}
+
+function updateInitStateSelector() {
+  const names = getStateNames();
+  const sel = document.getElementById('initState');
+  const prev = sel.value;
+  sel.innerHTML = '';
+  names.forEach((name, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = name;
+    sel.appendChild(opt);
+  });
+  // Try to restore previous selection
+  if (prev !== '' && parseInt(prev) < names.length) sel.value = prev;
+}
+
+function readMatrix() {
+  const n = getCurrentN();
+  const matrix = [];
+  for (let i = 0; i < n; i++) {
+    const row = [];
+    for (let j = 0; j < n; j++) {
+      row.push(parseFloat(document.getElementById(`cell_${i}_${j}`).value) || 0);
+    }
+    matrix.push(row);
+  }
+  return matrix;
+}
+
+function validateMatrix(matrix) {
+  const n = matrix.length;
+  const errors = [];
+  const names = getStateNames();
+  for (let i = 0; i < n; i++) {
+    const sum = matrix[i].reduce((s, v) => s + v, 0);
+    if (Math.abs(sum - 1) > 0.001) {
+      errors.push(`La fila "${names[i]}" suma ${sum.toFixed(4)} (debe sumar 1.000)`);
+    }
+    for (let j = 0; j < n; j++) {
+      if (matrix[i][j] < 0) {
+        errors.push(`p(${names[i]} → ${names[j]}) no puede ser negativo`);
+      }
+    }
+  }
+  return errors;
+}
+
+// ──────────────────────────────────────────────
+// SIMULATION & CHARTS
+// ──────────────────────────────────────────────
+function simulate() {
+  const matrix = readMatrix();
+  const errors = validateMatrix(matrix);
+  const errEl = document.getElementById('matrixError');
+
+  if (errors.length > 0) {
+    errEl.innerHTML = errors.map(e => `<span>⚠ ${e}</span>`).join('<br>');
+    errEl.classList.add('visible');
+    return;
+  }
+  errEl.classList.remove('visible');
+
+  const initState = parseInt(document.getElementById('initState').value, 10);
+  const nSteps = parseInt(document.getElementById('numSteps').value, 10);
+  const names = getStateNames();
+  const n = names.length;
+
+  const { history, counts } = runChain(matrix, initState, nSteps);
+  const pi = stationaryDist(matrix);
+  const runProps = runningProportions(history, n);
+
+  // Subsample for chart if too many points
+  const k = Math.ceil((nSteps + 1) / 200);
+  const labels = [];
+  const subsampledProps = Array.from({ length: n }, () => []);
+  for (let t = 0; t <= nSteps; t += k) {
+    labels.push(t);
+    for (let s = 0; s < n; s++) {
+      subsampledProps[s].push(runProps[s][t]);
+    }
+  }
+  // Always include last point
+  if (labels[labels.length - 1] !== nSteps) {
+    labels.push(nSteps);
+    for (let s = 0; s < n; s++) {
+      subsampledProps[s].push(runProps[s][nSteps]);
+    }
+  }
+
+  // Empirical distribution
+  const total = counts.reduce((a, b) => a + b, 0);
+  const empirical = counts.map(c => c / total);
+
+  // Max diff
+  const maxDiff = Math.max(...pi.map((p, i) => Math.abs(p - empirical[i])));
+
+  // Build datasets for chart 1
+  const evolutionDatasets = [];
+  for (let s = 0; s < n; s++) {
+    // Running proportion line
+    evolutionDatasets.push({
+      label: `${names[s]} (π=${pi[s].toFixed(3)})`,
+      data: subsampledProps[s],
+      borderColor: COLORS[s],
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      pointRadius: 0,
+      tension: 0.3
+    });
+    // Stationary reference line
+    evolutionDatasets.push({
+      label: `π(${names[s]}) = ${pi[s].toFixed(3)}`,
+      data: labels.map(() => pi[s]),
+      borderColor: COLORS[s],
+      backgroundColor: 'transparent',
+      borderWidth: 1.5,
+      borderDash: [6, 4],
+      pointRadius: 0,
+      tension: 0,
+      showInLegend: false,
+      // We'll use a custom flag to hide from legend
+      _isReference: true
+    });
+  }
+
+  // Destroy old charts
+  if (chartEvolution) { chartEvolution.destroy(); chartEvolution = null; }
+  if (chartFinal) { chartFinal.destroy(); chartFinal = null; }
+
+  // Chart 1: Evolution
+  const ctxEvo = document.getElementById('chartEvolution').getContext('2d');
+  chartEvolution = new Chart(ctxEvo, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: evolutionDatasets
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        x: {
+          title: { display: true, text: 'Pasos', font: { size: 12, weight: '600' } },
+          ticks: { maxTicksLimit: 10, font: { size: 11 } }
+        },
+        y: {
+          title: { display: true, text: 'Proporción acumulada', font: { size: 12, weight: '600' } },
+          min: 0,
+          max: 1,
+          ticks: { font: { size: 11 } }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            filter: (item) => {
+              // Only show main proportion lines in legend (not the reference dashes)
+              return !item.text.startsWith('π(');
+            },
+            font: { size: 12 }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              if (ctx.dataset._isReference) return null;
+              return `${ctx.dataset.label.split(' (')[0]}: ${ctx.parsed.y.toFixed(3)}`;
+            }
+          },
+          filter: (item) => !item.dataset._isReference
+        }
+      }
+    }
+  });
+
+  // Chart 2: Bar comparison
+  const barDatasets = [
+    {
+      label: 'Empírica (simulación)',
+      data: empirical,
+      backgroundColor: COLORS.slice(0, n).map(c => c + 'cc'),
+      borderColor: COLORS.slice(0, n),
+      borderWidth: 2
+    },
+    {
+      label: 'Estacionaria (teórica)',
+      data: pi,
+      backgroundColor: COLORS.slice(0, n).map(c => c + '44'),
+      borderColor: COLORS.slice(0, n),
+      borderWidth: 2,
+      borderDash: [4, 3]
+    }
+  ];
+
+  const ctxBar = document.getElementById('chartFinal').getContext('2d');
+  chartFinal = new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: names,
+      datasets: barDatasets
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { ticks: { font: { size: 12 } } },
+        y: {
+          title: { display: true, text: 'Probabilidad', font: { size: 12, weight: '600' } },
+          min: 0,
+          max: 1,
+          ticks: { font: { size: 11 } }
+        }
+      },
+      plugins: {
+        legend: { labels: { font: { size: 12 } } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(4)}`
+          }
+        }
+      }
+    }
+  });
+
+  // Update results text
+  document.getElementById('rStationary').textContent =
+    pi.map((p, i) => `π(${names[i]}) = ${p.toFixed(4)}`).join(' · ');
+  document.getElementById('rEmpirical').textContent =
+    empirical.map((p, i) => `p̂(${names[i]}) = ${p.toFixed(4)}`).join(' · ');
+  document.getElementById('rMaxDiff').textContent = maxDiff.toFixed(4);
+
+  let interp;
+  if (maxDiff < 0.01) {
+    interp = `La distribución empírica es muy cercana a la estacionaria (diferencia máxima < 0.01). La cadena ha convergido al equilibrio con ${nSteps} pasos.`;
+  } else if (maxDiff < 0.05) {
+    interp = `La distribución empírica se aproxima razonablemente a la estacionaria. Con más pasos la convergencia mejoraría.`;
+  } else if (maxDiff >= 0.05 && currentPreset === 'cliente') {
+    interp = `El preset Cliente/Churn tiene un estado absorbente: eventualmente toda la masa converge a "Churn". La distribución estacionaria teórica asigna probabilidad 1 a ese estado.`;
+  } else {
+    interp = `Todavía hay diferencia apreciable entre la distribución empírica y la estacionaria. Prueba con más pasos (500 o 1000) para observar mejor la convergencia.`;
+  }
+  document.getElementById('rInterpretation').textContent = interp;
+
+  // Show results, hide placeholder
+  document.getElementById('simPlaceholder').style.display = 'none';
+  const resultsEl = document.getElementById('simResults');
+  resultsEl.classList.add('visible');
+}
+
+// ──────────────────────────────────────────────
+// PRESET SWITCHING
+// ──────────────────────────────────────────────
+function applyPreset(presetKey) {
+  currentPreset = presetKey;
+
+  // Update tab appearance
+  document.querySelectorAll('.preset-tab').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.preset === presetKey);
+  });
+
+  // Show/hide states row
+  const statesRow = document.getElementById('statesRow');
+  statesRow.style.display = presetKey === 'custom' ? 'flex' : 'none';
+
+  if (presetKey === 'custom') {
+    const n = parseInt(document.getElementById('numStates').value, 10);
+    const names = Array.from({ length: n }, (_, i) => `Estado ${i + 1}`);
+    const matrix = Array.from({ length: n }, (_, i) =>
+      Array.from({ length: n }, (_, j) => i === j ? 1 / n : 1 / n)
+    );
+    buildMatrixUI(names, matrix);
+  } else {
+    const { names, matrix } = PRESETS[presetKey];
+    buildMatrixUI(names, matrix);
+  }
+}
+
+// ──────────────────────────────────────────────
+// INIT
+// ──────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Preset tabs
+  document.querySelectorAll('.preset-tab').forEach(btn => {
+    btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+  });
+
+  // Custom: number of states change
+  document.getElementById('numStates').addEventListener('change', () => {
+    if (currentPreset === 'custom') applyPreset('custom');
+  });
+
+  // Simulate button
+  document.getElementById('simBtn').addEventListener('click', simulate);
+
+  // Initial render
+  applyPreset('clima');
+});
+</script>
+</body>
+</html>

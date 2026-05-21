@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Simulador de paseo aleatorio 1D y 2D | ProbLab</title>
+  <meta name="description" content="Simulador interactivo de paseo aleatorio en 1D y 2D. Visualiza trayectorias, bandas de difusión ±2σ y el comportamiento √n. Con y sin deriva. Incluye conexión con movimiento browniano y ruina del jugador.">
+  <link rel="canonical" href="https://problabtools.es/simulaciones/simulador-paseo-aleatorio.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Simulador de paseo aleatorio 1D y 2D | ProbLab">
+  <meta property="og:description" content="Simulador interactivo de paseo aleatorio en 1D y 2D. Visualiza trayectorias, bandas de difusión ±2σ y el comportamiento √n. Con y sin deriva.">
+  <meta property="og:url" content="https://problabtools.es/simulaciones/simulador-paseo-aleatorio.html">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/simulaciones/simulador-paseo-aleatorio.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simulador de paseo aleatorio 1D y 2D | ProbLab">
+  <meta name="twitter:description" content="Simulador interactivo de paseo aleatorio en 1D y 2D. Visualiza trayectorias, bandas de difusión ±2σ y el comportamiento √n.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <link rel="stylesheet" href="../style_new.css?v=20260521">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Simulaciones", "item": "https://problabtools.es/simulaciones/"},
+          {"@type": "ListItem", "position": 3, "name": "Paseo aleatorio", "item": "https://problabtools.es/simulaciones/simulador-paseo-aleatorio.html"}
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "Simulador de paseo aleatorio 1D y 2D | ProbLab",
+        "url": "https://problabtools.es/simulaciones/simulador-paseo-aleatorio.html",
+        "description": "Simulador interactivo de paseo aleatorio en 1D y 2D con visualización de trayectorias, bandas de difusión y análisis estadístico.",
+        "inLanguage": "es",
+        "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Simulador de paseo aleatorio",
+        "url": "https://problabtools.es/simulaciones/simulador-paseo-aleatorio.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Simulador interactivo de paseo aleatorio simple en 1D y 2D. Permite configurar probabilidad de avance, número de pasos y trayectorias, con bandas teóricas de difusión.",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+        "author": {"@type": "Person", "name": "Vicente Castellar"}
+      }
+    ]
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+  <style>
+    /* ── layout ── */
+    .sim-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      .sim-layout { grid-template-columns: 1fr; }
+    }
+    .sim-panel {
+      position: sticky;
+      top: 72px;
+    }
+
+    /* ── control panel ── */
+    .panel-heading {
+      margin: 0 0 16px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 5px;
+    }
+    .form-group select,
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid rgba(148,163,184,0.5);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      background: #fff;
+      color: #1e293b;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-group select:focus,
+    .form-group input[type="number"]:focus {
+      border-color: var(--accent);
+    }
+    .form-group.checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .form-group.checkbox-group label {
+      margin: 0;
+      font-size: 0.86rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .form-group.checkbox-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .calculate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* ── chart area ── */
+    .chart-outer {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.05);
+    }
+    .chart-outer h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .chart-outer p.chart-sub {
+      margin: 0 0 12px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .chart-wrap {
+      position: relative;
+      height: 380px;
+    }
+    .chart-wrap canvas {
+      height: 380px !important;
+    }
+    .canvas2d-wrap {
+      position: relative;
+    }
+    #canvas2d {
+      display: block;
+      width: 100%;
+      border-radius: 10px;
+      background: #f8fafc;
+    }
+
+    /* ── placeholder ── */
+    .sim-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 340px;
+      color: #94a3b8;
+      font-size: 0.92rem;
+      text-align: center;
+      border: 2px dashed rgba(148,163,184,0.4);
+      border-radius: 12px;
+      gap: 8px;
+    }
+    .sim-placeholder .icon { font-size: 2.2rem; }
+
+    /* ── stats ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .stat-cell {
+      background: rgba(79,70,229,0.05);
+      border: 1px solid rgba(79,70,229,0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .stat-cell .stat-label {
+      font-size: 0.76rem;
+      color: #64748b;
+      margin-bottom: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat-cell .stat-val {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1e293b;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-cell .stat-expected {
+      font-size: 0.75rem;
+      color: #dc2626;
+      margin-top: 2px;
+    }
+
+    /* ── interpretation ── */
+    .result-box {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: rgba(79,70,229,0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.93rem;
+      color: #334155;
+      line-height: 1.65;
+    }
+
+    /* ── legend dots ── */
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: #475569;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-line {
+      display: inline-block;
+      width: 24px;
+      height: 3px;
+      border-radius: 2px;
+    }
+    .legend-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── FAQ ── */
+    .faq-item {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(148,163,184,0.25);
+    }
+    .faq-item:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .faq-item h3 { margin: 0 0 6px; font-size: 1rem; color: #1e293b; }
+    .faq-item p  { margin: 0; font-size: 0.95rem; color: #334155; line-height: 1.7; }
+  </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+    <div class="site-nav-inner">
+        <a class="site-brand" href="../index.html">ProbLab</a>
+        <ul class="site-nav-links">
+            <li><a href="../distribuciones/">Distribuciones</a></li>
+            <li><a href="../tablas-estadisticas/">Tablas</a></li>
+            <li><a href="../intervalos-confianza/">Intervalos de confianza</a></li>
+            <li><a href="../tamano-muestral/">Tamaño muestral</a></li>
+            <li><a href="../contrastes-hipotesis/">Contrastes</a></li>
+            <li><a href="../ab-testing/">Test A/B</a></li>
+            <li><a href="../simulaciones/">Simulaciones</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="page-wrap">
+  <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <ol>
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../simulaciones/">Simulaciones</a></li>
+      <li><span aria-current="page">Paseo aleatorio</span></li>
+    </ol>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Simulación estadística</p>
+    <h1>Simulador de paseo aleatorio 1D y 2D</h1>
+    <p class="hero-subtitle">Visualiza cómo una partícula se mueve al azar paso a paso. Observa la difusión proporcional a √n, el efecto de la deriva y la recurrencia en 2D.</p>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════════════ TABS ═══════════════════════════════ -->
+    <div class="mode-tabs" role="tablist" aria-label="Dimensión del paseo">
+      <button class="mode-tab active" role="tab" aria-selected="true"
+              aria-controls="panel-1d" id="tab-1d" data-tab="1d">Paseo 1D</button>
+      <button class="mode-tab" role="tab" aria-selected="false"
+              aria-controls="panel-2d" id="tab-2d" data-tab="2d">Paseo 2D</button>
+    </div>
+
+    <!-- ═══════════════════════════════ 1D ═══════════════════════════════ -->
+    <div id="panel-1d" class="mode-section active" role="tabpanel" aria-labelledby="tab-1d">
+      <div class="sim-layout">
+
+        <!-- Control panel -->
+        <aside class="card sample-size-panel sim-panel" aria-label="Parámetros del paseo 1D">
+          <h2 class="panel-heading">Parámetros</h2>
+
+          <div class="form-group">
+            <label for="p1d">Probabilidad de +1 (p)</label>
+            <select id="p1d">
+              <option value="0.3">0,30 — deriva negativa</option>
+              <option value="0.4">0,40 — ligera deriva negativa</option>
+              <option value="0.5" selected>0,50 — simétrico (sin deriva)</option>
+              <option value="0.6">0,60 — ligera deriva positiva</option>
+              <option value="0.7">0,70 — deriva positiva</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="n1d">Número de pasos (n)</label>
+            <select id="n1d">
+              <option value="50">50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+              <option value="500" selected>500</option>
+              <option value="1000">1 000</option>
+              <option value="2000">2 000</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="paths1d">Número de trayectorias</label>
+            <select id="paths1d">
+              <option value="1">1</option>
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="bands1d" checked>
+            <label for="bands1d">Mostrar bandas teóricas ±2σ</label>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="meanline1d" checked>
+            <label for="meanline1d">Mostrar media esperada</label>
+          </div>
+
+          <button class="calculate-btn" id="btn1d" type="button">Simular</button>
+        </aside>
+
+        <!-- Results area -->
+        <div>
+          <div class="chart-outer">
+            <h3>Trayectorias X(t)</h3>
+            <p class="chart-sub">Posición acumulada en función del paso t</p>
+            <div class="chart-wrap">
+              <div class="sim-placeholder" id="ph1d">
+                <span class="icon">📉</span>
+                Haz clic en <strong>Simular</strong> para comenzar.
+              </div>
+              <canvas id="canvas1d" style="display:none;" aria-label="Gráfico de trayectorias del paseo aleatorio 1D"></canvas>
+            </div>
+            <div id="legend1d" class="legend-row" style="display:none;"></div>
+          </div>
+
+          <div id="stats1d" style="display:none;">
+            <div class="stats-grid">
+              <div class="stat-cell">
+                <div class="stat-label">Pos. media final</div>
+                <div class="stat-val" id="s1d-mean">—</div>
+                <div class="stat-expected" id="s1d-emean"></div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-label">Desv. típica final</div>
+                <div class="stat-val" id="s1d-sd">—</div>
+                <div class="stat-expected" id="s1d-esd"></div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-label">Mín. final</div>
+                <div class="stat-val" id="s1d-min">—</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-label">Máx. final</div>
+                <div class="stat-val" id="s1d-max">—</div>
+              </div>
+            </div>
+            <div class="result-box" id="interp1d"></div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /panel-1d -->
+
+    <!-- ═══════════════════════════════ 2D ═══════════════════════════════ -->
+    <div id="panel-2d" class="mode-section" role="tabpanel" aria-labelledby="tab-2d" style="display:none;">
+      <div class="sim-layout">
+
+        <!-- Control panel -->
+        <aside class="card sample-size-panel sim-panel" aria-label="Parámetros del paseo 2D">
+          <h2 class="panel-heading">Parámetros</h2>
+
+          <div class="form-group">
+            <label for="n2d">Número de pasos (n)</label>
+            <select id="n2d">
+              <option value="100">100</option>
+              <option value="500">500</option>
+              <option value="1000" selected>1 000</option>
+              <option value="5000">5 000</option>
+              <option value="10000">10 000</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="paths2d">Número de trayectorias</label>
+            <select id="paths2d">
+              <option value="1">1</option>
+              <option value="3">3</option>
+              <option value="5" selected>5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="circle2d" checked>
+            <label for="circle2d">Mostrar círculo de difusión √n</label>
+          </div>
+
+          <button class="calculate-btn" id="btn2d" type="button">Simular</button>
+
+          <div id="legend2d" class="legend-row" style="margin-top:20px;"></div>
+        </aside>
+
+        <!-- Results area -->
+        <div>
+          <div class="chart-outer">
+            <h3>Trayectorias en el plano</h3>
+            <p class="chart-sub">Posición (x, y) en cada paso. Punto negro = origen. El círculo discontinuo marca la distancia esperada √n.</p>
+            <div class="canvas2d-wrap">
+              <div class="sim-placeholder" id="ph2d" style="min-height:420px;">
+                <span class="icon">🗺️</span>
+                Haz clic en <strong>Simular</strong> para comenzar.
+              </div>
+              <canvas id="canvas2d" style="display:none;" aria-label="Gráfico de trayectorias del paseo aleatorio 2D"></canvas>
+            </div>
+          </div>
+
+          <div id="stats2d" style="display:none;">
+            <div class="stats-grid">
+              <div class="stat-cell">
+                <div class="stat-label">Distancia media final</div>
+                <div class="stat-val" id="s2d-dist">—</div>
+                <div class="stat-expected" id="s2d-edist"></div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-label">Distancia² media</div>
+                <div class="stat-val" id="s2d-dist2">—</div>
+                <div class="stat-expected" id="s2d-edist2"></div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-label">Máx. desplaz.</div>
+                <div class="stat-val" id="s2d-maxdist">—</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-label">Pasos al origen</div>
+                <div class="stat-val" id="s2d-returns">—</div>
+              </div>
+            </div>
+            <div class="result-box" id="interp2d"></div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /panel-2d -->
+
+
+    <!-- ═══════════════════════════════ EDUCATIONAL ═══════════════════════ -->
+
+    <section class="card content-card">
+      <h2>¿Qué es un paseo aleatorio?</h2>
+      <p>Un <strong>paseo aleatorio</strong> (<em>random walk</em>) es una sucesión de pasos en los que la dirección de cada paso se elige de forma aleatoria e independiente. El modelo más sencillo en una dimensión es el <strong>paseo aleatorio simple</strong>: una partícula empieza en la posición X₀ = 0 y en cada instante t avanza +1 (con probabilidad p) o retrocede −1 (con probabilidad 1 − p).</p>
+      <p>Si p = 0,5, el paseo es <strong>simétrico</strong>: no hay tendencia ni dirección preferida. Si p ≠ 0,5, existe una <strong>deriva</strong> (drift) que empuja sistemáticamente la trayectoria en una dirección, aunque el ruido aleatorio sigue siendo el componente dominante a corto plazo.</p>
+      <p>Formalmente, la posición en el paso n es:</p>
+      <p style="text-align:center; font-size:1.05rem; margin: 1rem 0;">
+        \( X_n = \sum_{i=1}^{n} \xi_i \)
+      </p>
+      <p>donde cada \(\xi_i\) es una variable aleatoria independiente con P(\(\xi_i = +1\)) = p y P(\(\xi_i = -1\)) = 1 − p.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Propiedades matemáticas</h2>
+
+      <h3>Media y varianza</h3>
+      <p>Dado que E[\(\xi_i\)] = p − (1−p) = 2p − 1 y Var(\(\xi_i\)) = 1 − (2p−1)² = 4p(1−p), por linealidad de la esperanza y la independencia:</p>
+      <ul>
+        <li><strong>Media:</strong> E[X<sub>n</sub>] = n(2p − 1). Para p = 0,5, la media es 0 para todo n.</li>
+        <li><strong>Varianza:</strong> Var(X<sub>n</sub>) = 4p(1−p) · n. Para p = 0,5, Var = n.</li>
+        <li><strong>Desviación típica:</strong> σ(X<sub>n</sub>) = 2√(p(1−p)) · √n. Para p = 0,5, σ = √n.</li>
+      </ul>
+      <p>El hecho de que la dispersión crezca como <strong>√n</strong> y no como n es la propiedad más característica del paseo aleatorio. Las trayectorias se "abren" en abanico, pero más lentamente de lo que podría parecer. Por ejemplo, tras 10.000 pasos, la desviación típica de la posición es solo √10.000 = 100.</p>
+
+      <h3>Distribución asintótica y conexión con el TCL</h3>
+      <p>Por el <a href="teorema-central-limite.html">teorema central del límite</a>, X<sub>n</sub> es una suma de n variables iid, por lo que para n grande:</p>
+      <p style="text-align:center; font-size:1.05rem; margin: 1rem 0;">
+        \( X_n \approx \mathcal{N}\!\left(n(2p-1),\; 4p(1-p)\,n\right) \)
+      </p>
+      <p>Esto justifica las bandas teóricas ±2σ que puedes ver en el simulador: aproximadamente el 95 % de las trayectorias deberían quedar dentro de la banda E[X<sub>n</sub>] ± 2 · 2√(p(1−p)n). Observa cómo las bandas se abren siguiendo la curva √n y no una línea recta.</p>
+
+      <h3>El paseo aleatorio en 2D</h3>
+      <p>En dos dimensiones, la partícula se mueve con igual probabilidad 1/4 en cada uno de los cuatro ejes (norte, sur, este, oeste). Ahora X<sub>n</sub> e Y<sub>n</sub> son dos paseos aleatorios 1D independientes que evolucionan en pasos alternos: en promedio, cada componente recibe n/2 pasos efectivos.</p>
+      <p>La distancia euclidiana al origen sigue siendo del orden √n:</p>
+      <p style="text-align:center; font-size:1.05rem; margin: 1rem 0;">
+        \( \mathrm{E}\!\left[\,r_n^2\,\right] = \mathrm{E}[X_n^2 + Y_n^2] = n \)
+        <span style="margin-left:2rem;">⟹</span>
+        <span style="margin-left:2rem;">\( r_{\mathrm{RMS}} = \sqrt{n} \)</span>
+      </p>
+      <p>El círculo discontinuo en el simulador 2D tiene radio √n y corresponde a esta distancia cuadrática media. Observa cómo los puntos finales de las trayectorias se agrupan aproximadamente dentro de ese círculo.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Recurrencia: el paseo siempre vuelve al origen</h2>
+      <p>Una de las propiedades más contraintuitivas del paseo aleatorio fue demostrada por el matemático polaco <strong>George Pólya en 1921</strong>. En su teorema más famoso establece:</p>
+      <ul>
+        <li><strong>En 1D y 2D:</strong> el paseo aleatorio simple es <em>recurrente</em> — la probabilidad de volver al punto de partida (y a cualquier punto visitado) es exactamente 1. Dado tiempo suficiente, el caminante siempre regresa.</li>
+        <li><strong>En 3D y dimensiones superiores:</strong> el paseo es <em>transitorio</em> — la probabilidad de volver al origen es menor que 1 (≈ 0,3405 en 3D). Un pájaro borracho puede perderse para siempre.</li>
+      </ul>
+      <p>La intuición detrás de este resultado es que en baja dimensión el espacio es "pequeño" comparado con cuánto lo explora el paseo, mientras que en alta dimensión hay demasiadas direcciones posibles y la partícula se dispersa irreversiblemente. Esta propiedad tiene profundas implicaciones en física estadística, teoría de grafos y ecología.</p>
+      <p>En el simulador 2D, activa muchos pasos (5.000–10.000) con una sola trayectoria y observa cómo la partícula regresa repetidamente al origen aunque parezca haberse alejado definitivamente.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>La ruina del jugador</h2>
+      <p>Imaginemos un jugador que comienza con €<em>a</em> y juega una serie de apuestas de €1 contra un rival con €<em>b</em>. En cada ronda, el jugador gana €1 con probabilidad p o pierde €1 con probabilidad q = 1 − p. El juego termina cuando alguien se arruina.</p>
+      <p>Este problema clásico es equivalente a un paseo aleatorio con barreras absorbentes en 0 y a + b. La probabilidad de que el jugador se arruine vale:</p>
+      <p style="text-align:center; font-size:1.02rem; margin: 1rem 0;">
+        \[
+          P(\text{ruina}) = \begin{cases}
+            \dfrac{(q/p)^a - (q/p)^{a+b}}{1 - (q/p)^{a+b}} & \text{si } p \neq \tfrac{1}{2} \\[1.4em]
+            \dfrac{b}{a+b} & \text{si } p = \tfrac{1}{2}
+          \end{cases}
+        \]
+      </p>
+      <p>Para el juego justo (p = 0,5), la probabilidad de ruina depende solo de la proporción de capital: si el jugador tiene €100 y la banca tiene €900, la probabilidad de que el jugador se arruine es 900/1000 = 90 %. Incluso con un juego perfectamente justo, la asimetría de capital hace casi segura la ruina del jugador más pobre.</p>
+      <p>Con p &lt; 0,5 (la situación real en un casino, donde la casa tiene ventaja), la ruina es prácticamente inevitable a largo plazo. Solo con p &gt; 0,5 puede el jugador tener probabilidad positiva de arruinar a su rival antes de arruinarse él.</p>
+      <p>En el simulador 1D, cambia p a 0,40 o 0,30 con derive negativa y observa cómo las trayectorias descienden sistemáticamente — eso es la ventaja de la casa actuando.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Movimiento browniano: el límite continuo</h2>
+      <p>Cuando el tamaño del paso y el intervalo de tiempo tienden a 0 de manera coordinada, el paseo aleatorio converge en distribución al <strong>movimiento browniano</strong> (también llamado proceso de Wiener), que es el modelo continuo de difusión.</p>
+      <p>Formalmente, si definimos B<sub>t</sub> = X<sub>⌊nt⌋</sub>/√n, entonces B<sub>t</sub> → W<sub>t</sub> donde W es un proceso de Wiener estándar con W₀ = 0, incrementos independientes y W<sub>t</sub> − W<sub>s</sub> ~ N(0, t − s).</p>
+      <p>El movimiento browniano fue postulado por Robert Brown (1827) al observar el movimiento errático de granos de polen en agua, y explicado matemáticamente por Albert Einstein en 1905 como resultado del bombardeo molecular. La misma matemática del paseo aleatorio describe:</p>
+      <ul>
+        <li><strong>Difusión de moléculas</strong> en un fluido (ecuación de difusión de Fick, D = σ²/2t).</li>
+        <li><strong>Conducción de calor</strong> (ecuación del calor = ecuación de difusión).</li>
+        <li><strong>Precios financieros</strong> (modelo de Black-Scholes, movimiento browniano geométrico).</li>
+        <li><strong>Polímeros</strong> en química (la conformación de una cadena polimérica sigue un paseo aleatorio en 3D).</li>
+      </ul>
+    </section>
+
+    <section class="card content-card">
+      <h2>Aplicaciones del paseo aleatorio</h2>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+        <div style="background:rgba(79,70,229,0.04); border:1px solid rgba(79,70,229,0.12); border-radius:12px; padding:16px;">
+          <h3 style="margin:0 0 8px; font-size:0.97rem; color:#1e293b;">📈 Finanzas</h3>
+          <p style="margin:0; font-size:0.9rem; color:#334155; line-height:1.6;">La hipótesis del mercado eficiente de Eugene Fama (1970) propone que los precios de los activos siguen un paseo aleatorio, lo que implica que no se puede predecir el precio futuro a partir del historial. El modelo de Black-Scholes asume movimiento browniano geométrico para el precio subyacente.</p>
+        </div>
+        <div style="background:rgba(8,145,178,0.04); border:1px solid rgba(8,145,178,0.15); border-radius:12px; padding:16px;">
+          <h3 style="margin:0 0 8px; font-size:0.97rem; color:#1e293b;">🧬 Biología y ecología</h3>
+          <p style="margin:0; font-size:0.9rem; color:#334155; line-height:1.6;">El movimiento de microorganismos como bacterias se modela con paseos aleatorios. En ecología, la dispersión de semillas y animales sigue patrones de paseo aleatorio, aunque muchas especies usan estrategias más eficientes (vuelos de Lévy).</p>
+        </div>
+        <div style="background:rgba(22,163,74,0.04); border:1px solid rgba(22,163,74,0.15); border-radius:12px; padding:16px;">
+          <h3 style="margin:0 0 8px; font-size:0.97rem; color:#1e293b;">💻 Algoritmos e IA</h3>
+          <p style="margin:0; font-size:0.9rem; color:#334155; line-height:1.6;">El algoritmo de PageRank de Google se basa en el vector estacionario de un paseo aleatorio sobre el grafo de la web. El método MCMC (Markov Chain Monte Carlo) en estadística bayesiana explora distribuciones complejas mediante paseos aleatorios en el espacio de parámetros.</p>
+        </div>
+        <div style="background:rgba(220,38,38,0.04); border:1px solid rgba(220,38,38,0.15); border-radius:12px; padding:16px;">
+          <h3 style="margin:0 0 8px; font-size:0.97rem; color:#1e293b;">⚛️ Física</h3>
+          <p style="margin:0; font-size:0.9rem; color:#334155; line-height:1.6;">La difusión de partículas cargadas en plasmas, la conducción de neutrones en reactores nucleares, la resistividad eléctrica en metales y la dinámica molecular en simulaciones computacionales utilizan el formalismo del paseo aleatorio.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card content-card">
+      <h2>Preguntas frecuentes</h2>
+
+      <div class="faq-item">
+        <h3>¿Por qué las posiciones se dispersan como √n y no como n?</h3>
+        <p>Porque la posición X<sub>n</sub> es una suma de n variables aleatorias independientes, y por el teorema central del límite la desviación típica de una suma crece como √n. Si cada paso puede ser ±1, la varianza de la suma es n·Var(ξ), y la desviación típica es √n·σ. Este crecimiento sublineal es la firma matemática de la difusión.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿El paseo aleatorio predice realmente los precios de bolsa?</h3>
+        <p>Es un debate activo. La hipótesis de mercado eficiente en su forma débil dice que los precios pasados no permiten predecir los futuros — lo que es consistente con el paseo aleatorio. Sin embargo, la finanza conductual ha documentado numerosas anomalías (reversión a la media, momentum, efectos de calendario) que sugieren que los mercados no son perfectamente eficientes. En la práctica, el paseo aleatorio es una primera aproximación útil, no una descripción exacta.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Qué diferencia hay entre p = 0,5 y p = 0,51?</h3>
+        <p>A corto plazo, muy poca: el ruido domina. Pero a largo plazo, la diferencia es enorme. Con p = 0,51 y n = 10.000 pasos, la deriva esperada es n(2p−1) = 10.000 × 0,02 = 200 posiciones, mientras que la desviación típica es √10.000 ≈ 100. La deriva supera con creces la variabilidad aleatoria. Esta es la razón por la que una ventaja pequeña pero consistente (como la de la casa en el blackjack) domina el resultado a largo plazo.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Cómo se relaciona el paseo 2D con las cadenas de Markov?</h3>
+        <p>El paseo aleatorio 2D en la rejilla ℤ² es un caso especial de cadena de Markov con espacio de estados infinito. La propiedad de Markov se cumple porque la próxima posición depende solo de la posición actual, no de la historia. Sin embargo, al tener infinitos estados, el análisis de la distribución estacionaria es diferente al de las cadenas finitas del <a href="simulador-cadenas-markov.html">simulador de cadenas de Markov</a>.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>¿Qué son los vuelos de Lévy?</h3>
+        <p>Los vuelos de Lévy son una generalización del paseo aleatorio donde los pasos no tienen varianza finita: la mayoría son pequeños, pero ocasionalmente ocurren saltos muy grandes que siguen una distribución de cola pesada (distribución de Lévy estable). Muchos animales, desde albatros hasta tiburones, usan estrategias de búsqueda que se asemejan a vuelos de Lévy porque son óptimas para explorar entornos donde las presas son escasas y distribuidas aleatoriamente.</p>
+      </div>
+    </section>
+
+    <section class="card content-card">
+      <h2>Herramientas relacionadas</h2>
+      <div class="related-tools">
+        <p><a href="teorema-central-limite.html">Simulador del TCL</a> — el paseo aleatorio es un caso especial: X<sub>n</sub>/√n → N(0,1) por el TCL.</p>
+        <p><a href="simulador-cadenas-markov.html">Simulador de cadenas de Markov</a> — el paseo aleatorio con estados finitos es una cadena de Markov.</p>
+        <p><a href="simulador-proceso-poisson.html">Simulador de proceso de Poisson</a> — el proceso de Poisson es el análogo continuo del paseo aleatorio para eventos raros.</p>
+        <p><a href="../distribuciones/">Calculadoras de distribuciones</a> — distribución normal asintótica de X<sub>n</sub> y distribución binomial del número de pasos positivos.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="../sobre.html">Sobre ProbLab</a> ·
+      <a href="../metodologia.html">Metodología</a> ·
+      <a href="../aviso-legal.html">Aviso legal</a> ·
+      <a href="../privacidad.html">Privacidad</a> ·
+      <a href="../cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   TABS
+════════════════════════════════════════════ */
+document.querySelectorAll('.mode-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-tab').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    const tab = btn.dataset.tab;
+    document.getElementById('panel-1d').style.display = tab === '1d' ? '' : 'none';
+    document.getElementById('panel-2d').style.display = tab === '2d' ? '' : 'none';
+  });
+});
+
+/* ════════════════════════════════════════════
+   HELPERS
+════════════════════════════════════════════ */
+const COLORS = [
+  '#4f46e5','#0891b2','#dc2626','#16a34a','#d97706',
+  '#7c3aed','#db2777','#059669','#b45309','#64748b',
+  '#0f172a','#0369a1','#15803d','#b91c1c','#92400e',
+  '#6d28d9','#be185d','#047857','#c2410c','#334155'
+];
+
+function hexToRgba(hex, a) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+function fmtN(v, dec=2) {
+  return Number.isFinite(v) ? v.toFixed(dec) : '—';
+}
+
+function arrMean(a) { return a.reduce((s,v)=>s+v,0)/a.length; }
+function arrStd(a) {
+  const m = arrMean(a);
+  return Math.sqrt(a.reduce((s,v)=>s+(v-m)**2,0)/a.length);
+}
+
+/* ════════════════════════════════════════════
+   1D SIMULATION
+════════════════════════════════════════════ */
+let chart1D = null;
+
+function walk1D(n, p) {
+  const pos = new Float32Array(n + 1);
+  for (let i = 1; i <= n; i++) {
+    pos[i] = pos[i-1] + (Math.random() < p ? 1 : -1);
+  }
+  return pos;
+}
+
+function simulate1D() {
+  const n       = parseInt(document.getElementById('n1d').value);
+  const p       = parseFloat(document.getElementById('p1d').value);
+  const nPaths  = parseInt(document.getElementById('paths1d').value);
+  const bands   = document.getElementById('bands1d').checked;
+  const showMean= document.getElementById('meanline1d').checked;
+
+  const btn = document.getElementById('btn1d');
+  btn.disabled = true;
+  btn.textContent = 'Simulando…';
+
+  // defer to next frame so UI updates
+  setTimeout(() => {
+    // generate walks
+    const walks = [];
+    for (let k = 0; k < nPaths; k++) walks.push(walk1D(n, p));
+
+    // subsample indices (max 600 display points for performance)
+    const maxPts = 600;
+    const skip = Math.max(1, Math.ceil(n / maxPts));
+    const idxs = [];
+    for (let i = 0; i <= n; i += skip) idxs.push(i);
+    if (idxs[idxs.length-1] !== n) idxs.push(n);
+
+    // trajectory datasets
+    const datasets = walks.map((w, k) => ({
+      label: nPaths === 1 ? 'Trayectoria' : (nPaths <= 10 ? `Tray. ${k+1}` : null),
+      data: idxs.map(i => ({x: i, y: w[i]})),
+      borderColor: COLORS[k % COLORS.length],
+      borderWidth: nPaths > 10 ? 0.8 : (nPaths > 5 ? 1.1 : 1.5),
+      pointRadius: 0,
+      fill: false,
+      parsing: false,
+      tension: 0
+    }));
+
+    // theoretical reference lines
+    const mu  = 2*p - 1;                     // drift per step
+    const sig = 2 * Math.sqrt(p * (1-p));    // σ per √step (σ_step * √1 per step)
+    // after n steps: σ_n = sig * √n
+
+    if (bands) {
+      const upper = idxs.map(i => ({x: i, y: mu*i + 2*sig*Math.sqrt(i)}));
+      const lower = idxs.map(i => ({x: i, y: mu*i - 2*sig*Math.sqrt(i)}));
+      datasets.push({
+        label: 'Banda +2σ',
+        data: upper,
+        borderColor: 'rgba(148,163,184,0.55)',
+        borderWidth: 1.5,
+        borderDash: [5,3],
+        pointRadius: 0,
+        fill: {target: '+1', above: 'rgba(148,163,184,0.09)', below: 'rgba(148,163,184,0.09)'},
+        parsing: false, tension: 0
+      });
+      datasets.push({
+        label: 'Banda −2σ',
+        data: lower,
+        borderColor: 'rgba(148,163,184,0.55)',
+        borderWidth: 1.5,
+        borderDash: [5,3],
+        pointRadius: 0,
+        fill: false,
+        parsing: false, tension: 0
+      });
+    }
+    if (showMean) {
+      datasets.push({
+        label: 'Media E[X]',
+        data: idxs.map(i => ({x: i, y: mu*i})),
+        borderColor: 'rgba(100,116,139,0.75)',
+        borderWidth: 1.8,
+        borderDash: [9,4],
+        pointRadius: 0,
+        fill: false,
+        parsing: false, tension: 0
+      });
+    }
+
+    // chart
+    if (chart1D) chart1D.destroy();
+    const canvas = document.getElementById('canvas1d');
+    document.getElementById('ph1d').style.display = 'none';
+    canvas.style.display = 'block';
+
+    chart1D = new Chart(canvas.getContext('2d'), {
+      type: 'line',
+      data: { datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        interaction: { mode: 'nearest', intersect: false },
+        plugins: {
+          legend: {
+            display: nPaths <= 10 || bands || showMean,
+            labels: {
+              filter: item => item.text && !item.text.startsWith('null'),
+              boxWidth: 20, boxHeight: 2,
+              font: {size: 11}
+            }
+          },
+          tooltip: {enabled: false}
+        },
+        scales: {
+          x: {
+            type: 'linear',
+            min: 0, max: n,
+            title: {display: true, text: 'Paso t', font:{size:11}},
+            ticks: {maxTicksLimit: 8, font:{size:10}}
+          },
+          y: {
+            title: {display: true, text: 'Posición X(t)', font:{size:11}},
+            ticks: {maxTicksLimit: 8, font:{size:10}}
+          }
+        }
+      }
+    });
+
+    // stats
+    const finals = walks.map(w => w[n]);
+    const eMean = fmtN(arrMean(finals));
+    const eStd  = fmtN(arrStd(finals));
+    const eMin  = fmtN(Math.min(...finals), 0);
+    const eMax  = fmtN(Math.max(...finals), 0);
+    const thMean = fmtN(n * mu);
+    const thStd  = fmtN(sig * Math.sqrt(n));
+
+    document.getElementById('s1d-mean').textContent = eMean;
+    document.getElementById('s1d-emean').textContent = `Esperado: ${thMean}`;
+    document.getElementById('s1d-sd').textContent = eStd;
+    document.getElementById('s1d-esd').textContent = `Esperado: ${thStd}`;
+    document.getElementById('s1d-min').textContent = eMin;
+    document.getElementById('s1d-max').textContent = eMax;
+    document.getElementById('stats1d').style.display = '';
+
+    // interpretation
+    let txt;
+    const drift = Math.abs(n * mu);
+    const noise  = sig * Math.sqrt(n);
+    if (Math.abs(p - 0.5) < 0.001) {
+      txt = `Paseo simétrico (p = 0,5): no hay deriva. La posición media esperada es 0 y la desviación típica es σ = √n = √${n} ≈ ${fmtN(Math.sqrt(n), 1)}. Las trayectorias se dispersan en abanico siguiendo las bandas ±2σ, que crecen proporcionalmente a √t.`;
+    } else if (p > 0.5) {
+      txt = `Con p = ${p}, existe una <strong>deriva positiva</strong> de ${fmtN(n*mu, 1)} posiciones en ${n} pasos. La desviación típica es ${thStd}. Tras suficientes pasos, la deriva supera el ruido aleatorio y las trayectorias muestran una tendencia ascendente clara.`;
+    } else {
+      txt = `Con p = ${p}, existe una <strong>deriva negativa</strong> de ${fmtN(n*mu, 1)} posiciones en ${n} pasos. La desviación típica es ${thStd}. Esto ilustra la situación del jugador con desventaja: aunque hay fluctuaciones, la tendencia a la baja es inevitable a largo plazo.`;
+    }
+    const interp = document.getElementById('interp1d');
+    interp.innerHTML = txt;
+    interp.style.display = '';
+
+    btn.disabled = false;
+    btn.textContent = 'Simular';
+  }, 20);
+}
+
+document.getElementById('btn1d').addEventListener('click', simulate1D);
+
+
+/* ════════════════════════════════════════════
+   2D SIMULATION
+════════════════════════════════════════════ */
+function walk2D(n) {
+  const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+  let x = 0, y = 0;
+  const xs = new Int16Array(n + 1);
+  const ys = new Int16Array(n + 1);
+  for (let i = 1; i <= n; i++) {
+    const d = dirs[(Math.random() * 4) | 0];
+    x += d[0]; y += d[1];
+    xs[i] = x; ys[i] = y;
+  }
+  return {xs, ys};
+}
+
+function simulate2D() {
+  const n      = parseInt(document.getElementById('n2d').value);
+  const nPaths = parseInt(document.getElementById('paths2d').value);
+  const showC  = document.getElementById('circle2d').checked;
+
+  const btn = document.getElementById('btn2d');
+  btn.disabled = true;
+  btn.textContent = 'Simulando…';
+
+  setTimeout(() => {
+    const paths = [];
+    for (let k = 0; k < nPaths; k++) paths.push(walk2D(n));
+
+    // compute bounds
+    let xMin = 0, xMax = 0, yMin = 0, yMax = 0;
+    paths.forEach(({xs, ys}) => {
+      for (let i = 0; i <= n; i++) {
+        if (xs[i] < xMin) xMin = xs[i];
+        if (xs[i] > xMax) xMax = xs[i];
+        if (ys[i] < yMin) yMin = ys[i];
+        if (ys[i] > yMax) yMax = ys[i];
+      }
+    });
+    // ensure √n circle fits
+    const sqrtN = Math.sqrt(n);
+    xMin = Math.min(xMin, -sqrtN * 1.05);
+    xMax = Math.max(xMax,  sqrtN * 1.05);
+    yMin = Math.min(yMin, -sqrtN * 1.05);
+    yMax = Math.max(yMax,  sqrtN * 1.05);
+    // make square with margin
+    const span = Math.max(xMax - xMin, yMax - yMin) * 1.08;
+    const cx   = (xMin + xMax) / 2;
+    const cy   = (yMin + yMax) / 2;
+    xMin = cx - span/2; xMax = cx + span/2;
+    yMin = cy - span/2; yMax = cy + span/2;
+
+    // canvas
+    const canvas = document.getElementById('canvas2d');
+    document.getElementById('ph2d').style.display = 'none';
+    canvas.style.display = 'block';
+    const W = canvas.parentElement.clientWidth || 600;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width  = W * dpr;
+    canvas.height = W * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = W + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    const toX = v => (v - xMin) / (xMax - xMin) * W;
+    const toY = v => (1 - (v - yMin) / (yMax - yMin)) * W;
+
+    // background
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillRect(0, 0, W, W);
+
+    // light grid lines at rounded intervals
+    const gridInterval = Math.pow(10, Math.floor(Math.log10(span / 5)));
+    ctx.strokeStyle = 'rgba(203,213,225,0.6)';
+    ctx.lineWidth = 0.5;
+    const gStart = Math.floor(xMin / gridInterval) * gridInterval;
+    for (let g = gStart; g <= xMax; g += gridInterval) {
+      ctx.beginPath();
+      ctx.moveTo(toX(g), 0);
+      ctx.lineTo(toX(g), W);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0,    toY(g));
+      ctx.lineTo(W, toY(g));
+      ctx.stroke();
+    }
+
+    // axes
+    ctx.strokeStyle = 'rgba(100,116,139,0.4)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(toX(0), 0); ctx.lineTo(toX(0), W);
+    ctx.moveTo(0, toY(0)); ctx.lineTo(W, toY(0));
+    ctx.stroke();
+
+    // √n diffusion circle
+    if (showC) {
+      const r = (sqrtN / (xMax - xMin)) * W;
+      ctx.beginPath();
+      ctx.arc(toX(0), toY(0), r, 0, 2*Math.PI);
+      ctx.strokeStyle = 'rgba(79,70,229,0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([6,4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(79,70,229,0.55)';
+      ctx.font = `${Math.max(10, W/50)}px system-ui, sans-serif`;
+      ctx.textAlign = 'left';
+      ctx.fillText('r = √n ≈ ' + fmtN(sqrtN, 1), toX(sqrtN * 0.72), toY(sqrtN * 0.72) - 6);
+    }
+
+    // trajectories
+    const skip = Math.max(1, Math.ceil(n / 3000));
+    const alpha = nPaths > 10 ? 0.45 : (nPaths > 5 ? 0.60 : 0.75);
+
+    paths.forEach(({xs, ys}, k) => {
+      const col = COLORS[k % COLORS.length];
+      ctx.strokeStyle = hexToRgba(col, alpha);
+      ctx.lineWidth = nPaths > 10 ? 0.7 : (nPaths > 5 ? 1.0 : 1.3);
+      ctx.beginPath();
+      ctx.moveTo(toX(xs[0]), toY(ys[0]));
+      for (let i = skip; i <= n; i += skip) {
+        ctx.lineTo(toX(xs[i]), toY(ys[i]));
+      }
+      ctx.lineTo(toX(xs[n]), toY(ys[n]));
+      ctx.stroke();
+
+      // end point
+      const R = Math.max(3, W/120);
+      ctx.beginPath();
+      ctx.arc(toX(xs[n]), toY(ys[n]), R, 0, 2*Math.PI);
+      ctx.fillStyle = col;
+      ctx.fill();
+    });
+
+    // origin
+    const or = Math.max(4, W/100);
+    ctx.beginPath();
+    ctx.arc(toX(0), toY(0), or + 1.5, 0, 2*Math.PI);
+    ctx.fillStyle = '#1e293b';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(toX(0), toY(0), or - 0.5, 0, 2*Math.PI);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+
+    // legend
+    const legendEl = document.getElementById('legend2d');
+    legendEl.innerHTML = paths.map((_, k) => {
+      const col = COLORS[k % COLORS.length];
+      return `<span class="legend-item">
+        <span class="legend-circle" style="background:${col};"></span>
+        Tray. ${k+1} — final (${paths[k].xs[n]}, ${paths[k].ys[n]})
+      </span>`;
+    }).join('');
+    if (showC) {
+      legendEl.innerHTML += `<span class="legend-item">
+        <span class="legend-line" style="background:rgba(79,70,229,0.5); border-top:2px dashed rgba(79,70,229,0.5); height:0;"></span>
+        Círculo √n ≈ ${fmtN(sqrtN,1)}
+      </span>`;
+    }
+
+    // stats
+    const dists   = paths.map(({xs, ys}) => Math.sqrt(xs[n]**2 + ys[n]**2));
+    const dists2  = dists.map(d => d*d);
+    const maxDist = Math.max(...paths.map(({xs, ys}) => {
+      let mxD = 0;
+      for (let i = 0; i <= n; i++) {
+        const d = Math.sqrt(xs[i]**2 + ys[i]**2);
+        if (d > mxD) mxD = d;
+      }
+      return mxD;
+    }));
+    // count returns to origin (for single path)
+    let returns = '—';
+    if (nPaths === 1) {
+      const {xs, ys} = paths[0];
+      let cnt = 0;
+      for (let i = 1; i <= n; i++) if (xs[i]===0 && ys[i]===0) cnt++;
+      returns = cnt.toString();
+    }
+
+    document.getElementById('s2d-dist').textContent  = fmtN(arrMean(dists));
+    document.getElementById('s2d-edist').textContent  = `Esperado ≈ ${fmtN(sqrtN * Math.sqrt(Math.PI/2), 2)}`;
+    document.getElementById('s2d-dist2').textContent  = fmtN(arrMean(dists2), 1);
+    document.getElementById('s2d-edist2').textContent = `Esperado: n = ${n}`;
+    document.getElementById('s2d-maxdist').textContent = fmtN(maxDist, 1);
+    document.getElementById('s2d-returns').textContent = returns;
+    document.getElementById('stats2d').style.display = '';
+
+    // interpretation
+    const dMean  = arrMean(dists);
+    const thDist = sqrtN * Math.sqrt(Math.PI / 2);
+    const ratio  = dMean / thDist;
+    let txt2 = `Con n = ${n} pasos, la distancia al origen sigue siendo del orden √n ≈ ${fmtN(sqrtN, 1)}. `;
+    txt2 += `La distancia media empírica es ${fmtN(dMean, 2)} (teórica: √(πn/2) ≈ ${fmtN(thDist, 2)}). `;
+    if (nPaths === 1) {
+      txt2 += `La trayectoria ha regresado al origen <strong>${returns}</strong> veces, ilustrando la recurrencia del paseo 2D.`;
+    } else {
+      txt2 += `La distancia cuadrática media E[r²] = n = ${n} (empírica: ${fmtN(arrMean(dists2), 1)}) confirma la ley de difusión.`;
+    }
+    const interp2 = document.getElementById('interp2d');
+    interp2.innerHTML = txt2;
+    interp2.style.display = '';
+
+    btn.disabled = false;
+    btn.textContent = 'Simular';
+  }, 20);
+}
+
+document.getElementById('btn2d').addEventListener('click', simulate2D);
+</script>
+</body>
+</html>

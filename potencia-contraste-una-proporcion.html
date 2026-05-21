@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Potencia estadística para contraste de una proporción | ProbLab</title>
+  <meta name="description" content="Calcula la potencia estadística y el error tipo II para el contraste de hipótesis de una proporción. Visualiza las regiones críticas y las distribuciones bajo H₀ y H₁.">
+  <meta name="keywords" content="potencia estadística una proporción, error tipo II contraste proporción, regiones críticas estadística, calculadora potencia estadística, ProbLab">
+  <link rel="canonical" href="https://problabtools.es/potencia-contraste-una-proporcion.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Potencia estadística para contraste de una proporción | ProbLab">
+  <meta property="og:description" content="Calcula la potencia estadística y el error tipo II para el contraste de hipótesis de una proporción. Visualiza las regiones críticas y las distribuciones bajo H₀ y H₁.">
+  <meta property="og:url" content="https://problabtools.es/potencia-contraste-una-proporcion.html">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:image:alt" content="Potencia estadística para contraste de una proporción">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/potencia-contraste-una-proporcion.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Potencia estadística para contraste de una proporción | ProbLab">
+  <meta name="twitter:description" content="Calcula la potencia estadística y el error tipo II para el contraste de hipótesis de una proporción con visualización de regiones críticas.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <meta name="twitter:image:alt" content="Potencia estadística para contraste de una proporción">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Contrastes de hipótesis", "item": "https://problabtools.es/contrastes-hipotesis/"},
+          {"@type": "ListItem", "position": 3, "name": "Potencia una proporción", "item": "https://problabtools.es/potencia-contraste-una-proporcion.html"}
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Potencia estadística para contraste de una proporción",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "url": "https://problabtools.es/potencia-contraste-una-proporcion.html",
+        "description": "Calcula potencia estadística y error tipo II para contraste de hipótesis de una proporción con visualización de regiones críticas.",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es la potencia estadística?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La potencia (1−β) es la probabilidad de rechazar H₀ cuando la hipótesis alternativa es verdadera, es decir, la probabilidad de detectar un efecto real. Con una potencia del 80 %, el contraste detectará la diferencia real en 8 de cada 10 repeticiones del experimento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es el error de tipo II (β)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El error de tipo II (β) es la probabilidad de no rechazar H₀ cuando la hipótesis alternativa es cierta, es decir, no detectar un efecto que realmente existe. Es complementario a la potencia: β = 1 − potencia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué muestran las regiones críticas del gráfico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La curva azul es la distribución del estadístico de contraste bajo H₀: las zonas rojas son las regiones de rechazo y su área total es α. La curva naranja es la distribución bajo H₁: el área verde (zona de H₁ en la región de rechazo) es la potencia (1−β), y la zona sin sombrear bajo la curva naranja dentro de la región de aceptación es β."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuándo usar contraste bilateral frente a unilateral?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usa bilateral (Hₐ: p ≠ p₀) cuando no tienes una dirección esperada a priori. Usa unilateral cuando, antes del estudio, solo te interesa detectar cambios en una dirección. El test unilateral tiene más potencia para ese efecto específico pero no detecta cambios en la otra dirección."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style_new.css?v=20260521">
+  <style>
+    .mode-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .mode-tab {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid #dbe3f1;
+      background: #f8fafc;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      color: #334155;
+    }
+    .mode-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .mode-section { display: none; }
+    .mode-section.active { display: block; }
+    .chart-wrap { position: relative; height: 320px; margin-top: 24px; }
+    .chart-legend { font-size: 0.8rem; color: #64748b; margin-top: 8px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .legend-item { display: flex; align-items: center; gap: 5px; }
+    .legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="index.html">ProbLab</a>
+    <ul class="site-nav-links">
+      <li><a href="distribuciones/">Distribuciones</a></li>
+      <li><a href="tablas-estadisticas/">Tablas</a></li>
+      <li><a href="intervalos-confianza/">Intervalos de confianza</a></li>
+      <li><a href="tamano-muestral/">Tamaño muestral</a></li>
+      <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+      <li><a href="ab-testing/">Test A/B</a></li>
+            <li><a href="simulaciones/">Simulaciones</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="page-wrap">
+  <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <ol>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="contrastes-hipotesis/">Contrastes</a></li>
+      <li><span aria-current="page">Potencia una proporción</span></li>
+    </ol>
+  </nav>
+  <header class="hero">
+    <p class="eyebrow">Potencia estadística</p>
+    <h1>Potencia del contraste de hipótesis para una proporción</h1>
+    <p class="hero-subtitle">Calcula la probabilidad de detectar un efecto real (potencia) o el tamaño muestral necesario para el contraste H₀: p = p₀. Visualiza las distribuciones bajo H₀ y H₁ con sus regiones de rechazo.</p>
+    <p class="hero-links"><a class="hero-link-button" href="contrastes-hipotesis/">Ver todos los contrastes</a></p>
+  </header>
+
+  <main>
+    <section class="card sample-size-panel">
+      <div class="panel-heading">
+        <h2>Calculadora</h2>
+        <p>Selecciona el modo según lo que quieras calcular e introduce los parámetros.</p>
+      </div>
+
+      <div class="mode-tabs" role="tablist" aria-label="Modo de cálculo">
+        <button class="mode-tab active" data-target="modePower" role="tab" aria-selected="true">Potencia</button>
+        <button class="mode-tab" data-target="modeN" role="tab" aria-selected="false">Tamaño muestral</button>
+      </div>
+
+      <!-- MODE: Potencia -->
+      <div id="modePower" class="mode-section active">
+        <div class="form-grid sample-grid">
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="pwP0">Proporción bajo H₀ (p₀)</label>
+              <input type="number" id="pwP0" value="0.30" step="0.01" min="0.001" max="0.999">
+            </div>
+            <div class="form-group">
+              <label for="pwP1">Proporción bajo H₁ (p₁)</label>
+              <input type="number" id="pwP1" value="0.40" step="0.01" min="0.001" max="0.999">
+            </div>
+          </div>
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="pwN">Tamaño muestral (n)</label>
+              <input type="number" id="pwN" value="172" step="1" min="1">
+            </div>
+            <div class="form-group">
+              <label for="pwAlpha">Nivel de significación (α)</label>
+              <input type="number" id="pwAlpha" value="0.05" step="0.001" min="0.001" max="0.2">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pwAlternative">Hipótesis alternativa</label>
+            <select id="pwAlternative">
+              <option value="two-sided">Bilateral — Hₐ: p ≠ p₀</option>
+              <option value="greater">Unilateral superior — Hₐ: p &gt; p₀</option>
+              <option value="less">Unilateral inferior — Hₐ: p &lt; p₀</option>
+            </select>
+          </div>
+        </div>
+        <button class="calculate-btn" id="calcPwBtn">Calcular potencia</button>
+        <div id="pwResult" class="result-box" style="line-height:1.9;">Resultado pendiente…</div>
+      </div>
+
+      <!-- MODE: Tamaño muestral -->
+      <div id="modeN" class="mode-section">
+        <div class="form-grid sample-grid">
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="nP0">Proporción bajo H₀ (p₀)</label>
+              <input type="number" id="nP0" value="0.30" step="0.01" min="0.001" max="0.999">
+            </div>
+            <div class="form-group">
+              <label for="nP1">Proporción bajo H₁ (p₁)</label>
+              <input type="number" id="nP1" value="0.40" step="0.01" min="0.001" max="0.999">
+            </div>
+          </div>
+          <div class="inline-inputs">
+            <div class="form-group">
+              <label for="nAlpha">Nivel de significación (α)</label>
+              <input type="number" id="nAlpha" value="0.05" step="0.001" min="0.001" max="0.2">
+            </div>
+            <div class="form-group">
+              <label for="nPower">Potencia objetivo (1−β)</label>
+              <input type="number" id="nPower" value="0.80" step="0.01" min="0.5" max="0.999">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="nAlternative">Hipótesis alternativa</label>
+            <select id="nAlternative">
+              <option value="two-sided">Bilateral — Hₐ: p ≠ p₀</option>
+              <option value="greater">Unilateral superior — Hₐ: p &gt; p₀</option>
+              <option value="less">Unilateral inferior — Hₐ: p &lt; p₀</option>
+            </select>
+          </div>
+        </div>
+        <button class="calculate-btn" id="calcNBtn">Calcular tamaño muestral</button>
+        <div id="nResult" class="result-box" style="line-height:1.9;">Resultado pendiente…</div>
+      </div>
+
+      <!-- Critical regions chart -->
+      <div class="chart-wrap">
+        <canvas id="critRegionsChart" aria-label="Distribuciones bajo H₀ y H₁ con regiones críticas" role="img"></canvas>
+      </div>
+      <div class="chart-legend">
+        <span class="legend-item"><span class="legend-swatch" style="background:#2563eb;"></span> H₀: distribución bajo la hipótesis nula</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:rgba(239,68,68,0.5);"></span> Región crítica (α)</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#f59e0b; border: 2px dashed #f59e0b;"></span> H₁: distribución bajo la alternativa</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:rgba(16,185,129,0.5);"></span> Potencia (1−β)</span>
+      </div>
+
+      <div style="margin-top:20px;">
+        <h3 style="margin-top:0;">Cómo leer el gráfico</h3>
+        <p>El eje horizontal es el <strong>estadístico Z estandarizado</strong> \(Z = (\hat{p} - p_0)/SE_0\). Las dos curvas muestran su distribución en dos escenarios:</p>
+        <ul>
+          <li><strong>Curva azul (H₀)</strong>: distribución de Z si la proporción real fuera p₀, que sigue aproximadamente una N(0,1). Las <strong>zonas sombreadas en rojo</strong> son las regiones de rechazo; su área total es α.</li>
+          <li><strong>Curva naranja punteada (H₁)</strong>: distribución de Z si la proporción real fuera p₁. Está desplazada según la magnitud del efecto. La <strong>zona verde</strong> —área bajo H₁ dentro de la región de rechazo— es la potencia (1−β). La zona sin sombrear bajo la curva naranja dentro de la región de aceptación es β, el error de tipo II.</li>
+        </ul>
+        <p>Cuanto mayor es |p₁ − p₀| o el tamaño muestral n, más se separan las dos curvas y mayor es la potencia (zona verde más amplia).</p>
+      </div>
+    </section>
+
+    <section class="card content-card">
+      <h3>Fundamento estadístico</h3>
+      <p>Para el contraste \(H_0: p = p_0\) con aproximación normal, el estadístico es:</p>
+      <p class="formula-line">\( Z = \dfrac{\hat{p} - p_0}{\sqrt{p_0(1-p_0)/n}} \sim N(0,\,1) \text{ bajo } H_0 \)</p>
+      <p>Bajo la hipótesis alternativa \(H_1: p = p_1\), el mismo estadístico se distribuye aproximadamente como:</p>
+      <p class="formula-line">\( Z \sim N\!\left(\delta,\; \sigma_1^2\right) \quad \text{donde} \quad \delta = \frac{(p_1 - p_0)\sqrt{n}}{\sqrt{p_0(1-p_0)}},\quad \sigma_1 = \sqrt{\frac{p_1(1-p_1)}{p_0(1-p_0)}} \)</p>
+      <p>El parámetro \(\delta\) es la <strong>no-centralidad</strong>: cuántas desviaciones típicas (bajo H₀) se desplaza el estadístico cuando p = p₁. Cuanto mayor es \(|\delta|\), más fácil es distinguir H₁ de H₀.</p>
+
+      <h3>Fórmulas de potencia</h3>
+      <ul>
+        <li><strong>Bilateral</strong> (\(H_a: p \neq p_0\)):
+          <p class="formula-line">\( 1 - \beta \;=\; 1 - \Phi\!\left(\frac{z_{\alpha/2} - \delta}{\sigma_1}\right) + \Phi\!\left(\frac{-z_{\alpha/2} - \delta}{\sigma_1}\right) \)</p>
+        </li>
+        <li><strong>Unilateral superior</strong> (\(H_a: p > p_0\)):
+          <p class="formula-line">\( 1 - \beta \;=\; 1 - \Phi\!\left(\frac{z_\alpha - \delta}{\sigma_1}\right) \)</p>
+        </li>
+        <li><strong>Unilateral inferior</strong> (\(H_a: p < p_0\)):
+          <p class="formula-line">\( 1 - \beta \;=\; \Phi\!\left(\frac{-z_\alpha - \delta}{\sigma_1}\right) \)</p>
+        </li>
+      </ul>
+
+      <h3>Fórmula de tamaño muestral</h3>
+      <p>Para obtener potencia \(1-\beta\) con nivel \(\alpha\) y efecto \(\Delta = |p_1 - p_0|\):</p>
+      <p class="formula-line">\( n \;=\; \left\lceil\left(\frac{z_{\alpha^*}\sqrt{p_0(1-p_0)} + z_{1-\beta}\sqrt{p_1(1-p_1)}}{\Delta}\right)^2\right\rceil \)</p>
+      <p>donde \(z_{\alpha^*} = z_{\alpha/2}\) en bilateral y \(z_{\alpha^*} = z_\alpha\) en unilateral.</p>
+    </section>
+
+    <section class="card content-card">
+      <h3>Ejemplo resuelto</h3>
+      <p>Una empresa quiere verificar si su tasa de satisfacción p₀ = 0,30 ha cambiado tras una campaña de mejora, esperando que suba a p₁ = 0,40. Se realiza el contraste bilateral H₀: p = 0,30 con α = 0,05 y una muestra de n = 172 encuestados.</p>
+
+      <p><strong>Paso 1 — Error estándar bajo H₀:</strong></p>
+      <p class="formula-line">\( SE_0 = \sqrt{p_0(1-p_0)/n} = \sqrt{0{,}30 \times 0{,}70 / 172} \approx 0{,}03494 \)</p>
+
+      <p><strong>Paso 2 — No-centralidad δ:</strong></p>
+      <p class="formula-line">\( \delta = \frac{p_1 - p_0}{SE_0} = \frac{0{,}10}{0{,}03494} \approx 2{,}862 \)</p>
+
+      <p><strong>Paso 3 — Varianza relativa bajo H₁:</strong></p>
+      <p class="formula-line">\( \sigma_1 = \sqrt{\frac{0{,}40 \times 0{,}60}{0{,}30 \times 0{,}70}} = \sqrt{\frac{0{,}24}{0{,}21}} \approx 1{,}069 \)</p>
+
+      <p><strong>Paso 4 — Potencia bilateral (\(z_{\alpha/2} = 1{,}960\)):</strong></p>
+      <p class="formula-line">\( 1-\beta = 1 - \Phi\!\left(\frac{1{,}960 - 2{,}862}{1{,}069}\right) + \Phi\!\left(\frac{-1{,}960 - 2{,}862}{1{,}069}\right) = 1 - \Phi(-0{,}844) + \Phi(-4{,}511) \approx 0{,}801 \)</p>
+
+      <p>Con n = 172 y p₁ = 0,40, la potencia es del <strong>≈ 80,1 %</strong>. Si la proporción real ha subido a 0,40, el contraste lo detectará correctamente en aproximadamente 8 de cada 10 estudios. El error de tipo II es β ≈ 0,199: hay un 20 % de probabilidad de no detectar la mejora aunque sea real.</p>
+    </section>
+
+    <section class="card content-card">
+      <h3>Cómo interpretar los resultados</h3>
+
+      <h3>Potencia (1−β)</h3>
+      <p>Una potencia del 80 % significa que si la proporción real es p₁, el test rechazará H₀ el 80 % de las veces. En estudios confirmatorios se recomienda potencia ≥ 0,80; en decisiones donde el coste del falso negativo es alto, ≥ 0,90.</p>
+
+      <h3>Error de tipo II (β)</h3>
+      <p>Es el complementario: β = 1 − potencia. Con β = 0,20, uno de cada cinco estudios con el mismo diseño no detectaría el efecto aunque exista. Una potencia baja hace que los resultados negativos sean poco informativos: no rechazar H₀ no implica que el efecto sea nulo.</p>
+
+      <h3>Tamaño muestral</h3>
+      <p>El n calculado es el mínimo teórico con la aproximación normal. En la práctica, aplica un margen por pérdidas: divide n entre (1 − tasa de no respuesta esperada). Con un 10 % de pérdidas, planifica ⌈n / 0,90⌉ contactos.</p>
+
+      <h3>Recomendaciones prácticas</h3>
+      <ul>
+        <li>Si la potencia es baja (&lt; 0,70), necesitas más muestra o un efecto más grande para que el estudio sea fiable.</li>
+        <li>El contraste unilateral tiene más potencia que el bilateral para el mismo n, pero solo detecta cambios en una dirección y debe justificarse a priori.</li>
+        <li>Cuando p₀ o p₁ son extremas (&lt; 0,10 o &gt; 0,90) con n pequeño, considera el test exacto binomial en lugar de la aproximación normal.</li>
+        <li>Realiza un análisis de sensibilidad variando p₁ ±0,05 para valorar la robustez del diseño.</li>
+      </ul>
+    </section>
+
+    <section id="seo-support-content" class="card content-card">
+      <section class="related-tools">
+        <h3>Calculadoras relacionadas</h3>
+        <ul>
+          <li><a href="contraste-hipotesis-una-proporcion.html">Contraste de hipótesis para una proporción (p-valor)</a></li>
+          <li><a href="tamano-muestral-contraste-una-proporcion.html">Tamaño muestral para contraste de una proporción</a></li>
+          <li><a href="potencia-test-ab.html">Potencia para test A/B (dos proporciones)</a></li>
+          <li><a href="ab-testing-potencia.html">MDE, potencia y tamaño muestral para A/B testing</a></li>
+          <li><a href="intervalo-confianza-una-proporcion.html">Intervalo de confianza para una proporción</a></li>
+        </ul>
+      </section>
+
+      <h3>Preguntas frecuentes</h3>
+      <ul>
+        <li><strong>¿Qué es la potencia estadística?</strong> La probabilidad de rechazar H₀ cuando la hipótesis alternativa es verdadera, es decir, la probabilidad de detectar un efecto real.</li>
+        <li><strong>¿Qué es el error de tipo II (β)?</strong> La probabilidad de no detectar un efecto que realmente existe. Es complementario a la potencia: β = 1 − potencia.</li>
+        <li><strong>¿Qué muestran las regiones críticas del gráfico?</strong> Las zonas rojas son las regiones de rechazo bajo H₀ (área total = α). Las zonas verdes son el área de H₁ en esas mismas regiones, que representa la potencia (1−β).</li>
+        <li><strong>¿Cuándo usar contraste bilateral frente a unilateral?</strong> Usa bilateral cuando no tienes dirección esperada a priori. El unilateral tiene más potencia pero solo detecta cambios en una dirección.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="aviso-legal.html">Aviso legal</a> ·
+      <a href="privacidad.html">Privacidad</a> ·
+      <a href="cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+window.MathJax = { tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function normalPDF(x, mu, sigma) {
+  const d = (x - mu) / sigma;
+  return Math.exp(-0.5 * d * d) / (sigma * Math.sqrt(2 * Math.PI));
+}
+
+function fmt(v, d) { return Number(v).toFixed(d); }
+
+// ── Power for one proportion (z-test approximation) ──────────────────────────
+function computePower(p0, p1, n, alpha, alternative) {
+  const se0 = Math.sqrt(p0 * (1 - p0) / n);
+  const delta = (p1 - p0) / se0;
+  const sigma1 = Math.sqrt(p1 * (1 - p1) / (p0 * (1 - p0)));
+  if (sigma1 === 0) return 0;
+
+  if (alternative === 'two-sided') {
+    const zc = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    return Math.min(1, Math.max(0,
+      (1 - jStat.normal.cdf((zc - delta) / sigma1, 0, 1)) +
+      jStat.normal.cdf((-zc - delta) / sigma1, 0, 1)
+    ));
+  }
+  const zc = jStat.normal.inv(1 - alpha, 0, 1);
+  if (alternative === 'greater') {
+    return Math.min(1, Math.max(0, 1 - jStat.normal.cdf((zc - delta) / sigma1, 0, 1)));
+  }
+  return Math.min(1, Math.max(0, jStat.normal.cdf((-zc - delta) / sigma1, 0, 1)));
+}
+
+// ── Sample size for one proportion ───────────────────────────────────────────
+function computeN(p0, p1, alpha, targetPower, alternative) {
+  const delta = Math.abs(p1 - p0);
+  if (delta === 0) return Infinity;
+  const za = alternative === 'two-sided'
+    ? jStat.normal.inv(1 - alpha / 2, 0, 1)
+    : jStat.normal.inv(1 - alpha, 0, 1);
+  const zb = jStat.normal.inv(targetPower, 0, 1);
+  return Math.ceil(Math.pow(
+    (za * Math.sqrt(p0 * (1 - p0)) + zb * Math.sqrt(p1 * (1 - p1))) / delta,
+    2
+  ));
+}
+
+// ── Chart ─────────────────────────────────────────────────────────────────────
+let critChart;
+
+function buildChartDatasets(p0, p1, n, alpha, alternative) {
+  const se0 = Math.sqrt(p0 * (1 - p0) / n);
+  const delta = (p1 - p0) / se0;
+  const sigma1 = Math.sqrt(p1 * (1 - p1) / (p0 * (1 - p0)));
+
+  let critLow = null, critHigh = null;
+  if (alternative === 'two-sided') {
+    const z = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    critLow = -z; critHigh = z;
+  } else if (alternative === 'greater') {
+    critHigh = jStat.normal.inv(1 - alpha, 0, 1);
+  } else {
+    critLow = -jStat.normal.inv(1 - alpha, 0, 1);
+  }
+
+  const xMin = Math.min(-4.5, delta - 4.5 * sigma1);
+  const xMax = Math.max(4.5, delta + 4.5 * sigma1);
+
+  // Generate x values with extra points at critical boundaries
+  const xSet = new Set();
+  const steps = 500;
+  for (let i = 0; i <= steps; i++) {
+    xSet.add(xMin + i * (xMax - xMin) / steps);
+  }
+  const eps = 0.003;
+  [critLow, critHigh].forEach(c => {
+    if (c !== null && c > xMin && c < xMax) {
+      xSet.add(c - eps); xSet.add(c); xSet.add(c + eps);
+    }
+  });
+
+  const xs = Array.from(xSet).sort((a, b) => a - b);
+  const inCrit = x =>
+    (critLow !== null && x <= critLow) ||
+    (critHigh !== null && x >= critHigh);
+
+  const h0Full   = xs.map(x => ({ x, y: normalPDF(x, 0, 1) }));
+  const h0Crit   = xs.map(x => ({ x, y: inCrit(x) ? normalPDF(x, 0, 1) : 0 }));
+  const h1Full   = xs.map(x => ({ x, y: normalPDF(x, delta, sigma1) }));
+  const h1Power  = xs.map(x => ({ x, y: inCrit(x) ? normalPDF(x, delta, sigma1) : 0 }));
+
+  return { h0Full, h0Crit, h1Full, h1Power };
+}
+
+function renderChart(p0, p1, n, alpha, alternative) {
+  const ctx = document.getElementById('critRegionsChart');
+  if (!ctx) return;
+
+  const { h0Full, h0Crit, h1Full, h1Power } = buildChartDatasets(p0, p1, n, alpha, alternative);
+
+  const datasets = [
+    {
+      label: `H₀: p₀ = ${fmt(p0, 2)}`,
+      data: h0Full,
+      borderColor: '#2563eb',
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      pointRadius: 0,
+      fill: false,
+      parsing: false
+    },
+    {
+      label: 'Región crítica (α)',
+      data: h0Crit,
+      borderColor: 'transparent',
+      backgroundColor: 'rgba(239,68,68,0.35)',
+      borderWidth: 0,
+      pointRadius: 0,
+      fill: 'origin',
+      parsing: false
+    },
+    {
+      label: `H₁: p₁ = ${fmt(p1, 2)}`,
+      data: h1Full,
+      borderColor: '#f59e0b',
+      backgroundColor: 'transparent',
+      borderWidth: 2,
+      borderDash: [6, 4],
+      pointRadius: 0,
+      fill: false,
+      parsing: false
+    },
+    {
+      label: 'Potencia (1−β)',
+      data: h1Power,
+      borderColor: 'transparent',
+      backgroundColor: 'rgba(16,185,129,0.4)',
+      borderWidth: 0,
+      pointRadius: 0,
+      fill: 'origin',
+      parsing: false
+    }
+  ];
+
+  if (critChart) critChart.destroy();
+  critChart = new Chart(ctx, {
+    type: 'line',
+    data: { datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { type: 'linear', title: { display: true, text: 'Estadístico Z estandarizado' } },
+        y: { min: 0, title: { display: true, text: 'Densidad' } }
+      },
+      plugins: {
+        legend: { display: true, position: 'top' },
+        tooltip: { enabled: false }
+      },
+      animation: { duration: 200 }
+    }
+  });
+}
+
+// ── Validation ────────────────────────────────────────────────────────────────
+function validateProp(p, name, el) {
+  if (!Number.isFinite(p) || p <= 0 || p >= 1) {
+    el.textContent = `Error: ${name} debe estar entre 0 y 1 (exclusivo).`;
+    return false;
+  }
+  return true;
+}
+
+// ── Mode: Potencia ────────────────────────────────────────────────────────────
+function doPower() {
+  const p0  = parseFloat(document.getElementById('pwP0').value);
+  const p1  = parseFloat(document.getElementById('pwP1').value);
+  const n   = parseInt(document.getElementById('pwN').value, 10);
+  const alpha = parseFloat(document.getElementById('pwAlpha').value);
+  const alt = document.getElementById('pwAlternative').value;
+  const el  = document.getElementById('pwResult');
+
+  if (!validateProp(p0, 'p₀', el)) return;
+  if (!validateProp(p1, 'p₁', el)) return;
+  if (!Number.isFinite(n) || n < 1) { el.textContent = 'Error: n debe ser un entero positivo.'; return; }
+  if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) { el.textContent = 'Error: α debe estar entre 0 y 1.'; return; }
+
+  const power  = computePower(p0, p1, n, alpha, alt);
+  const beta   = 1 - power;
+  const delta  = Math.abs(p1 - p0);
+  const nFor80 = computeN(p0, p1, alpha, 0.80, alt);
+  const altLabel = alt === 'two-sided' ? 'bilateral' : (alt === 'greater' ? 'unilateral superior' : 'unilateral inferior');
+
+  const interp = power >= 0.8
+    ? `El diseño es adecuado para detectar |p₁ − p₀| = ${fmt(delta, 3)} con α = ${alpha} (${altLabel}).`
+    : power >= 0.5
+      ? `La potencia es moderada. Considera aumentar n para mejorar la fiabilidad (se necesitarían ${nFor80} observaciones para alcanzar el 80 %).`
+      : `La potencia es baja (&lt; 50 %). El estudio probablemente no detectará el efecto aunque exista. Se necesitarían ${nFor80} observaciones para el 80 % de potencia.`;
+
+  el.innerHTML = `
+    <strong>Potencia (1−β):</strong> ${fmt(power * 100, 1)} %<br>
+    <strong>Error de tipo II (β):</strong> ${fmt(beta * 100, 1)} %<br>
+    <strong>n para potencia = 80 %:</strong> ${nFor80}<br>
+    <em>${interp}</em>
+  `;
+
+  renderChart(p0, p1, n, alpha, alt);
+  if (window.MathJax?.typesetPromise) MathJax.typesetPromise();
+}
+
+// ── Mode: Tamaño muestral ─────────────────────────────────────────────────────
+function doN() {
+  const p0  = parseFloat(document.getElementById('nP0').value);
+  const p1  = parseFloat(document.getElementById('nP1').value);
+  const alpha = parseFloat(document.getElementById('nAlpha').value);
+  const targetPower = parseFloat(document.getElementById('nPower').value);
+  const alt = document.getElementById('nAlternative').value;
+  const el  = document.getElementById('nResult');
+
+  if (!validateProp(p0, 'p₀', el)) return;
+  if (!validateProp(p1, 'p₁', el)) return;
+  if (p0 === p1) { el.textContent = 'Error: p₀ y p₁ deben ser distintos.'; return; }
+  if (!Number.isFinite(alpha) || alpha <= 0 || alpha >= 1) { el.textContent = 'Error: α debe estar entre 0 y 1.'; return; }
+  if (!Number.isFinite(targetPower) || targetPower <= 0 || targetPower >= 1) { el.textContent = 'Error: la potencia debe estar entre 0 y 1.'; return; }
+
+  const n = computeN(p0, p1, alpha, targetPower, alt);
+  const actualPower = computePower(p0, p1, n, alpha, alt);
+  const delta = Math.abs(p1 - p0);
+  const altLabel = alt === 'two-sided' ? 'bilateral' : (alt === 'greater' ? 'unilateral superior' : 'unilateral inferior');
+
+  el.innerHTML = `
+    <strong>Tamaño muestral mínimo:</strong> n = ${n}<br>
+    <strong>Potencia exacta con ese n:</strong> ${fmt(actualPower * 100, 1)} %<br>
+    <strong>Efecto |p₁ − p₀|:</strong> ${fmt(delta, 3)}<br>
+    <em>Con ${n} observaciones se alcanza una potencia ≥ ${fmt(targetPower * 100, 0)} % para detectar una diferencia de ${fmt(delta, 3)} con α = ${alpha} (${altLabel}).</em>
+  `;
+
+  renderChart(p0, p1, n, alpha, alt);
+  if (window.MathJax?.typesetPromise) MathJax.typesetPromise();
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.mode-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-tab').forEach(b => {
+      b.classList.remove('active'); b.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.mode-section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    document.getElementById(btn.dataset.target).classList.add('active');
+  });
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.getElementById('calcPwBtn').addEventListener('click', doPower);
+document.getElementById('calcNBtn').addEventListener('click', doN);
+doPower();
+</script>
+</body>
+</html>
