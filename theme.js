@@ -1,0 +1,86 @@
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'prob-theme';
+
+  function prefersDark() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  function getStored() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+  }
+
+  function setStored(val) {
+    try { localStorage.setItem(STORAGE_KEY, val); } catch (e) {}
+  }
+
+  function applyTheme(dark) {
+    if (dark) {
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+    }
+  }
+
+  function isDark() {
+    return document.documentElement.classList.contains('dark-mode');
+  }
+
+  // Apply immediately (before paint) to avoid flash
+  var stored = getStored();
+  if (stored === 'dark') {
+    applyTheme(true);
+  } else if (stored === 'light') {
+    applyTheme(false);
+  } else {
+    applyTheme(prefersDark());
+  }
+
+  function init() {
+    var nav = document.querySelector('.site-nav-links');
+    if (!nav) return;
+
+    var li = document.createElement('li');
+    li.style.cssText = 'display:flex;align-items:center;';
+
+    var btn = document.createElement('button');
+    btn.className = 'theme-btn';
+    btn.setAttribute('aria-label', 'Cambiar tema');
+    btn.title = 'Cambiar tema claro/oscuro';
+
+    function updateIcon() {
+      btn.innerHTML = isDark()
+        ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>'
+        : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    }
+
+    updateIcon();
+
+    btn.addEventListener('click', function () {
+      var nowDark = !isDark();
+      applyTheme(nowDark);
+      setStored(nowDark ? 'dark' : 'light');
+      updateIcon();
+    });
+
+    li.appendChild(btn);
+    nav.appendChild(li);
+
+    // Sync when system preference changes (only if user hasn't manually set a preference)
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!getStored()) {
+          applyTheme(e.matches);
+          updateIcon();
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+}());
