@@ -131,19 +131,22 @@
   var modal, inputEl, resultsEl, activeIdx = -1, filtered = [];
 
   // ── URL helper ────────────────────────────────────────────────────────
-  // Convert root-relative paths (/normal.html) to paths relative to the
-  // current page, so links work regardless of server configuration.
-  var ROOT_PREFIX = (function () {
-    var dir = window.location.pathname.replace(/[^\/]*$/, '');
-    var depth = dir.split('/').filter(Boolean).length;
-    var s = '';
-    for (var i = 0; i < depth; i++) s += '../';
-    return s;
+  // The browser always resolves script[src] to an absolute URL, so
+  // stripping "search.js" from it gives us the absolute site root —
+  // regardless of protocol (http/file), port, or server subdirectory.
+  var SITE_ROOT = (function () {
+    var el = document.currentScript ||
+              document.querySelector('script[src$="search.js"]');
+    if (el && el.src) {
+      return el.src.replace(/search\.js([?#].*)?$/, '');
+    }
+    // Last-resort fallback: assume same origin, root path
+    return window.location.origin + '/';
   }());
 
   function toUrl(absPath) {
-    // absPath starts with '/' → strip it and prepend computed prefix
-    return ROOT_PREFIX + absPath.slice(1);
+    // absPath starts with '/' (e.g. '/normal.html')
+    return SITE_ROOT + absPath.slice(1);
   }
 
   // ── Scoring ───────────────────────────────────────────────────────────
