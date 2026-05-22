@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Simulador de errores tipo I y tipo II | ProbLab</title>
+  <meta name="description" content="Simulador interactivo de errores tipo I (α) y tipo II (β) en contrastes de hipótesis. Visualiza la potencia estadística, el nivel de significación y el dilema α–β con distribuciones normales estandarizadas.">
+  <link rel="canonical" href="https://problabtools.es/simulaciones/simulador-errores-tipo-i-ii.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Simulador de errores tipo I y tipo II | ProbLab">
+  <meta property="og:description" content="Simulador interactivo de errores tipo I (α) y tipo II (β) en contrastes de hipótesis. Visualiza la potencia estadística y el dilema α–β.">
+  <meta property="og:url" content="https://problabtools.es/simulaciones/simulador-errores-tipo-i-ii.html">
+  <meta property="og:site_name" content="ProbLab">
+  <meta property="og:image" content="https://problabtools.es/og-image.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Vicente Castellar">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="alternate" hreflang="es" href="https://problabtools.es/simulaciones/simulador-errores-tipo-i-ii.html">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://problabtools.es/sitemap.xml">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simulador de errores tipo I y tipo II | ProbLab">
+  <meta name="twitter:description" content="Simulador interactivo de errores tipo I (α) y tipo II (β) en contrastes de hipótesis. Visualiza la potencia estadística y el dilema α–β.">
+  <meta name="twitter:image" content="https://problabtools.es/og-image.png">
+  <link rel="stylesheet" href="../style_new.css?v=20260521">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://problabtools.es/"},
+          {"@type": "ListItem", "position": 2, "name": "Simulaciones", "item": "https://problabtools.es/simulaciones/"},
+          {"@type": "ListItem", "position": 3, "name": "Errores tipo I y tipo II", "item": "https://problabtools.es/simulaciones/simulador-errores-tipo-i-ii.html"}
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "Simulador de errores tipo I y tipo II | ProbLab",
+        "url": "https://problabtools.es/simulaciones/simulador-errores-tipo-i-ii.html",
+        "description": "Simulador interactivo de errores tipo I (α) y tipo II (β) en contrastes de hipótesis. Visualiza la potencia estadística, el nivel de significación y el dilema α–β con distribuciones normales estandarizadas.",
+        "inLanguage": "es",
+        "isPartOf": {"@type": "WebSite", "name": "ProbLab", "url": "https://problabtools.es/"}
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Simulador de errores tipo I y tipo II",
+        "url": "https://problabtools.es/simulaciones/simulador-errores-tipo-i-ii.html",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Simulador interactivo que visualiza los errores tipo I (α), tipo II (β) y la potencia estadística (1−β) en contrastes de hipótesis sobre la media, con control de tamaño del efecto, tamaño muestral y nivel de significación.",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+        "author": {"@type": "Person", "name": "Vicente Castellar"}
+      }
+    ]
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+  <style>
+    /* ── layout ── */
+    .sim-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      .sim-layout { grid-template-columns: 1fr; }
+    }
+    .sim-panel {
+      position: sticky;
+      top: 72px;
+    }
+
+    /* ── control panel ── */
+    .panel-heading {
+      margin: 0 0 16px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 5px;
+    }
+    .form-group select,
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid rgba(148,163,184,0.5);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      background: #fff;
+      color: #1e293b;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-group select:focus,
+    .form-group input[type="number"]:focus {
+      border-color: var(--accent);
+    }
+    .form-group.checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .form-group.checkbox-group label {
+      margin: 0;
+      font-size: 0.86rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .form-group.checkbox-group input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .calculate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* ── chart area ── */
+    .chart-outer {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.05);
+    }
+    .chart-outer h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .chart-outer p.chart-sub {
+      margin: 0 0 12px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .chart-wrap {
+      position: relative;
+      height: 380px;
+    }
+    .chart-wrap canvas {
+      height: 380px !important;
+    }
+
+    /* ── placeholder ── */
+    .sim-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 340px;
+      color: #94a3b8;
+      font-size: 0.92rem;
+      text-align: center;
+      border: 2px dashed rgba(148,163,184,0.4);
+      border-radius: 12px;
+      gap: 8px;
+    }
+    .sim-placeholder .icon { font-size: 2.2rem; }
+
+    /* ── stats ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .stat-cell {
+      background: rgba(79,70,229,0.05);
+      border: 1px solid rgba(79,70,229,0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .stat-cell .stat-label {
+      font-size: 0.76rem;
+      color: #64748b;
+      margin-bottom: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat-cell .stat-val {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1e293b;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-cell .stat-sub {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* ── interpretation ── */
+    .result-box {
+      margin-top: 16px;
+      padding: 14px 18px;
+      background: rgba(79,70,229,0.05);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.93rem;
+      color: #334155;
+      line-height: 1.65;
+    }
+
+    /* ── legend dots ── */
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: #475569;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-line {
+      display: inline-block;
+      width: 24px;
+      height: 3px;
+      border-radius: 2px;
+    }
+    .legend-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── FAQ ── */
+    .faq-item {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(148,163,184,0.25);
+    }
+    .faq-item:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .faq-item h3 { margin: 0 0 6px; font-size: 1rem; color: #1e293b; }
+    .faq-item p  { margin: 0; font-size: 0.95rem; color: #334155; line-height: 1.7; }
+
+    /* ── slider with inline value ── */
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .slider-row input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent);
+      height: 4px;
+      cursor: pointer;
+    }
+    .slider-val {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #1e293b;
+      min-width: 60px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── details FAQ (collapsible) ── */
+    details.faq-item {
+      border-top: 1px solid rgba(148,163,184,0.3);
+      padding: 14px 0;
+      margin-top: 0;
+    }
+    details.faq-item:last-child {
+      border-bottom: 1px solid rgba(148,163,184,0.3);
+    }
+    details.faq-item summary {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #1e293b;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after {
+      content: "+";
+      font-size: 1.3rem;
+      color: var(--accent);
+      flex: 0 0 auto;
+      line-height: 1;
+    }
+    details.faq-item[open] summary::after {
+      content: "−";
+    }
+    details.faq-item p {
+      margin: 10px 0 0;
+      font-size: 0.97rem;
+      color: #334155;
+      line-height: 1.7;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Navegación principal">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="../index.html">ProbLab</a>
+    <ul class="site-nav-links">
+      <li><a href="../distribuciones/">Distribuciones</a></li>
+      <li><a href="../tablas-estadisticas/">Tablas</a></li>
+      <li><a href="../intervalos-confianza/">Intervalos de confianza</a></li>
+      <li><a href="../tamano-muestral/">Tamaño muestral</a></li>
+      <li><a href="../contrastes-hipotesis/">Contrastes</a></li>
+      <li><a href="../ab-testing/">Test A/B</a></li>
+      <li><a href="../simulaciones/">Simulaciones</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="page-wrap">
+  <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <ol>
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../simulaciones/">Simulaciones</a></li>
+      <li><span aria-current="page">Errores tipo I y tipo II</span></li>
+    </ol>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Simulación estadística</p>
+    <h1>Simulador de errores tipo I y tipo II</h1>
+    <p class="hero-subtitle">Visualiza de forma interactiva cómo se relacionan el error tipo I (α), el error tipo II (β) y la potencia estadística (1−β) en los contrastes de hipótesis. Ajusta el nivel de significación, el tamaño del efecto y el tamaño muestral para ver el impacto inmediato en las distribuciones.</p>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════════════ SIMULATOR ═══════════════════════════════ -->
+    <div class="sim-layout">
+
+      <!-- Control panel -->
+      <aside class="card sample-size-panel sim-panel" aria-label="Parámetros del contraste">
+        <h2 class="panel-heading">Parámetros</h2>
+
+        <div class="form-group">
+          <label for="testType">Tipo de contraste</label>
+          <select id="testType">
+            <option value="right" selected>Unilateral derecho (H₁: μ &gt; μ₀)</option>
+            <option value="two">Bilateral (H₁: μ ≠ μ₀)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="effectSize">Tamaño del efecto <em>d</em></label>
+          <div class="slider-row">
+            <input type="range" id="effectSize" min="0" max="3" step="0.05" value="0.5">
+            <span class="slider-val" id="effectSizeVal">d = 0.50</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sampleSize">Tamaño de muestra <em>n</em></label>
+          <select id="sampleSize">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30" selected>30</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="alpha">Nivel de significación α</label>
+          <div class="slider-row">
+            <input type="range" id="alpha" min="0.005" max="0.25" step="0.005" value="0.05">
+            <span class="slider-val" id="alphaVal">α = 0.050</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Results area -->
+      <div>
+        <div class="chart-outer">
+          <h3>Distribuciones bajo H₀ y H₁</h3>
+          <p class="chart-sub">Estadístico estandarizado Z. Las regiones coloreadas representan las probabilidades de cada tipo de error y la potencia del contraste.</p>
+          <div class="chart-wrap">
+            <canvas id="errorChart" aria-label="Gráfico de distribuciones H0 y H1 con regiones de error tipo I, tipo II y potencia"></canvas>
+          </div>
+        </div>
+
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-cell" id="cellAlpha" style="background:rgba(220,38,38,0.06); border-color:rgba(220,38,38,0.20);">
+            <div class="stat-label">Error tipo I (α)</div>
+            <div class="stat-val" id="statAlpha">0.050</div>
+            <div class="stat-sub">Prob. rechazar H₀ siendo cierta</div>
+          </div>
+          <div class="stat-cell" id="cellBeta" style="background:rgba(100,116,139,0.06); border-color:rgba(100,116,139,0.20);">
+            <div class="stat-label">Error tipo II (β)</div>
+            <div class="stat-val" id="statBeta">—</div>
+            <div class="stat-sub">Prob. no rechazar H₀ siendo falsa</div>
+          </div>
+          <div class="stat-cell" id="cellPower">
+            <div class="stat-label">Potencia (1−β)</div>
+            <div class="stat-val" id="statPower">—</div>
+            <div class="stat-sub">Prob. detectar el efecto real</div>
+          </div>
+          <div class="stat-cell" style="background:rgba(79,70,229,0.05); border-color:rgba(79,70,229,0.12);">
+            <div class="stat-label">No-centralidad δ</div>
+            <div class="stat-val" id="statDelta">—</div>
+            <div class="stat-sub">δ = d × √n</div>
+          </div>
+        </div>
+
+        <div class="result-box" id="interpretation">
+          Ajusta los parámetros del panel izquierdo para ver el análisis de potencia.
+        </div>
+      </div>
+
+    </div><!-- /sim-layout -->
+
+
+    <!-- ═══════════════════════════════ EDUCATIONAL ═══════════════════════ -->
+
+    <section class="card content-card">
+      <h2>¿Qué son los errores tipo I y tipo II?</h2>
+      <p>Cuando realizamos un contraste de hipótesis tomamos una decisión binaria: rechazar la hipótesis nula H₀ o no rechazarla. Como cualquier decisión basada en información incompleta (una muestra, no la población entera), esta decisión puede ser incorrecta de dos formas distintas, y a estas dos formas las denominamos <strong>error tipo I</strong> y <strong>error tipo II</strong>.</p>
+
+      <p>El <strong>error tipo I</strong> ocurre cuando rechazamos H₀ siendo ésta verdadera en la población. La probabilidad de cometer este error es precisamente el <strong>nivel de significación α</strong> que fijamos antes de realizar el contraste. Si establecemos α = 0,05, estamos aceptando que existe un 5 % de probabilidad de declarar un efecto significativo cuando en realidad no existe ninguno. Este error también se denomina <em>falso positivo</em> o <em>alarma falsa</em>.</p>
+
+      <p>El <strong>error tipo II</strong> ocurre cuando <em>no</em> rechazamos H₀ cuando ésta es falsa — es decir, cuando existe un efecto real en la población pero nuestro test no consigue detectarlo. La probabilidad de cometer este error se denota con la letra <strong>β</strong> y también recibe el nombre de <em>falso negativo</em>. Su complementario, 1 − β, es la <strong>potencia estadística</strong>: la probabilidad de que el test detecte correctamente un efecto cuando este existe.</p>
+
+      <p>Una analogía útil es la del <strong>veredicto judicial</strong>. Imaginemos que H₀ es "el acusado es inocente". Un error tipo I equivale a condenar a un inocente (falso positivo), mientras que un error tipo II equivale a absolver a un culpable (falso negativo). En derecho penal la tradición es proteger especialmente contra el error tipo I ("mejor que escapen cien culpables que condenar a un inocente"), estableciendo un umbral de evidencia muy alto. En ciencia y en medicina, el equilibrio óptimo entre ambos errores depende de las consecuencias prácticas de cada tipo de equivocación.</p>
+
+      <p>La relación entre α y β es inseparable: manteniéndose todo lo demás constante, <strong>reducir α (ser más estricto) aumenta β</strong> (aumenta la probabilidad de no detectar efectos reales), y viceversa. Esta compensación es el dilema central del diseño de estudios estadísticos.</p>
+
+      <table style="width:100%; border-collapse:collapse; margin-top:1rem; font-size:0.93rem;">
+        <thead>
+          <tr style="background:rgba(79,70,229,0.07);">
+            <th style="padding:10px 14px; text-align:left; border:1px solid rgba(148,163,184,0.3);">Decisión \ Realidad</th>
+            <th style="padding:10px 14px; text-align:center; border:1px solid rgba(148,163,184,0.3);">H₀ verdadera</th>
+            <th style="padding:10px 14px; text-align:center; border:1px solid rgba(148,163,184,0.3);">H₀ falsa (H₁ verdadera)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px 14px; border:1px solid rgba(148,163,184,0.3); font-weight:600;">No rechazar H₀</td>
+            <td style="padding:10px 14px; border:1px solid rgba(148,163,184,0.3); text-align:center; color:#16a34a; font-weight:600;">Decisión correcta (1 − α)</td>
+            <td style="padding:10px 14px; border:1px solid rgba(148,163,184,0.3); text-align:center; color:#64748b; font-weight:600;">Error tipo II (β)</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 14px; border:1px solid rgba(148,163,184,0.3); font-weight:600;">Rechazar H₀</td>
+            <td style="padding:10px 14px; border:1px solid rgba(148,163,184,0.3); text-align:center; color:#dc2626; font-weight:600;">Error tipo I (α)</td>
+            <td style="padding:10px 14px; border:1px solid rgba(148,163,184,0.3); text-align:center; color:#16a34a; font-weight:600;">Decisión correcta: Potencia (1 − β)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card content-card">
+      <h2>La potencia estadística</h2>
+      <p>La <strong>potencia estadística</strong> (1 − β) es la probabilidad de que un contraste detecte correctamente un efecto real. Es, en cierta medida, la "sensibilidad" del test: un test de alta potencia raramente pasa por alto los efectos que realmente existen en la población.</p>
+
+      <p>En el simulador, la potencia corresponde a la región verde bajo la curva de H₁ en la zona de rechazo. Cuanto mayor es el solapamiento entre las dos distribuciones (H₀ y H₁), menor es la potencia; cuanto más separadas estén, mayor es la potencia. Cuatro factores determinan la potencia:</p>
+
+      <ul>
+        <li><strong>Tamaño del efecto (d de Cohen):</strong> la diferencia real entre medias expresada en unidades de desviación típica. Cuanto mayor es el efecto, más fácil es detectarlo. Un efecto de d = 0,2 se considera pequeño, d = 0,5 mediano y d = 0,8 grande.</li>
+        <li><strong>Tamaño de muestra (n):</strong> el factor más fácilmente manipulable en el diseño. Al aumentar n, el error estándar de la media disminuye, las distribuciones se comprimen y el solapamiento se reduce. El parámetro de no-centralidad δ = d × √n captura conjuntamente el efecto del tamaño del efecto y del tamaño muestral.</li>
+        <li><strong>Nivel de significación (α):</strong> aumentar α desplaza la región de rechazo hacia la izquierda (en un contraste unilateral derecho), lo que captura más área de la curva H₁ y aumenta la potencia. A cambio, incrementa la tasa de falsos positivos.</li>
+        <li><strong>Variabilidad de la medida (σ):</strong> una medida con menos ruido produce estadísticos más precisos. En el simulador, la desviación típica está estandarizada a σ = 1, pero en la práctica reducir la variabilidad experimental (mejor protocolo, mayor homogeneidad de las unidades de análisis) aumenta directamente la potencia.</li>
+      </ul>
+
+      <p>En la investigación científica y en los ensayos clínicos es habitual fijar como objetivo una <strong>potencia mínima del 80 % (β ≤ 0,20)</strong>. Esto significa que aceptamos hasta un 20 % de probabilidad de no detectar un efecto real cuando existe. Algunos ámbitos más exigentes, como los ensayos pivotales en farmacología, exigen potencias del 90 % o incluso superiores.</p>
+
+      <p>Una práctica frecuente y problemática es la del <em>underpowered study</em>: un estudio con potencia insuficiente que, si obtiene un resultado significativo, probablemente lo haga gracias al azar (efecto Ioannidis, 2005). Los estudios con baja potencia que sí detectan efectos tienden además a sobreestimar el tamaño del efecto, el denominado <em>winner's curse</em> o efecto de amplificación del ganador.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>El dilema α vs β</h2>
+      <p>La tensión entre el error tipo I y el error tipo II es uno de los problemas más fundamentales de la inferencia estadística. Con un tamaño de muestra fijo, no es posible minimizar ambos simultáneamente: cualquier cambio en α afecta inevitablemente a β en la dirección opuesta.</p>
+
+      <p>Para visualizarlo intuitivamente: el valor crítico z<sub>α</sub> es el punto que separa la región de no rechazo de la región de rechazo. Al reducir α pasamos de, por ejemplo, z<sub>0,05</sub> = 1,645 a z<sub>0,01</sub> = 2,326, desplazando el umbral de decisión hacia la derecha. Este desplazamiento hace que la región de rechazo capture menos área de la distribución bajo H₁, lo que aumenta β y reduce la potencia.</p>
+
+      <p>El único modo de reducir ambos errores <em>simultáneamente</em> es aumentar el tamaño de la muestra. Al crecer n, las dos distribuciones (bajo H₀ y bajo H₁) se vuelven más estrechas y separadas, reduciendo su solapamiento. Esto permite mantener α en un nivel bajo y a la vez conseguir una potencia alta.</p>
+
+      <p>Desde un punto de vista teórico, el <strong>lema de Neyman-Pearson</strong> (1933) establece que el contraste de cociente de verosimilitudes es el test más potente de nivel α para contrastar hipótesis simples. En otras palabras, dados α y n fijos, el contraste basado en la verosimilitud maximiza la potencia — no existe ningún otro test del mismo nivel que lo supere.</p>
+
+      <p>En la práctica, la elección de α depende del contexto: en la investigación básica se suele usar α = 0,05 por convención; en estudios exploratorios puede relajarse a α = 0,10 para no pasar por alto hallazgos potencialmente interesantes; en aplicaciones con alta consecuencia del error tipo I (diagnóstico médico, control de calidad de seguridad) se usan valores mucho más estrictos (α = 0,001 o menos). En cualquier caso, la elección debería ser explícita, justificada y establecida <em>antes</em> de recoger los datos.</p>
+
+      <p>Cuando las consecuencias económicas o humanas de ambos tipos de error son cuantificables, la teoría de la decisión estadística propone equilibrar ambos errores ponderando sus costes respectivos. Si el coste de un falso positivo es C<sub>I</sub> y el de un falso negativo es C<sub>II</sub>, el umbral de decisión óptimo depende del cociente C<sub>I</sub>/C<sub>II</sub> y de la prevalencia a priori de H₁, lo que conecta con el enfoque bayesiano de la inferencia.</p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Preguntas frecuentes</h2>
+
+      <details class="faq-item">
+        <summary>¿Por qué no usar α = 0,001 siempre para ser más seguros?</summary>
+        <p>Usar un α muy pequeño protege contra los falsos positivos, pero al mismo tiempo incrementa drásticamente el error tipo II (β) para un tamaño muestral dado. Si el efecto real existe, un α muy estricto hace que el test sea tan exigente que raramente alcance la región de rechazo, generando muchos falsos negativos. Además, en investigación exploratoria, ser demasiado estricto puede llevar a descartar hipótesis verdaderas antes de que puedan investigarse en profundidad. La elección del nivel de significación debe equilibrar el coste de los dos tipos de error según el contexto del estudio.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué es el p-valor y cómo se relaciona con α?</summary>
+        <p>El <strong>p-valor</strong> es la probabilidad de obtener un estadístico tan extremo o más que el observado, asumiendo que H₀ es cierta. No es la probabilidad de que H₀ sea verdadera (un error conceptual muy frecuente). La regla de decisión es: si p ≤ α, rechazamos H₀; si p > α, no rechazamos H₀. El nivel de significación α es el umbral prefijado con el que comparamos el p-valor. Por tanto, α controla directamente la tasa de error tipo I a largo plazo: si aplicamos la regla p ≤ α a muchos experimentos en los que H₀ es cierta, aproximadamente una fracción α de ellos producirá resultados significativos por azar.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Cómo aumentar la potencia sin cambiar α?</summary>
+        <p>La forma más directa es <strong>aumentar el tamaño de la muestra</strong>. El parámetro de no-centralidad δ = d × √n crece con n, separando más las distribuciones bajo H₀ y H₁ y reduciendo su solapamiento. Otras estrategias incluyen: (1) <strong>aumentar el tamaño del efecto esperado</strong>, diseñando el estudio para maximizar la diferencia que queremos detectar (por ejemplo, usando dosis más altas en un ensayo clínico, si ello es ético y factible); (2) <strong>reducir la variabilidad</strong> de las mediciones mediante un protocolo más riguroso, mediciones más precisas o un diseño experimental más homogéneo; (3) <strong>usar diseños más eficientes</strong>, como el diseño apareado o en bloques, que eliminan variabilidad debida a covariables conocidas; y (4) <strong>realizar el análisis de potencia a priori</strong> para determinar el n necesario antes de comenzar el estudio.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Qué es el tamaño del efecto de Cohen?</summary>
+        <p>El <strong>d de Cohen</strong> es la diferencia entre dos medias expresada en unidades de desviación típica. Formalmente, d = (μ₁ − μ₀) / σ, donde σ es la desviación típica común de las poblaciones. Esta estandarización permite comparar efectos entre estudios con distintas escalas de medida. Jacob Cohen (1988) propuso los umbrales d = 0,2 (efecto pequeño), d = 0,5 (efecto mediano) y d = 0,8 (efecto grande). Sin embargo, estos umbrales son orientativos y no deben aplicarse mecánicamente: un efecto de d = 0,2 puede ser muy relevante en medicina preventiva (si afecta a millones de personas) e irrelevante en psicología experimental. El tamaño del efecto debe interpretarse siempre en el contexto sustantivo de la investigación.</p>
+      </details>
+    </section>
+
+    <section class="card content-card">
+      <h2>Herramientas relacionadas</h2>
+      <div class="related-tools">
+        <p><a href="../contrastes-hipotesis/">Contrastes de hipótesis</a> — calculadoras para contrastes sobre la media, la proporción, la varianza y más, con p-valores y regiones de rechazo exactas.</p>
+        <p><a href="../tamano-muestral/tamano-muestral-contraste-una-media.html">Tamaño muestral para contraste de una media</a> — calcula el n necesario para conseguir una potencia objetivo dado un nivel de significación y un tamaño del efecto.</p>
+        <p><a href="teorema-central-limite.html">Simulador del teorema central del límite</a> — visualiza por qué el estadístico Z converge a la distribución normal estándar bajo H₀ al aumentar n.</p>
+        <p><a href="simulador-intervalos-confianza.html">Simulador de intervalos de confianza</a> — explora la conexión entre los intervalos de confianza al nivel (1 − α) y los contrastes de hipótesis al nivel α.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="legal-footer">
+    <p>
+      © 2026 problabtools.
+      <a href="../sobre.html">Sobre ProbLab</a> ·
+      <a href="../metodologia.html">Metodología</a> ·
+      <a href="../aviso-legal.html">Aviso legal</a> ·
+      <a href="../privacidad.html">Privacidad</a> ·
+      <a href="../cookies.html">Cookies</a> ·
+      <a href="mailto:vic.sebastia@gmail.com">Contacto</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   VERTICAL LINES PLUGIN
+════════════════════════════════════════════ */
+const verticalLinesPlugin = {
+  id: 'verticalLines',
+  afterDraw(chart) {
+    const lines = chart.options.plugins.verticalLines && chart.options.plugins.verticalLines.lines;
+    if (!lines || !lines.length) return;
+    const ctx = chart.ctx;
+    const xScale = chart.scales.x;
+    const yScale = chart.scales.y;
+    const top    = yScale.top;
+    const bottom = yScale.bottom;
+
+    lines.forEach(({ x, label, color, dash }) => {
+      const px = xScale.getPixelForValue(x);
+      if (px < xScale.left || px > xScale.right) return;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.setLineDash(dash || [6, 4]);
+      ctx.strokeStyle = color || 'rgba(100,116,139,0.7)';
+      ctx.lineWidth = 1.8;
+      ctx.moveTo(px, top);
+      ctx.lineTo(px, bottom);
+      ctx.stroke();
+
+      if (label) {
+        ctx.setLineDash([]);
+        ctx.font = '11px system-ui, sans-serif';
+        ctx.fillStyle = color || 'rgba(100,116,139,0.9)';
+        ctx.textAlign = 'center';
+        ctx.fillText(label, px, top - 4);
+      }
+      ctx.restore();
+    });
+  }
+};
+Chart.register(verticalLinesPlugin);
+
+/* ════════════════════════════════════════════
+   NORMAL PDF HELPERS  (σ = 1)
+════════════════════════════════════════════ */
+function normalPDF(x, mu) {
+  const z = x - mu;
+  return Math.exp(-0.5 * z * z) / Math.sqrt(2 * Math.PI);
+}
+
+/**
+ * Build a dataset whose y-values are the normal PDF with mean=mu,
+ * restricted to the interval [from, to], filled down to y=0.
+ */
+function makePdfRegion(mu, from, to, color, label, nPts) {
+  nPts = nPts || 250;
+  const step = (to - from) / (nPts - 1);
+  const data = [];
+  for (let i = 0; i < nPts; i++) {
+    const xv = from + i * step;
+    data.push({ x: xv, y: normalPDF(xv, mu) });
+  }
+  return {
+    label,
+    data,
+    borderColor: 'transparent',
+    backgroundColor: color,
+    fill: 'origin',
+    pointRadius: 0,
+    tension: 0.3,
+    parsing: false,
+    order: 1
+  };
+}
+
+/**
+ * Build a full PDF outline curve for mean=mu across [xMin, xMax].
+ */
+function makePdfCurve(mu, xMin, xMax, color, label, nPts) {
+  nPts = nPts || 400;
+  const step = (xMax - xMin) / (nPts - 1);
+  const data = [];
+  for (let i = 0; i < nPts; i++) {
+    const xv = xMin + i * step;
+    data.push({ x: xv, y: normalPDF(xv, mu) });
+  }
+  return {
+    label,
+    data,
+    borderColor: color,
+    backgroundColor: 'transparent',
+    fill: false,
+    borderWidth: 2.2,
+    pointRadius: 0,
+    tension: 0.3,
+    parsing: false,
+    order: 0
+  };
+}
+
+/* ════════════════════════════════════════════
+   CHART INSTANCE
+════════════════════════════════════════════ */
+let errorChart = null;
+
+function initChart() {
+  const canvas = document.getElementById('errorChart');
+  errorChart = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: { datasets: [] },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+          labels: {
+            filter(item) {
+              // deduplicate by label text (keep first occurrence)
+              return item.text && item.text !== '';
+            },
+            boxWidth: 14,
+            boxHeight: 10,
+            font: { size: 11 },
+            padding: 12
+          }
+        },
+        tooltip: { enabled: false },
+        verticalLines: { lines: [] }
+      },
+      scales: {
+        x: {
+          type: 'linear',
+          title: { display: true, text: 'Z (estadístico estandarizado)', font: { size: 11 } },
+          ticks: { maxTicksLimit: 10, font: { size: 10 } }
+        },
+        y: {
+          title: { display: true, text: 'Densidad', font: { size: 11 } },
+          ticks: { maxTicksLimit: 6, font: { size: 10 } },
+          min: 0
+        }
+      }
+    }
+  });
+}
+
+/* ════════════════════════════════════════════
+   COMPUTE & RENDER
+════════════════════════════════════════════ */
+function getParams() {
+  const testType  = document.getElementById('testType').value;
+  const d         = parseFloat(document.getElementById('effectSize').value);
+  const n         = parseInt(document.getElementById('sampleSize').value);
+  const alpha     = parseFloat(document.getElementById('alpha').value);
+  const delta     = d * Math.sqrt(n);
+  return { testType, d, n, alpha, delta };
+}
+
+function computeStats(testType, alpha, delta) {
+  // critical value(s)
+  let zCritRight, zCritLeft;
+  if (testType === 'right') {
+    zCritRight = jStat.normal.inv(1 - alpha, 0, 1);
+  } else {
+    zCritRight = jStat.normal.inv(1 - alpha / 2, 0, 1);
+    zCritLeft  = -zCritRight;
+  }
+
+  // beta = prob(Z not in rejection region | H1)
+  let beta;
+  if (testType === 'right') {
+    // under H1: Z ~ N(delta, 1). beta = P(Z < zCritRight | H1)
+    beta = jStat.normal.cdf(zCritRight, delta, 1);
+  } else {
+    // beta = P(zCritLeft < Z < zCritRight | H1)
+    beta = jStat.normal.cdf(zCritRight, delta, 1) - jStat.normal.cdf(zCritLeft, delta, 1);
+  }
+  const power = 1 - beta;
+  return { zCritRight, zCritLeft, beta, power };
+}
+
+function updateChart(params, stats) {
+  const { testType, delta } = params;
+  const { zCritRight, zCritLeft, beta, power } = stats;
+
+  // axis range
+  const xMin = Math.min(-4.5, delta - 5);
+  const xMax = Math.max(4.5, delta + 5);
+
+  const datasets = [];
+
+  // --- BETA REGION (H1 in acceptance zone) ---
+  if (testType === 'right') {
+    datasets.push(makePdfRegion(delta, xMin, zCritRight, 'rgba(100,116,139,0.28)', 'β (Error tipo II)', 300));
+  } else {
+    datasets.push(makePdfRegion(delta, zCritLeft, zCritRight, 'rgba(100,116,139,0.28)', 'β (Error tipo II)', 300));
+  }
+
+  // --- POWER REGION (H1 in rejection zone) ---
+  if (testType === 'right') {
+    datasets.push(makePdfRegion(delta, zCritRight, xMax, 'rgba(22,163,74,0.32)', 'Potencia (1−β)', 200));
+  } else {
+    // left power tail
+    datasets.push(makePdfRegion(delta, xMin, zCritLeft, 'rgba(22,163,74,0.32)', 'Potencia (1−β)', 200));
+    // right power tail — same label, will be deduplicated in legend
+    datasets.push(makePdfRegion(delta, zCritRight, xMax, 'rgba(22,163,74,0.32)', 'Potencia (1−β)', 200));
+  }
+
+  // --- ALPHA REGION (H0 in rejection zone) ---
+  if (testType === 'right') {
+    datasets.push(makePdfRegion(0, zCritRight, xMax, 'rgba(220,38,38,0.38)', 'α (Error tipo I)', 200));
+  } else {
+    datasets.push(makePdfRegion(0, xMin, zCritLeft, 'rgba(220,38,38,0.38)', 'α (Error tipo I)', 200));
+    datasets.push(makePdfRegion(0, zCritRight, xMax, 'rgba(220,38,38,0.38)', 'α (Error tipo I)', 200));
+  }
+
+  // --- H0 FULL CURVE ---
+  datasets.push(makePdfCurve(0, xMin, xMax, 'rgba(79,70,229,0.90)', 'H₀: Z ~ N(0, 1)'));
+
+  // --- H1 FULL CURVE ---
+  const deltaLabel = delta.toFixed(2);
+  datasets.push(makePdfCurve(delta, xMin, xMax, 'rgba(220,38,38,0.90)', `H₁: Z ~ N(${deltaLabel}, 1)`));
+
+  // deduplicate legend (keep first occurrence per label)
+  const seenLabels = new Set();
+  datasets.forEach(ds => {
+    if (seenLabels.has(ds.label)) {
+      ds.label = '';  // hide from legend
+    } else {
+      seenLabels.add(ds.label);
+    }
+  });
+
+  // vertical lines
+  const vLines = [];
+  if (testType === 'right') {
+    vLines.push({ x: zCritRight, label: `z = ${zCritRight.toFixed(3)}`, color: 'rgba(220,38,38,0.75)', dash: [6, 4] });
+  } else {
+    vLines.push({ x: zCritRight, label: `z = ${zCritRight.toFixed(3)}`, color: 'rgba(220,38,38,0.75)', dash: [6, 4] });
+    vLines.push({ x: zCritLeft,  label: `z = ${zCritLeft.toFixed(3)}`,  color: 'rgba(220,38,38,0.75)', dash: [6, 4] });
+  }
+
+  errorChart.data.datasets = datasets;
+  errorChart.options.scales.x.min = xMin;
+  errorChart.options.scales.x.max = xMax;
+  errorChart.options.plugins.verticalLines.lines = vLines;
+  errorChart.update('none');
+}
+
+function updateStats(params, stats) {
+  const { alpha, delta } = params;
+  const { beta, power } = stats;
+
+  document.getElementById('statAlpha').textContent = alpha.toFixed(3);
+  document.getElementById('statBeta').textContent  = beta.toFixed(3);
+  document.getElementById('statPower').textContent = power.toFixed(3);
+  document.getElementById('statDelta').textContent = delta.toFixed(3);
+
+  // power cell colour
+  const cellPower = document.getElementById('cellPower');
+  if (power >= 0.8) {
+    cellPower.style.background = 'rgba(22,163,74,0.07)';
+    cellPower.style.borderColor = 'rgba(22,163,74,0.25)';
+  } else if (power >= 0.5) {
+    cellPower.style.background = 'rgba(217,119,6,0.07)';
+    cellPower.style.borderColor = 'rgba(217,119,6,0.25)';
+  } else {
+    cellPower.style.background = 'rgba(220,38,38,0.06)';
+    cellPower.style.borderColor = 'rgba(220,38,38,0.20)';
+  }
+}
+
+function updateInterpretation(params, stats) {
+  const { testType, d, n, alpha, delta } = params;
+  const { beta, power, zCritRight, zCritLeft } = stats;
+
+  let powerDesc, powerAdvice;
+  if (power >= 0.8) {
+    powerDesc  = '<strong>alta potencia</strong> (≥ 0,80)';
+    powerAdvice = 'El diseño actual es robusto: con estos parámetros, el contraste detectará el efecto real en más del 80 % de las réplicas del experimento.';
+  } else if (power >= 0.5) {
+    powerDesc  = '<strong>potencia moderada</strong> (entre 0,50 y 0,80)';
+    powerAdvice = 'Para alcanzar la potencia convencional del 80 %, considera aumentar el tamaño muestral o el nivel de significación α.';
+  } else {
+    powerDesc  = '<strong>potencia baja</strong> (< 0,50)';
+    powerAdvice = 'Este contraste tiene escasa capacidad de detectar el efecto. Si existe un efecto real de tamaño d = ' + d.toFixed(2) + ', el test fallará en más de la mitad de las veces. Aumenta n o α para mejorar la situación.';
+  }
+
+  const typeStr = testType === 'right' ? 'unilateral derecho' : 'bilateral';
+  const critStr = testType === 'right'
+    ? `el valor crítico es z = ${zCritRight.toFixed(3)}`
+    : `los valores críticos son z = ±${zCritRight.toFixed(3)}`;
+
+  const html = `
+    Con un contraste <strong>${typeStr}</strong> al nivel α = <strong>${alpha.toFixed(3)}</strong>,
+    ${critStr}. Bajo H₁ con tamaño del efecto d = ${d.toFixed(2)} y n = ${n} observaciones,
+    el parámetro de no-centralidad es δ = d × √n = <strong>${delta.toFixed(3)}</strong>.
+    <br><br>
+    La probabilidad de error tipo II es β = <strong>${beta.toFixed(3)}</strong>,
+    lo que corresponde a una potencia de 1 − β = <strong>${power.toFixed(3)}</strong> —
+    escenario de ${powerDesc}.
+    <br><br>
+    ${powerAdvice}
+  `;
+  document.getElementById('interpretation').innerHTML = html;
+}
+
+function update() {
+  const params = getParams();
+  const stats  = computeStats(params.testType, params.alpha, params.delta);
+  updateChart(params, stats);
+  updateStats(params, stats);
+  updateInterpretation(params, stats);
+}
+
+/* ════════════════════════════════════════════
+   SLIDER LABELS
+════════════════════════════════════════════ */
+document.getElementById('effectSize').addEventListener('input', function () {
+  document.getElementById('effectSizeVal').textContent = 'd = ' + parseFloat(this.value).toFixed(2);
+  update();
+});
+document.getElementById('alpha').addEventListener('input', function () {
+  document.getElementById('alphaVal').textContent = 'α = ' + parseFloat(this.value).toFixed(3);
+  update();
+});
+document.getElementById('testType').addEventListener('change', update);
+document.getElementById('sampleSize').addEventListener('change', update);
+
+/* ════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════ */
+initChart();
+update();
+</script>
+</body>
+</html>
