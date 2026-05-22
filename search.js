@@ -131,8 +131,19 @@
   var modal, inputEl, resultsEl, activeIdx = -1, filtered = [];
 
   // ── URL helper ────────────────────────────────────────────────────────
+  // Convert root-relative paths (/normal.html) to paths relative to the
+  // current page, so links work regardless of server configuration.
+  var ROOT_PREFIX = (function () {
+    var dir = window.location.pathname.replace(/[^\/]*$/, '');
+    var depth = dir.split('/').filter(Boolean).length;
+    var s = '';
+    for (var i = 0; i < depth; i++) s += '../';
+    return s;
+  }());
+
   function toUrl(absPath) {
-    return absPath;
+    // absPath starts with '/' → strip it and prepend computed prefix
+    return ROOT_PREFIX + absPath.slice(1);
   }
 
   // ── Scoring ───────────────────────────────────────────────────────────
@@ -186,7 +197,7 @@
       html = '<div class="search-group"><div class="search-group-label">Acceso rápido por área</div>';
       for (i = 0; i < SECTIONS.length; i++) {
         var sec = SECTIONS[i];
-        html += '<a class="search-item search-item--section" href="' + esc(sec.url) + '" data-idx="' + i + '">' +
+        html += '<a class="search-item search-item--section" href="' + esc(toUrl(sec.url)) + '" data-idx="' + i + '">' +
           '<span class="search-item-icon" style="color:' + sec.color + '">' + esc(sec.icon) + '</span>' +
           '<span class="search-item-name">' + esc(sec.name) + '</span>' +
           '<span class="search-item-desc">' + esc(sec.desc) + '</span>' +
@@ -214,7 +225,7 @@
     for (i = 0; i < shown.length; i++) {
       tool = shown[i].tool;
       style = CAT_STYLES[tool.cat] || { bg: 'rgba(100,116,139,0.09)', color: '#475569' };
-      html += '<a class="search-item" href="' + esc(tool.url) + '" data-idx="' + i + '">' +
+      html += '<a class="search-item" href="' + esc(toUrl(tool.url)) + '" data-idx="' + i + '">' +
         '<span class="search-item-name">' + highlight(tool.full, q) + '</span>' +
         '<span class="search-item-cat" style="background:' + style.bg + ';color:' + style.color + '">' + esc(tool.cat) + '</span>' +
         '</a>';
