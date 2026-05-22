@@ -56,7 +56,7 @@
           "url": "https://problabtools.es/",
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "Web",
-          "description": "Suite gratuita de más de 50 calculadoras estadísticas online: 16 distribuciones de probabilidad, tablas estadísticas, tamaños muestrales, intervalos de confianza, contrastes de hipótesis (ANOVA, chi-cuadrado, Shapiro-Wilk) y herramientas para test A/B. Sin instalación ni registro.",
+          "description": "Suite gratuita de más de 90 herramientas estadísticas online: 16 distribuciones de probabilidad, 8 tablas estadísticas, 25 calculadoras de tamaño muestral, 11 intervalos de confianza, 18 contrastes de hipótesis (ANOVA, chi-cuadrado, Shapiro-Wilk), 5 herramientas para test A/B y 7 simulaciones interactivas. Sin instalación ni registro.",
           "inLanguage": "es",
           "offers": {
             "@type": "Offer",
@@ -77,7 +77,7 @@
           "name": "¿Qué calculadoras estadísticas incluye ProbLab?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "ProbLab reúne más de 60 calculadoras y simulaciones estadísticas: 16 distribuciones de probabilidad, 8 tablas estadísticas, 15 calculadoras de tamaño muestral para contrastes, 5 de intervalos de confianza, 17 contrastes de hipótesis, 4 herramientas para test A/B y 7 simulaciones interactivas (TCL, intervalos de confianza, cadenas de Markov, proceso de Poisson, paseo aleatorio, errores tipo I y tipo II, y bootstrap)."
+            "text": "ProbLab reúne más de 90 herramientas y simulaciones estadísticas: 16 distribuciones de probabilidad, 8 tablas estadísticas, 25 calculadoras de tamaño muestral (10 para intervalos de confianza y 15 para contrastes de hipótesis), 11 calculadoras de intervalos de confianza, 18 contrastes de hipótesis, 5 herramientas para test A/B y 7 simulaciones interactivas (TCL, intervalos de confianza, cadenas de Markov, proceso de Poisson, paseo aleatorio, errores tipo I y tipo II, y bootstrap)."
           }
         },
         {
@@ -647,6 +647,81 @@
             </div>
         </section>
 
+        <section class="card content-card" aria-labelledby="workflow-title" style="border-top: 3px solid #2563eb;">
+            <p class="guided-eyebrow">Flujos de trabajo habituales</p>
+            <h2 id="workflow-title">¿Por dónde empezar?</h2>
+            <p>Las herramientas de ProbLab están pensadas para encadenarse. Estos son los tres flujos más comunes:</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px;">
+
+                <div style="border:1px solid rgba(37,99,235,0.18);border-radius:14px;padding:18px;background:rgba(37,99,235,0.03);">
+                    <p style="margin:0 0 10px;font-size:0.72rem;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;color:#2563eb;">Diseñar un estudio</p>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <a href="tamano-muestral/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#dbeafe;color:#1d4ed8;font-size:0.7rem;font-weight:800;flex-shrink:0;">1</span>
+                            Calcular tamaño muestral
+                        </a>
+                        <a href="contraste-hipotesis-una-media.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#dbeafe;color:#1d4ed8;font-size:0.7rem;font-weight:800;flex-shrink:0;">2</span>
+                            Realizar el contraste de hipótesis
+                        </a>
+                        <a href="intervalo-confianza-media.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#dbeafe;color:#1d4ed8;font-size:0.7rem;font-weight:800;flex-shrink:0;">3</span>
+                            Calcular intervalo de confianza
+                        </a>
+                        <a href="simulaciones/simulador-errores-tipo-i-ii.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#dbeafe;color:#1d4ed8;font-size:0.7rem;font-weight:800;flex-shrink:0;">4</span>
+                            Visualizar potencia y errores
+                        </a>
+                    </div>
+                </div>
+
+                <div style="border:1px solid rgba(15,118,110,0.2);border-radius:14px;padding:18px;background:rgba(15,118,110,0.03);">
+                    <p style="margin:0 0 10px;font-size:0.72rem;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;color:#0f766e;">Lanzar un test A/B</p>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <a href="ab-testing-potencia.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d1fae5;color:#0f766e;font-size:0.7rem;font-weight:800;flex-shrink:0;">1</span>
+                            Estimar MDE y tamaño muestral
+                        </a>
+                        <a href="ab-testing-z-test.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d1fae5;color:#0f766e;font-size:0.7rem;font-weight:800;flex-shrink:0;">2</span>
+                            Analizar significación (Z-test)
+                        </a>
+                        <a href="ab-testing-bayesiano.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d1fae5;color:#0f766e;font-size:0.7rem;font-weight:800;flex-shrink:0;">3</span>
+                            Confirmar con análisis bayesiano
+                        </a>
+                        <a href="ab-testing-simulacion.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#d1fae5;color:#0f766e;font-size:0.7rem;font-weight:800;flex-shrink:0;">4</span>
+                            Simular distribución de resultados
+                        </a>
+                    </div>
+                </div>
+
+                <div style="border:1px solid rgba(234,88,12,0.18);border-radius:14px;padding:18px;background:rgba(234,88,12,0.03);">
+                    <p style="margin:0 0 10px;font-size:0.72rem;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;color:#c2410c;">Explorar una distribución</p>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <a href="distribuciones/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#fed7aa;color:#c2410c;font-size:0.7rem;font-weight:800;flex-shrink:0;">1</span>
+                            Elegir la distribución adecuada
+                        </a>
+                        <a href="normal.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#fed7aa;color:#c2410c;font-size:0.7rem;font-weight:800;flex-shrink:0;">2</span>
+                            Calcular P(X≤x), percentiles, PDF
+                        </a>
+                        <a href="tablas-estadisticas/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#fed7aa;color:#c2410c;font-size:0.7rem;font-weight:800;flex-shrink:0;">3</span>
+                            Consultar valores críticos en tablas
+                        </a>
+                        <a href="simulaciones/teorema-central-limite.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#0f172a;font-size:0.88rem;font-weight:600;">
+                            <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#fed7aa;color:#c2410c;font-size:0.7rem;font-weight:800;flex-shrink:0;">4</span>
+                            Simular el Teorema Central del Límite
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <section id="distribuciones" class="card content-card section-dist" aria-labelledby="dist-title">
             <div class="section-heading">
                 <span class="section-icon section-icon-dist" aria-hidden="true">
@@ -865,7 +940,7 @@
 
         <section class="card content-card intro-seo-card" aria-labelledby="intro-title">
             <h2 id="intro-title">Herramientas estadísticas online para calcular, interpretar y aprender</h3>
-            <p>ProbLab es una suite gratuita de más de 50 calculadoras estadísticas online para resolver cálculos de probabilidad e inferencia directamente desde el navegador, sin instalar software ni crear una cuenta. Encontrarás calculadoras de 16 distribuciones de probabilidad —normal, binomial, Poisson, t de Student, chi-cuadrado, F de Snedecor, exponencial, gamma, beta, lognormal, Weibull y más—, tablas estadísticas clásicas, tamaños muestrales, intervalos de confianza, contrastes de hipótesis y herramientas completas para test A/B.</p>
+            <p>ProbLab es una suite gratuita de más de 90 herramientas estadísticas online para resolver cálculos de probabilidad e inferencia directamente desde el navegador, sin instalar software ni crear una cuenta. Encontrarás calculadoras de 16 distribuciones de probabilidad —normal, binomial, Poisson, t de Student, chi-cuadrado, F de Snedecor, exponencial, gamma, beta, lognormal, Weibull y más—, tablas estadísticas clásicas, tamaños muestrales, intervalos de confianza, contrastes de hipótesis y herramientas completas para test A/B.</p>
             <p>La plataforma está orientada a estudiantes de estadística y probabilidad, docentes universitarios, investigadores, analistas de datos y equipos de producto que necesitan resultados rigurosos y verificables. Cada calculadora incluye un formulario interactivo, la fórmula utilizada, una representación gráfica de la distribución y una interpretación del resultado que ayuda a entender el significado estadístico, no solo a copiar un número.</p>
             <p>A diferencia de una tabla estática en papel o una calculadora aislada, ProbLab permite ajustar parámetros al instante y ver cómo cambia la distribución o el resultado. Puedes pasar de calcular la probabilidad acumulada de una distribución normal a consultar los valores críticos de la t de Student, estimar cuántas observaciones necesitas para tu estudio o ejecutar un contraste de hipótesis sobre medias o proporciones —todo sin salir del navegador y con explicación del procedimiento en cada paso.</p>
         </section>
@@ -875,7 +950,7 @@
             <div class="faq-list">
                 <article class="faq-item">
                     <h3>¿Qué calculadoras estadísticas incluye ProbLab?</h3>
-                    <p>ProbLab reúne más de 60 calculadoras y simulaciones estadísticas: 16 distribuciones de probabilidad, 8 tablas estadísticas, 15 calculadoras de tamaño muestral para contrastes, 11 de intervalos de confianza, 17 contrastes de hipótesis, 4 herramientas para test A/B y 7 simulaciones interactivas (TCL, intervalos de confianza, cadenas de Markov, proceso de Poisson, paseo aleatorio, errores tipo I y tipo II, y bootstrap).</p>
+                    <p>ProbLab reúne más de 90 herramientas y simulaciones estadísticas: 16 distribuciones de probabilidad, 8 tablas estadísticas, 25 calculadoras de tamaño muestral (10 para intervalos de confianza y 15 para contrastes), 11 calculadoras de intervalos de confianza, 18 contrastes de hipótesis, 5 herramientas para test A/B y 7 simulaciones interactivas (TCL, intervalos de confianza, cadenas de Markov, proceso de Poisson, paseo aleatorio, errores tipo I y tipo II, y bootstrap).</p>
                 </article>
                 <article class="faq-item">
                     <h3>¿Puedo calcular probabilidades de una normal, binomial o Poisson?</h3>
@@ -924,5 +999,6 @@
 
 
 
+<script src="search.js"></script>
 </body>
 </html>
