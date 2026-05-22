@@ -3,10 +3,6 @@
 
   var STORAGE_KEY = 'prob-theme';
 
-  function prefersDark() {
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-
   function getStored() {
     try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
   }
@@ -27,14 +23,12 @@
     return document.documentElement.classList.contains('dark-mode');
   }
 
-  // Apply immediately (before paint) to avoid flash
+  // Apply immediately (before paint) to avoid flash. Default is light.
   var stored = getStored();
   if (stored === 'dark') {
     applyTheme(true);
-  } else if (stored === 'light') {
-    applyTheme(false);
   } else {
-    applyTheme(prefersDark());
+    applyTheme(false);
   }
 
   function init() {
@@ -66,16 +60,6 @@
 
     li.appendChild(btn);
     nav.appendChild(li);
-
-    // Sync when system preference changes (only if user hasn't manually set a preference)
-    if (window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-        if (!getStored()) {
-          applyTheme(e.matches);
-          updateIcon();
-        }
-      });
-    }
   }
 
   if (document.readyState === 'loading') {
