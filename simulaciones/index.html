@@ -88,6 +88,8 @@
         <li><a href="../simulaciones/simulador-cadenas-markov.html">Simulador de cadenas de Markov</a></li>
         <li><a href="../simulaciones/simulador-proceso-poisson.html">Simulador de proceso de Poisson</a></li>
         <li><a href="../simulaciones/simulador-paseo-aleatorio.html">Simulador de paseo aleatorio 1D y 2D</a></li>
+        <li><a href="../simulaciones/simulador-errores-tipo-i-ii.html">Simulador de errores tipo I y tipo II</a></li>
+        <li><a href="../simulaciones/simulador-bootstrap.html">Simulador bootstrap</a></li>
       </ul>
     </section>
 
@@ -149,6 +151,20 @@
       <p>La propiedad más característica es que la dispersión crece como <strong>√n</strong> y no como n: después de n pasos, las posiciones se distribuyen como N(μ, σ²n) con σ proporcional a √n. Las bandas teóricas ±2σ del simulador muestran este ensanchamiento en abanico.</p>
       <p>La simulación incluye derive (p ≠ 0,5), recurrencia 2D (la trayectoria regresa al origen infinitas veces) y la conexión con el movimiento browniano, la ruina del jugador y la ley de difusión.</p>
       <p><a href="simulador-paseo-aleatorio.html" class="hero-link-button" style="display:inline-block; margin-top: 0.5rem;">Abrir simulador de paseo aleatorio →</a></p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Simulador de errores tipo I y tipo II</h2>
+      <p>En un contraste de hipótesis se cometen dos tipos de errores: el <strong>error tipo I</strong> (rechazar H₀ siendo cierta, controlado por α) y el <strong>error tipo II</strong> (no rechazar H₀ cuando H₁ es verdadera, igual a β). La <strong>potencia estadística</strong> es 1 − β: la probabilidad de detectar un efecto real.</p>
+      <p>El simulador muestra visualmente las dos distribuciones del estadístico Z (bajo H₀ y bajo H₁) solapadas en un mismo gráfico. Al mover los controles en tiempo real se aprecia cómo reducir α aumenta β, cómo aumentar el tamaño del efecto o el tamaño muestral separa las distribuciones y aumenta la potencia, y por qué α y β no pueden minimizarse simultáneamente.</p>
+      <p><a href="simulador-errores-tipo-i-ii.html" class="hero-link-button" style="display:inline-block; margin-top: 0.5rem;">Abrir simulador de errores tipo I y tipo II →</a></p>
+    </section>
+
+    <section class="card content-card">
+      <h2>Simulador bootstrap</h2>
+      <p>El <strong>bootstrap</strong> (Efron, 1979) es una técnica de remuestreo que estima la distribución muestral de cualquier estadístico —media, mediana, desviación típica, correlación…— sin necesidad de asumir una distribución paramétrica. La idea central es tratar la muestra observada como si fuera la población y generar B muestras «bootstrap» extrayendo con reemplazamiento de la muestra original.</p>
+      <p>El simulador permite elegir distribución poblacional, estadístico de interés, tamaño muestral y número de réplicas. Dos botones independientes permiten generar una nueva muestra o regenerar las réplicas bootstrap sobre la misma muestra, facilitando la comprensión de la variabilidad del propio bootstrap. El intervalo de confianza por el método del percentil se visualiza sombreado en verde sobre la distribución bootstrap.</p>
+      <p><a href="simulador-bootstrap.html" class="hero-link-button" style="display:inline-block; margin-top: 0.5rem;">Abrir simulador bootstrap →</a></p>
     </section>
 
     <section class="card content-card">
