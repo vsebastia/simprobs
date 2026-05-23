@@ -1,6 +1,9 @@
 RewriteEngine On
 RewriteRule ^index\.html$ / [R=301,L]
 
+RewriteCond %{HTTP_HOST} ^(www\.)?problabtools\.es$ [NC]
+RewriteRule ^(.*)$ https://problabtools.com/$1 [L,R=301]
+
 <IfModule mod_headers.c>
   <FilesMatch "\.(?:html?)$">
     Header set Cache-Control "no-cache, must-revalidate"
